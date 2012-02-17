@@ -26,6 +26,7 @@ class main
             rez = rez + t[c-1]+" ";
         }
         Console.WriteLine(rez);
+        
         //Console.ReadLine();
     }
 }
