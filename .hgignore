@@ -27,6 +27,7 @@ sandbox/SergeyS/summa/summa.suo
 *.lib
 *.sbr
 *.scc
+App_Data/
 [Bb]in
 [Dd]ebug*/
 obj/
