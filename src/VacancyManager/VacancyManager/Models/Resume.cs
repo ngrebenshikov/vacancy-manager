@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace VacancyManager.Models
@@ -15,7 +16,11 @@ namespace VacancyManager.Models
         [Display(Name = "Краткая информация")]
         public string Summary { get; set; }
 
-        //TODO Добавить остальные поля
+        [Display(Name = "Список компетенций")]
+        public string Competence { get; set; }
+
+        [Display(Name = "Иностранные языки")]
+        public string ForeignLanguage { get; set; }
 
         public string FirstName
         {
@@ -24,9 +29,11 @@ namespace VacancyManager.Models
 
         public string LastName
         {
-            get { return Applicant.LatsName; }
+            get { return Applicant.LastName; }
         }
 
         public virtual Applicant Applicant { get; set; }
+        public virtual ICollection<PreviousExperience> PreviousExperiences { get; set; }
+        public virtual ICollection<Education> Educations { get; set; } 
     }
 }

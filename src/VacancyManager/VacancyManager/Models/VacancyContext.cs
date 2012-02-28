@@ -10,7 +10,10 @@ namespace VacancyManager.Models
         public DbSet<Resume> Resumes { get; set; }
         public DbSet<Vacancy> Vacancies { get; set; }
         public DbSet<User> Users { get; set; }
-        public DbSet<Commentary> Commentaries { get; set; } 
+        public DbSet<Comment> Commentaries { get; set; }
+        public DbSet<File> Files { get; set; }
+        public DbSet<PreviousExperience> PreviousExperiences { get; set; }
+        public DbSet<Education> Educations { get; set; } 
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
