@@ -13,7 +13,7 @@ namespace VacancyManager.Models
         [Required(ErrorMessage = "Фамилия является обязательной.")]
         [MaxLength(50)]
         [Display(Name = "Фамилия")]
-        public string LatsName { get; set; }
+        public string LastName { get; set; }
 
         [Required(ErrorMessage = "Имя является обязательным.")]
         [MaxLength(50)]
@@ -25,11 +25,12 @@ namespace VacancyManager.Models
 
         public string FullName
         {
-            get { return FirstName + " " + LatsName; }
+            get { return FirstName + " " + LastName; }
         }
 
         public virtual ICollection<Resume> Resumes { get; set; }
         public virtual ICollection<Consideration> Considerations { get; set; }
         public virtual User User { get; set; }
+        public virtual ICollection<File> Files { get; set; } 
     }
 }

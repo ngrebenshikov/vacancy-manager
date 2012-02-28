@@ -67,9 +67,12 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Applicant.cs" />
-    <Compile Include="Models\Commentary.cs" />
+    <Compile Include="Models\Comment.cs" />
     <Compile Include="Models\Consideration.cs" />
     <Compile Include="Models\DAL\VacancyInitializer.cs" />
+    <Compile Include="Models\Education.cs" />
+    <Compile Include="Models\File.cs" />
+    <Compile Include="Models\PreviousExperience.cs" />
     <Compile Include="Models\Resume.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\Vacancy.cs" />

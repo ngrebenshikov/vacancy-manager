@@ -20,7 +20,16 @@ namespace VacancyManager.Models
         [Display(Name = "Дата открытия")]
         public DateTime? OpeningDate { get; set; }
 
-        //TODO Добавить остальные поля
+        [Display(Name = "Используемые технологии")]
+        public string Technology { get; set; }
+
+        [Display(Name = "Иностранные языки")]
+        public string ForeignLanguage { get; set; }
+
+        [Display(Name = "Требования")]
+        public string Requirments { get; set; }
+
+        public bool IsVisible { get; set; }
 
         public virtual ICollection<Consideration> Considerations { get; set; } 
     }
