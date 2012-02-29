@@ -1,0 +1,10 @@
+c:\users\user\documents\visual studio 2010\Projects\AppTEST\AppTEST\bin\AppTEST.dll
+c:\users\user\documents\visual studio 2010\Projects\AppTEST\AppTEST\bin\AppTEST.pdb
+c:\users\user\documents\visual studio 2010\Projects\AppTEST\AppTEST\bin\EntityFramework.dll
+c:\users\user\documents\visual studio 2010\Projects\AppTEST\AppTEST\bin\EntityFramework.xml
+c:\users\user\documents\visual studio 2010\Projects\AppTEST\AppTEST\obj\Debug\ResolveAssemblyReference.cache
+c:\users\user\documents\visual studio 2010\Projects\AppTEST\AppTEST\obj\Debug\AppTEST.dll
+c:\users\user\documents\visual studio 2010\Projects\AppTEST\AppTEST\obj\Debug\AppTEST.pdb
+C:\Users\user\Documents\Visual Studio 2010\Projects\AppTEST\AppTEST\bin\Devtalk.EF.CodeFirst.dll
+C:\Users\user\Documents\Visual Studio 2010\Projects\AppTEST\AppTEST\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\user\Documents\Visual Studio 2010\Projects\AppTEST\AppTEST\bin\WebActivator.dll
