@@ -5,3 +5,12 @@ sandbox/SergeyS/summa/Project3/bin/
 sandbox/SergeyS/summa/Project3/obj/
 sandbox/SergeyS/Project5/Project5.suo
 sandbox/SergeyS/summa/summa.suo
+*.suo
+sandbox/Akimov/AppTEST/AppTEST/obj/
+sandbox/Anatoly/Vacan/bin/
+sandbox/Anatoly/Vacan/obj/
+sandbox/Bnschikov/VMProject/VMProject/bin/
+sandbox/Bnschikov/VMProject/VMProject/obj/
+sandbox/Anatoly/Vacan/App_Data/
+sandbox/Bnschikov/VMProject/VMProject/App_Data/
+src/VacancyManager/VacancyManager/obj/
