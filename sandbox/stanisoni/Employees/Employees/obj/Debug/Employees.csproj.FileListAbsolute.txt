@@ -1,0 +1,7 @@
+E:\Dropbox\Dropbox\Проекты\Свои\MVC\Employees\Employees\obj\Debug\ResolveAssemblyReference.cache
+E:\Dropbox\Dropbox\Проекты\Свои\MVC\Employees\Employees\bin\Employees.dll
+E:\Dropbox\Dropbox\Проекты\Свои\MVC\Employees\Employees\bin\Employees.pdb
+E:\Dropbox\Dropbox\Проекты\Свои\MVC\Employees\Employees\bin\EntityFramework.dll
+E:\Dropbox\Dropbox\Проекты\Свои\MVC\Employees\Employees\bin\EntityFramework.xml
+E:\Dropbox\Dropbox\Проекты\Свои\MVC\Employees\Employees\obj\Debug\Employees.dll
+E:\Dropbox\Dropbox\Проекты\Свои\MVC\Employees\Employees\obj\Debug\Employees.pdb
