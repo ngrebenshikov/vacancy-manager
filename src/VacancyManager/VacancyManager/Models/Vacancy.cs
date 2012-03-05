@@ -20,9 +20,6 @@ namespace VacancyManager.Models
         [Display(Name = "Дата открытия")]
         public DateTime? OpeningDate { get; set; }
 
-        [Display(Name = "Используемые технологии")]
-        public string Technology { get; set; }
-
         [Display(Name = "Иностранные языки")]
         public string ForeignLanguage { get; set; }
 
@@ -31,6 +28,7 @@ namespace VacancyManager.Models
 
         public bool IsVisible { get; set; }
 
-        public virtual ICollection<Consideration> Considerations { get; set; } 
+        public virtual ICollection<Consideration> Considerations { get; set; }
+        public virtual ICollection<TechnologyStack> TechnologyStacks { get; set; } 
     }
 }
