@@ -27,7 +27,7 @@ namespace VacancyManager.Models.DAL
                              {
                                  new Applicant
                                  {
-                                     LatsName = "Иванов",
+                                     LastName = "Иванов",
                                      FirstName = "Иван",
                                      Email = "ivan@ivanov.ru",
                                      Resumes = new Collection<Resume>(),
