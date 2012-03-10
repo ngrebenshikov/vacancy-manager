@@ -1,9 +1,112 @@
-﻿using System.Web.Security;
+﻿using System;
+using System.Collections.Specialized;
+using System.Web.Security;
 
 namespace VacancyManager.Services
 {
     public class VacancyManagerMemdershipProvider : MembershipProvider
     {
+        private string _applicationName;
+        private bool _enablePasswordReset;
+        private bool _enablePasswordRetrieval;
+        private bool _requiresQuestionAndAnswer;
+        private bool _requiresUniqueEmail = true;
+        private int _maxInvalidPasswordAttempts;
+        private int _passwordAttemptWindow;
+        private int _minRequiredPasswordLength;
+        private int _minRequiredNonalphanumericCharacters;
+        private string _passwordStrengthRegularExpression;
+        private MembershipPasswordFormat _passwordFormat = MembershipPasswordFormat.Hashed;
+
+        #region Properties
+
+        public override bool EnablePasswordRetrieval
+        {
+            get { return _enablePasswordRetrieval; }
+        }
+
+        public override bool EnablePasswordReset
+        {
+            get { return _enablePasswordReset; }
+        }
+
+        public override bool RequiresQuestionAndAnswer
+        {
+            get { return _requiresQuestionAndAnswer; }
+        }
+
+        public override string ApplicationName
+        {
+            get { return _applicationName; }
+            set { _applicationName = value; }
+        }
+
+        public override int MaxInvalidPasswordAttempts
+        {
+            get { return _maxInvalidPasswordAttempts; }
+        }
+
+        public override int PasswordAttemptWindow
+        {
+            get { return _passwordAttemptWindow; }
+        }
+
+        public override bool RequiresUniqueEmail
+        {
+            get { return _requiresUniqueEmail; }
+        }
+
+        public override MembershipPasswordFormat PasswordFormat
+        {
+            get { return _passwordFormat; }
+        }
+
+        public override int MinRequiredPasswordLength
+        {
+            get { return _minRequiredPasswordLength; }
+        }
+
+        public override int MinRequiredNonAlphanumericCharacters
+        {
+            get { return _minRequiredNonalphanumericCharacters; }
+        }
+
+        public override string PasswordStrengthRegularExpression
+        {
+            get { return _passwordStrengthRegularExpression; }
+        }
+
+        #endregion
+
+        public override void Initialize(string name, NameValueCollection config)
+        {
+            if (config == null)
+            {
+                throw new ArgumentNullException("config");
+            }
+
+            if (string.IsNullOrEmpty(name))
+            {
+                name = "VacancyManagerMemdershipProvider";
+            }
+
+            if (String.IsNullOrEmpty(config["description"]))
+            {
+                config.Remove("description");
+                config.Add("description", "VacancyManagerMemdershipProvider");
+            }
+
+            base.Initialize(name, config);
+
+            _applicationName = GetConfigValue(config["applicationName"], System.Web.Hosting.HostingEnvironment.ApplicationVirtualPath);
+            _maxInvalidPasswordAttempts = Convert.ToInt32(GetConfigValue(config["maxInvalidPasswordAttempts"], "5"));
+            _passwordAttemptWindow = Convert.ToInt32(GetConfigValue(config["passwordAttemptWindow"], "10"));
+            _minRequiredNonalphanumericCharacters = Convert.ToInt32(GetConfigValue(config["minRequiredNonalphanumericCharacters"], "1"));
+            _minRequiredPasswordLength = Convert.ToInt32(GetConfigValue(config["minRequiredPasswordLength"], "6"));
+            _enablePasswordReset = Convert.ToBoolean(GetConfigValue(config["enablePasswordReset"], "true"));
+            _passwordStrengthRegularExpression = Convert.ToString(GetConfigValue(config["passwordStrengthRegularExpression"], ""));
+
+        }
         public override MembershipUser CreateUser(string username, string password, string email, string passwordQuestion, string passwordAnswer, bool isApproved, object providerUserKey, out MembershipCreateStatus status)
         {
             throw new System.NotImplementedException();
@@ -84,60 +187,9 @@ namespace VacancyManager.Services
             throw new System.NotImplementedException();
         }
 
-        public override bool EnablePasswordRetrieval
+        private string GetConfigValue(string configValue, string defaultValue)
         {
-            get { throw new System.NotImplementedException(); }
-        }
-
-        public override bool EnablePasswordReset
-        {
-            get { throw new System.NotImplementedException(); }
-        }
-
-        public override bool RequiresQuestionAndAnswer
-        {
-            get { throw new System.NotImplementedException(); }
-        }
-
-        public override string ApplicationName
-        {
-            get { throw new System.NotImplementedException(); }
-            set { throw new System.NotImplementedException(); }
-        }
-
-        public override int MaxInvalidPasswordAttempts
-        {
-            get { throw new System.NotImplementedException(); }
-        }
-
-        public override int PasswordAttemptWindow
-        {
-            get { throw new System.NotImplementedException(); }
-        }
-
-        public override bool RequiresUniqueEmail
-        {
-            get { throw new System.NotImplementedException(); }
-        }
-
-        public override MembershipPasswordFormat PasswordFormat
-        {
-            get { throw new System.NotImplementedException(); }
-        }
-
-        public override int MinRequiredPasswordLength
-        {
-            get { throw new System.NotImplementedException(); }
-        }
-
-        public override int MinRequiredNonAlphanumericCharacters
-        {
-            get { throw new System.NotImplementedException(); }
-        }
-
-        public override string PasswordStrengthRegularExpression
-        {
-            get { throw new System.NotImplementedException(); }
+            return (string.IsNullOrEmpty(configValue)) ? defaultValue : configValue;
         }
     }
 }
