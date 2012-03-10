@@ -17,10 +17,13 @@ namespace VacancyManager.Controllers
         //
         // GET: /Home/
 
-        public string Index()
+        public ActionResult Index()
         {
-            // Простейший запрос к контексту, т.к. без этого база данных автоматически не создаётся
-            return db.Applicants.Any().ToString(CultureInfo.InvariantCulture);
+            var vacancyList = from vacancy in db.Vacancies
+                              where vacancy.IsVisible
+                              select vacancy;
+
+            return View(vacancyList);
         }
 
         protected override void Dispose(bool disposing)
