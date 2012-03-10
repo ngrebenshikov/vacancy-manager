@@ -4,7 +4,7 @@ using System.Web.Security;
 
 namespace VacancyManager.Services
 {
-    public class VacancyManagerMemdershipProvider : MembershipProvider
+    public class VacancyManagerMembershipProvider : MembershipProvider
     {
         private string _applicationName;
         private bool _enablePasswordReset;
