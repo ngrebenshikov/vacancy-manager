@@ -1,0 +1,25 @@
+﻿@model AppTEST.Models.Contacts1
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>Contacts1</legend>
+
+    <div class="display-label">Name</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Name)
+    </div>
+
+    <div class="display-label">profileID</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.profileID)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.Contacts1Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
