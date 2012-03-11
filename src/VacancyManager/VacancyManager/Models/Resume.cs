@@ -16,9 +16,6 @@ namespace VacancyManager.Models
         [Display(Name = "Краткая информация")]
         public string Summary { get; set; }
 
-        [Display(Name = "Список компетенций")]
-        public string Competence { get; set; }
-
         [Display(Name = "Иностранные языки")]
         public string ForeignLanguage { get; set; }
 
@@ -34,6 +31,7 @@ namespace VacancyManager.Models
 
         public virtual Applicant Applicant { get; set; }
         public virtual ICollection<PreviousExperience> PreviousExperiences { get; set; }
-        public virtual ICollection<Education> Educations { get; set; } 
+        public virtual ICollection<Education> Educations { get; set; }
+        public virtual ICollection<TechnologyStack> TechnologyStacks { get; set; } 
     }
 }

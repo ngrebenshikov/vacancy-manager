@@ -27,7 +27,7 @@ namespace VacancyManager.Models.DAL
                              {
                                  new Applicant
                                  {
-                                     LatsName = "Иванов",
+                                     LastName = "Иванов",
                                      FirstName = "Иван",
                                      Email = "ivan@ivanov.ru",
                                      Resumes = new Collection<Resume>(),
@@ -46,6 +46,7 @@ namespace VacancyManager.Models.DAL
                                 {
                                     Title = ".NET junior developer",
                                     Description = "Требуется работник на данную вакансию",
+                                    IsVisible = true,
                                     OpeningDate = DateTime.Now,
                                     Considerations = new Collection<Consideration>()
                                 }
