@@ -27,6 +27,6 @@ namespace VacancyManager.Models
         [Display(Name = "Используемые технологии")]
         public string Technology { get; set; }
 
-        public virtual Applicant Applicant { get; set; }
+        public virtual User User { get; set; }
     }
 }

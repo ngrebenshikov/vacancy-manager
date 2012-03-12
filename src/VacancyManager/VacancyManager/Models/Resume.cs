@@ -19,17 +19,7 @@ namespace VacancyManager.Models
         [Display(Name = "Иностранные языки")]
         public string ForeignLanguage { get; set; }
 
-        public string FirstName
-        {
-            get { return Applicant.FirstName; }
-        }
-
-        public string LastName
-        {
-            get { return Applicant.LastName; }
-        }
-
-        public virtual Applicant Applicant { get; set; }
+        public virtual User User { get; set; }
         public virtual ICollection<PreviousExperience> PreviousExperiences { get; set; }
         public virtual ICollection<Education> Educations { get; set; }
         public virtual ICollection<TechnologyStack> TechnologyStacks { get; set; } 

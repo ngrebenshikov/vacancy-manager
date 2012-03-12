@@ -6,6 +6,6 @@
 
         // TODO Уточнить способ хранения файлов
 
-        public virtual Applicant Applicant { get; set; }
+        public virtual User User { get; set; }
     }
 }
