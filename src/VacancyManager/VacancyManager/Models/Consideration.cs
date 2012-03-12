@@ -11,7 +11,7 @@ namespace VacancyManager.Models
         public int VacancyID { get; set; }
         public int ApplicantID { get; set; }
 
-        public virtual Applicant Applicant { get; set; }
+        public virtual User User { get; set; }
         public virtual Vacancy Vacancy { get; set; }
         public virtual ICollection<Comment> Comments { get; set; } 
     }

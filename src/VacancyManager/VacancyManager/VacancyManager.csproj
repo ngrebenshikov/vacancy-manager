@@ -68,7 +68,6 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountModels.cs" />
-    <Compile Include="Models\Applicant.cs" />
     <Compile Include="Models\Comment.cs" />
     <Compile Include="Models\Consideration.cs" />
     <Compile Include="Models\DAL\VacancyInitializer.cs" />
@@ -82,7 +81,7 @@
     <Compile Include="Models\Vacancy.cs" />
     <Compile Include="Models\VacancyContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Services\VacancyManagerMemdershipProvider.cs" />
+    <Compile Include="Services\VacancyManagerMembershipProvider.cs" />
     <Compile Include="Services\VacancyManagerRoleProvider.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -10,7 +10,7 @@ namespace VacancyManager.Services
         private bool _enablePasswordReset;
         private bool _enablePasswordRetrieval;
         private bool _requiresQuestionAndAnswer;
-        private bool _requiresUniqueEmail = true;
+        private bool _requiresUniqueEmail;
         private int _maxInvalidPasswordAttempts;
         private int _passwordAttemptWindow;
         private int _minRequiredPasswordLength;
@@ -105,7 +105,9 @@ namespace VacancyManager.Services
             _minRequiredPasswordLength = Convert.ToInt32(GetConfigValue(config["minRequiredPasswordLength"], "6"));
             _enablePasswordReset = Convert.ToBoolean(GetConfigValue(config["enablePasswordReset"], "true"));
             _passwordStrengthRegularExpression = Convert.ToString(GetConfigValue(config["passwordStrengthRegularExpression"], ""));
-
+            _enablePasswordRetrieval = Convert.ToBoolean(GetConfigValue(config["enablePasswordRetrieval"], "false"));
+            _requiresQuestionAndAnswer = Convert.ToBoolean(GetConfigValue(config["requiresQuestionAndAnswer"], "false"));
+            _requiresUniqueEmail = Convert.ToBoolean(GetConfigValue(config["requiresUniqueEmail"], "true"));
         }
         public override MembershipUser CreateUser(string username, string password, string email, string passwordQuestion, string passwordAnswer, bool isApproved, object providerUserKey, out MembershipCreateStatus status)
         {

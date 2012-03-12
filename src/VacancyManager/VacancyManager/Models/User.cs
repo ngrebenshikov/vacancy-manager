@@ -1,26 +1,35 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace VacancyManager.Models
 {
     /// <summary>
-    /// Класс, описывающий сущность пользователя и связанный с классом Aplicant связью 1:1.
-    /// Реализация позаимствована из данного источника http://msdn.microsoft.com/ru-ru/asp.net/hh546908 
+    /// Класс, описывающий сущность пользователя
     /// </summary>
     public class User
     {
-        [Key]
-        public int ApplicantID { get; set; }
+        public int UserID { get; set; }
+        public string UserName { get; set; }
+        public string Email { get; set; }
+        public string Password { get; set; }
+        public string PasswordSalt { get; set; }
+        public string UserComment { get; set; }
+        public DateTime CreateDate { get; set; }
+        public bool IsActivated { get; set; }
+        public bool IsLockedOut { get; set; }
+        public DateTime LastLockedOutDate { get; set; }
+        public string LastLockedOutReason { get; set; }
+        public string EmailKey { get; set; }
 
-        [Required(ErrorMessage = "Роль является обязательной.")]
-        [Display(Name = "Роль")]
         public string Role { get; set; }
 
-        [Required(ErrorMessage = "Пароль является обязательным.")]
-        [Display(Name = "Пароль")]
-        public string Password { get; set; }
 
-        public virtual Applicant Applicant { get; set; }
-        public virtual ICollection<Comment> Comments { get; set; } 
+
+
+        public virtual ICollection<Comment> Comments { get; set; }
+        public virtual ICollection<Resume> Resumes { get; set; }
+        public virtual ICollection<Consideration> Considerations { get; set; }
+        public virtual ICollection<File> Files { get; set; } 
     }
 }

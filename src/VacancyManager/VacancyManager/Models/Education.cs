@@ -21,6 +21,6 @@ namespace VacancyManager.Models
         [Display(Name = "Дата окончания работы")]
         public DateTime? FinishDate { get; set; }
 
-        public virtual Applicant Applicant { get; set; }
+        public virtual User User { get; set; }
     }
 }
