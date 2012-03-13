@@ -33,7 +33,12 @@
     <div class="display-label">Название файла резюме(Оставлено для дебага)</div>
     <div class="display-field">
         @Html.DisplayFor(model => model.FileName)
-    </div>
+    </div><div class="display-label">
+    MigrationTest
+  </div>
+  <div class="display-field">
+    @Html.DisplayFor(model => model.MigrationTest)
+  </div>
 </fieldset>
 @using (Html.BeginForm()) {
     <p>
