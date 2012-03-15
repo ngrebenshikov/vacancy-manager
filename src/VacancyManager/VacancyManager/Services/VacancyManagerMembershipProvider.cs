@@ -1,11 +1,15 @@
 ﻿using System;
 using System.Collections.Specialized;
 using System.Web.Security;
+using Ninject;
 
 namespace VacancyManager.Services
 {
     public class VacancyManagerMembershipProvider : MembershipProvider
     {
+        [Inject]
+        public IRepository Repository { get; set; }
+
         private string _applicationName;
         private bool _enablePasswordReset;
         private bool _enablePasswordRetrieval;
@@ -109,9 +113,48 @@ namespace VacancyManager.Services
             _requiresQuestionAndAnswer = Convert.ToBoolean(GetConfigValue(config["requiresQuestionAndAnswer"], "false"));
             _requiresUniqueEmail = Convert.ToBoolean(GetConfigValue(config["requiresUniqueEmail"], "true"));
         }
+
         public override MembershipUser CreateUser(string username, string password, string email, string passwordQuestion, string passwordAnswer, bool isApproved, object providerUserKey, out MembershipCreateStatus status)
         {
-            throw new System.NotImplementedException();
+            var args = new ValidatePasswordEventArgs(username, password, true);
+            OnValidatingPassword(args);
+
+            if (args.Cancel)
+            {
+                status = MembershipCreateStatus.InvalidPassword;
+                return null;
+            }
+            
+            // Проверяем, существует ли пользователь по регистрируемому Email
+            if (RequiresUniqueEmail && !string.IsNullOrEmpty(GetUserNameByEmail(email)))
+            {
+                status = MembershipCreateStatus.DuplicateEmail;
+                return null;
+            }
+
+            MembershipUser u = GetUser(username, false);
+
+            if (u == null)
+            {
+                try
+                {
+                    Repository.CreateUser(username, password, email);
+                    status = MembershipCreateStatus.Success;
+
+                    return GetUser(username, false);
+                }
+                catch (InvalidOperationException)
+                {
+                    status = MembershipCreateStatus.UserRejected;
+                    return null;
+                }
+            }
+            else
+            {
+                status = MembershipCreateStatus.DuplicateUserName;
+            }
+
+            return null;
         }
 
         public override bool ChangePasswordQuestionAndAnswer(string username, string password, string newPasswordQuestion, string newPasswordAnswer)
@@ -141,7 +184,7 @@ namespace VacancyManager.Services
 
         public override bool ValidateUser(string username, string password)
         {
-            throw new System.NotImplementedException();
+            return Repository.ValidateUser(username, password);
         }
 
         public override bool UnlockUser(string userName)
@@ -156,12 +199,14 @@ namespace VacancyManager.Services
 
         public override MembershipUser GetUser(string username, bool userIsOnline)
         {
-            throw new System.NotImplementedException();
+            return Repository.GetMembershipUserByUserName(username);
         }
 
         public override string GetUserNameByEmail(string email)
         {
-            throw new System.NotImplementedException();
+            var user = Repository.GetUserByEmail(email);
+
+            return user != null ? user.UserName : string.Empty;
         }
 
         public override bool DeleteUser(string username, bool deleteAllRelatedData)
@@ -189,9 +234,13 @@ namespace VacancyManager.Services
             throw new System.NotImplementedException();
         }
 
+        #region Private methods
+
         private string GetConfigValue(string configValue, string defaultValue)
         {
             return (string.IsNullOrEmpty(configValue)) ? defaultValue : configValue;
         }
+
+        #endregion
     }
 }
