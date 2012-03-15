@@ -1,34 +1,30 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
-using System.Globalization;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-using VacancyManager.Models;
+﻿using System.Web.Mvc;
+using VacancyManager.Services;
 
 namespace VacancyManager.Controllers
 { 
     public class HomeController : Controller
     {
-        private readonly VacancyContext db = new VacancyContext();
+        private readonly IRepository _repository;
+
+        public HomeController(IRepository repository)
+        {
+            _repository = repository;
+        }
 
         //
         // GET: /Home/
 
         public ActionResult Index()
         {
-            var vacancyList = from vacancy in db.Vacancies
-                              where vacancy.IsVisible
-                              select vacancy;
+            var vacancyList = _repository.AllVisibleVacancies();
 
             return View(vacancyList);
         }
 
         protected override void Dispose(bool disposing)
         {
-            db.Dispose();
+            _repository.Dispose();
             base.Dispose(disposing);
         }
     }
