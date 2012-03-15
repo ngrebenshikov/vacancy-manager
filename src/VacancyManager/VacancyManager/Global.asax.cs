@@ -2,6 +2,7 @@
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
+using System.Web.Security;
 using Ninject;
 using Ninject.Web.Mvc;
 using VacancyManager.Models.DAL;
@@ -26,6 +27,7 @@ namespace VacancyManager
 
             // Register services with Ninject DI Container
             kernel.Bind<IRepository>().To<StandardRepository>();
+            kernel.Inject(Membership.Provider);
 
             // Tell ASP.NET MVC 3 to use our Ninject DI Container
             DependencyResolver.SetResolver(new NinjectDependencyResolver(kernel));
