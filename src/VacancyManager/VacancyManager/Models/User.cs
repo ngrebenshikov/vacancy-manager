@@ -27,8 +27,7 @@ namespace VacancyManager.Models
         [DataType(DataType.EmailAddress)]
         public string EmailKey { get; set; }
 
-        public string Role { get; set; }
-
+        public virtual ICollection<Role> Roles { get; set; }
         public virtual ICollection<Comment> Comments { get; set; }
         public virtual ICollection<Resume> Resumes { get; set; }
         public virtual ICollection<Consideration> Considerations { get; set; }

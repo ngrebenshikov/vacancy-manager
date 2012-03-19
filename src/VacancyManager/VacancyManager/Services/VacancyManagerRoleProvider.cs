@@ -1,9 +1,24 @@
-﻿using System.Web.Security;
+﻿using System.Collections.Specialized;
+using System.Linq;
+using System.Web.Hosting;
+using System.Web.Security;
+using Ninject;
 
 namespace VacancyManager.Services
 {
     public class VacancyManagerRoleProvider : RoleProvider
     {
+        [Inject]
+        public IRepository Repository { get; set; }
+
+        public override string ApplicationName { get; set; }
+
+        public override void Initialize(string name, NameValueCollection config)
+        {
+            base.Initialize(name, config);
+            ApplicationName = GetConfigValue(config["applicationName"], HostingEnvironment.ApplicationVirtualPath);
+        }
+
         public override bool IsUserInRole(string username, string roleName)
         {
             throw new System.NotImplementedException();
@@ -11,7 +26,17 @@ namespace VacancyManager.Services
 
         public override string[] GetRolesForUser(string username)
         {
-            throw new System.NotImplementedException();
+            var user = Repository.GetUserByUsername(username);
+
+            if (user != null)
+            {
+                var roles = from role in user.Roles
+                            select role.Name;
+
+                return roles.ToArray();
+            }
+
+            return new[] { "" };
         }
 
         public override void CreateRole(string roleName)
@@ -54,10 +79,13 @@ namespace VacancyManager.Services
             throw new System.NotImplementedException();
         }
 
-        public override string ApplicationName
+        #region Private methods
+
+        private string GetConfigValue(string configValue, string defaultValue)
         {
-            get { throw new System.NotImplementedException(); }
-            set { throw new System.NotImplementedException(); }
+            return (string.IsNullOrEmpty(configValue)) ? defaultValue : configValue;
         }
+
+        #endregion
     }
 }

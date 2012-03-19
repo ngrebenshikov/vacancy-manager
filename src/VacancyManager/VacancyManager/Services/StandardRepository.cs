@@ -22,6 +22,11 @@ namespace VacancyManager.Services
             return _db.Users.FirstOrDefault(u => u.Email == email);
         }
 
+        public User GetUserByUsername(string username)
+        {
+            return _db.Users.FirstOrDefault(u => u.UserName == username);
+        }
+
         public MembershipUser GetMembershipUserByUserName(string username)
         {
             var dbuser = _db.Users.FirstOrDefault(u => u.UserName == username);
@@ -73,7 +78,6 @@ namespace VacancyManager.Services
                            IsLockedOut = false,
                            LastLockedOutDate = DateTime.Now,
                            LaslLoginDate = DateTime.Now,
-                           Role = string.Empty, // TODO
                            Comments = new Collection<Comment>(),
                            Considerations = new Collection<Consideration>(),
                            Resumes = new Collection<Resume>(),
