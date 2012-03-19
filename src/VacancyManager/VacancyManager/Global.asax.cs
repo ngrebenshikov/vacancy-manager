@@ -28,6 +28,7 @@ namespace VacancyManager
             // Register services with Ninject DI Container
             kernel.Bind<IRepository>().To<StandardRepository>();
             kernel.Inject(Membership.Provider);
+            kernel.Inject(Roles.Provider);
 
             // Tell ASP.NET MVC 3 to use our Ninject DI Container
             DependencyResolver.SetResolver(new NinjectDependencyResolver(kernel));

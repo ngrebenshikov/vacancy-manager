@@ -9,6 +9,7 @@ namespace VacancyManager.Services
     {
         IEnumerable<Vacancy> AllVisibleVacancies();
         User GetUserByEmail(string email);
+        User GetUserByUsername(string username);
         MembershipUser GetMembershipUserByUserName(string username);
         void CreateUser(string username, string password, string email);
         bool ValidateUser(string username, string password);
