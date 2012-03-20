@@ -2,7 +2,7 @@ namespace VacancyManager.Migrations
 {
     using System.Data.Entity.Migrations;
     
-    public partial class InitialCreate : DbMigration
+    public partial class Start : DbMigration
     {
         public override void Up()
         {
@@ -32,14 +32,26 @@ namespace VacancyManager.Migrations
                         PasswordSalt = c.String(maxLength: 4000),
                         UserComment = c.String(maxLength: 4000),
                         CreateDate = c.DateTime(nullable: false),
+                        LaslLoginDate = c.DateTime(nullable: false),
                         IsActivated = c.Boolean(nullable: false),
                         IsLockedOut = c.Boolean(nullable: false),
                         LastLockedOutDate = c.DateTime(nullable: false),
                         LastLockedOutReason = c.String(maxLength: 4000),
                         EmailKey = c.String(maxLength: 4000),
-                        Role = c.String(maxLength: 4000),
                     })
                 .PrimaryKey(t => t.UserID);
+            
+            CreateTable(
+                "Role",
+                c => new
+                    {
+                        RoleID = c.Int(nullable: false, identity: true),
+                        Name = c.String(maxLength: 4000),
+                        User_UserID = c.Int(),
+                    })
+                .PrimaryKey(t => t.RoleID)
+                .ForeignKey("User", t => t.User_UserID)
+                .Index(t => t.User_UserID);
             
             CreateTable(
                 "Comment",
@@ -176,6 +188,7 @@ namespace VacancyManager.Migrations
             DropIndex("Resume", new[] { "User_UserID" });
             DropIndex("Comment", new[] { "Consideration_ConsiderationID" });
             DropIndex("Comment", new[] { "User_UserID" });
+            DropIndex("Role", new[] { "User_UserID" });
             DropIndex("Consideration", new[] { "VacancyID" });
             DropIndex("Consideration", new[] { "User_UserID" });
             DropForeignKey("File", "User_UserID", "User");
@@ -189,6 +202,7 @@ namespace VacancyManager.Migrations
             DropForeignKey("Resume", "User_UserID", "User");
             DropForeignKey("Comment", "Consideration_ConsiderationID", "Consideration");
             DropForeignKey("Comment", "User_UserID", "User");
+            DropForeignKey("Role", "User_UserID", "User");
             DropForeignKey("Consideration", "VacancyID", "Vacancy");
             DropForeignKey("Consideration", "User_UserID", "User");
             DropTable("Vacancy");
@@ -199,6 +213,7 @@ namespace VacancyManager.Migrations
             DropTable("PreviousExperience");
             DropTable("Resume");
             DropTable("Comment");
+            DropTable("Role");
             DropTable("User");
             DropTable("Consideration");
         }
