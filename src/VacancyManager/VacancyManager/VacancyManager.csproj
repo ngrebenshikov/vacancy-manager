@@ -83,17 +83,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201203131508343_InitialCreate.cs" />
-    <Compile Include="Migrations\201203131508343_InitialCreate.Designer.cs">
-      <DependentUpon>201203131508343_InitialCreate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201203131519454_JustTest.cs" />
-    <Compile Include="Migrations\201203131519454_JustTest.Designer.cs">
-      <DependentUpon>201203131519454_JustTest.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201203141334384_DropJustTest.cs" />
-    <Compile Include="Migrations\201203141334384_DropJustTest.Designer.cs">
-      <DependentUpon>201203141334384_DropJustTest.cs</DependentUpon>
+    <Compile Include="Migrations\201203191419061_Start.cs" />
+    <Compile Include="Migrations\201203191419061_Start.Designer.cs">
+      <DependentUpon>201203191419061_Start.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountModels.cs" />
