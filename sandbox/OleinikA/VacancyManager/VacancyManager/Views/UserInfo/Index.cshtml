@@ -1,0 +1,105 @@
+﻿@model IEnumerable<VacancyManager.Models.User>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table>
+    <tr>
+        <th>
+            UserName
+        </th>
+        <th>
+            Email
+        </th>
+        <th>
+            Password
+        </th>
+        <th>
+            PasswordSalt
+        </th>
+        <th>
+            UserComment
+        </th>
+        <th>
+            CreateDate
+        </th>
+        <th>
+            LaslLoginDate
+        </th>
+        <th>
+            IsActivated
+        </th>
+        <th>
+            IsLockedOut
+        </th>
+        <th>
+            LastLockedOutDate
+        </th>
+        <th>
+            LastLockedOutReason
+        </th>
+        <th>
+            EmailKey
+        </th>
+        <th>
+            Role
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.UserName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Password)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PasswordSalt)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UserComment)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CreateDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LaslLoginDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IsActivated)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IsLockedOut)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LastLockedOutDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LastLockedOutReason)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EmailKey)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Role)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.UserID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.UserID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.UserID })
+        </td>
+    </tr>
+}
+
+</table>
