@@ -12,7 +12,6 @@ Ext.define('AM.view.vakancy.List', {
     store: 'Vakancy',
 
     columns: [
-                      { dataIndex: 'ID', text: 'Код', width: 40, sortable: false, field: { xtype: 'textfield' }, menuDisabled: true },
                       { dataIndex: 'Title', text: 'Вакансия', width: 120, sortable: true, field: { xtype: 'textfield' }, menuDisabled: true },
                       { dataIndex: 'Description', text: 'Описание', width: 220, sortable: false, field: { xtype: 'textfield' }, menuDisabled: true },
                       { dataIndex: 'OpeningDate', text: 'Дата открытия', width: 60, sortable: true, renderer: Ext.util.Format.dateRenderer('d/m/Y'), field: { xtype: 'datefield' }, menuDisabled: true },
@@ -22,15 +21,10 @@ Ext.define('AM.view.vakancy.List', {
 
     plugins: [
                     Ext.create('Ext.grid.plugin.RowEditing', {
-                        clicksToEdit: 3,
+                        clicksToEdit: 2,
                         pluginId: 'rowEditing'
                     })
             ],
-    //   listeners: {
-    //     itemdblclick: function (dv, record, item, index, e) {
-    ///         alert('working');
-    //      }
-    //  },
     dockedItems: [{
         xtype: 'pagingtoolbar',
         store: 'Vakancy',
@@ -42,8 +36,10 @@ Ext.define('AM.view.vakancy.List', {
     tbar: [{
         text: 'Новая вакансия',
         handler: function () {
-            // Новая модель
-            var r = Ext.create('AM.store.Vakancy', {
+            var grid = Ext.getCmp("vakancyGrid");
+            var store = grid.getStore();
+            var s = grid.getSelectionModel().getSelection();
+            var r = Ext.create('AM.model.Vakancy', {
                 Title: 'Новая вакансия',
                 Description: 'Описание вакансии',
                 OpeningDate: new Date(),
@@ -51,27 +47,27 @@ Ext.define('AM.view.vakancy.List', {
                 Requirments: 'Требования',
                 IsVisible: true
             });
-            store = Ext.data.StoreManager.get("AM.store.Vakancy");
             store.insert(0, r);
         }
     }, {
-              text: 'fgd',
-              handler: function () {
-                  store = Ext.data.StoreManager.get("AM.store.Vakancy"); 
-                  store.save();
-              }
-            } , {
-                text: 'Удалить вакансию',
-                handler: function () {
-                    store = Ext.data.StoreManager.get("AM.store.Vakancy"); 
-                    grid = Ext.getCmp("vakancyGrid");
-                    var s = grid.getSelectionModel().getSelection();
-                    for (var i = 0, r; r = s[i]; i++) {
-                        store.remove(r);
-                    }
-                }
-     
+        text: 'Сохранить',
+        handler: function () {
+            var grid = Ext.getCmp("vakancyGrid");
+            var store = grid.getStore();
+            store.save();
+        }
+    }, {
+        text: 'Удалить вакансию',
+        handler: function () {
+            var grid = Ext.getCmp("vakancyGrid");
+            var store = grid.getStore();
+            var s = grid.getSelectionModel().getSelection();
+            for (var i = 0, r; r = s[i]; i++) {
+                store.remove(r);
+            }
+        }
+
 
     }
-              ]
+   ]
 });

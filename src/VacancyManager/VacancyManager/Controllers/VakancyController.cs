@@ -6,7 +6,7 @@ using System.Web.Mvc;
 using VacancyManager.Models;
 using System.Collections.ObjectModel;
 using VacancyManager.Services;
-
+using System.Web.Script.Serialization;
 
 
 namespace VacancyManager.Controllers
@@ -14,6 +14,7 @@ namespace VacancyManager.Controllers
     public class VakancyController : Controller
     {
         public VacancyContext db = new VacancyContext(); //
+
         private readonly IRepository _repository;
         // GET: /Vakancy/
 
@@ -33,21 +34,23 @@ namespace VacancyManager.Controllers
         public JsonResult Load()
         {
 
-            var VakancyList = from Vacancies in db.Vacancies
-                              where Vacancies.IsVisible
-                              select new { ID = Vacancies.VacancyID,
-                                           Title = Vacancies.Title, 
-                                           Description = Vacancies.Description, 
-                                           OpeningDate = Vacancies.OpeningDate,
-                                           ForeignLanguage = Vacancies.ForeignLanguage,
-                                           Requirments = Vacancies.Requirments,
-                                           IsVisible = Vacancies.IsVisible
-                             };
-
-            var Vakancies = VakancyList.ToList();  
-            return Json(new 
-                           { data = Vakancies,
-                             total = Vakancies.Count }, 
+            var Vakancies = (from Vacancies in db.Vacancies
+                             where Vacancies.IsVisible
+                             select new
+                             {
+                                 v_ID = Vacancies.VacancyID,
+                                 Title = Vacancies.Title,
+                                 Description = Vacancies.Description,
+                                 OpeningDate = Vacancies.OpeningDate,
+                                 ForeignLanguage = Vacancies.ForeignLanguage,
+                                 Requirments = Vacancies.Requirments,
+                                 IsVisible = Vacancies.IsVisible
+                             }).ToList();
+            return Json(new
+                           {
+                               data = Vakancies,
+                               total = Vakancies.Count
+                           },
                         JsonRequestBehavior.AllowGet);
         }
 
@@ -55,97 +58,97 @@ namespace VacancyManager.Controllers
         // GET: /Vakancy/Create
 
         [HttpPost]
-        public ActionResult Create(string data, Vacancy newVacancy)
+        public ActionResult Create(string data)
         {
-            System.Web.Script.Serialization.JavaScriptSerializer jss = new System.Web.Script.Serialization.JavaScriptSerializer();
-            var deserializedData = jss.Deserialize<dynamic>(data);
+            bool c_success = false;
+            string c_message = "При создания вакансии произошла ошибка";
 
-           // object vakancyID = deserializedData["vakancyID"];
-            object Title = deserializedData["Title"];
-            object Description = deserializedData["Description"];
-            object OpeningDate = deserializedData["OpeningDate"];
-            object ForeignLanguage = deserializedData["ForeignLanguage"];
-            object Requirments = deserializedData["Requirments"];
-            object IsVisible = deserializedData["IsVisible"];
+            JavaScriptSerializer jss = new JavaScriptSerializer();
+            if (data != null)
+            {
+                var d_Vakancy = jss.Deserialize<dynamic>(data);
 
-            newVacancy.VacancyID = -1;
-            newVacancy.Title = Title.ToString();
-            newVacancy.Description = Description.ToString();
-            newVacancy.OpeningDate = Convert.ToDateTime(OpeningDate.ToString());
-            newVacancy.ForeignLanguage = ForeignLanguage.ToString();
-            newVacancy.Requirments = Requirments.ToString();
-            newVacancy.IsVisible = true;
+                object Title = d_Vakancy["Title"];
+                object Description = d_Vakancy["Description"];
+                object OpeningDate = d_Vakancy["OpeningDate"];
+                object ForeignLanguage = d_Vakancy["ForeignLanguage"];
+                object Requirments = d_Vakancy["Requirments"];
+                object IsVisible = d_Vakancy["IsVisible"];
 
-            newVacancy = new Vacancy
-                                {   VacancyID =  newVacancy.VacancyID, 
-                                    Title = newVacancy.Title,
-                                    Description = newVacancy.Description,
-                                    OpeningDate = newVacancy.OpeningDate,
-                                    ForeignLanguage = newVacancy.ForeignLanguage,
-                                    Requirments = newVacancy.Requirments,
-                                    IsVisible = newVacancy.IsVisible,
+                _repository.CreateVacancy(Title.ToString(),
+                                          Description.ToString(),
+                                          Convert.ToDateTime(OpeningDate),
+                                          ForeignLanguage.ToString(),
+                                          Requirments.ToString(),
+                                          Convert.ToBoolean(IsVisible)
+                 );
+                c_message = "Вакансия успешно создана";
+                c_success = true;
+            }
 
-                                   };
-            db.Vacancies.Add(newVacancy);
-            db.SaveChanges();
             return Json(new
-            {   success = true,
-                message = "Create method called successfully"
+            {
+                success = c_success,
+                message = c_message
             });
         }
 
         [HttpPost]
         public ActionResult Update(string data)
         {
-         System.Web.Script.Serialization.JavaScriptSerializer jss = new System.Web.Script.Serialization.JavaScriptSerializer();
-         var deserializedData = jss.Deserialize<dynamic>(data);
+            bool u_success = false;
+            string u_message = "При обновлении вакансии произошла ошибка";
+            System.Web.Script.Serialization.JavaScriptSerializer jss = new System.Web.Script.Serialization.JavaScriptSerializer();
 
-         int id;
+            if (data != null)
+            {
+                var u_vakancy = jss.Deserialize<dynamic>(data);
 
-         object VakancyID = deserializedData["ID"];
-         object Title = deserializedData["Title"];
-         object Description = deserializedData["Description"];
-         object OpeningDate = deserializedData["OpeningDate"];
-         object ForeignLanguage = deserializedData["ForeignLanguage"];
-         object Requirments = deserializedData["Requirments"];
- 
-         id = Convert.ToInt32(VakancyID.ToString());
+                object VakancyID = u_vakancy["v_ID"];
+                object Title = u_vakancy["Title"];
+                object Description = u_vakancy["Description"];
+                object OpeningDate = u_vakancy["OpeningDate"];
+                object ForeignLanguage = u_vakancy["ForeignLanguage"];
+                object Requirments = u_vakancy["Requirments"];
+                object IsVisible = u_vakancy["IsVisible"];
 
-         var rec = db.Vacancies.Where(a => a.VacancyID == id).SingleOrDefault();
+                _repository.UpdateVakancy(Convert.ToInt32(VakancyID),
+                                          Title.ToString(),
+                                          Description.ToString(),
+                                          Convert.ToDateTime(OpeningDate),
+                                          ForeignLanguage.ToString(),
+                                          Requirments.ToString(),
+                                          Convert.ToBoolean(IsVisible)
+                 );
 
-
-         rec.Title = Title.ToString();
-         rec.Description = Description.ToString();
-         rec.OpeningDate = Convert.ToDateTime(OpeningDate.ToString());
-         rec.ForeignLanguage = ForeignLanguage.ToString();
-         rec.Requirments = Requirments.ToString();
-
-         db.SaveChanges();  
-
-         return Json(new
-         {               
-             success = true,
-             message = "Update method called successfully"
-         });
-     }
+                u_message = "Вакансия успешно обновлена";
+                u_success = true;
+            }
+            return Json(new
+            {
+                success = u_success,
+                message = u_message
+            });
+        }
 
         [HttpPost]
         public ActionResult Delete(string data)
         {
+            bool d_success = false;
+            string d_message = "Во время обновления вакансии произошла ошибка";
             System.Web.Script.Serialization.JavaScriptSerializer jss = new System.Web.Script.Serialization.JavaScriptSerializer();
-            var deserializedData = jss.Deserialize<dynamic>(data);
+            if (data != null)
+            {
+                var d_vakancy = jss.Deserialize<dynamic>(data);
 
-            int id;
-
-            object VakancyID = deserializedData["ID"];
-            id = Convert.ToInt32(VakancyID.ToString());
-            var rec = db.Vacancies.Where(a => a.VacancyID == id).SingleOrDefault();
-            db.Vacancies.Remove(rec);
-            db.SaveChanges();
+                _repository.DeleteVakancy(Convert.ToInt32(d_vakancy["v_ID"]));
+                d_message = "Вакансия успешно удалена";
+                d_success = true;
+            }
             return Json(new
             {
-                success = true,
-                message = "Delete method called successfully"
+                success = d_success,
+                message = d_message
             });
         }
     }
