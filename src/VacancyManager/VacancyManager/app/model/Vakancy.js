@@ -1,9 +1,9 @@
 ﻿
 Ext.define('AM.model.Vakancy', {
     extend: 'Ext.data.Model',
-    idProperty: 'ID',
+    idProperty: 'v_ID',
     fields: [
-                 { name: 'ID', type: 'int' },
+                 { name: 'v_ID', type: 'int' },
                  { name: 'Title' },
                  { name: 'Description' },
                  { name: 'OpeningDate', type: 'date', dateFormat: 'MS' },

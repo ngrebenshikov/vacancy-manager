@@ -1,7 +1,7 @@
 ﻿Ext.define('AM.store.Vakancy', {
     extend: 'Ext.data.Store',
     model: 'AM.model.Vakancy',
-    alias: 'widget.VakancyStore',
+    id : 'VakancyStore',
     autoLoad: true,
     autoSync: true,
     autoSave: false,
@@ -23,6 +23,9 @@
             encode: false,
             listful: true,
             writeAllFields: true,
+            getRecordData: function (record) {
+                return { 'data': Ext.JSON.encode(record.data) };
+            }
         },
         headers: { 'Content-Type': 'application/json; charset=UTF-8' }
     }

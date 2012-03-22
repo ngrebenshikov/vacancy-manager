@@ -115,7 +115,6 @@
     <Content Include="app\model\Vakancy.js" />
     <Content Include="app\store\Vakancy.js" />
     <Content Include="app\view\vakancy\List.js" />
-    <Content Include="app\view\Viewport.js" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
@@ -1331,7 +1330,6 @@
     <Content Include="ExtLib\resources\themes\images\gray\window\window-default-sides.gif" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="Scripts\CreateVakancyGrid.js" />
     <Content Include="Scripts\jquery-1.5.1-vsdoc.js" />
     <Content Include="Scripts\jquery-1.5.1.js" />
     <Content Include="Scripts\jquery-1.5.1.min.js" />
