@@ -1,6 +1,8 @@
 ﻿@model IEnumerable<VacancyManager.Models.Vacancy>
 
-@{
+<li>@Html.ActionLink("Список вакансий", "Index", "Vakancy")</li>
+
+@*@{
     ViewBag.Title = "Список вакансий";
 }
 
@@ -9,4 +11,4 @@
 @foreach (var vacancy in Model)
 {
     @vacancy.Title
-}
+}*@

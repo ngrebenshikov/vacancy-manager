@@ -96,6 +96,44 @@ namespace VacancyManager.Services
             return dbuser != null && dbuser.Password == CreatePasswordHash(password, dbuser.PasswordSalt);
         }
 
+        public void CreateVacancy(string title, string description, DateTime? openingDate, string foreignLanguage, string requirments, bool isVisible)
+        {
+            var vacancy = new Vacancy
+            {
+                VacancyID = -1,
+                Title = title,
+                Description = description,
+                OpeningDate = openingDate,
+                ForeignLanguage = foreignLanguage,
+                Requirments = requirments,
+                IsVisible = isVisible,
+
+            };
+
+            _db.Vacancies.Add(vacancy);
+            _db.SaveChanges();
+        }
+
+        public void UpdateVakancy(int vakancyid, string title, string description, DateTime? openingDate, string foreignLanguage, string requirments, bool isVisible)
+        {
+            var update_rec = _db.Vacancies.Where(a => a.VacancyID == vakancyid).SingleOrDefault();
+
+            update_rec.Title = title;
+            update_rec.Description = description;
+            update_rec.OpeningDate = openingDate;
+            update_rec.ForeignLanguage = foreignLanguage;
+            update_rec.Requirments = requirments;
+            update_rec.IsVisible = isVisible;
+            _db.SaveChanges();
+        }
+
+        public void DeleteVakancy(int vakancyid)
+        {
+            var delete_rec = _db.Vacancies.Where(a => a.VacancyID == vakancyid).SingleOrDefault();
+            _db.Vacancies.Remove(delete_rec);
+            _db.SaveChanges();
+        }
+
         public void Dispose()
         {
             _db.Dispose();
