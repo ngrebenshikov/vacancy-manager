@@ -88,8 +88,13 @@
     <Compile Include="Migrations\201203191419061_Start.Designer.cs">
       <DependentUpon>201203191419061_Start.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201203240240478_TechnologyResumeRecord_added.cs" />
+    <Compile Include="Migrations\201203240240478_TechnologyResumeRecord_added.Designer.cs">
+      <DependentUpon>201203240240478_TechnologyResumeRecord_added.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountModels.cs" />
+    <Compile Include="Models\TechnologyResumeRecord.cs" />
     <Compile Include="Models\Comment.cs" />
     <Compile Include="Models\Consideration.cs" />
     <Compile Include="Models\DAL\VacancyInitializer.cs" />
