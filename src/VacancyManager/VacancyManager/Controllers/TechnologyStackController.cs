@@ -9,16 +9,16 @@ namespace VacancyManager.Controllers
   public class TechnologyStackController : Controller
   {
     //
-    // GET: /TechnologyStack/
+    // GET: /TechnologyStack/Get
 
-    public ActionResult Index()
+    public ActionResult Get()
     {
       return Json(new
       {
         success = true,
         TechStackList = new dynamic[] {
-                    new {id = 1, name = "Programming"},
-                    new {id = 2, name = "English level"},
+                    new {TechnologyStackID = 1, Name = "Programming"},
+                    new {TechnologyStackID = 2, Name = "English level"},
                 }
       }, JsonRequestBehavior.AllowGet);
     }
@@ -26,16 +26,36 @@ namespace VacancyManager.Controllers
     //
     // GET: /TechListInStack/
 
-    public ActionResult TechListInStack()
+    public ActionResult TechListInStack(int id)
     {
-      return Json(new
+      switch (id)
       {
-        success = true,
-        TechList = new dynamic[] {
+        case 0:
+          return Json(new
+          {
+            success = true,
+            TechList = new dynamic[] {
                     new {id = 1, name = "C#"},
                     new {id = 2, name = "Haskell"},
                 }
-      }, JsonRequestBehavior.AllowGet);
+          }, JsonRequestBehavior.AllowGet);
+        case 1:
+          return Json(new
+          {
+            success = true,
+            TechList = new dynamic[] {
+                    new {id = 1, name = "Elementary"},
+                    new {id = 2, name = "Middle"},
+                    new {id = 3, name = "High Skill"},
+                }
+          }, JsonRequestBehavior.AllowGet);
+        default:
+          return Json(new
+          {
+            success = false,
+            TechList = new dynamic[] {}
+          }, JsonRequestBehavior.AllowGet);
+      }
     }
 
   }

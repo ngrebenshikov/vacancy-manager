@@ -1341,6 +1341,18 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\modernizr-1.7.js" />
     <Content Include="Scripts\modernizr-1.7.min.js" />
+    <Content Include="Scripts\TechStack\app.js" />
+    <Content Include="Scripts\TechStack\controller\TechListInStack.js" />
+    <Content Include="Scripts\TechStack\controller\TechStack.js" />
+    <Content Include="Scripts\TechStack\model\TechListInStack.js" />
+    <Content Include="Scripts\TechStack\model\TechStack.js" />
+    <Content Include="Scripts\TechStack\store\TechListInStack.js" />
+    <Content Include="Scripts\TechStack\store\TechStack.js" />
+    <Content Include="Scripts\TechStack\view\TechListInStack\Edit.js" />
+    <Content Include="Scripts\TechStack\view\TechListInStack\List.js" />
+    <Content Include="Scripts\TechStack\view\TechStack\Edit.js" />
+    <Content Include="Scripts\TechStack\view\TechStack\List.js" />
+    <Content Include="Scripts\TechStack\view\Viewport.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -1487,7 +1499,7 @@
         <WebProjectProperties>
           <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>15837</DevelopmentServerPort>
+          <DevelopmentServerPort>50841</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>
           </IISUrl>

@@ -8,15 +8,14 @@ Ext.application
       'TechStack',
       'TechListInStack'
     ],
-    launch: function()
-    {
+    launch: function () {
       Ext.create('Ext.container.Viewport',
       {
-        layout:'border',
+        layout: 'border',
         items:
         [
-          {xtype: 'TechStackList'},
-          {xtype: 'TechListInStackList'}
+          { xtype: 'TechStackList' },
+          { xtype: 'TechListInStackList' }
         ]
       }
       );

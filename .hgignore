@@ -55,3 +55,10 @@ sandbox/Anatoly/packages/EntityFramework.SqlMigrations.0.6.0.2/EntityFramework.S
 sandbox/Anatoly/packages/EntityFramework.SqlMigrations.0.6.0.2/content/EntityFramework.SqlMigrations.ReadMe.txt
 sandbox/Anatoly/packages/EntityFramework.SqlMigrations.0.6.0.2/tools/EntityFramework.SqlMigrations.ReadMe.txt
 sandbox/Anatoly/packages/EntityFramework.SqlMigrations.0.6.0.2/tools/install.ps1
+sandbox/Anatoly/packages/EntityFramework.4.3.1/tools/A.bat
+src/VacancyManager/VacancyManager/app.js.orig
+src/VacancyManager/VacancyManager/Views/Shared/_Layout.cshtml.orig
+src/VacancyManager/VacancyManager/VacancyManager.csproj.orig
+sandbox/Anatoly/Vacan/Web.config.orig
+.hgignore.orig
+sandbox/NickG/MvcPlusExtJs/MvcPlusExtJs/Views/Users/Index.cshtml
