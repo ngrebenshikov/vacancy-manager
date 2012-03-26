@@ -25,7 +25,7 @@ namespace VacancyManager.Models
         public string Duties { get; set; }
 
         [Display(Name = "Используемые технологии")]
-        public string Technology { get; set; }
+        public string Technologies { get; set; }
 
         public virtual User User { get; set; }
     }
