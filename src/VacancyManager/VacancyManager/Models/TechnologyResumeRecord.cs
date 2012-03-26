@@ -16,6 +16,6 @@ namespace VacancyManager.Models
         
         public string Comment { get; set; }
 
-        public Technology Technology { get; set; }
+        public virtual Technology Technology { get; set; }
     }
 }
