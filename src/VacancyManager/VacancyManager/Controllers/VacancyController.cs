@@ -11,14 +11,12 @@ using System.Web.Script.Serialization;
 
 namespace VacancyManager.Controllers
 {
-    public class VakancyController : Controller
+    public class VacancyController : Controller
     {
-        public VacancyContext db = new VacancyContext(); //
-
         private readonly IRepository _repository;
-        // GET: /Vakancy/
+        // GET: /Vacancy/
 
-        public VakancyController(IRepository repository)
+        public VacancyController(IRepository repository)
         {
             _repository = repository;
         }
@@ -29,51 +27,50 @@ namespace VacancyManager.Controllers
         }
 
         //
-        // GET: /Vakancy/Load
+        // GET: /Vacancy/Load
 
         public JsonResult Load()
         {
-
-            var Vakancies = (from Vacancies in db.Vacancies
-                             where Vacancies.IsVisible
-                             select new
-                             {
-                                 v_ID = Vacancies.VacancyID,
-                                 Title = Vacancies.Title,
-                                 Description = Vacancies.Description,
-                                 OpeningDate = Vacancies.OpeningDate,
-                                 ForeignLanguage = Vacancies.ForeignLanguage,
-                                 Requirments = Vacancies.Requirments,
-                                 IsVisible = Vacancies.IsVisible
-                             }).ToList();
+            var VisibleVacancies = _repository.AllVisibleVacancies();
+            var VacanciesList = (from Vacancies in VisibleVacancies
+                                 select new
+                                 {
+                                     VacancyID = Vacancies.VacancyID,
+                                     Title = Vacancies.Title,
+                                     Description = Vacancies.Description,
+                                     OpeningDate = Vacancies.OpeningDate,
+                                     ForeignLanguage = Vacancies.ForeignLanguage,
+                                     Requirments = Vacancies.Requirments,
+                                     IsVisible = Vacancies.IsVisible
+                                 }
+                             ).ToList();
             return Json(new
                            {
-                               data = Vakancies,
-                               total = Vakancies.Count
+                               data = VacanciesList,
+                               total = VacanciesList.Count
                            },
                         JsonRequestBehavior.AllowGet);
         }
 
         //
-        // GET: /Vakancy/Create
+        // GET: /Vacancy/Create
 
         [HttpPost]
         public ActionResult Create(string data)
         {
             bool c_success = false;
             string c_message = "При создания вакансии произошла ошибка";
-
             JavaScriptSerializer jss = new JavaScriptSerializer();
             if (data != null)
             {
-                var d_Vakancy = jss.Deserialize<dynamic>(data);
+                var c_Vacancy = jss.Deserialize<dynamic>(data);
 
-                object Title = d_Vakancy["Title"];
-                object Description = d_Vakancy["Description"];
-                object OpeningDate = d_Vakancy["OpeningDate"];
-                object ForeignLanguage = d_Vakancy["ForeignLanguage"];
-                object Requirments = d_Vakancy["Requirments"];
-                object IsVisible = d_Vakancy["IsVisible"];
+                object Title = c_Vacancy["Title"];
+                object Description = c_Vacancy["Description"];
+                object OpeningDate = c_Vacancy["OpeningDate"];
+                object ForeignLanguage = c_Vacancy["ForeignLanguage"];
+                object Requirments = c_Vacancy["Requirments"];
+                object IsVisible = c_Vacancy["IsVisible"];
 
                 _repository.CreateVacancy(Title.ToString(),
                                           Description.ToString(),
@@ -98,21 +95,22 @@ namespace VacancyManager.Controllers
         {
             bool u_success = false;
             string u_message = "При обновлении вакансии произошла ошибка";
-            System.Web.Script.Serialization.JavaScriptSerializer jss = new System.Web.Script.Serialization.JavaScriptSerializer();
+            JavaScriptSerializer jss = new JavaScriptSerializer();
 
             if (data != null)
             {
-                var u_vakancy = jss.Deserialize<dynamic>(data);
+                var u_vacancy = jss.Deserialize<dynamic>(data);
 
-                object VakancyID = u_vakancy["v_ID"];
-                object Title = u_vakancy["Title"];
-                object Description = u_vakancy["Description"];
-                object OpeningDate = u_vakancy["OpeningDate"];
-                object ForeignLanguage = u_vakancy["ForeignLanguage"];
-                object Requirments = u_vakancy["Requirments"];
-                object IsVisible = u_vakancy["IsVisible"];
-
-                _repository.UpdateVakancy(Convert.ToInt32(VakancyID),
+                object VacancyID = u_vacancy["VacancyID"];
+                object Title = u_vacancy["Title"];
+                object Description = u_vacancy["Description"];
+                object OpeningDate = u_vacancy["OpeningDate"];
+                object ForeignLanguage = u_vacancy["ForeignLanguage"];
+                object Requirments = u_vacancy["Requirments"];
+                object IsVisible = u_vacancy["IsVisible"];
+                if (OpeningDate == null)
+                    OpeningDate = DateTime.Now.Date;
+                _repository.UpdateVacancy(Convert.ToInt32(VacancyID),
                                           Title.ToString(),
                                           Description.ToString(),
                                           Convert.ToDateTime(OpeningDate),
@@ -136,12 +134,12 @@ namespace VacancyManager.Controllers
         {
             bool d_success = false;
             string d_message = "Во время обновления вакансии произошла ошибка";
-            System.Web.Script.Serialization.JavaScriptSerializer jss = new System.Web.Script.Serialization.JavaScriptSerializer();
+            JavaScriptSerializer jss = new JavaScriptSerializer();
             if (data != null)
             {
-                var d_vakancy = jss.Deserialize<dynamic>(data);
+                var d_vacancy = jss.Deserialize<dynamic>(data);
 
-                _repository.DeleteVakancy(Convert.ToInt32(d_vakancy["v_ID"]));
+                _repository.DeleteVacancy(Convert.ToInt32(d_vacancy["VacancyID"]));
                 d_message = "Вакансия успешно удалена";
                 d_success = true;
             }
