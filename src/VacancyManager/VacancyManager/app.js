@@ -1,16 +1,16 @@
 Ext.Loader.setConfig({ enabled: true });
 
 Ext.application({
-    name: 'AM',
+    name: 'VM',
 
-    controllers: ['VakancyController'],
+    controllers: ['VacancyController'],
 
     launch: function () {
         Ext.create('Ext.container.Viewport', {
             layout: 'fit',
             items: [
                 {
-                    xtype: 'vakancylist'
+                    xtype: 'vacancylist'
                 }
             ]
         });

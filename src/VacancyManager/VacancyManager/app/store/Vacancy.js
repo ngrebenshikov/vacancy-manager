@@ -1,17 +1,17 @@
-﻿Ext.define('AM.store.Vakancy', {
+﻿Ext.define('VM.store.Vacancy', {
     extend: 'Ext.data.Store',
-    model: 'AM.model.Vakancy',
-    id : 'VakancyStore',
+    model: 'VM.model.Vacancy',
+    id : 'VacancyStore',
     autoLoad: true,
     autoSync: true,
-    autoSave: false,
+    autoSave: true,
     proxy: {
         type: 'ajax',
         api: {
-            read: '/Vakancy/Load',
-            create: 'Vakancy/Create',
-            update: '/Vakancy/Update',
-            destroy: '/Vakancy/Delete'
+            read: '/Vacancy/Load',
+            create: 'Vacancy/Create',
+            update: '/Vacancy/Update',
+            destroy: '/Vacancy/Delete'
         },
         reader: {
             type: 'json',

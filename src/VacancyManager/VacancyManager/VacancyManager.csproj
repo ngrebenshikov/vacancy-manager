@@ -81,7 +81,7 @@
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\TechnologyStackController.cs" />
-    <Compile Include="Controllers\VakancyController.cs" />
+    <Compile Include="Controllers\VacancyController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -117,10 +117,11 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="app.js" />
-    <Content Include="app\controller\VakancyController.js" />
-    <Content Include="app\model\Vakancy.js" />
-    <Content Include="app\store\Vakancy.js" />
-    <Content Include="app\view\vakancy\List.js" />
+    <Content Include="app\controller\VacancyController.js" />
+    <Content Include="app\model\Vacancy.js" />
+    <Content Include="app\store\Vacancy.js" />
+    <Content Include="app\view\vacancy\Edit.js" />
+    <Content Include="app\view\vacancy\List.js" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
@@ -1408,7 +1409,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Home\ViewTechnologyStack.cshtml" />
-    <Content Include="Views\Vakancy\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Shared\_Menu.cshtml" />
@@ -1486,6 +1486,7 @@
     <None Include="ExtLib\resources\themes\stylesheets\ext4\default\_widgets.scss" />
     <None Include="ExtLib\resources\themes\templates\resources\sass\config.rb" />
     <None Include="ExtLib\resources\themes\templates\resources\sass\my-ext-theme.scss" />
+    <Content Include="Views\Vacancy\Index.cshtml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

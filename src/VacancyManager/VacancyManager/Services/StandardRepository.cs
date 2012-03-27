@@ -114,24 +114,29 @@ namespace VacancyManager.Services
             _db.SaveChanges();
         }
 
-        public void UpdateVakancy(int vakancyid, string title, string description, DateTime? openingDate, string foreignLanguage, string requirments, bool isVisible)
+        public void UpdateVacancy(int vacancyid, string title, string description, DateTime? openingDate, string foreignLanguage, string requirments, bool isVisible)
         {
-            var update_rec = _db.Vacancies.Where(a => a.VacancyID == vakancyid).SingleOrDefault();
-
-            update_rec.Title = title;
-            update_rec.Description = description;
-            update_rec.OpeningDate = openingDate;
-            update_rec.ForeignLanguage = foreignLanguage;
-            update_rec.Requirments = requirments;
-            update_rec.IsVisible = isVisible;
-            _db.SaveChanges();
+            var update_rec = _db.Vacancies.Where(a => a.VacancyID == vacancyid).SingleOrDefault();
+            if (update_rec != null)
+            {
+                update_rec.Title = title;
+                update_rec.Description = description;
+                update_rec.OpeningDate = openingDate;
+                update_rec.ForeignLanguage = foreignLanguage;
+                update_rec.Requirments = requirments;
+                update_rec.IsVisible = isVisible;
+                _db.SaveChanges();
+            }
         }
 
-        public void DeleteVakancy(int vakancyid)
+        public void DeleteVacancy(int vacancyid)
         {
-            var delete_rec = _db.Vacancies.Where(a => a.VacancyID == vakancyid).SingleOrDefault();
-            _db.Vacancies.Remove(delete_rec);
-            _db.SaveChanges();
+            var delete_rec = _db.Vacancies.Where(a => a.VacancyID == vacancyid).SingleOrDefault();
+            if (delete_rec != null)
+            {
+                _db.Vacancies.Remove(delete_rec);
+                _db.SaveChanges();
+            }
         }
 
         public void Dispose()
