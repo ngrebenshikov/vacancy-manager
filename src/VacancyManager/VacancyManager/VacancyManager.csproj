@@ -93,6 +93,10 @@
     <Compile Include="Migrations\201203240240478_TechnologyResumeRecord_added.Designer.cs">
       <DependentUpon>201203240240478_TechnologyResumeRecord_added.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201203311152006_TechnologyStackIDAddedToTechnology.cs" />
+    <Compile Include="Migrations\201203311152006_TechnologyStackIDAddedToTechnology.Designer.cs">
+      <DependentUpon>201203311152006_TechnologyStackIDAddedToTechnology.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\TechnologyResumeRecord.cs" />
@@ -1354,9 +1358,11 @@
     <Content Include="Scripts\TechStack\model\TechStack.js" />
     <Content Include="Scripts\TechStack\store\TechListInStack.js" />
     <Content Include="Scripts\TechStack\store\TechStack.js" />
+    <Content Include="Scripts\TechStack\view\TechListInStack\Create.js" />
     <Content Include="Scripts\TechStack\view\TechListInStack\Edit.js" />
     <Content Include="Scripts\TechStack\view\TechListInStack\List.js" />
     <Content Include="Scripts\TechStack\view\TechStack\Edit.js" />
+    <Content Include="Scripts\TechStack\view\TechStack\Create.js" />
     <Content Include="Scripts\TechStack\view\TechStack\List.js" />
     <Content Include="Scripts\TechStack\view\Viewport.js" />
     <Content Include="Web.config">

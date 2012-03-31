@@ -9,6 +9,10 @@ Ext.define
           {
             ref: 'TechListInStackPanel',
             selector: 'panel'
+          },
+          {
+            ref: 'TechStackData',
+            selector: 'TechStackList dataview'
           }
       ],
 
@@ -23,16 +27,47 @@ Ext.define
           },
           'TechListInStackEdit button[action=save]':
           {
+            click: this.editTech
+          },
+          'TechListInStackList button[action=AddTech]':
+          {
+            click: this.AddTech
+          },
+          'TechCreate button[action=CreateTech]':
+          {
+            click: this.CreateTech
+          },
+          'TechListInStackEdit button[action=UpdateTech]':
+          {
             click: this.updateTech
           }
         }
       );
     },
 
+    AddTech: function ()
+    {
+      if(this.getTechStackData().getSelectionModel().getSelection()[0]===undefined)
+        Ext.Msg.alert('Warning', 'Tech Stack not selected');
+      else
+        var Create = Ext.create('TechStack.view.TechListInStack.Create').show();
+    },
+
+    CreateTech: function (button)
+    {
+      var id = this.getTechStackData().getSelectionModel().getSelection()[0].get('TechnologyStackID');
+      //Ext.Msg.alert('Debug', id);
+      var win = button.up('window');
+      var form = win.down('form').form;
+      var newTech = Ext.create('TechStack.model.TechListInStack', { TechnologyStackID: id,Name: form._fields.items[0].value, });
+      this.getTechListInStackStore().add(newTech);
+      win.close();
+      this.getTechListInStackStore().sync();
+    },
+
     editTech: function (grid, record)
     {
       var edit = Ext.create('TechStack.view.TechListInStack.Edit').show();
-
       edit.down('form').loadRecord(record);
     },
 
@@ -42,7 +77,6 @@ Ext.define
               form = win.down('form'),
               record = form.getRecord(),
               values = form.getValues();
-
       record.set(values);
       win.close();
       this.getTechListInStackStore().sync();
@@ -52,26 +86,12 @@ Ext.define
     {
       var store = this.getTechListInStackStore();
       var panel = this.getTechListInStackPanel();
+      panel.items.removeAll();
       store.load({
         params: {
           "id": id
         }
       });
-      //Ext.Msg.alert('Debug', 'Debug msg');
-      /*Ext.Ajax.request
-      (
-      {
-      url: "../TechnologyStack/TechListInStack?id=" + id,
-      success: function (response, opts)
-      {
-      Ext.Msg.alert("Debug", response.responseText);
-      },
-      failure: function (response, opts)
-      {
-
-      }
-      }
-      );*/
     }
   }
 );

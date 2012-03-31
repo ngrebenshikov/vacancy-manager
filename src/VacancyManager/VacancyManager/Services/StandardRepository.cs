@@ -139,6 +139,85 @@ namespace VacancyManager.Services
             }
         }
 
+        #region TechStack
+
+        public IEnumerable<TechnologyStack> GetAllTechStacks()
+        {
+          return _db.TechnologyStacks.ToList();
+        }
+
+        public void CreateTechStack(string name)
+        {
+          var techStack = new TechnologyStack
+          {
+            Name = name,
+            TechnologyStackID = -1,
+          };
+          _db.TechnologyStacks.Add(techStack);
+          _db.SaveChanges();
+        }
+
+        public void DeleteTechStack(int id)
+        {
+          var delete_rec = _db.TechnologyStacks.Where(a => a.TechnologyStackID == id).SingleOrDefault();
+          if (delete_rec != null)
+          {
+            _db.TechnologyStacks.Remove(delete_rec);
+            _db.SaveChanges();
+          }
+        }
+
+        public void UpdateTechStack(int id, string name)
+        {
+          var update_rec = _db.TechnologyStacks.Where(a => a.TechnologyStackID == id).SingleOrDefault();
+          if (update_rec != null)
+          {
+            update_rec.Name=name;
+            _db.SaveChanges();
+          }
+        }
+        #endregion
+
+        #region Technology
+
+        public IEnumerable<Technology> GetAllTechnologies(int id)
+        {
+          return _db.TechnologyStacks.FirstOrDefault(x=>x.TechnologyStackID==id).Technologies.ToList();
+        }
+
+        public void CreateTechnology(int id,string name)
+        {
+          var tech = new Technology
+          {
+            Name = name,
+            TechnologyStackID=id,
+            TechnologyID = -1,
+          };
+          _db.Technologies.Add(tech);
+          _db.SaveChanges();
+        }
+
+        public void DeleteTechnology(int id)
+        {
+          var delete_rec = _db.Technologies.Where(a => a.TechnologyID == id).SingleOrDefault();
+          if (delete_rec != null)
+          {
+            _db.Technologies.Remove(delete_rec);
+            _db.SaveChanges();
+          }
+        }
+
+        public void UpdateTechnology(int id, string name)
+        {
+          var update_rec = _db.Technologies.Where(a => a.TechnologyID == id).SingleOrDefault();
+          if (update_rec != null)
+          {
+            update_rec.Name = name;
+            _db.SaveChanges();
+          }
+        }
+        #endregion
+
         public void Dispose()
         {
             _db.Dispose();
