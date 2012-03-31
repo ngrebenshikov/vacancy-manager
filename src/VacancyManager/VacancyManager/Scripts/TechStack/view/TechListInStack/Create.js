@@ -1,16 +1,17 @@
-Ext.define('TechStack.view.TechStack.Edit', {
+﻿Ext.define('TechStack.view.TechListInStack.Create', {
   extend: 'Ext.window.Window',
-  alias: 'widget.TechStackEdit',
+  alias: 'widget.TechCreate',
 
   requires: ['Ext.form.Panel'],
 
-  title: 'Edit TechStack List',
+  title: 'Create Tech',
   layout: 'fit',
   autoShow: true,
   height: 60,
   width: 280,
 
-  initComponent: function () {
+  initComponent: function ()
+  {
     this.items = [
             {
               xtype: 'form',
@@ -21,6 +22,7 @@ Ext.define('TechStack.view.TechStack.Edit', {
               items: [
                     {
                       xtype: 'textfield',
+                      id:'TechName',
                       name: 'Name',
                       fieldLabel: 'Name'
                     }
@@ -30,8 +32,8 @@ Ext.define('TechStack.view.TechStack.Edit', {
 
     this.buttons = [
             {
-              text: 'Save',
-              action: 'UpdateTechStack'
+              text: 'Create',
+              action: 'CreateTech'
             },
             {
               text: 'Cancel',

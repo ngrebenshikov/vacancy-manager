@@ -20,7 +20,7 @@ Ext.define('TechStack.view.TechListInStack.Edit', {
               items: [
                     {
                       xtype: 'textfield',
-                      name: 'name',
+                      name: 'Name',
                       fieldLabel: 'Name'
                     }
                 ]
@@ -29,7 +29,7 @@ Ext.define('TechStack.view.TechListInStack.Edit', {
     this.buttons = [
             {
               text: 'Save',
-              action: 'save'
+              action: 'UpdateTech'
             },
             {
               text: 'Cancel',

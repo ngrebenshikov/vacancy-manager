@@ -5,7 +5,6 @@ Ext.define
     alias: 'widget.TechStackList',
     requires: ['Ext.toolbar.Toolbar'],
     title: 'Technology Stack List',
-    //store: 'TechStack',
     collapsible: true,
     animCollapse: true,
     split: true,
@@ -25,6 +24,7 @@ Ext.define
           [
             {
               xtype: 'dataview',
+              id: 'TechStackDataview',
               trackOver: true,
               store: "TechStack",
               cls: "TechStack-list",
@@ -61,45 +61,20 @@ Ext.define
       );
       this.callParent(arguments);
     },
-    /*requires: ['Ext.toolbar.Toolbar'],
-
-    columns:
-    [
-    { header: 'Technology Stack', dataIndex: 'Name', flex: 1 }
-    ],
-
-    dockedItems:
-    [
-    {
-    xtype: 'toolbar',
-    items:
-    [
-    {
-    id: 'AddTechnologyStack',
-    text: 'Add Technology Stack',
-    action: 'AddTechnologyStack'
-    },
-    {
-    id: 'RemoveTechnologyStack',
-    text: 'Remove Technology Stack',
-    disabled: true,
-    action: 'RemoveTechnologyStack'
-    }
-    ]
-    }
-    ]
-    },*/
 
     onSelectionChange: function (selmodel, selection)
     {
       var selected = selection[0],
             button = this.down('button[action=RemoveTechnologyStack]');
+      //var AddTechButton = Ext.fly('AddTechToStack');
       if (selected)
       {
+        //AddTechButton.show();
         button.enable();
       }
       else
       {
+        //AddTechButton.hide();
         button.disable();
       }
     }
