@@ -1,7 +1,7 @@
 ﻿
-Ext.define('VM.view.vacancy.Edit', {
+Ext.define('VM.view.vacancy.Add', {
     extend: 'Ext.window.Window',
-    alias: 'widget.vacancyEdit',
+    alias: 'widget.vacancyAdd',
     title: 'Редактирование вакансии',
     height: 450,
     width: 430,
@@ -40,7 +40,7 @@ Ext.define('VM.view.vacancy.Edit', {
                     id: 'dtOpeningDate',
                     fieldLabel: 'Дата открытия',
                     name: 'OpeningDate',
-                    format: 'd.m.Y',
+                    dateformat: 'd.m.Y',
                     allowBlank: false
                 }, {
                     xtype: 'textfield',
@@ -67,7 +67,7 @@ Ext.define('VM.view.vacancy.Edit', {
             },
              this.buttons = [{
                  text: 'Сохранить',
-                 action: 'updateVacancy'
+                 action: 'addVacancy'
              }, {
                  text: 'Отмена',
                  scope: this,

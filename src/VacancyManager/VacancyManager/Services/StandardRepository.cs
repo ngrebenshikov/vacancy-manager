@@ -96,6 +96,7 @@ namespace VacancyManager.Services
             return dbuser != null && dbuser.Password == CreatePasswordHash(password, dbuser.PasswordSalt);
         }
 
+        #region Vacancy
         public void CreateVacancy(string title, string description, DateTime? openingDate, string foreignLanguage, string requirments, bool isVisible)
         {
             var vacancy = new Vacancy
@@ -138,6 +139,7 @@ namespace VacancyManager.Services
                 _db.SaveChanges();
             }
         }
+        #endregion
 
         #region TechStack
 

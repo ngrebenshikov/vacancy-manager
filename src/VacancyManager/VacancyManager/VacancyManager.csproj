@@ -124,6 +124,7 @@
     <Content Include="app\controller\VacancyController.js" />
     <Content Include="app\model\Vacancy.js" />
     <Content Include="app\store\Vacancy.js" />
+    <Content Include="app\view\vacancy\Add.js" />
     <Content Include="app\view\vacancy\Edit.js" />
     <Content Include="app\view\vacancy\List.js" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
