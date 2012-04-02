@@ -12,9 +12,11 @@ namespace VacancyManager.Services
         User GetUserByEmail(string email);
         User GetUserByUsername(string username);
         MembershipUser GetMembershipUserByUserName(string username);
+        #region Vacancy
         void CreateVacancy(string title, string description, DateTime? openingDate, string foreignLanguage, string requirments, bool isVisible);
         void UpdateVacancy(int vacancyid, string title, string description, DateTime? openingDate, string foreignLanguage, string requirments, bool isVisible);
         void DeleteVacancy(int vacancyid);
+        #endregion
         #region TechStack
         IEnumerable<TechnologyStack> GetAllTechStacks();
         void CreateTechStack(string name);

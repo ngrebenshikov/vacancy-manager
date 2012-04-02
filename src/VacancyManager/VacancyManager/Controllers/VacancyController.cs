@@ -71,7 +71,8 @@ namespace VacancyManager.Controllers
                 object ForeignLanguage = c_Vacancy["ForeignLanguage"];
                 object Requirments = c_Vacancy["Requirments"];
                 object IsVisible = c_Vacancy["IsVisible"];
-
+                if (OpeningDate == null)
+                    OpeningDate = DateTime.Now.Date;
                 _repository.CreateVacancy(Title.ToString(),
                                           Description.ToString(),
                                           Convert.ToDateTime(OpeningDate),

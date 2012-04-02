@@ -6,7 +6,7 @@ Ext.define('VM.controller.VacancyController', {
 
     models: ['Vacancy'],
 
-    views: ['vacancy.List', 'vacancy.Edit'],
+    views: ['vacancy.List', 'vacancy.Edit', 'vacancy.Add'],
 
     init: function () {
         this.control(
@@ -14,8 +14,8 @@ Ext.define('VM.controller.VacancyController', {
                     'viewport > vacancylist dataview': {
                         itemdblclick: this.editVacancy
                     },
-                    'button[action = addVacancy]': {
-                        click: this.addVacancy
+                    'button[action = loadBlankVacancy]': {
+                        click: this.loadBlankVacancy
                     },
                     'button[action = editVacancy]': {
                         click: this.editVacancy
@@ -25,16 +25,27 @@ Ext.define('VM.controller.VacancyController', {
                     },
                     'button[action = deleteVacancy]': {
                         click: this.deleteVacancy
+                    },
+                    'button[action = addVacancy]': {
+                        click: this.addVacancy
                     }
                 });
 
     },
 
-    addVacancy: function () {
+    addVacancy: function (button) {
         var vacancystore = this.getVacancyStore(),
-       //     grid = Ext.getCmp('vacancyGrid'),
-       //     wndvacanyEdit = Ext.create('VM.view.vacancy.Edit').show()
-        newvacancy = Ext.create('VM.model.Vacancy', {
+           wndvacanyEdit = button.up('window'),
+           frm_vacancyform = wndvacanyEdit.down('form'),
+           sel_vacancy = frm_vacancyform.getRecord(),
+           newvalues = frm_vacancyform.getValues();
+        vacancystore.add(newvalues);
+        wndvacanyEdit.close();
+    },
+
+    loadBlankVacancy: function () {
+        var wndvacanyEdit = Ext.create('VM.view.vacancy.Add').show(),
+        blankvacancy = Ext.create('VM.model.Vacancy', {
             Title: 'Новая вакансия',
             Description: 'Описание вакансии',
             OpeningDate: new Date(),
@@ -42,12 +53,7 @@ Ext.define('VM.controller.VacancyController', {
             Requirments: 'Требования',
             IsVisible: true
         });
-        vacancystore.insert(0, newvacancy);
-        //var sel_vacancy = grid.getView().getSelectionModel().selectRow(0);
-       // 
-       //    console.log(sel_vacancy);
-        //wndvacanyEdit.down('form').loadRecord(sel_vacancy);
-        //   grid.getView().refresh();
+        wndvacanyEdit.down('form').loadRecord(blankvacancy);
     },
 
     editVacancy: function (button) {
@@ -64,16 +70,27 @@ Ext.define('VM.controller.VacancyController', {
            newvalues = frm_vacancyform.getValues();
         sel_vacancy.set(newvalues);
         wndvacanyEdit.close();
-        this.getVacancyStore().sync();
     },
 
     deleteVacancy: function (button) {
         var grid = button.up('grid'),
             vacancystore = grid.getStore(),
             sel_vacancy = grid.getView().getSelectionModel().getSelection()[0];
-        if (sel_vacancy) {
-            vacancystore.remove(sel_vacancy)
-        };
+        Ext.Msg.show({
+            title: 'Удаление вакансии',
+            msg: 'Уладить вакансию "' + sel_vacancy.get('Title') + '"',
+            width: 300,
+            buttons: Ext.Msg.YESNO,
+            fn: function (btn) {
+                if (btn == 'yes') {
+                    if (sel_vacancy) {
+                        vacancystore.remove(sel_vacancy)
+                    }
+                }
+            }
+        });
+
+        ;
     }
 
 });

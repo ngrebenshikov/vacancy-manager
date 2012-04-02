@@ -5,7 +5,7 @@
     autoLoad: true,
     autoSync: true,
     autoSave: true,
-    proxy: {
+        proxy: {
         type: 'ajax',
         api: {
             read: '/Vacancy/Load',

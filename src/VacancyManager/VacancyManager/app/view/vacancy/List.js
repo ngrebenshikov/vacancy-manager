@@ -6,6 +6,7 @@ Ext.define('VM.view.vacancy.List', {
     height: 500,
     id: 'vacancyGrid',
     autoSizeColumns: true,
+    autoHeight: true,
     forceFit: true,
     frame: true,
     title: 'Вакансии',
@@ -18,16 +19,14 @@ Ext.define('VM.view.vacancy.List', {
                           sortable: true,
                           field: { xtype: 'textfield' },
                           menuDisabled: true 
-                      },
-                      {
+                      }, {
                           dataIndex: 'Description',
                           text: 'Описание',
                           width: 220, 
                           sortable: false,
                           field: { xtype: 'textfield' },
                           menuDisabled: true
-                      },
-                      { 
+                      }, { 
                           dataIndex: 'OpeningDate',
                           text: 'Дата открытия',
                           width: 60,
@@ -35,16 +34,14 @@ Ext.define('VM.view.vacancy.List', {
                           field: { xtype: 'datefield' },
                           menuDisabled: true,
                           renderer: Ext.util.Format.dateRenderer('d.m.Y'),
-                      },
-                      {
+                      }, {
                           dataIndex: 'ForeignLanguage',
                           text: 'Иностранные языки',
                           width: 120,
                           sortable: false,
                           field: { xtype: 'textfield' },
                           menuDisabled: true
-                      },
-                      { 
+                      }, { 
                          dataIndex: 'Requirments',
                          text: 'Требования',
                          width: 120,
@@ -64,9 +61,9 @@ Ext.define('VM.view.vacancy.List', {
 
     bbar: [{
         text: 'Новая вакансия',
-        name: 'btnAddVacancy',
-        id: 'addVacancy',
-        action: 'addVacancy' 
+        name: 'btnLoadBlankVacancy',
+        id: 'loadBlankVacancy',
+        action: 'loadBlankVacancy' 
     }, {
         text: 'Редактировать',
         name: 'btnEditVacancy',
