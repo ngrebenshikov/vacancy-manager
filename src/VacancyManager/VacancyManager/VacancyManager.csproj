@@ -120,13 +120,6 @@
     <Compile Include="Services\VacancyManagerRoleProvider.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="app.js" />
-    <Content Include="app\controller\VacancyController.js" />
-    <Content Include="app\model\Vacancy.js" />
-    <Content Include="app\store\Vacancy.js" />
-    <Content Include="app\view\vacancy\Add.js" />
-    <Content Include="app\view\vacancy\Edit.js" />
-    <Content Include="app\view\vacancy\List.js" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
@@ -1352,20 +1345,26 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\modernizr-1.7.js" />
     <Content Include="Scripts\modernizr-1.7.min.js" />
-    <Content Include="Scripts\TechStack\app.js" />
-    <Content Include="Scripts\TechStack\controller\TechListInStack.js" />
-    <Content Include="Scripts\TechStack\controller\TechStack.js" />
-    <Content Include="Scripts\TechStack\model\TechListInStack.js" />
-    <Content Include="Scripts\TechStack\model\TechStack.js" />
-    <Content Include="Scripts\TechStack\store\TechListInStack.js" />
-    <Content Include="Scripts\TechStack\store\TechStack.js" />
-    <Content Include="Scripts\TechStack\view\TechListInStack\Create.js" />
-    <Content Include="Scripts\TechStack\view\TechListInStack\Edit.js" />
-    <Content Include="Scripts\TechStack\view\TechListInStack\List.js" />
-    <Content Include="Scripts\TechStack\view\TechStack\Edit.js" />
-    <Content Include="Scripts\TechStack\view\TechStack\Create.js" />
-    <Content Include="Scripts\TechStack\view\TechStack\List.js" />
-    <Content Include="Scripts\TechStack\view\Viewport.js" />
+    <Content Include="Scripts\VM\TechStackManager\app.js" />
+    <Content Include="Scripts\VM\TechStackManager\controller\TechListInStack.js" />
+    <Content Include="Scripts\VM\TechStackManager\controller\TechStack.js" />
+    <Content Include="Scripts\VM\TechStackManager\model\TechListInStack.js" />
+    <Content Include="Scripts\VM\TechStackManager\model\TechStack.js" />
+    <Content Include="Scripts\VM\TechStackManager\store\TechListInStack.js" />
+    <Content Include="Scripts\VM\TechStackManager\store\TechStack.js" />
+    <Content Include="Scripts\VM\TechStackManager\view\TechListInStack\Create.js" />
+    <Content Include="Scripts\VM\TechStackManager\view\TechListInStack\Edit.js" />
+    <Content Include="Scripts\VM\TechStackManager\view\TechListInStack\List.js" />
+    <Content Include="Scripts\VM\TechStackManager\view\TechStack\Edit.js" />
+    <Content Include="Scripts\VM\TechStackManager\view\TechStack\Create.js" />
+    <Content Include="Scripts\VM\TechStackManager\view\TechStack\List.js" />
+    <Content Include="Scripts\VM\VacancyConfigurator\app.js" />
+    <Content Include="Scripts\VM\VacancyConfigurator\controller\VacancyController.js" />
+    <Content Include="Scripts\VM\VacancyConfigurator\model\Vacancy.js" />
+    <Content Include="Scripts\VM\VacancyConfigurator\store\Vacancy.js" />
+    <Content Include="Scripts\VM\VacancyConfigurator\view\vacancy\Add.js" />
+    <Content Include="Scripts\VM\VacancyConfigurator\view\vacancy\Edit.js" />
+    <Content Include="Scripts\VM\VacancyConfigurator\view\vacancy\List.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>

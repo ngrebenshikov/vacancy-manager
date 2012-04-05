@@ -107,20 +107,31 @@ namespace VacancyManager.Controllers
 
     public ActionResult GetTechListInStack(int id)
     {
-      var requestResult = _repository.GetAllTechnologies(id);
-      var techList = (from elem in requestResult
-                      select new
-                      {
-                        TechnologyID = elem.TechnologyID,
-                        TechnologyStackID= elem.TechnologyStackID,
-                        Name = elem.Name,
-                      }
-                      ).ToList();
-      return Json(new
+      try
       {
-        success = true,
-        TechList = techList,
-      }, JsonRequestBehavior.AllowGet);
+        var requestResult = _repository.GetAllTechnologies(id);
+        var techList = (from elem in requestResult
+                        select new
+                        {
+                          TechnologyID = elem.TechnologyID,
+                          TechnologyStackID = elem.TechnologyStackID,
+                          Name = elem.Name,
+                        }
+                          ).ToList();
+        return Json(new
+        {
+          success = true,
+          TechList = techList,
+        }, JsonRequestBehavior.AllowGet);
+      }
+      catch
+      {
+        return Json(new
+        {
+          success = true,
+          TechList = new dynamic[] { },
+        }, JsonRequestBehavior.AllowGet);
+      }
     }
 
     [HttpPost]

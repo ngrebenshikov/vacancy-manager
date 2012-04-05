@@ -1,10 +1,11 @@
 Ext.define
-('TechStack.store.TechStack',
+('VM.store.TechStack',
   {
     extend: 'Ext.data.Store',
-    model: 'TechStack.model.TechStack',
+    model: 'VM.model.TechStack',
+    id:'TechStackStore',
     autoLoad: true,
-
+    autoSave: true,
     proxy:
     {
       type: 'ajax',

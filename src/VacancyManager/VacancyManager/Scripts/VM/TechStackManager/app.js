@@ -1,8 +1,15 @@
+Ext.Loader.setConfig
+(
+  {
+    enabled: true
+  }
+);
+
 Ext.application
 (
   {
-    name: 'TechStack',
-    appFolder: '/Scripts/TechStack',
+    name: 'VM', //'TechStackManager',
+    appFolder: '/Scripts/VM/TechStackManager',
     controllers:
     [
       'TechStack',

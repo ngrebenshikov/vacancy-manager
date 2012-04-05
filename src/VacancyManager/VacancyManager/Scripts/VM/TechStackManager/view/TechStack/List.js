@@ -1,5 +1,5 @@
 Ext.define
-('TechStack.view.TechStack.List',
+('VM.view.TechStack.List',
   {
     extend: 'Ext.panel.Panel',
     alias: 'widget.TechStackList',
