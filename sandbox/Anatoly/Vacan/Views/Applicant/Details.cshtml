@@ -1,0 +1,45 @@
+﻿@model Applican.Models.Applicant
+@{
+  ViewBag.Title = "Подробности";
+}
+<h2>
+  Подробности</h2>
+<fieldset>
+  <legend>Соискатель</legend>
+  <div class="display-label">
+    Имя</div>
+  <div class="display-field">
+    @Html.DisplayFor(model => model.FirstName)
+  </div>
+  <div class="display-label">
+    Фамилия</div>
+  <div class="display-field">
+    @Html.DisplayFor(model => model.SecondName)
+  </div>
+  <div class="display-label">
+    Отчество</div>
+  <div class="display-field">
+    @Html.DisplayFor(model => model.MiddleName)
+  </div>
+  <div class="display-label">
+    E-Mail</div>
+  <div class="display-field">
+    @Html.DisplayFor(model => model.EMail)
+  </div>
+  <div class="display-label">
+    FileName(Оставлено для дебага)
+  </div>
+  <div class="display-field">
+    @Html.DisplayFor(model => model.FileName)
+  </div>
+  <div class="display-label">
+    MigrationTest
+  </div>
+  <div class="display-field">
+    @Html.DisplayFor(model => model.MigrationTest)
+  </div>
+</fieldset>
+<p>
+  @Html.ActionLink("Редактировать", "Edit", new { id = Model.ID }) |
+  @Html.ActionLink("Вернуться ко списку", "Index")
+</p>
