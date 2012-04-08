@@ -1345,6 +1345,9 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\modernizr-1.7.js" />
     <Content Include="Scripts\modernizr-1.7.min.js" />
+    <Content Include="Scripts\VM\Admin\app.js" />
+    <Content Include="Scripts\VM\Admin\controller\Admin.js" />
+    <Content Include="Scripts\VM\Admin\view\Admin\Main.js" />
     <Content Include="Scripts\VM\TechStackManager\app.js" />
     <Content Include="Scripts\VM\TechStackManager\controller\TechListInStack.js" />
     <Content Include="Scripts\VM\TechStackManager\controller\TechStack.js" />
@@ -1493,6 +1496,7 @@
     <None Include="ExtLib\resources\themes\templates\resources\sass\config.rb" />
     <None Include="ExtLib\resources\themes\templates\resources\sass\my-ext-theme.scss" />
     <Content Include="Views\Vacancy\Index.cshtml" />
+    <Content Include="Views\Home\Admin.cshtml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

@@ -9,10 +9,12 @@ Ext.define
     margins: '5 0 0 0',
     columns:
     [
-      { header: 'Name', dataIndex: 'Name', flex: 1 },
+      { header: 'Name', menuDisabled: true, dataIndex: 'Name', flex: 1 },
       {
         xtype: 'actioncolumn',
         width: 50,
+        sortable: false,
+        menuDisabled:true,
         items:
         [{
           icon: '/ExtLib/resources/themes/images/default/form/exclamation.gif',

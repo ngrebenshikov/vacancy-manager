@@ -9,7 +9,7 @@ Ext.define('VM.view.vacancy.List', {
     autoHeight: true,
     forceFit: true,
     frame: true,
-    title: 'Вакансии',
+    //title: 'Вакансии',
     store: 'Vacancy',
     columns: [                                      
                       {
