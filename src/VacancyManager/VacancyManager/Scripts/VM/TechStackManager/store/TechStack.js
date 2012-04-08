@@ -11,10 +11,10 @@ Ext.define
       type: 'ajax',
       api:
       {
-        read: '../TechnologyStack/GetStack',
-        update: '../TechnologyStack/UpdateStack',
-        create: '../TechnologyStack/AddStack',
-        destroy: '../TechnologyStack/DeleteStack'
+        read: '../../TechnologyStack/GetStack',
+        update: '../../TechnologyStack/UpdateStack',
+        create: '../../TechnologyStack/AddStack',
+        destroy: '../../TechnologyStack/DeleteStack'
       },
       reader:
       {

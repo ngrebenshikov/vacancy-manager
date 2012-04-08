@@ -27,6 +27,11 @@ namespace VacancyManager.Controllers
       return View();
     }
 
+    public ActionResult Admin()
+    {
+      return View();
+    }
+
     protected override void Dispose(bool disposing)
     {
       _repository.Dispose();
