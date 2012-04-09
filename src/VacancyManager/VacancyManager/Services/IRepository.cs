@@ -23,6 +23,11 @@ namespace VacancyManager.Services
         void DeleteTechStack(int id);
         void UpdateTechStack(int id, string name);
         #endregion
+        #region User
+        void AdminCreateUser(string userName, string email, string password, string userComment, DateTime createDate, DateTime laslLoginDate, bool isActivated, bool isLockedOut, DateTime lastLockedOutDate, string LastLockedOutReason, string emailKey);
+        void AdminUpdateUser(int userID, string userName, string email, string password, string userComment, DateTime createDate, DateTime laslLoginDate, bool isActivated, bool isLockedOut, DateTime lastLockedOutDate, string LastLockedOutReason, string emailKey);
+        void AdminDeleteUser(int userID);
+        #endregion
         #region Technology
         IEnumerable<Technology> GetAllTechnologies(int id);
         void CreateTechnology(int id,string name);

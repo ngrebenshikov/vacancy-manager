@@ -18,8 +18,11 @@
             {
               xtype: "tabpanel",
               items: [{
-                title: "Вакансии",
-                html: "<iframe src=\"../Vacancy/\" width=\"100%\" height=\"100%\" frameborder=\"0\">Браузер не понимает тег iframe</iframe>"
+                  title: "Пользователи",
+                  html: "<iframe src=\"../User/\" width=\"100%\" height=\"100%\" frameborder=\"0\">Браузер не понимает тег iframe</iframe>"
+              }, {
+                  title: "Вакансии",
+                  html: "<iframe src=\"../Vacancy/\" width=\"100%\" height=\"100%\" frameborder=\"0\">Браузер не понимает тег iframe</iframe>"
               }, {
                 title: "Технологии",
                 html: "<iframe src=\"ViewTechnologyStack/\" width=\"100%\" height=\"100%\" frameborder=\"0\">Браузер не понимает тег iframe</iframe>"
