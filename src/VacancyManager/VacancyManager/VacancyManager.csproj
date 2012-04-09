@@ -81,6 +81,7 @@
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\TechnologyStackController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Controllers\VacancyController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -1361,6 +1362,13 @@
     <Content Include="Scripts\VM\TechStackManager\view\TechStack\Edit.js" />
     <Content Include="Scripts\VM\TechStackManager\view\TechStack\Create.js" />
     <Content Include="Scripts\VM\TechStackManager\view\TechStack\List.js" />
+    <Content Include="Scripts\VM\Usery\app.js" />
+    <Content Include="Scripts\VM\Usery\controller\UserController.js" />
+    <Content Include="Scripts\VM\Usery\model\User.js" />
+    <Content Include="Scripts\VM\Usery\store\User.js" />
+    <Content Include="Scripts\VM\Usery\view\User\Add.js" />
+    <Content Include="Scripts\VM\Usery\view\User\Edit.js" />
+    <Content Include="Scripts\VM\Usery\view\User\List.js" />
     <Content Include="Scripts\VM\VacancyConfigurator\app.js" />
     <Content Include="Scripts\VM\VacancyConfigurator\controller\VacancyController.js" />
     <Content Include="Scripts\VM\VacancyConfigurator\model\Consideration.js" />
@@ -1500,6 +1508,7 @@
     <None Include="ExtLib\resources\themes\templates\resources\sass\my-ext-theme.scss" />
     <Content Include="Views\Vacancy\Index.cshtml" />
     <Content Include="Views\Home\Admin.cshtml" />
+    <Content Include="Views\User\Index.cshtml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
