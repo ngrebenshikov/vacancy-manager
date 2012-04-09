@@ -40,8 +40,8 @@ Ext.define('VM.view.vacancy.Add', {
                     id: 'dtOpeningDate',
                     fieldLabel: 'Дата открытия',
                     name: 'OpeningDate',
-                    dateformat: 'd.m.Y',
-                    allowBlank: false
+                    allowBlank: false,
+                    format: 'd F Y'
                 }, {
                     xtype: 'textfield',
                     id: 'txtForeignLanguage',

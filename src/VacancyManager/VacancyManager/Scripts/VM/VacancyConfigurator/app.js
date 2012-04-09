@@ -1,5 +1,7 @@
 Ext.Loader.setConfig({ enabled: true });
 
+Ext.Loader.setPath('Ext.ux', '/ExtLib/ux');
+
 Ext.application({
   name: 'VM',
 
@@ -13,7 +15,7 @@ Ext.application({
       layout: 'fit',
       items: [
                 {
-                  xtype: 'vacancylist'
+                    xtype: 'vacancyList'
                 }
             ]
     });

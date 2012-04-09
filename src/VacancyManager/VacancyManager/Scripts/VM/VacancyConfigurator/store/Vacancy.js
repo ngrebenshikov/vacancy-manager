@@ -9,7 +9,7 @@
         type: 'ajax',
         api: {
             read: '/Vacancy/Load',
-            create: 'Vacancy/Create',
+            create: '/Vacancy/Create',
             update: '/Vacancy/Update',
             destroy: '/Vacancy/Delete'
         },
