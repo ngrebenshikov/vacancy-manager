@@ -1363,8 +1363,11 @@
     <Content Include="Scripts\VM\TechStackManager\view\TechStack\List.js" />
     <Content Include="Scripts\VM\VacancyConfigurator\app.js" />
     <Content Include="Scripts\VM\VacancyConfigurator\controller\VacancyController.js" />
+    <Content Include="Scripts\VM\VacancyConfigurator\model\Consideration.js" />
     <Content Include="Scripts\VM\VacancyConfigurator\model\Vacancy.js" />
+    <Content Include="Scripts\VM\VacancyConfigurator\store\Consideration.js" />
     <Content Include="Scripts\VM\VacancyConfigurator\store\Vacancy.js" />
+    <Content Include="Scripts\VM\VacancyConfigurator\view\consideration\List.js" />
     <Content Include="Scripts\VM\VacancyConfigurator\view\vacancy\Add.js" />
     <Content Include="Scripts\VM\VacancyConfigurator\view\vacancy\Edit.js" />
     <Content Include="Scripts\VM\VacancyConfigurator\view\vacancy\List.js" />

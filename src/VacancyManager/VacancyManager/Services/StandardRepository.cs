@@ -14,7 +14,7 @@ namespace VacancyManager.Services
 
         public IEnumerable<Vacancy> AllVisibleVacancies()
         {
-            return _db.Vacancies.Where(vacancy => vacancy.IsVisible);
+            return _db.Vacancies.Where(vacancy => vacancy.IsVisible).ToList();
         }
 
         public User GetUserByEmail(string email)

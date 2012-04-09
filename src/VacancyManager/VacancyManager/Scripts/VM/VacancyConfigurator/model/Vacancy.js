@@ -29,7 +29,8 @@ Ext.define('VM.model.Vacancy', {
                      name: 'IsVisible'
                  },
                  {
-                     name: 'Considerations'
+                     name: 'Considerations',
+                     type: 'auto'
                  },
                  {
                      name: 'TechnologyStacks'

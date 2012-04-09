@@ -11,7 +11,7 @@ Ext.define('VM.controller.VacancyController', {
     init: function () {
         this.control(
                 {
-                    'viewport > vacancylist dataview': {
+                    'viewport > vacancyList dataview': {
                         itemdblclick: this.editVacancy
                     },
                     'button[action = loadBlankVacancy]': {
@@ -39,6 +39,8 @@ Ext.define('VM.controller.VacancyController', {
            frm_vacancyform = wndvacanyEdit.down('form'),
            sel_vacancy = frm_vacancyform.getRecord(),
            newvalues = frm_vacancyform.getValues();
+        var newOpeningDate = eval("({ dtm: new Date(newvalues['OpeningDate']) })");
+        newvalues['OpeningDate'] = newOpeningDate.dtm;
         vacancystore.add(newvalues);
         wndvacanyEdit.close();
     },
@@ -68,6 +70,8 @@ Ext.define('VM.controller.VacancyController', {
            frm_vacancyform = wndvacanyEdit.down('form'),
            sel_vacancy = frm_vacancyform.getRecord(),
            newvalues = frm_vacancyform.getValues();
+        var newdate = eval("({ dtm: new Date(newvalues['OpeningDate']) })");
+        newvalues['OpeningDate'] = newdate.dtm;
         sel_vacancy.set(newvalues);
         wndvacanyEdit.close();
     },
