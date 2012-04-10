@@ -22,7 +22,7 @@ namespace VacancyManager.Controllers
       return View(vacancyList);
     }
 
-    public ActionResult ViewTechnologyStack()
+    public ActionResult ViewRequirementStack()
     {
       return View();
     }

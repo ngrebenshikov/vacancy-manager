@@ -17,17 +17,17 @@ namespace VacancyManager.Services
         void UpdateVacancy(int vacancyid, string title, string description, DateTime? openingDate, string foreignLanguage, string requirments, bool isVisible);
         void DeleteVacancy(int vacancyid);
         #endregion
-        #region TechStack
-        IEnumerable<TechnologyStack> GetAllTechStacks();
-        void CreateTechStack(string name);
-        void DeleteTechStack(int id);
-        void UpdateTechStack(int id, string name);
+        #region RequirementStack
+        IEnumerable<RequirementStack> GetAllRequirementStacks();
+        int CreateRequirementStack(string name);
+        void DeleteRequirementStack(int id);
+        void UpdateRequirementStack(int id, string name);
         #endregion
-        #region Technology
-        IEnumerable<Technology> GetAllTechnologies(int id);
-        void CreateTechnology(int id,string name);
-        void DeleteTechnology(int id);
-        void UpdateTechnology(int id, string name);
+        #region Requirement
+        IEnumerable<Requirement> GetAllRequirements(int id);
+        int CreateRequirement(int id, string name);
+        void DeleteRequirement(int id);
+        void UpdateRequirement(int id, string name);
         #endregion
         void CreateUser(string username, string password, string email);
         bool ValidateUser(string username, string password);

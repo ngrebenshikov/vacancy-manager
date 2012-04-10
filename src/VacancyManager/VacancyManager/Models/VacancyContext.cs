@@ -13,8 +13,8 @@ namespace VacancyManager.Models
     public DbSet<File> Files { get; set; }
     public DbSet<PreviousExperience> PreviousExperiences { get; set; }
     public DbSet<Education> Educations { get; set; }
-    public DbSet<TechnologyStack> TechnologyStacks { get; set; }
-    public DbSet<Technology> Technologies { get; set; }
+    public DbSet<RequirementStack> RequirementStacks { get; set; }
+    public DbSet<Requirement> Requirements { get; set; }
 
     protected override void OnModelCreating(DbModelBuilder modelBuilder)
     {

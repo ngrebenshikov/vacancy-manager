@@ -80,7 +80,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\TechnologyStackController.cs" />
+    <Compile Include="Controllers\RequirementStackController.cs" />
     <Compile Include="Controllers\VacancyController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -97,9 +97,13 @@
     <Compile Include="Migrations\201203311152006_TechnologyStackIDAddedToTechnology.Designer.cs">
       <DependentUpon>201203311152006_TechnologyStackIDAddedToTechnology.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201204101212482_RenameTechToRequirement.cs" />
+    <Compile Include="Migrations\201204101212482_RenameTechToRequirement.Designer.cs">
+      <DependentUpon>201204101212482_RenameTechToRequirement.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountModels.cs" />
-    <Compile Include="Models\TechnologyResumeRecord.cs" />
+    <Compile Include="Models\RequirementResumeRecord.cs" />
     <Compile Include="Models\Comment.cs" />
     <Compile Include="Models\Consideration.cs" />
     <Compile Include="Models\DAL\VacancyInitializer.cs" />
@@ -108,8 +112,8 @@
     <Compile Include="Models\PreviousExperience.cs" />
     <Compile Include="Models\Resume.cs" />
     <Compile Include="Models\Role.cs" />
-    <Compile Include="Models\Technology.cs" />
-    <Compile Include="Models\TechnologyStack.cs" />
+    <Compile Include="Models\Requirement.cs" />
+    <Compile Include="Models\RequirementStack.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\Vacancy.cs" />
     <Compile Include="Models\VacancyContext.cs" />
@@ -1348,19 +1352,19 @@
     <Content Include="Scripts\VM\Admin\app.js" />
     <Content Include="Scripts\VM\Admin\controller\Admin.js" />
     <Content Include="Scripts\VM\Admin\view\Admin\Main.js" />
-    <Content Include="Scripts\VM\TechStackManager\app.js" />
-    <Content Include="Scripts\VM\TechStackManager\controller\TechListInStack.js" />
-    <Content Include="Scripts\VM\TechStackManager\controller\TechStack.js" />
-    <Content Include="Scripts\VM\TechStackManager\model\TechListInStack.js" />
-    <Content Include="Scripts\VM\TechStackManager\model\TechStack.js" />
-    <Content Include="Scripts\VM\TechStackManager\store\TechListInStack.js" />
-    <Content Include="Scripts\VM\TechStackManager\store\TechStack.js" />
-    <Content Include="Scripts\VM\TechStackManager\view\TechListInStack\Create.js" />
-    <Content Include="Scripts\VM\TechStackManager\view\TechListInStack\Edit.js" />
-    <Content Include="Scripts\VM\TechStackManager\view\TechListInStack\List.js" />
-    <Content Include="Scripts\VM\TechStackManager\view\TechStack\Edit.js" />
-    <Content Include="Scripts\VM\TechStackManager\view\TechStack\Create.js" />
-    <Content Include="Scripts\VM\TechStackManager\view\TechStack\List.js" />
+    <Content Include="Scripts\VM\RequirementStackManager\app.js" />
+    <Content Include="Scripts\VM\RequirementStackManager\controller\RequirementListInStack.js" />
+    <Content Include="Scripts\VM\RequirementStackManager\controller\RequirementStack.js" />
+    <Content Include="Scripts\VM\RequirementStackManager\model\RequirementListInStack.js" />
+    <Content Include="Scripts\VM\RequirementStackManager\model\RequirementStack.js" />
+    <Content Include="Scripts\VM\RequirementStackManager\store\RequirementListInStack.js" />
+    <Content Include="Scripts\VM\RequirementStackManager\store\RequirementStack.js" />
+    <Content Include="Scripts\VM\RequirementStackManager\view\RequirementListInStack\Create.js" />
+    <Content Include="Scripts\VM\RequirementStackManager\view\RequirementListInStack\Edit.js" />
+    <Content Include="Scripts\VM\RequirementStackManager\view\RequirementListInStack\List.js" />
+    <Content Include="Scripts\VM\RequirementStackManager\view\RequirementStack\Edit.js" />
+    <Content Include="Scripts\VM\RequirementStackManager\view\RequirementStack\Create.js" />
+    <Content Include="Scripts\VM\RequirementStackManager\view\RequirementStack\List.js" />
     <Content Include="Scripts\VM\VacancyConfigurator\app.js" />
     <Content Include="Scripts\VM\VacancyConfigurator\controller\VacancyController.js" />
     <Content Include="Scripts\VM\VacancyConfigurator\model\Vacancy.js" />
@@ -1417,7 +1421,7 @@
     <Content Include="Views\Admin\AddVacancy.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Home\ViewTechnologyStack.cshtml" />
+    <Content Include="Views\Home\ViewRequirementStack.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Shared\_Menu.cshtml" />

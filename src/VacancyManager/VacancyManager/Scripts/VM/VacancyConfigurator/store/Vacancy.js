@@ -7,11 +7,12 @@
     autoSave: true,
         proxy: {
         type: 'ajax',
-        api: {
-            read: '/Vacancy/Load',
-            create: 'Vacancy/Create',
-            update: '/Vacancy/Update',
-            destroy: '/Vacancy/Delete'
+        api: {//Потом вставить сюда прямые ссылки(типа http://BlaBlaBla/Vacancy/*)
+        //Убрал Vacancy/ из ссылок на время пока не сделаю нормальную админку
+            read: 'Load',
+            create: 'Create',
+            update: 'Update',
+            destroy: 'Delete'
         },
         reader: {
             type: 'json',

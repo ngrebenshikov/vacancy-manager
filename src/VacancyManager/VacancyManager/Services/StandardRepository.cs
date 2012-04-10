@@ -141,37 +141,38 @@ namespace VacancyManager.Services
         }
         #endregion
 
-        #region TechStack
+        #region RequirementStack
 
-        public IEnumerable<TechnologyStack> GetAllTechStacks()
+        public IEnumerable<RequirementStack> GetAllRequirementStacks()
         {
-          return _db.TechnologyStacks.ToList();
+          return _db.RequirementStacks.ToList();
         }
 
-        public void CreateTechStack(string name)
+        public int CreateRequirementStack(string name)
         {
-          var techStack = new TechnologyStack
+          var requirementStack = new RequirementStack
           {
             Name = name,
-            TechnologyStackID = -1,
+            RequirementStackID = -1,
           };
-          _db.TechnologyStacks.Add(techStack);
+          _db.RequirementStacks.Add(requirementStack);
           _db.SaveChanges();
+          return _db.RequirementStacks.ToList()[_db.RequirementStacks.ToList().Count-1].RequirementStackID;
         }
 
-        public void DeleteTechStack(int id)
+        public void DeleteRequirementStack(int id)
         {
-          var delete_rec = _db.TechnologyStacks.Where(a => a.TechnologyStackID == id).SingleOrDefault();
+          var delete_rec = _db.RequirementStacks.Where(a => a.RequirementStackID == id).SingleOrDefault();
           if (delete_rec != null)
           {
-            _db.TechnologyStacks.Remove(delete_rec);
+            _db.RequirementStacks.Remove(delete_rec);
             _db.SaveChanges();
           }
         }
 
-        public void UpdateTechStack(int id, string name)
+        public void UpdateRequirementStack(int id, string name)
         {
-          var update_rec = _db.TechnologyStacks.Where(a => a.TechnologyStackID == id).SingleOrDefault();
+          var update_rec = _db.RequirementStacks.Where(a => a.RequirementStackID == id).SingleOrDefault();
           if (update_rec != null)
           {
             update_rec.Name=name;
@@ -180,38 +181,39 @@ namespace VacancyManager.Services
         }
         #endregion
 
-        #region Technology
+        #region Requirement
 
-        public IEnumerable<Technology> GetAllTechnologies(int id)
+        public IEnumerable<Requirement> GetAllRequirements(int id)
         {
-          return _db.TechnologyStacks.FirstOrDefault(x=>x.TechnologyStackID==id).Technologies.ToList();
+          return _db.RequirementStacks.FirstOrDefault(x => x.RequirementStackID == id).Requirements.ToList();
         }
 
-        public void CreateTechnology(int id,string name)
+        public int CreateRequirement(int id, string name)
         {
-          var tech = new Technology
+          var requirement = new Requirement
           {
             Name = name,
-            TechnologyStackID=id,
-            TechnologyID = -1,
+            RequirementStackID = id,
+            RequirementID = -1,
           };
-          _db.Technologies.Add(tech);
+          _db.Requirements.Add(requirement);
           _db.SaveChanges();
+          return _db.Requirements.ToList()[_db.Requirements.ToList().Count - 1].RequirementID;
         }
 
-        public void DeleteTechnology(int id)
+        public void DeleteRequirement(int id)
         {
-          var delete_rec = _db.Technologies.Where(a => a.TechnologyID == id).SingleOrDefault();
+          var delete_rec = _db.Requirements.Where(a => a.RequirementID == id).SingleOrDefault();
           if (delete_rec != null)
           {
-            _db.Technologies.Remove(delete_rec);
+            _db.Requirements.Remove(delete_rec);
             _db.SaveChanges();
           }
         }
 
-        public void UpdateTechnology(int id, string name)
+        public void UpdateRequirement(int id, string name)
         {
-          var update_rec = _db.Technologies.Where(a => a.TechnologyID == id).SingleOrDefault();
+          var update_rec = _db.Requirements.Where(a => a.RequirementID == id).SingleOrDefault();
           if (update_rec != null)
           {
             update_rec.Name = name;

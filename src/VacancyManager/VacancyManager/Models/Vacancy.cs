@@ -29,6 +29,6 @@ namespace VacancyManager.Models
         public bool IsVisible { get; set; }
 
         public virtual ICollection<Consideration> Considerations { get; set; }
-        public virtual ICollection<TechnologyStack> TechnologyStacks { get; set; } 
+        public virtual ICollection<RequirementStack> TechnologyStacks { get; set; } 
     }
 }

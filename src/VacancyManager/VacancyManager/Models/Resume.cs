@@ -22,6 +22,6 @@ namespace VacancyManager.Models
         public virtual User User { get; set; }
         public virtual ICollection<PreviousExperience> PreviousExperiences { get; set; }
         public virtual ICollection<Education> Educations { get; set; }
-        public virtual ICollection<TechnologyResumeRecord> Technologies { get; set; } 
+        public virtual ICollection<RequirementResumeRecord> Technologies { get; set; } 
     }
 }
