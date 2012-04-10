@@ -6,7 +6,7 @@ Ext.define
 
     requires: ['Ext.form.Panel'],
 
-    title: 'Edit Requirementnology',
+    title: 'Edit Requirement',
     layout: 'fit',
     autoShow: true,
     height: 60,

@@ -4,7 +4,7 @@ Ext.define('VM.controller.VacancyController', {
 
     stores: ['Vacancy'],
 
-    models: ['Vacancy'],
+    models: ['VM.model.Vacancy'],
 
     views: ['vacancy.List', 'vacancy.Edit', 'vacancy.Add'],
 
