@@ -23,7 +23,12 @@ namespace VacancyManager.Services
         void DeleteRequirementStack(int id);
         void UpdateRequirementStack(int id, string name);
         #endregion
-        #region Requirement
+#region User
+        void AdminCreateUser(string userName, string email, string password, string userComment, DateTime createDate, DateTime laslLoginDate, bool isActivated, bool isLockedOut, DateTime lastLockedOutDate, string LastLockedOutReason, string emailKey);
+        void AdminUpdateUser(int userID, string userName, string email, string password, string userComment, DateTime createDate, DateTime laslLoginDate, bool isActivated, bool isLockedOut, DateTime lastLockedOutDate, string LastLockedOutReason, string emailKey);
+        void AdminDeleteUser(int userID);
+        #endregion
+#region Requirement
         IEnumerable<Requirement> GetAllRequirements(int id);
         int CreateRequirement(int id, string name);
         void DeleteRequirement(int id);

@@ -1,4 +1,5 @@
 ﻿
+
 Ext.define('VM.view.vacancy.Edit', {
     extend: 'Ext.window.Window',
     alias: 'widget.vacancyEdit',
@@ -6,6 +7,8 @@ Ext.define('VM.view.vacancy.Edit', {
     height: 450,
     width: 430,
     autoShow: true,
+    maximizable: true,
+    collapsible: true,
     modal: true,
     layout: 'fit',
     buttonAlign: 'center',
@@ -40,7 +43,7 @@ Ext.define('VM.view.vacancy.Edit', {
                     id: 'dtOpeningDate',
                     fieldLabel: 'Дата открытия',
                     name: 'OpeningDate',
-                    format: 'd.m.Y',
+                    format: 'd F Y',
                     allowBlank: false
                 }, {
                     xtype: 'textfield',

@@ -32,6 +32,8 @@ namespace VacancyManager.Controllers
         public JsonResult Load()
         {
             var VisibleVacancies = _repository.AllVisibleVacancies();
+       //     var VacanciesList = VisibleVacancies; 
+            
             var VacanciesList = (from Vacancies in VisibleVacancies
                                  select new
                                  {
@@ -46,8 +48,8 @@ namespace VacancyManager.Controllers
                              ).ToList();
             return Json(new
                            {
-                               data = VacanciesList,
-                               total = VacanciesList.Count
+                              data = VacanciesList,
+                              total = VacanciesList.Count
                            },
                         JsonRequestBehavior.AllowGet);
         }

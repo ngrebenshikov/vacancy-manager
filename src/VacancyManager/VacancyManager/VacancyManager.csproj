@@ -81,6 +81,7 @@
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\RequirementStackController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Controllers\VacancyController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -1365,10 +1366,20 @@
     <Content Include="Scripts\VM\RequirementStackManager\view\RequirementStack\Edit.js" />
     <Content Include="Scripts\VM\RequirementStackManager\view\RequirementStack\Create.js" />
     <Content Include="Scripts\VM\RequirementStackManager\view\RequirementStack\List.js" />
+    <Content Include="Scripts\VM\Usery\app.js" />
+    <Content Include="Scripts\VM\Usery\controller\UserController.js" />
+    <Content Include="Scripts\VM\Usery\model\User.js" />
+    <Content Include="Scripts\VM\Usery\store\User.js" />
+    <Content Include="Scripts\VM\Usery\view\User\Add.js" />
+    <Content Include="Scripts\VM\Usery\view\User\Edit.js" />
+    <Content Include="Scripts\VM\Usery\view\User\List.js" />
     <Content Include="Scripts\VM\VacancyConfigurator\app.js" />
     <Content Include="Scripts\VM\VacancyConfigurator\controller\VacancyController.js" />
+    <Content Include="Scripts\VM\VacancyConfigurator\model\Consideration.js" />
     <Content Include="Scripts\VM\VacancyConfigurator\model\Vacancy.js" />
+    <Content Include="Scripts\VM\VacancyConfigurator\store\Consideration.js" />
     <Content Include="Scripts\VM\VacancyConfigurator\store\Vacancy.js" />
+    <Content Include="Scripts\VM\VacancyConfigurator\view\consideration\List.js" />
     <Content Include="Scripts\VM\VacancyConfigurator\view\vacancy\Add.js" />
     <Content Include="Scripts\VM\VacancyConfigurator\view\vacancy\Edit.js" />
     <Content Include="Scripts\VM\VacancyConfigurator\view\vacancy\List.js" />
@@ -1501,6 +1512,7 @@
     <None Include="ExtLib\resources\themes\templates\resources\sass\my-ext-theme.scss" />
     <Content Include="Views\Vacancy\Index.cshtml" />
     <Content Include="Views\Home\Admin.cshtml" />
+    <Content Include="Views\User\Index.cshtml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

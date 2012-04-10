@@ -1,17 +1,18 @@
 ﻿
 Ext.define('VM.view.vacancy.List', {
     extend: 'Ext.grid.Panel',
-    alias: 'widget.vacancylist',
-    region: "center",
-    height: 500,
+    alias: 'widget.vacancyList',
+    region: 'center',
+    height: 400,
     id: 'vacancyGrid',
     autoSizeColumns: true,
     autoHeight: true,
     forceFit: true,
-    frame: true,
-    //title: 'Вакансии',
+    frame: false,
+    split: true,
+    title: 'Вакансии',  
     store: 'Vacancy',
-    columns: [                                      
+    columns: [                                   
                       {
                           dataIndex: 'Title',
                           text: 'Вакансия',
@@ -19,13 +20,6 @@ Ext.define('VM.view.vacancy.List', {
                           sortable: true,
                           field: { xtype: 'textfield' },
                           menuDisabled: true 
-                      }, {
-                          dataIndex: 'Description',
-                          text: 'Описание',
-                          width: 220, 
-                          sortable: false,
-                          field: { xtype: 'textfield' },
-                          menuDisabled: true
                       }, { 
                           dataIndex: 'OpeningDate',
                           text: 'Дата открытия',
@@ -33,7 +27,7 @@ Ext.define('VM.view.vacancy.List', {
                           sortable: true,
                           field: { xtype: 'datefield' },
                           menuDisabled: true,
-                          renderer: Ext.util.Format.dateRenderer('d.m.Y'),
+                          renderer: Ext.util.Format.dateRenderer('d F Y'),
                       }, {
                           dataIndex: 'ForeignLanguage',
                           text: 'Иностранные языки',
@@ -41,24 +35,24 @@ Ext.define('VM.view.vacancy.List', {
                           sortable: false,
                           field: { xtype: 'textfield' },
                           menuDisabled: true
-                      }, { 
-                         dataIndex: 'Requirments',
-                         text: 'Требования',
-                         width: 120,
-                         sortable: false,
-                         field: { xtype: 'textfield' },
-                         menuDisabled: true
                       }
              ],
     dockedItems: [{
         xtype: 'pagingtoolbar',
         store: 'Vacancy',
         dock: 'bottom',
-        displayInfo: true,
-        displayMsg: 'Показано  {0} - {1} из {2}',
-        emptyMsg: 'Нет данных для отображения'
+        displayInfo: true
     }],
-
+            plugins: [{
+            ptype: 'rowexpander',
+            expandOnDblClick: false,
+            selectRowOnExpand : true,
+            rowBodyTpl : [
+                '<br>',
+                '<p><b>Описание:</b> {Description}</p><br>',
+                '<p><b>Требования:</b> {Requirments}</p>'
+            ]
+        }],
     bbar: [{
         text: 'Новая вакансия',
         name: 'btnLoadBlankVacancy',
@@ -75,7 +69,8 @@ Ext.define('VM.view.vacancy.List', {
         action: 'deleteVacancy'
     }
    ]
-
+        
 
 });
+
 
