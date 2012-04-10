@@ -14,7 +14,7 @@ namespace VacancyManager.Services
 
         public IEnumerable<Vacancy> AllVisibleVacancies()
         {
-            return _db.Vacancies.Where(vacancy => vacancy.IsVisible);
+            return _db.Vacancies.Where(vacancy => vacancy.IsVisible).ToList();
         }
 
         public User GetUserByEmail(string email)
@@ -180,6 +180,61 @@ namespace VacancyManager.Services
           }
         }
         #endregion
+
+ #region User
+        public void AdminCreateUser(string userName, string email, string password, string userComment, DateTime createDate, DateTime laslLoginDate, bool isActivated, bool isLockedOut, DateTime lastLockedOutDate, string LastLockedOutReason, string emailKey)
+        {
+            var user = new User
+            {
+                UserID=-1,
+                UserName = userName,
+                Email=email,
+                Password=password,
+                UserComment=userComment,
+                CreateDate=createDate,
+                LaslLoginDate = laslLoginDate,
+                IsActivated=isActivated,
+                IsLockedOut=isLockedOut,
+                LastLockedOutDate=lastLockedOutDate,
+                LastLockedOutReason=LastLockedOutReason,
+                EmailKey=emailKey
+            };
+
+            _db.Users.Add(user);
+            _db.SaveChanges();
+        }
+
+        public void AdminUpdateUser(int userID, string userName, string email, string password, string userComment, DateTime createDate, DateTime laslLoginDate, bool isActivated, bool isLockedOut, DateTime lastLockedOutDate, string LastLockedOutReason, string emailKey)
+        {
+            var update_user = _db.Users.Where(a => a.UserID == userID).SingleOrDefault();
+            if (update_user != null)
+            {
+                update_user.UserName = userName;
+                update_user.Email=email;
+                update_user.Password=password;
+                update_user.UserComment=userComment;
+                update_user.CreateDate=createDate;
+                update_user.LaslLoginDate = laslLoginDate;
+                update_user.IsActivated=isActivated;
+                update_user.IsLockedOut=isLockedOut;
+                update_user.LastLockedOutDate=lastLockedOutDate;
+                update_user.LastLockedOutReason=LastLockedOutReason;
+                update_user.EmailKey = emailKey;
+                _db.SaveChanges();
+            }
+        }
+
+        public void AdminDeleteUser(int userID)
+        {
+            var delete_user = _db.Users.Where(a => a.UserID == userID).SingleOrDefault();
+            if (delete_user != null)
+            {
+                _db.Users.Remove(delete_user);
+                _db.SaveChanges();
+            }
+        }
+        #endregion
+
 
         #region Requirement
 

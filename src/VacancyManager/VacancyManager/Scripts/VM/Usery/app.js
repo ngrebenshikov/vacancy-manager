@@ -1,13 +1,11 @@
 Ext.Loader.setConfig({ enabled: true });
 
-Ext.Loader.setPath('Ext.ux', '/ExtLib/ux');
-
 Ext.application({
   name: 'VM',
 
-  appFolder: '/Scripts/VM/VacancyConfigurator',
+  appFolder: '/Scripts/VM/Usery',
 
-  controllers: ['VacancyController'],
+  controllers: ['UserController'],
 
   launch: function ()
   {
@@ -15,7 +13,7 @@ Ext.application({
       layout: 'fit',
       items: [
                 {
-                    xtype: 'vacancyList'
+                    xtype: 'UserList'
                 }
             ]
     });

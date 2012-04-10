@@ -1,18 +1,17 @@
-﻿Ext.define('VM.store.Vacancy', {
+﻿Ext.define('VM.store.User', {
     extend: 'Ext.data.Store',
-    model: 'VM.model.Vacancy',
-    id : 'VacancyStore',
+    model: 'VM.model.User',
+    id: 'VacancyStore',
     autoLoad: true,
     autoSync: true,
     autoSave: true,
-        proxy: {
+    proxy: {
         type: 'ajax',
-        api: {//Потом вставить сюда прямые ссылки(типа http://BlaBlaBla/Vacancy/*)
-        //Убрал Vacancy/ из ссылок на время пока не сделаю нормальную админку
-read: 'Load',
-            create: 'Create',
-            update: 'Update',
-            destroy: 'Delete'
+        api: {
+            read: '/User/Load',
+            create: '/User/Create',
+            update: '/User/Update',
+            destroy: '/User/Delete'
         },
         reader: {
             type: 'json',
