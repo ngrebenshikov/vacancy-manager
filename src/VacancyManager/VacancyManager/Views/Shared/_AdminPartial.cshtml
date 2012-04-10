@@ -1,0 +1,4 @@
+﻿@if (Request.IsAuthenticated && User.IsInRole("Administrator"))
+{
+  <text>[ @Html.ActionLink("Добавить вакансию", "AddVacancy", "Admin") ]</text>
+}
