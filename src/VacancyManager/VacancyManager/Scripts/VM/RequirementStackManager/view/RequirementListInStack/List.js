@@ -18,12 +18,10 @@ Ext.define
         items:
         [{
           icon: '/ExtLib/resources/themes/images/default/form/exclamation.gif',
-          tooltip: 'Delete Requirementnology',
+          tooltip: 'Delete Requirement',
           handler: function (grid, rowIndex, colIndex)
           {
             grid.store.removeAt(rowIndex);
-            grid.store.sync();
-            //Ext.Msg.alert('Debug', grid.store.getAt(rowIndex).get('Name'));
           }
         }]
       }
@@ -34,7 +32,7 @@ Ext.define
       items:
       [
         {
-          text: 'Add Requirementnology to Stack',
+          text: 'Add Requirement to Stack',
           id: 'AddRequirementToStack',
           hidden: false,
           action: 'AddRequirement'

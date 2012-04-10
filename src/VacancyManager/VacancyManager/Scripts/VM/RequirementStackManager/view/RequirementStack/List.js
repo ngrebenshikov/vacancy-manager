@@ -46,13 +46,13 @@ Ext.define
               items:
               [
                 {
-                  text: 'Add Requirementnology Stack',
-                  action: 'AddRequirementnologyStack'
+                  text: 'Add Requirement Stack',
+                  action: 'AddRequirementStack'
                 },
                 {
-                  text: 'RemoveRequirementnologyStack',
+                  text: 'Remove Requirement Stack',
                   disabled: true,
-                  action: 'RemoveRequirementnologyStack'
+                  action: 'RemoveRequirementStack'
                 }
               ]
             }
@@ -65,16 +65,13 @@ Ext.define
     onSelectionChange: function (selmodel, selection)
     {
       var selected = selection[0],
-            button = this.down('button[action=RemoveRequirementnologyStack]');
-      //var AddRequirementButton = Ext.fly('AddRequirementToStack');
+            button = this.down('button[action=RemoveRequirementStack]');
       if (selected)
       {
-        //AddRequirementButton.show();
         button.enable();
       }
       else
       {
-        //AddRequirementButton.hide();
         button.disable();
       }
     }

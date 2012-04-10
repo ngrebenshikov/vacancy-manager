@@ -33,11 +33,11 @@ Ext.define
           {
             click: this.CreateRequirementStack
           },
-          'RequirementStackList button[action=AddRequirementnologyStack]':
+          'RequirementStackList button[action=AddRequirementStack]':
           {
             click: this.AddRequirementnologyStack
           },
-          'RequirementStackList button[action=RemoveRequirementnologyStack]':
+          'RequirementStackList button[action=RemoveRequirementStack]':
           {
             click: this.RemoveRequirementnologyStack
           }
