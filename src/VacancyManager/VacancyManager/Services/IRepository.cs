@@ -9,6 +9,7 @@ namespace VacancyManager.Services
     public interface IRepository : IDisposable
     {
         IEnumerable<Vacancy> AllVisibleVacancies();
+        IEnumerable<User> AllUsers();
         User GetUserByEmail(string email);
         User GetUserByUsername(string username);
         MembershipUser GetMembershipUserByUserName(string username);

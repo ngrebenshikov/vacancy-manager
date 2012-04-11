@@ -14,7 +14,6 @@ namespace VacancyManager.Controllers
 {
     public class UserController : Controller
     {
-        public VacancyContext db = new VacancyContext(); //
         private readonly IRepository _repository;
 
 
@@ -32,28 +31,30 @@ namespace VacancyManager.Controllers
 
         //User/load
         public JsonResult Load()
-        {
-            var UserList = from User in db.Users
-                              select new {
-                                  UserID = User.UserID,
-                                           UserName = User.UserName, 
-                                           Email=User.Email,
-                                           Password = User.Password,
-                                           UserComment = User.UserComment,
-                                           CreateDate = User.CreateDate,
-                                           LaslLoginDate = User.LaslLoginDate,
-                                           IsActivated = User.IsActivated,
-                                           IsLockedOut = User.IsLockedOut,
-                                           LastLockedOutDate = User.LastLockedOutDate,
-                                           LastLockedOutReason = User.LastLockedOutReason,
-                                           EmailKey = User.EmailKey, 
-                                           
-                             };
+        { var AllUser = _repository.AllUsers();
+       //     var VacanciesList = VisibleVacancies; 
 
-            var UserVar = UserList.ToList();  
+        var UserList = (from User in AllUser
+                        select new
+                        {
+                            UserID = User.UserID,
+                            UserName = User.UserName,
+                            Email = User.Email,
+                            Password = User.Password,
+                            UserComment = User.UserComment,
+                            CreateDate = User.CreateDate,
+                            LaslLoginDate = User.LaslLoginDate,
+                            IsActivated = User.IsActivated,
+                            IsLockedOut = User.IsLockedOut,
+                            LastLockedOutDate = User.LastLockedOutDate,
+                            LastLockedOutReason = User.LastLockedOutReason,
+                            EmailKey = User.EmailKey,
+                        }
+                         ).ToList();
             return Json(new 
-                           { data = UserVar,
-                             total = UserVar.Count }, 
+                           { data = UserList,
+                             total = UserList.Count
+                           }, 
                         JsonRequestBehavior.AllowGet);
         }
         //User/Create
