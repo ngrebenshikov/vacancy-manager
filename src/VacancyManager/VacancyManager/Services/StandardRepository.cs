@@ -17,6 +17,11 @@ namespace VacancyManager.Services
             return _db.Vacancies.Where(vacancy => vacancy.IsVisible).ToList();
         }
 
+        public IEnumerable<User> AllUsers()
+        {
+            return _db.Users.ToList();
+        }
+
         public User GetUserByEmail(string email)
         {
             return _db.Users.FirstOrDefault(u => u.Email == email);
