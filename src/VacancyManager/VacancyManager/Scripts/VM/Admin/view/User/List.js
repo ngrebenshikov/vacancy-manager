@@ -4,6 +4,8 @@ Ext.define('VM.view.User.List', {
     alias: 'widget.UserList',
     region: "center",
     height: 500,
+    //autoHeight: true,
+    //autoScroll:true,
     id: 'UserGrid',
     autoSizeColumns: true,
     forceFit: true,

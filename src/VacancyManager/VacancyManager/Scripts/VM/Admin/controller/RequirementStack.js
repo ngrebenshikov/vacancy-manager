@@ -20,7 +20,7 @@ Ext.define
     {
       this.control(
         {
-          'viewport > RequirementStackList dataview':
+          'RequirementStackList dataview':
           {
             itemdblclick: this.editRequirementStack,
             itemclick: this.loadRequirementList

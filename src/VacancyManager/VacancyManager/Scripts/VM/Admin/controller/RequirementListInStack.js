@@ -21,7 +21,7 @@ Ext.define
       this.control
       (
         {
-          'viewport > RequirementListInStackList dataview':
+          'RequirementListInStackList dataview':
           {
             itemdblclick: this.editRequirement
           },

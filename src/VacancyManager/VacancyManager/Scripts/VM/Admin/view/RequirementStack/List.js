@@ -11,7 +11,7 @@ Ext.define
     region: 'west',
     margins: '5 0 0 0',
     cmargins: '5 5 0 0',
-    width: 270,
+    width: 290,
     minSize: 100,
     maxSize: 250,
 

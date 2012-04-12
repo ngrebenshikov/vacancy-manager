@@ -1352,37 +1352,34 @@
     <Content Include="Scripts\modernizr-1.7.min.js" />
     <Content Include="Scripts\VM\Admin\app.js" />
     <Content Include="Scripts\VM\Admin\controller\Admin.js" />
+    <Content Include="Scripts\VM\Admin\controller\RequirementListInStack.js" />
+    <Content Include="Scripts\VM\Admin\controller\RequirementStack.js" />
+    <Content Include="Scripts\VM\Admin\controller\UserController.js" />
+    <Content Include="Scripts\VM\Admin\controller\VacancyController.js" />
+    <Content Include="Scripts\VM\Admin\model\Consideration.js" />
+    <Content Include="Scripts\VM\Admin\model\RequirementListInStack.js" />
+    <Content Include="Scripts\VM\Admin\model\RequirementStack.js" />
+    <Content Include="Scripts\VM\Admin\model\User.js" />
+    <Content Include="Scripts\VM\Admin\model\Vacancy.js" />
+    <Content Include="Scripts\VM\Admin\store\Consideration.js" />
+    <Content Include="Scripts\VM\Admin\store\RequirementListInStack.js" />
+    <Content Include="Scripts\VM\Admin\store\RequirementStack.js" />
+    <Content Include="Scripts\VM\Admin\store\User.js" />
+    <Content Include="Scripts\VM\Admin\store\Vacancy.js" />
     <Content Include="Scripts\VM\Admin\view\Admin\Main.js" />
-    <Content Include="Scripts\VM\RequirementStackManager\app.js" />
-    <Content Include="Scripts\VM\RequirementStackManager\controller\RequirementListInStack.js" />
-    <Content Include="Scripts\VM\RequirementStackManager\controller\RequirementStack.js" />
-    <Content Include="Scripts\VM\RequirementStackManager\model\RequirementListInStack.js" />
-    <Content Include="Scripts\VM\RequirementStackManager\model\RequirementStack.js" />
-    <Content Include="Scripts\VM\RequirementStackManager\store\RequirementListInStack.js" />
-    <Content Include="Scripts\VM\RequirementStackManager\store\RequirementStack.js" />
-    <Content Include="Scripts\VM\RequirementStackManager\view\RequirementListInStack\Create.js" />
-    <Content Include="Scripts\VM\RequirementStackManager\view\RequirementListInStack\Edit.js" />
-    <Content Include="Scripts\VM\RequirementStackManager\view\RequirementListInStack\List.js" />
-    <Content Include="Scripts\VM\RequirementStackManager\view\RequirementStack\Edit.js" />
-    <Content Include="Scripts\VM\RequirementStackManager\view\RequirementStack\Create.js" />
-    <Content Include="Scripts\VM\RequirementStackManager\view\RequirementStack\List.js" />
-    <Content Include="Scripts\VM\Users\app.js" />
-    <Content Include="Scripts\VM\Users\controller\UserController.js" />
-    <Content Include="Scripts\VM\Users\model\User.js" />
-    <Content Include="Scripts\VM\Users\store\User.js" />
-    <Content Include="Scripts\VM\Users\view\User\Add.js" />
-    <Content Include="Scripts\VM\Users\view\User\Edit.js" />
-    <Content Include="Scripts\VM\Users\view\User\List.js" />
-    <Content Include="Scripts\VM\VacancyConfigurator\app.js" />
-    <Content Include="Scripts\VM\VacancyConfigurator\controller\VacancyController.js" />
-    <Content Include="Scripts\VM\VacancyConfigurator\model\Consideration.js" />
-    <Content Include="Scripts\VM\VacancyConfigurator\model\Vacancy.js" />
-    <Content Include="Scripts\VM\VacancyConfigurator\store\Consideration.js" />
-    <Content Include="Scripts\VM\VacancyConfigurator\store\Vacancy.js" />
-    <Content Include="Scripts\VM\VacancyConfigurator\view\consideration\List.js" />
-    <Content Include="Scripts\VM\VacancyConfigurator\view\vacancy\Add.js" />
-    <Content Include="Scripts\VM\VacancyConfigurator\view\vacancy\Edit.js" />
-    <Content Include="Scripts\VM\VacancyConfigurator\view\vacancy\List.js" />
+    <Content Include="Scripts\VM\Admin\view\consideration\List.js" />
+    <Content Include="Scripts\VM\Admin\view\RequirementListInStack\Create.js" />
+    <Content Include="Scripts\VM\Admin\view\RequirementListInStack\Edit.js" />
+    <Content Include="Scripts\VM\Admin\view\RequirementListInStack\List.js" />
+    <Content Include="Scripts\VM\Admin\view\RequirementStack\Create.js" />
+    <Content Include="Scripts\VM\Admin\view\RequirementStack\Edit.js" />
+    <Content Include="Scripts\VM\Admin\view\RequirementStack\List.js" />
+    <Content Include="Scripts\VM\Admin\view\User\Add.js" />
+    <Content Include="Scripts\VM\Admin\view\User\Edit.js" />
+    <Content Include="Scripts\VM\Admin\view\User\List.js" />
+    <Content Include="Scripts\VM\Admin\view\vacancy\Add.js" />
+    <Content Include="Scripts\VM\Admin\view\vacancy\Edit.js" />
+    <Content Include="Scripts\VM\Admin\view\vacancy\List.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -1531,7 +1528,7 @@
         <WebProjectProperties>
           <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>50841</DevelopmentServerPort>
+          <DevelopmentServerPort>53662</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>
           </IISUrl>
