@@ -5,6 +5,8 @@
   }
 );
 
+Ext.Loader.setPath('Ext.ux', 'ExtLib/ux');
+
 Ext.application
 (
   {
@@ -12,7 +14,11 @@ Ext.application
     appFolder: '/Scripts/VM/Admin',
     controllers:
     [
-      'Admin'
+      'Admin',
+      'RequirementStack',
+      'RequirementListInStack',
+      'VacancyController',
+      'UserController'
     ],
     launch: function ()
     {
@@ -21,7 +27,7 @@ Ext.application
         layout: 'fit',
         items:
         [
-          {xtype: 'AdminMain'}
+          { xtype: 'AdminMain' }
         ]
       }
       );

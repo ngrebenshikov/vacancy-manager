@@ -11,7 +11,7 @@ Ext.define('VM.controller.UserController', {
     init: function () {
         this.control(
                 {
-                    'viewport > Userlist dataview': {
+                    'UserList dataview': {
                         itemdblclick: this.editUser
                     },
                     'button[action = loadBlankUser]': {

@@ -11,7 +11,7 @@ Ext.define('VM.controller.VacancyController', {
     init: function () {
         this.control(
                 {
-                    'viewport > vacancyList dataview': {
+                    'vacancyList dataview': {
                         itemdblclick: this.editVacancy
                     },
                     'button[action = loadBlankVacancy]': {

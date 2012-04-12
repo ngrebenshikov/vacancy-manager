@@ -1,37 +1,54 @@
 ﻿Ext.define
 ('VM.view.Admin.Main',
   {
-    extend: 'Ext.panel.Panel',
+    extend: 'Ext.tab.Panel',
     alias: 'widget.AdminMain',
     title: 'Admin',
-    /*split: true,
-    margins: '5 0 0 0',
-    cmargins: '5 5 0 0',*/
+    activeTab: 0,
 
     initComponent: function ()
     {
-      Ext.apply
+      Ext.applyIf
       (this,
         {
           items:
           [
             {
-              xtype: "tabpanel",
+              xtype: 'panel',
+              title: "Пользователи",
               autoScroll: true,
+              items:
+              [
+                { xtype: 'UserList' }
+              ]
+            },
+            {
+              xtype: 'panel',
+              title: "Вакансии",
+              autoScroll: true,
+              items:
+              [
+                { xtype: 'vacancyList' }
+              ]
+            },
+            {
+              xtype: 'panel',
               layout: {
-                type: 'absolute'
+                type: 'border'
               },
-              items: [{
-                  title: "Пользователи",
-                  html: "<iframe src=\"../User/\" width=\"100%\" height=\"100%\" frameborder=\"0\">Браузер не понимает тег iframe</iframe>"
-              }, {
-                  title: "Вакансии",
-                  html: "<iframe src=\"../Vacancy/\" width=\"100%\" height=\"100%\" frameborder=\"0\">Браузер не понимает тег iframe</iframe>"
-              }, {
-                title: "Технологии",
-                html: "<iframe src=\"ViewRequirementStack/\" width=\"100%\" height=\"100%\" frameborder=\"0\">Браузер не понимает тег iframe</iframe>"
-              }],
-              activeTab: 0
+              autoScroll: true,
+              title: "Технологии",
+              items:
+              [
+                {
+                  xtype: 'RequirementStackList',
+                  region: 'west'
+                },
+                {
+                  xtype: 'RequirementListInStackList',
+                  region: 'center'
+                }
+              ]
             }
           ]
         }
