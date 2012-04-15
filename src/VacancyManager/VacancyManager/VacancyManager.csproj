@@ -1380,6 +1380,10 @@
     <Content Include="Scripts\VM\Admin\view\vacancy\Add.js" />
     <Content Include="Scripts\VM\Admin\view\vacancy\Edit.js" />
     <Content Include="Scripts\VM\Admin\view\vacancy\List.js" />
+    <Content Include="Views\Home\Index.cshtml">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Views\Home\ViewRequirementStack.cshtml" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -1420,16 +1424,10 @@
     <Content Include="Views\Shared\_LogOnPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Home\Index.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="Views\Shared\_AdminPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Admin\AddVacancy.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\Home\ViewRequirementStack.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Shared\_Menu.cshtml" />
@@ -1508,8 +1506,8 @@
     <None Include="ExtLib\resources\themes\templates\resources\sass\config.rb" />
     <None Include="ExtLib\resources\themes\templates\resources\sass\my-ext-theme.scss" />
     <Content Include="Views\Vacancy\Index.cshtml" />
-    <Content Include="Views\Home\Admin.cshtml" />
     <Content Include="Views\User\Index.cshtml" />
+    <Content Include="Views\Home\IndexOld.cshtml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
