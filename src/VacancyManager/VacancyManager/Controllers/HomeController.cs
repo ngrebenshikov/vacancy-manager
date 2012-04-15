@@ -27,7 +27,7 @@ namespace VacancyManager.Controllers
       return View();
     }
 
-    public ActionResult Admin()
+    public ActionResult IndexOld()
     {
       return View();
     }
