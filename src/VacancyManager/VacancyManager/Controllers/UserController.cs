@@ -16,18 +16,10 @@ namespace VacancyManager.Controllers
     {
         private readonly IRepository _repository;
 
-
         public UserController(IRepository repository)
         {
             _repository = repository;
         }
-     
-        public ActionResult Index()
-        {
-            return View();
-        }
-
-
 
         //User/load
         public JsonResult Load()
