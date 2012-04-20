@@ -21,11 +21,6 @@ namespace VacancyManager.Controllers
             _repository = repository;
         }
 
-        public ActionResult Index()
-        {
-            return View();
-        }
-
         //
         // GET: /Vacancy/Load
 
