@@ -49,7 +49,9 @@ namespace VacancyManager.Models
     public string UserName { get; set; }
 
     [Required]
-    [DataType(DataType.EmailAddress)]
+    //[DataType(DataType.EmailAddress)]
+    [RegularExpression(@"^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$",
+      ErrorMessage = "Неправильное значение поля E-mail")]
     [Display(Name = "Адрес электронной почты")]
     public string Email { get; set; }
 

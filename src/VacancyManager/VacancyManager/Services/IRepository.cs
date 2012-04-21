@@ -13,6 +13,8 @@ namespace VacancyManager.Services
     User GetUserByEmail(string email);
     User GetUserByUsername(string username);
     MembershipUser GetMembershipUserByUserName(string username);
+    void UpdateMembershipUser(MembershipUser user);
+    bool UnlockMembershipUser(string userName);
     #region Vacancy
     void CreateVacancy(string title, string description, DateTime? openingDate, string foreignLanguage, string requirments, bool isVisible);
     void UpdateVacancy(int vacancyid, string title, string description, DateTime? openingDate, string foreignLanguage, string requirments, bool isVisible);

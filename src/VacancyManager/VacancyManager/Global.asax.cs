@@ -4,6 +4,7 @@ using System.Web.Mvc;
 using System.Web.Routing;
 using System.Web.Security;
 using Ninject;
+using System.Reflection;
 using Ninject.Web.Mvc;
 using VacancyManager.Models.DAL;
 using VacancyManager.Services;
@@ -13,14 +14,41 @@ namespace VacancyManager
   // Примечание: Инструкции по включению классического режима IIS6 или IIS7 
   // см. по ссылке http://go.microsoft.com/?LinkId=9394801
 
-  public class MvcApplication : HttpApplication
+  public class MvcApplication : NinjectHttpApplication
   {
+
     public static void RegisterGlobalFilters(GlobalFilterCollection filters)
     {
       filters.Add(new HandleErrorAttribute());
     }
 
-    private void SetupDependencyInjection()
+    public static void RegisterRoutes(RouteCollection routes)
+    {
+      routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
+
+      routes.MapRoute(
+          "Default", // Route name
+          "{controller}/{action}/{id}", // URL with parameters
+          new
+          {
+            controller = "Home",
+            action = "Index",
+            id = UrlParameter.Optional
+          });
+
+      routes.MapRoute(
+        "Activate",
+        "Account/Activate/{username}/{key}",
+        new
+        {
+          controller = "Account",
+          action = "Activate",
+          username = UrlParameter.Optional,
+          key = UrlParameter.Optional
+        });
+    }
+
+    protected override IKernel CreateKernel()
     {
       // Create Ninject DI kernel
       IKernel kernel = new StandardKernel();
@@ -32,36 +60,15 @@ namespace VacancyManager
 
       // Tell ASP.NET MVC 3 to use our Ninject DI Container
       DependencyResolver.SetResolver(new NinjectDependencyResolver(kernel));
+      return kernel;
     }
 
-
-    public static void RegisterRoutes(RouteCollection routes)
+    protected override void OnApplicationStarted()
     {
-      routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
-
-      routes.MapRoute(
-          "Default", // Имя маршрута
-          "{controller}/{action}/{id}", // URL-адрес с параметрами
-          new { controller = "Home", action = "Index", id = UrlParameter.Optional } // Параметры по умолчанию
-      );
-
-      routes.MapRoute(
-        "Activate",
-        "Account/Activate/{username}/{key}",
-        new { controller = "Account", action = "Activate", username = UrlParameter.Optional, key = UrlParameter.Optional });
-
-    }
-
-    protected void Application_Start()
-    {
-      SetupDependencyInjection();
-
+      base.OnApplicationStarted();
       AreaRegistration.RegisterAllAreas();
-
       RegisterGlobalFilters(GlobalFilters.Filters);
       RegisterRoutes(RouteTable.Routes);
-
-      //Database.SetInitializer(new VacancyInitializer());
     }
   }
 }

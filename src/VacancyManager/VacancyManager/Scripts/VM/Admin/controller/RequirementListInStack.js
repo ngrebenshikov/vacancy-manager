@@ -86,7 +86,6 @@ Ext.define
     {
       var store = this.getRequirementListInStackStore();
       var panel = this.getRequirementListInStackPanel();
-      panel.items.removeAll();
       store.load({params: {"id": id}});
     }
   }

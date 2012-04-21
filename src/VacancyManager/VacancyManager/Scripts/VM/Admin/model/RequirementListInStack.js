@@ -4,7 +4,7 @@ Ext.define
     extend: 'Ext.data.Model',
     idProperty: 'RequirementID',
     fields: ['RequirementID', 'RequirementStackID', 'Name']
-    //RequirementnologyStackID добавлен сюда для того,
+    //RequiremenStackID добавлен сюда для того,
     //чтобы в будущем внести возможность перемещения технологии в другой стек
   }
 );
