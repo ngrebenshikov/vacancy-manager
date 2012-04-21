@@ -5,7 +5,7 @@ using Ninject;
 
 namespace VacancyManager.Services
 {
-  public class VacancyManagerMembershipProvider : MembershipProvider
+  public sealed class VacancyManagerMembershipProvider : MembershipProvider
   {
     [Inject]
     public IRepository Repository { get; set; }
@@ -178,16 +178,6 @@ namespace VacancyManager.Services
       throw new System.NotImplementedException();
     }
 
-    public override void UpdateUser(MembershipUser user)
-    {
-      throw new System.NotImplementedException();
-    }
-
-    public override bool UnlockUser(string userName)
-    {
-      throw new System.NotImplementedException();
-    }
-
     public override bool DeleteUser(string username, bool deleteAllRelatedData)
     {
       throw new System.NotImplementedException();
@@ -222,6 +212,16 @@ namespace VacancyManager.Services
     public override MembershipUser GetUser(string username, bool userIsOnline)
     {
       return Repository.GetMembershipUserByUserName(username);
+    }
+
+    public override void UpdateUser(MembershipUser user)
+    {
+      Repository.UpdateMembershipUser(user);
+    }
+
+    public override bool UnlockUser(string userName)
+    {
+      return Repository.UnlockMembershipUser(userName);
     }
 
     public override string GetUserNameByEmail(string email)

@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using System.Web.Routing;
 using System.Web.Security;
 using VacancyManager.Models;
+using VacancyManager.Services;
 
 namespace VacancyManager.Controllers
 {
@@ -83,8 +84,14 @@ namespace VacancyManager.Controllers
 
         if (createStatus == MembershipCreateStatus.Success)
         {
-          FormsAuthentication.SetAuthCookie(model.UserName, false /* createPersistentCookie */);
-          return RedirectToAction("IndexOld", "Home");
+          //FormsAuthentication.SetAuthCookie(model.UserName, false /* createPersistentCookie */);
+          var user = (VMMembershipUser)Membership.GetUser(model.UserName, false);
+          string ActivationLink = "http://localhost:53662/Account/Activate/" +
+                                    model.UserName + "/" + user.EmailKey;
+          if (EMailSender.SendMail(ActivationLink, model.Email))
+            return RedirectToAction("ConfirmReg/1", "Account");
+          else
+            return RedirectToAction("ConfirmReg/0", "Account");
         }
         else
         {
@@ -96,13 +103,37 @@ namespace VacancyManager.Controllers
       return View(model);
     }
 
+    [HttpGet]
+    public ActionResult ConfirmReg(int id)
+    {
+      if (id == 1)
+        ViewBag.Message = "Для ипользования аккаунта его нужно активировать! Вам выслано письмо на почту.";
+      else
+      {
+        ViewBag.Message = "При отправке письма для активации произошла ошибка. Свяжитесь с администратором сайта.";
+      }
+      return View();
+    }
+
+    [Obsolete("Возможно должен быть переделан")]
     public ActionResult Activate(string username, string key)
     {
+      var user = (VMMembershipUser)Membership.GetUser(username, false);
+      if (user.EmailKey == key)
+      {
+        user.IsActivated = true;//Активировали
+        user.UnlockUser();
+        user.EmailKey = null;//Чтобы нельзя было больше активировать user
+        Membership.UpdateUser(user);
+        return RedirectToAction("LogOn");
+      }
+      else
+        return RedirectToAction("IndexOld", "Home");
       /*UserRepository _user = new UserRepository();
       if (_user.ActivateUser(username, key) == false)
         return RedirectToAction("IndexOld", "Home");
-      else*/
-        return RedirectToAction("LogOn");
+      else
+      return RedirectToAction("LogOn");*/
     }
 
 

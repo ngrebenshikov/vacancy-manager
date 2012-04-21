@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Net.Mail;
 using System.Security.Cryptography;
 using System.Web.Security;
 using VacancyManager.Models;
@@ -51,8 +50,10 @@ namespace VacancyManager.Services
         DateTime lastActivityDate = DateTime.Now;
         DateTime lastPasswordChangedDate = DateTime.Now;
         DateTime lastLockedOutDate = dbuser.LastLockedOutDate;
+        string emailKey=dbuser.EmailKey;
+        bool isActivated = dbuser.IsActivated;
 
-        var user = new MembershipUser("VacancyManagerMembershipProvider",
+        var user = new VMMembershipUser("VacancyManagerMembershipProvider",
                                       dbusername,
                                       providerUserKey,
                                       email,
@@ -64,12 +65,53 @@ namespace VacancyManager.Services
                                       lastLoginDate,
                                       lastActivityDate,
                                       lastPasswordChangedDate,
-                                      lastLockedOutDate);
+                                      lastLockedOutDate,
+                                      emailKey,
+                                      isActivated);
 
         return user;
       }
 
       return null;
+    }
+
+    public void UpdateMembershipUser(MembershipUser user)
+    {
+      var realUser = (VMMembershipUser)user;
+      //var update_rec = _db.Users.Where(a => DateTime.Compare(a.CreateDate,realUser.CreationDate)==0).SingleOrDefault();
+      var update_rec = _db.Users.Where(a => a.UserName == realUser.UserName).SingleOrDefault();
+      if(update_rec!=null)
+      {
+        update_rec.Email = realUser.Email;
+        update_rec.EmailKey = realUser.EmailKey;
+        update_rec.IsActivated = realUser.IsActivated;
+        update_rec.IsLockedOut = realUser.IsLockedOut;
+        update_rec.LaslLoginDate = realUser.LastLoginDate;
+        //Два следующих свойства нужно сначала добавить в VMMembershipUser
+        //update_rec.LastLockedOutDate=realUser.LastLockedOutDate;
+        //update_rec.LastLockedOutReason=realUser.LastLockedOutReason;
+        //update_rec.Password//Не должно тут обновляться
+        update_rec.UserName = realUser.UserName;
+        _db.SaveChanges();
+      }
+    }
+
+    public bool UnlockMembershipUser(string userName)
+    {
+      try
+      {
+        var update_rec = _db.Users.Where(a => a.UserName == userName).SingleOrDefault();
+        if (update_rec != null)
+        {
+          update_rec.IsLockedOut = false;
+          _db.SaveChanges();
+        }
+      }
+      catch
+      {
+        return false;
+      }
+      return true;
     }
 
     public void CreateUser(string username, string password, string email)
@@ -91,17 +133,6 @@ namespace VacancyManager.Services
                    EmailKey = GenerateKey(),
                  };
       user.Password = CreatePasswordHash(password, user.PasswordSalt);
-      //Пока не знаю куда поставить отправку письма, пусть пока тут будет
-      string ActivationLink = "http://localhost:53662/Account/Activate/" +
-                                  user.UserName + "/" + user.EmailKey;
-      var message = new MailMessage("StudVacancyProject@mail.ru", user.Email)
-      {
-        Subject = "Activate your account",
-        Body = ActivationLink
-      };
-      var client = new SmtpClient("smtp.mail.ru");
-      client.Credentials = new System.Net.NetworkCredential("StudVacancyProject", "StudVacancyProject!");
-      client.Send(message);
 
       _db.Users.Add(user);
       _db.SaveChanges();
