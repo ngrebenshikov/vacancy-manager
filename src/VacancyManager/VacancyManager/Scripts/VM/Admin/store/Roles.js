@@ -1,25 +1,23 @@
 Ext.define
-('VM.store.RequirementListInStack',
+('VM.store.Roles',
   {
     extend: 'VM.store.BaseStore',
-    model: 'VM.model.RequirementListInStack',
-    //id: 'RequirementListInStackStore',
-    autoSync: true,
-    autoSave: true,
+    model: 'VM.model.Roles',
+    autoLoad: true,
+    autoSync:true,
     proxy:
     {
       type: 'ajax',
       api:
       {
-        read: '../../RequirementStack/GetRequirementListInStack',
-        update: '../../RequirementStack/UpdateRequirementInStack',
-        create: '../../RequirementStack/AddRequirementToStack',
-        destroy: '../../RequirementStack/DeleteRequirementFromStack'
+        read: '../../Roles/GetRoles',
+        create: '../../Roles/AddRole',
+        destroy: '../../Roles/DeleteRole'
       },
       reader:
       {
         type: 'json',
-        root: 'RequirementList',
+        root: 'RolesList',
         successProperty: 'success'
       },
       writer:

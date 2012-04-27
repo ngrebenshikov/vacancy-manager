@@ -1,5 +1,5 @@
 ﻿Ext.define('VM.store.Vacancy', {
-  extend: 'Ext.data.Store',
+  extend: 'VM.store.BaseStore',
   model: 'VM.model.Vacancy',
   id: 'VacancyStore',
   autoLoad: true,

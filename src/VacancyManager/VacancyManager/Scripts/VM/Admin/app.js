@@ -18,7 +18,8 @@ Ext.application
       'RequirementStack',
       'RequirementListInStack',
       'VacancyController',
-      'UserController'
+      'UserController',
+      'Roles'
     ],
     launch: function ()
     {

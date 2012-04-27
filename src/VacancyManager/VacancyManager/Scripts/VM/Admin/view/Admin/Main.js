@@ -49,6 +49,19 @@
                   region: 'center'
                 }
               ]
+            },
+            {
+              xtype:'panel',
+              layout: {
+                type: 'fit'
+              },
+              title: "Роли",
+              items:
+              [
+                {
+                  xtype: 'RolesList',
+                }
+              ]
             }
           ]
         }

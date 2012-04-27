@@ -5,6 +5,7 @@ using System.Linq;
 using System.Security.Cryptography;
 using System.Web.Security;
 using VacancyManager.Models;
+using System.Data.Objects.SqlClient;
 
 namespace VacancyManager.Services
 {
@@ -50,8 +51,7 @@ namespace VacancyManager.Services
         DateTime lastActivityDate = DateTime.Now;
         DateTime lastPasswordChangedDate = DateTime.Now;
         DateTime lastLockedOutDate = dbuser.LastLockedOutDate;
-        string emailKey=dbuser.EmailKey;
-        bool isActivated = dbuser.IsActivated;
+        string emailKey = dbuser.EmailKey;
 
         var user = new VMMembershipUser("VacancyManagerMembershipProvider",
                                       dbusername,
@@ -66,8 +66,7 @@ namespace VacancyManager.Services
                                       lastActivityDate,
                                       lastPasswordChangedDate,
                                       lastLockedOutDate,
-                                      emailKey,
-                                      isActivated);
+                                      emailKey);
 
         return user;
       }
@@ -78,13 +77,20 @@ namespace VacancyManager.Services
     public void UpdateMembershipUser(MembershipUser user)
     {
       var realUser = (VMMembershipUser)user;
-      //var update_rec = _db.Users.Where(a => DateTime.Compare(a.CreateDate,realUser.CreationDate)==0).SingleOrDefault();
+      //Ќекрасивый конечно запрос, но нужно получить именно того пользовател€, найду способ лучше помен€ю
+      /*var update_rec = _db.Users.Where(
+        a => SqlFunctions.DateDiff("millisecond", a.CreateDate, realUser.CreationDate) == 0 &&
+          SqlFunctions.DateDiff("minute", a.CreateDate, realUser.CreationDate) == 0 &&
+          SqlFunctions.DateDiff("hour", a.CreateDate, realUser.CreationDate) == 0 &&
+          SqlFunctions.DateDiff("year", a.CreateDate, realUser.CreationDate) == 0 &&
+          SqlFunctions.DateDiff("month", a.CreateDate, realUser.CreationDate) == 0 &&
+          SqlFunctions.DateDiff("day", a.CreateDate, realUser.CreationDate) == 0).SingleOrDefault();*/
       var update_rec = _db.Users.Where(a => a.UserName == realUser.UserName).SingleOrDefault();
-      if(update_rec!=null)
+      if (update_rec != null)
       {
         update_rec.Email = realUser.Email;
         update_rec.EmailKey = realUser.EmailKey;
-        update_rec.IsActivated = realUser.IsActivated;
+        update_rec.IsActivated = realUser.IsApproved;
         update_rec.IsLockedOut = realUser.IsLockedOut;
         update_rec.LaslLoginDate = realUser.LastLoginDate;
         //ƒва следующих свойства нужно сначала добавить в VMMembershipUser
@@ -145,27 +151,59 @@ namespace VacancyManager.Services
       return dbuser != null && dbuser.Password == CreatePasswordHash(password, dbuser.PasswordSalt) && dbuser.IsActivated && !dbuser.IsLockedOut;
     }
 
-    public bool ActivateUser(string username, string key)
+    #region Roles
+    public void AddRole(string roleName)
     {
-      var dbusers = _db.Users.Where(elem => elem.UserName == username);
-      if (dbusers.Count() != 0)
+      if (_db.Roles.Where(a => a.Name.Equals(roleName,StringComparison.Ordinal)).SingleOrDefault() == null)
       {
-        var dbuser = dbusers.First();
-        if (dbuser.EmailKey == key)
+        _db.Roles.Add(new Role
         {
-          dbuser.IsActivated = true;//јктивировали
-          dbuser.IsLockedOut = false;
-          dbuser.EmailKey = null;//„тобы нельз€ было больше активировать
-          _db.SaveChanges();
-          return true;
-        }
-        else
+          RoleID = -1,
+          Name = roleName,
+        });
+        _db.SaveChanges();
+      }
+    }
+
+    public bool DeleteRole(string roleName, bool throwOnPopulatedRole)
+    {
+      var users = GetUsersInRole(roleName);
+      if (throwOnPopulatedRole && users != null)
+      {
+        throw new Exception("OnPopulatedRole exception");
+      }
+      else
+      {
+        foreach (var user in _db.Users.Where(a => users.Any(x => x == a.UserName)))
         {
-          return false;
+          user.Roles.Remove(user.Roles.Where(a => a.Name.Equals(roleName, StringComparison.Ordinal)).Single());
         }
       }
-      return false;
+      _db.Roles.Remove(_db.Roles.Where(a => a.Name.Equals(roleName, StringComparison.Ordinal)).Single());
+      _db.SaveChanges();
+      return true;
     }
+
+    public IEnumerable<string> GetUsersInRole(string roleName)
+    {
+      return from a in _db.Users
+             from role in a.Roles
+             where role.Name.Equals(roleName, StringComparison.Ordinal)
+             select a.UserName;
+    }
+
+    public string[] GetAllRoles()
+    {
+      return (from role in _db.Roles
+              select role.Name).ToArray();
+    }
+
+    public int GetRoleID(string roleName)
+    {
+      return _db.Roles.Where(a => a.Name.Equals(roleName, StringComparison.Ordinal)).Single().RoleID;
+    }
+
+    #endregion
 
     #region Vacancy
     public void CreateVacancy(string title, string description, DateTime? openingDate, string foreignLanguage, string requirments, bool isVisible)
@@ -379,6 +417,5 @@ namespace VacancyManager.Services
     }
 
     #endregion
-
   }
 }

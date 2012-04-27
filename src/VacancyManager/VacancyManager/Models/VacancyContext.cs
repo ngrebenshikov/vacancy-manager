@@ -15,6 +15,7 @@ namespace VacancyManager.Models
     public DbSet<Education> Educations { get; set; }
     public DbSet<RequirementStack> RequirementStacks { get; set; }
     public DbSet<Requirement> Requirements { get; set; }
+    public DbSet<Role> Roles { get; set; }
 
     protected override void OnModelCreating(DbModelBuilder modelBuilder)
     {

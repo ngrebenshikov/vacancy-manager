@@ -121,8 +121,8 @@ namespace VacancyManager.Controllers
       var user = (VMMembershipUser)Membership.GetUser(username, false);
       if (user.EmailKey == key)
       {
-        user.IsActivated = true;//Активировали
         user.UnlockUser();
+        user.IsApproved = true;//Активировали
         user.EmailKey = null;//Чтобы нельзя было больше активировать user
         Membership.UpdateUser(user);
         return RedirectToAction("LogOn");

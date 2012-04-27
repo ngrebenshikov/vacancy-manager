@@ -35,17 +35,17 @@ Ext.define
           },
           'RequirementStackList button[action=AddRequirementStack]':
           {
-            click: this.AddRequiremenStack
+            click: this.AddRequirementStack
           },
           'RequirementStackList button[action=RemoveRequirementStack]':
           {
-            click: this.RemoveRequiremenStack
+            click: this.RemoveRequirementStack
           }
         }
       );
     },
 
-    AddRequiremenStack: function ()
+    AddRequirementStack: function ()
     {
       var Create = Ext.create('VM.view.RequirementStack.Create').show();
       var record = Ext.create('VM.model.RequirementStack', { Name: "Stack Name" })
@@ -63,7 +63,7 @@ Ext.define
       win.close();
     },
 
-    RemoveRequiremenStack: function ()
+    RemoveRequirementStack: function ()
     {
       var store = this.getRequirementStackStore();
       var id = this.getRequirementStackData().getSelectionModel().getSelection()[0].get("RequirementStackID");

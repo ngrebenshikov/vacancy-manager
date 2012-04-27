@@ -72,6 +72,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\RequirementStackController.cs" />
+    <Compile Include="Controllers\RolesController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Controllers\VacancyController.cs" />
     <Compile Include="Global.asax.cs">
@@ -1376,16 +1377,20 @@
     <Content Include="Scripts\VM\Admin\controller\RequirementStack.js" />
     <Content Include="Scripts\VM\Admin\controller\UserController.js" />
     <Content Include="Scripts\VM\Admin\controller\VacancyController.js" />
+    <Content Include="Scripts\VM\Admin\controller\Roles.js" />
     <Content Include="Scripts\VM\Admin\model\Consideration.js" />
     <Content Include="Scripts\VM\Admin\model\RequirementListInStack.js" />
     <Content Include="Scripts\VM\Admin\model\RequirementStack.js" />
     <Content Include="Scripts\VM\Admin\model\User.js" />
     <Content Include="Scripts\VM\Admin\model\Vacancy.js" />
+    <Content Include="Scripts\VM\Admin\model\Roles.js" />
+    <Content Include="Scripts\VM\Admin\store\BaseStore.js" />
     <Content Include="Scripts\VM\Admin\store\Consideration.js" />
     <Content Include="Scripts\VM\Admin\store\RequirementListInStack.js" />
     <Content Include="Scripts\VM\Admin\store\RequirementStack.js" />
     <Content Include="Scripts\VM\Admin\store\User.js" />
     <Content Include="Scripts\VM\Admin\store\Vacancy.js" />
+    <Content Include="Scripts\VM\Admin\store\Roles.js" />
     <Content Include="Scripts\VM\Admin\view\Admin\Main.js" />
     <Content Include="Scripts\VM\Admin\view\consideration\List.js" />
     <Content Include="Scripts\VM\Admin\view\RequirementListInStack\Create.js" />
@@ -1400,10 +1405,11 @@
     <Content Include="Scripts\VM\Admin\view\vacancy\Add.js" />
     <Content Include="Scripts\VM\Admin\view\vacancy\Edit.js" />
     <Content Include="Scripts\VM\Admin\view\vacancy\List.js" />
+    <Content Include="Scripts\VM\Admin\view\Roles\Create.js" />
+    <Content Include="Scripts\VM\Admin\view\Roles\List.js" />
     <Content Include="Views\Home\Index.cshtml">
       <SubType>Code</SubType>
     </Content>
-    <Content Include="Views\Home\ViewRequirementStack.cshtml" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>

@@ -1,7 +1,7 @@
 Ext.define
 ('VM.store.RequirementStack',
   {
-    extend: 'Ext.data.Store',
+    extend: 'VM.store.BaseStore',
     model: 'VM.model.RequirementStack',
     //id: 'RequirementStackStore',
     autoLoad: true,

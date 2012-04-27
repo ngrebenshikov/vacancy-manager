@@ -39,6 +39,15 @@ namespace VacancyManager.Services
     #endregion
     void CreateUser(string username, string password, string email);
     bool ValidateUser(string username, string password);
-    bool ActivateUser(string username, string key);
+    //bool ActivateUser(string username, string key);
+
+    void AddRole(string roleName);
+
+    bool DeleteRole(string roleName, bool throwOnPopulatedRole);
+
+    IEnumerable<string> GetUsersInRole(string roleName);
+
+    string[] GetAllRoles();
+    int GetRoleID(string roleName);
   }
 }

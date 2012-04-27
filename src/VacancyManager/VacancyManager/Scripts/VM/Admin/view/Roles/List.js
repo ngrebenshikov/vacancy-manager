@@ -1,19 +1,10 @@
 Ext.define
-('VM.view.RequirementStack.List',
+('VM.view.Roles.List',
   {
     extend: 'Ext.panel.Panel',
-    alias: 'widget.RequirementStackList',
+    alias: 'widget.RolesList',
     requires: ['Ext.toolbar.Toolbar'],
-    title: 'Requirement Stack List',
-    collapsible: true,
-    animCollapse: true,
-    split: true,
-    region: 'west',
-    margins: '5 0 0 0',
-    cmargins: '5 5 0 0',
-    width: 290,
-    minSize: 100,
-    maxSize: 250,
+    title: 'Roles List',
 
     initComponent: function ()
     {
@@ -24,9 +15,9 @@ Ext.define
           [
             {
               xtype: 'dataview',
-              id: 'RequirementStackDataview',
+              id: 'RolesDataview',
               trackOver: true,
-              store: "RequirementStack",
+              store: "Roles",
               cls: "DataView-list",
               itemSelector: ".DataView-list-item",
               overItemCls: 'DataView-list-item-hover',
@@ -46,13 +37,13 @@ Ext.define
               items:
               [
                 {
-                  text: 'Add Requirement Stack',
-                  action: 'AddRequirementStack'
+                  text: 'Add Role',
+                  action: 'AddRole'
                 },
                 {
-                  text: 'Remove Requirement Stack',
+                  text: 'Remove Role',
                   disabled: true,
-                  action: 'RemoveRequirementStack'
+                  action: 'RemoveRole'
                 }
               ]
             }
@@ -65,7 +56,7 @@ Ext.define
     onSelectionChange: function (selmodel, selection)
     {
       var selected = selection[0],
-            button = this.down('button[action=RemoveRequirementStack]');
+            button = this.down('button[action=RemoveRole]');
       if (selected)
       {
         button.enable();

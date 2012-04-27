@@ -10,20 +10,12 @@ namespace VacancyManager.Models
   {
     //Подумать и возможно переделать в автоматические свойства
     private string _emailKey;
-    private bool _isActivated;
 
     public string EmailKey
     {
       get { return _emailKey; }
       set { _emailKey = value; }
     }
-
-    public bool IsActivated
-    {
-      get { return _isActivated; }
-      set { _isActivated = value; }
-    }
-
 
     public VMMembershipUser(string providername,
                             string username,
@@ -38,8 +30,7 @@ namespace VacancyManager.Models
                             DateTime lastActivityDate,
                             DateTime lastPasswordChangedDate,
                             DateTime lastLockedOutDate,
-                            string EmailKey,
-                            bool IsActivated)
+                            string EmailKey)
       : base(providername,
              username,
              providerUserKey,
@@ -55,7 +46,6 @@ namespace VacancyManager.Models
              lastLockedOutDate)
     {
       this.EmailKey = EmailKey;
-      this.IsActivated = IsActivated;
     }
   }
 }

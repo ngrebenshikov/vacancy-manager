@@ -19,6 +19,7 @@ namespace VacancyManager.Controllers
 
     //
     // GET: /RequirementStack/Get
+
     public ActionResult GetStack()
     {
       var requestResult = _repository.GetAllRequirementStacks();
@@ -120,7 +121,6 @@ namespace VacancyManager.Controllers
 
     //
     // GET: /GetRequirementListInStack/
-
     public ActionResult GetRequirementListInStack(int id)
     {
       try
@@ -177,7 +177,7 @@ namespace VacancyManager.Controllers
         return Json(new
         {
           success = success,
-          RequirementList=requirement,
+          RequirementList = requirement,
           message = resultMess
         });
       }

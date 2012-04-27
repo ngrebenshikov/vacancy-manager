@@ -41,12 +41,12 @@ namespace VacancyManager.Services
 
         public override void CreateRole(string roleName)
         {
-            throw new System.NotImplementedException();
+          Repository.AddRole(roleName);
         }
 
         public override bool DeleteRole(string roleName, bool throwOnPopulatedRole)
         {
-            throw new System.NotImplementedException();
+          return Repository.DeleteRole(roleName, throwOnPopulatedRole);
         }
 
         public override bool RoleExists(string roleName)
@@ -66,12 +66,12 @@ namespace VacancyManager.Services
 
         public override string[] GetUsersInRole(string roleName)
         {
-            throw new System.NotImplementedException();
+          return Repository.GetUsersInRole(roleName).ToArray();
         }
 
         public override string[] GetAllRoles()
         {
-            throw new System.NotImplementedException();
+          return Repository.GetAllRoles();
         }
 
         public override string[] FindUsersInRole(string roleName, string usernameToMatch)
