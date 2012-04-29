@@ -3,7 +3,6 @@ Ext.define
   {
     extend: 'VM.store.BaseStore',
     model: 'VM.model.RequirementListInStack',
-    //id: 'RequirementListInStackStore',
     autoSync: true,
     autoSave: true,
     proxy:
@@ -32,6 +31,10 @@ Ext.define
         {
           return { 'data': Ext.JSON.encode(record.data) };
         }
+      },
+      requestComplete: function (conn, response, options, eOpts)
+      {
+        Ext.MessageBox.alert('Debug', "Super!")
       },
       headers: { 'Content-Type': 'application/json; charset=UTF-8' }
     }

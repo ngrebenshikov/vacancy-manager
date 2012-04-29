@@ -19,7 +19,8 @@ namespace VacancyManager.Controllers
 
     //
     // GET: /RequirementStack/Get
-
+    [HttpGet]
+    [AuthorizeError]
     public ActionResult GetStack()
     {
       var requestResult = _repository.GetAllRequirementStacks();
@@ -38,6 +39,7 @@ namespace VacancyManager.Controllers
     }
 
     [HttpPost]
+    [AuthorizeError]
     public ActionResult AddStack(string data)
     {
       bool success = false;
@@ -76,6 +78,7 @@ namespace VacancyManager.Controllers
     }
 
     [HttpPost]
+    [AuthorizeError]
     public ActionResult DeleteStack(string data)
     {
       bool success = false;
@@ -97,6 +100,7 @@ namespace VacancyManager.Controllers
     }
 
     [HttpPost]
+    [AuthorizeError]
     public ActionResult UpdateStack(string data)
     {
       bool success = false;
@@ -121,6 +125,8 @@ namespace VacancyManager.Controllers
 
     //
     // GET: /GetRequirementListInStack/
+    [HttpGet]
+    [AuthorizeError]
     public ActionResult GetRequirementListInStack(int id)
     {
       try
@@ -151,6 +157,7 @@ namespace VacancyManager.Controllers
     }
 
     [HttpPost]
+    [AuthorizeError]
     public ActionResult AddRequirementToStack(string data)
     {
       bool success = false;
@@ -192,6 +199,7 @@ namespace VacancyManager.Controllers
     }
 
     [HttpPost]
+    [AuthorizeError]
     public ActionResult DeleteRequirementFromStack(string data)
     {
       bool success = false;
@@ -213,6 +221,7 @@ namespace VacancyManager.Controllers
     }
 
     [HttpPost]
+    [AuthorizeError]
     public ActionResult UpdateRequirementInStack(string data)
     {
       bool success = false;

@@ -52,6 +52,19 @@ namespace VacancyManager.Controllers
       return View(model);
     }
 
+    [HttpPost]
+    public ActionResult ExtJSLogOn(string login, string password)
+    {
+      string jsonResult="";
+      if (Membership.ValidateUser(login, password))
+      {
+        FormsAuthentication.SetAuthCookie(login, createPersistentCookie: true);
+      }
+      else
+        jsonResult = "Invalid login or password";
+      return Json(new { LogOnResult = jsonResult }, JsonRequestBehavior.AllowGet);
+    }
+
     //
     // GET: /Account/LogOff
 

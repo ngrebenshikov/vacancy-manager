@@ -3,7 +3,6 @@ Ext.define
   {
     extend: 'VM.store.BaseStore',
     model: 'VM.model.RequirementStack',
-    //id: 'RequirementStackStore',
     autoLoad: true,
     autoSync: true,
     autoSave: true,
