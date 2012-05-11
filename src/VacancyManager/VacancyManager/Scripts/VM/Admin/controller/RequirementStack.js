@@ -15,7 +15,7 @@ Ext.define
             selector: 'RequirementStackList dataview'
           }
       ],
-
+      
     init: function ()
     {
       this.control(
@@ -47,9 +47,9 @@ Ext.define
 
     AddRequirementStack: function ()
     {
-      var Create = Ext.create('VM.view.RequirementStack.Create').show();
-      var record = Ext.create('VM.model.RequirementStack', { Name: "Stack Name" })
-      Create.down('form').loadRecord(record);
+      var create = Ext.create('VM.view.RequirementStack.Create').show();
+      var record = Ext.create('VM.model.RequirementStack', { Name: "Stack Name" });
+      create.down('form').loadRecord(record);
     },
 
     CreateRequirementStack: function (button)

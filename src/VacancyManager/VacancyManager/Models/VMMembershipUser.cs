@@ -8,14 +8,9 @@ namespace VacancyManager.Models
 {
   public class VMMembershipUser : MembershipUser
   {
-    //Подумать и возможно переделать в автоматические свойства
-    private string _emailKey;
+    public string EmailKey { get; set; }
 
-    public string EmailKey
-    {
-      get { return _emailKey; }
-      set { _emailKey = value; }
-    }
+    public string LastLockedOutReason { get; set; }
 
     public VMMembershipUser(string providername,
                             string username,
@@ -23,6 +18,7 @@ namespace VacancyManager.Models
                             string email,
                             string passwordQuestion,
                             string comment,
+                            string lastLockedOutReason,
                             bool isApproved,
                             bool isLockedOut,
                             DateTime creationDate,
@@ -46,6 +42,7 @@ namespace VacancyManager.Models
              lastLockedOutDate)
     {
       this.EmailKey = EmailKey;
+      LastLockedOutReason = lastLockedOutReason;
     }
   }
 }

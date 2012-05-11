@@ -27,8 +27,8 @@ Ext.define
         encode: false,
         listful: true,
         writeAllFields: true,
-        getRecordData: function (record)
-        {
+        //successProperty: 'success',
+        getRecordData: function (record) {
           return { 'data': Ext.JSON.encode(record.data) };
         }
       },

@@ -23,7 +23,8 @@ namespace VacancyManager.Controllers
 
         //
         // GET: /Vacancy/Load
-
+        [HttpGet]
+        [AuthorizeError]
         public JsonResult Load()
         {
             var VisibleVacancies = _repository.AllVisibleVacancies();
@@ -53,6 +54,7 @@ namespace VacancyManager.Controllers
         // GET: /Vacancy/Create
 
         [HttpPost]
+        [AuthorizeError]
         public ActionResult Create(string data)
         {
             bool c_success = false;
@@ -89,6 +91,7 @@ namespace VacancyManager.Controllers
         }
 
         [HttpPost]
+        [AuthorizeError]
         public ActionResult Update(string data)
         {
             bool u_success = false;
@@ -128,6 +131,7 @@ namespace VacancyManager.Controllers
         }
 
         [HttpPost]
+        [AuthorizeError]
         public ActionResult Delete(string data)
         {
             bool d_success = false;

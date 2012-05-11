@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Mail;
-using System.Web;
+﻿using System.Net.Mail;
 
 namespace VacancyManager.Services
 {
@@ -17,8 +13,8 @@ namespace VacancyManager.Services
           Subject = "Activate your account",
           Body = messageBody
         };
-        var client = new SmtpClient("smtp.mail.ru");
-        client.Credentials = new System.Net.NetworkCredential("StudVacancyProject", "StudVacancyProject!");
+        var client = new SmtpClient("smtp.mail.ru")
+                       {Credentials = new System.Net.NetworkCredential("StudVacancyProject", "StudVacancyProject!")};
         client.Send(message);
         return true;
       }

@@ -1,7 +1,7 @@
 ﻿Ext.define('VM.view.User.Edit', {
     extend: 'Ext.window.Window',
     alias: 'widget.UserEdit',
-    title: 'Редактирование пользователей',
+    title: 'Редактирование пользователей(Not Implemented yet)',
     height: 450,
     width: 430,
     autoShow: true,
