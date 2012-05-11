@@ -23,6 +23,7 @@ namespace VacancyManager.Controllers
     }
 
     [HttpGet]
+    [AuthorizeError]
     public ActionResult GetRoles()
     {
       var rolesList = (from role in Roles.GetAllRoles()
@@ -39,6 +40,7 @@ namespace VacancyManager.Controllers
     }
 
     [HttpPost]
+    [AuthorizeError]
     public ActionResult AddRole(string data)
     {
       bool success = false;
@@ -76,6 +78,7 @@ namespace VacancyManager.Controllers
     }
 
     [HttpPost]
+    [AuthorizeError]
     public ActionResult DeleteRole(string data)
     {
       bool success = false;

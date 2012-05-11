@@ -8,15 +8,16 @@
   proxy: {
     type: 'ajax',
     api: {
-      read: '/User/Load',
-      create: '/User/Create',
-      update: '/User/Update',
-      destroy: '/User/Delete'
+      read: '../../Account/ExtJSUserListLoad',
+      create: '../../Account/ExtJSCreateUser',
+      update: '../../Account/',//Надо добавить
+      destroy: '../../Account/ExtJSDeleteUser'
     },
     reader: {
       type: 'json',
       root: 'data',
-      totalProperty: 'total'
+      totalProperty: 'total',
+      successProperty: 'success'
     },
     writer: {
       type: 'json',

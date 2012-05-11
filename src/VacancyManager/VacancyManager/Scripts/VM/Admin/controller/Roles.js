@@ -4,7 +4,7 @@ Ext.define
     extend: 'Ext.app.Controller',
     stores: ['Roles'],
     models: ['VM.model.Roles'],
-    views: ['Roles.Create','Roles.List'],
+    views: ['Roles.Create', 'Roles.List'],
     refs: [
           {
             ref: 'RolesData',
@@ -12,8 +12,7 @@ Ext.define
           }
       ],
 
-    init: function ()
-    {
+    init: function () {
       this.control
       (
         {
@@ -33,25 +32,22 @@ Ext.define
       );
     },
 
-    AddRole: function ()
-    {
+    AddRole: function () {
       var Create = Ext.create('VM.view.Roles.Create').show();
       Create.down('form').loadRecord(Ext.create('VM.model.Roles', { Name: "Role Name" }));
     },
 
-    CreateRole: function (button)
-    {
+    CreateRole: function (button) {
       var store = this.getRolesStore();
       var win = button.up('window');
       var form = win.down('form');
       var rec = form.getRecord();
       var newRole = form.getValues();
       store.add(newRole);
-      win.close()
+      win.close();
     },
 
-    RemoveRole: function ()
-    {
+    RemoveRole: function () {
       var store = this.getRolesStore();
       var id = this.getRolesData().getSelectionModel().getSelection()[0].get("Name");
       store.remove(this.getRolesData().getSelectionModel().getSelection()[0]);

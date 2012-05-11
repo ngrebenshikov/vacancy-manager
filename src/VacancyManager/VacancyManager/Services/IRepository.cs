@@ -9,7 +9,7 @@ namespace VacancyManager.Services
   public interface IRepository : IDisposable
   {
     IEnumerable<Vacancy> AllVisibleVacancies();
-    IEnumerable<User> AllUsers();
+    //IEnumerable<User> AllUsers();
     User GetUserByEmail(string email);
     User GetUserByUsername(string username);
     MembershipUser GetMembershipUserByUserName(string username);
@@ -25,11 +25,6 @@ namespace VacancyManager.Services
     int CreateRequirementStack(string name);
     void DeleteRequirementStack(int id);
     void UpdateRequirementStack(int id, string name);
-    #endregion
-    #region User
-    void AdminCreateUser(string userName, string email, string password, string userComment, DateTime createDate, DateTime laslLoginDate, bool isActivated, bool isLockedOut, DateTime lastLockedOutDate, string LastLockedOutReason, string emailKey);
-    void AdminUpdateUser(int userID, string userName, string email, string password, string userComment, DateTime createDate, DateTime laslLoginDate, bool isActivated, bool isLockedOut, DateTime lastLockedOutDate, string LastLockedOutReason, string emailKey);
-    void AdminDeleteUser(int userID);
     #endregion
     #region Requirement
     IEnumerable<Requirement> GetAllRequirements(int id);
@@ -49,5 +44,7 @@ namespace VacancyManager.Services
 
     string[] GetAllRoles();
     int GetRoleID(string roleName);
+    MembershipUserCollection GetAllUsers();
+    bool DeleteUser(string username, bool deleteAllRelatedData);
   }
 }

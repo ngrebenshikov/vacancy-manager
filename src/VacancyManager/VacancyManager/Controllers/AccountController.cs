@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
-using System.Web.Routing;
+using System.Web.Script.Serialization;
 using System.Web.Security;
 using VacancyManager.Models;
 using VacancyManager.Services;
@@ -37,15 +36,9 @@ namespace VacancyManager.Controllers
           {
             return Redirect(returnUrl);
           }
-          else
-          {
-            return RedirectToAction("IndexOld", "Home");
-          }
+          return RedirectToAction("IndexOld", "Home");
         }
-        else
-        {
-          ModelState.AddModelError("", "Имя пользователя или пароль указаны неверно.");
-        }
+        ModelState.AddModelError("", "Имя пользователя или пароль указаны неверно.");
       }
 
       // Появление этого сообщения означает наличие ошибки; повторное отображение формы
@@ -55,7 +48,7 @@ namespace VacancyManager.Controllers
     [HttpPost]
     public ActionResult ExtJSLogOn(string login, string password)
     {
-      string jsonResult="";
+      string jsonResult = "";
       if (Membership.ValidateUser(login, password))
       {
         FormsAuthentication.SetAuthCookie(login, createPersistentCookie: true);
@@ -63,6 +56,112 @@ namespace VacancyManager.Controllers
       else
         jsonResult = "Invalid login or password";
       return Json(new { LogOnResult = jsonResult }, JsonRequestBehavior.AllowGet);
+    }
+
+    [HttpGet]
+    [AuthorizeError]
+    public JsonResult ExtJSUserListLoad()
+    {
+      var AllUsers = Membership.GetAllUsers();
+
+      List<dynamic> UserList = new List<dynamic>();
+
+      foreach (VMMembershipUser realUser in AllUsers.Cast<VMMembershipUser>())
+      {
+        UserList.Add(new
+        {
+          UserID = realUser.ProviderUserKey,
+          realUser.UserName,
+          realUser.Email,
+          UserComment = realUser.Comment,
+          CreateDate = realUser.CreationDate,
+          LaslLoginDate = realUser.LastLoginDate,
+          IsActivated = realUser.IsApproved,
+          realUser.IsLockedOut,
+          LastLockedOutDate = realUser.LastLockoutDate,
+          realUser.LastLockedOutReason,
+        });
+      }
+      return Json(new
+      {
+        data = UserList,
+        total = UserList.Count,
+        success = true
+      },
+                  JsonRequestBehavior.AllowGet);
+    }
+
+    [HttpPost]
+    [AuthorizeError]
+    public JsonResult ExtJSCreateUser(string data)
+    {
+      string c_message = "При создании пользователя произошла ошибка";
+      JavaScriptSerializer jss = new JavaScriptSerializer();
+      if (data != null)
+      {
+        var c_User = jss.Deserialize<dynamic>(data);
+        string UserName = c_User["UserName"].ToString();
+        string Email = c_User["Email"].ToString();
+        string Password = c_User["Password"].ToString();
+        MembershipCreateStatus createStatus;
+        Membership.CreateUser(UserName, Password, Email, null, null, true, null, out createStatus);
+        if (createStatus == MembershipCreateStatus.Success)
+        {
+          var user = (VMMembershipUser)Membership.GetUser(UserName, false);
+          string ActivationLink = "http://localhost:53662/Account/Activate/" +
+                                  user.UserName + "/" + user.EmailKey;
+          EMailSender.SendMail(ActivationLink, user.Email);
+          c_message = "Пользователь создан";
+          return Json(new
+                        {
+                          success = true,
+                          message = c_message,
+                          data = new
+                          {
+                            UserID = user.ProviderUserKey,
+                            user.UserName,
+                            user.Email,
+                            UserComment = user.Comment,
+                            CreateDate = user.CreationDate,
+                            LaslLoginDate = user.LastLoginDate,
+                            IsActivated = user.IsApproved,
+                            user.IsLockedOut,
+                            LastLockedOutDate = user.LastLockoutDate,
+                            user.LastLockedOutReason,
+                          }
+                        });
+        }
+        c_message = ErrorCodeToString(createStatus);
+      }
+      return Json(new
+      {
+        success = false,
+        message = c_message
+      });
+    }
+
+    [HttpPost]
+    [AuthorizeError]
+    public JsonResult ExtJSDeleteUser(string data)
+    {
+      bool d_success = false;
+      string d_message = "Не удалось удалить пользователя";
+      JavaScriptSerializer jss = new JavaScriptSerializer();
+      if (data != null)
+      {
+        var d_User = jss.Deserialize<dynamic>(data);
+
+        if (Membership.DeleteUser(d_User["UserName"]))
+        {
+          d_message = "Пользователь удалён";
+          d_success = true;
+        }
+      }
+      return Json(new
+      {
+        success = d_success,
+        message = d_message
+      });
     }
 
     //
@@ -101,15 +200,9 @@ namespace VacancyManager.Controllers
           var user = (VMMembershipUser)Membership.GetUser(model.UserName, false);
           string ActivationLink = "http://localhost:53662/Account/Activate/" +
                                     model.UserName + "/" + user.EmailKey;
-          if (EMailSender.SendMail(ActivationLink, model.Email))
-            return RedirectToAction("ConfirmReg/1", "Account");
-          else
-            return RedirectToAction("ConfirmReg/0", "Account");
+          return RedirectToAction(EMailSender.SendMail(ActivationLink, model.Email) ? "ConfirmReg/1" : "ConfirmReg/0", "Account");
         }
-        else
-        {
-          ModelState.AddModelError("", ErrorCodeToString(createStatus));
-        }
+        ModelState.AddModelError("", ErrorCodeToString(createStatus));
       }
 
       // Появление этого сообщения означает наличие ошибки; повторное отображение формы
@@ -119,12 +212,7 @@ namespace VacancyManager.Controllers
     [HttpGet]
     public ActionResult ConfirmReg(int id)
     {
-      if (id == 1)
-        ViewBag.Message = "Для ипользования аккаунта его нужно активировать! Вам выслано письмо на почту.";
-      else
-      {
-        ViewBag.Message = "При отправке письма для активации произошла ошибка. Свяжитесь с администратором сайта.";
-      }
+      ViewBag.Message = id == 1 ? "Для ипользования аккаунта его нужно активировать! Вам выслано письмо на почту." : "При отправке письма для активации произошла ошибка. Свяжитесь с администратором сайта.";
       return View();
     }
 
@@ -132,21 +220,13 @@ namespace VacancyManager.Controllers
     public ActionResult Activate(string username, string key)
     {
       var user = (VMMembershipUser)Membership.GetUser(username, false);
-      if (user.EmailKey == key)
-      {
-        user.UnlockUser();
-        user.IsApproved = true;//Активировали
-        user.EmailKey = null;//Чтобы нельзя было больше активировать user
-        Membership.UpdateUser(user);
-        return RedirectToAction("LogOn");
-      }
-      else
+      if (user.EmailKey != key)
         return RedirectToAction("IndexOld", "Home");
-      /*UserRepository _user = new UserRepository();
-      if (_user.ActivateUser(username, key) == false)
-        return RedirectToAction("IndexOld", "Home");
-      else
-      return RedirectToAction("LogOn");*/
+      user.UnlockUser();
+      user.IsApproved = true; //Активировали
+      user.EmailKey = null; //Чтобы нельзя было больше активировать user
+      Membership.UpdateUser(user);
+      return RedirectToAction("LogOn");
     }
 
 
@@ -186,10 +266,7 @@ namespace VacancyManager.Controllers
         {
           return RedirectToAction("ChangePasswordSuccess");
         }
-        else
-        {
-          ModelState.AddModelError("", "Неправильный текущий пароль или недопустимый новый пароль.");
-        }
+        ModelState.AddModelError("", "Неправильный текущий пароль или недопустимый новый пароль.");
       }
 
       // Появление этого сообщения означает наличие ошибки; повторное отображение формы

@@ -178,17 +178,7 @@ namespace VacancyManager.Services
       throw new System.NotImplementedException();
     }
 
-    public override bool DeleteUser(string username, bool deleteAllRelatedData)
-    {
-      throw new System.NotImplementedException();
-    }
-
     public override MembershipUser GetUser(object providerUserKey, bool userIsOnline)
-    {
-      throw new System.NotImplementedException();
-    }
-
-    public override MembershipUserCollection GetAllUsers(int pageIndex, int pageSize, out int totalRecords)
     {
       throw new System.NotImplementedException();
     }
@@ -212,6 +202,18 @@ namespace VacancyManager.Services
     public override MembershipUser GetUser(string username, bool userIsOnline)
     {
       return Repository.GetMembershipUserByUserName(username);
+    }
+
+    public override bool DeleteUser(string username, bool deleteAllRelatedData)
+    {
+      return Repository.DeleteUser(username, deleteAllRelatedData);
+    }
+
+    public override MembershipUserCollection GetAllUsers(int pageIndex, int pageSize, out int totalRecords)
+    {
+      MembershipUserCollection result = Repository.GetAllUsers();
+      totalRecords = result.Count;
+      return result;
     }
 
     public override void UpdateUser(MembershipUser user)
