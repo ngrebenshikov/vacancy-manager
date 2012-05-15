@@ -6,52 +6,48 @@ Ext.define('VM.controller.UserController', {
 
   models: ['User'],
 
-  views: ['User.List', 'User.Edit'],
+  views: ['User.List', 'User.Edit', 'User.BanReason'],
 
-  init: function () {
+  init: function ()
+  {
     this.control(
                 {
-                  'UserList dataview': {
-                    itemdblclick: this.editUser
-                  },
                   'button[action = CreateUser]': {
                     click: this.CreateUser
                   },
                   'button[action = addUser]': {
                     click: this.addUser
                   },
-                  'button[action = editUser]': {
-                    click: this.editUser
+                  'button[action = BanUser]': {
+                    click: this.BanUser
                   },
                   'button[action = updateUser]': {
                     click: this.updateUser
                   },
                   'button[action = deleteUser]': {
                     click: this.deleteUser
+                  },
+                  'button[action = banManager]': {
+                    click: this.banManager
                   }
                 });
 
   },
 
-  addUser: function (button) {
+  addUser: function (button)
+  {
     var Userstore = this.getUserStore();
     var wndUserCreate = button.up('window');
     var frm_Userform = wndUserCreate.down('form');
     var sel_User = frm_Userform.getRecord();
     var newvalues = frm_Userform.getValues();
-    /*var newdate = eval("({ dtm: new Date(newvalues['CreateDate']) })");
-    newvalues['CreateDate'] = newdate.dtm;
-    newdate = eval("({ dtm: new Date(newvalues['LaslLoginDate']) })");
-    newvalues['LaslLoginDate'] = newdate.dtm;
-    console.log(newdate.dtm);
-    newdate = eval("({ dtm: new Date(newvalues['LastLockedOutDate']) })");
-    newvalues['LastLockedOutDate'] = newdate.dtm;*/
     Userstore.add(Ext.create('VM.model.User', newvalues));
     wndUserCreate.close();
   },
 
 
-  CreateUser: function () {
+  CreateUser: function ()
+  {
     var wndUserEdit = Ext.create('VM.view.User.Add').show(),
         user = Ext.create('VM.model.User', {
           UserName: 'Новый пользователь',
@@ -61,34 +57,50 @@ Ext.define('VM.controller.UserController', {
     wndUserEdit.down('form').loadRecord(user);
   },
 
-
-  editUser: function (button) {
-    var grid = button.up('grid'),
-           sel_User = grid.getView().getSelectionModel().getSelection()[0],
-           wndUserEdit = Ext.create('VM.view.User.Edit').show();
-    wndUserEdit.down('form').loadRecord(sel_User);
+  banManager: function (button)
+  {
+    var grid = button.up('grid');
+    //var Userstore = grid.getStore();
+    var sel_User = grid.getView().getSelectionModel().getSelection()[0];
+    if (sel_User.get('IsActivated'))
+    {
+      var BanWindow = Ext.create('VM.view.User.BanReason').show();
+      BanWindow.down('form').loadRecord(sel_User);
+    }
+    else
+    {
+      Ext.Msg.show({
+        title: 'Разбанить пользователя',
+        msg: 'Разбанить пользователя? "' + sel_User.get('UserName') + '"',
+        width: 300,
+        buttons: Ext.Msg.YESNO,
+        fn: function (btn)
+        {
+          if (btn == 'yes')
+          {
+            sel_User.set('IsActivated', true);
+            //Userstore.sync();
+          }
+        }
+      });
+    }
   },
 
-  updateUser: function (button) {
-    var wndUserEdit = button.up('window'),
-           frm_Userform = wndUserEdit.down('form'),
-           sel_User = frm_Userform.getRecord(),
-           newvalues = frm_Userform.getValues();
-    console.log(wndUserEdit);
-    var newdate = eval("({ dtm: new Date(newvalues['CreateDate']) })");
-    newvalues['CreateDate'] = newdate.dtm;
-    newdate = eval("({ dtm: new Date(newvalues['LaslLoginDate']) })");
-    newvalues['LaslLoginDate'] = newdate.dtm;
-    newdate = eval("({ dtm: new Date(newvalues['LastLockedOutDate']) })");
-    newvalues['LastLockedOutDate'] = newdate.dtm;
+  BanUser: function (button)
+  {
+    //var Userstore = this.getUserStore();
+    var BanWindow = button.up('window');
+    var BanForm = BanWindow.down('form');
+    var sel_User = BanForm.getRecord();
+    var newvalues = BanForm.getValues();
+    newvalues['IsActivated'] = false;
     sel_User.set(newvalues);
-    wndUserEdit.close();
-    this.getUserStore().sync();
+    //Userstore.sync();
+    BanWindow.close();
   },
 
-
-
-  deleteUser: function (button) {
+  deleteUser: function (button)
+  {
     var grid = button.up('grid'),
             Userstore = grid.getStore(),
             sel_User = grid.getView().getSelectionModel().getSelection()[0];
@@ -97,10 +109,13 @@ Ext.define('VM.controller.UserController', {
       msg: 'Уладить пользователя? "' + sel_User.get('UserName') + '"',
       width: 300,
       buttons: Ext.Msg.YESNO,
-      fn: function (btn) {
-        if (btn == 'yes') {
-          if (sel_User) {
-            Userstore.remove(sel_User)
+      fn: function (btn)
+      {
+        if (btn == 'yes')
+        {
+          if (sel_User)
+          {
+            Userstore.remove(sel_User);
           }
         }
       }

@@ -4,7 +4,7 @@ Ext.define
     extend: 'Ext.app.Controller',
     stores: ['RequirementListInStack'],
     models: ['VM.model.RequirementListInStack'],
-    views: ['RequirementListInStack.Create','RequirementListInStack.Edit', 'RequirementListInStack.List'],
+    views: ['RequirementListInStack.Create', 'RequirementListInStack.Edit', 'RequirementListInStack.List'],
     refs: [
           {
             ref: 'RequirementListInStackPanel',
@@ -47,7 +47,7 @@ Ext.define
 
     AddRequirement: function ()
     {
-      if(this.getRequirementStackData().getSelectionModel().getSelection()[0]===undefined)
+      if (this.getRequirementStackData().getSelectionModel().getSelection()[0] === undefined)
         Ext.Msg.alert('Warning', 'Requirement Stack not selected');
       else
       {
@@ -61,7 +61,7 @@ Ext.define
       var id = this.getRequirementStackData().getSelectionModel().getSelection()[0].get('RequirementStackID');
       var win = button.up('window');
       var form = win.down('form').form;
-      var newRequirement = Ext.create('VM.model.RequirementListInStack', { RequirementStackID: id,Name: form._fields.items[0].value, });
+      var newRequirement = Ext.create('VM.model.RequirementListInStack', { RequirementStackID: id, Name: form._fields.items[0].value });
       this.getRequirementListInStackStore().add(newRequirement);
       win.close();
     },
@@ -86,7 +86,7 @@ Ext.define
     {
       var store = this.getRequirementListInStackStore();
       var panel = this.getRequirementListInStackPanel();
-      store.load({params: {"id": id}});
+      store.load({ params: { "id": id} });
     }
   }
 );

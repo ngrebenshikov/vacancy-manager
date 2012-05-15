@@ -93,7 +93,7 @@ namespace VacancyManager.Services
       update_rec.LaslLoginDate = realUser.LastLoginDate;
       //ƒва следующих свойства нужно сначала добавить в VMMembershipUser
       //update_rec.LastLockedOutDate=realUser.LastLockedOutDate;
-      //update_rec.LastLockedOutReason=realUser.LastLockedOutReason;
+      update_rec.LastLockedOutReason=realUser.LastLockedOutReason;
       //update_rec.Password//Ќе должно тут обновл€тьс€
       update_rec.UserName = realUser.UserName;
       _db.SaveChanges();
@@ -107,6 +107,7 @@ namespace VacancyManager.Services
         if (update_rec != null)
         {
           update_rec.IsLockedOut = false;
+          update_rec.IsActivated = true;
           _db.SaveChanges();
         }
       }

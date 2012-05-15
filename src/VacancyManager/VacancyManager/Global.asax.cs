@@ -57,6 +57,8 @@ namespace VacancyManager
       kernel.Bind<IRepository>().To<StandardRepository>();
       kernel.Inject(Membership.Provider);
       kernel.Inject(Roles.Provider);
+      kernel.Bind<IFilterProvider>().To<FilterAttributeFilterProvider>();
+
 
       // Tell ASP.NET MVC 3 to use our Ninject DI Container
       DependencyResolver.SetResolver(new NinjectDependencyResolver(kernel));

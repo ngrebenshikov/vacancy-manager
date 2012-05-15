@@ -10,7 +10,7 @@
     api: {
       read: '../../Account/ExtJSUserListLoad',
       create: '../../Account/ExtJSCreateUser',
-      update: '../../Account/',//Надо добавить
+      update: '../../Account/ExtJSUpdateUser',
       destroy: '../../Account/ExtJSDeleteUser'
     },
     reader: {
