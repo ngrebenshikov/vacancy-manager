@@ -21,7 +21,8 @@ Ext.application
       'UserController',
       'Roles'
     ],
-    launch: function () {
+    launch: function ()
+    {
       Ext.create('Ext.container.Viewport',
       {
         layout: 'fit',
@@ -38,18 +39,18 @@ Ext.application
 var PreviousRequest = new Array();
 var Login_window_Created = false;
 
-Ext.Ajax.on('requestcomplete', function (connection, response) {
-  try {
-    if (response.responseText) {
-      var result = Ext.JSON.decode(response.responseText);
-      if (result.success === false) {
-        switch (result.message) {
-          case '401':
-            PreviousRequest.push(response.request.options);
-            if (Login_window_Created)
-              return;
-            Login_window_Created = true;
-            var login_form = new Ext.form.FormPanel(
+Ext.Ajax.on('requestexception', function (conn, response, options)
+{
+  try
+  {
+    switch (response.status)
+    {
+      case 401:
+        PreviousRequest.push(response.request.options);
+        if (Login_window_Created)
+          return;
+        Login_window_Created = true;
+        var login_form = new Ext.form.FormPanel(
               {
                 labelWidth: 55,
                 frame: true,
@@ -60,7 +61,7 @@ Ext.Ajax.on('requestcomplete', function (connection, response) {
                     { fieldLabel: 'Password', name: 'password', inputType: 'password', anchor: '100%' }
                   ]
               });
-            var login_window = new Ext.Window(
+        var login_window = new Ext.Window(
               {
                 title: 'Login form',
                 width: 300,
@@ -73,7 +74,8 @@ Ext.Ajax.on('requestcomplete', function (connection, response) {
                 buttons:
                   [
                     { text: 'Login',
-                      handler: function () {
+                      handler: function ()
+                      {
                         //login_window.getEl().mask('Login...');
                         Ext.Ajax.request(
                           {
@@ -82,22 +84,26 @@ Ext.Ajax.on('requestcomplete', function (connection, response) {
                               { login: login_form.getForm().getValues().login,
                                 password: login_form.getForm().getValues().password
                               },
-                            success: function (result, request) {
+                            success: function (result, request)
+                            {
                               var JsonResult = Ext.JSON.decode(result.responseText);
-                              if (JsonResult.LogOnResult != '') {
+                              if (JsonResult.LogOnResult != '')
+                              {
                                 Ext.MessageBox.show(
                                   {
                                     title: 'Error',
                                     msg: JsonResult.LogOnResult,
                                     minWidth: 200,
-                                    bottons: Ext.MessageBox.OK,
+                                    buttons: Ext.MessageBox.OK,
                                     icon: Ext.MessageBox.WARNING
                                   });
                                 login_window.getEl().unmask(true);
                                 Login_window_Created = false;
                               }
-                              else {
-                                for (var i = 0; i < PreviousRequest.length; i++) {
+                              else
+                              {
+                                for (var i = 0; i < PreviousRequest.length; i++)
+                                {
                                   Ext.Ajax.request(PreviousRequest[i]);
                                 }
                                 PreviousRequest = new Array();
@@ -109,20 +115,47 @@ Ext.Ajax.on('requestcomplete', function (connection, response) {
                       }
                     },
                     { text: 'Cancel',
-                      handler: function () {
+                      handler: function ()
+                      {
                         Login_window_Created = false; login_window.close();
                       }
                     }
                   ]
               });
-            login_window.show();
-            break;
-          default:
-            Ext.Msg.alert('Error', result.message+'Refresh the browser page or tabe page');
-            break;
-        }
-      }
+        login_window.show();
+        break;
+      default:
+        Ext.Msg.alert('Error', result.message + 'Refresh the browser page or tabe page');
+        break;
     }
-  } catch (err) {
+  } catch (err)
+  {
+  }
+});
+
+Ext.Ajax.on('requestcomplete', function (connection, response)
+{
+  try
+  {
+    if (response.responseText)
+    {
+      var result = Ext.JSON.decode(response.responseText);
+      var title;
+      if (result.success)
+        title = 'Запрос успешно завершён';
+      else
+        title = 'Ошибка при выполении запроса';
+      Ext.MessageBox.show(
+        {
+          title: title,
+          msg: result.message,
+          minWidth: 200,
+          buttons: Ext.MessageBox.OK,
+          icon: Ext.MessageBox.INFO
+        }
+      );
+    }
+  } catch (err)
+  {
   }
 });

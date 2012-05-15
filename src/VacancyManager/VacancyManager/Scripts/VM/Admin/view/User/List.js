@@ -13,81 +13,99 @@ Ext.define('VM.view.User.List', {
   title: 'Пользователи',
   store: 'User',
   columns: [
-                      {
-                        dataIndex: 'UserName',
-                        text: 'Имя пользователя',
-                        width: 120,
-                        sortable: true,
-                        field: { xtype: 'textfield' },
-                        menuDisabled: true
-                      },
-                      {
-                        dataIndex: 'Email',
-                        text: 'Email',
-                        width: 120,
-                        sortable: true,
-                        field: { xtype: 'textfield' },
-                        menuDisabled: true
-                      },
-                      {
-                        dataIndex: 'UserComment',
-                        text: 'Комментарий',
-                        width: 120,
-                        sortable: false,
-                        field: { xtype: 'textfield' },
-                        menuDisabled: true
-                      },
-                      {
-                        dataIndex: 'CreateDate',
-                        text: 'Дата создания',
-                        width: 70,
-                        sortable: true,
-                        field: { xtype: 'datefield' },
-                        menuDisabled: true,
-                        renderer: Ext.util.Format.dateRenderer('d.m.Y')
-                      },
-                      {
-                        dataIndex: 'LaslLoginDate',
-                        text: 'Последний визит',
-                        width: 70,
-                        sortable: true,
-                        field: { xtype: 'datefield' },
-                        menuDisabled: true,
-                        renderer: Ext.util.Format.dateRenderer('d.m.Y')
-                      },
-                      {
-                        dataIndex: 'LastLockedOutDate',
-                        text: 'Дата последней блокировки',
-                        width: 70,
-                        sortable: true,
-                        field: { xtype: 'datefield' },
-                        menuDisabled: true,
-                        renderer: Ext.util.Format.dateRenderer('d.m.Y')
-                      },
-                      {
-                        dataIndex: 'LastLockedOutReason',
-                        text: 'Причина последней блокировки',
-                        width: 70,
-                        sortable: false,
-                        field: { xtype: 'textfield' },
-                        menuDisabled: true
-                      },
-                      {
-                        dataIndex: 'IsActivated',
-                        text: 'Активирован',
-                        width: 70,
-                        sortable: false,
-                        field: { xtype: 'textfield' },
-                        menuDisabled: true
-                      },
-                      {
-                        dataIndex: 'IsLockedOut',
-                        text: 'Заблокирован:',
-                        width: 70,
-                        sortable: false,
-                        field: { xtype: 'textfield' },
-                        menuDisabled: true
-                      }
+            {
+              dataIndex: 'UserName',
+              text: 'Имя пользователя',
+              width: 120,
+              sortable: true,
+              field: { xtype: 'textfield' },
+              menuDisabled: true
+            },
+            {
+              dataIndex: 'Email',
+              text: 'Email',
+              width: 120,
+              sortable: true,
+              field: { xtype: 'textfield' },
+              menuDisabled: true
+            },
+            {
+              dataIndex: 'UserComment',
+              text: 'Комментарий',
+              width: 120,
+              sortable: false,
+              field: { xtype: 'textfield' },
+              menuDisabled: true
+            },
+            {
+              dataIndex: 'CreateDate',
+              text: 'Дата создания',
+              width: 70,
+              sortable: true,
+              field: { xtype: 'datefield' },
+              menuDisabled: true,
+              renderer: Ext.util.Format.dateRenderer('d.m.Y')
+            },
+            {
+              dataIndex: 'LaslLoginDate',
+              text: 'Последний визит',
+              width: 70,
+              sortable: true,
+              field: { xtype: 'datefield' },
+              menuDisabled: true,
+              renderer: Ext.util.Format.dateRenderer('d.m.Y')
+            },
+            {
+              dataIndex: 'LastLockedOutDate',
+              text: 'Дата последней блокировки',
+              width: 70,
+              sortable: true,
+              field: { xtype: 'datefield' },
+              menuDisabled: true,
+              renderer: Ext.util.Format.dateRenderer('d.m.Y')
+            },
+            {
+              dataIndex: 'LastLockedOutReason',
+              text: 'Причина последней блокировки',
+              width: 70,
+              sortable: false,
+              field: { xtype: 'textfield' },
+              menuDisabled: true
+            },
+            {
+              dataIndex: 'IsActivated',
+              text: 'Активирован',
+              width: 70,
+              sortable: false,
+              field: { xtype: 'textfield' },
+              menuDisabled: true
+            },
+            {
+              dataIndex: 'IsLockedOut',
+              text: 'Забанен',
+              width: 70,
+              sortable: false,
+              field: { xtype: 'textfield' },
+              menuDisabled: true
+            }/*,
+            {
+              xtype:'actioncolumn',
+              menudisabled: true,
+              sortable: false,
+              //width: 50,
+              items:
+                [
+                  {
+                    icon: '/ExtLib/resources/themes/images/default/form/exclamation.gif',
+                    tooltip: 'Ban manager',
+                    handler: function (grid, rowIndex, colIndex)
+                    {
+                      var rec = grid.store.getAt(rowIndex);
+                      alert(rec.get('IsLockedOut'));
+                    }
+                  }
+                ]
+            }*/
              ],
   dockedItems: [{
     xtype: 'pagingtoolbar',
@@ -103,18 +121,34 @@ Ext.define('VM.view.User.List', {
     name: 'btnloadBlankUser',
     id: 'btnloadBlankUser',
     action: 'CreateUser'
-  }, {
+  },
+    {
+      text:'Забанить/Разбанить',
+      name:'btnBanManager',
+      id:'BanManager',
+      action:'banManager'
+    },/*, {
     text: 'Редактировать',
     name: 'btnEditUser',
     id: 'EditUser',
     action: 'editUser'
-  },
+  },*/
     {
       text: 'Удалить пользователя',
       action: 'deleteUser'
     }
    ]
-
-
 });
+
+function BanRender(val)
+{
+  if (val)
+  {
+    return 'UnBan';
+  }
+  else
+  {
+    return 'Ban';
+  }
+}
 

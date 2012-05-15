@@ -164,6 +164,79 @@ namespace VacancyManager.Controllers
       });
     }
 
+    /// <summary>
+    /// Exts the JS update user.
+    /// </summary>
+    /// <param name="data">The data.</param>
+    /// <returns></returns>
+    [HttpPost]
+    [AuthorizeError]
+    public JsonResult ExtJSUpdateUser(string data)
+    {
+      bool success = false;
+      string message = "При обновлении данных пользователя произошёл сбой";
+      JavaScriptSerializer jss = new JavaScriptSerializer();
+
+      if (data != null)
+      {
+        var record = jss.Deserialize<dynamic>(data);
+
+        VMMembershipUser userInDB = (VMMembershipUser)Membership.GetUser(record["UserName"].ToString());
+
+        //Проверка на возможность бана
+        if (userInDB.IsApproved != (bool)record["IsActivated"])
+        {
+          if (userInDB.IsApproved)//Забанить
+          {
+            userInDB.IsApproved = (bool)record["IsActivated"];
+            userInDB.LastLockedOutReason = record["LastLockedOutReason"].ToString();
+            //Возможно добавить сюда что либо с датами
+            Membership.UpdateUser(userInDB);
+            success = true;
+            message = "Пользователь забанен";
+          }
+          else//Разбанить
+          {
+            if (userInDB.EmailKey == null)
+            {
+              userInDB.UnlockUser();
+              success = true;
+              message = "Пользователь разбанен";
+            }
+            else
+            {
+              success = false;
+              message = "Нельзя разбанить неактивированного пользователя";
+            }
+          }
+
+          return Json(new
+          {
+            success = success,
+            message = message,
+            data = new
+            {
+              UserID = userInDB.ProviderUserKey,
+              userInDB.UserName,
+              userInDB.Email,
+              UserComment = userInDB.Comment,
+              CreateDate = userInDB.CreationDate,
+              LaslLoginDate = userInDB.LastLoginDate,
+              IsActivated = userInDB.IsApproved,
+              userInDB.IsLockedOut,
+              LastLockedOutDate = userInDB.LastLockoutDate,
+              userInDB.LastLockedOutReason,
+            }
+          });
+        }
+      }
+      return Json(new
+      {
+        success = success,
+        message = message
+      });
+    }
+
     //
     // GET: /Account/LogOff
 
@@ -219,11 +292,11 @@ namespace VacancyManager.Controllers
     [Obsolete("Возможно должен быть переделан")]
     public ActionResult Activate(string username, string key)
     {
-      var user = (VMMembershipUser)Membership.GetUser(username, false);
+      VMMembershipUser user = (VMMembershipUser)Membership.GetUser(username, false);
       if (user.EmailKey != key)
         return RedirectToAction("IndexOld", "Home");
       user.UnlockUser();
-      user.IsApproved = true; //Активировали
+      //user.IsApproved = true; //Активировали
       user.EmailKey = null; //Чтобы нельзя было больше активировать user
       Membership.UpdateUser(user);
       return RedirectToAction("LogOn");

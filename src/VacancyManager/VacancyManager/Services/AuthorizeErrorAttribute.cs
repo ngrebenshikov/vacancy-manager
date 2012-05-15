@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Web;
 using System.Web.Mvc;
 using System.Web.Helpers;
+using Ninject;
 
 namespace VacancyManager.Services
 {
@@ -12,6 +14,7 @@ namespace VacancyManager.Services
   {
     // Сводка:
     //     Инициализирует новый экземпляр класса VacancyManager.Services.AuthorizeErrorAttribute.
+    [Inject]
     public AuthorizeErrorAttribute() : base() { }
 
     //
@@ -25,21 +28,14 @@ namespace VacancyManager.Services
     //     результат действия и данные маршрута.
     protected override void HandleUnauthorizedRequest(AuthorizationContext filterContext)
     {
-      if (filterContext.RequestContext.HttpContext.Request.ContentType != "application/json; charset=UTF-8")
+      if (filterContext.HttpContext.Request.IsAjaxRequest())
       {
-        filterContext.Result = new ViewResult { ViewName = "Access Denied" };
+        filterContext.HttpContext.Response.StatusCode = 401;
+        filterContext.HttpContext.Response.End();
       }
       else
       {
-        var result = new JsonResult();
-        result.ContentType = "application/json";
-        result.Data = new
-        {
-          success = false,
-          message = "401",
-        };
-        result.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
-        filterContext.Result = result;
+        filterContext.Result = new ViewResult { ViewName = "Access Denied" };
       }
     }
   }

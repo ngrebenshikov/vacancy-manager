@@ -1,16 +1,16 @@
 ﻿Ext.define
-('VM.view.Roles.Create',
+('VM.view.User.BanReason',
   {
     extend: 'Ext.window.Window',
-    alias: 'widget.RoleCreate',
+    alias: 'widget.BanReason',
 
     requires: ['Ext.form.Panel'],
 
-    title: 'Create Role',
+    title: 'Ban reason',
     layout: 'fit',
     autoShow: true,
-    height: 60,
-    width: 280,
+    autoHeight: true,
+    autoWidth:true,
 
     initComponent: function ()
     {
@@ -24,10 +24,10 @@
           items:
           [
             {
-              xtype: 'textfield',
-              id:'RoleName',
-              name: 'Name',
-              fieldLabel: 'Name',
+              xtype: 'textarea',
+              id: 'lastLockedOutReason',
+              name: 'LastLockedOutReason',
+              fieldLabel: 'Ban reason',
               allowBlank: false
             }
           ]
@@ -37,8 +37,8 @@
       this.buttons =
       [
         {
-          text: 'Create',
-          action: 'CreateRole'
+          text: 'Ban',
+          action: 'BanUser'
         },
         {
           text: 'Cancel',
