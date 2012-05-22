@@ -1,12 +1,12 @@
 ﻿Ext.define
-('VM.view.RequirementStack.Create',
+('VM.view.User.RoleManager',
   {
     extend: 'Ext.window.Window',
-    alias: 'widget.RequirementStackCreate',
+    alias: 'widget.RoleManager',
 
     requires: ['Ext.form.Panel'],
 
-    title: 'Create RequirementStack List',
+    title: 'Role manager',
     layout: 'fit',
     autoShow: true,
     height: 60,
@@ -24,10 +24,8 @@
           items:
           [
             {
-              xtype: 'textfield',
-              id: 'RequirementStackName',
-              name: 'Name',
-              fieldLabel: 'Name',
+              xtype: 'displayfield',
+              name: 'UserName',
               allowBlank: false
             }
           ]
@@ -37,8 +35,8 @@
       this.buttons =
       [
         {
-          text: 'Create',
-          action: 'CreateRequirementStack'
+          text: 'Change roles',
+          action: 'ChangeRoles'
         },
         {
           text: 'Cancel',

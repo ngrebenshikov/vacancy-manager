@@ -6,12 +6,15 @@ Ext.define('VM.controller.UserController', {
 
   models: ['User'],
 
-  views: ['User.List', 'User.Edit', 'User.BanReason'],
+  views: ['User.List', 'User.Edit', 'User.BanReason', 'User.RoleManager'],
 
   init: function ()
   {
     this.control(
                 {
+                  'UserList dataview': {
+                    itemclick: this.ButtonDisabler
+                  },
                   'button[action = CreateUser]': {
                     click: this.CreateUser
                   },
@@ -21,8 +24,8 @@ Ext.define('VM.controller.UserController', {
                   'button[action = BanUser]': {
                     click: this.BanUser
                   },
-                  'button[action = updateUser]': {
-                    click: this.updateUser
+                  'button[action = callRoleManager]': {
+                    click: this.callRoleManager
                   },
                   'button[action = deleteUser]': {
                     click: this.deleteUser
@@ -120,5 +123,20 @@ Ext.define('VM.controller.UserController', {
         }
       }
     });
+  },
+
+  callRoleManager: function (button)
+  {
+    var grid = button.up('grid');
+    var UserStore = grid.getStore();
+    var sel_user = grid.getView().getSelectionModel().getSelection()[0];
+    var RoleMngWindow = Ext.create('VM.view.User.RoleManager').show();
+    RoleMngWindow.down('form').loadRecord(sel_user);
+  },
+
+  ButtonDisabler: function (button)
+  {
+    //Добавить сюда функционал хайда кнопок которые могут быть нажаты только если выделен пользователь
+    //Ext.Msg.alert('Наше пробное сообщение', 'Hello, World!');
   }
 });

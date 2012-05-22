@@ -34,7 +34,8 @@ namespace VacancyManager.Services
     {
       var dbuser = _db.Users.FirstOrDefault(u => u.UserName == username);
 
-      if (dbuser != null)
+      return getMembershipUserFromDBUser(dbuser);
+      /*if (dbuser != null)
       {
         string dbusername = dbuser.UserName;
         int providerUserKey = dbuser.UserID;
@@ -70,7 +71,7 @@ namespace VacancyManager.Services
         return user;
       }
 
-      return null;
+      return null;*/
     }
 
     public void UpdateMembershipUser(MembershipUser user)
@@ -93,7 +94,7 @@ namespace VacancyManager.Services
       update_rec.LaslLoginDate = realUser.LastLoginDate;
       //ƒва следующих свойства нужно сначала добавить в VMMembershipUser
       //update_rec.LastLockedOutDate=realUser.LastLockedOutDate;
-      update_rec.LastLockedOutReason=realUser.LastLockedOutReason;
+      update_rec.LastLockedOutReason = realUser.LastLockedOutReason;
       //update_rec.Password//Ќе должно тут обновл€тьс€
       update_rec.UserName = realUser.UserName;
       _db.SaveChanges();
@@ -174,12 +175,45 @@ namespace VacancyManager.Services
       return _db.Users.FirstOrDefault(u => u.Email == email);
     }
 
+    public MembershipUser GetUser(object providerUserKey, bool userIsOnline)
+    {
+      var dbuser = _db.Users.FirstOrDefault(u => u.UserID == Convert.ToInt32(providerUserKey));
+      if ((userIsOnline) && (dbuser != null))
+      {
+        dbuser.LaslLoginDate = DateTime.Now;
+        _db.SaveChanges();
+      }
+
+      return getMembershipUserFromDBUser(dbuser);
+    }
+
+    public MembershipUserCollection FindUsersByName(string usernameToMatch, int pageIndex, int pageSize, out int totalRecords)
+    {
+      return FindUserByPredicate((x => x.UserName.IndexOf(usernameToMatch, StringComparison.OrdinalIgnoreCase) != 0),
+        pageIndex, pageSize, out totalRecords);
+    }
+
+    public MembershipUserCollection FindUsersByEmail(string emailToMatch, int pageIndex, int pageSize, out int totalRecords)
+    {
+      return FindUserByPredicate((x => x.Email.IndexOf(emailToMatch, StringComparison.OrdinalIgnoreCase) != 0),
+        pageIndex, pageSize, out totalRecords);
+    }
+
+    public bool ChangePassword(string username, string oldPassword, string newPassword)
+    {
+      var dbuser = _db.Users.SingleOrDefault(x => x.UserName.Equals(username, StringComparison.OrdinalIgnoreCase));
+      if ((dbuser == null) || (!dbuser.Password.Equals(CreatePasswordHash(oldPassword, dbuser.PasswordSalt))))
+        return false;
+      dbuser.Password = CreatePasswordHash(oldPassword, dbuser.PasswordSalt);
+      return true;
+    }
+
     #endregion
 
     #region Roles
     public void AddRole(string roleName)
     {
-      if (_db.Roles.SingleOrDefault(a => a.Name.Equals(roleName, StringComparison.Ordinal)) == null)
+      if (_db.Roles.SingleOrDefault(a => a.Name.Equals(roleName, StringComparison.OrdinalIgnoreCase)) == null)
       {
         _db.Roles.Add(new Role
         {
@@ -199,9 +233,9 @@ namespace VacancyManager.Services
       }
       foreach (var user in _db.Users.Where(a => users.Any(x => x == a.UserName)))
       {
-        user.Roles.Remove(user.Roles.Single(a => a.Name.Equals(roleName, StringComparison.Ordinal)));
+        user.Roles.Remove(user.Roles.Single(a => a.Name.Equals(roleName, StringComparison.OrdinalIgnoreCase)));
       }
-      _db.Roles.Remove(_db.Roles.Single(a => a.Name.Equals(roleName, StringComparison.Ordinal)));
+      _db.Roles.Remove(_db.Roles.Single(a => a.Name.Equals(roleName, StringComparison.OrdinalIgnoreCase)));
       _db.SaveChanges();
       return true;
     }
@@ -210,7 +244,7 @@ namespace VacancyManager.Services
     {
       return from a in _db.Users
              from role in a.Roles
-             where role.Name.Equals(roleName, StringComparison.Ordinal)
+             where role.Name.Equals(roleName, StringComparison.OrdinalIgnoreCase)
              select a.UserName;
     }
 
@@ -222,7 +256,33 @@ namespace VacancyManager.Services
 
     public int GetRoleID(string roleName)
     {
-      return _db.Roles.Single(a => a.Name.Equals(roleName, StringComparison.Ordinal)).RoleID;
+      return _db.Roles.Single(a => a.Name.Equals(roleName, StringComparison.OrdinalIgnoreCase)).RoleID;
+    }
+
+    public bool IsUserInRole(string username, string roleName)
+    {
+      var user = _db.Users.FirstOrDefault(x => x.UserName.Equals(username));
+      return user != null && user.Roles.Any(x => x.Name.Equals(roleName));
+    }
+
+    public bool RoleExists(string roleName)
+    {
+      return _db.Roles.Any(x => x.Name.Equals(roleName));
+    }
+
+    public void AddUsersToRoles(string[] usernames, string[] roleNames)
+    {
+      RoleAndUsers((user, rolename) => user.Roles.Add(_db.Roles.Single(x => x.Name.Equals(rolename))), usernames, roleNames);
+    }
+
+    public void RemoveUsersFromRoles(string[] usernames, string[] roleNames)
+    {
+      RoleAndUsers((user, rolename) => user.Roles.Remove(_db.Roles.Single(x => x.Name.Equals(rolename))), usernames, roleNames);
+    }
+
+    public string[] FindUsersInRole(string roleName, string usernameToMatch)
+    {
+      return (from user in _db.Users.Where(x => x.UserName.IndexOf(usernameToMatch, StringComparison.OrdinalIgnoreCase) != 0) where user.Roles.Any(x => x.Name.Equals(roleName)) select user.UserName).ToArray();
     }
 
     #endregion
@@ -310,56 +370,6 @@ namespace VacancyManager.Services
     }
     #endregion
 
-    /*#region User
-    public void AdminCreateUser(string userName, string email, string password, string userComment, DateTime createDate, DateTime laslLoginDate, bool isActivated, bool isLockedOut, DateTime lastLockedOutDate, string LastLockedOutReason, string emailKey)
-    {
-      var user = new User
-      {
-        UserID = -1,
-        UserName = userName,
-        Email = email,
-        Password = password,
-        UserComment = userComment,
-        CreateDate = createDate,
-        LaslLoginDate = laslLoginDate,
-        IsActivated = isActivated,
-        IsLockedOut = isLockedOut,
-        LastLockedOutDate = lastLockedOutDate,
-        LastLockedOutReason = LastLockedOutReason,
-        EmailKey = emailKey
-      };
-
-      _db.Users.Add(user);
-      _db.SaveChanges();
-    }
-
-    public void AdminUpdateUser(int userID, string userName, string email, string password, string userComment, DateTime createDate, DateTime laslLoginDate, bool isActivated, bool isLockedOut, DateTime lastLockedOutDate, string LastLockedOutReason, string emailKey)
-    {
-      var update_user = _db.Users.SingleOrDefault(a => a.UserID == userID);
-      if (update_user == null) return;
-      update_user.UserName = userName;
-      update_user.Email = email;
-      update_user.Password = password;
-      update_user.UserComment = userComment;
-      update_user.CreateDate = createDate;
-      update_user.LaslLoginDate = laslLoginDate;
-      update_user.IsActivated = isActivated;
-      update_user.IsLockedOut = isLockedOut;
-      update_user.LastLockedOutDate = lastLockedOutDate;
-      update_user.LastLockedOutReason = LastLockedOutReason;
-      update_user.EmailKey = emailKey;
-      _db.SaveChanges();
-    }
-
-    public void AdminDeleteUser(int userID)
-    {
-      var delete_user = _db.Users.SingleOrDefault(a => a.UserID == userID);
-      if (delete_user == null) return;
-      _db.Users.Remove(delete_user);
-      _db.SaveChanges();
-    }
-    #endregion*/
-
     #region Requirement
 
     public IEnumerable<Requirement> GetAllRequirements(int id)
@@ -426,6 +436,78 @@ namespace VacancyManager.Services
     {
       Guid emailKey = Guid.NewGuid();
       return emailKey.ToString();
+    }
+
+    //Why? DRY
+    private void RoleAndUsers(Action<User, string> act, IEnumerable<string> usernames, string[] roleNames)
+    {
+      foreach (var username in usernames)
+      {
+        var user = _db.Users.FirstOrDefault(x => x.UserName.Equals(username));
+        if (user == null) continue;
+        foreach (var rolename in roleNames.Where(rolename => user.Roles.Any(x => !x.Name.Equals(rolename))))
+        {
+          act(user, rolename);
+        }
+      }
+      _db.SaveChanges();
+    }
+
+    private MembershipUser getMembershipUserFromDBUser(User dbuser)
+    {
+      if (dbuser != null)
+      {
+        string dbusername = dbuser.UserName;
+        int providerUserKey = dbuser.UserID;
+        string email = dbuser.Email;
+        string passwordQuestion = string.Empty;
+        string comment = dbuser.UserComment;
+        string lastLockedOutReason = dbuser.LastLockedOutReason;
+        bool isApproved = dbuser.IsActivated;
+        bool isLockedOut = dbuser.IsLockedOut;
+        DateTime creationDate = dbuser.CreateDate;
+        DateTime lastLoginDate = dbuser.LaslLoginDate;
+        DateTime lastActivityDate = DateTime.Now;
+        DateTime lastPasswordChangedDate = DateTime.Now;
+        DateTime lastLockedOutDate = dbuser.LastLockedOutDate;
+        string emailKey = dbuser.EmailKey;
+
+        var user = new VMMembershipUser("VacancyManagerMembershipProvider",
+                                      dbusername,
+                                      providerUserKey,
+                                      email,
+                                      passwordQuestion,
+                                      comment,
+                                      lastLockedOutReason,
+                                      isApproved,
+                                      isLockedOut,
+                                      creationDate,
+                                      lastLoginDate,
+                                      lastActivityDate,
+                                      lastPasswordChangedDate,
+                                      lastLockedOutDate,
+                                      emailKey);
+
+        return user;
+      }
+
+      return null;
+    }
+
+    private MembershipUserCollection FindUserByPredicate(Func<User, bool> predicate, int pageIndex, int pageSize, out int totalRecords)
+    {
+      MembershipUserCollection result = new MembershipUserCollection();
+      int index = 0;
+      int from = pageIndex * pageSize;
+      int to = (pageIndex + 1) * pageSize;
+      foreach (var user in _db.Users.Where(predicate))
+      {
+        index++;
+        if ((index > from) && (index <= to))
+          result.Add(getMembershipUserFromDBUser(user));
+      }
+      totalRecords = index;
+      return result;
     }
 
     #endregion

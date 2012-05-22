@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Specialized;
+using System.Linq;
 using System.Web.Security;
 using Ninject;
+using VacancyManager.Models;
 
 namespace VacancyManager.Services
 {
@@ -168,36 +170,40 @@ namespace VacancyManager.Services
       throw new System.NotImplementedException();
     }
 
-    public override bool ChangePassword(string username, string oldPassword, string newPassword)
-    {
-      throw new System.NotImplementedException();
-    }
-
     public override string ResetPassword(string username, string answer)
     {
       throw new System.NotImplementedException();
     }
 
+    #endregion
+
     public override MembershipUser GetUser(object providerUserKey, bool userIsOnline)
     {
-      throw new System.NotImplementedException();
-    }
-
-    public override int GetNumberOfUsersOnline()
-    {
-      throw new System.NotImplementedException();
+      return Repository.GetUser(providerUserKey, userIsOnline);
     }
 
     public override MembershipUserCollection FindUsersByName(string usernameToMatch, int pageIndex, int pageSize, out int totalRecords)
     {
-      throw new System.NotImplementedException();
+      return Repository.FindUsersByName(usernameToMatch, pageIndex, pageSize, out totalRecords);
     }
 
     public override MembershipUserCollection FindUsersByEmail(string emailToMatch, int pageIndex, int pageSize, out int totalRecords)
     {
-      throw new System.NotImplementedException();
+      return Repository.FindUsersByEmail(emailToMatch, pageIndex, pageSize, out totalRecords);
     }
-    #endregion
+
+    public override bool ChangePassword(string username, string oldPassword, string newPassword)
+    {
+      var args = new ValidatePasswordEventArgs(username, newPassword, true);
+      OnValidatingPassword(args);
+
+      return !args.Cancel && Repository.ChangePassword(username, oldPassword, newPassword);
+    }
+
+    public override int GetNumberOfUsersOnline()
+    {
+      return Membership.GetAllUsers().Cast<VMMembershipUser>().Count(realUser => realUser.IsOnline);
+    }
 
     public override MembershipUser GetUser(string username, bool userIsOnline)
     {
