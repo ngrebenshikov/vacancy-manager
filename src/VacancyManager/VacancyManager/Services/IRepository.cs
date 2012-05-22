@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Web.Security;
 using VacancyManager.Models;
-using System.Linq;
 
 namespace VacancyManager.Services
 {
@@ -46,5 +45,14 @@ namespace VacancyManager.Services
     int GetRoleID(string roleName);
     MembershipUserCollection GetAllUsers();
     bool DeleteUser(string username, bool deleteAllRelatedData);
+    bool IsUserInRole(string username, string roleName);
+    bool RoleExists(string roleName);
+    void AddUsersToRoles(string[] usernames, string[] roleNames);
+    void RemoveUsersFromRoles(string[] usernames, string[] roleNames);
+    string[] FindUsersInRole(string roleName, string usernameToMatch);
+    MembershipUser GetUser(object providerUserKey, bool userIsOnline);
+    MembershipUserCollection FindUsersByName(string usernameToMatch, int pageIndex, int pageSize, out int totalRecords);
+    MembershipUserCollection FindUsersByEmail(string emailToMatch, int pageIndex, int pageSize, out int totalRecords);
+    bool ChangePassword(string username, string oldPassword, string newPassword);
   }
 }

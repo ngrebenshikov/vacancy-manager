@@ -1403,6 +1403,7 @@
     <Content Include="Scripts\VM\Admin\view\User\BanReason.js" />
     <Content Include="Scripts\VM\Admin\view\User\Edit.js" />
     <Content Include="Scripts\VM\Admin\view\User\List.js" />
+    <Content Include="Scripts\VM\Admin\view\User\RoleManager.js" />
     <Content Include="Scripts\VM\Admin\view\vacancy\Add.js" />
     <Content Include="Scripts\VM\Admin\view\vacancy\Edit.js" />
     <Content Include="Scripts\VM\Admin\view\vacancy\List.js" />

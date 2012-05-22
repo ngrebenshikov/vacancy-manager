@@ -12,6 +12,7 @@
       { name: 'IsActivated', type: 'bool' },
       { name: 'IsLockedOut', type: 'bool' },
       { name: 'LastLockedOutDate', type: 'date', dateFormat: 'MS' },
-      { name: 'LastLockedOutReason', type: 'string' }
+      { name: 'LastLockedOutReason', type: 'string' },
+      { name: 'Roles' }
     ]
 });

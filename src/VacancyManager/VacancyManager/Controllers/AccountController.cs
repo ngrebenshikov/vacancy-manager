@@ -64,10 +64,12 @@ namespace VacancyManager.Controllers
     {
       var AllUsers = Membership.GetAllUsers();
 
+
       List<dynamic> UserList = new List<dynamic>();
 
       foreach (VMMembershipUser realUser in AllUsers.Cast<VMMembershipUser>())
       {
+        var roles = Roles.GetRolesForUser(realUser.UserName);
         UserList.Add(new
         {
           UserID = realUser.ProviderUserKey,
@@ -80,6 +82,7 @@ namespace VacancyManager.Controllers
           realUser.IsLockedOut,
           LastLockedOutDate = realUser.LastLockoutDate,
           realUser.LastLockedOutReason,
+          Roles = roles,
         });
       }
       return Json(new
@@ -112,6 +115,7 @@ namespace VacancyManager.Controllers
                                   user.UserName + "/" + user.EmailKey;
           EMailSender.SendMail(ActivationLink, user.Email);
           c_message = "Пользователь создан";
+          var roles = Roles.GetRolesForUser(user.UserName);
           return Json(new
                         {
                           success = true,
@@ -128,6 +132,7 @@ namespace VacancyManager.Controllers
                             user.IsLockedOut,
                             LastLockedOutDate = user.LastLockoutDate,
                             user.LastLockedOutReason,
+                            Roles = roles
                           }
                         });
         }
@@ -209,26 +214,27 @@ namespace VacancyManager.Controllers
               message = "Нельзя разбанить неактивированного пользователя";
             }
           }
-
-          return Json(new
-          {
-            success = success,
-            message = message,
-            data = new
-            {
-              UserID = userInDB.ProviderUserKey,
-              userInDB.UserName,
-              userInDB.Email,
-              UserComment = userInDB.Comment,
-              CreateDate = userInDB.CreationDate,
-              LaslLoginDate = userInDB.LastLoginDate,
-              IsActivated = userInDB.IsApproved,
-              userInDB.IsLockedOut,
-              LastLockedOutDate = userInDB.LastLockoutDate,
-              userInDB.LastLockedOutReason,
-            }
-          });
         }
+        var roles = Roles.GetRolesForUser(userInDB.UserName);
+        return Json(new
+        {
+          success = success,
+          message = message,
+          data = new
+          {
+            UserID = userInDB.ProviderUserKey,
+            userInDB.UserName,
+            userInDB.Email,
+            UserComment = userInDB.Comment,
+            CreateDate = userInDB.CreationDate,
+            LaslLoginDate = userInDB.LastLoginDate,
+            IsActivated = userInDB.IsApproved,
+            userInDB.IsLockedOut,
+            LastLockedOutDate = userInDB.LastLockoutDate,
+            userInDB.LastLockedOutReason,
+            Roles = roles
+          }
+        });
       }
       return Json(new
       {
