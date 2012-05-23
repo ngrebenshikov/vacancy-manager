@@ -2,11 +2,11 @@
 Ext.define('VM.controller.VacancyController', {
     extend: 'Ext.app.Controller',
 
-    stores: ['Vacancy'],
+    stores: ['Vacancy', 'VacancyRequirements'],
 
-    models: ['VM.model.Vacancy'],
+    models: ['VM.model.Vacancy', 'VM.model.VacancyRequirements'],
 
-    views: ['vacancy.List', 'vacancy.Edit', 'vacancy.Add'],
+    views: ['vacancy.List', 'vacancy.Edit', 'vacancy.Add', 'vacancy.VacancyRequirementsList'],
 
     init: function () {
         this.control(
@@ -63,6 +63,8 @@ Ext.define('VM.controller.VacancyController', {
            sel_vacancy = grid.getView().getSelectionModel().getSelection()[0],
            wndvacanyEdit = Ext.create('VM.view.vacancy.Edit').show();
         wndvacanyEdit.down('form').loadRecord(sel_vacancy);
+        VacancyRequirementsStore = Ext.StoreManager.lookup('VacancyRequirements');
+        VacancyRequirementsStore.load({ params: { "id": sel_vacancy.get('VacancyID')} });
     },
 
     updateVacancy: function (button) {
@@ -94,7 +96,7 @@ Ext.define('VM.controller.VacancyController', {
             }
         });
 
-        ;
+
     }
 
 });

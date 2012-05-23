@@ -1,29 +1,37 @@
-﻿
+﻿           
 
 Ext.define('VM.view.vacancy.Edit', {
     extend: 'Ext.window.Window',
     alias: 'widget.vacancyEdit',
     title: 'Редактирование вакансии',
-    height: 450,
-    width: 430,
+    height: 500,
+    width: 700,
     autoShow: true,
     maximizable: true,
     collapsible: true,
     modal: true,
-    layout: 'fit',
     buttonAlign: 'center',
+    layout: 'fit',
     initComponent: function () {
         this.items = [
             {
                 xtype: 'form',
-                padding: '15 15 5 5',
+                padding: '5 5 5 5',
                 border: false,
                 style: 'background-color: #fff;',
-                layout: {
-                    type: 'vbox',
-                    align: 'stretch'
-                },
-                items: [
+                layout: 'border',
+    items: [{
+        xtype: 'panel',
+        region: 'center',
+        width: 350,
+        border: false,
+        padding: '5 5 5 5',
+        layout: {
+            type: 'vbox',
+            align: 'stretch'
+        },
+        style: 'background-color: #fff;',
+        items: [
                 {
                     xtype: 'textfield',
                     id: 'txtTitle',
@@ -33,7 +41,7 @@ Ext.define('VM.view.vacancy.Edit', {
                 }, {
                     xtype: 'textareafield',
                     fieldLabel: 'Описание',
-                    flex: 1,
+                    flex: 2,
                     id: 'txtareaDescription',
                     name: 'Description',
                     margins: '0',
@@ -49,13 +57,8 @@ Ext.define('VM.view.vacancy.Edit', {
                     xtype: 'textfield',
                     id: 'txtForeignLanguage',
                     name: 'ForeignLanguage',
+                    flex: 1,
                     fieldLabel: 'Иностранные языки',
-                    allowBlank: false
-                }, {
-                    xtype: 'textfield',
-                    id: 'txtRequirments',
-                    name: 'Requirments',
-                    fieldLabel: 'Требования',
                     allowBlank: false
                 }, {
                     xtype: 'checkboxfield',
@@ -65,8 +68,12 @@ Ext.define('VM.view.vacancy.Edit', {
                     uncheckedValue: 'false',
                     fieldLabel: 'Актуально',
                     allowBlank: false
-                }
-             ]
+                }]
+            }, { xtype: 'vacancyrequirementsList',
+                 region: 'east',
+                 width: 300
+            }
+           ]
             },
              this.buttons = [{
                  text: 'Сохранить',

@@ -18,6 +18,7 @@ namespace VacancyManager.Services
     void CreateVacancy(string title, string description, DateTime? openingDate, string foreignLanguage, string requirments, bool isVisible);
     void UpdateVacancy(int vacancyid, string title, string description, DateTime? openingDate, string foreignLanguage, string requirments, bool isVisible);
     void DeleteVacancy(int vacancyid);
+    IEnumerable<VacancyRequirement> GetVacancyRequirements(int id);
     #endregion
     #region RequirementStack
     IEnumerable<RequirementStack> GetAllRequirementStacks();
@@ -27,6 +28,7 @@ namespace VacancyManager.Services
     #endregion
     #region Requirement
     IEnumerable<Requirement> GetAllRequirements(int id);
+    IEnumerable<Requirement> GetRequirements(); 
     int CreateRequirement(int id, string name);
     void DeleteRequirement(int id);
     void UpdateRequirement(int id, string name);

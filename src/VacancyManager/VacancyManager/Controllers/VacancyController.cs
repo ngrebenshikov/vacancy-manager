@@ -7,6 +7,7 @@ using VacancyManager.Models;
 using System.Collections.ObjectModel;
 using VacancyManager.Services;
 using System.Web.Script.Serialization;
+using System.Collections;
 
 
 namespace VacancyManager.Controllers
@@ -28,7 +29,7 @@ namespace VacancyManager.Controllers
         public JsonResult Load()
         {
             var VisibleVacancies = _repository.AllVisibleVacancies();
-       //     var VacanciesList = VisibleVacancies; 
+            var Requirments = _repository.GetRequirements().ToList();
             
             var VacanciesList = (from Vacancies in VisibleVacancies
                                  select new
@@ -38,16 +39,18 @@ namespace VacancyManager.Controllers
                                      Description = Vacancies.Description,
                                      OpeningDate = Vacancies.OpeningDate,
                                      ForeignLanguage = Vacancies.ForeignLanguage,
-                                     Requirments = Vacancies.Requirments,
-                                     IsVisible = Vacancies.IsVisible
+                                     Requirments = Vacancies.VacancyRequirements.ToList(),
+                                     IsVisible = Vacancies.IsVisible,
+                                     Considerations = Vacancies.Considerations.Count
                                  }
                              ).ToList();
+
             return Json(new
-                           {
-                              data = VacanciesList,
-                              total = VacanciesList.Count
-                           },
-                        JsonRequestBehavior.AllowGet);
+                               {
+                                   data = VacanciesList,
+                                   total = VacanciesList.Count
+                               },
+                            JsonRequestBehavior.AllowGet);
         }
 
         //
@@ -151,5 +154,55 @@ namespace VacancyManager.Controllers
                 message = d_message
             });
         }
+
+        [HttpGet]
+        public JsonResult LoadVacRequirements(int id)
+        {
+            var RequirementsStackList = _repository.GetAllRequirementStacks();
+            var RequirementsList = _repository.GetRequirements();
+            var VacancyRequirementsList = _repository.GetVacancyRequirements(id);
+            var Complex = from o in RequirementsStackList
+                          join v in RequirementsList on o.RequirementStackID equals v.RequirementStackID
+                          join y in VacancyRequirementsList on v.RequirementID equals y.RequirementID into a
+                          from b in a.DefaultIfEmpty(new VacancyRequirement())
+                          select new
+                          {
+                              VacancyRequirementID = b.VacancyRequirementID,
+                              StackName = o.Name,
+                              RequirementStackID = v.RequirementStackID,
+                              RequirementID = v.RequirementID,
+                              RequirementName = v.Name,
+                              Comments = b.Comments,
+                              Require =  ( b.VacancyRequirementID > 0 ? "true" :
+                                           b.VacancyRequirementID == -1 ? "false" : "false"
+                              )
+                          };
+
+            return Json(new
+                           { VacancyRequirements = Complex.ToList(),
+                             total = Complex.ToList().Count
+                            },
+                        JsonRequestBehavior.AllowGet
+            );
+        }
+
+        [HttpPost]
+        public JsonResult UpdateVacRequirements(string data)
+        {
+            bool u_success = false;
+            string u_message = "При изменении требований произошла ошибка";
+            JavaScriptSerializer jss = new JavaScriptSerializer();
+            if (data != null)
+            {
+                u_success = true;
+                u_message = "Требования успешно изменены";
+            }
+            return Json(new
+            {
+                success = u_success,
+                message = u_message
+            });
+        }
+
     }
 }
