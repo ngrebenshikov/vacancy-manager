@@ -16,6 +16,7 @@ namespace VacancyManager.Models
     public DbSet<RequirementStack> RequirementStacks { get; set; }
     public DbSet<Requirement> Requirements { get; set; }
     public DbSet<Role> Roles { get; set; }
+    public DbSet<VacancyRequirement> VacancyRequirements { get; set; }
 
     protected override void OnModelCreating(DbModelBuilder modelBuilder)
     {

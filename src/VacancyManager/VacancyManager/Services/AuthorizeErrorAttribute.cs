@@ -35,7 +35,8 @@ namespace VacancyManager.Services
       }
       else
       {
-        filterContext.Result = new ViewResult { ViewName = "Access Denied" };
+          filterContext.HttpContext.Response.StatusCode = 401;
+          filterContext.Result = new ViewResult { ViewName = "Access Denied" };
       }
     }
   }

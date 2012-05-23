@@ -30,7 +30,7 @@ Ext.define('VM.model.Vacancy', {
                  },
                  {
                      name: 'Considerations',
-                     type: 'auto'
+                     type: 'int'
                  },
                  {
                      name: 'TechnologyStacks'

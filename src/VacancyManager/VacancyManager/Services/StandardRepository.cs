@@ -330,6 +330,12 @@ namespace VacancyManager.Services
         _db.SaveChanges();
       }
     }
+
+    public IEnumerable<VacancyRequirement> GetVacancyRequirements(int id)
+    {
+        return _db.VacancyRequirements.Where(vacancy_rec => vacancy_rec.VacancyID == id).ToList();
+    }
+
     #endregion
 
     #region RequirementStack
@@ -371,6 +377,10 @@ namespace VacancyManager.Services
     #endregion
 
     #region Requirement
+    public IEnumerable<Requirement> GetRequirements()
+    {
+        return _db.Requirements.ToList();
+    }
 
     public IEnumerable<Requirement> GetAllRequirements(int id)
     {

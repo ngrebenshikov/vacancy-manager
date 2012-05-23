@@ -26,6 +26,7 @@
               xtype: 'panel',
               title: "Вакансии",
               autoScroll: true,
+              layout: 'fit',
               items:
               [
                 { xtype: 'vacancyList' }
