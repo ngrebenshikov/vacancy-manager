@@ -1,10 +1,12 @@
-﻿namespace VacancyManager.Models
-{
-    public class Role
-    {
-        public int RoleID { get; set; }
-        public string Name { get; set; }
+﻿using System.Collections.Generic;
 
-        public virtual User User { get; set; }
-    }
+namespace VacancyManager.Models
+{
+  public class Role
+  {
+    public int RoleID { get; set; }
+    public string Name { get; set; }
+
+    public virtual ICollection<User> User { get; set; }
+  }
 }

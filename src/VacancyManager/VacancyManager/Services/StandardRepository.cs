@@ -165,7 +165,9 @@ namespace VacancyManager.Services
       //deleteAllRelatedData currently not using
       var delete_user = _db.Users.SingleOrDefault(a => a.UserName == username);
       if (delete_user == null) return false;
-      _db.Users.Remove(delete_user);
+      if (Roles.GetRolesForUser(delete_user.UserName).Count() != 0)
+        Roles.RemoveUsersFromRoles(new string[] { delete_user.UserName }, Roles.GetRolesForUser(delete_user.UserName));
+      _db.Users.Remove(_db.Users.SingleOrDefault(a => a.UserName.Equals(delete_user.UserName)));
       _db.SaveChanges();
       return true;
     }
@@ -272,12 +274,20 @@ namespace VacancyManager.Services
 
     public void AddUsersToRoles(string[] usernames, string[] roleNames)
     {
-      RoleAndUsers((user, rolename) => user.Roles.Add(_db.Roles.Single(x => x.Name.Equals(rolename))), usernames, roleNames);
+      RoleAndUsers((user, rolename) =>
+                     {
+                       if (user.Roles.FirstOrDefault(x => x.Name.Equals(rolename)) == null)
+                         user.Roles.Add(_db.Roles.Single(x => x.Name.Equals(rolename)));
+                     }, usernames, roleNames);
     }
 
     public void RemoveUsersFromRoles(string[] usernames, string[] roleNames)
     {
-      RoleAndUsers((user, rolename) => user.Roles.Remove(_db.Roles.Single(x => x.Name.Equals(rolename))), usernames, roleNames);
+      RoleAndUsers((user, rolename) =>
+      {
+        if (user.Roles.FirstOrDefault(x => x.Name.Equals(rolename)) != null)
+          user.Roles.Remove(_db.Roles.Single(x => x.Name.Equals(rolename)));
+      }, usernames, roleNames);
     }
 
     public string[] FindUsersInRole(string roleName, string usernameToMatch)
@@ -333,7 +343,7 @@ namespace VacancyManager.Services
 
     public IEnumerable<VacancyRequirement> GetVacancyRequirements(int id)
     {
-        return _db.VacancyRequirements.Where(vacancy_rec => vacancy_rec.VacancyID == id).ToList();
+      return _db.VacancyRequirements.Where(vacancy_rec => vacancy_rec.VacancyID == id).ToList();
     }
 
     #endregion
@@ -379,7 +389,7 @@ namespace VacancyManager.Services
     #region Requirement
     public IEnumerable<Requirement> GetRequirements()
     {
-        return _db.Requirements.ToList();
+      return _db.Requirements.ToList();
     }
 
     public IEnumerable<Requirement> GetAllRequirements(int id)
@@ -455,7 +465,7 @@ namespace VacancyManager.Services
       {
         var user = _db.Users.FirstOrDefault(x => x.UserName.Equals(username));
         if (user == null) continue;
-        foreach (var rolename in roleNames.Where(rolename => user.Roles.Any(x => !x.Name.Equals(rolename))))
+        foreach (var rolename in roleNames)
         {
           act(user, rolename);
         }

@@ -93,6 +93,14 @@
     <Compile Include="Migrations\201204101212482_RenameTechToRequirement.Designer.cs">
       <DependentUpon>201204101212482_RenameTechToRequirement.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201205241356117_VacancyRequirementsAdded.cs" />
+    <Compile Include="Migrations\201205241356117_VacancyRequirementsAdded.Designer.cs">
+      <DependentUpon>201205241356117_VacancyRequirementsAdded.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201205281103023_MultiRole.cs" />
+    <Compile Include="Migrations\201205281103023_MultiRole.Designer.cs">
+      <DependentUpon>201205281103023_MultiRole.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\RequirementResumeRecord.cs" />

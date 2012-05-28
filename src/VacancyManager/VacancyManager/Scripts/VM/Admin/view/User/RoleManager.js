@@ -9,7 +9,7 @@
     title: 'Role manager',
     layout: 'fit',
     autoShow: true,
-    height: 60,
+    height: 300,
     width: 280,
 
     initComponent: function ()
@@ -27,6 +27,16 @@
               xtype: 'displayfield',
               name: 'UserName',
               allowBlank: false
+            },
+            {
+              xtype: 'dataview',
+              autoScroll: true, store: 'Roles',
+              tpl: '<tpl for="."><div class="DataView-list"><input type="checkbox" id="check{Name}" value="c{Name}" onclick="oncheck(id)">{Name}</div></tpl>',
+              autoHeight: false, height: 265,
+              multiSelect: true, itemSelector: 'DataView-list-item',
+              emptyText: 'No data to display',
+              loadingText: 'Please Wait...',
+              style: 'border:1px solid #99BBE8;background:#fff;'
             }
           ]
         }
@@ -49,4 +59,28 @@
     }
   }
 );
+
+VM.view.User.RoleManager.implement({
+  CheckSelectedRoles: function ()
+  {
+    var form = RoleMngWindow.down("form");
+    var record = form.getRecord();
+    var roles = record.get("Roles");
+    for (var i = 0; i < roles.length; i++)
+    {
+      document.getElementById("check" + roles[i]).checked = true;
+    }
+  }
+});
+function oncheck(str)
+{
+  changed = true;
+  if (document.getElementById(str).checked)
+  {
+    roles.push(str.slice("check".length));
+  } else
+  {
+    roles.splice(roles.indexOf(str.slice("check".length)), 1);
+  }
+}
 

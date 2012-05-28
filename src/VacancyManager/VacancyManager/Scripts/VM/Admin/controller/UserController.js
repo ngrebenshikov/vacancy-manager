@@ -1,8 +1,7 @@
-﻿
-Ext.define('VM.controller.UserController', {
+﻿Ext.define('VM.controller.UserController', {
   extend: 'Ext.app.Controller',
 
-  stores: ['User'],
+  stores: ['User', 'Roles'],
 
   models: ['User'],
 
@@ -26,6 +25,9 @@ Ext.define('VM.controller.UserController', {
                   },
                   'button[action = callRoleManager]': {
                     click: this.callRoleManager
+                  },
+                  'button[action = ChangeRoles]': {
+                    click: this.ChangeRoles
                   },
                   'button[action = deleteUser]': {
                     click: this.deleteUser
@@ -127,11 +129,27 @@ Ext.define('VM.controller.UserController', {
 
   callRoleManager: function (button)
   {
+    changed = false;
     var grid = button.up('grid');
     var UserStore = grid.getStore();
     var sel_user = grid.getView().getSelectionModel().getSelection()[0];
-    var RoleMngWindow = Ext.create('VM.view.User.RoleManager').show();
+    RoleMngWindow = Ext.create('VM.view.User.RoleManager').show();
     RoleMngWindow.down('form').loadRecord(sel_user);
+    roles = sel_user.get("Roles");
+    window.parent.setTimeout(function () { RoleMngWindow.CheckSelectedRoles(); }, 0);
+  },
+
+  ChangeRoles: function (button)
+  {
+    var win = button.up('window');
+    if (changed)
+    {
+      win.down("form").getRecord().set("Roles", roles);
+      win.down("form").getRecord().setDirty();
+      this.getUserStore().sync();
+    }
+    roles = null;
+    win.close();
   },
 
   ButtonDisabler: function (button)
@@ -140,3 +158,6 @@ Ext.define('VM.controller.UserController', {
     //Ext.Msg.alert('Наше пробное сообщение', 'Hello, World!');
   }
 });
+var RoleMngWindow; //Нужно для расставления галочек
+var roles; //необходимо для правильного обновления модели
+var changed = false; //Чтобы не гонять на сервер одни и теже данные если пользователь ничего не поменял и нажал кнопочку change roles

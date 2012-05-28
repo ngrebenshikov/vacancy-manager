@@ -36,7 +36,7 @@ namespace VacancyManager.Services
         return roles.ToArray();
       }
 
-      return new[] { "" };
+      return new string[0];
     }
 
     public override void CreateRole(string roleName)
