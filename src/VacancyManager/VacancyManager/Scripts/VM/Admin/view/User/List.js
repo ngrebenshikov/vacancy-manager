@@ -26,6 +26,24 @@ Ext.define('VM.view.User.List', {
                   menuDisabled: true
                 },
                 {
+                  dataIndex: 'Roles',
+                  text: 'Роли',
+                  width: 120,
+                  menuDisabled: true,
+                  field: { xtype: 'textfield' },
+                  renderer: function (value)
+                  {
+                    var str = "";
+                    for (var i = 0; i < value.length; i++)
+                    {
+                      str = str + value[i];
+                      if (i != value.length - 1)
+                        str = str + "; ";
+                    }
+                    return str;
+                  }
+                },
+                {
                   dataIndex: 'Email',
                   text: 'Email',
                   width: 120,

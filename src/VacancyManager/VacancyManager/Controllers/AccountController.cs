@@ -65,26 +65,8 @@ namespace VacancyManager.Controllers
       var AllUsers = Membership.GetAllUsers();
 
 
-      List<dynamic> UserList = new List<dynamic>();
+      List<dynamic> UserList = AllUsers.Cast<VMMembershipUser>().Select(realUser => ReturnJsonUser(realUser)).ToList();
 
-      foreach (VMMembershipUser realUser in AllUsers.Cast<VMMembershipUser>())
-      {
-        var roles = Roles.GetRolesForUser(realUser.UserName);
-        UserList.Add(new
-        {
-          UserID = realUser.ProviderUserKey,
-          realUser.UserName,
-          realUser.Email,
-          UserComment = realUser.Comment,
-          CreateDate = realUser.CreationDate,
-          LaslLoginDate = realUser.LastLoginDate,
-          IsActivated = realUser.IsApproved,
-          realUser.IsLockedOut,
-          LastLockedOutDate = realUser.LastLockoutDate,
-          realUser.LastLockedOutReason,
-          Roles = roles,
-        });
-      }
       return Json(new
       {
         data = UserList,
@@ -98,7 +80,7 @@ namespace VacancyManager.Controllers
     [AuthorizeError]
     public JsonResult ExtJSCreateUser(string data)
     {
-      string c_message = "При создании пользователя произошла ошибка";
+      string message = "При создании пользователя произошла ошибка";
       JavaScriptSerializer jss = new JavaScriptSerializer();
       if (data != null)
       {
@@ -114,12 +96,13 @@ namespace VacancyManager.Controllers
           string ActivationLink = "http://localhost:53662/Account/Activate/" +
                                   user.UserName + "/" + user.EmailKey;
           EMailSender.SendMail(ActivationLink, user.Email);
-          c_message = "Пользователь создан";
-          var roles = Roles.GetRolesForUser(user.UserName);
+          message = "Пользователь создан";
+          return CreateJsonAnwser(true, message, user);
+          /*var roles = Roles.GetRolesForUser(user.UserName);
           return Json(new
                         {
                           success = true,
-                          message = c_message,
+                          message = message,
                           data = new
                           {
                             UserID = user.ProviderUserKey,
@@ -134,15 +117,11 @@ namespace VacancyManager.Controllers
                             user.LastLockedOutReason,
                             Roles = roles
                           }
-                        });
+                        });*/
         }
-        c_message = ErrorCodeToString(createStatus);
+        message = ErrorCodeToString(createStatus);
       }
-      return Json(new
-      {
-        success = false,
-        message = c_message
-      });
+      return CreateJsonAnwser(false, message, null);
     }
 
     [HttpPost]
@@ -215,7 +194,26 @@ namespace VacancyManager.Controllers
             }
           }
         }
-        var roles = Roles.GetRolesForUser(userInDB.UserName);
+        //Проверка на смену ролей
+        string[] currentRoles = Roles.GetRolesForUser(userInDB.UserName);
+        string[] changedRoles = new string[record["Roles"].Length];
+        bool rolesChanged = false;
+        for (int i = 0; i < changedRoles.Length; i++)
+        {
+          if (!currentRoles.Any(x => x.Equals(record["Roles"][i].ToString())))
+            rolesChanged = true;
+          changedRoles[i] = (record["Roles"][i].ToString());
+        }
+        if (currentRoles.Length != changedRoles.Length || rolesChanged)
+        {
+          if (currentRoles.Length != 0)
+            Roles.RemoveUsersFromRoles(new string[] { userInDB.UserName }, currentRoles);
+          Roles.AddUsersToRoles(new string[] { userInDB.UserName }, changedRoles);
+          success = true;
+          message = "Роли успешно изменены";
+        }
+        return CreateJsonAnwser(success, message, userInDB);
+        /*var roles = Roles.GetRolesForUser(userInDB.UserName);
         return Json(new
         {
           success = success,
@@ -234,13 +232,9 @@ namespace VacancyManager.Controllers
             userInDB.LastLockedOutReason,
             Roles = roles
           }
-        });
+        });*/
       }
-      return Json(new
-      {
-        success = success,
-        message = message
-      });
+      return CreateJsonAnwser(success, message, null);
     }
 
     //
@@ -299,6 +293,8 @@ namespace VacancyManager.Controllers
     public ActionResult Activate(string username, string key)
     {
       VMMembershipUser user = (VMMembershipUser)Membership.GetUser(username, false);
+      if (user == null)
+        return Redirect("Error");
       if (user.EmailKey != key)
         return RedirectToAction("IndexOld", "Home");
       user.UnlockUser();
@@ -358,6 +354,45 @@ namespace VacancyManager.Controllers
     public ActionResult ChangePasswordSuccess()
     {
       return View();
+    }
+
+    private JsonResult CreateJsonAnwser(bool success, string message, VMMembershipUser user)
+    {
+      if (success)
+      {
+        return Json(new
+        {
+          success = true,
+          message = message,
+          data = ReturnJsonUser(user)
+        });
+      }
+      return Json(new
+      {
+        success = false,
+        message = message
+      });
+    }
+
+    private dynamic ReturnJsonUser(VMMembershipUser user)
+    {
+      if (user == null)
+        throw new NullReferenceException();
+      var roles = Roles.GetRolesForUser(user.UserName);
+      return new
+               {
+                 UserID = user.ProviderUserKey,
+                 user.UserName,
+                 user.Email,
+                 UserComment = user.Comment,
+                 CreateDate = user.CreationDate,
+                 LaslLoginDate = user.LastLoginDate,
+                 IsActivated = user.IsApproved,
+                 user.IsLockedOut,
+                 LastLockedOutDate = user.LastLockoutDate,
+                 user.LastLockedOutReason,
+                 Roles = roles
+               };
     }
 
     #region Status Codes
