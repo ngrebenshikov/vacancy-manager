@@ -74,6 +74,7 @@
     <Compile Include="Controllers\RequirementStackController.cs" />
     <Compile Include="Controllers\RolesController.cs" />
     <Compile Include="Controllers\VacancyController.cs" />
+    <Compile Include="Controllers\VacancyRequirementController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -1368,6 +1369,27 @@
     <Content Include="ExtLib\resources\themes\images\gray\window\icon-warning.gif" />
     <Content Include="ExtLib\resources\themes\images\gray\window\window-default-corners.gif" />
     <Content Include="ExtLib\resources\themes\images\gray\window\window-default-sides.gif" />
+    <Content Include="ExtLib\ux\CheckColumn.js" />
+    <Content Include="ExtLib\ux\css\CenterLayout.css" />
+    <Content Include="ExtLib\ux\css\CheckHeader.css" />
+    <Content Include="ExtLib\ux\css\GroupTabPanel.css" />
+    <Content Include="ExtLib\ux\css\images\border.gif" />
+    <Content Include="ExtLib\ux\css\images\bottom2.gif" />
+    <Content Include="ExtLib\ux\css\images\checked.gif" />
+    <Content Include="ExtLib\ux\css\images\down2.gif" />
+    <Content Include="ExtLib\ux\css\images\left2.gif" />
+    <Content Include="ExtLib\ux\css\images\right2.gif" />
+    <Content Include="ExtLib\ux\css\images\tab-collapsed.gif" />
+    <Content Include="ExtLib\ux\css\images\tab-first.gif" />
+    <Content Include="ExtLib\ux\css\images\tab-last.gif" />
+    <Content Include="ExtLib\ux\css\images\tab-scroller-menu.gif" />
+    <Content Include="ExtLib\ux\css\images\top2.gif" />
+    <Content Include="ExtLib\ux\css\images\unchecked.gif" />
+    <Content Include="ExtLib\ux\css\images\up2.gif" />
+    <Content Include="ExtLib\ux\css\ItemSelector.css" />
+    <Content Include="ExtLib\ux\css\LiveSearchGridPanel.css" />
+    <Content Include="ExtLib\ux\css\TabScrollerMenu.css" />
+    <Content Include="ExtLib\ux\RowExpander.js" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\jquery-1.7.2-vsdoc.js" />

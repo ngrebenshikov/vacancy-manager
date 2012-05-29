@@ -3,15 +3,14 @@
     model: 'VM.model.VacancyRequirements',
     groupField: 'StackName',
     autoLoad: false,
-    autoSync: true,
-    autoSave: false,
+    autoSync: false,
+    autoSave: true,
     proxy: {
         type: 'ajax',
         api: {
-            read: '/Vacancy/LoadVacRequirements',
-            update: '/Vacancy/UpdateVacRequirements',
-            create: '/Vacancy/UpdateVacRequirements'
-         },
+            read: '/VacancyRequirement/LoadVacancyRequirements',
+            update: '/VacancyRequirement/UpdateVacancyRequirements'
+        },
         reader: {
             type: 'json',
             root: 'VacancyRequirements',
@@ -22,8 +21,10 @@
             encode: false,
             listful: true,
             writeAllFields: true,
+            allowSingle: true,
+            root: 'data',
             getRecordData: function (record) {
-                return { 'data': Ext.JSON.encode(record.data) };
+                return Ext.JSON.encode(record.data);
             }
         },
         headers: { 'Content-Type': 'application/json; charset=UTF-8' }

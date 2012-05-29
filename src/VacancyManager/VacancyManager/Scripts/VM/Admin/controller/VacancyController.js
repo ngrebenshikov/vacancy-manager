@@ -12,7 +12,9 @@ Ext.define('VM.controller.VacancyController', {
         this.control(
                 {
                     'vacancyList dataview': {
-                        itemdblclick: this.editVacancy
+                        expandbody: this.loadcons,
+                        collapsebody: this.destroygrid//,
+                        //   itemdblclick: this.editVacancy
                     },
                     'button[action = loadBlankVacancy]': {
                         click: this.loadBlankVacancy
@@ -33,6 +35,46 @@ Ext.define('VM.controller.VacancyController', {
 
     },
 
+    destroygrid: function (rowNode, record, expandRow) {
+        SubGrid = Ext.getCmp('IssueSubCategoryGridRowGrid-' + record.get('VacancyID'));
+        SubGrid.destroy();
+    },
+
+    loadcons: function (rowNode, record, expandRow) {
+        targetid = 'IssueSubCategoryGridRow-' + record.get('VacancyID');
+        gridid = 'IssueSubCategoryGridRowGrid-' + record.get('VacancyID');
+
+        var grid = Ext.create('Ext.grid.Panel', {
+            id: gridid,
+            padding: '10 10 10 10',
+            columns: [
+            {
+                text: 'ConsiderationID',
+                flex: 1,
+                sortable: false,
+                dataIndex: 'ConsiderationID'
+            }, {
+                text: 'VacancyID',
+                width: 75,
+                sortable: true,
+                dataIndex: 'VacancyID'
+            }, {
+                text: 'ApplicantID',
+                width: 75,
+                sortable: true,
+                dataIndex: 'ApplicantID'
+            }
+        ],
+            height: 300,
+            forceFit: true,
+            title: 'Considerations Grid',
+            renderTo: targetid,
+            viewConfig: {
+                stripeRows: true
+            }
+        });
+    },
+
     addVacancy: function (button) {
         var vacancystore = this.getVacancyStore(),
            wndvacanyEdit = button.up('window'),
@@ -46,6 +88,8 @@ Ext.define('VM.controller.VacancyController', {
     },
 
     loadBlankVacancy: function () {
+        VacancyRequirementsStore = Ext.StoreManager.lookup('VacancyRequirements');
+        VacancyRequirementsStore.load({ params: { "id": -1} });
         var wndvacanyEdit = Ext.create('VM.view.vacancy.Add').show(),
         blankvacancy = Ext.create('VM.model.Vacancy', {
             Title: 'Новая вакансия',
@@ -60,8 +104,8 @@ Ext.define('VM.controller.VacancyController', {
 
     editVacancy: function (button) {
         var grid = button.up('grid'),
-           sel_vacancy = grid.getView().getSelectionModel().getSelection()[0],
-           wndvacanyEdit = Ext.create('VM.view.vacancy.Edit').show();
+            sel_vacancy = grid.getView().getSelectionModel().getSelection()[0],
+            wndvacanyEdit = Ext.create('VM.view.vacancy.Edit').show();
         wndvacanyEdit.down('form').loadRecord(sel_vacancy);
         VacancyRequirementsStore = Ext.StoreManager.lookup('VacancyRequirements');
         VacancyRequirementsStore.load({ params: { "id": sel_vacancy.get('VacancyID')} });
@@ -75,6 +119,13 @@ Ext.define('VM.controller.VacancyController', {
         var newdate = eval("({ dtm: new Date(newvalues['OpeningDate']) })");
         newvalues['OpeningDate'] = newdate.dtm;
         sel_vacancy.set(newvalues);
+        VacancyRequirementsStore = Ext.StoreManager.lookup('VacancyRequirements');
+        VacancyRequirementsStore.each(function (record, index) {
+            if (record.data['VacancyID'] = -1) {
+                record.data['VacancyID'] = sel_vacancy.get('VacancyID');
+            }
+        });
+        VacancyRequirementsStore.sync();
         wndvacanyEdit.close();
     },
 
