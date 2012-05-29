@@ -1,4 +1,8 @@
-﻿Ext.define('VM.view.vacancy.VacancyRequirementsList', {
+﻿var cellEditing = Ext.create('Ext.grid.plugin.CellEditing', {
+    clicksToEdit: 2
+});
+
+Ext.define('VM.view.vacancy.VacancyRequirementsList', {
     extend: 'Ext.grid.Panel',
     alias: 'widget.vacancyrequirementsList',
     region: 'center',
@@ -9,25 +13,20 @@
     forceFit: true,
     frame: false,
     split: true,
+    plugins: [cellEditing],
     features: [Ext.create('Ext.grid.feature.Grouping',{
               groupHeaderTpl: '{name} требований: ({rows.length})'
     })],
     title: 'Требования',  
     store: 'VacancyRequirements',
     columns: [
-             {
+             {   xtype: 'checkcolumn',
                  dataIndex: 'Require',
                  width: 10,
                  align: 'center',
                  sortable: false,
                  field: { xtype: 'checkboxfield' },
-                 menuDisabled: true,
-                 renderer: function(value) {
-                    var text = '<input type="checkbox"';
-                    if(value)
-                     text += ' checked="checked"';
-                    return text + '/>';
-                 }
+                 menuDisabled: true
              }, {
                   dataIndex: 'RequirementName',
                   text: 'RequirementName',

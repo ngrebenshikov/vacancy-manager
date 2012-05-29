@@ -17,7 +17,7 @@ namespace VacancyManager.Controllers
         private readonly IRepository _repository;
         // GET: /Vacancy/
 
-        public VacancyController(IRepository repository)
+         public VacancyController(IRepository repository)
         {
             _repository = repository;
         }
@@ -39,7 +39,10 @@ namespace VacancyManager.Controllers
                                      Description = Vacancies.Description,
                                      OpeningDate = Vacancies.OpeningDate,
                                      ForeignLanguage = Vacancies.ForeignLanguage,
-                                     Requirments = Vacancies.VacancyRequirements.ToList(),
+                                     Requirments = (from vac in Vacancies.VacancyRequirements
+                                                    join req in Requirments on vac.RequirementID equals req.RequirementID
+                                                    select req.Name
+                                                    ),
                                      IsVisible = Vacancies.IsVisible,
                                      Considerations = Vacancies.Considerations.Count
                                  }
@@ -62,6 +65,7 @@ namespace VacancyManager.Controllers
         {
             bool c_success = false;
             string c_message = "При создания вакансии произошла ошибка";
+            List<Vacancy> CreatedVacancy;
             JavaScriptSerializer jss = new JavaScriptSerializer();
             if (data != null)
             {
@@ -75,19 +79,21 @@ namespace VacancyManager.Controllers
                 object IsVisible = c_Vacancy["IsVisible"];
                 if (OpeningDate == null)
                     OpeningDate = DateTime.Now.Date;
-                _repository.CreateVacancy(Title.ToString(),
+                CreatedVacancy = (_repository.CreateVacancy(Title.ToString(),
                                           Description.ToString(),
                                           Convert.ToDateTime(OpeningDate),
                                           ForeignLanguage.ToString(),
                                           Requirments.ToString(),
                                           Convert.ToBoolean(IsVisible)
-                 );
+                 )).ToList();
                 c_message = "Вакансия успешно создана";
                 c_success = true;
             }
+            else
+                CreatedVacancy = null;
 
             return Json(new
-            {
+            {   data = CreatedVacancy,
                 success = c_success,
                 message = c_message
             });
@@ -154,55 +160,5 @@ namespace VacancyManager.Controllers
                 message = d_message
             });
         }
-
-        [HttpGet]
-        public JsonResult LoadVacRequirements(int id)
-        {
-            var RequirementsStackList = _repository.GetAllRequirementStacks();
-            var RequirementsList = _repository.GetRequirements();
-            var VacancyRequirementsList = _repository.GetVacancyRequirements(id);
-            var Complex = from o in RequirementsStackList
-                          join v in RequirementsList on o.RequirementStackID equals v.RequirementStackID
-                          join y in VacancyRequirementsList on v.RequirementID equals y.RequirementID into a
-                          from b in a.DefaultIfEmpty(new VacancyRequirement())
-                          select new
-                          {
-                              VacancyRequirementID = b.VacancyRequirementID,
-                              StackName = o.Name,
-                              RequirementStackID = v.RequirementStackID,
-                              RequirementID = v.RequirementID,
-                              RequirementName = v.Name,
-                              Comments = b.Comments,
-                              Require =  ( b.VacancyRequirementID > 0 ? "true" :
-                                           b.VacancyRequirementID == -1 ? "false" : "false"
-                              )
-                          };
-
-            return Json(new
-                           { VacancyRequirements = Complex.ToList(),
-                             total = Complex.ToList().Count
-                            },
-                        JsonRequestBehavior.AllowGet
-            );
-        }
-
-        [HttpPost]
-        public JsonResult UpdateVacRequirements(string data)
-        {
-            bool u_success = false;
-            string u_message = "При изменении требований произошла ошибка";
-            JavaScriptSerializer jss = new JavaScriptSerializer();
-            if (data != null)
-            {
-                u_success = true;
-                u_message = "Требования успешно изменены";
-            }
-            return Json(new
-            {
-                success = u_success,
-                message = u_message
-            });
-        }
-
-    }
+     }
 }

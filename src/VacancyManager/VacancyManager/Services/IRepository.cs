@@ -15,11 +15,18 @@ namespace VacancyManager.Services
     void UpdateMembershipUser(MembershipUser user);
     bool UnlockMembershipUser(string userName);
     #region Vacancy
-    void CreateVacancy(string title, string description, DateTime? openingDate, string foreignLanguage, string requirments, bool isVisible);
+    List<Vacancy> CreateVacancy(string title, string description, DateTime? openingDate, string foreignLanguage, string requirments, bool isVisible);
     void UpdateVacancy(int vacancyid, string title, string description, DateTime? openingDate, string foreignLanguage, string requirments, bool isVisible);
     void DeleteVacancy(int vacancyid);
-    IEnumerable<VacancyRequirement> GetVacancyRequirements(int id);
     #endregion
+
+    #region VacancyRequirement
+    IEnumerable<VacancyRequirement> GetVacancyRequirements(int id);
+    void CreateVacancyRequirement(int vacancyid, int requirementid, string comments);
+    void UpdateVacancyRequirement(int vacancyid, int requirementid, string comments);
+    void DeleteVacancyRequirement(int vacancyrequirementid);
+    #endregion
+
     #region RequirementStack
     IEnumerable<RequirementStack> GetAllRequirementStacks();
     int CreateRequirementStack(string name);

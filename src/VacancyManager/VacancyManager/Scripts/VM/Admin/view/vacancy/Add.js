@@ -3,8 +3,8 @@ Ext.define('VM.view.vacancy.Add', {
     extend: 'Ext.window.Window',
     alias: 'widget.vacancyAdd',
     title: 'Редактирование вакансии',
-    height: 500,
-    width: 700,
+    height: 450,
+    width: 650,
     autoShow: true,
     modal: true,
     layout: 'fit',
@@ -28,7 +28,7 @@ Ext.define('VM.view.vacancy.Add', {
                         align: 'stretch'
                     },
                     style: 'background-color: #fff;',
-                    items: [
+                items: [
                 {
                     xtype: 'textfield',
                     id: 'txtTitle',
@@ -49,13 +49,6 @@ Ext.define('VM.view.vacancy.Add', {
                     fieldLabel: 'Дата открытия',
                     name: 'OpeningDate',
                     format: 'd F Y',
-                    allowBlank: false
-                }, {
-                    xtype: 'textfield',
-                    id: 'txtForeignLanguage',
-                    name: 'ForeignLanguage',
-                    flex: 1,
-                    fieldLabel: 'Иностранные языки',
                     allowBlank: false
                 }, {
                     xtype: 'checkboxfield',

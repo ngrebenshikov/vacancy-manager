@@ -1,4 +1,7 @@
 ﻿
+
+
+
 Ext.define('VM.view.vacancy.List', {
     extend: 'Ext.grid.Panel',
     alias: 'widget.vacancyList',
@@ -6,7 +9,6 @@ Ext.define('VM.view.vacancy.List', {
     height: 500,
     id: 'vacancyGrid',
     autoSizeColumns: true,
-    //autoHeight: true,
     forceFit: true,
     frame: false,
     split: true,
@@ -34,7 +36,6 @@ Ext.define('VM.view.vacancy.List', {
                   text: 'Требования',
                   width: 130,
                   sortable: false,
-                  field: { xtype: 'textfield' },
                   menuDisabled: true
               }, {
                   dataIndex: 'Considerations',
@@ -56,12 +57,13 @@ Ext.define('VM.view.vacancy.List', {
                   ptype: 'rowexpander',
                   expandOnDblClick: false,
                   selectRowOnExpand : true,
-                  rowBodyTpl : [
-                     '<br>',
-                     '<p><b>Описание:</b> {Description}</p><br>',
-                     '<p><b>Требования:</b> {Requirments}</p>'
-                  ]
+                  rowBodyTpl: [' <center> ',
+                               ' <br> ',
+                               ' <div id="IssueSubCategoryGridRow-{VacancyID}"></div>',
+                               ' <br> ',
+                               ' </center> ']
     }],
+
     bbar: [{
         text: 'Новая вакансия',
         name: 'btnLoadBlankVacancy',

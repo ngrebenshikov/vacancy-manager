@@ -1,7 +1,10 @@
 ﻿Ext.define('VM.model.VacancyRequirements',
   {
       extend: 'Ext.data.Model',
+      idProperty: 'RequirementID',
       fields: [
+            { name: 'VacancyRequirementID', type: 'int' },   
+            { name: 'VacancyID', type: 'int' },            
             { name: 'RequirementStackID', type: 'int'},
             { name: 'StackName', type: 'string' },
             { name: 'RequirementID', type: 'int' },
