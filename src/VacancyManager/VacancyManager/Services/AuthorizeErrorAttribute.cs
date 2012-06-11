@@ -18,48 +18,6 @@ namespace VacancyManager.Services
     [Inject]
     public AuthorizeErrorAttribute() : base() { }
 
-    /*protected override bool AuthorizeCore(HttpContextBase httpContext)
-    {
-      base.AuthorizeCore(httpContext);
-
-      if ((!string.IsNullOrEmpty(Users) && (_usersSplit.Length == 0)) || (!string.IsNullOrEmpty(Roles) && (_rolesSplit.Length == 0)))
-      {
-        InitializeSplits();
-      }
-
-      IPrincipal user = httpContext.User;
-      if (!user.Identity.IsAuthenticated)
-      {
-        return false;
-      }
-
-      var userRequired = _usersSplit.Length > 0;
-      var userValid = userRequired
-          && _usersSplit.Contains(user.Identity.Name, StringComparer.OrdinalIgnoreCase);
-
-      var roleRequired = _rolesSplit.Length > 0;
-      var roleValid = (roleRequired)
-          && _rolesSplit.Any(user.IsInRole);
-
-      var userOrRoleRequired = userRequired || roleRequired;
-
-      return (!userOrRoleRequired) || userValid || roleValid;
-    }
-
-    private string[] _rolesSplit = new string[0];
-    private string[] _usersSplit = new string[0];
-
-    private void InitializeSplits()
-    {
-      lock (this)
-      {
-        if ((_rolesSplit.Length != 0) && (_usersSplit.Length != 0)) return;
-        _rolesSplit = Roles.Split(',');
-        _usersSplit = Users.Split(',');
-      }
-    }*/
-
-
     /// <summary>
     /// Вызывается, когда процесс запрашивает авторизацию.
     /// </summary>
