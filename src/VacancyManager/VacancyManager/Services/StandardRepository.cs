@@ -10,31 +10,26 @@ namespace VacancyManager.Services
 {
   class StandardRepository : IRepository
   {
-    private static readonly VacancyContext _db = new VacancyContext();
+    //private static readonly VacancyContext _db = new VacancyContext();
 
     public IEnumerable<Vacancy> AllVisibleVacancies()
     {
-      //VacancyContext _db = new VacancyContext();
+      VacancyContext _db = new VacancyContext();
       return _db.Vacancies.Where(vacancy => vacancy.IsVisible).ToList();
     }
-
-    /*public IEnumerable<User> AllUsers()
-    {
-      return _db.Users.ToList();
-    }*/
 
     #region MembershipUserMethods
 
     public MembershipUser GetMembershipUserByUserName(string username)
     {
-      //VacancyContext _db = new VacancyContext();
+      VacancyContext _db = new VacancyContext();
       var dbuser = _db.Users.FirstOrDefault(u => u.UserName == username);
       return getMembershipUserFromDBUser(dbuser);
     }
 
     public void UpdateMembershipUser(MembershipUser user)
     {
-      //VacancyContext _db = new VacancyContext();
+      VacancyContext _db = new VacancyContext();
       var realUser = (VMMembershipUser)user;
       var update_rec = _db.Users.SingleOrDefault(a => a.Email == realUser.Email);
       if (update_rec == null) return;
@@ -53,7 +48,7 @@ namespace VacancyManager.Services
 
     public bool UnlockMembershipUser(string userName)
     {
-      //VacancyContext _db = new VacancyContext();
+      VacancyContext _db = new VacancyContext();
       try
       {
         var update_rec = _db.Users.SingleOrDefault(a => a.UserName == userName);
@@ -90,14 +85,14 @@ namespace VacancyManager.Services
         EmailKey = GenerateKey(),
       };
       user.Password = CreatePasswordHash(password, user.PasswordSalt);
-      //VacancyContext _db = new VacancyContext();
+      VacancyContext _db = new VacancyContext();
       _db.Users.Add(user);
       _db.SaveChanges();
     }
 
     public bool ValidateUser(string username, string password)
     {
-      //VacancyContext _db = new VacancyContext();
+      VacancyContext _db = new VacancyContext();
       var dbuser = _db.Users.FirstOrDefault(u => u.UserName == username);
 
       return dbuser != null && dbuser.Password == CreatePasswordHash(password, dbuser.PasswordSalt) && dbuser.IsActivated && !dbuser.IsLockedOut;
@@ -105,7 +100,7 @@ namespace VacancyManager.Services
 
     public MembershipUserCollection GetAllUsers()
     {
-      //VacancyContext _db = new VacancyContext();
+      VacancyContext _db = new VacancyContext();
       MembershipUserCollection result = new MembershipUserCollection();
       foreach (var user in _db.Users.ToList())
       {
@@ -116,7 +111,7 @@ namespace VacancyManager.Services
 
     public bool DeleteUser(string username, bool deleteAllRelatedData)
     {
-      //VacancyContext _db = new VacancyContext();
+      VacancyContext _db = new VacancyContext();
       //deleteAllRelatedData currently not using
       var delete_user = _db.Users.SingleOrDefault(a => a.UserName == username);
       if (delete_user == null) return false;
@@ -129,13 +124,13 @@ namespace VacancyManager.Services
 
     public User GetUserByEmail(string email)
     {
-      //VacancyContext _db = new VacancyContext();
+      VacancyContext _db = new VacancyContext();
       return _db.Users.FirstOrDefault(u => u.Email == email);
     }
 
     public MembershipUser GetUser(object providerUserKey, bool userIsOnline)
     {
-      //VacancyContext _db = new VacancyContext();
+      VacancyContext _db = new VacancyContext();
       var dbuser = _db.Users.FirstOrDefault(u => u.UserID == Convert.ToInt32(providerUserKey));
       if ((userIsOnline) && (dbuser != null))
       {
@@ -160,7 +155,7 @@ namespace VacancyManager.Services
 
     public bool ChangePassword(string username, string oldPassword, string newPassword)
     {
-      //VacancyContext _db = new VacancyContext();
+      VacancyContext _db = new VacancyContext();
       var dbuser = _db.Users.SingleOrDefault(x => x.UserName.Equals(username, StringComparison.OrdinalIgnoreCase));
       if ((dbuser == null) || (!dbuser.Password.Equals(CreatePasswordHash(oldPassword, dbuser.PasswordSalt))))
         return false;
@@ -174,7 +169,7 @@ namespace VacancyManager.Services
 
     public string[] GetRolesForUser(string username)
     {
-      //VacancyContext _db = new VacancyContext();
+      VacancyContext _db = new VacancyContext();
       var user = _db.Users.FirstOrDefault(u => u.UserName == username);
 
       if (user != null)
@@ -190,7 +185,7 @@ namespace VacancyManager.Services
 
     public void AddRole(string roleName)
     {
-      //VacancyContext _db = new VacancyContext();
+      VacancyContext _db = new VacancyContext();
       if (_db.Roles.SingleOrDefault(a => a.Name.Equals(roleName, StringComparison.OrdinalIgnoreCase)) == null)
       {
         _db.Roles.Add(new Role
@@ -204,7 +199,7 @@ namespace VacancyManager.Services
 
     public bool DeleteRole(string roleName, bool throwOnPopulatedRole)
     {
-      //VacancyContext _db = new VacancyContext();
+      VacancyContext _db = new VacancyContext();
       var users = GetUsersInRole(roleName);
       if (throwOnPopulatedRole && users != null)
       {
@@ -221,7 +216,7 @@ namespace VacancyManager.Services
 
     public IEnumerable<string> GetUsersInRole(string roleName)
     {
-      //VacancyContext _db = new VacancyContext();
+      VacancyContext _db = new VacancyContext();
       return from a in _db.Users
              from role in a.Roles
              where role.Name.Equals(roleName, StringComparison.OrdinalIgnoreCase)
@@ -230,33 +225,33 @@ namespace VacancyManager.Services
 
     public string[] GetAllRoles()
     {
-      //VacancyContext _db = new VacancyContext();
+      VacancyContext _db = new VacancyContext();
       return (from role in _db.Roles
               select role.Name).ToArray();
     }
 
     public int GetRoleID(string roleName)
     {
-      //VacancyContext _db = new VacancyContext();
+      VacancyContext _db = new VacancyContext();
       return _db.Roles.Single(a => a.Name.Equals(roleName, StringComparison.OrdinalIgnoreCase)).RoleID;
     }
 
     public bool IsUserInRole(string username, string roleName)
     {
-      //VacancyContext _db = new VacancyContext();
+      VacancyContext _db = new VacancyContext();
       var user = _db.Users.FirstOrDefault(x => x.UserName.Equals(username));
       return user != null && user.Roles.Any(x => x.Name.Equals(roleName));
     }
 
     public bool RoleExists(string roleName)
     {
-      //VacancyContext _db = new VacancyContext();
+      VacancyContext _db = new VacancyContext();
       return _db.Roles.Any(x => x.Name.Equals(roleName));
     }
 
     public void AddUsersToRoles(string[] usernames, string[] roleNames)
     {
-      //VacancyContext _db = new VacancyContext();
+      VacancyContext _db = new VacancyContext();
       RoleAndUsers((user, rolename) =>
                      {
                        if (user.Roles.FirstOrDefault(x => x.Name.Equals(rolename)) == null)
@@ -266,7 +261,7 @@ namespace VacancyManager.Services
 
     public void RemoveUsersFromRoles(string[] usernames, string[] roleNames)
     {
-      //VacancyContext _db = new VacancyContext();
+      VacancyContext _db = new VacancyContext();
       RoleAndUsers((user, rolename) =>
       {
         if (user.Roles.FirstOrDefault(x => x.Name.Equals(rolename)) != null)
@@ -276,7 +271,7 @@ namespace VacancyManager.Services
 
     public string[] FindUsersInRole(string roleName, string usernameToMatch)
     {
-      //VacancyContext _db = new VacancyContext();
+      VacancyContext _db = new VacancyContext();
       return (from user in _db.Users.Where(x => x.UserName.IndexOf(usernameToMatch, StringComparison.OrdinalIgnoreCase) != 0) where user.Roles.Any(x => x.Name.Equals(roleName)) select user.UserName).ToArray();
     }
 
@@ -285,7 +280,7 @@ namespace VacancyManager.Services
     #region Vacancy
     public List<Vacancy> CreateVacancy(string title, string description, DateTime? openingDate, string foreignLanguage, string requirments, bool isVisible)
     {
-      //VacancyContext _db = new VacancyContext();
+      VacancyContext _db = new VacancyContext();
       var vacancies = new List<Vacancy>
                             {
                                 new Vacancy
@@ -309,7 +304,7 @@ namespace VacancyManager.Services
 
     public void UpdateVacancy(int vacancyid, string title, string description, DateTime? openingDate, string foreignLanguage, string requirments, bool isVisible)
     {
-      //VacancyContext _db = new VacancyContext();
+      VacancyContext _db = new VacancyContext();
       var update_rec = _db.Vacancies.SingleOrDefault(a => a.VacancyID == vacancyid);
       if (update_rec != null)
       {
@@ -325,7 +320,7 @@ namespace VacancyManager.Services
 
     public void DeleteVacancy(int vacancyid)
     {
-      //VacancyContext _db = new VacancyContext();
+      VacancyContext _db = new VacancyContext();
       var delete_rec = _db.Vacancies.SingleOrDefault(a => a.VacancyID == vacancyid);
       if (delete_rec != null)
       {
@@ -339,13 +334,13 @@ namespace VacancyManager.Services
     #region VacancyRequirements
     public IEnumerable<VacancyRequirement> GetVacancyRequirements(int id)
     {
-      //VacancyContext _db = new VacancyContext();
+      VacancyContext _db = new VacancyContext();
       return _db.VacancyRequirements.Where(vacancy_rec => vacancy_rec.VacancyID == id).ToList();
     }
 
     public void CreateVacancyRequirement(int vacancyid, int requirementid, string comments)
     {
-      //VacancyContext _db = new VacancyContext();
+      VacancyContext _db = new VacancyContext();
       var vacancyrequirement = new VacancyRequirement
       {
         VacancyRequirementID = -1,
@@ -360,7 +355,7 @@ namespace VacancyManager.Services
 
     public void UpdateVacancyRequirement(int vacancyid, int requirementid, string comments)
     {
-      //VacancyContext _db = new VacancyContext();
+      VacancyContext _db = new VacancyContext();
       var update_rec = _db.VacancyRequirements.Where(vacancy_rec => (vacancy_rec.VacancyID == vacancyid && vacancy_rec.RequirementID == requirementid)).SingleOrDefault();
       if (update_rec == null) return;
       update_rec.Comments = comments;
@@ -369,7 +364,7 @@ namespace VacancyManager.Services
 
     public void DeleteVacancyRequirement(int vacancyrequirementid)
     {
-      //VacancyContext _db = new VacancyContext();
+      VacancyContext _db = new VacancyContext();
       var delete_rec = _db.VacancyRequirements.Where(vacancy_rec => vacancy_rec.VacancyRequirementID == vacancyrequirementid).SingleOrDefault();
       if (delete_rec == null) return;
       _db.VacancyRequirements.Remove(delete_rec);
@@ -382,13 +377,13 @@ namespace VacancyManager.Services
 
     public IEnumerable<RequirementStack> GetAllRequirementStacks()
     {
-      //VacancyContext _db = new VacancyContext();
+      VacancyContext _db = new VacancyContext();
       return _db.RequirementStacks.ToList();
     }
 
     public int CreateRequirementStack(string name)
     {
-      //VacancyContext _db = new VacancyContext();
+      VacancyContext _db = new VacancyContext();
       var requirementStack = new RequirementStack
       {
         Name = name,
@@ -401,7 +396,7 @@ namespace VacancyManager.Services
 
     public void DeleteRequirementStack(int id)
     {
-      //VacancyContext _db = new VacancyContext();
+      VacancyContext _db = new VacancyContext();
       var delete_rec = _db.RequirementStacks.SingleOrDefault(a => a.RequirementStackID == id);
       if (delete_rec == null) return;
       _db.RequirementStacks.Remove(delete_rec);
@@ -410,7 +405,7 @@ namespace VacancyManager.Services
 
     public void UpdateRequirementStack(int id, string name)
     {
-      //VacancyContext _db = new VacancyContext();
+      VacancyContext _db = new VacancyContext();
       var update_rec = _db.RequirementStacks.SingleOrDefault(a => a.RequirementStackID == id);
       if (update_rec != null)
       {
@@ -423,19 +418,20 @@ namespace VacancyManager.Services
     #region Requirement
     public IEnumerable<Requirement> GetRequirements()
     {
-      //VacancyContext _db = new VacancyContext();
+      VacancyContext _db = new VacancyContext();
       return _db.Requirements.ToList();
     }
 
     public IEnumerable<Requirement> GetAllRequirements(int id)
     {
-      //VacancyContext _db = new VacancyContext();
-      return _db.RequirementStacks.FirstOrDefault(x => x.RequirementStackID == id).Requirements.ToList();
+      VacancyContext _db = new VacancyContext();
+      var result = _db.RequirementStacks.FirstOrDefault(x => x.RequirementStackID == id);
+      return result != null ? result.Requirements.ToList() : new List<Requirement>();
     }
 
     public int CreateRequirement(int id, string name)
     {
-      //VacancyContext _db = new VacancyContext();
+      VacancyContext _db = new VacancyContext();
       var requirement = new Requirement
       {
         Name = name,
@@ -449,7 +445,7 @@ namespace VacancyManager.Services
 
     public void DeleteRequirement(int id)
     {
-      //VacancyContext _db = new VacancyContext();
+      VacancyContext _db = new VacancyContext();
       var delete_rec = _db.Requirements.SingleOrDefault(a => a.RequirementID == id);
       if (delete_rec == null) return;
       _db.Requirements.Remove(delete_rec);
@@ -458,7 +454,7 @@ namespace VacancyManager.Services
 
     public void UpdateRequirement(int id, string name)
     {
-      //VacancyContext _db = new VacancyContext();
+      VacancyContext _db = new VacancyContext();
       var update_rec = _db.Requirements.SingleOrDefault(a => a.RequirementID == id);
       if (update_rec == null) return;
       update_rec.Name = name;
@@ -468,7 +464,7 @@ namespace VacancyManager.Services
 
     public void Dispose()
     {
-      _db.Dispose();
+      //_db.Dispose();
     }
 
     #region Private methods
@@ -500,7 +496,7 @@ namespace VacancyManager.Services
     //Why? DRY
     private void RoleAndUsers(Action<User, string> act, IEnumerable<string> usernames, string[] roleNames)
     {
-      //VacancyContext _db = new VacancyContext();
+      VacancyContext _db = new VacancyContext();
       foreach (var username in usernames)
       {
         var user = _db.Users.FirstOrDefault(x => x.UserName.Equals(username));
@@ -560,7 +556,7 @@ namespace VacancyManager.Services
       int index = 0;
       int from = pageIndex * pageSize;
       int to = (pageIndex + 1) * pageSize;
-      //VacancyContext _db = new VacancyContext();
+      VacancyContext _db = new VacancyContext();
       foreach (var user in _db.Users.Where(predicate))
       {
         index++;
