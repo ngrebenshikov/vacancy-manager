@@ -2,23 +2,20 @@
 using System.Web.Mvc;
 using System.Web.Script.Serialization;
 using System.Web.Security;
+using Ninject;
 using VacancyManager.Services;
 
 namespace VacancyManager.Controllers
 {
+  [AuthorizeError(Roles = "Admin")]
   public class RolesController : Controller
   {
 
-    private readonly IRepository _repository;//Нужно только для получения ID роли в базе
+    [Inject]
+    public IRepository _repository { get; set; }//Нужно только для получения ID роли в базе
     //Это нехорошо, но редактировать роль по другому не выйдет.
 
-    public RolesController(IRepository repository)
-    {
-      _repository = repository;
-    }
-
     [HttpGet]
-    [AuthorizeError]
     public ActionResult GetRoles()
     {
       var rolesList = (from role in Roles.GetAllRoles()
@@ -35,7 +32,6 @@ namespace VacancyManager.Controllers
     }
 
     [HttpPost]
-    [AuthorizeError]
     public ActionResult AddRole(string data)
     {
       bool success = false;
@@ -73,7 +69,6 @@ namespace VacancyManager.Controllers
     }
 
     [HttpPost]
-    [AuthorizeError]
     public ActionResult DeleteRole(string data)
     {
       bool success = false;

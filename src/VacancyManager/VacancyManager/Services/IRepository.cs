@@ -10,7 +10,7 @@ namespace VacancyManager.Services
     IEnumerable<Vacancy> AllVisibleVacancies();
     //IEnumerable<User> AllUsers();
     User GetUserByEmail(string email);
-    User GetUserByUsername(string username);
+    //User GetUserByUsername(string username);
     MembershipUser GetMembershipUserByUserName(string username);
     void UpdateMembershipUser(MembershipUser user);
     bool UnlockMembershipUser(string userName);
@@ -35,7 +35,7 @@ namespace VacancyManager.Services
     #endregion
     #region Requirement
     IEnumerable<Requirement> GetAllRequirements(int id);
-    IEnumerable<Requirement> GetRequirements(); 
+    IEnumerable<Requirement> GetRequirements();
     int CreateRequirement(int id, string name);
     void DeleteRequirement(int id);
     void UpdateRequirement(int id, string name);
@@ -63,5 +63,6 @@ namespace VacancyManager.Services
     MembershipUserCollection FindUsersByName(string usernameToMatch, int pageIndex, int pageSize, out int totalRecords);
     MembershipUserCollection FindUsersByEmail(string emailToMatch, int pageIndex, int pageSize, out int totalRecords);
     bool ChangePassword(string username, string oldPassword, string newPassword);
+    string[] GetRolesForUser(string username);
   }
 }

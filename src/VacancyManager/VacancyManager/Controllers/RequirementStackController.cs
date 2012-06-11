@@ -1,34 +1,29 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
+using Ninject;
 using VacancyManager.Services;
 using System.Web.Script.Serialization;
 
 namespace VacancyManager.Controllers
 {
+  [AuthorizeError(Roles = "Admin")]
   public class RequirementStackController : Controller
   {
-    private readonly IRepository _repository;
-
-    public RequirementStackController(IRepository repository)
-    {
-      _repository = repository;
-    }
+    [Inject]
+    public IRepository _repository { get; set; }
 
     //
     // GET: /RequirementStack/Get
     [HttpGet]
-    [AuthorizeError]
     public ActionResult GetStack()
     {
       var requestResult = _repository.GetAllRequirementStacks();
       var stackList = (from elem in requestResult
                        select new
                          {
-                           RequirementStackID = elem.RequirementStackID,
-                           Name = elem.Name,
+                           elem.RequirementStackID,
+                           elem.Name,
                          }
                       ).ToList();
       return Json(new
@@ -39,7 +34,6 @@ namespace VacancyManager.Controllers
     }
 
     [HttpPost]
-    [AuthorizeError]
     public ActionResult AddStack(string data)
     {
       bool success = false;
@@ -64,21 +58,19 @@ namespace VacancyManager.Controllers
       {
         return Json(new
         {
-          success = success,
+          success = true,
           RequirementStackList = requirementStackList,
           message = resultMess
         });
       }
-      else
-        return Json(new
-        {
-          success = success,
-          message = resultMess
-        });
+      return Json(new
+                    {
+                      success = false,
+                      message = resultMess
+                    });
     }
 
     [HttpPost]
-    [AuthorizeError]
     public ActionResult DeleteStack(string data)
     {
       bool success = false;
@@ -94,13 +86,12 @@ namespace VacancyManager.Controllers
       }
       return Json(new
       {
-        success = success,
-        message = message
+        success,
+        message
       });
     }
 
     [HttpPost]
-    [AuthorizeError]
     public ActionResult UpdateStack(string data)
     {
       bool success = false;
@@ -118,15 +109,14 @@ namespace VacancyManager.Controllers
       }
       return Json(new
       {
-        success = success,
-        message = message
+        success,
+        message
       });
     }
 
     //
     // GET: /GetRequirementListInStack/
     [HttpGet]
-    [AuthorizeError]
     public ActionResult GetRequirementListInStack(int id)
     {
       try
@@ -135,9 +125,9 @@ namespace VacancyManager.Controllers
         var requirementList = (from elem in requestResult
                                select new
                                {
-                                 RequirementID = elem.RequirementID,
-                                 RequirementStackID = elem.RequirementStackID,
-                                 Name = elem.Name,
+                                 elem.RequirementID,
+                                 elem.RequirementStackID,
+                                 elem.Name,
                                }
                           ).ToList();
         return Json(new
@@ -157,7 +147,6 @@ namespace VacancyManager.Controllers
     }
 
     [HttpPost]
-    [AuthorizeError]
     public ActionResult AddRequirementToStack(string data)
     {
       bool success = false;
@@ -183,23 +172,19 @@ namespace VacancyManager.Controllers
       {
         return Json(new
         {
-          success = success,
+          success = true,
           RequirementList = requirement,
           message = resultMess
         });
       }
-      else
-      {
-        return Json(new
-        {
-          success = success,
-          message = resultMess
-        });
-      }
+      return Json(new
+                    {
+                      success = false,
+                      message = resultMess
+                    });
     }
 
     [HttpPost]
-    [AuthorizeError]
     public ActionResult DeleteRequirementFromStack(string data)
     {
       bool success = false;
@@ -215,13 +200,12 @@ namespace VacancyManager.Controllers
       }
       return Json(new
       {
-        success = success,
-        message = message
+        success,
+        message
       });
     }
 
     [HttpPost]
-    [AuthorizeError]
     public ActionResult UpdateRequirementInStack(string data)
     {
       bool success = false;
@@ -239,8 +223,8 @@ namespace VacancyManager.Controllers
       }
       return Json(new
       {
-        success = success,
-        message = message
+        success,
+        message
       });
     }
   }

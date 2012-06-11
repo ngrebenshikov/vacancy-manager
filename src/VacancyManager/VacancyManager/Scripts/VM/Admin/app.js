@@ -141,19 +141,30 @@ Ext.Ajax.on('requestcomplete', function (connection, response)
     {
       var result = Ext.JSON.decode(response.responseText);
       var title;
-      if (result.success)
-        title = 'Запрос успешно завершён';
+      /*if (result.success)
+      title = 'Запрос успешно завершён';
       else
-        title = 'Ошибка при выполении запроса';
+      title = 'Ошибка при выполении запроса';
       Ext.MessageBox.show(
-        {
-          title: title,
-          msg: result.message,
-          minWidth: 200,
-          buttons: Ext.MessageBox.OK,
-          icon: Ext.MessageBox.INFO
-        }
-      );
+      {
+      title: title,
+      msg: result.message,
+      minWidth: 200,
+      buttons: Ext.MessageBox.OK,
+      icon: Ext.MessageBox.INFO
+      }
+      );*/
+      if (!result.success)
+      {
+        Ext.MessageBox.show(
+          {
+            title: 'Ошибка при выполении запроса',
+            msg: result.message,
+            minWidth: 200,
+            buttons: Ext.MessageBox.OK,
+            icon: Ext.MessageBox.INFO
+          });
+      }
     }
   } catch (err)
   {
