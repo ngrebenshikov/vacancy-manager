@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Ninject;
 using VacancyManager.Models;
 using System.Collections.ObjectModel;
 using VacancyManager.Services;
@@ -12,20 +13,16 @@ using System.Collections;
 
 namespace VacancyManager.Controllers
 {
+    [AuthorizeError(Roles = "Admin")]
     public class VacancyController : Controller
     {
-        private readonly IRepository _repository;
+      [Inject]
+      public IRepository _repository { get; set; }
         // GET: /Vacancy/
-
-         public VacancyController(IRepository repository)
-        {
-            _repository = repository;
-        }
 
         //
         // GET: /Vacancy/Load
         [HttpGet]
-        [AuthorizeError]
         public JsonResult Load()
         {
             var VisibleVacancies = _repository.AllVisibleVacancies();
@@ -51,7 +48,8 @@ namespace VacancyManager.Controllers
             return Json(new
                                {
                                    data = VacanciesList,
-                                   total = VacanciesList.Count
+                                   total = VacanciesList.Count,
+                                   success=true
                                },
                             JsonRequestBehavior.AllowGet);
         }
@@ -60,7 +58,6 @@ namespace VacancyManager.Controllers
         // GET: /Vacancy/Create
 
         [HttpPost]
-        [AuthorizeError]
         public ActionResult Create(string data)
         {
             bool c_success = false;
@@ -100,7 +97,6 @@ namespace VacancyManager.Controllers
         }
 
         [HttpPost]
-        [AuthorizeError]
         public ActionResult Update(string data)
         {
             bool u_success = false;
@@ -140,7 +136,6 @@ namespace VacancyManager.Controllers
         }
 
         [HttpPost]
-        [AuthorizeError]
         public ActionResult Delete(string data)
         {
             bool d_success = false;

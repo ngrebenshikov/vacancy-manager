@@ -55,15 +55,14 @@ namespace VacancyManager.Controllers
       }
       else
         jsonResult = "Invalid login or password";
-      return Json(new { LogOnResult = jsonResult }, JsonRequestBehavior.AllowGet);
+      return Json(new { success = true, LogOnResult = jsonResult }, JsonRequestBehavior.AllowGet);
     }
 
     [HttpGet]
-    [AuthorizeError]
+    [AuthorizeError(Roles = "Admin")]
     public JsonResult ExtJSUserListLoad()
     {
       var AllUsers = Membership.GetAllUsers();
-
 
       List<dynamic> UserList = AllUsers.Cast<VMMembershipUser>().Select(realUser => ReturnJsonUser(realUser)).ToList();
 
@@ -72,12 +71,11 @@ namespace VacancyManager.Controllers
         data = UserList,
         total = UserList.Count,
         success = true
-      },
-                  JsonRequestBehavior.AllowGet);
+      }, JsonRequestBehavior.AllowGet);
     }
 
     [HttpPost]
-    [AuthorizeError]
+    [AuthorizeError(Roles = "Admin")]
     public JsonResult ExtJSCreateUser(string data)
     {
       string message = "При создании пользователя произошла ошибка";
@@ -125,7 +123,7 @@ namespace VacancyManager.Controllers
     }
 
     [HttpPost]
-    [AuthorizeError]
+    [AuthorizeError(Roles = "Admin")]
     public JsonResult ExtJSDeleteUser(string data)
     {
       bool d_success = false;
@@ -154,7 +152,7 @@ namespace VacancyManager.Controllers
     /// <param name="data">The data.</param>
     /// <returns></returns>
     [HttpPost]
-    [AuthorizeError]
+    [AuthorizeError(Roles = "Admin")]
     public JsonResult ExtJSUpdateUser(string data)
     {
       bool success = false;

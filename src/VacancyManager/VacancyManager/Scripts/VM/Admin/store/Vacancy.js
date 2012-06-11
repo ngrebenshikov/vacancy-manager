@@ -16,7 +16,8 @@
     reader: {
       type: 'json',
       root: 'data',
-      totalProperty: 'total'
+      totalProperty: 'total',
+      successProperty: 'success'
     },
     writer: {
       type: 'json',

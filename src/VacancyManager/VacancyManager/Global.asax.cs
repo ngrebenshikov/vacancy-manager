@@ -6,6 +6,7 @@ using System.Web.Security;
 using Ninject;
 using System.Reflection;
 using Ninject.Web.Mvc;
+using VacancyManager.Models;
 using VacancyManager.Models.DAL;
 using VacancyManager.Services;
 
@@ -55,6 +56,7 @@ namespace VacancyManager
 
       // Register services with Ninject DI Container
       kernel.Bind<IRepository>().To<StandardRepository>();
+
       kernel.Inject(Membership.Provider);
       kernel.Inject(Roles.Provider);
       kernel.Bind<IFilterProvider>().To<FilterAttributeFilterProvider>();

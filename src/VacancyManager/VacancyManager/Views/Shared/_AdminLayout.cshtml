@@ -7,10 +7,39 @@
   <link href="@Url.Content("~/ExtLib/resources/css/ext-all.css")" rel="stylesheet" type="text/css" />
   <link href="@Url.Content("~/ExtLib/ux/css/CheckHeader.css")" rel="stylesheet" type="text/css" />
   <script src="@Url.Content("~/ExtLib/ext-all.js")" type="text/javascript"></script>
+  <script type="text/javascript" src="/ExtLib/ux/RowExpander.js"></script>
+  <script type="text/javascript" src="/ExtLib/ux/CheckColumn.js"></script>
+  <script type="text/javascript" src="/Scripts/VM/Admin/app.js"></script>
+  <style type="text/css" media="screen">
+    .DataView-list
+    {
+      padding: 0 3px 0 3px;
+    }
+    .DataView-list-item
+    {
+      margin-top: 3px;
+      padding-left: 20px;
+      font-size: 11px;
+      line-height: 20px;
+      cursor: pointer;
+      border: 1px solid #fff;
+    }
+    .DataView-list .x-item-selected
+    {
+      font-weight: bold;
+      color: #15428B;
+      background-color: #DFE8F6;
+      border: 1px dotted #A3BAE9;
+    }
+    .DataView-list-item-hover
+    {
+      background-color: #eee;
+    }
+  </style>
 </head>
 <body>
   <div>
-   @RenderBody()
+    @RenderBody()
   </div>
 </body>
 </html>

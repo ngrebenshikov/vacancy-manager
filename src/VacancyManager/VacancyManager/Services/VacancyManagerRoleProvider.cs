@@ -26,17 +26,7 @@ namespace VacancyManager.Services
 
     public override string[] GetRolesForUser(string username)
     {
-      var user = Repository.GetUserByUsername(username);
-
-      if (user != null)
-      {
-        var roles = from role in user.Roles
-                    select role.Name;
-
-        return roles.ToArray();
-      }
-
-      return new string[0];
+      return Repository.GetRolesForUser(username);
     }
 
     public override void CreateRole(string roleName)
