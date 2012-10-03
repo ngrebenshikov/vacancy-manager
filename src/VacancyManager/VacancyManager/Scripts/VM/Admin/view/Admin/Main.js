@@ -60,7 +60,7 @@
               items:
               [
                 {
-                  xtype: 'RolesList',
+                  xtype: 'RolesList'
                 }
               ]
             }

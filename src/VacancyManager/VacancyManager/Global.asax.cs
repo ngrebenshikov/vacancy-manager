@@ -1,13 +1,9 @@
-﻿using System.Data.Entity;
-using System.Web;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 using System.Web.Routing;
 using System.Web.Security;
 using Ninject;
-using System.Reflection;
 using Ninject.Web.Mvc;
 using VacancyManager.Models;
-using VacancyManager.Models.DAL;
 using VacancyManager.Services;
 
 namespace VacancyManager
@@ -64,6 +60,7 @@ namespace VacancyManager
 
       // Tell ASP.NET MVC 3 to use our Ninject DI Container
       DependencyResolver.SetResolver(new NinjectDependencyResolver(kernel));
+
       return kernel;
     }
 
@@ -73,6 +70,23 @@ namespace VacancyManager
       AreaRegistration.RegisterAllAreas();
       RegisterGlobalFilters(GlobalFilters.Filters);
       RegisterRoutes(RouteTable.Routes);
+
+      //Проверка есть ли админ
+      VMMembershipUser user = (VMMembershipUser)Membership.GetUser("admin", false);
+      if (user == null)
+      {
+        //Дальше идёт copy paste из методов легального созданию пользователя из админки
+        MembershipCreateStatus createStatus;
+        user = (VMMembershipUser)Membership.CreateUser("admin", "admin", "StudVacancyProject@mail.ru", null, null, true, null, out createStatus);
+        if (createStatus != MembershipCreateStatus.Success)
+          throw new System.Exception("Huston, we have a problems");
+
+        user.UnlockUser();
+        user.EmailKey = null;
+        Membership.UpdateUser(user);
+        Roles.AddUsersToRoles(new[] { "admin" }, new[] { "Admin" });
+      }
+
     }
   }
 }

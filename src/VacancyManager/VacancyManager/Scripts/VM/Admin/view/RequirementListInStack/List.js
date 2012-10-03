@@ -5,8 +5,8 @@ Ext.define
     alias: 'widget.RequirementListInStackList',
     title: 'Requirement List in Stack',
     store: 'RequirementListInStack',
-    region: 'center',
-    margins: '5 0 0 0',
+    //region: 'center',
+    //margins: '5 0 0 0',
     columns:
     [
       { header: 'Name', menuDisabled: true, dataIndex: 'Name', flex: 1 },

@@ -31,7 +31,7 @@ namespace VacancyManager.Services
     {
       VacancyContext _db = new VacancyContext();
       var realUser = (VMMembershipUser)user;
-      var update_rec = _db.Users.SingleOrDefault(a => a.Email == realUser.Email);
+      var update_rec = _db.Users.SingleOrDefault(a => a.UserName == realUser.UserName);
       if (update_rec == null) return;
       update_rec.Email = realUser.Email;
       update_rec.EmailKey = realUser.EmailKey;
@@ -251,28 +251,28 @@ namespace VacancyManager.Services
 
     public void AddUsersToRoles(string[] usernames, string[] roleNames)
     {
-      VacancyContext _db = new VacancyContext();
-      RoleAndUsers((user, rolename) =>
+      RoleAndUsers((db, user, rolename) =>
                      {
                        if (user.Roles.FirstOrDefault(x => x.Name.Equals(rolename)) == null)
-                         user.Roles.Add(_db.Roles.Single(x => x.Name.Equals(rolename)));
+                         user.Roles.Add(db.Roles.Single(x => x.Name.Equals(rolename)));
                      }, usernames, roleNames);
     }
 
     public void RemoveUsersFromRoles(string[] usernames, string[] roleNames)
     {
-      VacancyContext _db = new VacancyContext();
-      RoleAndUsers((user, rolename) =>
+      RoleAndUsers((db, user, rolename) =>
       {
         if (user.Roles.FirstOrDefault(x => x.Name.Equals(rolename)) != null)
-          user.Roles.Remove(_db.Roles.Single(x => x.Name.Equals(rolename)));
+          user.Roles.Remove(db.Roles.Single(x => x.Name.Equals(rolename)));
       }, usernames, roleNames);
     }
 
     public string[] FindUsersInRole(string roleName, string usernameToMatch)
     {
       VacancyContext _db = new VacancyContext();
-      return (from user in _db.Users.Where(x => x.UserName.IndexOf(usernameToMatch, StringComparison.OrdinalIgnoreCase) != 0) where user.Roles.Any(x => x.Name.Equals(roleName)) select user.UserName).ToArray();
+      return (from user in _db.Users.Where(x => x.UserName.IndexOf(usernameToMatch, StringComparison.OrdinalIgnoreCase) != 0)
+              where user.Roles.Any(x => x.Name.Equals(roleName))
+              select user.UserName).ToArray();
     }
 
     #endregion
@@ -494,7 +494,7 @@ namespace VacancyManager.Services
     }
 
     //Why? DRY
-    private void RoleAndUsers(Action<User, string> act, IEnumerable<string> usernames, string[] roleNames)
+    private void RoleAndUsers(Action<VacancyContext, User, string> act, IEnumerable<string> usernames, string[] roleNames)
     {
       VacancyContext _db = new VacancyContext();
       foreach (var username in usernames)
@@ -503,7 +503,7 @@ namespace VacancyManager.Services
         if (user == null) continue;
         foreach (var rolename in roleNames)
         {
-          act(user, rolename);
+          act(_db, user, rolename);
         }
       }
       _db.SaveChanges();
