@@ -1,8 +1,4 @@
-﻿
-
-
-
-Ext.define('VM.view.vacancy.List', {
+﻿Ext.define('VM.view.vacancy.List', {
     extend: 'Ext.grid.Panel',
     alias: 'widget.vacancyList',
     region: 'center',

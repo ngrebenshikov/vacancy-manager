@@ -1,16 +1,15 @@
 ﻿using System;
+using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Web.Security;
-using Ninject;
 using VacancyManager.Models;
 
 namespace VacancyManager.Services
 {
   public sealed class VacancyManagerMembershipProvider : MembershipProvider
   {
-    [Inject]
-    public IRepository Repository { get; set; }
 
     private string _applicationName;
     private bool _enablePasswordReset;
@@ -22,7 +21,7 @@ namespace VacancyManager.Services
     private int _minRequiredPasswordLength;
     private int _minRequiredNonalphanumericCharacters;
     private string _passwordStrengthRegularExpression;
-    private MembershipPasswordFormat _passwordFormat = MembershipPasswordFormat.Hashed;
+    private const MembershipPasswordFormat _passwordFormat = MembershipPasswordFormat.Hashed;
 
     #region Properties
 
@@ -140,7 +139,7 @@ namespace VacancyManager.Services
       {
         try
         {
-          Repository.CreateUser(username, password, email);
+          TryCreateUser(username, password, email);
           status = MembershipCreateStatus.Success;
 
           return GetUser(username, false);
@@ -179,17 +178,27 @@ namespace VacancyManager.Services
 
     public override MembershipUser GetUser(object providerUserKey, bool userIsOnline)
     {
-      return Repository.GetUser(providerUserKey, userIsOnline);
+      VacancyContext _db = new VacancyContext();
+      var dbuser = _db.Users.FirstOrDefault(u => u.UserID == Convert.ToInt32(providerUserKey));
+      if ((userIsOnline) && (dbuser != null))
+      {
+        dbuser.LaslLoginDate = DateTime.Now;
+        _db.SaveChanges();
+      }
+
+      return getMembershipUserFromDBUser(dbuser);
     }
 
     public override MembershipUserCollection FindUsersByName(string usernameToMatch, int pageIndex, int pageSize, out int totalRecords)
     {
-      return Repository.FindUsersByName(usernameToMatch, pageIndex, pageSize, out totalRecords);
+      return FindUserByPredicate((x => x.UserName.IndexOf(usernameToMatch, StringComparison.OrdinalIgnoreCase) != 0),
+        pageIndex, pageSize, out totalRecords);
     }
 
     public override MembershipUserCollection FindUsersByEmail(string emailToMatch, int pageIndex, int pageSize, out int totalRecords)
     {
-      return Repository.FindUsersByEmail(emailToMatch, pageIndex, pageSize, out totalRecords);
+      return FindUserByPredicate((x => x.Email.IndexOf(emailToMatch, StringComparison.OrdinalIgnoreCase) != 0),
+        pageIndex, pageSize, out totalRecords);
     }
 
     public override bool ChangePassword(string username, string oldPassword, string newPassword)
@@ -197,7 +206,19 @@ namespace VacancyManager.Services
       var args = new ValidatePasswordEventArgs(username, newPassword, true);
       OnValidatingPassword(args);
 
-      return !args.Cancel && Repository.ChangePassword(username, oldPassword, newPassword);
+      bool flag;
+
+      VacancyContext _db = new VacancyContext();
+      var dbuser = _db.Users.SingleOrDefault(x => x.UserName.Equals(username, StringComparison.OrdinalIgnoreCase));
+      if ((dbuser == null) || (!dbuser.Password.Equals(CreatePasswordHash(oldPassword, dbuser.PasswordSalt))))
+        flag = false;
+      else
+      {
+        dbuser.Password = CreatePasswordHash(oldPassword, dbuser.PasswordSalt);
+        flag = true;
+      }
+
+      return !args.Cancel && flag;
     }
 
     public override int GetNumberOfUsersOnline()
@@ -207,41 +228,83 @@ namespace VacancyManager.Services
 
     public override MembershipUser GetUser(string username, bool userIsOnline)
     {
-      return Repository.GetMembershipUserByUserName(username);
+      VacancyContext _db = new VacancyContext();
+      var dbuser = _db.Users.FirstOrDefault(u => u.UserName == username);
+      return getMembershipUserFromDBUser(dbuser);
     }
 
     public override bool DeleteUser(string username, bool deleteAllRelatedData)
     {
-      return Repository.DeleteUser(username, deleteAllRelatedData);
+      VacancyContext _db = new VacancyContext();
+      //deleteAllRelatedData currently not using
+      var delete_user = _db.Users.SingleOrDefault(a => a.UserName == username);
+      if (delete_user == null) return false;
+      if (Roles.GetRolesForUser(delete_user.UserName).Count() != 0)
+        Roles.RemoveUsersFromRoles(new[] { delete_user.UserName }, Roles.GetRolesForUser(delete_user.UserName));
+      _db.Users.Remove(_db.Users.SingleOrDefault(a => a.UserName.Equals(delete_user.UserName)));
+      _db.SaveChanges();
+      return true;
     }
 
     public override MembershipUserCollection GetAllUsers(int pageIndex, int pageSize, out int totalRecords)
     {
-      MembershipUserCollection result = Repository.GetAllUsers();
+      VacancyContext _db = new VacancyContext();
+      MembershipUserCollection result = new MembershipUserCollection();
+      foreach (var user in _db.Users.ToList())
+      {
+        result.Add(GetUser(user.UserName, false));
+      }
       totalRecords = result.Count;
       return result;
     }
 
     public override void UpdateUser(MembershipUser user)
     {
-      Repository.UpdateMembershipUser(user);
+      VacancyContext _db = new VacancyContext();
+      var realUser = (VMMembershipUser)user;
+      var update_rec = _db.Users.SingleOrDefault(a => a.UserName == realUser.UserName);
+      if (update_rec == null) return;
+      update_rec.Email = realUser.Email;
+      update_rec.EmailKey = realUser.EmailKey;
+      update_rec.IsActivated = realUser.IsApproved;
+      update_rec.IsLockedOut = realUser.IsLockedOut;
+      update_rec.LaslLoginDate = realUser.LastLoginDate;
+      //Два следующих свойства нужно сначала добавить в VMMembershipUser
+      //update_rec.LastLockedOutDate=realUser.LastLockedOutDate;
+      update_rec.LastLockedOutReason = realUser.LastLockedOutReason;
+      //update_rec.Password//Не должно тут обновляться
+      update_rec.UserName = realUser.UserName;
+      _db.SaveChanges();
     }
 
     public override bool UnlockUser(string userName)
     {
-      return Repository.UnlockMembershipUser(userName);
+      VacancyContext _db = new VacancyContext();
+      var update_rec = _db.Users.SingleOrDefault(a => a.UserName == userName);
+      if (update_rec != null)
+      {
+        update_rec.IsLockedOut = false;
+        update_rec.IsActivated = true;
+        _db.SaveChanges();
+        return true;
+      }
+      return false;
     }
 
     public override string GetUserNameByEmail(string email)
     {
-      var user = Repository.GetUserByEmail(email);
+      VacancyContext _db = new VacancyContext();
+      var user = _db.Users.FirstOrDefault(u => u.Email == email);
 
       return user != null ? user.UserName : string.Empty;
     }
 
     public override bool ValidateUser(string username, string password)
     {
-      return Repository.ValidateUser(username, password);
+      VacancyContext _db = new VacancyContext();
+      var dbuser = _db.Users.FirstOrDefault(u => u.UserName == username);
+
+      return dbuser != null && dbuser.Password == CreatePasswordHash(password, dbuser.PasswordSalt) && dbuser.IsActivated && !dbuser.IsLockedOut;
     }
 
     #region Private methods
@@ -249,6 +312,112 @@ namespace VacancyManager.Services
     private string GetConfigValue(string configValue, string defaultValue)
     {
       return (string.IsNullOrEmpty(configValue)) ? defaultValue : configValue;
+    }
+
+    private MembershipUser getMembershipUserFromDBUser(User dbuser)
+    {
+      if (dbuser != null)
+      {
+        string dbusername = dbuser.UserName;
+        int providerUserKey = dbuser.UserID;
+        string email = dbuser.Email;
+        string passwordQuestion = string.Empty;
+        string comment = dbuser.UserComment;
+        string lastLockedOutReason = dbuser.LastLockedOutReason;
+        bool isApproved = dbuser.IsActivated;
+        bool isLockedOut = dbuser.IsLockedOut;
+        DateTime creationDate = dbuser.CreateDate;
+        DateTime lastLoginDate = dbuser.LaslLoginDate;
+        DateTime lastActivityDate = DateTime.Now;
+        DateTime lastPasswordChangedDate = DateTime.Now;
+        DateTime lastLockedOutDate = dbuser.LastLockedOutDate;
+        string emailKey = dbuser.EmailKey;
+
+        var user = new VMMembershipUser("VacancyManagerMembershipProvider",
+                                      dbusername,
+                                      providerUserKey,
+                                      email,
+                                      passwordQuestion,
+                                      comment,
+                                      lastLockedOutReason,
+                                      isApproved,
+                                      isLockedOut,
+                                      creationDate,
+                                      lastLoginDate,
+                                      lastActivityDate,
+                                      lastPasswordChangedDate,
+                                      lastLockedOutDate,
+                                      emailKey);
+
+        return user;
+      }
+
+      return null;
+    }
+
+    private MembershipUserCollection FindUserByPredicate(Func<User, bool> predicate, int pageIndex, int pageSize, out int totalRecords)
+    {
+      MembershipUserCollection result = new MembershipUserCollection();
+      int index = 0;
+      int from = pageIndex * pageSize;
+      int to = (pageIndex + 1) * pageSize;
+      VacancyContext _db = new VacancyContext();
+      foreach (var user in _db.Users.Where(predicate))
+      {
+        index++;
+        if ((index > from) && (index <= to))
+          result.Add(getMembershipUserFromDBUser(user));
+      }
+      totalRecords = index;
+      return result;
+    }
+
+    private static string CreatePasswordHash(string password, string salt)
+    {
+      string passwordAndSalt = String.Concat(password, salt);
+      string hashedPassword = FormsAuthentication.HashPasswordForStoringInConfigFile(passwordAndSalt, "md5");
+
+      return hashedPassword;
+    }
+
+    public void TryCreateUser(string username, string password, string email)
+    {
+      var user = new User
+      {
+        UserName = username,
+        Email = email,
+        PasswordSalt = CreateSalt(),
+        CreateDate = DateTime.Now,
+        IsActivated = false,
+        IsLockedOut = true,
+        LastLockedOutDate = DateTime.Now,
+        LaslLoginDate = DateTime.Now,
+        Comments = new Collection<Comment>(),
+        Considerations = new Collection<Consideration>(),
+        Resumes = new Collection<Resume>(),
+        Files = new Collection<File>(),
+        EmailKey = GenerateKey(),
+      };
+      user.Password = CreatePasswordHash(password, user.PasswordSalt);
+      VacancyContext _db = new VacancyContext();
+      _db.Users.Add(user);
+      _db.SaveChanges();
+    }
+
+    private static string CreateSalt()
+    {
+      var rng = new RNGCryptoServiceProvider();
+      var buff = new byte[32];
+
+      rng.GetBytes(buff);
+
+      return Convert.ToBase64String(buff);
+    }
+
+    private static string GenerateKey()
+    {
+      Guid emailKey = Guid.NewGuid();
+      return emailKey.ToString();
     }
 
     #endregion

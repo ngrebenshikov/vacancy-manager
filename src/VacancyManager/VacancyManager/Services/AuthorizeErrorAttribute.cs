@@ -3,7 +3,6 @@ using System.Linq;
 using System.Security.Principal;
 using System.Web;
 using System.Web.Mvc;
-using Ninject;
 
 namespace VacancyManager.Services
 {
@@ -15,7 +14,6 @@ namespace VacancyManager.Services
   {
     // Сводка:
     //     Инициализирует новый экземпляр класса VacancyManager.Services.AuthorizeErrorAttribute.
-    [Inject]
     public AuthorizeErrorAttribute() : base() { }
 
     /// <summary>

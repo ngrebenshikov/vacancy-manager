@@ -1,15 +1,11 @@
-﻿
-Ext.define('VM.view.User.List', {
+﻿Ext.define('VM.view.User.List', {
   extend: 'Ext.grid.Panel',
   alias: 'widget.UserList',
   region: "center",
-  height: 500,
-  //autoHeight: true,
-  //autoScroll:true,
   id: 'UserGrid',
   autoSizeColumns: true,
   forceFit: true,
-  frame: true,
+  frame: false,
   title: 'Пользователи',
   store: 'User',
   initComponent: function ()
