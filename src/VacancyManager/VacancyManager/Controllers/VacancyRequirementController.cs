@@ -1,34 +1,30 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
-using Ninject;
 using VacancyManager.Models;
 using VacancyManager.Services;
 using System.Web.Script.Serialization;
+using VacancyManager.Services.Managers;
 
 namespace VacancyManager.Controllers
 {
   [AuthorizeError(Roles = "Admin")]
   public class VacancyRequirementController : Controller
   {
+
     //
     // GET: /VacancyRequirement/
-    [Inject]
-    public IRepository _repository { get; set; }
-
-    public ActionResult Index()
+    /*public ActionResult Index()
     {
       return View();
-    }
+    }*/
 
     [HttpGet]
     public JsonResult LoadVacancyRequirements(int id)
     {
-      var RequirementsStackList = _repository.GetAllRequirementStacks().ToList();
-      var RequirementsList = _repository.GetRequirements().ToList();
-      var VacancyRequirementsList = _repository.GetVacancyRequirements(id).ToList();
+      var RequirementsStackList = RequirementsManager.GetAllRequirementStacks().ToList();
+      var RequirementsList = RequirementsManager.GetRequirements().ToList();
+      var VacancyRequirementsList = VacancyRequirementsManager.GetVacancyRequirements(id).ToList();
 
       var Complex = from o in RequirementsStackList
                     join v in RequirementsList on o.RequirementStackID equals v.RequirementStackID
@@ -75,21 +71,21 @@ namespace VacancyManager.Controllers
           Boolean Require = Convert.ToBoolean(u_vacancyrequirement["Require"]);
           if ((VacancyRequirementID == -1) && (Require == true))
           {
-            _repository.CreateVacancyRequirement(VacancyID,
+            VacancyRequirementsManager.CreateVacancyRequirement(VacancyID,
                                                  RequirementID,
                                                  Comments);
           }
           else
             if ((VacancyRequirementID > -1) && (Require == true))
             {
-              _repository.UpdateVacancyRequirement(VacancyID,
+              VacancyRequirementsManager.UpdateVacancyRequirement(VacancyID,
                                                    RequirementID,
                                                    Comments);
             }
             else
               if ((VacancyRequirementID > -1) && (Require == false))
               {
-                _repository.DeleteVacancyRequirement(VacancyRequirementID);
+                VacancyRequirementsManager.DeleteVacancyRequirement(VacancyRequirementID);
               }
         }
         u_success = true;

@@ -205,8 +205,8 @@ namespace VacancyManager.Controllers
         if (currentRoles.Length != changedRoles.Length || rolesChanged)
         {
           if (currentRoles.Length != 0)
-            Roles.RemoveUsersFromRoles(new string[] { userInDB.UserName }, currentRoles);
-          Roles.AddUsersToRoles(new string[] { userInDB.UserName }, changedRoles);
+            Roles.RemoveUsersFromRoles(new[] { userInDB.UserName }, currentRoles);
+          Roles.AddUsersToRoles(new[] { userInDB.UserName }, changedRoles);
           success = true;
           message = "Роли успешно изменены";
         }

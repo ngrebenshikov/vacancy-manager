@@ -17,6 +17,7 @@
               xtype: 'panel',
               title: "Пользователи",
               autoScroll: true,
+              layout: 'fit',
               items:
               [
                 { xtype: 'UserList' }

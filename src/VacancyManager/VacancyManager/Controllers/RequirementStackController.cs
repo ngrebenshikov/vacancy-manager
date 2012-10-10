@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Web.Mvc;
-using Ninject;
+using VacancyManager.Services.Managers;
 using VacancyManager.Services;
 using System.Web.Script.Serialization;
 
@@ -10,15 +10,13 @@ namespace VacancyManager.Controllers
   [AuthorizeError(Roles = "Admin")]
   public class RequirementStackController : Controller
   {
-    [Inject]
-    public IRepository _repository { get; set; }
 
     //
     // GET: /RequirementStack/Get
     [HttpGet]
     public ActionResult GetStack()
     {
-      var requestResult = _repository.GetAllRequirementStacks();
+      var requestResult = RequirementsManager.GetAllRequirementStacks();
       var stackList = (from elem in requestResult
                        select new
                          {
@@ -44,7 +42,7 @@ namespace VacancyManager.Controllers
       {
         var requirementStack = jss.Deserialize<dynamic>(data);
 
-        int id = _repository.CreateRequirementStack(requirementStack["Name"].ToString());
+        int id = RequirementsManager.CreateRequirementStack(requirementStack["Name"].ToString());
         requirementStackList[0] =
           new
           {
@@ -80,7 +78,7 @@ namespace VacancyManager.Controllers
       {
         var record = jss.Deserialize<dynamic>(data);
 
-        _repository.DeleteRequirementStack(Convert.ToInt32(record["RequirementStackID"]));
+        RequirementsManager.DeleteRequirementStack(Convert.ToInt32(record["RequirementStackID"]));
         message = "Стек удалён";
         success = true;
       }
@@ -102,7 +100,7 @@ namespace VacancyManager.Controllers
       {
         var record = jss.Deserialize<dynamic>(data);
 
-        _repository.UpdateRequirementStack(Convert.ToInt32(record["RequirementStackID"]), record["Name"].ToString());
+        RequirementsManager.UpdateRequirementStack(Convert.ToInt32(record["RequirementStackID"]), record["Name"].ToString());
 
         message = "Запись о стеке требований успешно обновлена";
         success = true;
@@ -121,7 +119,7 @@ namespace VacancyManager.Controllers
     {
       try
       {
-        var requestResult = _repository.GetAllRequirements(id);
+        var requestResult = RequirementsManager.GetAllRequirements(id);
         var requirementList = (from elem in requestResult
                                select new
                                {
@@ -157,7 +155,7 @@ namespace VacancyManager.Controllers
       {
         var record = jss.Deserialize<dynamic>(data);
 
-        int id = _repository.CreateRequirement(Convert.ToInt32(record["RequirementStackID"]), record["Name"].ToString());
+        int id = RequirementsManager.CreateRequirement(Convert.ToInt32(record["RequirementStackID"]), record["Name"].ToString());
         requirement[0] =
           new
           {
@@ -194,7 +192,7 @@ namespace VacancyManager.Controllers
       {
         var record = jss.Deserialize<dynamic>(data);
 
-        _repository.DeleteRequirement(Convert.ToInt32(record["RequirementID"]));
+        RequirementsManager.DeleteRequirement(Convert.ToInt32(record["RequirementID"]));
         message = "Требование удалено";
         success = true;
       }
@@ -216,7 +214,7 @@ namespace VacancyManager.Controllers
       {
         var record = jss.Deserialize<dynamic>(data);
 
-        _repository.UpdateRequirement(Convert.ToInt32(record["RequirementID"]), record["Name"].ToString());
+        RequirementsManager.UpdateRequirement(Convert.ToInt32(record["RequirementID"]), record["Name"].ToString());
 
         message = "Запись о требовании успешно обновлена";
         success = true;
