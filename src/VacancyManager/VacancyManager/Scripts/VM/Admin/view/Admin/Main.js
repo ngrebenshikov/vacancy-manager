@@ -52,7 +52,7 @@
                 }
               ]
             },
-            {
+            /*{
               xtype:'panel',
               layout: {
                 type: 'fit'
@@ -64,7 +64,7 @@
                   xtype: 'RolesList'
                 }
               ]
-            }
+            }*/
           ]
         }
       );
