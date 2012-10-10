@@ -91,31 +91,20 @@ namespace VacancyManager.Controllers
         if (createStatus == MembershipCreateStatus.Success)
         {
           var user = (VMMembershipUser)Membership.GetUser(UserName, false);
-          string ActivationLink = "http://localhost:53662/Account/Activate/" +
+          /*string ActivationLink = "http://localhost:53662/Account/Activate/" +
                                   user.UserName + "/" + user.EmailKey;
-          EMailSender.SendMail(ActivationLink, user.Email);
+          EMailSender.SendMail(ActivationLink, user.Email);*/
+
+          user.UnlockUser();
+          user.EmailKey = null;
+          Membership.UpdateUser(user);
+
+          if (!Roles.RoleExists("Admin"))
+            Roles.CreateRole("Admin");
+          Roles.AddUsersToRoles(new[] { user.UserName }, new[] { "Admin" });
+
           message = "Пользователь создан";
           return CreateJsonAnwser(true, message, user);
-          /*var roles = Roles.GetRolesForUser(user.UserName);
-          return Json(new
-                        {
-                          success = true,
-                          message = message,
-                          data = new
-                          {
-                            UserID = user.ProviderUserKey,
-                            user.UserName,
-                            user.Email,
-                            UserComment = user.Comment,
-                            CreateDate = user.CreationDate,
-                            LaslLoginDate = user.LastLoginDate,
-                            IsActivated = user.IsApproved,
-                            user.IsLockedOut,
-                            LastLockedOutDate = user.LastLockoutDate,
-                            user.LastLockedOutReason,
-                            Roles = roles
-                          }
-                        });*/
         }
         message = ErrorCodeToString(createStatus);
       }
