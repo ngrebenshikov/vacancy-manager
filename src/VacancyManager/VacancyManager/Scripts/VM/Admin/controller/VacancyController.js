@@ -12,10 +12,10 @@ Ext.define('VM.controller.VacancyController', {
         this.control(
                 {
                     'vacancyList dataview': {
-                        expandbody: this.loadcons,
-                        collapsebody: this.destroygrid//,
-                        //   itemdblclick: this.editVacancy
+                        expandbody: this.createConsiderationsGrid,
+                        collapsebody: this.destroyConsiderationsGrid
                     },
+
                     'button[action = loadBlankVacancy]': {
                         click: this.loadBlankVacancy
                     },
@@ -35,44 +35,32 @@ Ext.define('VM.controller.VacancyController', {
 
     },
 
-    destroygrid: function (rowNode, record, expandRow) {
-        SubGrid = Ext.getCmp('IssueSubCategoryGridRowGrid-' + record.get('VacancyID'));
-        SubGrid.destroy();
+    destroyConsiderationsGrid: function (rowNode, record, expandRow) {
+        var ConsiderationsGrid = Ext.get(expandRow).down('.ux-row-expander-box').down('div');
+        ConsiderationsGrid.destroy();
     },
 
-    loadcons: function (rowNode, record, expandRow) {
-        targetid = 'IssueSubCategoryGridRow-' + record.get('VacancyID');
-        gridid = 'IssueSubCategoryGridRowGrid-' + record.get('VacancyID');
+    createConsiderationsGrid: function (rowNode, record, expandRow) {
 
-        var grid = Ext.create('Ext.grid.Panel', {
-            id: gridid,
-            padding: '10 10 10 10',
-            columns: [
-            {
-                text: 'ConsiderationID',
-                flex: 1,
-                sortable: false,
-                dataIndex: 'ConsiderationID'
-            }, {
-                text: 'VacancyID',
-                width: 75,
-                sortable: true,
-                dataIndex: 'VacancyID'
-            }, {
-                text: 'ApplicantID',
-                width: 75,
-                sortable: true,
-                dataIndex: 'ApplicantID'
-            }
-        ],
-            height: 300,
-            forceFit: true,
-            title: 'Considerations Grid',
-            renderTo: targetid,
-            viewConfig: {
-                stripeRows: true
-            }
+        var vacancyId = record.get('VacancyID'),
+             gridId = 'ConsiderationsGrid' + vacancyId,
+             considerationsStoreId = 'ConsiderationStore' + vacancyId;
+
+        var element = Ext.get(expandRow).down('.ux-row-expander-box');
+
+        var ConsiderationsStore = Ext.create('VM.store.Consideration', {
+            extend: 'VM.store.Consideration',
+            id: considerationsStoreId
         });
+
+        ConsiderationsStore.load({ params: { "id": vacancyId} });
+
+        grid = Ext.create('VM.view.consideration.List', {
+            id: gridId,
+            store: ConsiderationsStore
+        });
+
+        grid.render(element);
     },
 
     addVacancy: function (button) {
@@ -84,6 +72,8 @@ Ext.define('VM.controller.VacancyController', {
         var newOpeningDate = eval("({ dtm: new Date(newvalues['OpeningDate']) })");
         newvalues['OpeningDate'] = newOpeningDate.dtm;
         vacancystore.add(newvalues);
+        VacancyRequirementsStore = Ext.StoreManager.lookup('VacancyRequirements');
+        VacancyRequirementsStore.sync();
         wndvacanyEdit.close();
     },
 
@@ -120,11 +110,6 @@ Ext.define('VM.controller.VacancyController', {
         newvalues['OpeningDate'] = newdate.dtm;
         sel_vacancy.set(newvalues);
         VacancyRequirementsStore = Ext.StoreManager.lookup('VacancyRequirements');
-        VacancyRequirementsStore.each(function (record, index) {
-            if (record.data['VacancyID'] = -1) {
-                record.data['VacancyID'] = sel_vacancy.get('VacancyID');
-            }
-        });
         VacancyRequirementsStore.sync();
         wndvacanyEdit.close();
     },
@@ -141,7 +126,7 @@ Ext.define('VM.controller.VacancyController', {
             fn: function (btn) {
                 if (btn == 'yes') {
                     if (sel_vacancy) {
-                        vacancystore.remove(sel_vacancy)
+                        vacancystore.remove(sel_vacancy);
                     }
                 }
             }

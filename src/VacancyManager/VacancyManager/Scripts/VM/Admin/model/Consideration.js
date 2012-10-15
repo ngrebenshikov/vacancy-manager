@@ -7,13 +7,25 @@ Ext.define('VM.model.Consideration', {
                      name: 'ConsiderationID',
                      type: 'int',
                      usenull: true
-                 },
-                 {
+                 }, {
                      name: 'VacancyID',
-                     type: 'int',
-                 },
-                 {
-                     name: 'ApplicantID'
+                     type: 'int'
+                 }, {
+                     name: 'ApplicantID',
+                     type: 'int'
+                 }, {
+                     name: 'UserFullName',
+                     type: 'string'
+                 }, {
+                     name: 'LastCommentDate',
+                     type: 'string'
+                 }, {
+                     name: 'LastCommentBody',
+                     type: 'string'
+                 }, {
+                     name: 'CommentsCount',
+                     type: 'int'
                  }
+
         ]
 });

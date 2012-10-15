@@ -16,6 +16,7 @@ namespace VacancyManager.Controllers
 
     //
     // GET: /Vacancy/Load
+
     [HttpGet]
     public JsonResult Load()
     {
@@ -57,6 +58,7 @@ namespace VacancyManager.Controllers
       bool c_success = false;
       string c_message = "При создания вакансии произошла ошибка";
       List<Vacancy> CreatedVacancy;
+
       JavaScriptSerializer jss = new JavaScriptSerializer();
       if (data != null)
       {
@@ -82,6 +84,8 @@ namespace VacancyManager.Controllers
       }
       else
         CreatedVacancy = null;
+
+     
 
       return Json(new
       {
@@ -134,7 +138,7 @@ namespace VacancyManager.Controllers
     public ActionResult Delete(string data)
     {
       bool d_success = false;
-      string d_message = "Во время обновления вакансии произошла ошибка";
+      string d_message = "Во время удаления вакансии произошла ошибка";
       JavaScriptSerializer jss = new JavaScriptSerializer();
       if (data != null)
       {

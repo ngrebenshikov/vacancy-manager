@@ -16,6 +16,7 @@ Ext.application
     [
       'Admin',
       'RequirementStack',
+      'ConsiderationController',
       'RequirementListInStack',
       'VacancyController',
       'UserController',

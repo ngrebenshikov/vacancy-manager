@@ -6,6 +6,7 @@ namespace VacancyManager.Services.Managers
 {
   internal static class VacancyRequirementsManager
   {
+
     internal static IEnumerable<VacancyRequirement> GetVacancyRequirements(int id)
     {
       VacancyContext _db = new VacancyContext();

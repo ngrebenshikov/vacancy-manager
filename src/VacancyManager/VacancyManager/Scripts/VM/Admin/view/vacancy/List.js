@@ -6,6 +6,7 @@
     id: 'vacancyGrid',
     autoSizeColumns: true,
     forceFit: true,
+    border: false,
     frame: false,
     split: true,
     store: 'Vacancy',
@@ -53,13 +54,11 @@
                   ptype: 'rowexpander',
                   expandOnDblClick: false,
                   selectRowOnExpand : true,
-                  rowBodyTpl: [' <center> ',
-                               ' <br> ',
-                               ' <div id="IssueSubCategoryGridRow-{VacancyID}"></div>',
-                               ' <br> ',
-                               ' </center> ']
-    }],
+                  expandOnRender: true,
+                  rowBodyTpl: ['<div class="ux-row-expander-box"></div>']
 
+    }],    
+    
     bbar: [{
         text: 'Новая вакансия',
         name: 'btnLoadBlankVacancy',

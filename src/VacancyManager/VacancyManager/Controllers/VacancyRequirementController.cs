@@ -12,12 +12,7 @@ namespace VacancyManager.Controllers
   public class VacancyRequirementController : Controller
   {
 
-    //
     // GET: /VacancyRequirement/
-    /*public ActionResult Index()
-    {
-      return View();
-    }*/
 
     [HttpGet]
     public JsonResult LoadVacancyRequirements(int id)
@@ -34,7 +29,7 @@ namespace VacancyManager.Controllers
                     {
                       VacancyRequirementID = b.VacancyRequirementID,
                       StackName = o.Name,
-                      VacancyID = b.VacancyID,
+                      VacancyID = id,
                       RequirementStackID = v.RequirementStackID,
                       RequirementID = v.RequirementID,
                       RequirementName = v.Name,
@@ -58,19 +53,24 @@ namespace VacancyManager.Controllers
     {
       bool u_success = false;
       string u_message = "При изменении требований произошла ошибка";
+
       JavaScriptSerializer jss = new JavaScriptSerializer();
       if (data != null)
       {
         for (int i = 0; i <= data.Length - 1; i++)
         {
-          var u_vacancyrequirement = jss.Deserialize<dynamic>(data[i]);
+          var u_vacancyrequirement = jss.Deserialize<dynamic>(data[i]); 
           Int32 VacancyRequirementID = Convert.ToInt32(u_vacancyrequirement["VacancyRequirementID"]);
           Int32 VacancyID = Convert.ToInt32(u_vacancyrequirement["VacancyID"]);
           Int32 RequirementID = Convert.ToInt32(u_vacancyrequirement["RequirementID"]);
           String Comments = u_vacancyrequirement["Comments"].ToString();
           Boolean Require = Convert.ToBoolean(u_vacancyrequirement["Require"]);
+
+
+
           if ((VacancyRequirementID == -1) && (Require == true))
-          {
+          { 
+                     
             VacancyRequirementsManager.CreateVacancyRequirement(VacancyID,
                                                  RequirementID,
                                                  Comments);
