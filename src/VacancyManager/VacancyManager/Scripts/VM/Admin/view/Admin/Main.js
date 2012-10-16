@@ -52,6 +52,16 @@
                 }
               ]
             },
+            {
+                xtype: 'panel',
+                title: "Конфигурация",
+                autoScroll: true,
+                layout: 'fit',
+                items:
+                [
+                    { xtype: 'SysConfigList' }
+                ]
+            }
             /*{
               xtype:'panel',
               layout: {
