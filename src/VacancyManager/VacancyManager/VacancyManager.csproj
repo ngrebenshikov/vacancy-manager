@@ -68,6 +68,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\RequirementStackController.cs" />
     <Compile Include="Controllers\RolesController.cs" />
+    <Compile Include="Controllers\SysConfigController.cs" />
     <Compile Include="Controllers\VacancyController.cs" />
     <Compile Include="Controllers\VacancyRequirementController.cs" />
     <Compile Include="Global.asax.cs">
@@ -97,6 +98,10 @@
     <Compile Include="Migrations\201205281103023_MultiRole.Designer.cs">
       <DependentUpon>201205281103023_MultiRole.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201210111152480_AddedConfig.cs" />
+    <Compile Include="Migrations\201210111152480_AddedConfig.Designer.cs">
+      <DependentUpon>201210111152480_AddedConfig.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\RequirementResumeRecord.cs" />
@@ -110,6 +115,7 @@
     <Compile Include="Models\Role.cs" />
     <Compile Include="Models\Requirement.cs" />
     <Compile Include="Models\RequirementStack.cs" />
+    <Compile Include="Models\SysConfig.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\Vacancy.cs" />
     <Compile Include="Models\VacancyContext.cs" />
@@ -120,6 +126,7 @@
     <Compile Include="Services\EMailSender.cs" />
     <Compile Include="Services\Managers\RequirementsManager.cs" />
     <Compile Include="Services\Managers\SharedManager.cs" />
+    <Compile Include="Services\Managers\SysConfigManager.cs" />
     <Compile Include="Services\Managers\VacancyDbManager.cs" />
     <Compile Include="Services\Managers\VacancyRequirementsManager.cs" />
     <Compile Include="Services\VacancyManagerMembershipProvider.cs" />
@@ -180,6 +187,7 @@
     <Content Include="Content\themes\base\minified\jquery.ui.slider.min.css" />
     <Content Include="Content\themes\base\minified\jquery.ui.tabs.min.css" />
     <Content Include="Content\themes\base\minified\jquery.ui.theme.min.css" />
+    <Content Include="ExtLib\ext-all-debug-w-comments.js" />
     <Content Include="ExtLib\ext-all.js" />
     <Content Include="ExtLib\resources\css\ext-all-access.css" />
     <Content Include="ExtLib\resources\css\ext-all-gray.css" />
@@ -1403,12 +1411,14 @@
     <Content Include="Scripts\VM\Admin\controller\Admin.js" />
     <Content Include="Scripts\VM\Admin\controller\RequirementListInStack.js" />
     <Content Include="Scripts\VM\Admin\controller\RequirementStack.js" />
+    <Content Include="Scripts\VM\Admin\controller\SysConfigController.js" />
     <Content Include="Scripts\VM\Admin\controller\UserController.js" />
     <Content Include="Scripts\VM\Admin\controller\VacancyController.js" />
     <Content Include="Scripts\VM\Admin\controller\Roles.js" />
     <Content Include="Scripts\VM\Admin\model\Consideration.js" />
     <Content Include="Scripts\VM\Admin\model\RequirementListInStack.js" />
     <Content Include="Scripts\VM\Admin\model\RequirementStack.js" />
+    <Content Include="Scripts\VM\Admin\model\SysConfigModel.js" />
     <Content Include="Scripts\VM\Admin\model\User.js" />
     <Content Include="Scripts\VM\Admin\model\Vacancy.js" />
     <Content Include="Scripts\VM\Admin\model\Roles.js" />
@@ -1417,6 +1427,7 @@
     <Content Include="Scripts\VM\Admin\store\Consideration.js" />
     <Content Include="Scripts\VM\Admin\store\RequirementListInStack.js" />
     <Content Include="Scripts\VM\Admin\store\RequirementStack.js" />
+    <Content Include="Scripts\VM\Admin\store\SysConfig.js" />
     <Content Include="Scripts\VM\Admin\store\User.js" />
     <Content Include="Scripts\VM\Admin\store\Vacancy.js" />
     <Content Include="Scripts\VM\Admin\store\Roles.js" />
@@ -1429,6 +1440,8 @@
     <Content Include="Scripts\VM\Admin\view\RequirementStack\Create.js" />
     <Content Include="Scripts\VM\Admin\view\RequirementStack\Edit.js" />
     <Content Include="Scripts\VM\Admin\view\RequirementStack\List.js" />
+    <Content Include="Scripts\VM\Admin\view\SysConfig\Create.js" />
+    <Content Include="Scripts\VM\Admin\view\SysConfig\List.js" />
     <Content Include="Scripts\VM\Admin\view\User\Add.js" />
     <Content Include="Scripts\VM\Admin\view\User\BanReason.js" />
     <Content Include="Scripts\VM\Admin\view\User\Edit.js" />
