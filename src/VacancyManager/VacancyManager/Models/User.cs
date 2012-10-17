@@ -28,9 +28,6 @@ namespace VacancyManager.Models
         public string EmailKey { get; set; }
 
         public virtual ICollection<Role> Roles { get; set; }
-        public virtual ICollection<Comment> Comments { get; set; }
-        public virtual ICollection<Resume> Resumes { get; set; }
-        public virtual ICollection<Consideration> Considerations { get; set; }
-        public virtual ICollection<File> Files { get; set; } 
+
     }
 }

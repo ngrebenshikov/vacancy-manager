@@ -18,6 +18,8 @@ namespace VacancyManager.Models
     public DbSet<Role> Roles { get; set; }
     public DbSet<VacancyRequirement> VacancyRequirements { get; set; }
     public DbSet<SysConfig> SysConfigs { get; set; }
+    public DbSet<Applicant> Applicants { get; set; }
+
 
     protected override void OnModelCreating(DbModelBuilder modelBuilder)
     {
