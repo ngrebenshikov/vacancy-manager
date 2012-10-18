@@ -105,6 +105,7 @@
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountModels.cs" />
+    <Compile Include="Models\Applicant.cs" />
     <Compile Include="Models\RequirementResumeRecord.cs" />
     <Compile Include="Models\Comment.cs" />
     <Compile Include="Models\Consideration.cs" />

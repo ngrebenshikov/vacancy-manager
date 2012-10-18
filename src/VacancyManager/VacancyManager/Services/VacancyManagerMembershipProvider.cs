@@ -392,10 +392,6 @@ namespace VacancyManager.Services
         IsLockedOut = true,
         LastLockedOutDate = DateTime.Now,
         LaslLoginDate = DateTime.Now,
-        Comments = new Collection<Comment>(),
-        Considerations = new Collection<Consideration>(),
-        Resumes = new Collection<Resume>(),
-        Files = new Collection<File>(),
         EmailKey = GenerateKey(),
       };
       user.Password = CreatePasswordHash(password, user.PasswordSalt);
