@@ -30,6 +30,7 @@ namespace VacancyManager.Controllers
             string resultMessage = "Ошибка при добавлении параметра конфигурации";
             JavaScriptSerializer jss = new JavaScriptSerializer();
             dynamic[] createdList = new dynamic[1];
+
             if (data != null)
             {
                 var sysConf = jss.Deserialize<dynamic>(data);
@@ -42,12 +43,44 @@ namespace VacancyManager.Controllers
                 resultMessage = "Параметр конфигурации успешно добавлен";
                 success = true;
             }
+
             if (success)
             {
                 return Json(new
                 {
                     success = success,
                     SysConfigList = createdList,
+                    message = resultMessage
+                });
+            }
+            else
+                return Json(new
+                {
+                    success = success,
+                    message = resultMessage
+                });
+        }
+
+        [HttpPost]
+        public ActionResult Update(string data)
+        {
+            bool success = false;
+            string resultMessage = "Ошибка при изменении параметра конфигурации";
+            JavaScriptSerializer jss = new JavaScriptSerializer();
+
+            if (data != null)
+            {
+                var sysConf = jss.Deserialize<dynamic>(data);
+                SysConfigManager.Update(sysConf["Id"], sysConf["Name"].ToString(), sysConf["Value"].ToString());
+                resultMessage = "Параметр конфигурации успешно изменен";
+                success = true;
+            }
+
+            if (success)
+            {
+                return Json(new
+                {
+                    success = success,
                     message = resultMessage
                 });
             }
@@ -68,7 +101,7 @@ namespace VacancyManager.Controllers
             if (data != null)
             {
                 var sysConf = jss.Deserialize<dynamic>(data);
-                SysConfigManager.Delete(sysConf["Name"].ToString());
+                SysConfigManager.Delete(int.Parse(sysConf["Id"].ToString()));
                 resultMessage = "Параметр конфигурации успешно удален";
                 success = true;
             }

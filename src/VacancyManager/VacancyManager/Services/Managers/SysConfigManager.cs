@@ -29,9 +29,22 @@ namespace VacancyManager.Services.Managers
             _db.SaveChanges();
         }
 
-        internal static void Delete(string name)
+        internal static void Update(int id, string name, string value)
         {
-            var obj = _db.SysConfigs.Where(conf => conf.Name == name).Single();
+            var obj = _db.SysConfigs.Where(conf => conf.Id == id).Single();
+
+            if (obj != null)
+            {
+                obj.Name = name;
+                obj.Value = value;
+            };
+
+            _db.SaveChanges();
+        }
+
+        internal static void Delete(int id)
+        {
+            var obj = _db.SysConfigs.Where(conf => conf.Id == id).Single();
 
             if (obj != null)
             {

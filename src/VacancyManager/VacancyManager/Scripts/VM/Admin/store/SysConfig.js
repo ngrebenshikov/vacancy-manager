@@ -14,6 +14,7 @@
         {
             read: '/SysConfig/GetList',
             create: '/SysConfig/Create',
+            update: '/SysConfig/Update',
             destroy: '/SysConfig/Delete'
         },
 

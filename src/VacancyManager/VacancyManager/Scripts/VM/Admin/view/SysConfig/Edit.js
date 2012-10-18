@@ -1,10 +1,10 @@
-﻿Ext.define('VM.view.SysConfig.Create',
+﻿Ext.define('VM.view.SysConfig.Edit',
 {
     extend: 'Ext.window.Window',
-    alias: 'widget.SysConfigCreate',
+    alias: 'widget.SysConfigEdit',
     requires: ['Ext.form.Panel'],
 
-    title: 'Новый параметр',
+    title: 'Изменить параметр',
     layout: 'fit',
     autoShow: true,
     modal: true,
@@ -35,8 +35,8 @@
 
         buttons: //Кнопки окна
         [{
-            text: 'Добавить',
-            action: 'CreateConf'
+            text: 'Сохранить',
+            action: 'Update'
         } 
 //        {
 //            text: 'Отмена',

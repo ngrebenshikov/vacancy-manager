@@ -99,9 +99,9 @@
     <Compile Include="Migrations\201205281103023_MultiRole.Designer.cs">
       <DependentUpon>201205281103023_MultiRole.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201210111152480_AddedConfig.cs" />
-    <Compile Include="Migrations\201210111152480_AddedConfig.Designer.cs">
-      <DependentUpon>201210111152480_AddedConfig.cs</DependentUpon>
+    <Compile Include="Migrations\201210170525364_AddedConfig.cs" />
+    <Compile Include="Migrations\201210170525364_AddedConfig.Designer.cs">
+      <DependentUpon>201210170525364_AddedConfig.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountModels.cs" />
@@ -1447,6 +1447,7 @@
     <Content Include="Scripts\VM\Admin\view\RequirementStack\List.js" />
     <Content Include="Scripts\VM\Admin\view\SysConfig\Create.js" />
     <Content Include="Scripts\VM\Admin\view\SysConfig\List.js" />
+    <Content Include="Scripts\VM\Admin\view\SysConfig\Edit.js" />
     <Content Include="Scripts\VM\Admin\view\User\Add.js" />
     <Content Include="Scripts\VM\Admin\view\User\BanReason.js" />
     <Content Include="Scripts\VM\Admin\view\User\Edit.js" />
