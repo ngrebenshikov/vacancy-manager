@@ -1,0 +1,10 @@
+Ext.define
+('VM.model.RequirementListInStack',
+  {
+    extend: 'Ext.data.Model',
+    idProperty: 'RequirementID',
+    fields: ['RequirementID', 'RequirementStackID', 'Name']
+    //RequiremenStackID добавлен сюда для того,
+    //чтобы в будущем внести возможность перемещения технологии в другой стек
+  }
+);

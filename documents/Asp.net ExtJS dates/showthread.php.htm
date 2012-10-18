@@ -1,0 +1,2305 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html class="ext-strict wf-klavikaweb1klavikaweb2-n3-active wf-active" xmlns="http://www.w3.org/1999/xhtml" dir="ltr" id="vbulletin_html" lang="en"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=8"><![endif]-->
+<!-- base href="http://www.sencha.com/forum/" --><!--[if IE]></base><![endif]-->
+<meta id="e_vb_meta_bburl" name="vb_meta_bburl" content="http://www.sencha.com/forum">
+<meta name="generator" content="vBulletin 4.1.5">
+
+
+<link rel="shortcut icon" type="image/ico" href="http://www.sencha.com/favicon.ico">
+<link rel="apple-touch-icon-precomposed" href="http://www.sencha.com/img/apple-touch-icon.png">
+<link rel="stylesheet" media="screen, projection, print" href="showthread.php_files/a.css">
+<link rel="alternate" type="application/rss+xml" title="Sencha Forum RSS Feed" href="http://www.sencha.com/forum/external.php?type=RSS2">
+<link rel="alternate" type="application/rss+xml" title="Sencha Forum - Ext: Examples and Extras - RSS Feed" href="http://www.sencha.com/forum/external.php?type=RSS2&amp;forumids=7">
+<link rel="stylesheet" href="showthread.php_files/main-rollup.css">
+
+<!--[if lt IE 9]>
+<link rel="stylesheet" media="screen, projection" href="/css/ie.css">
+<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+<!--[if lt IE 8]>
+<link rel="stylesheet" media="screen, projection" href="/css/ie7.css">
+<![endif]-->
+<!--[if lt IE 7]>
+<script src="/js/ie6.js"></script>
+<link rel="stylesheet" media="screen, projection" href="/css/ie6.css">
+<![endif]-->
+<script src="showthread.php_files/ga.js" async="" type="text/javascript"></script><script src="showthread.php_files/ga.js" async="" type="text/javascript"></script><script src="showthread.php_files/ext-core.js"></script>
+<script src="showthread.php_files/uxj6dew.js"></script>
+<style type="text/css">.tk-klavika-web{font-family:"klavika-web-1","klavika-web-2",sans-serif;}</style><link href="showthread.php_files/uxj6dew-d.htm" rel="stylesheet"><script>try{Typekit.load();}catch(e){}</script>
+<script src="showthread.php_files/a.js"></script>
+<script src="showthread.php_files/vbulletin_md5.js"></script>
+<script src="showthread.php_files/yuiloader-dom-event.js"></script>
+<script src="showthread.php_files/connection-min.js"></script>
+<script>
+var SESSIONURL="";
+var SECURITYTOKEN="1338195994-f8b91a37545707bb01aff1f06a587e1bd86b6e20";
+var IMGDIR_MISC="images/misc";
+var IMGDIR_BUTTON="images/buttons";
+var vb_disable_ajax=parseInt("0",10);
+var SIMPLEVERSION="415";
+var BBURL="http://www.sencha.com/forum";
+var LOGGEDIN=407136>0?true:false;
+var THIS_SCRIPT="showthread";
+var RELPATH="showthread.php?6149-aSP.NET-AJAX-DateTime-(de)serialization";
+</script>
+<script src="showthread.php_files/vbulletin-core.js"></script>
+ 
+<meta name="keywords" content="ajax,date,asp.net,this.connection,datetime,regexp^|[^]/date-?[0-9]+,$1new,date$2,eval,return,ext.data.connection,response,success,functionoptions,this.data,deserializejsonresponse.responsetext,wizard,scope,callback,post,events.asmx/getwizardplaceholder,data.replacenew,params,eventid,method,row.data.eventid,this.connection.request,javascript,days,needed,ajax.asp.net,client-side,code,downloaded,stay,deserialize,microsoft,json,serialization,functiondata,deserializejson,work,hours,deserialization">
+<meta name="description" content="For all of you that uses ASP.NET AJAX to do the serialization for you (and didn't see that the client-side code can be downloaded from ajax.asp.net until two days after you needed it and had to stay at work for far far too many hours): 
+var DeserializeJSON = function(data){ 
+	// deserialize a Microsoft JSON date to a JavaScript date 
+	var exp = data.replace(new RegExp('(^|)\\&quot;\\\\/Date\\((-?+)\\)\\\\/\\&quot;', 'g'), &quot;$1new Date($2)&quot;);	 
+	return eval(&quot;(&quot; + exp + &quot;)&quot;); 
+}; 
+In Ext an example could">
+
+<title> aSP.NET AJAX DateTime (de)serialization</title>
+
+
+<script type="text/javascript" src="showthread.php_files/vbulletin-ajax-reputation.js"></script>
+
+<script type="text/javascript" src="showthread.php_files/vbulletin_textedit.js"></script>
+<script type="text/javascript" src="showthread.php_files/vbulletin_post_loader.js"></script>
+
+<script type="text/javascript" src="showthread.php_files/vbulletin_ajax_threadrate.js"></script>
+
+
+<script type="text/javascript" src="showthread.php_files/vbulletin_multi_quote.js"></script>
+
+
+
+<script type="text/javascript" src="showthread.php_files/vbulletin_quick_reply.js"></script>
+
+
+<script type="text/javascript" src="showthread.php_files/vbulletin_ajax_taglist.js"></script>
+<script type="text/javascript" src="showthread.php_files/vbulletin_ajax_suggest.js"></script>
+
+
+
+
+    <link rel="stylesheet" type="text/css" href="showthread.php_files/showthread-rollup.css">
+
+
+<link rel="stylesheet" type="text/css" href="showthread.php_files/additional.css">
+<link rel="stylesheet" type="text/css" href="showthread.php_files/css.css">
+
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-32114126-2']);
+  _gaq.push(['_setDomainName', 'sencha.com']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script> 
+<script src="showthread.php_files/ckeditor_config.js" type="text/javascript"></script><link href="showthread.php_files/editor.css" type="text/css" rel="stylesheet"><script src="showthread.php_files/default.js" type="text/javascript"></script></head>
+
+<body id="ext-gen9" class="  ext-gecko ext-gecko3" onpageshow='event.persisted &amp;&amp; (function(){var allInstances = CKEDITOR.instances, editor, doc;for ( var i in allInstances ){	editor = allInstances[ i ];	doc = editor.document;	if ( doc )	{		doc.$.designMode = "off";		doc.$.designMode = "on";	}}})();'>
+
+<header id="header">
+    <div id="logo-container"> 
+        <h1 id="logo"><a href="http://www.sencha.com/"><img title="Sencha" src="showthread.php_files/sencha-large.png" alt="Sencha"></a></h1> 
+        <span id="glow"></span> 
+    </div> 
+    
+    <nav id="nav">
+        <ul class="zero">
+            <li id="ext-gen3" class="with-sub">
+                <a href="http://www.sencha.com/products/" class="main">Products</a>
+                <ul id="products" class="zero pop-nav with-icons">
+                    <li class="first" id="products-16"><a href="http://www.sencha.com/products/extjs/"><span>Ext JS 4.1</span></a></li>
+                    <li id="products-17"><a href="http://www.sencha.com/products/gxt/"><span>Sencha GXT 3</span></a></li>
+                    <li id="products-13"><a href="http://www.sencha.com/products/touch/"><span>Sencha Touch 2</span></a></li>
+                    <li id="products-1308"><a href="http://www.sencha.com/products/touch/charts/"><span>Sencha Touch Charts</span></a></li>
+                    <li id="products-15"><a href="http://www.sencha.com/products/architect/"><span>Sencha Architect 2</span></a></li>
+                    <li id="products-1682"><a href="http://www.sencha.com/products/animator/"><span>Sencha Animator</span></a></li>
+                    <li class="last" id="products-917"><a href="http://www.sencha.com/products/io/"><span>Sencha.io</span></a></li>
+                </ul>
+            </li>
+            <li id="ext-gen4" class="with-sub">
+                <a href="http://www.sencha.com/support/" class="main">Support</a>
+                <ul id="support" class="zero pop-nav">
+                    <li class="overview first" id="support-23"><a href="http://www.sencha.com/support/"><span>Sencha Care</span></a></li>
+                    <li class="first" id="support-33"><a href="http://www.sencha.com/support/services/"><span>Sencha Services</span></a></li>
+                    <li class="last" id="support-1890"><a href="http://www.sencha.com/support/faq/"><span>FAQ</span></a></li>
+                </ul>
+            </li>
+            <li id="ext-gen5" class="with-sub">
+                <a href="http://www.sencha.com/training/" class="main">Training</a>
+                <ul id="support" class="zero pop-nav">
+                    <li class="overview first" id="support-26"><a href="http://www.sencha.com/training/"><span>Open Enrollment</span></a></li>
+                    <li class="first last" id="support-6676"><a href="http://www.sencha.com/training/courses/"><span>Courses</span></a></li>
+                </ul>
+            </li>
+            <li id="ext-gen6" class="with-sub">
+                <a href="http://www.sencha.com/company/" class="main">Company</a>
+                <ul id="company" class="zero pop-nav">
+                    <li class="overview first" id="company-24"><a href="http://www.sencha.com/company/"><span>Overview</span></a></li>
+                    <li class="first" id="company-35"><a href="http://www.sencha.com/company/team/"><span>Team</span></a></li>
+                    <li id="company-36"><a href="http://www.sencha.com/company/careers/"><span>Careers</span></a></li>
+                    <li id="company-37"><a href="http://www.sencha.com/company/events/"><span>Events</span></a></li>
+                    <li id="company-38"><a href="http://www.sencha.com/company/press/"><span>Press</span></a></li>
+                    <li id="company-40"><a href="http://www.sencha.com/company/customers/"><span>Customers</span></a></li>
+                    <li id="company-11297"><a href="http://www.sencha.com/company/partners/"><span>Partners</span></a></li>
+                    <li class="last" id="company-408"><a href="http://www.sencha.com/company/contact/"><span>Contact</span></a></li>
+                </ul>
+            </li>
+            <li><a href="http://www.sencha.com/blog/" class="main">Blog</a></li>
+            <li id="ext-gen7" class="with-sub">
+                <a href="http://www.sencha.com/store/" class="main">Store</a>
+                <ul id="store" class="zero pop-nav">
+                    <li class="first" id="store-1191"><a href="http://www.sencha.com/store/sencha-complete/"><span>Sencha Complete</span></a></li>
+                    <li id="store-148"><a href="http://www.sencha.com/store/extjs/"><span>Ext JS 4</span></a></li>
+                    <li id="store-396"><a href="http://www.sencha.com/store/gxt/"><span>Sencha GXT 3</span></a></li>
+                    <li id="store-398"><a href="http://www.sencha.com/store/touch/"><span>Sencha Touch Support</span></a></li>
+                    <li id="store-1190"><a href="http://www.sencha.com/store/touch-charts/"><span>Sencha Touch Charts</span></a></li>
+                    <li id="store-1200"><a href="http://www.sencha.com/store/architect/"><span>Sencha Architect 2</span></a></li>
+                    <li id="store-1673"><a href="http://www.sencha.com/store/animator/"><span>Sencha Animator</span></a></li>
+                    <li id="store-407"><a href="http://www.sencha.com/store/ordering-information/"><span>Ordering Information</span></a></li>
+                    <li id="store-11300"><a href="http://www.sencha.com/store/licensing-faq/"><span>Licensing FAQ</span></a></li>
+                    <li class="last" id="store-11305"><a href="http://www.sencha.com/store/authorized-resellers/"><span>Authorized Resellers</span></a></li>
+                </ul>
+            </li>
+            <li class="end"><a href="http://www.sencha.com/contact/" class="main">Contact</a></li>
+        </ul>
+    </nav>
+
+    <nav id="util-nav">
+        <ul>
+        
+            
+            
+                <li class="showmember">
+                    Welcome, <a href="http://www.sencha.com/forum/member.php?407136-Elun">Elun</a>.
+                </li>
+                <li class="usercp">
+                    <a href="http://www.sencha.com/forum/usercp.php">Settings</a>
+                </li>
+                
+                <li>
+                    <a href="http://www.sencha.com/forum/login.php?do=logout&amp;logouthash=1338195994-f8b91a37545707bb01aff1f06a587e1bd86b6e20" onclick="return log_out('Are you sure you want to log out?')">Log out</a>
+                </li>
+            
+            
+            
+            <li><a href="http://www.sencha.com/forum/">Forum</a></li>
+            <li><a href="http://www.sencha.com/apps/">App Gallery</a></li>
+            <li><a href="http://www.sencha.com/learn/">Learn</a></li>
+            <li id="ext-gen2" class="end with-sub">
+                <a href="#" class="dropdown">Documentation</a>
+                <div class="skiptranslate pop-nav zero" id="docs-dropdown">
+                    <ul>
+                        <li><a target="_blank" href="http://docs.sencha.com/extjs/">Ext JS 4</a></li>
+                        <li><a target="_blank" href="http://docs.sencha.com/extjs3/">Ext JS 3</a></li>
+                        <li><a target="_blank" href="http://dev.sencha.com/deploy/gxt-3.0.0/javadoc/gxt/index.html">Sencha GXT 3</a></li>
+                        <li><a target="_blank" href="http://docs.sencha.com/touch/2-0/">Sencha Touch 2</a></li>
+                        <li><a target="_blank" href="http://docs.sencha.com/touch/1-1/">Sencha Touch 1</a></li>
+                        <li><a target="_blank" href="http://docs.sencha.com/touch-charts/">Touch Charts</a></li>
+                        <li><a target="_blank" href="http://docs.sencha.com/architect/2-0/#%21/guide">Sencha Architect</a></li>
+                        <li><a target="_blank" href="http://docs.sencha.com/animator/1-1/#%21/guide">Sencha Animator</a></li>
+                        <li><a target="_blank" href="http://docs.sencha.com/io/">Sencha.io</a></li>
+                    </ul>
+                </div>
+            </li>
+        </ul>
+    </nav>  
+</header>
+<div id="content-wrapper">
+    <section id="content"> 
+            
+                <script type="text/javascript">
+                    var Sencha = Sencha || {};
+
+                    (function() {
+                        var enumerables             = true,
+                            enumerablesTest         = { toString : 1 },
+                            supportsSliceOnNodeList = true;
+
+                        try {
+                            // IE 6 - 8 will throw an error when using Array.prototype.slice on NodeList
+                            if (typeof document !== 'undefined') {
+                                slice.call(document.getElementsByTagName('body'));
+                            }
+                        } catch (e) {
+                            supportsSliceOnNodeList = false;
+                        };
+
+                        for (i in enumerablesTest) {
+                            enumerables = null;
+                        }
+
+                        if (enumerables) {
+                            enumerables = ['hasOwnProperty', 'valueOf', 'isPrototypeOf', 'propertyIsEnumerable', 'toLocaleString', 'toString', 'constructor'];
+                        }
+
+
+                        Sencha.enumerables = enumerables;
+
+                        Sencha.pageTracker = /sencha.com/i.test(location.host) ? 'UA-32114126-2' : false;
+
+                        Sencha.apply = function(object, config, defaults) {
+                            if (defaults) {
+                                Sencha.apply(object, defaults);
+                            }
+
+                            if (object && config && typeof config === 'object') {
+                                var i, j, k;
+
+                                for (i in config) {
+                                    object[i] = config[i];
+                                }
+
+                                if (enumerables) {
+                                    for (j = enumerables.length; j--;) {
+                                        k = enumerables[j];
+
+                                        if (config.hasOwnProperty(k)) {
+                                            object[k] = config[k];
+                                        }
+                                    }
+                                }
+                            }
+
+                            return object;
+                        };
+
+                        Sencha.apply(Sencha, {
+                            createCallback : function(fn, scope) {
+                                return function() {
+                                    return fn.apply(scope, arguments);
+                                }
+                            },
+
+                            createAjaxRequestObject : function(config) {
+                                var request = this.request;
+
+                                if (request) {
+                                    return request;
+                                }
+
+                                if (window.XMLHttpRequest) {
+                                    request = new window.XMLHttpRequest;
+                                } else {
+                                    request = new ActiveXObject('MSXML2.XMLHTTP.3.0');
+                                }
+
+                                return this.request = request;
+                            },
+
+                            ajax : function(config) {
+                                var me       = this,
+                                    request  = me.createAjaxRequestObject(config);
+
+                                if (config.beforeRequest) {
+                                    if (config.beforeRequest(me, request, config) === false) {
+                                        return;
+                                    }
+                                }
+
+                                request.onreadystatechange = function(e) {
+                                    if (request.readyState === 4) {
+                                        if (request.status === 200) {
+                                            if (config.success) {
+                                                me.createCallback(config.success, config.scope || me)(request, e);
+                                            }
+                                        } else if (config.failure) {
+                                            me.createCallback(config.failure, config.scope || me)(request, e);
+                                        }
+
+                                        if (config.callback) {
+                                            me.createCallback(config.callback, config.scope || me)(request, e);
+                                        }
+                                    }
+                                };
+
+                                request.open(config.method || 'GET', config.url, config.sync || true);
+                                request.send();
+                            },
+
+                            decode : function(json) {
+                                return eval('(' + json + ')');
+                            },
+
+                            toArray : function(iterable, start, end){
+                                if (!iterable || !iterable.length) {
+                                    return [];
+                                }
+
+                                if (typeof iterable === 'string') {
+                                    iterable = iterable.split('');
+                                }
+
+                                if (supportsSliceOnNodeList) {
+                                    return slice.call(iterable, start || 0, end || iterable.length);
+                                }
+
+                                var array = [],
+                                    i;
+
+                                start = start || 0;
+                                end   = end ? ((end < 0) ? iterable.length + end : end) : iterable.length;
+
+                                for (i = start; i < end; i++) {
+                                   array.push(iterable[i]);
+                                }
+
+                                return array;
+                            },
+
+                            parseTpl : function(format) {
+                                var args = this.toArray(arguments, 1);
+
+                                return format.replace(/\{(\d+)\}/g, function(m, i) {
+                                    return args[i];
+                                });
+                            },
+
+                            pushAnalytics : function(page, configs) {
+                                if (!page) {
+                                    return;
+                                }
+
+                                var pageTracker = this.pageTracker;
+
+                                if (pageTracker === false) {
+                                    return;
+                                }
+
+                                if (!pageTracker || typeof pageTracker === 'string') {
+                                    if (typeof _gat !== 'undefined') {
+                                        pageTracker = _gat._getTracker(pageTracker);
+                                        pageTracker._initData();
+                                        pageTracker._trackPageview();
+                                    }
+                                }
+
+                                if (configs) {
+                                    var params = [];
+
+                                    for (var name in configs) {
+                                        if (configs.hasOwnProperty(name)) {
+                                            params.push(name + '=' + configs[name]);
+                                        }
+                                    }
+
+                                    page += '?' + params.join('&');
+                                }
+
+                                pageTracker._trackPageview(page);
+                            },
+
+                            getElement : function(all_selectors) {
+                                var selected = [];
+
+                                if (!document.getElementsByTagName) {
+                                    return selected;
+                                }
+
+                                var selectors = all_selectors.split(" ");
+
+                                // Grab all of the tagName elements within current context
+                                var getElements = function(context,tag) {
+                                    if (!tag) tag = '*';
+                                    // Get elements matching tag, filter them for class selector
+                                    var found = [];
+
+                                    for (var a=0,len=context.length; con=context[a],a<len; a++) {
+                                        var eles;
+                                        if (tag == '*') eles = con.all ? con.all : con.getElementsByTagName("*");
+                                        else eles = con.getElementsByTagName(tag);
+
+                                        for(var b=0,leng=eles.length;b<leng; b++) found.push(eles[b]);
+                                    }
+                                    return found;
+                                };
+
+                                COMMA:
+                                for (var i=0,len1=selectors.length; selector=selectors[i],i<len1; i++) {
+                                    var context = new Array(document);
+                                    var inheriters = selector.split(" ");
+
+                                    SPACE:
+                                    for (var j=0,len2=inheriters.length; element=inheriters[j],j<len2;j++) {
+                                        //This part is to make sure that it is not part of a CSS3 Selector
+                                        var left_bracket = element.indexOf("[");
+                                        var right_bracket = element.indexOf("]");
+                                        var pos = element.indexOf("#");//ID
+                                        if (pos+1 && !(pos>left_bracket&&pos<right_bracket)) {
+                                            var parts = element.split("#");
+                                            var tag = parts[0];
+                                            var id = parts[1];
+                                            var ele = document.getElementById(id);
+                                            if (!ele || (tag && ele.nodeName.toLowerCase() != tag)) { //Specified element not found
+                                                continue COMMA;
+                                            }
+                                            context = new Array(ele);
+                                            continue SPACE;
+                                        }
+
+                                        pos = element.indexOf(".");//Class
+                                        if (pos+1 && !(pos>left_bracket&&pos<right_bracket)) {
+                                            var parts = element.split('.');
+                                            var tag = parts[0];
+                                            var class_name = parts[1];
+
+                                            var found = getElements(context,tag);
+                                            context = [];
+                                            for (var l=0,len=found.length; fnd=found[l],l<len; l++) {
+                                                if (fnd.className) {
+                                                    var value = fnd.className.split(' ');
+
+                                                    value = value.indexOf(class_name);
+
+                                                    if (value >= 0) {
+                                                        context.push(fnd);
+                                                    }
+                                                }
+                                            }
+                                            continue SPACE;
+                                        }
+
+                                        if (element.indexOf('[')+1) {//If the char '[' appears, that means it needs CSS 3 parsing
+                                            // Code to deal with attribute selectors
+                                            if (element.match(/^(\w*)\[(\w+)([=~\|\^$\*]?)=?['"]?([^\]'"]*)['"]?\]$/)) {
+                                                var tag = RegExp.$1;
+                                                var attr = RegExp.$2;
+                                                var operator = RegExp.$3;
+                                                var value = RegExp.$4;
+                                            }
+                                            var found = getElements(context,tag);
+                                            context = [];
+                                            for (var l=0,len=found.length; fnd=found[l],l<len; l++) {
+                                                if (operator=='=' && fnd.getAttribute(attr) != value) continue;
+                                                if (operator=='~' && !fnd.getAttribute(attr).match(new RegExp('(^|\\s)'+value+'(\\s|$)'))) continue;
+                                                if (operator=='|' && !fnd.getAttribute(attr).match(new RegExp('^'+value+'-?'))) continue;
+                                                if (operator=='^' && fnd.getAttribute(attr).indexOf(value)!=0) continue;
+                                                if (operator=='$' && fnd.getAttribute(attr).lastIndexOf(value)!=(fnd.getAttribute(attr).length-value.length)) continue;
+                                                if (operator=='*' && !(fnd.getAttribute(attr).indexOf(value)+1)) continue;
+                                                else if(!fnd.getAttribute(attr)) continue;
+                                                context.push(fnd);
+                                            }
+
+                                            continue SPACE;
+                                        }
+
+                                        //Tag selectors - no class or id specified.
+                                        var found = getElements(context,element);
+                                        context = found;
+                                    }
+                                    for (var o=0,len=context.length;o<len; o++) {
+                                        selected.push(context[o]);
+                                    }
+                                }
+
+                                return selected;
+                            },
+
+                            getAttribute : function(el, name, full) {
+                                var attributes = el.attributes,
+                                    a          = 0,
+                                    aLen       = attributes.length,
+                                    attribute;
+
+                                for (; a < aLen; a++) {
+                                    attribute = attributes[a];
+
+                                    if (new RegExp(name, 'i').test(attribute.name)) {
+                                        break;
+                                    }
+                                }
+
+                                if (!attribute) {
+                                    return null;
+                                }
+
+                                return full ? attribute : attribute.value;
+                            },
+
+                            destroyElement : function(el) {
+                                document.body.removeChild(el);
+                            },
+
+                            showPopup : function(config) {
+                                var style      = [],
+                                    innerCls   = config.innerCls || '',
+                                    wrapCls    = config.wrapCls  || '',
+                                    modalCls   = config.modalCls || '',
+                                    cellAttrib = '',
+                                    element;
+
+                                if (!config.cls) {
+                                    alert('You must specify the cls config');
+                                    return;
+                                }
+
+                                if (config.width) {
+                                    style.push('width: ' + config.width + 'px;');
+                                }
+
+                                if (config.height) {
+                                    style.push('height: ' + config.height + 'px;');
+                                }
+
+                                if (style.length > 0) {
+                                    cellAttrib = ' style="' + style.join('') + '"';
+                                }
+
+                                element = [
+                                    '<div class="sencha-popup ' + config.cls + '" ' + (config.id ? 'id="' + config.id + '"' : '') + '>',
+                                        '<div class="wrap">',
+                                            '<div class="row">',
+                                                '<div class="cell">',
+                                                    '<div class="inner ' + innerCls + '"' + cellAttrib + '>',
+                                                        config.html,
+                                                    '</div>',
+                                                '</div>',
+                                            '</div>',
+                                        '</div>',
+                                    '</div>'
+                                ];
+
+                                if (config.modal) {
+                                    element.splice(1, 0, '<a class="modal ' + modalCls + '"></a>');
+                                }
+
+                                document.body.innerHTML += element.join('');
+
+                                if (config.hideOnMaskTap) {
+                                    var modal = this.getElement('div.sencha-popup a.modal')[0];
+
+                                    if (modal) {
+                                        modal.addEventListener('click', function(e) {
+                                            if (e.target.className === 'cell') {
+                                                Sencha.closePopup();
+                                            }
+                                        });
+                                    }
+                                }
+                            },
+
+                            closePopup : function(el) {
+                                var popup = this.getElement('div.sencha-popup')[0];
+
+                                if (popup) {
+                                    this.destroyElement(popup);
+                                }
+                            }
+                        });
+                    })()
+                </script>
+
+                <style type="text/css">
+                    div.sencha-popup a.modal {
+                        position: fixed;
+                        top: 0px;
+                        left: 0px;
+                        right: 0px;
+                        bottom: 0px;
+                        background: #000;
+                        opacity: 0.5;
+                        z-index: 10000;
+                    }
+
+                    div.sencha-popup div.inner {
+                        z-index: 10001;
+                        margin: 0 auto;
+                        background: #fff;
+                    }
+
+                    div.sencha-popup div.wrap {
+                        width: 100%;
+                        height: 100%;
+                        position: fixed;
+                        top: 0px;
+                        left: 0px;
+                        right: 0px;
+                        bottom: 0px;
+                        z-index: 10000;
+                        display: table
+                    }
+
+                    div.sencha-popup div.row {
+                        display: table-row;
+                    }
+
+                    div.sencha-popup div.cell {
+                        display: table-cell;
+                        vertical-align: middle;
+                    }
+                </style>
+            
+        
+<nav class="bc">
+
+	<a href="http://www.sencha.com/forum/index.php">Forum</a> <span>/</span>
+ 
+	<a href="http://www.sencha.com/forum/forumdisplay.php?22-Sencha-General-Forums">Sencha General Forums</a> <span>/</span>
+ 
+	<a href="http://www.sencha.com/forum/forumdisplay.php?7-Ext-Examples-and-Extras">Ext: Examples and Extras</a> <span>/</span>
+ 
+</nav>
+ 
+
+            
+                <script type="text/javascript">
+                    function sencha_try_integration_show(id, options) {}
+                </script>
+            
+         
+
+
+<div class="top-block">
+    <div id="pagetitle" class="pagetitle pagetitlepluscontrols">
+        <h1 class="threadtitle">
+           <a href="http://www.sencha.com/forum/showthread.php?6149-aSP.NET-AJAX-DateTime-%28de%29serialization" title="Reload this Page">aSP.NET AJAX DateTime (de)serialization</a>
+        </h1>
+    
+        
+    
+        
+        <p class="button-group">
+            
+            <a href="http://www.sencha.com/forum/newreply.php?p=310239&amp;noquote=1" class="button-link newcontent_textcontrol" id="newreplylink_top"><span>+ Reply to Thread</span></a>
+            
+        </p>
+        
+    
+    </div><!-- End .pagetitlepluscontrols container -->
+</div>
+
+    <div id="thread_controls" class="thread_controls">
+        <div>
+        <ul id="postlist_popups" class="postlist_popups popupgroup">
+            
+            <li class="popupmenu nohovermenu" id="threadtools">
+                <h6><a id="yui-gen1" class="popupctrl" href="javascript://">Thread Tools</a></h6>
+                <ul id="yui-gen0" class="popupbody">
+                    <li><a href="http://www.sencha.com/forum/printthread.php?t=6149&amp;pp=10&amp;page=1" accesskey="3" rel="nofollow">Show Printable Version</a></li>
+                    <li><a href="http://www.sencha.com/forum/sendmessage.php?do=sendtofriend&amp;t=6149" rel="nofollow">Email this Page…</a></li>
+                    <li>
+                        
+                            <a href="http://www.sencha.com/forum/subscription.php?do=addsubscription&amp;t=6149" rel="nofollow">Subscribe to this Thread…</a>
+                                            
+                    </li>
+                    
+                     
+		     
+                   
+                </ul>
+            </li>
+
+            
+
+            
+                <li class="popupmenu searchthread" id="searchthread">
+                    <h6><a id="yui-gen3" class="popupctrl" href="javascript://">Search Thread</a></h6>
+                    <form action="search.php" method="post">
+                        <ul id="yui-gen2" class="popupbody" style="padding:4px;">
+                            <li>
+                                <input name="query" class="searchbox textbox" value="Search..." tabindex="13" style="width: 157px;" type="text">
+                                <input class="button-link inline grey small" value="Search" tabindex="14" type="submit">
+                            </li>
+                            <li class="formsubmit">
+                                <div><a class="advancedsearchlink" href="http://www.sencha.com/forum/search.php?search_type=1&amp;searchthreadid=6149&amp;contenttype=vBForum_Post">Advanced Search</a></div>
+                            </li>
+                        </ul>
+                        <input name="s" value="" type="hidden">
+                        <input name="securitytoken" value="1338195994-f8b91a37545707bb01aff1f06a587e1bd86b6e20" type="hidden">
+                        <input name="do" value="process" type="hidden">
+                        <input name="searchthreadid" value="6149" type="hidden">
+                        <input name="search_type" value="1" type="hidden">
+                        <input name="contenttype" value="vBForum_Post" type="hidden">
+
+                    </form>
+                </li>
+            
+
+            
+                <li class="popupmenu" id="threadrating">
+                    <h6><a id="yui-gen5" class="popupctrl" href="javascript://">Rate This Thread</a></h6>
+                    <form action="threadrate.php" method="post" id="showthread_threadrate_form">
+                        <ul id="yui-gen4" class="popupbody">
+                            <li id="threadrating_current"><label>
+                                <span class="rating r5">Current Rating</span>
+                            </label></li>
+                            
+                                <li><label for="r5"><span class="rating r5">
+                                    <input name="vote" value="5" id="r5" tabindex="20" type="radio"> Excellent
+                                </span></label></li>
+                                <li><label for="r4"><span class="rating r4">
+                                    <input name="vote" value="4" id="r4" tabindex="21" type="radio"> Good
+                                </span></label></li>
+                                <li><label for="r3"><span class="rating r3">
+                                    <input name="vote" value="3" id="r3" tabindex="22" type="radio"> Average
+                                </span></label></li>
+                                <li><label for="r2"><span class="rating r2">
+                                    <input name="vote" value="2" id="r2" tabindex="23" type="radio"> Bad
+                                </span></label></li>
+                                <li><label for="r1"><span class="rating r1">
+                                    <input name="vote" value="1" id="r1" tabindex="24" type="radio"> Terrible
+                                </span></label></li>
+                                <li class="formsubmit"><input value="Vote Now" class="button-link inline small grey" type="button"></li>
+                            
+                        </ul>
+                        <input name="s" value="" type="hidden">
+                        <input name="securitytoken" value="1338195994-f8b91a37545707bb01aff1f06a587e1bd86b6e20" type="hidden">
+                        <input name="t" value="6149" type="hidden">
+                        <input name="pp" value="10" type="hidden">
+                        <input name="page" value="1" type="hidden">
+                    </form>
+                    <script type="text/javascript">
+                    <!--
+                        vB_AJAX_ThreadRate_Init('showthread_threadrate_form', 6149);
+                    //-->
+                    </script>
+                </li>
+            
+
+            
+                <li class="popupmenu" id="displaymodes">
+                    <h6><a id="yui-gen7" class="popupctrl" href="javascript://">Display</a></h6>
+                    <ul id="yui-gen6" class="popupbody">
+                        <li><label>Linear Mode</label></li>
+                        <li><a href="http://www.sencha.com/forum/showthread.php?6149-aSP.NET-AJAX-DateTime-%28de%29serialization&amp;mode=hybrid"> Switch to Hybrid Mode</a></li>
+                        <li><a href="http://www.sencha.com/forum/showthread.php?6149-aSP.NET-AJAX-DateTime-%28de%29serialization&amp;p=30648&amp;mode=threaded#post30648"> Switch to Threaded Mode</a></li>
+                    </ul>
+                </li>
+            
+
+            
+        </ul>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+<div id="postlist" class="postlist restrain">
+    
+
+    
+        <ol id="posts" class="posts" start="1">
+            
+<li class="postbitlegacy postbitim postcontainer" id="post_30648">
+<!-- see bottom of postbit.css for .userinfo .popupmenu styles -->
+
+    <div class="posthead">
+        
+            <span class="postdate old">
+                
+                    <span class="date">13 May 2007&nbsp;<span class="time">5:07 PM</span></span>
+                
+            </span>
+            <span class="nodecontrols">
+                
+                    <a name="post30648" href="http://www.sencha.com/forum/showthread.php?6149-aSP.NET-AJAX-DateTime-%28de%29serialization&amp;p=30648&amp;viewfull=1#post30648" class="postcounter">#1</a><a id="postcount30648" name="1"></a>
+                
+                
+                
+            </span>
+        
+    </div>
+    <div class="postdetails">
+        <div class="userinfo">
+            <div class="username_container">
+            
+                <div id="yui-gen8" class="popupmenu memberaction">
+	<a id="yui-gen10" class="username offline popupctrl" href="http://www.sencha.com/forum/member.php?1764-dotnetCarpenter" title="dotnetCarpenter is offline"><strong>dotnetCarpenter</strong></a>
+	<ul id="yui-gen9" class="popupbody memberaction_body">
+		<li class="left">
+			<img src="showthread.php_files/profile.png" alt="">
+			<a href="http://www.sencha.com/forum/member.php?1764-dotnetCarpenter">
+				View Profile
+			</a>
+		</li>
+		
+		<li class="right">
+			<img src="showthread.php_files/forum.png" alt="">
+			<a href="http://www.sencha.com/forum/search.php?do=finduser&amp;userid=1764&amp;contenttype=vBForum_Post&amp;showposts=1" rel="nofollow">
+				View Forum Posts
+			</a>
+		</li>
+		
+		
+		<li class="left">
+			<img src="showthread.php_files/message.png" alt="">
+			<a href="http://www.sencha.com/forum/private.php?do=newpm&amp;u=1764" rel="nofollow">
+				Private Message
+			</a>
+		</li>
+		
+		
+		
+		
+		
+		<li class="left">
+			<img src="showthread.php_files/homepage.png" alt="">
+			<a href="http://francesrojoenelfuego.blogspot.com/" rel="nofollow">
+				Visit Homepage
+			</a>
+		</li>
+		
+		
+		
+
+		
+		<li class="left">
+			<img src="showthread.php_files/add.png" alt="">
+			<a href="http://www.sencha.com/forum/profile.php?do=addlist&amp;userlist=buddy&amp;u=1764">
+				Add as Contact
+			</a>
+		</li>
+		
+
+		
+		
+	</ul>
+</div>
+ 
+                <img title="dotnetCarpenter is offline" class="inlineimg onlinestatus" src="showthread.php_files/user-offline.png" alt="dotnetCarpenter is offline" border="0">
+
+ 
+            
+            </div>
+            <span class="usertitle">
+                Ext User
+            </span>
+            
+            
+            
+            <a class="postuseravatar" href="http://www.sencha.com/forum/member.php?1764-dotnetCarpenter" title="dotnetCarpenter is offline">
+                <img src="showthread.php_files/image.jpg" alt="dotnetCarpenter's Avatar" title="dotnetCarpenter's Avatar">
+            </a>
+             
+            
+                <hr>
+                <dl class="userinfo_extra">
+                    <dt>Join Date</dt> <dd>Mar 2007</dd>
+                    <dt>Location</dt> <dd>Copenhagen, Denmark</dd>
+                    
+                    <dt>Posts</dt> <dd>271  <span class="postbit_reputation" id="repdisplay_30648_1764"><img title="dotnetCarpenter is on a distinguished road" class="repimg" src="showthread.php_files/reputation_pos.png" alt="dotnetCarpenter is on a distinguished road"> </span></dd>    
+                    
+                </dl>
+                
+                
+                <div class="imlinks">
+                        
+                </div>
+            
+        </div>
+        <div class="postbody">
+            <div class="postrow">
+                
+                
+                <h2 class="title icon">
+                    <img title="Default" src="showthread.php_files/icon1.png" alt="Default"> aSP.NET AJAX DateTime (de)serialization
+                </h2>
+                
+
+
+                        
+                            
+                            
+                        
+                        
+                <div class="content">
+
+		<h2 class="posttitle icon">
+			aSP.NET AJAX DateTime (de)serialization
+		</h2><br>
+                    <div id="post_message_30648">
+                        <blockquote class="postcontent restore">For all 
+of you that uses ASP.NET AJAX to do the serialization for you (and 
+didn't see that the client-side code can be downloaded from ajax.asp.net
+ until two days after you needed it and had to stay at work for far far 
+too many hours):<br>
+<div class="bbcode_container">
+	<div class="bbcode_description">Code:</div>
+	<pre class="bbcode_code" style="height:84px;">var DeserializeJSON = function(data){
+	// deserialize a Microsoft JSON date to a JavaScript date
+	var exp = data.replace(new RegExp('(^|[^\\\\])\\"\\\\/Date\\((-?[0-9]+)\\)\\\\/\\"', 'g'), "$1new Date($2)");	
+	return eval("(" + exp + ")");
+};</pre>
+</div> In Ext an example could be:<br>
+<div class="bbcode_container">
+	<div class="bbcode_description">Code:</div>
+	<pre class="bbcode_code" style="height:144px;">this.Connection = new Ext.data.Connection();
+this.Connection.request({
+	url: 'Events.asmx/GetWizardPlaceholder',
+	params: { "eventid": row.data.eventID },
+	method: 'POST',
+	callback: function(options, success, response){
+		this.Data = DeserializeJSON(response.responseText);
+	},
+	scope: Wizard
+});</pre>
+</div> </blockquote>
+                    </div>
+
+                    
+                </div>
+            </div>
+            
+            <div class="cleardiv"></div>
+        </div>
+    </div>
+        <div class="postfoot">
+            <!-- <div class="postfoot_container"> -->
+            <div class="textcontrols floatcontainer">
+                <span class="postcontrols">
+                    <img style="display: none;" id="progress_30648" src="showthread.php_files/progress.gif" alt="">
+                    
+                    
+                        <a id="qr_30648" class="quickreply" href="http://www.sencha.com/forum/newreply.php?do=newreply&amp;p=30648" rel="nofollow"><img title="Quick reply to this message" id="replyimg_30648" src="showthread.php_files/clear.gif" alt="Quick reply to this message"> Reply</a> 
+                    <span class="seperator">&nbsp;</span>
+                    
+                    
+                        <a id="qrwq_30648" class="newreply" href="http://www.sencha.com/forum/newreply.php?do=newreply&amp;p=30648" rel="nofollow"><img title="Reply With Quote" id="quoteimg_30648" src="showthread.php_files/clear.gif" alt="Reply With Quote">  Reply With Quote</a> 
+                    <span class="seperator">&nbsp;</span>
+                    
+                    
+                        
+                         <a class="multiquote" href="http://www.sencha.com/forum/newreply.php?do=newreply&amp;p=30648" rel="nofollow" onclick="return false;" id="mq_30648"><img title="Multi-Quote This Message" id="mq_image_30648" src="showthread.php_files/multiquote_40b.png" alt="Multi-Quote This Message">&nbsp;</a> 
+                    
+                </span>
+                <span class="postlinking">
+                    
+                        
+                    
+
+                    
+                    
+                    
+                    
+                        <span id="yui-gen25" class="reputationpopupmenu popupmenu popupcustom" title="30648"><a class="popupctrl reputation" title="Reputation" href="http://www.sencha.com/forum/reputation.php?do=addreputation&amp;p=30648" rel="nofollow" id="reputation_30648"><!--<img src="images/buttons/reputation-40b.png" alt="Reputation" /> -->&nbsp;</a></span>
+                    
+
+                    
+                    
+                        <a class="report" href="http://www.sencha.com/forum/report.php?p=30648" rel="nofollow" title="Report Post"><!-- <img src="images/buttons/report-40b.png" alt="Report Post" /> -->&nbsp;</a> &nbsp;
+                    
+
+                    
+                    
+                    
+                    
+                </span>
+            <!-- </div> -->
+            </div>
+        </div>
+    <hr>
+</li>
+  
+<li class="postbitlegacy postbitim postcontainer" id="post_85552">
+<!-- see bottom of postbit.css for .userinfo .popupmenu styles -->
+
+    <div class="posthead">
+        
+            <span class="postdate old">
+                
+                    <span class="date">12 Nov 2007&nbsp;<span class="time">10:48 AM</span></span>
+                
+            </span>
+            <span class="nodecontrols">
+                
+                    <a name="post85552" href="http://www.sencha.com/forum/showthread.php?6149-aSP.NET-AJAX-DateTime-%28de%29serialization&amp;p=85552&amp;viewfull=1#post85552" class="postcounter">#2</a><a id="postcount85552" name="2"></a>
+                
+                
+                
+            </span>
+        
+    </div>
+    <div class="postdetails">
+        <div class="userinfo">
+            <div class="username_container">
+            
+                <div id="yui-gen11" class="popupmenu memberaction">
+	<a id="yui-gen13" class="username offline popupctrl" href="http://www.sencha.com/forum/member.php?13180-youngcm2" title="youngcm2 is offline"><strong>youngcm2</strong></a>
+	<ul id="yui-gen12" class="popupbody memberaction_body">
+		<li class="left">
+			<img src="showthread.php_files/profile.png" alt="">
+			<a href="http://www.sencha.com/forum/member.php?13180-youngcm2">
+				View Profile
+			</a>
+		</li>
+		
+		<li class="right">
+			<img src="showthread.php_files/forum.png" alt="">
+			<a href="http://www.sencha.com/forum/search.php?do=finduser&amp;userid=13180&amp;contenttype=vBForum_Post&amp;showposts=1" rel="nofollow">
+				View Forum Posts
+			</a>
+		</li>
+		
+		
+		<li class="left">
+			<img src="showthread.php_files/message.png" alt="">
+			<a href="http://www.sencha.com/forum/private.php?do=newpm&amp;u=13180" rel="nofollow">
+				Private Message
+			</a>
+		</li>
+		
+		
+		
+		
+		
+		
+		
+
+		
+		<li class="left">
+			<img src="showthread.php_files/add.png" alt="">
+			<a href="http://www.sencha.com/forum/profile.php?do=addlist&amp;userlist=buddy&amp;u=13180">
+				Add as Contact
+			</a>
+		</li>
+		
+
+		
+		
+	</ul>
+</div>
+ 
+                <img title="youngcm2 is offline" class="inlineimg onlinestatus" src="showthread.php_files/user-offline.png" alt="youngcm2 is offline" border="0">
+
+ 
+            
+            </div>
+            <span class="usertitle">
+                <b>Ext JS Premium Member</b>
+            </span>
+            
+            
+             
+            
+                <hr>
+                <dl class="userinfo_extra">
+                    <dt>Join Date</dt> <dd>Oct 2007</dd>
+                    
+                    
+                    <dt>Posts</dt> <dd>16  <span class="postbit_reputation" id="repdisplay_85552_13180"><img title="youngcm2 is on a distinguished road" class="repimg" src="showthread.php_files/reputation_pos.png" alt="youngcm2 is on a distinguished road"> </span></dd>    
+                    
+                </dl>
+                
+                
+                <div class="imlinks">
+                        
+                </div>
+            
+        </div>
+        <div class="postbody">
+            <div class="postrow">
+                
+                
+                <h2 class="title icon">
+                    <img title="Default" src="showthread.php_files/icon1.png" alt="Default"> An easier way?
+                </h2>
+                
+
+
+                        
+                        
+                <div class="content">
+
+		<h2 class="posttitle icon">
+			An easier way?
+		</h2><br>
+                    <div id="post_message_85552">
+                        <blockquote class="postcontent restore">var datetimeValue =  eval('new ' + data.replace('/','','g'));</blockquote>
+                    </div>
+
+                    
+                </div>
+            </div>
+            
+            <div class="cleardiv"></div>
+        </div>
+    </div>
+        <div class="postfoot">
+            <!-- <div class="postfoot_container"> -->
+            <div class="textcontrols floatcontainer">
+                <span class="postcontrols">
+                    <img style="display: none;" id="progress_85552" src="showthread.php_files/progress.gif" alt="">
+                    
+                    
+                        <a id="qr_85552" class="quickreply" href="http://www.sencha.com/forum/newreply.php?do=newreply&amp;p=85552" rel="nofollow"><img title="Quick reply to this message" id="replyimg_85552" src="showthread.php_files/clear.gif" alt="Quick reply to this message"> Reply</a> 
+                    <span class="seperator">&nbsp;</span>
+                    
+                    
+                        <a id="qrwq_85552" class="newreply" href="http://www.sencha.com/forum/newreply.php?do=newreply&amp;p=85552" rel="nofollow"><img title="Reply With Quote" id="quoteimg_85552" src="showthread.php_files/clear.gif" alt="Reply With Quote">  Reply With Quote</a> 
+                    <span class="seperator">&nbsp;</span>
+                    
+                    
+                        
+                         <a class="multiquote" href="http://www.sencha.com/forum/newreply.php?do=newreply&amp;p=85552" rel="nofollow" onclick="return false;" id="mq_85552"><img title="Multi-Quote This Message" id="mq_image_85552" src="showthread.php_files/multiquote_40b.png" alt="Multi-Quote This Message">&nbsp;</a> 
+                    
+                </span>
+                <span class="postlinking">
+                    
+                        
+                    
+
+                    
+                    
+                    
+                    
+                        <span id="yui-gen26" class="reputationpopupmenu popupmenu popupcustom" title="85552"><a class="popupctrl reputation" title="Reputation" href="http://www.sencha.com/forum/reputation.php?do=addreputation&amp;p=85552" rel="nofollow" id="reputation_85552"><!--<img src="images/buttons/reputation-40b.png" alt="Reputation" /> -->&nbsp;</a></span>
+                    
+
+                    
+                    
+                        <a class="report" href="http://www.sencha.com/forum/report.php?p=85552" rel="nofollow" title="Report Post"><!-- <img src="images/buttons/report-40b.png" alt="Report Post" /> -->&nbsp;</a> &nbsp;
+                    
+
+                    
+                    
+                    
+                    
+                </span>
+            <!-- </div> -->
+            </div>
+        </div>
+    <hr>
+</li>
+  
+<li class="postbitlegacy postbitim postcontainer" id="post_248420">
+<!-- see bottom of postbit.css for .userinfo .popupmenu styles -->
+
+    <div class="posthead">
+        
+            <span class="postdate old">
+                
+                    <span class="date">7 Nov 2008&nbsp;<span class="time">10:05 AM</span></span>
+                
+            </span>
+            <span class="nodecontrols">
+                
+                    <a name="post248420" href="http://www.sencha.com/forum/showthread.php?6149-aSP.NET-AJAX-DateTime-%28de%29serialization&amp;p=248420&amp;viewfull=1#post248420" class="postcounter">#3</a><a id="postcount248420" name="3"></a>
+                
+                
+                
+            </span>
+        
+    </div>
+    <div class="postdetails">
+        <div class="userinfo">
+            <div class="username_container">
+            
+                <div id="yui-gen14" class="popupmenu memberaction">
+	<a id="yui-gen16" class="username offline popupctrl" href="http://www.sencha.com/forum/member.php?37554-developmentalmadness" title="developmentalmadness is offline"><strong>developmentalmadness</strong></a>
+	<ul id="yui-gen15" class="popupbody memberaction_body">
+		<li class="left">
+			<img src="showthread.php_files/profile.png" alt="">
+			<a href="http://www.sencha.com/forum/member.php?37554-developmentalmadness">
+				View Profile
+			</a>
+		</li>
+		
+		<li class="right">
+			<img src="showthread.php_files/forum.png" alt="">
+			<a href="http://www.sencha.com/forum/search.php?do=finduser&amp;userid=37554&amp;contenttype=vBForum_Post&amp;showposts=1" rel="nofollow">
+				View Forum Posts
+			</a>
+		</li>
+		
+		
+		<li class="left">
+			<img src="showthread.php_files/message.png" alt="">
+			<a href="http://www.sencha.com/forum/private.php?do=newpm&amp;u=37554" rel="nofollow">
+				Private Message
+			</a>
+		</li>
+		
+		
+		
+		
+		
+		<li class="left">
+			<img src="showthread.php_files/homepage.png" alt="">
+			<a href="http://developmentalmadness.blogspot.com/" rel="nofollow">
+				Visit Homepage
+			</a>
+		</li>
+		
+		
+		
+
+		
+		<li class="left">
+			<img src="showthread.php_files/add.png" alt="">
+			<a href="http://www.sencha.com/forum/profile.php?do=addlist&amp;userlist=buddy&amp;u=37554">
+				Add as Contact
+			</a>
+		</li>
+		
+
+		
+		
+	</ul>
+</div>
+ 
+                <img title="developmentalmadness is offline" class="inlineimg onlinestatus" src="showthread.php_files/user-offline.png" alt="developmentalmadness is offline" border="0">
+
+ 
+            
+            </div>
+            <span class="usertitle">
+                Ext User
+            </span>
+            
+            
+             
+            
+                <hr>
+                <dl class="userinfo_extra">
+                    <dt>Join Date</dt> <dd>May 2008</dd>
+                    
+                    
+                    <dt>Posts</dt> <dd>9  <span class="postbit_reputation" id="repdisplay_248420_37554"><img title="developmentalmadness is on a distinguished road" class="repimg" src="showthread.php_files/reputation_pos.png" alt="developmentalmadness is on a distinguished road"> </span></dd>    
+                    
+                </dl>
+                
+                
+                <div class="imlinks">
+                        
+                </div>
+            
+        </div>
+        <div class="postbody">
+            <div class="postrow">
+                
+                
+                <h2 class="title icon">
+                    <img title="Default" src="showthread.php_files/icon1.png" alt="Default"> GMT Offset correction
+                </h2>
+                
+
+
+                        
+                        
+                <div class="content">
+
+		<h2 class="posttitle icon">
+			GMT Offset correction
+		</h2><br>
+                    <div id="post_message_248420">
+                        <blockquote class="postcontent restore">I've been working with WCF and it has been serializing the GMT offset along with the time as follows:<br>
+<br>
+"\/Date(1225926000000-0700)\/"<br>
+<br>
+So here's a correction to your regex that should help account for that:<br>
+<br>
+<div class="bbcode_container">
+	<div class="bbcode_description">Code:</div>
+	<pre class="bbcode_code" style="height:84px;">var DeserializeJSON = function(data){
+	// deserialize a Microsoft JSON date to a JavaScript date
+	var exp = data.replace(new RegExp('\\"\\\\/Date\\((-?[0-9]+)([-+][0-9]+)?\\)\\\\/\\"', 'g'), "new Date($1)");	
+	return ("(" + exp + ")");
+};</pre>
+</div> </blockquote>
+                    </div>
+
+                    
+                </div>
+            </div>
+            
+            <div class="cleardiv"></div>
+        </div>
+    </div>
+        <div class="postfoot">
+            <!-- <div class="postfoot_container"> -->
+            <div class="textcontrols floatcontainer">
+                <span class="postcontrols">
+                    <img style="display: none;" id="progress_248420" src="showthread.php_files/progress.gif" alt="">
+                    
+                    
+                        <a id="qr_248420" class="quickreply" href="http://www.sencha.com/forum/newreply.php?do=newreply&amp;p=248420" rel="nofollow"><img title="Quick reply to this message" id="replyimg_248420" src="showthread.php_files/clear.gif" alt="Quick reply to this message"> Reply</a> 
+                    <span class="seperator">&nbsp;</span>
+                    
+                    
+                        <a id="qrwq_248420" class="newreply" href="http://www.sencha.com/forum/newreply.php?do=newreply&amp;p=248420" rel="nofollow"><img title="Reply With Quote" id="quoteimg_248420" src="showthread.php_files/clear.gif" alt="Reply With Quote">  Reply With Quote</a> 
+                    <span class="seperator">&nbsp;</span>
+                    
+                    
+                        
+                         <a class="multiquote" href="http://www.sencha.com/forum/newreply.php?do=newreply&amp;p=248420" rel="nofollow" onclick="return false;" id="mq_248420"><img title="Multi-Quote This Message" id="mq_image_248420" src="showthread.php_files/multiquote_40b.png" alt="Multi-Quote This Message">&nbsp;</a> 
+                    
+                </span>
+                <span class="postlinking">
+                    
+                        
+                    
+
+                    
+                    
+                    
+                    
+                        <span id="yui-gen27" class="reputationpopupmenu popupmenu popupcustom" title="248420"><a class="popupctrl reputation" title="Reputation" href="http://www.sencha.com/forum/reputation.php?do=addreputation&amp;p=248420" rel="nofollow" id="reputation_248420"><!--<img src="images/buttons/reputation-40b.png" alt="Reputation" /> -->&nbsp;</a></span>
+                    
+
+                    
+                    
+                        <a class="report" href="http://www.sencha.com/forum/report.php?p=248420" rel="nofollow" title="Report Post"><!-- <img src="images/buttons/report-40b.png" alt="Report Post" /> -->&nbsp;</a> &nbsp;
+                    
+
+                    
+                    
+                    
+                    
+                </span>
+            <!-- </div> -->
+            </div>
+        </div>
+    <hr>
+</li>
+  
+<li class="postbitlegacy postbitim postcontainer" id="post_249515">
+<!-- see bottom of postbit.css for .userinfo .popupmenu styles -->
+
+    <div class="posthead">
+        
+            <span class="postdate old">
+                
+                    <span class="date">11 Nov 2008&nbsp;<span class="time">7:44 AM</span></span>
+                
+            </span>
+            <span class="nodecontrols">
+                
+                    <a name="post249515" href="http://www.sencha.com/forum/showthread.php?6149-aSP.NET-AJAX-DateTime-%28de%29serialization&amp;p=249515&amp;viewfull=1#post249515" class="postcounter">#4</a><a id="postcount249515" name="4"></a>
+                
+                
+                
+            </span>
+        
+    </div>
+    <div class="postdetails">
+        <div class="userinfo">
+            <div class="username_container">
+            
+                <div id="yui-gen17" class="popupmenu memberaction">
+	<a id="yui-gen19" class="username offline popupctrl" href="http://www.sencha.com/forum/member.php?47967-Jabe" title="Jabe is offline"><strong>Jabe</strong></a>
+	<ul id="yui-gen18" class="popupbody memberaction_body">
+		<li class="left">
+			<img src="showthread.php_files/profile.png" alt="">
+			<a href="http://www.sencha.com/forum/member.php?47967-Jabe">
+				View Profile
+			</a>
+		</li>
+		
+		<li class="right">
+			<img src="showthread.php_files/forum.png" alt="">
+			<a href="http://www.sencha.com/forum/search.php?do=finduser&amp;userid=47967&amp;contenttype=vBForum_Post&amp;showposts=1" rel="nofollow">
+				View Forum Posts
+			</a>
+		</li>
+		
+		
+		<li class="left">
+			<img src="showthread.php_files/message.png" alt="">
+			<a href="http://www.sencha.com/forum/private.php?do=newpm&amp;u=47967" rel="nofollow">
+				Private Message
+			</a>
+		</li>
+		
+		
+		
+		
+		
+		
+		
+
+		
+		<li class="left">
+			<img src="showthread.php_files/add.png" alt="">
+			<a href="http://www.sencha.com/forum/profile.php?do=addlist&amp;userlist=buddy&amp;u=47967">
+				Add as Contact
+			</a>
+		</li>
+		
+
+		
+		
+	</ul>
+</div>
+ 
+                <img title="Jabe is offline" class="inlineimg onlinestatus" src="showthread.php_files/user-offline.png" alt="Jabe is offline" border="0">
+
+ 
+            
+            </div>
+            <span class="usertitle">
+                Ext User
+            </span>
+            
+            
+             
+            
+                <hr>
+                <dl class="userinfo_extra">
+                    <dt>Join Date</dt> <dd>Sep 2008</dd>
+                    
+                    
+                    <dt>Posts</dt> <dd>9  <span class="postbit_reputation" id="repdisplay_249515_47967"><img title="Jabe is on a distinguished road" class="repimg" src="showthread.php_files/reputation_pos.png" alt="Jabe is on a distinguished road"> </span></dd>    
+                    
+                </dl>
+                
+                
+                <div class="imlinks">
+                        
+                </div>
+            
+        </div>
+        <div class="postbody">
+            <div class="postrow">
+                
+                
+                <h2 class="title icon">
+                    <img title="Default" src="showthread.php_files/icon1.png" alt="Default"> 
+                </h2>
+                
+
+
+                        
+                        
+                <div class="content">
+
+		<h2 class="posttitle icon">
+			
+		</h2><br>
+                    <div id="post_message_249515">
+                        <blockquote class="postcontent restore">MS uses this pattern in their libraries (it's pretty much the same however):<br>
+<br>
+<div class="bbcode_container">
+	<div class="bbcode_description">Code:</div>
+	<pre class="bbcode_code" style="height:48px;">var r = new RegExp('(^|[^\\\\])\\"\\\\/Date\\((-?[0-9]+)(?:[a-zA-Z]|(?:\\+|-)[0-9]{4})?\\)\\\\/\\"', 'g');
+jsonText.replace(r, "$1new Date($2)");</pre>
+</div> </blockquote>
+                    </div>
+
+                    
+                </div>
+            </div>
+            
+            <div class="cleardiv"></div>
+        </div>
+    </div>
+        <div class="postfoot">
+            <!-- <div class="postfoot_container"> -->
+            <div class="textcontrols floatcontainer">
+                <span class="postcontrols">
+                    <img style="display: none;" id="progress_249515" src="showthread.php_files/progress.gif" alt="">
+                    
+                    
+                        <a id="qr_249515" class="quickreply" href="http://www.sencha.com/forum/newreply.php?do=newreply&amp;p=249515" rel="nofollow"><img title="Quick reply to this message" id="replyimg_249515" src="showthread.php_files/clear.gif" alt="Quick reply to this message"> Reply</a> 
+                    <span class="seperator">&nbsp;</span>
+                    
+                    
+                        <a id="qrwq_249515" class="newreply" href="http://www.sencha.com/forum/newreply.php?do=newreply&amp;p=249515" rel="nofollow"><img title="Reply With Quote" id="quoteimg_249515" src="showthread.php_files/clear.gif" alt="Reply With Quote">  Reply With Quote</a> 
+                    <span class="seperator">&nbsp;</span>
+                    
+                    
+                        
+                         <a class="multiquote" href="http://www.sencha.com/forum/newreply.php?do=newreply&amp;p=249515" rel="nofollow" onclick="return false;" id="mq_249515"><img title="Multi-Quote This Message" id="mq_image_249515" src="showthread.php_files/multiquote_40b.png" alt="Multi-Quote This Message">&nbsp;</a> 
+                    
+                </span>
+                <span class="postlinking">
+                    
+                        
+                    
+
+                    
+                    
+                    
+                    
+                        <span id="yui-gen28" class="reputationpopupmenu popupmenu popupcustom" title="249515"><a class="popupctrl reputation" title="Reputation" href="http://www.sencha.com/forum/reputation.php?do=addreputation&amp;p=249515" rel="nofollow" id="reputation_249515"><!--<img src="images/buttons/reputation-40b.png" alt="Reputation" /> -->&nbsp;</a></span>
+                    
+
+                    
+                    
+                        <a class="report" href="http://www.sencha.com/forum/report.php?p=249515" rel="nofollow" title="Report Post"><!-- <img src="images/buttons/report-40b.png" alt="Report Post" /> -->&nbsp;</a> &nbsp;
+                    
+
+                    
+                    
+                    
+                    
+                </span>
+            <!-- </div> -->
+            </div>
+        </div>
+    <hr>
+</li>
+  
+<li class="postbitlegacy postbitim postcontainer" id="post_310239">
+<!-- see bottom of postbit.css for .userinfo .popupmenu styles -->
+
+    <div class="posthead">
+        
+            <span class="postdate old">
+                
+                    <span class="date">30 Mar 2009&nbsp;<span class="time">6:02 AM</span></span>
+                
+            </span>
+            <span class="nodecontrols">
+                
+                    <a name="post310239" href="http://www.sencha.com/forum/showthread.php?6149-aSP.NET-AJAX-DateTime-%28de%29serialization&amp;p=310239&amp;viewfull=1#post310239" class="postcounter">#5</a><a id="postcount310239" name="5"></a>
+                
+                
+                
+            </span>
+        
+    </div>
+    <div class="postdetails">
+        <div class="userinfo">
+            <div class="username_container">
+            
+                <div id="yui-gen20" class="popupmenu memberaction">
+	<a id="yui-gen22" class="username offline popupctrl" href="http://www.sencha.com/forum/member.php?32788-msnajdr" title="msnajdr is offline"><strong>msnajdr</strong></a>
+	<ul id="yui-gen21" class="popupbody memberaction_body">
+		<li class="left">
+			<img src="showthread.php_files/profile.png" alt="">
+			<a href="http://www.sencha.com/forum/member.php?32788-msnajdr">
+				View Profile
+			</a>
+		</li>
+		
+		<li class="right">
+			<img src="showthread.php_files/forum.png" alt="">
+			<a href="http://www.sencha.com/forum/search.php?do=finduser&amp;userid=32788&amp;contenttype=vBForum_Post&amp;showposts=1" rel="nofollow">
+				View Forum Posts
+			</a>
+		</li>
+		
+		
+		<li class="left">
+			<img src="showthread.php_files/message.png" alt="">
+			<a href="http://www.sencha.com/forum/private.php?do=newpm&amp;u=32788" rel="nofollow">
+				Private Message
+			</a>
+		</li>
+		
+		
+		
+		
+		
+		<li class="left">
+			<img src="showthread.php_files/homepage.png" alt="">
+			<a href="http://www.creatom.de/" rel="nofollow">
+				Visit Homepage
+			</a>
+		</li>
+		
+		
+		
+
+		
+		<li class="left">
+			<img src="showthread.php_files/add.png" alt="">
+			<a href="http://www.sencha.com/forum/profile.php?do=addlist&amp;userlist=buddy&amp;u=32788">
+				Add as Contact
+			</a>
+		</li>
+		
+
+		
+		
+	</ul>
+</div>
+ 
+                <img title="msnajdr is offline" class="inlineimg onlinestatus" src="showthread.php_files/user-offline.png" alt="msnajdr is offline" border="0">
+
+ 
+            
+            </div>
+            <span class="usertitle">
+                <b>Ext JS Premium Member</b>
+            </span>
+            
+            
+             
+            
+                <hr>
+                <dl class="userinfo_extra">
+                    <dt>Join Date</dt> <dd>Apr 2008</dd>
+                    <dt>Location</dt> <dd>Munich, Germany</dd>
+                    
+                    <dt>Posts</dt> <dd>24  <span class="postbit_reputation" id="repdisplay_310239_32788"><img title="msnajdr is on a distinguished road" class="repimg" src="showthread.php_files/reputation_pos.png" alt="msnajdr is on a distinguished road"> </span></dd>    
+                    
+                </dl>
+                
+                
+                <div class="imlinks">
+                        
+                </div>
+            
+        </div>
+        <div class="postbody">
+            <div class="postrow">
+                
+                
+                <h2 class="title icon">
+                    <img title="Default" src="showthread.php_files/icon1.png" alt="Default"> 
+                </h2>
+                
+
+
+                        
+                        
+                            
+                        
+                <div class="content">
+
+		<h2 class="posttitle icon">
+			
+		</h2><br>
+                    <div id="post_message_310239">
+                        <blockquote class="postcontent restore">I've 
+added an additional Format to the Date-Object, so that these MS-style 
+Dates may easily be parsed by Date.parseDate() for example or for a 
+field definition in a JSONStore:<br>
+<br>
+<div class="bbcode_container">
+	<div class="bbcode_description">Code:</div>
+	<pre class="bbcode_code" style="height:168px;">Date.parseCodes.X = {
+	g: 1,
+	c: ["u = parseInt(parseInt(results[1], 10)/1000);",
+        "var sn = results[2]?results[2].substring(0,1):'+';",
+        "var hr = results[2]?(results[2].substring(1,3)*1 + Math.floor(results[2].substring(3,5) / 60)):0",
+        "var mn = results[2]?(results[2].substring(3,5) % 60):0;",
+        "var diff = hr*3600+mn*60;",
+        "u = sn=='+'?u+diff:d-diff;",
+        "\n"
+        ].join("\n"),
+	s: "\/Date.([0-9]+)([+\-]\\d{4})?.+\/"
+}</pre>
+</div> So you can parse a Date using Date.parseDate("\/Date(1225926000000-0700)\/","X");</blockquote>
+                    </div>
+
+                    
+                </div>
+            </div>
+            
+            <div class="cleardiv"></div>
+        </div>
+    </div>
+        <div class="postfoot">
+            <!-- <div class="postfoot_container"> -->
+            <div class="textcontrols floatcontainer">
+                <span class="postcontrols">
+                    <img style="display: none;" id="progress_310239" src="showthread.php_files/progress.gif" alt="">
+                    
+                    
+                        <a id="qr_310239" class="quickreply" href="http://www.sencha.com/forum/newreply.php?do=newreply&amp;p=310239" rel="nofollow"><img title="Quick reply to this message" id="replyimg_310239" src="showthread.php_files/clear.gif" alt="Quick reply to this message"> Reply</a> 
+                    <span class="seperator">&nbsp;</span>
+                    
+                    
+                        <a id="qrwq_310239" class="newreply" href="http://www.sencha.com/forum/newreply.php?do=newreply&amp;p=310239" rel="nofollow"><img title="Reply With Quote" id="quoteimg_310239" src="showthread.php_files/clear.gif" alt="Reply With Quote">  Reply With Quote</a> 
+                    <span class="seperator">&nbsp;</span>
+                    
+                    
+                        
+                         <a class="multiquote" href="http://www.sencha.com/forum/newreply.php?do=newreply&amp;p=310239" rel="nofollow" onclick="return false;" id="mq_310239"><img title="Multi-Quote This Message" id="mq_image_310239" src="showthread.php_files/multiquote_40b.png" alt="Multi-Quote This Message">&nbsp;</a> 
+                    
+                </span>
+                <span class="postlinking">
+                    
+                        
+                    
+
+                    
+                    
+                    
+                    
+                        <span id="yui-gen29" class="reputationpopupmenu popupmenu popupcustom" title="310239"><a class="popupctrl reputation" title="Reputation" href="http://www.sencha.com/forum/reputation.php?do=addreputation&amp;p=310239" rel="nofollow" id="reputation_310239"><!--<img src="images/buttons/reputation-40b.png" alt="Reputation" /> -->&nbsp;</a></span>
+                    
+
+                    
+                    
+                        <a class="report" href="http://www.sencha.com/forum/report.php?p=310239" rel="nofollow" title="Report Post"><!-- <img src="images/buttons/report-40b.png" alt="Report Post" /> -->&nbsp;</a> &nbsp;
+                    
+
+                    
+                    
+                    
+                    
+                </span>
+            <!-- </div> -->
+            </div>
+        </div>
+    <hr>
+</li>
+  
+        </ol>
+                <div class="separator"></div>
+        <div class="clearing postlistfoot">
+            
+        </div>
+
+    
+
+</div>
+
+<div id="below_postlist" class="below_postlist">
+    
+    <div id="replybelow">
+        
+        <a href="http://www.sencha.com/forum/newreply.php?p=310239&amp;noquote=1" class="button-link newcontent_textcontrol" id="newreplylink_top"><span>+ Reply to Thread</span></a>
+        
+    </div>
+    
+    
+    <div class="navpopupmenu popupmenu nohovermenu" id="showthread_navpopup">
+	
+
+		<a id="yui-gen24" href="http://www.sencha.com/forum/showthread.php?6149-aSP.NET-AJAX-DateTime-%28de%29serialization" class="popupctrl"><span class="ctrlcontainer">Ext: Examples and Extras</span></a>
+	
+	<ul id="yui-gen23" class="navpopupbody popupbody">
+		
+		<li class="optionlabel">Site Areas</li>
+		<li><a href="http://www.sencha.com/forum/usercp.php">Settings</a></li>
+		<li><a href="http://www.sencha.com/forum/private.php">Private Messages</a></li>
+		<li><a href="http://www.sencha.com/forum/subscription.php">Subscriptions</a></li>
+		<li><a href="http://www.sencha.com/forum/online.php">Who's Online</a></li>
+		<li><a href="http://www.sencha.com/forum/search.php">Search Forums</a></li>
+		<li><a href="http://www.sencha.com/forum/index.php">Forums Home</a></li>
+			
+		
+			<li class="optionlabel">Forums</li>
+			Array
+		
+		
+	</ul>
+</div> 
+    
+    
+        
+</div>
+
+
+
+<!-- multiquote scripts -->
+<script type="text/javascript">
+<!--
+var mqlimit = 0;
+//-->
+</script>
+<!-- / multiquote scripts -->
+
+
+
+<!-- ajax errors table -->
+<div id="ajax_post_errors" class="hidden">
+    <div class="block">
+        <div class="blockhead floatcontainer">
+            <span class="blockhead_info"><input class="button" value=" X " id="quick_edit_errors_hide" tabindex="50" type="button"></span>
+            <h2>Sencha Forums Message</h2>
+        </div>
+        <div class="blockbody">
+            <div id="ajax_post_errors_message" class="blockrow">&nbsp;</div>
+        </div>
+        <div class="blockfoot">
+            <a href="#" id="quick_edit_errors_cancel" class="textcontrol">Cancel Changes</a>
+        </div>
+    </div>
+</div>
+<!-- / ajax errors table -->
+
+<!-- scripts for quick reply and quick edit -->
+
+
+<!-- / scripts for quick reply and quick edit -->
+
+
+
+
+
+<div id="qr_defaultcontainer" class="blockfoot floatcontainer qr_require_click">
+<form class="vbform" name="quick_reply" id="quick_reply" method="post" action="newreply.php?do=postreply&amp;t=6149" onsubmit="return qr_prepare_submit(this, 1);">
+    <h3 id="quickreply_title" class="blockhead"><img title="Quick Reply" src="showthread.php_files/reply_40b.png" alt="Quick Reply"> Quick Reply<a name="quickreply"></a> <img style="display: none;" id="progress_newreplylink_bottom" src="showthread.php_files/progress.gif" alt=""></h3>
+    <div class="wysiwyg_block">
+    <div id="qr_error_tbody" class="blockbody errorblock hidden">
+        <h3 class="blocksubhead">The following errors occurred with your submission</h3>
+        <div class="blockrow error" id="qr_error_td"></div>
+        <div class="blockrow"><a href="javascript://" class="textcontrol" onclick="return qr_hide_errors()">Okay</a></div>
+    </div>
+
+    <div class="blockbody formcontrols">
+        <div class="blockrow">
+            
+		<script type="text/javascript">
+		<!--
+			var threaded_mode = 0;
+			var require_click = 1;
+			var is_last_page = 1; // leave for people with cached JS files
+			var allow_ajax_qr = 1;
+			var last_post_id = 310239;
+			var ajax_last_post = 1238421720;
+		// -->
+		</script>
+		<!-- Editor Scripts -->
+<script type="text/javascript">
+<!--
+
+var CKEDITOR_BASEPATH = getBaseUrl() + 'clientscript/ckeditor/';
+
+var ltr = 'left';
+
+var smiliewindow_x = 440;
+var smiliewindow_y = 480;
+
+
+var ignorequotechars = 1;
+var allowbasicbbcode = true;
+
+// vB Phrases
+vbphrase["must_enter_subject"]           = "You must enter a title / subject!";
+vbphrase["message_too_short"]            = "The message you have entered is too short. Please lengthen your message to at least %1$s characters.";
+vbphrase["click_quick_reply_icon"]       = "Please click one of the Quick Reply icons in the posts above to activate Quick Reply.";
+vbphrase["all_files"]                    = "All Files";
+vbphrase["file_is_too_large"]            = "File is too Large";
+vbphrase["invalid_file"]                 = "Invalid File";
+vbphrase["maximum_number_of_attachments_reached"] = "Maximum number of attachments reached";
+
+//-->
+</script>
+<!-- / Editor Scripts --> <div id="vB_Editor_QR" class="blockrow texteditor forum">
+	<div class="editor">
+		<div class="editor_textbox_container smilie">
+				<div class="editor_textbox editor_textbox_smilie">
+					<script type="text/javascript" src="showthread.php_files/ckeditor.js"></script><script type="text/javascript" src="showthread.php_files/vbulletin_textedit.js"></script><textarea style="width: 0px; min-width: 0px; display: none;" id="vB_Editor_QR_editor" name="message" rows="8" cols="60" tabindex="1"></textarea><span id="cke_vB_Editor_QR_editor" class="cke_skin_kama cke_1 cke_editor_vB_Editor_QR_editor" dir="ltr" title=" " role="application" aria-labelledby="cke_vB_Editor_QR_editor_arialbl" lang="en"><span id="cke_vB_Editor_QR_editor_arialbl" class="cke_voice_label">Rich Text Editor</span><span class="cke_browser_gecko" role="presentation"><span class="cke_wrapper cke_ltr" role="presentation"><table class="cke_editor" role="presentation" border="0" cellpadding="0" cellspacing="0"><tbody><tr style="-moz-user-select: none;" role="presentation"><td id="cke_top_vB_Editor_QR_editor" class="cke_top" role="presentation"><div class="cke_toolbox" role="toolbar" aria-labelledby="cke_4" onmousedown="return false;"><span id="cke_4" class="cke_voice_label">Toolbar</span><span id="cke_5" class="cke_toolbar" role="presentation"><span class="cke_toolbar_start"></span><span class="cke_toolgroup" role="presentation"><span class="cke_button"><a id="cke_6" class="cke_off cke_button_enhancedsource" title="Switch Editor to Source Mode" tabindex="-1" hidefocus="true" role="button" aria-labelledby="cke_6_label" onblur="this.style.cssText = this.style.cssText;" onkeydown="return CKEDITOR.tools.callFunction(0, 0, event);" onfocus="return CKEDITOR.tools.callFunction(1, 0, event);" onclick="CKEDITOR.tools.callFunction(5, this); return false;"><span class="cke_icon">&nbsp;</span><span id="cke_6_label" class="cke_label">Source</span></a></span></span><span class="cke_separator" role="separator"></span><span class="cke_toolgroup" role="presentation"><span class="cke_button"><a id="cke_7" class="cke_off cke_button_removeFormat" title="Remove Format" tabindex="-1" hidefocus="true" role="button" aria-labelledby="cke_7_label" onblur="this.style.cssText = this.style.cssText;" onkeydown="return CKEDITOR.tools.callFunction(0, 1, event);" onfocus="return CKEDITOR.tools.callFunction(1, 1, event);" onclick="CKEDITOR.tools.callFunction(6, this); return false;"><span class="cke_icon">&nbsp;</span><span id="cke_7_label" class="cke_label">Remove Format</span></a></span></span><span class="cke_separator" role="separator"></span><span class="cke_toolgroup" role="presentation"><span class="cke_button"><a id="cke_8" class="cke_off cke_button_pastefromword" title="Paste from Word" tabindex="-1" hidefocus="true" role="button" aria-labelledby="cke_8_label" onblur="this.style.cssText = this.style.cssText;" onkeydown="return CKEDITOR.tools.callFunction(0, 2, event);" onfocus="return CKEDITOR.tools.callFunction(1, 2, event);" onclick="CKEDITOR.tools.callFunction(7, this); return false;"><span class="cke_icon">&nbsp;</span><span id="cke_8_label" class="cke_label">Paste from Word</span></a></span><span class="cke_button"><a id="cke_9" class="cke_off cke_button_pastetext" title="Paste as plain text" tabindex="-1" hidefocus="true" role="button" aria-labelledby="cke_9_label" onblur="this.style.cssText = this.style.cssText;" onkeydown="return CKEDITOR.tools.callFunction(0, 3, event);" onfocus="return CKEDITOR.tools.callFunction(1, 3, event);" onclick="CKEDITOR.tools.callFunction(8, this); return false;"><span class="cke_icon">&nbsp;</span><span id="cke_9_label" class="cke_label">Paste as plain text</span></a></span></span><span class="cke_separator" role="separator"></span><span class="cke_rcombo"><span id="cke_10" class="cke_font cke_off"><span id="cke_10_label" class="cke_label">Font</span><a hidefocus="true" title="Font Name" tabindex="-1" role="button" aria-labelledby="cke_10_label" aria-describedby="cke_10_text" aria-haspopup="true" onblur="this.style.cssText = this.style.cssText;" onkeydown="CKEDITOR.tools.callFunction( 10, event, this );" onclick="CKEDITOR.tools.callFunction(9, this); return false;"><span><span id="cke_10_text" class="cke_text cke_inline_label">Font</span></span><span class="cke_openbutton"><span class="cke_icon"></span></span></a></span></span><span class="cke_rcombo"><span id="cke_11" class="cke_fontSize cke_off"><span id="cke_11_label" class="cke_label">Size</span><a hidefocus="true" title="Font Size" tabindex="-1" role="button" aria-labelledby="cke_11_label" aria-describedby="cke_11_text" aria-haspopup="true" onblur="this.style.cssText = this.style.cssText;" onkeydown="CKEDITOR.tools.callFunction( 12, event, this );" onclick="CKEDITOR.tools.callFunction(11, this); return false;"><span><span id="cke_11_text" class="cke_text cke_inline_label">Size</span></span><span class="cke_openbutton"><span class="cke_icon"></span></span></a></span></span><span class="cke_separator" role="separator"></span><span class="cke_toolgroup" role="presentation"><span class="cke_button"><a id="cke_12" class="cke_off cke_button_textcolor" title="Text Color" tabindex="-1" hidefocus="true" role="button" aria-labelledby="cke_12_label" aria-haspopup="true" onblur="this.style.cssText = this.style.cssText;" onkeydown="return CKEDITOR.tools.callFunction(0, 4, event);" onfocus="return CKEDITOR.tools.callFunction(1, 4, event);" onclick="CKEDITOR.tools.callFunction(13, this); return false;"><span class="cke_icon">&nbsp;</span><span id="cke_12_label" class="cke_label">Text Color</span><span class="cke_buttonarrow">&nbsp;</span></a></span></span><span class="cke_separator" role="separator"></span><span class="cke_toolgroup" role="presentation"><span class="cke_button"><a id="cke_13" class="cke_off cke_button_smiley" title="Smiley" tabindex="-1" hidefocus="true" role="button" aria-labelledby="cke_13_label" onblur="this.style.cssText = this.style.cssText;" onkeydown="return CKEDITOR.tools.callFunction(0, 5, event);" onfocus="return CKEDITOR.tools.callFunction(1, 5, event);" onclick="CKEDITOR.tools.callFunction(14, this); return false;"><span class="cke_icon">&nbsp;</span><span id="cke_13_label" class="cke_label">Smiley</span></a></span></span><span class="cke_separator" role="separator"></span><span class="cke_separator" role="separator"></span><span class="cke_toolgroup" role="presentation"><span class="cke_button"><a aria-disabled="true" id="cke_14" class="cke_button_undo cke_disabled" title="Undo" tabindex="-1" hidefocus="true" role="button" aria-labelledby="cke_14_label" onblur="this.style.cssText = this.style.cssText;" onkeydown="return CKEDITOR.tools.callFunction(0, 6, event);" onfocus="return CKEDITOR.tools.callFunction(1, 6, event);" onclick="CKEDITOR.tools.callFunction(15, this); return false;"><span class="cke_icon">&nbsp;</span><span id="cke_14_label" class="cke_label">Undo</span></a></span><span class="cke_button"><a aria-disabled="true" id="cke_15" class="cke_button_redo cke_disabled" title="Redo" tabindex="-1" hidefocus="true" role="button" aria-labelledby="cke_15_label" onblur="this.style.cssText = this.style.cssText;" onkeydown="return CKEDITOR.tools.callFunction(0, 7, event);" onfocus="return CKEDITOR.tools.callFunction(1, 7, event);" onclick="CKEDITOR.tools.callFunction(16, this); return false;"><span class="cke_icon">&nbsp;</span><span id="cke_15_label" class="cke_label">Redo</span></a></span></span><span class="cke_toolbar_end"></span></span><span id="cke_16" class="cke_toolbar" role="presentation"><span class="cke_toolbar_start"></span><span class="cke_toolgroup" role="presentation"><span class="cke_button"><a id="cke_17" class="cke_off cke_button_table" title="Table" tabindex="-1" hidefocus="true" role="button" aria-labelledby="cke_17_label" onblur="this.style.cssText = this.style.cssText;" onkeydown="return CKEDITOR.tools.callFunction(0, 8, event);" onfocus="return CKEDITOR.tools.callFunction(1, 8, event);" onclick="CKEDITOR.tools.callFunction(17, this); return false;"><span class="cke_icon">&nbsp;</span><span id="cke_17_label" class="cke_label">Table</span></a></span><span class="cke_button"><a id="cke_18" class="cke_off cke_button_vbTableProperties" title="Table Properties" tabindex="-1" hidefocus="true" role="button" aria-labelledby="cke_18_label" onblur="this.style.cssText = this.style.cssText;" onkeydown="return CKEDITOR.tools.callFunction(0, 9, event);" onfocus="return CKEDITOR.tools.callFunction(1, 9, event);" onclick="CKEDITOR.tools.callFunction(18, this); return false;"><span class="cke_icon">&nbsp;</span><span id="cke_18_label" class="cke_label">Table Properties</span></a></span><span class="cke_button"><a id="cke_19" class="cke_off cke_button_tableDelete" title="Delete Table" tabindex="-1" hidefocus="true" role="button" aria-labelledby="cke_19_label" onblur="this.style.cssText = this.style.cssText;" onkeydown="return CKEDITOR.tools.callFunction(0, 10, event);" onfocus="return CKEDITOR.tools.callFunction(1, 10, event);" onclick="CKEDITOR.tools.callFunction(19, this); return false;"><span class="cke_icon">&nbsp;</span><span id="cke_19_label" class="cke_label">Delete Table</span></a></span></span><span class="cke_separator" role="separator"></span><span class="cke_toolgroup" role="presentation"><span class="cke_button"><a id="cke_20" class="cke_off cke_button_vbRowInsertBefore" title="Insert Row Before" tabindex="-1" hidefocus="true" role="button" aria-labelledby="cke_20_label" onblur="this.style.cssText = this.style.cssText;" onkeydown="return CKEDITOR.tools.callFunction(0, 11, event);" onfocus="return CKEDITOR.tools.callFunction(1, 11, event);" onclick="CKEDITOR.tools.callFunction(20, this); return false;"><span class="cke_icon">&nbsp;</span><span id="cke_20_label" class="cke_label">Insert Row Before</span></a></span><span class="cke_button"><a id="cke_21" class="cke_off cke_button_vbRowInsertAfter" title="Insert Row After" tabindex="-1" hidefocus="true" role="button" aria-labelledby="cke_21_label" onblur="this.style.cssText = this.style.cssText;" onkeydown="return CKEDITOR.tools.callFunction(0, 12, event);" onfocus="return CKEDITOR.tools.callFunction(1, 12, event);" onclick="CKEDITOR.tools.callFunction(21, this); return false;"><span class="cke_icon">&nbsp;</span><span id="cke_21_label" class="cke_label">Insert Row After</span></a></span><span class="cke_button"><a id="cke_22" class="cke_off cke_button_vbRowDelete" title="Delete Rows" tabindex="-1" hidefocus="true" role="button" aria-labelledby="cke_22_label" onblur="this.style.cssText = this.style.cssText;" onkeydown="return CKEDITOR.tools.callFunction(0, 13, event);" onfocus="return CKEDITOR.tools.callFunction(1, 13, event);" onclick="CKEDITOR.tools.callFunction(22, this); return false;"><span class="cke_icon">&nbsp;</span><span id="cke_22_label" class="cke_label">Delete Rows</span></a></span></span><span class="cke_separator" role="separator"></span><span class="cke_toolgroup" role="presentation"><span class="cke_button"><a id="cke_23" class="cke_off cke_button_vbColumnInsertBefore" title="Insert Column Before" tabindex="-1" hidefocus="true" role="button" aria-labelledby="cke_23_label" onblur="this.style.cssText = this.style.cssText;" onkeydown="return CKEDITOR.tools.callFunction(0, 14, event);" onfocus="return CKEDITOR.tools.callFunction(1, 14, event);" onclick="CKEDITOR.tools.callFunction(23, this); return false;"><span class="cke_icon">&nbsp;</span><span id="cke_23_label" class="cke_label">Insert Column Before</span></a></span><span class="cke_button"><a id="cke_24" class="cke_off cke_button_vbColumnInsertAfter" title="Insert Column After" tabindex="-1" hidefocus="true" role="button" aria-labelledby="cke_24_label" onblur="this.style.cssText = this.style.cssText;" onkeydown="return CKEDITOR.tools.callFunction(0, 15, event);" onfocus="return CKEDITOR.tools.callFunction(1, 15, event);" onclick="CKEDITOR.tools.callFunction(24, this); return false;"><span class="cke_icon">&nbsp;</span><span id="cke_24_label" class="cke_label">Insert Column After</span></a></span><span class="cke_button"><a id="cke_25" class="cke_off cke_button_vbColumnDelete" title="Delete Columns" tabindex="-1" hidefocus="true" role="button" aria-labelledby="cke_25_label" onblur="this.style.cssText = this.style.cssText;" onkeydown="return CKEDITOR.tools.callFunction(0, 16, event);" onfocus="return CKEDITOR.tools.callFunction(1, 16, event);" onclick="CKEDITOR.tools.callFunction(25, this); return false;"><span class="cke_icon">&nbsp;</span><span id="cke_25_label" class="cke_label">Delete Columns</span></a></span></span><span class="cke_separator" role="separator"></span><span class="cke_toolgroup" role="presentation"><span class="cke_button"><a id="cke_26" class="cke_off cke_button_subscript" title="Subscript" tabindex="-1" hidefocus="true" role="button" aria-labelledby="cke_26_label" onblur="this.style.cssText = this.style.cssText;" onkeydown="return CKEDITOR.tools.callFunction(0, 17, event);" onfocus="return CKEDITOR.tools.callFunction(1, 17, event);" onclick="CKEDITOR.tools.callFunction(26, this); return false;"><span class="cke_icon">&nbsp;</span><span id="cke_26_label" class="cke_label">Subscript</span></a></span><span class="cke_button"><a id="cke_27" class="cke_off cke_button_superscript" title="Superscript" tabindex="-1" hidefocus="true" role="button" aria-labelledby="cke_27_label" onblur="this.style.cssText = this.style.cssText;" onkeydown="return CKEDITOR.tools.callFunction(0, 18, event);" onfocus="return CKEDITOR.tools.callFunction(1, 18, event);" onclick="CKEDITOR.tools.callFunction(27, this); return false;"><span class="cke_icon">&nbsp;</span><span id="cke_27_label" class="cke_label">Superscript</span></a></span><span class="cke_button"><a id="cke_28" class="cke_off cke_button_horizontalrule" title="Insert Horizontal Line" tabindex="-1" hidefocus="true" role="button" aria-labelledby="cke_28_label" onblur="this.style.cssText = this.style.cssText;" onkeydown="return CKEDITOR.tools.callFunction(0, 19, event);" onfocus="return CKEDITOR.tools.callFunction(1, 19, event);" onclick="CKEDITOR.tools.callFunction(28, this); return false;"><span class="cke_icon">&nbsp;</span><span id="cke_28_label" class="cke_label">Insert Horizontal Line</span></a></span></span><span class="cke_toolbar_end"></span></span><div class="cke_break"></div><span id="cke_30" class="cke_toolbar" role="presentation"><span class="cke_toolbar_start"></span><span class="cke_toolgroup" role="presentation"><span class="cke_button"><a id="cke_31" class="cke_off cke_button_bold" title="Bold" tabindex="-1" hidefocus="true" role="button" aria-labelledby="cke_31_label" onblur="this.style.cssText = this.style.cssText;" onkeydown="return CKEDITOR.tools.callFunction(0, 20, event);" onfocus="return CKEDITOR.tools.callFunction(1, 20, event);" onclick="CKEDITOR.tools.callFunction(29, this); return false;"><span class="cke_icon">&nbsp;</span><span id="cke_31_label" class="cke_label">Bold</span></a></span><span class="cke_button"><a id="cke_32" class="cke_off cke_button_italic" title="Italic" tabindex="-1" hidefocus="true" role="button" aria-labelledby="cke_32_label" onblur="this.style.cssText = this.style.cssText;" onkeydown="return CKEDITOR.tools.callFunction(0, 21, event);" onfocus="return CKEDITOR.tools.callFunction(1, 21, event);" onclick="CKEDITOR.tools.callFunction(30, this); return false;"><span class="cke_icon">&nbsp;</span><span id="cke_32_label" class="cke_label">Italic</span></a></span><span class="cke_button"><a id="cke_33" class="cke_off cke_button_underline" title="Underline" tabindex="-1" hidefocus="true" role="button" aria-labelledby="cke_33_label" onblur="this.style.cssText = this.style.cssText;" onkeydown="return CKEDITOR.tools.callFunction(0, 22, event);" onfocus="return CKEDITOR.tools.callFunction(1, 22, event);" onclick="CKEDITOR.tools.callFunction(31, this); return false;"><span class="cke_icon">&nbsp;</span><span id="cke_33_label" class="cke_label">Underline</span></a></span></span><span class="cke_toolbar_end"></span></span><span id="cke_34" class="cke_toolbar" role="presentation"><span class="cke_toolbar_start"></span><span class="cke_toolgroup" role="presentation"><span class="cke_button"><a id="cke_35" class="cke_off cke_button_justifyleft" title="Align Left" tabindex="-1" hidefocus="true" role="button" aria-labelledby="cke_35_label" onblur="this.style.cssText = this.style.cssText;" onkeydown="return CKEDITOR.tools.callFunction(0, 23, event);" onfocus="return CKEDITOR.tools.callFunction(1, 23, event);" onclick="CKEDITOR.tools.callFunction(32, this); return false;"><span class="cke_icon">&nbsp;</span><span id="cke_35_label" class="cke_label">Align Left</span></a></span><span class="cke_button"><a id="cke_36" class="cke_off cke_button_justifycenter" title="Center" tabindex="-1" hidefocus="true" role="button" aria-labelledby="cke_36_label" onblur="this.style.cssText = this.style.cssText;" onkeydown="return CKEDITOR.tools.callFunction(0, 24, event);" onfocus="return CKEDITOR.tools.callFunction(1, 24, event);" onclick="CKEDITOR.tools.callFunction(33, this); return false;"><span class="cke_icon">&nbsp;</span><span id="cke_36_label" class="cke_label">Center</span></a></span><span class="cke_button"><a id="cke_37" class="cke_off cke_button_justifyright" title="Align Right" tabindex="-1" hidefocus="true" role="button" aria-labelledby="cke_37_label" onblur="this.style.cssText = this.style.cssText;" onkeydown="return CKEDITOR.tools.callFunction(0, 25, event);" onfocus="return CKEDITOR.tools.callFunction(1, 25, event);" onclick="CKEDITOR.tools.callFunction(34, this); return false;"><span class="cke_icon">&nbsp;</span><span id="cke_37_label" class="cke_label">Align Right</span></a></span></span><span class="cke_toolbar_end"></span></span><span id="cke_38" class="cke_toolbar" role="presentation"><span class="cke_toolbar_start"></span><span class="cke_toolgroup" role="presentation"><span class="cke_button"><a id="cke_39" class="cke_off cke_button_numberedlist" title="Insert/Remove Numbered List" tabindex="-1" hidefocus="true" role="button" aria-labelledby="cke_39_label" onblur="this.style.cssText = this.style.cssText;" onkeydown="return CKEDITOR.tools.callFunction(0, 26, event);" onfocus="return CKEDITOR.tools.callFunction(1, 26, event);" onclick="CKEDITOR.tools.callFunction(35, this); return false;"><span class="cke_icon">&nbsp;</span><span id="cke_39_label" class="cke_label">Insert/Remove Numbered List</span></a></span><span class="cke_button"><a id="cke_40" class="cke_off cke_button_bulletedlist" title="Insert/Remove Bulleted List" tabindex="-1" hidefocus="true" role="button" aria-labelledby="cke_40_label" onblur="this.style.cssText = this.style.cssText;" onkeydown="return CKEDITOR.tools.callFunction(0, 27, event);" onfocus="return CKEDITOR.tools.callFunction(1, 27, event);" onclick="CKEDITOR.tools.callFunction(36, this); return false;"><span class="cke_icon">&nbsp;</span><span id="cke_40_label" class="cke_label">Insert/Remove Bulleted List</span></a></span><span class="cke_button"><a aria-disabled="true" id="cke_41" class="cke_button_outdent cke_disabled" title="Decrease Indent" tabindex="-1" hidefocus="true" role="button" aria-labelledby="cke_41_label" onblur="this.style.cssText = this.style.cssText;" onkeydown="return CKEDITOR.tools.callFunction(0, 28, event);" onfocus="return CKEDITOR.tools.callFunction(1, 28, event);" onclick="CKEDITOR.tools.callFunction(37, this); return false;"><span class="cke_icon">&nbsp;</span><span id="cke_41_label" class="cke_label">Decrease Indent</span></a></span><span class="cke_button"><a id="cke_42" class="cke_off cke_button_indent" title="Increase Indent" tabindex="-1" hidefocus="true" role="button" aria-labelledby="cke_42_label" onblur="this.style.cssText = this.style.cssText;" onkeydown="return CKEDITOR.tools.callFunction(0, 29, event);" onfocus="return CKEDITOR.tools.callFunction(1, 29, event);" onclick="CKEDITOR.tools.callFunction(38, this); return false;"><span class="cke_icon">&nbsp;</span><span id="cke_42_label" class="cke_label">Increase Indent</span></a></span></span><span class="cke_separator" role="separator"></span><span class="cke_toolgroup" role="presentation"><span class="cke_button"><a id="cke_43" class="cke_off cke_button_link" title="Link" tabindex="-1" hidefocus="true" role="button" aria-labelledby="cke_43_label" onblur="this.style.cssText = this.style.cssText;" onkeydown="return CKEDITOR.tools.callFunction(0, 30, event);" onfocus="return CKEDITOR.tools.callFunction(1, 30, event);" onclick="CKEDITOR.tools.callFunction(39, this); return false;"><span class="cke_icon">&nbsp;</span><span id="cke_43_label" class="cke_label">Link</span></a></span><span class="cke_button"><a aria-disabled="true" id="cke_44" class="cke_button_unlink cke_disabled" title="Unlink" tabindex="-1" hidefocus="true" role="button" aria-labelledby="cke_44_label" onblur="this.style.cssText = this.style.cssText;" onkeydown="return CKEDITOR.tools.callFunction(0, 31, event);" onfocus="return CKEDITOR.tools.callFunction(1, 31, event);" onclick="CKEDITOR.tools.callFunction(40, this); return false;"><span class="cke_icon">&nbsp;</span><span id="cke_44_label" class="cke_label">Unlink</span></a></span><span class="cke_button"><a id="cke_45" class="cke_off cke_button_vbimage" title="Image" tabindex="-1" hidefocus="true" role="button" aria-labelledby="cke_45_label" onblur="this.style.cssText = this.style.cssText;" onkeydown="return CKEDITOR.tools.callFunction(0, 32, event);" onfocus="return CKEDITOR.tools.callFunction(1, 32, event);" onclick="CKEDITOR.tools.callFunction(41, this); return false;"><span class="cke_icon">&nbsp;</span><span id="cke_45_label" class="cke_label">Image</span></a></span><span class="cke_button"><a id="cke_46" class="cke_off cke_button_videotag" title="Insert Video" tabindex="-1" hidefocus="true" role="button" aria-labelledby="cke_46_label" onblur="this.style.cssText = this.style.cssText;" onkeydown="return CKEDITOR.tools.callFunction(0, 33, event);" onfocus="return CKEDITOR.tools.callFunction(1, 33, event);" onclick="CKEDITOR.tools.callFunction(42, this); return false;"><span class="cke_icon">&nbsp;</span><span id="cke_46_label" class="cke_label">Insert Video</span></a></span></span><span class="cke_separator" role="separator"></span><span class="cke_toolgroup" role="presentation"><span class="cke_button"><a id="cke_47" class="cke_off cke_button_Quote" title="Wrap [QUOTE] tags around selected text" tabindex="-1" hidefocus="true" role="button" aria-labelledby="cke_47_label" onblur="this.style.cssText = this.style.cssText;" onkeydown="return CKEDITOR.tools.callFunction(0, 34, event);" onfocus="return CKEDITOR.tools.callFunction(1, 34, event);" onclick="CKEDITOR.tools.callFunction(43, this); return false;"><span class="cke_icon">&nbsp;</span><span id="cke_47_label" class="cke_label">Wrap [QUOTE] tags around selected text</span></a></span></span><span class="cke_separator" role="separator"></span><span class="cke_toolgroup" role="presentation"><span class="cke_button"><a id="cke_48" class="cke_off cke_button_Code" title="Wrap [CODE] tags around selected text" tabindex="-1" hidefocus="true" role="button" aria-labelledby="cke_48_label" onblur="this.style.cssText = this.style.cssText;" onkeydown="return CKEDITOR.tools.callFunction(0, 35, event);" onfocus="return CKEDITOR.tools.callFunction(1, 35, event);" onclick="CKEDITOR.tools.callFunction(44, this); return false;"><span class="cke_icon">&nbsp;</span><span id="cke_48_label" class="cke_label">Wrap [CODE] tags around selected text</span></a></span><span class="cke_button"><a id="cke_49" class="cke_off cke_button_Html" title="Wrap [HTML] tags around selected text" tabindex="-1" hidefocus="true" role="button" aria-labelledby="cke_49_label" onblur="this.style.cssText = this.style.cssText;" onkeydown="return CKEDITOR.tools.callFunction(0, 36, event);" onfocus="return CKEDITOR.tools.callFunction(1, 36, event);" onclick="CKEDITOR.tools.callFunction(45, this); return false;"><span class="cke_icon">&nbsp;</span><span id="cke_49_label" class="cke_label">Wrap [HTML] tags around selected text</span></a></span><span class="cke_button"><a id="cke_50" class="cke_off cke_button_Php" title="Wrap [PHP] tags around selected text" tabindex="-1" hidefocus="true" role="button" aria-labelledby="cke_50_label" onblur="this.style.cssText = this.style.cssText;" onkeydown="return CKEDITOR.tools.callFunction(0, 37, event);" onfocus="return CKEDITOR.tools.callFunction(1, 37, event);" onclick="CKEDITOR.tools.callFunction(46, this); return false;"><span class="cke_icon">&nbsp;</span><span id="cke_50_label" class="cke_label">Wrap [PHP] tags around selected text</span></a></span></span><span class="cke_toolbar_end"></span></span></div></td></tr><tr role="presentation"><td id="cke_contents_vB_Editor_QR_editor" class="cke_contents" style="height: 100px;" role="presentation"><iframe style="width: 100%; height: 100%;" title="Rich text editor, vB_Editor_QR_editor, press ALT 0 for help." src="" tabindex="1" allowtransparency="true" frameborder="0"></iframe></td></tr><tr style="-moz-user-select: none;" role="presentation"><td id="cke_bottom_vB_Editor_QR_editor" class="cke_bottom" role="presentation"><div class="cke_resizer cke_resizer_vertical cke_resizer_ltr" title="Drag to resize" onmousedown="CKEDITOR.tools.callFunction(2, event)"></div><div class="as_ind_container"><div class="hidden" id="vB_Editor_QR_autosaved">Auto-Saved</div></div></td></tr></tbody></table><style>.cke_skin_kama{visibility:hidden;}</style></span></span><span tabindex="-1" style="position:absolute;" role="presentation"></span></span>
+<script type="text/javascript">//<![CDATA[
+vB_Editor['vB_Editor_QR'] = new vB_Text_Editor('vB_Editor_QR', { "customConfig": "http:\/\/www.sencha.com\/forum\/clientscript\/ckeditor_config.js?v=415", "contentsCss": "http:\/\/www.sencha.com\/forum\/clientscript\/vbulletin_css\/style00006l\/editor_contents.css", "vbulletin": { "securitytoken": "1338195994-f8b91a37545707bb01aff1f06a587e1bd86b6e20", "bburl": "http:\/\/www.sencha.com\/forum", "bbcodecache": { "1": { "bbcodeid": "1", "bbcodetag": "s", "bbcodereplacement": "<span style=\"text-decoration: line-through;\">%1$s<\/span>", "bbcodeexample": "[s]text[\/s]", "bbcodeexplanation": "Mark out text with a strike though.", "twoparams": "0", "title": "Strikethough", "buttonimage": "", "options": "1", "strip_empty": "1", "stop_parse": "0", "disable_smilies": "0", "disable_wordwrap": "0" }, "2": { "bbcodeid": "2", "bbcodetag": "TRY", "bbcodereplacement": "<a href=\"#\" try_id=\"%1$s\" try_options=\"%2$s\" onclick=\"sencha_try_integration_show('%1$s', '%2$s'); return false;\">Click here to test<\/a>", "bbcodeexample": "[TRY=phone]12345[\/TRY]", "bbcodeexplanation": "", "twoparams": "1", "title": "Try Integration", "buttonimage": "", "options": "31", "strip_empty": "1", "stop_parse": "1", "disable_smilies": "1", "disable_wordwrap": "1" } }, "lastphraseupdate": "1308796747", "contenttypeid": "vBForum_Post", "contentid": "0", "parentcontentid": "6149", "userid": "407136", "postautosave": "20", "phrase": { "attachments": "Attachments", "wrap_quote_tags": "Wrap [QUOTE] tags around selected text", "wrap_html_tags": "Wrap [HTML] tags around selected text", "wrap_php_tags": "Wrap [PHP] tags around selected text", "wrap_code_tags": "Wrap [CODE] tags around selected text", "wrap_x_tags": "Wrap [%1$s] tags around selected text", "enter_tag_option": "Please enter the option for your %1$s tag:", "enter_video_url_below": "Enter your video clip URL below.", "example_video_url": "Example: http:\/\/www.youtube.com\/watch?v=1234567", "insert_video": "Insert Video", "insert_video_clip": "Insert Video Clip", "supported_videos": "Supported videos include:", "insert_preview_break": "Insert Preview Break", "insert_page_break": "Insert Page Break", "this_message_already_contains_a_preview_break": "This message already contains a preview break", "switch_editor_mode": null, "enter_link_url": "Please enter the URL of your link:", "enter_list_item": "Enter a list item. Leave the box empty or press 'Cancel' to complete the list:", "iespell_not_installed": null }, "attachinfo": { "auth_type": "0", "asset_enable": "1", "posthash": "7d1586dfc5fc5b568457f6eab76476d5", "poststarttime": "1338195994", "userid": "407136", "contenttypeid": "1", "max_file_size": "2097152", "values": { "t": "6149", "theend": "fin" }, "attachlimit": "5", "advimagepopup": "1", "valuestring": "&values[t]=6149&values[theend]=fin" } }, "language": "en", "smiley_images": [ "images\/smilies\/1.gif", "images\/smilies\/4.gif", "images\/smilies\/3.gif", "images\/smilies\/20.gif", "images\/smilies\/18.gif", "images\/smilies\/32.gif", "images\/smilies\/8.gif", "images\/smilies\/14.gif", "images\/smilies\/13.gif", "images\/smilies\/59.gif", "images\/smilies\/25.gif", "images\/smilies\/35.gif", "images\/smilies\/33.gif", "images\/smilies\/44.gif", "images\/smilies\/19.gif", "images\/smilies\/2.gif", "images\/smilies\/31.gif", "images\/smilies\/17.gif", "images\/smilies\/24.gif", "images\/smilies\/23.gif", "images\/smilies\/15.gif", "images\/smilies\/16.gif", "images\/smilies\/6.gif" ], "smiley_descriptions": [ ":)", ":D", ";)", "\/:)", ":))", "=P~", ":&quot;&gt;", "B)", ":&gt;", "\\:D\/", "8-|", "=D&gt;", ":-?", "~o)", ":-|", ":(", "(:|", ":((", "I-|", "=;", ":s", "&gt;:)", ":-\/" ], "indentOffset": "40", "editorMode": "2", "toolbar": [ [ "EnhancedSource", "-", "RemoveFormat", "-", "PasteFromWord", "PasteText", "-", "Font", "FontSize", "-", "TextColor", "-", "Smiley", "-", "-", "Undo", "Redo" ], [ "Table", "TableProperties", "DeleteTable", "-", "InsertRowBefore", "InsertRowAfter", "DeleteRow", "-", "InsertColumnBefore", "InsertColumnAfter", "DeleteColumn", "-", "Subscript", "Superscript", "HorizontalRule" ], "\/", [ "Bold", "Italic", "Underline" ], [ "JustifyLeft", "JustifyCenter", "JustifyRight" ], [ "NumberedList", "BulletedList", "Outdent", "Indent", "-", "Link", "Unlink", "Image", "Video", "-", "Quote", "-", "Code", "Html", "Php" ], null ], "font_names": "Arial;Arial Black;Arial Narrow;Book Antiqua;Century Gothic;Comic Sans MS;Courier New;Fixedsys;Franklin Gothic Medium;Garamond;Georgia;Impact;Lucida Console;Lucida Sans Unicode;Microsoft Sans Serif;Palatino Linotype;System;Tahoma;Times New Roman;Trebuchet MS;Verdana", "fontSize_sizes": "1;2;3;4;5;6;7", "height": "100", "vbtype": "qr", "autofocus": false, "parsetype": "7", "autoload": "", "autoloadtitle": "", "autoloadtitleid": "", "bodyClass": "forum" });
+//]]></script>
+
+				</div>
+		</div>
+		
+		<div class="editor_smiliebox">
+			
+
+<ul class="smiliebox floatcontainer" id="vB_Editor_QR_smiliebox">
+	
+<li>
+	<div class="table">
+		<div class="tablecell">
+			<img src="showthread.php_files/1.gif" id="vB_Editor_QR_smilie_74" alt=":)" title="Smile" border="">
+		</div>
+	</div>
+</li> 
+<li>
+	<div class="table">
+		<div class="tablecell">
+			<img src="showthread.php_files/4.gif" id="vB_Editor_QR_smilie_77" alt=":D" title="Big Smile" border="">
+		</div>
+	</div>
+</li> 
+<li>
+	<div class="table">
+		<div class="tablecell">
+			<img src="showthread.php_files/3.gif" id="vB_Editor_QR_smilie_76" alt=";)" title="Wink" border="">
+		</div>
+	</div>
+</li> 
+<li>
+	<div class="table">
+		<div class="tablecell">
+			<img src="showthread.php_files/20.gif" id="vB_Editor_QR_smilie_64" alt="/:)" title="Raised eyebrow" border="">
+		</div>
+	</div>
+</li> 
+<li>
+	<div class="table">
+		<div class="tablecell">
+			<img src="showthread.php_files/18.gif" id="vB_Editor_QR_smilie_62" alt=":))" title="Laughing" border="">
+		</div>
+	</div>
+</li> 
+<li>
+	<div class="table">
+		<div class="tablecell">
+			<img src="showthread.php_files/32.gif" id="vB_Editor_QR_smilie_69" alt="=P~" title="Drooling" border="">
+		</div>
+	</div>
+</li> 
+<li>
+	<div class="table">
+		<div class="tablecell">
+			<img src="showthread.php_files/8.gif" id="vB_Editor_QR_smilie_56" alt=":&quot;&gt;" title="Blush" border="">
+		</div>
+	</div>
+</li> 
+<li>
+	<div class="table">
+		<div class="tablecell">
+			<img src="showthread.php_files/14.gif" id="vB_Editor_QR_smilie_58" alt="B)" title="Cool" border="">
+		</div>
+	</div>
+</li> 
+<li>
+	<div class="table">
+		<div class="tablecell">
+			<img src="showthread.php_files/13.gif" id="vB_Editor_QR_smilie_57" alt=":&gt;" title="Smug" border="">
+		</div>
+	</div>
+</li> 
+<li>
+	<div class="table">
+		<div class="tablecell">
+			<img src="showthread.php_files/59.gif" id="vB_Editor_QR_smilie_73" alt="\:D/" title="Dancing" border="">
+		</div>
+	</div>
+</li> 
+<li>
+	<div class="table">
+		<div class="tablecell">
+			<img src="showthread.php_files/25.gif" id="vB_Editor_QR_smilie_67" alt="8-|" title="Rolling eyes" border="">
+		</div>
+	</div>
+</li> 
+<li>
+	<div class="table">
+		<div class="tablecell">
+			<img src="showthread.php_files/35.gif" id="vB_Editor_QR_smilie_71" alt="=D&gt;" title="Applause" border="">
+		</div>
+	</div>
+</li> 
+<li>
+	<div class="table">
+		<div class="tablecell">
+			<img src="showthread.php_files/33.gif" id="vB_Editor_QR_smilie_70" alt=":-?" title="Thinking" border="">
+		</div>
+	</div>
+</li> 
+<li>
+	<div class="table">
+		<div class="tablecell">
+			<img src="showthread.php_files/44.gif" id="vB_Editor_QR_smilie_72" alt="~o)" title="Coffee" border="">
+		</div>
+	</div>
+</li> 
+<li>
+	<div class="table">
+		<div class="tablecell">
+			<img src="showthread.php_files/19.gif" id="vB_Editor_QR_smilie_63" alt=":-|" title="Straight face" border="">
+		</div>
+	</div>
+</li> 
+<li>
+	<div class="table">
+		<div class="tablecell">
+			<img src="showthread.php_files/2.gif" id="vB_Editor_QR_smilie_75" alt=":(" title="Frown" border="">
+		</div>
+	</div>
+</li> 
+<li>
+	<div class="table">
+		<div class="tablecell">
+			<img src="showthread.php_files/31.gif" id="vB_Editor_QR_smilie_68" alt="(:|" title="tired or sleepy" border="">
+		</div>
+	</div>
+</li> 
+<li>
+	<div class="table">
+		<div class="tablecell">
+			<img src="showthread.php_files/17.gif" id="vB_Editor_QR_smilie_61" alt=":((" title="Cry" border="">
+		</div>
+	</div>
+</li> 
+<li>
+	<div class="table">
+		<div class="tablecell">
+			<img src="showthread.php_files/24.gif" id="vB_Editor_QR_smilie_66" alt="I-|" title="Sleeping" border="">
+		</div>
+	</div>
+</li> 
+<li>
+	<div class="table">
+		<div class="tablecell">
+			<img src="showthread.php_files/23.gif" id="vB_Editor_QR_smilie_65" alt="=;" title="Talk to the hand" border="">
+		</div>
+	</div>
+</li> 
+<li>
+	<div class="table">
+		<div class="tablecell">
+			<img src="showthread.php_files/15.gif" id="vB_Editor_QR_smilie_59" alt=":s" title="Worried" border="">
+		</div>
+	</div>
+</li> 
+<li>
+	<div class="table">
+		<div class="tablecell">
+			<img src="showthread.php_files/16.gif" id="vB_Editor_QR_smilie_60" alt="&gt;:)" title="Evil" border="">
+		</div>
+	</div>
+</li> 
+<li>
+	<div class="table">
+		<div class="tablecell">
+			<img src="showthread.php_files/6.gif" id="vB_Editor_QR_smilie_55" alt=":-/" title="Confused" border="">
+		</div>
+	</div>
+</li> 
+</ul>
+ 
+		</div>
+		
+	</div>
+</div>
+
+<input name="wysiwyg" id="vB_Editor_QR_mode" value="1" type="hidden"> 
+	
+        </div>
+        
+    </div>
+
+    <div class="blockfoot actionbuttons">
+        <div class="group">
+            <input class="button" value="Post Quick Reply" accesskey="s" title="(Alt + S)" name="sbutton" tabindex="1" id="qr_submit" onclick="clickedelm = this.value" type="submit">
+            <input class="button" value="Go Advanced" accesskey="x" title="(Alt + X)" name="preview" tabindex="1" id="qr_preview" onclick="clickedelm = this.value" type="submit">
+            <input id="qr_cancelbutton" class="button" style="display: none;" value="Cancel" accesskey="c" title="(Alt + C)" name="cancel" tabindex="4" onclick="qr_reset();" type="reset">
+        </div>
+    </div>
+
+    <div id="qr_posting_msg" class="hidden">
+        <img title="Posting Quick Reply - Please Wait" src="showthread.php_files/progress.gif" alt="Posting Quick Reply - Please Wait">&nbsp;<strong>Posting Quick Reply - Please Wait</strong>
+    </div>
+    </div>
+    <input name="fromquickreply" value="1" type="hidden">
+    <input name="s" value="" type="hidden">
+    <input name="securitytoken" value="1338195994-f8b91a37545707bb01aff1f06a587e1bd86b6e20" type="hidden">
+    <input name="do" value="postreply" type="hidden">
+    <input name="t" value="6149" id="qr_threadid" type="hidden">
+    <input name="p" value="0" id="qr_postid" type="hidden">
+    <input name="specifiedpost" value="0" id="qr_specifiedpost" type="hidden">
+    <input name="parseurl" value="1" type="hidden">
+    <input name="loggedinuser" value="407136" type="hidden">
+    <input name="posthash" value="" type="hidden">
+    <input name="poststarttime" value="" type="hidden">
+
+
+    <!-- Mozilla work around for focusing on QR in WYSIWYG mode -->
+    <div id="qr_scroll"></div>
+
+
+</form>
+</div>
+
+
+
+
+<!-- next / previous links -->
+<div class="navlinks">
+    <a class="button-link grey arrow previous inline alignleft" href="http://www.sencha.com/forum/showthread.php?t=6149&amp;goto=nextoldest" rel="nofollow">
+        <span>Previous Thread</span>
+    </a>
+    <a class="button-link grey arrow next inline" href="http://www.sencha.com/forum/showthread.php?t=6149&amp;goto=nextnewest" rel="nofollow">
+        <span>Next Thread</span>
+    </a>
+</div>
+<!-- / next / previous links -->
+
+
+<div id="thread_info" class="thread_info">
+    
+    
+    
+
+
+
+	
+	<h4 class="threadinfohead blockhead">Tags for this Thread</h4>
+	<div id="thread_tags_list" class="thread_info_block blockbody formcontrols">
+		<div class="inner_block">
+			
+			<a id="tag_edit_link" href="http://www.sencha.com/forum/threadtag.php?t=6149" class="textcontrol" style="float: right; font-size: 11px; margin: 10px;">Add / Edit Tags</a>
+			
+			<div id="tag_list_cell">
+				
+	<i>None</i>
+
+
+ <img src="showthread.php_files/11x11progress.gif" id="tag_form_progress" class="inlineimg hidden" alt=""> 
+			</div>
+			<p>
+				<a href="http://www.sencha.com/forum/tags.php">View Tag Cloud</a>
+			</p>
+		</div>
+	</div>
+	
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+<div id="forum-footer" class="floatcontainer footer">
+    <form action="index.php" method="get" id="footer_select" class="footer_select">
+        
+        
+            <select name="langid" onchange="switch_id(this, 'lang')" style="font-size:12px;">
+                <optgroup label="Quick Language Chooser">
+                    <option value="1" class="" selected="selected">-- English (US)</option> <option value="4" class="">-- Espanol</option> <option value="14" class="">-- Japanese</option> 
+                </optgroup>
+            </select>
+        
+    </form>
+    <ul id="footer_links" class="footer_links">
+        <li><a href="http://www.sencha.com/forum/sendmessage.php" rel="nofollow" accesskey="9">Contact Us</a></li>
+        
+        
+        
+        <li><a href="http://www.sencha.com/forum/archive/index.php">Archive</a></li>
+        
+        
+        
+        <li><a href="http://www.sencha.com/forum/showthread.php?6149-aSP.NET-AJAX-DateTime-%28de%29serialization#top" onclick="document.location.hash='top'; return false;">Top</a></li>
+    </ul>
+    
+    <!-- auto DST correction code -->
+        <form action="profile.php?do=dst" method="post" name="dstform">
+            <input name="s" value="" type="hidden">
+            <input name="securitytoken" value="1338195994-f8b91a37545707bb01aff1f06a587e1bd86b6e20" type="hidden">
+            <input name="do" value="dst" type="hidden">
+        </form>
+        <script>
+            var tzOffset = -8 + 0;
+            var utcOffset = new Date().getTimezoneOffset() / 60;
+            if (Math.abs(tzOffset + utcOffset) == 1)
+            {   // Dst offset is 1 so its changed
+                document.forms.dstform.submit();
+            }
+        </script>
+    <!-- / auto DST correction code -->
+    
+    <script>
+        // Main vBulletin Javascript Initialization
+        vBulletin_init();
+    </script>
+        
+</div>
+
+
+
+</section> <!-- /#content -->
+</div> <!-- /#content-wrapper -->
+<footer id="footer">
+    <div id="footer-content">
+        <nav id="footer-nav">
+            <div class="columns">
+                <ul class="column">
+                    <li>
+                        <a class="main" href="http://www.sencha.com/products/">Products</a>
+                        <ul class="zero">
+                            <li class="first"><a href="http://www.sencha.com/products/extjs/">Ext JS 4.1</a></li>
+                            <li><a href="http://www.sencha.com/products/gxt/">Sencha GXT 3</a></li>
+                            <li><a href="http://www.sencha.com/products/touch/">Sencha Touch 2</a></li>
+                            <li><a href="http://www.sencha.com/products/touch/charts/">Sencha Touch Charts</a></li>
+                            <li><a href="http://www.sencha.com/products/architect/">Sencha Architect 2</a></li>
+                            <li><a href="http://www.sencha.com/products/animator/">Sencha Animator</a></li>
+                            <li class="last"><a href="http://www.sencha.com/products/io/">Sencha.io</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <ul class="column">
+                    <li>
+                        <a class="main" href="http://www.sencha.com/support/">Support</a>
+                        <ul class="zero">
+                            <li class="first"><a href="http://www.sencha.com/support/services/">Sencha Services</a></li>
+                            <li class="last"><a href="http://www.sencha.com/support/faq/">FAQ</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a class="main" href="http://www.sencha.com/training/">Training</a>
+                        <ul class="zero">
+                            <li class="first last"><a href="http://www.sencha.com/training/courses/">Courses</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <ul class="column">
+                    <li>
+                        <a class="main" href="http://www.sencha.com/company/">Company</a>
+                        <ul class="zero">
+                            <li class="first"><a href="http://www.sencha.com/company/team/">Team</a></li>
+                            <li><a href="http://www.sencha.com/company/careers/">Careers</a></li>
+                            <li><a href="http://www.sencha.com/company/events/">Events</a></li>
+                            <li><a href="http://www.sencha.com/company/press/">Press</a></li>
+                            <li><a href="http://www.sencha.com/company/customers/">Customers</a></li>
+                            <li><a href="http://www.sencha.com/company/partners/">Partners</a></li>
+                            <li class="last"><a href="http://www.sencha.com/company/contact/">Contact</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <ul class="column">
+                    <li><a class="main" href="http://www.sencha.com/blog/">Blog</a></li>
+                    <li><a class="main" href="http://www.sencha.com/forum/">Forum</a></li>
+                    <li><a class="main" href="http://www.sencha.com/learn/">Learn</a></li>
+                    <li><a class="main" href="http://docs.sencha.com/">API Docs</a></li>
+                    <li><a class="main" href="http://www.sencha.com/apps/">App Gallery</a></li>
+                    <li><a class="main" href="http://pages.sencha.com/resources">Resource Library</a></li>
+                    <li><a class="main" href="http://www.sencha.com/store/">Store</a></li>
+                    <li><a class="legal" href="http://www.sencha.com/legal/">Legal</a></li>
+                </ul>
+                <ul class="column social last">
+                    <li><a class="facebook" href="http://www.facebook.com/senchainc">Facebook</a></li>
+                    <li><a class="linkedin" href="http://j.mp/sencha-in">LinkedIn</a></li>
+                    <li><a class="twitter" href="http://twitter.com/sencha">Twitter</a></li>
+                    <li><a class="tumblr" href="http://senchainc.tumblr.com/">Tumblr</a></li>
+                    <li><a class="vimeo" href="http://vimeo.com/sencha">Vimeo</a></li>
+                </ul>
+            </div>
+        </nav>
+
+        <hr>
+
+        <p style="float:left;width:50%;"><a href="http://www.senchadevs.com/" title="Find Sencha developers near you." class="more-icon">Find Sencha developers at SenchaDevs</a></p>
+        <div id="copyright">
+            <p>© 2012 Sencha Inc. All rights reserved.</p>
+            <div id="copyright">
+                <div id="footer_copyright" class="shade footer_copyright">
+                    <!-- Do not remove this copyright notice -->
+                    Powered by <a href="http://www.vbulletin.com/" id="vbulletinlink">vBulletin®</a> Version 4.1.5 <br>Copyright © 2012 vBulletin Solutions, Inc. All rights reserved. <br>Forum Modifications By <a href="http://www.marcomamdouh.com/" title="Marco Mamdouh">Marco Mamdouh</a>
+                    <!-- Do not remove this copyright notice -->
+                </div>
+                <div id="footer_morecopyright" class="shade footer_morecopyright">
+                    <!-- Do not remove cronimage or your scheduled tasks will cease to function -->
+                    
+                    <!-- Do not remove cronimage or your scheduled tasks will cease to function -->
+                    
+                </div>
+            </div>
+        </div>
+    </div> <!-- /#footer-content -->
+</footer>
+<script type="text/javascript">
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script> 
+
+ <iframe style="display: none;" id="ux-lightbox-shim"></iframe><div style="display: none;" id="ux-lightbox-overlay"></div><div style="display: none;" id="ux-lightbox"><div style="width: 250px; height: 250px;" id="ux-lightbox-outerImageContainer"><div id="ux-lightbox-imageContainer"><img id="ux-lightbox-image"><div id="ux-lightbox-hoverNav"><a href="#" id="ux-lightbox-navPrev"></a><a href="#" id="ux-lightbox-navNext"></a></div><div id="ux-lightbox-loading"><a id="ux-lightbox-loadingLink"></a></div></div></div><div id="ux-lightbox-outerDataContainer"><div id="ux-lightbox-dataContainer"><div id="ux-lightbox-data"><div id="ux-lightbox-details"><span id="ux-lightbox-caption"></span><span id="ux-lightbox-imageNumber"></span></div><div id="ux-lightbox-bottomNav"><a href="#" id="ux-lightbox-navClose"></a></div></div></div></div></div></body></html>
