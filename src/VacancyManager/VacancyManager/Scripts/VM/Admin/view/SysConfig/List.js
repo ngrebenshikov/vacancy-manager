@@ -40,8 +40,17 @@
                 text: 'Удалить',
                 name: 'btnRemove',
                 id: 'Remove',
-                action: 'Remove'
-            }]
+                action: 'Remove',
+                disabled: true
+            }],
+
+            listeners: {
+                selectionchange: function (view, selections, options) {
+                    var button = Ext.getCmp('Remove');
+                    if (selections != null)
+                        button.enable();
+                }
+            }
         });
 
         this.callParent(arguments);
