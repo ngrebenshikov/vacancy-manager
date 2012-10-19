@@ -6,7 +6,7 @@
   autoSizeColumns: true,
   forceFit: true,
   frame: false,
-  title: 'Пользователи',
+  //title: Strings.Users,
   store: 'User',
   initComponent: function ()
   {
@@ -15,7 +15,7 @@
         columns: [
                 {
                   dataIndex: 'UserName',
-                  text: 'Имя пользователя',
+                  text: Strings.UserName,
                   width: 120,
                   sortable: true,
                   field: { xtype: 'textfield' },
@@ -23,7 +23,7 @@
                 },
                 {
                   dataIndex: 'Roles',
-                  text: 'Роли',
+                  text: Strings.UserRoles,
                   width: 120,
                   menuDisabled: true,
                   field: { xtype: 'textfield' },
@@ -41,7 +41,7 @@
                 },
                 {
                   dataIndex: 'Email',
-                  text: 'Email',
+                  text: Strings.UserEmail,
                   width: 120,
                   sortable: true,
                   field: { xtype: 'textfield' },
@@ -49,7 +49,7 @@
                 },
                 {
                   dataIndex: 'UserComment',
-                  text: 'Комментарий',
+                  text: Strings.UserCommentary,
                   width: 120,
                   sortable: false,
                   field: { xtype: 'textfield' },
@@ -57,7 +57,7 @@
                 },
                 {
                   dataIndex: 'CreateDate',
-                  text: 'Дата создания',
+                  text: Strings.UserCreationDate,
                   width: 70,
                   sortable: true,
                   field: { xtype: 'datefield' },
@@ -66,7 +66,7 @@
                 },
                 {
                   dataIndex: 'LaslLoginDate',
-                  text: 'Последний визит',
+                  text: Strings.UserLastLoginDate,
                   width: 70,
                   sortable: true,
                   field: { xtype: 'datefield' },
@@ -75,7 +75,7 @@
                 },
                 {
                   dataIndex: 'LastLockedOutDate',
-                  text: 'Дата последней блокировки',
+                  text: Strings.UserLastLockedOutDate,
                   width: 70,
                   sortable: true,
                   field: { xtype: 'datefield' },
@@ -84,7 +84,7 @@
                 },
                 {
                   dataIndex: 'LastLockedOutReason',
-                  text: 'Причина последней блокировки',
+                  text: Strings.UserLastLockedOutReason,
                   width: 70,
                   sortable: false,
                   field: { xtype: 'textfield' },
@@ -92,7 +92,7 @@
                 },
                 {
                   dataIndex: 'IsActivated',
-                  text: 'Активирован',
+                  text: Strings.UserIsActivated,
                   width: 70,
                   sortable: false,
                   field: { xtype: 'textfield' },
@@ -100,7 +100,7 @@
                 },
                 {
                   dataIndex: 'IsLockedOut',
-                  text: 'Забанен',
+                  text: Strings.UserIsLockedOut,
                   width: 70,
                   sortable: false,
                   field: { xtype: 'textfield' },
@@ -113,32 +113,32 @@
                     store: 'User',
                     dock: 'bottom',
                     displayInfo: true,
-                    displayMsg: 'Показано  {0} - {1} из {2}',
-                    emptyMsg: 'Нет данных для отображения'
+                    displayMsg: Strings.UserToolbarDislpayMsg,
+                    emptyMsg: Strings.UserToolbarEmptyMsg
                   }
                 ],
         bbar:
         [
           {
-            text: 'Новый пользователь',
+            text: Strings.UserBNewUser,
             name: 'btnloadBlankUser',
             id: 'btnloadBlankUser',
             action: 'CreateUser'
           },
           {
-            text: 'Забанить/Разбанить',
+            text: Strings.UserBLockUnlock,
             name: 'btnBanManager',
             id: 'BanManager',
             action: 'banManager'
           },
           {
-            text: 'Назначить роли',
+            text: Strings.UserBSetRoles,
             name: 'btnRoleManager',
             id: 'RoleMng',
             action: 'callRoleManager'
           },
           {
-            text: 'Удалить пользователя',
+            text: Strings.UserBDelete,
             action: 'deleteUser'
           }
         ]

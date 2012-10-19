@@ -3,7 +3,7 @@
   {
     extend: 'Ext.tab.Panel',
     alias: 'widget.AdminMain',
-    title: 'Admin',
+    title: Strings.AdminTitle,
     activeTab: 0,
 
     initComponent: function ()
@@ -15,7 +15,7 @@
           [
             {
               xtype: 'panel',
-              title: "Пользователи",
+              title: Strings.Users,
               autoScroll: true,
               layout: 'fit',
               items:
