@@ -99,9 +99,13 @@
     <Compile Include="Migrations\201205281103023_MultiRole.Designer.cs">
       <DependentUpon>201205281103023_MultiRole.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201210170525364_AddedConfig.cs" />
-    <Compile Include="Migrations\201210170525364_AddedConfig.Designer.cs">
-      <DependentUpon>201210170525364_AddedConfig.cs</DependentUpon>
+    <Compile Include="Migrations\201210111152480_AddedConfig.cs" />
+    <Compile Include="Migrations\201210111152480_AddedConfig.Designer.cs">
+      <DependentUpon>201210111152480_AddedConfig.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201210170525364_ConfigKeyChanged.cs" />
+    <Compile Include="Migrations\201210170525364_ConfigKeyChanged.Designer.cs">
+      <DependentUpon>201210170525364_ConfigKeyChanged.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\201210180044562_Applicant_Added.cs" />
     <Compile Include="Migrations\201210180044562_Applicant_Added.Designer.cs">

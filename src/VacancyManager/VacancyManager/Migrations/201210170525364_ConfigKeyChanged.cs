@@ -2,14 +2,14 @@ namespace VacancyManager.Migrations
 {
     using System.Data.Entity.Migrations;
     
-    public partial class AddedConfig : DbMigration
+    public partial class ConfigKeyChanged : DbMigration
     {
         public override void Up()
         {
+            DropPrimaryKey("SysConfig", new[] { "Name" });
             AddColumn("SysConfig", "Id", c => c.Int(nullable: false, identity: true));
             AlterColumn("SysConfig", "Name", c => c.String(nullable: false));
             AlterColumn("SysConfig", "Value", c => c.String(nullable: false));
-            DropPrimaryKey("SysConfig", new[] { "Name" });
             AddPrimaryKey("SysConfig", "Id");
         }
         
