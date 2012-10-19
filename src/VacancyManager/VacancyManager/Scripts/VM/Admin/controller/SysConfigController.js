@@ -23,8 +23,8 @@
         Add: function () {
             var win = Ext.create('VM.view.SysConfig.Create').show(),
                 conf = Ext.create('VM.model.SysConfigModel', {
-                    Name: 'Property name',
-                    Value: 'Property value'
+                    Name: 'Name',
+                    Value: 'Value'
                 });
             win.down('form').loadRecord(conf);
         },
@@ -37,6 +37,7 @@
                     newConf = form.getValues();
                 store.add(newConf);
                 win.close();
+                Ext.getCmp('SysConfigGrid').clearSelection();
             }
         },
 
@@ -48,12 +49,12 @@
         Update: function (button) {
             var win = button.up('window'),
                 form = win.down('form').getForm();
-            
+
             if (form.isValid()) {
                 var store = this.getSysConfigStore(),
                     rec = form.getRecord(),
                     newConf = form.getValues();
-                
+
                 rec.set(newConf);
                 store.sync();
                 win.close();
@@ -61,12 +62,14 @@
         },
 
         Remove: function (button) {
-            var grid = button.up('grid'),
+            var grid = Ext.getCmp('SysConfigGrid'),
                 store = this.getSysConfigStore(),
                 selection = grid.getView().getSelectionModel().getSelection()[0];
 
-            if (selection != null)
+            if (selection != null) {
                 store.remove(selection);
+                Ext.getCmp('Remove').disable();
+            }
         }
     }
 );
