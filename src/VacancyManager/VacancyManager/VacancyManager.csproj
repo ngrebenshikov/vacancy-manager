@@ -111,6 +111,10 @@
     <Compile Include="Migrations\201210180044562_Applicant_Added.Designer.cs">
       <DependentUpon>201210180044562_Applicant_Added.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201210190532169_ConfigKeyChanged1.cs" />
+    <Compile Include="Migrations\201210190532169_ConfigKeyChanged1.Designer.cs">
+      <DependentUpon>201210190532169_ConfigKeyChanged1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\Applicant.cs" />
