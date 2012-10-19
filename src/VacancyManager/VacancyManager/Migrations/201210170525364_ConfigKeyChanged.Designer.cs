@@ -4,7 +4,7 @@ namespace VacancyManager.Migrations
     using System.Data.Entity.Migrations;
     using System.Data.Entity.Migrations.Infrastructure;
     
-    public sealed partial class AddedConfig : IMigrationMetadata
+    public sealed partial class ConfigKeyChanged : IMigrationMetadata
     {
         string IMigrationMetadata.Id
         {
