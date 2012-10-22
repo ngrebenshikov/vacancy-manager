@@ -45,7 +45,8 @@ namespace VacancyManager.Services
     public override void CreateRole(string roleName)
     {
       VacancyContext _db = new VacancyContext();
-      if (_db.Roles.SingleOrDefault(a => a.Name.Equals(roleName, StringComparison.OrdinalIgnoreCase)) != null) return;
+      if (_db.Roles.SingleOrDefault(a => a.Name.Equals(roleName, StringComparison.OrdinalIgnoreCase)) != null)
+        return;
 
       _db.Roles.Add(new Role
                       {
@@ -74,8 +75,7 @@ namespace VacancyManager.Services
 
     public override bool RoleExists(string roleName)
     {
-      VacancyContext _db = new VacancyContext();
-      return _db.Roles.Any(x => x.Name.Equals(roleName));
+      return new VacancyContext().Roles.Any(x => x.Name.Equals(roleName));
     }
 
     public override void AddUsersToRoles(string[] usernames, string[] roleNames)

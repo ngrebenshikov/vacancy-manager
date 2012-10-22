@@ -56,9 +56,9 @@
                     allowBlank: false
                 }, {
                     xtype: 'datefield',
-                    id: 'dtLaslLoginDate',
+                    id: 'dtLastLoginDate',
                     fieldLabel: 'Последний визит',
-                    name: 'LaslLoginDate',
+                    name: 'LastLoginDate',
                     allowBlank: false
                 }, {
                     xtype: 'datefield',
