@@ -4,7 +4,7 @@ Ext.define
     extend: 'Ext.panel.Panel',
     alias: 'widget.RequirementStackList',
     requires: ['Ext.toolbar.Toolbar'],
-    title: 'Requirement Stack List',
+    title: Strings.RequirementStackList,
     collapsible: true,
     animCollapse: true,
     split: true,
@@ -46,11 +46,11 @@ Ext.define
               items:
               [
                 {
-                  text: 'Add Requirement Stack',
+                  text: Strings.btnAddRequirementStack,
                   action: 'AddRequirementStack'
                 },
                 {
-                  text: 'Remove Requirement Stack',
+                  text: Strings.btnRemoveRequirementStak,
                   disabled: true,
                   action: 'RemoveRequirementStack'
                 }

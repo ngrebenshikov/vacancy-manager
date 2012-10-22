@@ -1,51 +1,50 @@
 Ext.define
 ('VM.view.RequirementListInStack.Edit',
   {
-    extend: 'Ext.window.Window',
-    alias: 'widget.RequirementListInStackEdit',
+      extend: 'Ext.window.Window',
+      alias: 'widget.RequirementListInStackEdit',
 
-    requires: ['Ext.form.Panel'],
+      requires: ['Ext.form.Panel'],
 
-    title: 'Edit Requirement',
-    layout: 'fit',
-    autoShow: true,
-    height: 60,
-    width: 280,
+      title: Strings.TitleWindowEditRequirement,
+      layout: 'fit',
+      autoShow: true,
+      height: 60,
+      width: 280,
 
-    initComponent: function ()
-    {
-      this.items =
+      initComponent: function () {
+          this.items =
       [
         {
-          xtype: 'form',
-          padding: '5 5 0 5',
-          border: false,
-          style: 'background-color: #fff;',
-          items:
+            xtype: 'form',
+            padding: '5 5 0 5',
+            border: false,
+            style: 'background-color: #fff;',
+            items:
           [
                 {
-                  xtype: 'textfield',
-                  name: 'Name',
-                  fieldLabel: 'Name',
-                  allowBlank: false
+                    xtype: 'textfield',
+                    name: 'Name',
+                    fieldLabel: Strings.TitleRequirementName,
+                    allowBlank: false
                 }
           ]
         }
       ];
-      this.buttons =
+          this.buttons =
       [
         {
-          text: 'Save',
-          action: 'UpdateRequirement'
+            text: Strings.btnSave,
+            action: 'UpdateRequirement'
         },
         {
-          text: 'Cancel',
-          scope: this,
-          handler: this.close
+            text: Strings.btnCancel,
+            scope: this,
+            handler: this.close
         }
        ];
-      this.callParent(arguments);
-    }
+          this.callParent(arguments);
+      }
   }
 );
 

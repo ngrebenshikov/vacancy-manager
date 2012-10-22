@@ -6,7 +6,7 @@
 
     requires: ['Ext.form.Panel'],
 
-    title: 'Create Requirement',
+    title: Strings.TitleWindowCreateRequirement,
     layout: 'fit',
     autoShow: true,
     height: 60,
@@ -27,7 +27,7 @@
               xtype: 'textfield',
               id: 'RequirementName',
               name: 'Name',
-              fieldLabel: 'Name',
+              fieldLabel: Strings.TitleRequirementName,
               allowBlank: false
             }
           ]
@@ -37,11 +37,11 @@
       this.buttons =
       [
         {
-          text: 'Create',
+          text: Strings.btnAdd,
           action: 'CreateRequirement'
         },
         {
-          text: 'Cancel',
+          text: Strings.btnCancel,
           scope: this,
           handler: this.close
         }

@@ -189,4 +189,72 @@
     <value>Нет данных для отображения</value>
     <comment>Текст для сообщений pagingTollbar'А</comment>
   </data>
+  <data name="AddRequirementToStack" xml:space="preserve">
+    <value>Добавить требование к стеку</value>
+    <comment>Заголовок окна добавления требования в стек</comment>
+  </data>
+  <data name="btnAdd" xml:space="preserve">
+    <value>Добавить</value>
+    <comment>Кнопка "Добавить"</comment>
+  </data>
+  <data name="btnAddRequirementStack" xml:space="preserve">
+    <value>Новый стек требований</value>
+    <comment>Кнопка добавления стека требований</comment>
+  </data>
+  <data name="btnCancel" xml:space="preserve">
+    <value>Отмена</value>
+    <comment>Кнопка "Отмена"</comment>
+  </data>
+  <data name="btnRemoveRequirementStak" xml:space="preserve">
+    <value>Удалить стек требований</value>
+    <comment>Кнопка удаления стека требований</comment>
+  </data>
+  <data name="btnSave" xml:space="preserve">
+    <value>Сохранить</value>
+    <comment>Кнопка "Сохранить"</comment>
+  </data>
+  <data name="CreateRequirementStackList" xml:space="preserve">
+    <value>Добавление стека требований</value>
+    <comment>Заголовок окна добавления стека требований</comment>
+  </data>
+  <data name="EditRequirementStackList" xml:space="preserve">
+    <value>Изменение стека требований</value>
+    <comment>Заголовок окна изменения стека требований</comment>
+  </data>
+  <data name="msgRequirementStackNotSelected" xml:space="preserve">
+    <value>Не выбран стек требований</value>
+    <comment>Сообщение</comment>
+  </data>
+  <data name="RequirementListinStack" xml:space="preserve">
+    <value>Список требований в стеке</value>
+    <comment>Заголовок панели списка требований в стеке</comment>
+  </data>
+  <data name="RequirementsTabTitle" xml:space="preserve">
+    <value>Требования</value>
+    <comment>Заголовок вкладки требования</comment>
+  </data>
+  <data name="RequirementStackList" xml:space="preserve">
+    <value>Список стеков требований</value>
+    <comment>Заголовок панели списка стеков</comment>
+  </data>
+  <data name="TitleRequirementName" xml:space="preserve">
+    <value>Требование</value>
+    <comment>Заголовок поля требования</comment>
+  </data>
+  <data name="TitleRequirementStackName" xml:space="preserve">
+    <value>Стек требований</value>
+    <comment>Заголовок поля стека требований</comment>
+  </data>
+  <data name="TitleWindowCreateRequirement" xml:space="preserve">
+    <value>Добавление требования</value>
+    <comment>Заголовок окна добавления требования</comment>
+  </data>
+  <data name="TitleWindowEditRequirement" xml:space="preserve">
+    <value>Редактирование требования</value>
+    <comment>Заголовок окна редактирования требования</comment>
+  </data>
+  <data name="Warning" xml:space="preserve">
+    <value>Предупреждение</value>
+    <comment>Заголовок диалогового окна с предупреждением</comment>
+  </data>
 </root>

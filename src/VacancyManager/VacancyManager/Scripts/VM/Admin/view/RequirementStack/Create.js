@@ -6,7 +6,7 @@
 
     requires: ['Ext.form.Panel'],
 
-    title: 'Create RequirementStack List',
+    title: Strings.CreateRequirementStackList,
     layout: 'fit',
     autoShow: true,
     height: 60,
@@ -27,7 +27,7 @@
               xtype: 'textfield',
               id: 'RequirementStackName',
               name: 'Name',
-              fieldLabel: 'Name',
+              fieldLabel: Strings.TitleRequirementStackName,
               allowBlank: false
             }
           ]
@@ -37,11 +37,11 @@
       this.buttons =
       [
         {
-          text: 'Create',
+            text: Strings.btnAdd,
           action: 'CreateRequirementStack'
         },
         {
-          text: 'Cancel',
+          text: Strings.btnCancel,
           scope: this,
           handler: this.close
         }

@@ -48,7 +48,7 @@ Ext.define
     AddRequirement: function ()
     {
       if (this.getRequirementStackData().getSelectionModel().getSelection()[0] === undefined)
-        Ext.Msg.alert('Warning', 'Requirement Stack not selected');
+          Ext.Msg.alert('Warning', Strings.msgRequirementStackNotSelected);
       else
       {
         var Create = Ext.create('VM.view.RequirementListInStack.Create').show();

@@ -3,13 +3,13 @@ Ext.define
   {
     extend: 'Ext.grid.Panel',
     alias: 'widget.RequirementListInStackList',
-    title: 'Requirement List in Stack',
+    title: Strings.RequirementListinStack,
     store: 'RequirementListInStack',
     //region: 'center',
     //margins: '5 0 0 0',
     columns:
     [
-      { header: 'Name', menuDisabled: true, dataIndex: 'Name', flex: 1 },
+      { header: Strings.TitleRequirementName, menuDisabled: true, dataIndex: 'Name', flex: 1 },
       {
         xtype: 'actioncolumn',
         width: 50,
@@ -32,7 +32,7 @@ Ext.define
       items:
       [
         {
-          text: 'Add Requirement to Stack',
+            text: Strings.AddRequirementToStack,
           id: 'AddRequirementToStack',
           hidden: false,
           action: 'AddRequirement'

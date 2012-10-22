@@ -39,7 +39,7 @@
                 type: 'border'
               },
               autoScroll: true,
-              title: "Технологии",
+              title: Strings.RequirementsTabTitle,
               items:
               [
                 {
