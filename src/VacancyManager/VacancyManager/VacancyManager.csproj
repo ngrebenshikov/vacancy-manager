@@ -70,6 +70,7 @@
     <Compile Include="Controllers\RequirementStackController.cs" />
     <Compile Include="Controllers\RolesController.cs" />
     <Compile Include="Controllers\SysConfigController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Controllers\VacancyController.cs" />
     <Compile Include="Controllers\VacancyRequirementController.cs" />
     <Compile Include="Global.asax.cs">
@@ -150,6 +151,7 @@
     <Compile Include="Services\Managers\VacancyDbManager.cs" />
     <Compile Include="Services\Managers\VacancyRequirementsManager.cs" />
     <Compile Include="Services\ResourceSerialiser.cs" />
+    <Compile Include="Services\SharedCode.cs" />
     <Compile Include="Services\VacancyManagerMembershipProvider.cs" />
     <Compile Include="Services\VacancyManagerRoleProvider.cs" />
   </ItemGroup>
@@ -1606,6 +1608,7 @@
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
