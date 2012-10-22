@@ -86,7 +86,7 @@ namespace VacancyManager.Services.Managers
     {
       VacancyContext _db = new VacancyContext();
       var result = _db.RequirementStacks.FirstOrDefault(x => x.RequirementStackID == id);
-      return result != null ? result.Requirements.ToList() : new List<Requirement>();
+      return result != null ? result.Requirements.ToList() : null;
     }
 
     /// <summary>

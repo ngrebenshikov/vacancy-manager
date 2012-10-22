@@ -8,7 +8,7 @@
       { name: 'Email', type: 'string' },
       { name: 'UserComment', type: 'string' },
       { name: 'CreateDate', type: 'date', dateFormat: 'MS' },
-      { name: 'LaslLoginDate', type: 'date', dateFormat: 'MS' },
+      { name: 'LastLoginDate', type: 'date', dateFormat: 'MS' },
       { name: 'IsActivated', type: 'bool' },
       { name: 'IsLockedOut', type: 'bool' },
       { name: 'LastLockedOutDate', type: 'date', dateFormat: 'MS' },

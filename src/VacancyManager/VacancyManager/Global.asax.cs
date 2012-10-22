@@ -3,6 +3,7 @@ using System.Web.Mvc;
 using System.Web.Routing;
 using System.Web.Security;
 using VacancyManager.Models;
+using VacancyManger;
 
 namespace VacancyManager
 {
@@ -53,19 +54,8 @@ namespace VacancyManager
       VMMembershipUser user = (VMMembershipUser)Membership.GetUser("admin", false);
       if (user == null)
       {
-        //Дальше идёт copy paste из методов легального созданию пользователя из админки
-        MembershipCreateStatus createStatus;
-        user = (VMMembershipUser)Membership.CreateUser("admin", "admin", "StudVacancyProject@mail.ru", null, null, true, null, out createStatus);
-        if (createStatus != MembershipCreateStatus.Success)
+        if (!SharedCode.CreateNewUser("admin", "StudVacancyProject@mail.ru", "admin", true, true).Item1)
           throw new System.Exception("Huston, we have a problems");
-
-        user.UnlockUser();
-        user.EmailKey = null;
-        Membership.UpdateUser(user);
-
-        if (!Roles.RoleExists("Admin"))
-          Roles.CreateRole("Admin");
-        Roles.AddUsersToRoles(new[] { "admin" }, new[] { "Admin" });
       }
 
     }
