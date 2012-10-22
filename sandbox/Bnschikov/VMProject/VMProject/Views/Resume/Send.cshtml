@@ -1,0 +1,32 @@
+﻿@model VMProject.ViewModel.ResumeView
+
+@{
+    ViewBag.Title = "Отправить резюме";
+}
+
+<h2>Вакансия</h2>
+
+@Html.Partial("VacancyInformation", Model.Vacancy)
+
+<h2>Резюме</h2>
+
+@using (Html.BeginForm("Resume"))
+{
+    <div class="editor-label">
+        @Html.LabelFor(model => model.Applicant.FullName)
+    </div>
+    <div class="editor-field">
+        @Html.EditorFor(model => model.Applicant.FullName)
+    </div>
+
+    <div class="editor-label">
+        @Html.LabelFor(model => model.Applicant.Description)
+    </div>
+    <div class="editor-field">
+        @Html.EditorFor(model => model.Applicant.Description)
+    </div>
+
+    <p>
+        <input type="submit" value="Отправить резюме" />
+    </p>
+}
