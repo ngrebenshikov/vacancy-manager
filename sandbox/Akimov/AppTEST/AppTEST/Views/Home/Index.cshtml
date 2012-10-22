@@ -1,0 +1,10 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<h2>@ViewBag.Message</h2>
+<p>
+@Html.ActionLink("View Users", "Index", "User") <br />   
+@Html.ActionLink("View Profile", "Index", "Profile")  <br /> 
+@Html.ActionLink("View Contacts", "Index", "Contacts1")       
+</p>
