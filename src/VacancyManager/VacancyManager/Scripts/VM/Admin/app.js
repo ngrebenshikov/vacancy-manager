@@ -81,7 +81,7 @@ Ext.Ajax.on('requestexception', function (conn, response, options)
                         //login_window.getEl().mask('Login...');
                         Ext.Ajax.request(
                           {
-                            url: '../../Account/ExtJSLogOn',
+                            url: '../../User/ExtJSLogOn',
                             params:
                               { login: login_form.getForm().getValues().login,
                                 password: login_form.getForm().getValues().password

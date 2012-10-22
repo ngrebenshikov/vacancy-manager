@@ -8,10 +8,10 @@
   proxy: {
     type: 'ajax',
     api: {
-      read: '../../Account/ExtJSUserListLoad',
-      create: '../../Account/ExtJSCreateUser',
-      update: '../../Account/ExtJSUpdateUser',
-      destroy: '../../Account/ExtJSDeleteUser'
+      read: '../../User/ExtJSUserListLoad',
+      create: '../../User/ExtJSCreateUser',
+      update: '../../User/ExtJSUpdateUser',
+      destroy: '../../User/ExtJSDeleteUser'
     },
     reader: {
       type: 'json',

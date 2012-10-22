@@ -65,7 +65,7 @@
                   renderer: Ext.util.Format.dateRenderer('d.m.Y')
                 },
                 {
-                  dataIndex: 'LaslLoginDate',
+                  dataIndex: 'LastLoginDate',
                   text: Strings.UserLastLoginDate,
                   width: 70,
                   sortable: true,

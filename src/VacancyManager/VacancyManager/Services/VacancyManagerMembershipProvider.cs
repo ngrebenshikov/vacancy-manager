@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.Linq;
 using System.Security.Cryptography;
@@ -161,17 +160,17 @@ namespace VacancyManager.Services
     #region NotImplemented
     public override bool ChangePasswordQuestionAndAnswer(string username, string password, string newPasswordQuestion, string newPasswordAnswer)
     {
-      throw new System.NotImplementedException();
+      throw new NotImplementedException();
     }
 
     public override string GetPassword(string username, string answer)
     {
-      throw new System.NotImplementedException();
+      throw new NotImplementedException();
     }
 
     public override string ResetPassword(string username, string answer)
     {
-      throw new System.NotImplementedException();
+      throw new NotImplementedException();
     }
 
     #endregion
@@ -191,14 +190,14 @@ namespace VacancyManager.Services
 
     public override MembershipUserCollection FindUsersByName(string usernameToMatch, int pageIndex, int pageSize, out int totalRecords)
     {
-      return FindUserByPredicate((x => x.UserName.IndexOf(usernameToMatch, StringComparison.OrdinalIgnoreCase) != 0),
-        pageIndex, pageSize, out totalRecords);
+      return FindUserByPredicate(pageIndex, pageSize, out totalRecords,
+        (x => x.UserName.IndexOf(usernameToMatch, StringComparison.OrdinalIgnoreCase) != 0));
     }
 
     public override MembershipUserCollection FindUsersByEmail(string emailToMatch, int pageIndex, int pageSize, out int totalRecords)
     {
-      return FindUserByPredicate((x => x.Email.IndexOf(emailToMatch, StringComparison.OrdinalIgnoreCase) != 0),
-        pageIndex, pageSize, out totalRecords);
+      return FindUserByPredicate(pageIndex, pageSize, out totalRecords,
+        (x => x.Email.IndexOf(emailToMatch, StringComparison.OrdinalIgnoreCase) != 0));
     }
 
     public override bool ChangePassword(string username, string oldPassword, string newPassword)
@@ -238,11 +237,15 @@ namespace VacancyManager.Services
       VacancyContext _db = new VacancyContext();
       //deleteAllRelatedData currently not using
       var delete_user = _db.Users.SingleOrDefault(a => a.UserName == username);
-      if (delete_user == null) return false;
+      if (delete_user == null)
+        return false;
+
       if (Roles.GetRolesForUser(delete_user.UserName).Count() != 0)
         Roles.RemoveUsersFromRoles(new[] { delete_user.UserName }, Roles.GetRolesForUser(delete_user.UserName));
+
       _db.Users.Remove(_db.Users.SingleOrDefault(a => a.UserName.Equals(delete_user.UserName)));
       _db.SaveChanges();
+
       return true;
     }
 
@@ -263,16 +266,18 @@ namespace VacancyManager.Services
       VacancyContext _db = new VacancyContext();
       var realUser = (VMMembershipUser)user;
       var update_rec = _db.Users.SingleOrDefault(a => a.UserName == realUser.UserName);
-      if (update_rec == null) return;
+      if (update_rec == null)
+        return;
+
       update_rec.Email = realUser.Email;
       update_rec.EmailKey = realUser.EmailKey;
+
       update_rec.IsActivated = realUser.IsApproved;
       update_rec.IsLockedOut = realUser.IsLockedOut;
+
       update_rec.LaslLoginDate = realUser.LastLoginDate;
-      //Два следующих свойства нужно сначала добавить в VMMembershipUser
-      //update_rec.LastLockedOutDate=realUser.LastLockedOutDate;
       update_rec.LastLockedOutReason = realUser.LastLockedOutReason;
-      //update_rec.Password//Не должно тут обновляться
+
       update_rec.UserName = realUser.UserName;
       _db.SaveChanges();
     }
@@ -281,6 +286,7 @@ namespace VacancyManager.Services
     {
       VacancyContext _db = new VacancyContext();
       var update_rec = _db.Users.SingleOrDefault(a => a.UserName == userName);
+
       if (update_rec != null)
       {
         update_rec.IsLockedOut = false;
@@ -288,6 +294,7 @@ namespace VacancyManager.Services
         _db.SaveChanges();
         return true;
       }
+
       return false;
     }
 
@@ -318,36 +325,21 @@ namespace VacancyManager.Services
     {
       if (dbuser != null)
       {
-        string dbusername = dbuser.UserName;
-        int providerUserKey = dbuser.UserID;
-        string email = dbuser.Email;
-        string passwordQuestion = string.Empty;
-        string comment = dbuser.UserComment;
-        string lastLockedOutReason = dbuser.LastLockedOutReason;
-        bool isApproved = dbuser.IsActivated;
-        bool isLockedOut = dbuser.IsLockedOut;
-        DateTime creationDate = dbuser.CreateDate;
-        DateTime lastLoginDate = dbuser.LaslLoginDate;
-        DateTime lastActivityDate = DateTime.Now;
-        DateTime lastPasswordChangedDate = DateTime.Now;
-        DateTime lastLockedOutDate = dbuser.LastLockedOutDate;
-        string emailKey = dbuser.EmailKey;
-
         var user = new VMMembershipUser("VacancyManagerMembershipProvider",
-                                      dbusername,
-                                      providerUserKey,
-                                      email,
-                                      passwordQuestion,
-                                      comment,
-                                      lastLockedOutReason,
-                                      isApproved,
-                                      isLockedOut,
-                                      creationDate,
-                                      lastLoginDate,
-                                      lastActivityDate,
-                                      lastPasswordChangedDate,
-                                      lastLockedOutDate,
-                                      emailKey);
+          username: dbuser.UserName,
+          providerUserKey: dbuser.UserID,
+          email: dbuser.Email,
+          passwordQuestion: string.Empty,
+          comment: dbuser.UserComment,
+          lastLockedOutReason: dbuser.LastLockedOutReason,
+          isApproved: dbuser.IsActivated,
+          isLockedOut: dbuser.IsLockedOut,
+          creationDate: dbuser.CreateDate,
+          lastLoginDate: dbuser.LaslLoginDate,
+          lastActivityDate: DateTime.Now,
+          lastPasswordChangedDate: DateTime.Now,
+          lastLockedOutDate: dbuser.LastLockedOutDate,
+          EmailKey: dbuser.EmailKey);
 
         return user;
       }
@@ -355,7 +347,7 @@ namespace VacancyManager.Services
       return null;
     }
 
-    private MembershipUserCollection FindUserByPredicate(Func<User, bool> predicate, int pageIndex, int pageSize, out int totalRecords)
+    private MembershipUserCollection FindUserByPredicate(int pageIndex, int pageSize, out int totalRecords, Func<User, bool> predicate)
     {
       MembershipUserCollection result = new MembershipUserCollection();
       int index = 0;
