@@ -7,7 +7,7 @@ Ext.define('VM.controller.ConsiderationController', {
 
     models: ['VM.model.Consideration'],
 
-    views: ['consideration.List', 'consideration.Add'],
+    views: ['consideration.List'],
 
     init: function () {
         this.control(

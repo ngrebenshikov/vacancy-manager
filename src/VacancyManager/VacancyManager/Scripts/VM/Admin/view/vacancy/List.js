@@ -14,25 +14,25 @@
               {  
                   dataIndex: 'Title',
                   text: 'Вакансия',
-                  width: 120, 
+                  width: 180, 
                   sortable: true,
                   field: { xtype: 'textfield' },
-                  flex: 1,
                   menuDisabled: true
               }, { 
                   dataIndex: 'OpeningDate',
                   text: 'Дата открытия',
-                  width: 100,
+                  width: 150,
                   align: 'center',
                   sortable: true,
                   field: { xtype: 'datefield' },
                   menuDisabled: true,
-                  renderer: Ext.util.Format.dateRenderer('d F Y'),
+                  renderer: Ext.util.Format.dateRenderer('d F Y')
               }, {
-                  dataIndex: 'Requirments',
+                  dataIndex: 'Requirements',
                   text: 'Требования',
                   width: 130,
                   sortable: false,
+                  flex: 1,
                   menuDisabled: true
               }, {
                   dataIndex: 'Considerations',

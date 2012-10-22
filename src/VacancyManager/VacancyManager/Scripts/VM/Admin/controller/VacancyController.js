@@ -71,9 +71,23 @@ Ext.define('VM.controller.VacancyController', {
            newvalues = frm_vacancyform.getValues();
         var newOpeningDate = eval("({ dtm: new Date(newvalues['OpeningDate']) })");
         newvalues['OpeningDate'] = newOpeningDate.dtm;
-        vacancystore.add(newvalues);
-        VacancyRequirementsStore = Ext.StoreManager.lookup('VacancyRequirements');
-        VacancyRequirementsStore.sync();
+
+        sel_vacancy.save({
+            success: function (record, operation) {
+                VacancyID = record.getId();
+                vacancystore.insert(0, record);
+
+                VacancyRequirementsStore.each(function (vacancyRequirements) {
+
+                    if (vacancyRequirements.get('Require') == true) {
+                        vacancyRequirements.set('VacancyID', VacancyID);
+                    }
+                });
+                VacancyRequirementsStore = Ext.StoreManager.lookup('VacancyRequirements');
+                VacancyRequirementsStore.sync();
+            }
+        });
+
         wndvacanyEdit.close();
     },
 
@@ -86,7 +100,7 @@ Ext.define('VM.controller.VacancyController', {
             Description: 'Описание вакансии',
             OpeningDate: new Date(),
             ForeignLanguage: 'Иностранные языки',
-            Requirments: 'Требования',
+            Requirements: '',
             IsVisible: true
         });
         wndvacanyEdit.down('form').loadRecord(blankvacancy);
