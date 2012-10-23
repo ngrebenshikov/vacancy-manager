@@ -149,7 +149,7 @@
     <value>E-Mail</value>
     <comment>Столбец таблицы из вкладки пользователи</comment>
   </data>
-  <data name="UserIsActivated" xml:space="preserve">
+  <data name="UserList_IsActivated" xml:space="preserve">
     <value>Активирован</value>
     <comment>Столбец таблицы из вкладки пользователи</comment>
   </data>

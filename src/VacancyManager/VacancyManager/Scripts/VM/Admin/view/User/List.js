@@ -92,7 +92,7 @@
                 },
                 {
                   dataIndex: 'IsActivated',
-                  text: Strings.UserIsActivated,
+                  text: Strings.UserList_IsActivated,
                   width: 70,
                   sortable: false,
                   field: { xtype: 'textfield' },
