@@ -18,7 +18,7 @@ namespace VacancyManager.Models
     public string PasswordSalt { get; set; }
     public string UserComment { get; set; }
     public DateTime CreateDate { get; set; }
-    public DateTime LaslLoginDate { get; set; }
+    public DateTime LastLoginDate { get; set; }
     public bool IsActivated { get; set; }
     public bool IsLockedOut { get; set; }
     public DateTime LastLockedOutDate { get; set; }

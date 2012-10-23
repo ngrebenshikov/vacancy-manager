@@ -181,7 +181,7 @@ namespace VacancyManager.Services
       var dbuser = _db.Users.FirstOrDefault(u => u.UserID == Convert.ToInt32(providerUserKey));
       if ((userIsOnline) && (dbuser != null))
       {
-        dbuser.LaslLoginDate = DateTime.Now;
+        dbuser.LastLoginDate = DateTime.Now;
         _db.SaveChanges();
       }
 
@@ -275,7 +275,7 @@ namespace VacancyManager.Services
       update_rec.IsActivated = realUser.IsApproved;
       update_rec.IsLockedOut = realUser.IsLockedOut;
 
-      update_rec.LaslLoginDate = realUser.LastLoginDate;
+      update_rec.LastLoginDate = realUser.LastLoginDate;
       update_rec.LastLockedOutReason = realUser.LastLockedOutReason;
 
       update_rec.UserName = realUser.UserName;
@@ -335,7 +335,7 @@ namespace VacancyManager.Services
           isApproved: dbuser.IsActivated,
           isLockedOut: dbuser.IsLockedOut,
           creationDate: dbuser.CreateDate,
-          lastLoginDate: dbuser.LaslLoginDate,
+          lastLoginDate: dbuser.LastLoginDate,
           lastActivityDate: DateTime.Now,
           lastPasswordChangedDate: DateTime.Now,
           lastLockedOutDate: dbuser.LastLockedOutDate,
@@ -383,7 +383,7 @@ namespace VacancyManager.Services
         IsActivated = false,
         IsLockedOut = true,
         LastLockedOutDate = DateTime.Now,
-        LaslLoginDate = DateTime.Now,
+        LastLoginDate = DateTime.Now,
         EmailKey = GenerateKey(),
       };
       user.Password = CreatePasswordHash(password, user.PasswordSalt);
