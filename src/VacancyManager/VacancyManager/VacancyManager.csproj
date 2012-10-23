@@ -116,9 +116,9 @@
     <Compile Include="Migrations\201210190532169_ConfigKeyChanged1.Designer.cs">
       <DependentUpon>201210190532169_ConfigKeyChanged1.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201210231028504_User_LastLoginDateCorrected.cs" />
-    <Compile Include="Migrations\201210231028504_User_LastLoginDateCorrected.Designer.cs">
-      <DependentUpon>201210231028504_User_LastLoginDateCorrected.cs</DependentUpon>
+    <Compile Include="Migrations\201210231103101_User_LastLoginDateCorrected.cs" />
+    <Compile Include="Migrations\201210231103101_User_LastLoginDateCorrected.Designer.cs">
+      <DependentUpon>201210231103101_User_LastLoginDateCorrected.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountModels.cs" />

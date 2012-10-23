@@ -335,7 +335,7 @@ namespace VacancyManager.Services
           isApproved: dbuser.IsActivated,
           isLockedOut: dbuser.IsLockedOut,
           creationDate: dbuser.CreateDate,
-          lastLoginDate: dbuser.LastLoginDate,
+          lastLoginDate: dbuser.LastLoginDate.HasValue ? dbuser.LastLoginDate.Value : new DateTime(1,1,1),
           lastActivityDate: DateTime.Now,
           lastPasswordChangedDate: DateTime.Now,
           lastLockedOutDate: dbuser.LastLockedOutDate,
