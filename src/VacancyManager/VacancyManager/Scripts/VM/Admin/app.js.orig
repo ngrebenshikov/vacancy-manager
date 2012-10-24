@@ -16,11 +16,13 @@ Ext.application
     [
       'Admin',
       'RequirementStack',
+      'ConsiderationController',
       'RequirementListInStack',
       'VacancyController',
       'UserController',
       'Roles',
-      'SysConfigController'
+      'SysConfigController',
+      'ApplicantController'
     ],
     launch: function ()
     {
