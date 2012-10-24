@@ -3,7 +3,7 @@ using System.Web.Mvc;
 using System.Web.Security;
 using VacancyManager.Models;
 using VacancyManager.Services;
-using VacancyManger;
+using VacancyManager;
 
 namespace VacancyManager.Controllers
 {

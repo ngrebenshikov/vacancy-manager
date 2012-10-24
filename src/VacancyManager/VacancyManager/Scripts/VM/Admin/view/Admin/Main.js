@@ -61,6 +61,16 @@
                 [
                     { xtype: 'SysConfigList' }
                 ]
+            },
+            {
+                xtype: 'panel',
+                title: "Соискатели",
+                autoScroll: true,
+                layout: 'fit',
+                items:
+                [
+                    { xtype: 'ApplicantList' }
+                ]
             }
             /*{
               xtype:'panel',

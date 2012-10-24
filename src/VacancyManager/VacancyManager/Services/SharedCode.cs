@@ -3,7 +3,7 @@ using System.Web.Security;
 using VacancyManager.Models;
 using VacancyManager.Services;
 
-namespace VacancyManger
+namespace VacancyManager
 {
   internal static class SharedCode
   {

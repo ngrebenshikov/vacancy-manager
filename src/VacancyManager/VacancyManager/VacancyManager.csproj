@@ -65,6 +65,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\ApplicantController.cs" />
+    <Compile Include="Controllers\ApplicantRequirementController.cs" />
     <Compile Include="Controllers\ConsiderationsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\RequirementStackController.cs" />
@@ -123,6 +125,7 @@
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\Applicant.cs" />
+    <Compile Include="Models\ApplicantRequirement.cs" />
     <Compile Include="Models\RequirementResumeRecord.cs" />
     <Compile Include="Models\Comment.cs" />
     <Compile Include="Models\Consideration.cs" />
@@ -148,6 +151,8 @@
     </Compile>
     <Compile Include="Services\AuthorizeErrorAttribute.cs" />
     <Compile Include="Services\EMailSender.cs" />
+    <Compile Include="Services\Managers\ApplicantManager.cs" />
+    <Compile Include="Services\Managers\ApplicantRequirementsManager.cs" />
     <Compile Include="Services\Managers\ConsiderationsManager.cs" />
     <Compile Include="Services\Managers\RequirementsManager.cs" />
     <Compile Include="Services\Managers\SharedManager.cs" />
@@ -1443,6 +1448,7 @@
     <Content Include="Scripts\VM\Admin\controller\UserController.js" />
     <Content Include="Scripts\VM\Admin\controller\VacancyController.js" />
     <Content Include="Scripts\VM\Admin\controller\Roles.js" />
+    <Content Include="Scripts\VM\Admin\controller\ApplicantController.js" />
     <Content Include="Scripts\VM\Admin\model\Consideration.js" />
     <Content Include="Scripts\VM\Admin\model\RequirementListInStack.js" />
     <Content Include="Scripts\VM\Admin\model\RequirementStack.js" />
@@ -1451,6 +1457,9 @@
     <Content Include="Scripts\VM\Admin\model\Vacancy.js" />
     <Content Include="Scripts\VM\Admin\model\Roles.js" />
     <Content Include="Scripts\VM\Admin\model\VacancyRequirements.js" />
+    <Content Include="Scripts\VM\Admin\model\ApplicantRequirements.js" />
+    <Content Include="Scripts\VM\Admin\model\ApplicantModel.js" />
+    <Content Include="Scripts\VM\Admin\store\ApplicantRequirements.js" />
     <Content Include="Scripts\VM\Admin\store\BaseStore.js" />
     <Content Include="Scripts\VM\Admin\store\Consideration.js" />
     <Content Include="Scripts\VM\Admin\store\RequirementListInStack.js" />
@@ -1460,7 +1469,10 @@
     <Content Include="Scripts\VM\Admin\store\Vacancy.js" />
     <Content Include="Scripts\VM\Admin\store\Roles.js" />
     <Content Include="Scripts\VM\Admin\store\VacancyRequirements.js" />
+    <Content Include="Scripts\VM\Admin\store\Applicant.js" />
     <Content Include="Scripts\VM\Admin\view\Admin\Main.js" />
+    <Content Include="Scripts\VM\Admin\view\Applicant\Create.js" />
+    <Content Include="Scripts\VM\Admin\view\Applicant\Edit.js" />
     <Content Include="Scripts\VM\Admin\view\consideration\Add.js" />
     <Content Include="Scripts\VM\Admin\view\consideration\Edit.js" />
     <Content Include="Scripts\VM\Admin\view\consideration\List.js" />
@@ -1471,8 +1483,9 @@
     <Content Include="Scripts\VM\Admin\view\RequirementStack\Edit.js" />
     <Content Include="Scripts\VM\Admin\view\RequirementStack\List.js" />
     <Content Include="Scripts\VM\Admin\view\SysConfig\Create.js" />
-    <Content Include="Scripts\VM\Admin\view\SysConfig\List.js" />
+    <Content Include="Scripts\VM\Admin\view\Applicant\List.js" />
     <Content Include="Scripts\VM\Admin\view\SysConfig\Edit.js" />
+    <Content Include="Scripts\VM\Admin\view\SysConfig\List.js" />
     <Content Include="Scripts\VM\Admin\view\User\Add.js" />
     <Content Include="Scripts\VM\Admin\view\User\BanReason.js" />
     <Content Include="Scripts\VM\Admin\view\User\Edit.js" />

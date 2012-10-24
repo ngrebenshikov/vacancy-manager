@@ -21,7 +21,8 @@ Ext.application
       'VacancyController',
       'UserController',
       'Roles',
-      'SysConfigController'
+      'SysConfigController',
+      'ApplicantController'
     ],
     launch: function ()
     {
