@@ -8,7 +8,7 @@
     forceFit: true,
     split: true,
     frame: false,
-    title: 'Список соискателей',
+    title: Strings.ApplicantList,
     store: 'Applicant',
 
     initComponent: function () {
@@ -16,14 +16,14 @@
         {
             columns: [{
                 dataIndex: 'FullName',
-                text: 'ФИО',
+                text: Strings.FullName,
                 width: 40,
                 sortable: true,
                 field: { xtype: 'textfield' },
                 menuDisabled: true
             }, {
                 dataIndex: 'Requirement',
-                text: 'Навыки',
+                text: Strings.Skills,
                 width: 120,
                 sortable: false,
                 field: { xtype: 'textfield' },
@@ -45,12 +45,12 @@
             }*/],
 
             tbar: [{
-                text: 'Добавить',
+                text: Strings.btnAdd,
                 name: 'btnCreateApplicant',
                 id: 'CreateApplicant',
                 action: 'CreateApplicantShowForm'
             }, {
-                text: 'Удалить',
+                text: Strings.btnRemove,
                 name: 'btnRemoveApplicant',
                 id: 'RemoveApplicant',
                 action: 'RemoveApplicant',

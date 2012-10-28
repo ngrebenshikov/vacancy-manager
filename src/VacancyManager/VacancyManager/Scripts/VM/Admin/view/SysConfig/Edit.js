@@ -4,7 +4,7 @@
     alias: 'widget.SysConfigEdit',
     requires: ['Ext.form.Panel'],
 
-    title: 'Изменить параметр',
+    title: Strings.ConfEdit,
     layout: 'fit',
     autoShow: true,
     modal: true,
@@ -21,21 +21,21 @@
             xtype: 'textfield',
             id: 'SysConfigName',
             name: 'Name',
-            fieldLabel: 'Имя',
+            fieldLabel: Strings.ConfName,
             allowBlank: false,
             vtype: 'alphanum'
         }, {
             xtype: 'textfield',
             id: 'SysConfigValue',
             name: 'Value',
-            fieldLabel: 'Значение',
+            fieldLabel: Strings.Value,
             allowBlank: false,
             vtype: 'alphanum'
         }],
 
         buttons: //Кнопки окна
         [{
-            text: 'Сохранить',
+            text: Strings.btnSave,
             action: 'Update'
         } 
 //        {

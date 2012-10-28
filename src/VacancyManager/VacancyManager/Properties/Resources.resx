@@ -257,4 +257,40 @@
     <value>Предупреждение</value>
     <comment>Заголовок диалогового окна с предупреждением</comment>
   </data>
+  <data name="ApplicantList" xml:space="preserve">
+    <value>Список соискателей</value>
+  </data>
+  <data name="ApplicantNew" xml:space="preserve">
+    <value>Новый соискатель</value>
+  </data>
+  <data name="btnRemove" xml:space="preserve">
+    <value>Удалить</value>
+  </data>
+  <data name="Conf" xml:space="preserve">
+    <value>Конфигурация</value>
+  </data>
+  <data name="ConfEdit" xml:space="preserve">
+    <value>Изменение параметра</value>
+  </data>
+  <data name="ConfName" xml:space="preserve">
+    <value>Параметр</value>
+  </data>
+  <data name="ConfNew" xml:space="preserve">
+    <value>Новый параметр</value>
+  </data>
+  <data name="ContactPhone" xml:space="preserve">
+    <value>Контактный телефон</value>
+  </data>
+  <data name="FullName" xml:space="preserve">
+    <value>ФИО</value>
+  </data>
+  <data name="Skill" xml:space="preserve">
+    <value>Навык</value>
+  </data>
+  <data name="Skills" xml:space="preserve">
+    <value>Навыки</value>
+  </data>
+  <data name="Value" xml:space="preserve">
+    <value>Значение</value>
+  </data>
 </root>
