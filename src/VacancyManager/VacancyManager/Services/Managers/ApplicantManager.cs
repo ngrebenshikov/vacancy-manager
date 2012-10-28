@@ -16,17 +16,20 @@ namespace VacancyManager.Services.Managers
             return obj;
         }
 
-        internal static void Create(string FullName, string contactPhone, string email)
+        internal static List<Applicant> Create(string FullName, string contactPhone, string email)
         {
-            var obj = new Applicant
+            var obj = new List<Applicant>();
+            obj.Add(new Applicant
             {
                 FullName = FullName,
                 ContactPhone = contactPhone,
                 Email = email
-            };
+            });
 
-            _db.Applicants.Add(obj);
+            _db.Applicants.Add(obj[0]);
             _db.SaveChanges();
+
+            return obj;
         }
 
         internal static void Delete(int id)

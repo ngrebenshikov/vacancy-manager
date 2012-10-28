@@ -8,7 +8,7 @@
     forceFit: true,
     split: true,
     frame: false,
-    title: 'Конфигурация',
+    title: Strings.Conf,
     store: 'SysConfig',
 
     initComponent: function () {
@@ -16,7 +16,7 @@
         {
             columns: [{
                 dataIndex: 'Name',
-                text: 'Параметр',
+                text: Strings.ConfName,
                 width: 40,
                 sortable: true,
                 field: { xtype: 'textfield' },
@@ -24,7 +24,7 @@
                 menuDisabled: true
             }, {
                 dataIndex: 'Value',
-                text: 'Значение',
+                text: Strings.Value,
                 width: 120,
                 sortable: false,
                 field: { xtype: 'textfield' },
@@ -32,12 +32,12 @@
             }],
 
             bbar: [{
-                text: 'Добавить',
+                text: Strings.btnAdd,
                 name: 'btnAdd',
                 id: 'Add',
                 action: 'Add'
             }, {
-                text: 'Удалить',
+                text: Strings.btnRemove,
                 name: 'btnRemove',
                 id: 'Remove',
                 action: 'Remove',

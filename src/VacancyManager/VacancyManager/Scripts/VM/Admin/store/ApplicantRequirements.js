@@ -1,6 +1,7 @@
 ﻿Ext.define('VM.store.ApplicantRequirements', {
     extend: 'VM.store.BaseStore',
     model: 'VM.model.ApplicantRequirements',
+    id: 'ApplicantRequirements',
     groupField: 'StackName',
     autoLoad: false,
     autoSync: false,

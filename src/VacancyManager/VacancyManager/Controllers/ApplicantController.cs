@@ -27,7 +27,7 @@ namespace VacancyManager.Controllers
             return Json(new
             {
                 success = true,
-                ApplicantList = obj
+                data = obj
             }, JsonRequestBehavior.AllowGet);
         }
 
@@ -37,35 +37,24 @@ namespace VacancyManager.Controllers
             bool success = false;
             string resultMessage = "Ошибка при добавлении соискателя";
             JavaScriptSerializer jss = new JavaScriptSerializer();
-            dynamic[] createdList = new dynamic[1];
+            List<Applicant> created = new List<Applicant>();
 
             if (data != null)
             {
                 var obj = jss.Deserialize<dynamic>(data);
-                ApplicantManager.Create(obj["FullName"].ToString(), obj["ContactPhone"].ToString(), obj["Email"].ToString());
-                createdList[0] = new
-                {
-                    FullName = obj["FullName"].ToString(),
-                    ContactPhone = obj["ContactPhone"].ToString(),
-                    Email = obj["Email"].ToString()
-                };
+                created = ApplicantManager.Create(obj["FullName"].ToString(), obj["ContactPhone"].ToString(), obj["Email"].ToString());
                 resultMessage = "Соискатель конфигурации успешно добавлен";
                 success = true;
             }
-
-            if (success)
-                return Json(new
-                {
-                    success = success,
-                    ApplicantList = createdList,
-                    message = resultMessage
-                });
             else
-                return Json(new
-                {
-                    success = success,
-                    message = resultMessage
-                });
+                created = null;
+
+            return Json(new
+            {
+                success = success,
+                data = created,
+                message = resultMessage
+            }, JsonRequestBehavior.DenyGet);
         }
 
         [HttpPost]

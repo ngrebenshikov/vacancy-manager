@@ -8,7 +8,7 @@ Ext.define('VM.view.Applicant.Create',
     alias: 'widget.ApplicantCreate',
     requires: ['Ext.panel.*', 'Ext.grid.*'],
 
-    title: 'Новый соискатель',
+    title: Strings.ApplicantNew,
     layout: 'fit',
     autoShow: true,
     autoHeight: true,
@@ -33,73 +33,73 @@ Ext.define('VM.view.Applicant.Create',
             xtype: 'textfield',
             id: 'ApplicantFullName',
             name: 'FullName',
-            fieldLabel: 'ФИО',
-            //style: 'width: 300;',
+            fieldLabel: Strings.FullName,
             allowBlank: false
         }, {
             xtype: 'textfield',
             id: 'ApplicantContactPhone',
             name: 'ContactPhone',
-            fieldLabel: 'Контактный номер',
+            fieldLabel: Strings.ContactPhone,
             vtype: 'alphanum' //переделать на "только цифры, + и -"
         }, {
             xtype: 'textfield',
             id: 'ApplicantEmail',
             name: 'Email',
-            fieldLabel: 'E-mail',
+            fieldLabel: Strings.UserEmail,
             vtype: 'email'
-        }, {
-            xtype: 'fieldset',
-            id: 'RequirementsFieldSet',
-            title: 'Профессиональные навыки',
-            collapsible: false,
-            autoWidth: true,
-            autoHeight: true,
-            items: //Элементы fieldset 
-            [{
-/*** Грид для отображения навыков(Requirement) ***/
-                xtype: 'grid', 
-                id: 'ApplicantRequirementsGrid',
-                autoSizeColumns: true,
-                forceFit: true,
-                frame: false,
-               // split: true,
-                plugins: [cellEditing],
-                features: [Ext.create('Ext.grid.feature.Grouping', {
-                    groupHeaderTpl: '{name}: ({rows.length})'
-                })],
-                store: 'ApplicantRequirements',
-                columns: 
-                [{ 
-                     xtype: 'checkcolumn',
-                     dataIndex: 'IsChecked',
-                     width: 20,
-                     align: 'center',
-                     sortable: false,
-                     field: { xtype: 'checkboxfield' },
-                     menuDisabled: true
-                 }, {
-                     dataIndex: 'RequirementName',
-                     text: 'Навык',
-                     width: 120,
-                     sortable: true,
-                     field: { xtype: 'textfield' },
-                     menuDisabled: true
-                 }, {
-                     dataIndex: 'CommentText',
-                     text: 'Комментарий',
-                     width: 120,
-                     sortable: false,
-                     field: { xtype: 'textfield' },
-                     menuDisabled: true
-                 }]
-/*** Конец - Грид для отображения навыков(Requirement) ***/
-            }]
+//        }, 
+//        {
+//            xtype: 'fieldset',
+//            id: 'RequirementsFieldSet',
+//            title: Strings.Skills,
+//            collapsible: false,
+//            autoWidth: true,
+//            autoHeight: true,
+//            items: //Элементы fieldset 
+//            [{
+///*** Грид для отображения навыков(Requirement) ***/
+//                xtype: 'grid', 
+//                id: 'ApplicantRequirementsGrid',
+//                autoSizeColumns: true,
+//                forceFit: true,
+//                frame: false,
+//               // split: true,
+//                plugins: [cellEditing],
+//                features: [Ext.create('Ext.grid.feature.Grouping', {
+//                    groupHeaderTpl: '{name}: ({rows.length})'
+//                })],
+//                store: 'ApplicantRequirements',
+//                columns: 
+//                [{ 
+//                     xtype: 'checkcolumn',
+//                     dataIndex: 'IsChecked',
+//                     width: 20,
+//                     align: 'center',
+//                     sortable: false,
+//                     field: { xtype: 'checkboxfield' },
+//                     menuDisabled: true
+//                 }, {
+//                     dataIndex: 'RequirementName',
+//                     text: Strings.Skill,
+//                     width: 120,
+//                     sortable: true,
+//                     field: { xtype: 'textfield' },
+//                     menuDisabled: true
+//                 }, {
+//                     dataIndex: 'CommentText',
+//                     text: Strings.UserCommentary,
+//                     width: 120,
+//                     sortable: false,
+//                     field: { xtype: 'textfield' },
+//                     menuDisabled: true
+//                 }]
+///*** Конец - Грид для отображения навыков(Requirement) ***/
+//            }]
         }],
                 
         buttons: //Кнопки окна
         [{
-            text: 'Добавить',
+            text: Strings.btnAdd,
             action: 'CreateApplicant'
         }]
     }],

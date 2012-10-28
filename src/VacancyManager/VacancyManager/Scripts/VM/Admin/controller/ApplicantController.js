@@ -20,7 +20,10 @@
                     { click: this.CreateApplicant },
                 // Открыть форму "Редактировать"
                 'button[action=EditApplicantShowForm]':
-                    { click: this.EditApplicantShowForm }
+                    { click: this.EditApplicantShowForm },
+                // Сохранить изменения
+                'button[action=EditApplicant]':
+                    { click: this.EditApplicant }
             });
         },
 
@@ -33,40 +36,55 @@
                     Email: 'email@example.net'
                 });
 
-            var appReqStore = Ext.StoreManager.lookup('ApplicantRequirements');
-            appReqStore.load({ params: { "id": -1} });
+            //            var appReqStore = Ext.StoreManager.lookup('ApplicantRequirements');
+            //            appReqStore.load({ params: { "id": -1} });
 
             view.down('form').loadRecord(newApplicant);
         },
 
         CreateApplicant: function (button) {
-            var form = Ext.getCmp('applicantCreateForm').getForm();
+            var form = Ext.getCmp('applicantCreateForm').getForm(),
+                store = this.getApplicantStore(),
+            //curApplicant = form.getRecord();
+                curApplicant = form.getValues();
 
-            if (form.isValid()) {
-                var store = this.getApplicantStore(),
-                    newApplicant = form.getValues();
-                store.add(newApplicant);
-            }
+            store.add(curApplicant);
+
+            //            curApplicant.save({
+            //                success: function (record, operation) {
+            //                    ApplicantId = record.getId();
+            //                    store.insert(0, record);
+
+            //                    ApplicantRequirementsStore.each(function (applicantRequirements) {
+            //                        if (applicantRequirements.get('IsChecked') == true) {
+            //                            applicantRequirements.set('ApplicantId', ApplicantId);
+            //                        }
+            //                    });
+            //                    ApplicantRequirementsStore = Ext.StoreManager.lookup('ApplicantRequirements');
+            //                    ApplicantRequirementsStore.sync();
+            //                }
+            //            });
+
             button.up('window').close();
-            Ext.getCmp('ApplicantGrid').clearSelection();
+            //Ext.getCmp('ApplicantGrid').clearSelection();
         },
 
         /* ===== */
         EditApplicantShowForm: function (grid, record) {
-            //            var view = Ext.widget('SysConfigEdit');
-            //            view.down('form').loadRecord(record);
+            var view = Ext.widget('ApplicantEdit');
+            view.down('form').loadRecord(record);
         },
 
         EditApplicant: function (button) {
-            var win = button.up('window'),
-                form = win.down('form').getForm();
+            var form = Ext.getCmp('applicantEditForm').getForm(),
+                win = button.up('window');
 
             if (form.isValid()) {
-                var store = this.getSysConfigStore(),
+                var store = this.getApplicantStore(),
                     rec = form.getRecord(),
-                    newConf = form.getValues();
+                    newRec = form.getValues();
 
-                rec.set(newConf);
+                rec.set(newRec);
                 store.sync();
                 win.close();
             }
@@ -81,7 +99,7 @@
             if (selection != null) {
                 store.remove(selection);
             }
-            Ext.getCmp('Remove').disable();
+            button.disable();
         }
     }
 );
