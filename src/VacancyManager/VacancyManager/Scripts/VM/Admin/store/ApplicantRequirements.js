@@ -9,8 +9,8 @@
     proxy: {
         type: 'ajax',
         api: {
-            read: '/ApplicantRequirements/LoadApplicantRequirements',
-            update: '/ApplicantRequirements/UpdateApplicantRequirements'
+            read: '/ApplicantRequirement/LoadApplicantRequirements',
+            update: '/ApplicantRequirement/UpdateApplicantRequirements'
         },
         reader: {
             type: 'json',

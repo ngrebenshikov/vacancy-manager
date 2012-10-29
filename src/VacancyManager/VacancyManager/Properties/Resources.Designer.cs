@@ -79,6 +79,15 @@ namespace VacancyManager.Properties {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Редактор соискателя.
+        /// </summary>
+        public static string ApplicantEdit {
+            get {
+                return ResourceManager.GetString("ApplicantEdit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Список соискателей.
         /// </summary>
         public static string ApplicantList {
