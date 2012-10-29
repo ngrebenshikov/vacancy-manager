@@ -293,4 +293,7 @@
   <data name="Value" xml:space="preserve">
     <value>Значение</value>
   </data>
+  <data name="ApplicantEdit" xml:space="preserve">
+    <value>Редактор соискателя</value>
+  </data>
 </root>

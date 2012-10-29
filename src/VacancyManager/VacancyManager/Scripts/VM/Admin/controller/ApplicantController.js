@@ -36,20 +36,27 @@
                     Email: 'email@example.net'
                 });
 
-            //            var appReqStore = Ext.StoreManager.lookup('ApplicantRequirements');
-            //            appReqStore.load({ params: { "id": -1} });
+            var appReqStore = Ext.StoreManager.lookup('ApplicantRequirements');
+            appReqStore.load({ params: { "id": -1} });
 
             view.down('form').loadRecord(newApplicant);
         },
 
         CreateApplicant: function (button) {
             var form = Ext.getCmp('applicantCreateForm').getForm(),
+                grid = button.up('window').down('grid'),
                 store = this.getApplicantStore(),
-            //curApplicant = form.getRecord();
                 curApplicant = form.getValues();
 
-            store.add(curApplicant);
+            var ApplicantRequirementsStore = Ext.StoreManager.lookup('ApplicantRequirements');
+            var records = [];
+            ApplicantRequirementsStore.each(function (rec) {
+                records.push(rec.data);
+            });
 
+            store.add({ params: { "data": curApplicant, "grid": records} });
+
+            //curApplicant = form.getRecord();
             //            curApplicant.save({
             //                success: function (record, operation) {
             //                    ApplicantId = record.getId();
@@ -66,12 +73,17 @@
             //            });
 
             button.up('window').close();
-            //Ext.getCmp('ApplicantGrid').clearSelection();
         },
 
         /* ===== */
         EditApplicantShowForm: function (grid, record) {
             var view = Ext.widget('ApplicantEdit');
+
+            var obj = grid.getSelectionModel().getSelection()[0];
+
+            var appReqStore = Ext.StoreManager.lookup('ApplicantRequirements');
+            appReqStore.load({ params: { "id": obj.get("ApplicantID")} });
+
             view.down('form').loadRecord(record);
         },
 
@@ -84,10 +96,31 @@
                     rec = form.getRecord(),
                     newRec = form.getValues();
 
+                var ApplicantRequirementsStore = Ext.StoreManager.lookup('ApplicantRequirements');
+                var records = [];
+                ApplicantRequirementsStore.each(function (rec) {
+                    records.push(rec.data);
+                });
+
                 rec.set(newRec);
+
+//                var AppReqStore = this.getApplicantRequirementsStore();
+//                AppReqStore.sync();
+
                 store.sync();
                 win.close();
             }
+
+//            var wndvacanyEdit = button.up('window'),
+//           frm_vacancyform = wndvacanyEdit.down('form'),
+//           sel_vacancy = frm_vacancyform.getRecord(),
+//           newvalues = frm_vacancyform.getValues();
+//            var newdate = eval("({ dtm: new Date(newvalues['OpeningDate']) })");
+//            newvalues['OpeningDate'] = newdate.dtm;
+//            sel_vacancy.set(newvalues);
+//            VacancyRequirementsStore = Ext.StoreManager.lookup('VacancyRequirements');
+//            VacancyRequirementsStore.sync();
+//            wndvacanyEdit.close();
         },
 
         /* ===== */

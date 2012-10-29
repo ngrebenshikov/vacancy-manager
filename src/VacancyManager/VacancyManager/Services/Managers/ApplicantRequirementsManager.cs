@@ -12,14 +12,26 @@ namespace VacancyManager.Services.Managers
 
         internal static IEnumerable<ApplicantRequirement> GetApplicantRequirements(int id)
         {
-            dynamic obj;
+            IEnumerable<ApplicantRequirement> obj = null;
 
             if (id > 0)
+            {
                 obj = _db.ApplicantRequirements.Where(rec => rec.ApplicantId == id).ToList();
+                return obj;
+            }
             else
-                obj = _db.ApplicantRequirements.ToList();
+                return null;
+        }
 
-            return obj;
+        internal static void Create(int appId, int reqId, string comment)
+        {
+            _db.ApplicantRequirements.Add(new ApplicantRequirement{
+                ApplicantId = appId,
+                RequirementId = reqId,
+                Comment = comment
+            });
+
+            _db.SaveChanges();
         }
     }
 }

@@ -8,7 +8,7 @@ Ext.define('VM.view.Applicant.Edit',
     alias: 'widget.ApplicantEdit',
     requires: ['Ext.panel.*', 'Ext.grid.*'],
 
-    title: Strings.ApplicantNew,
+    title: Strings.ApplicantEdit,
     layout: 'fit',
     autoShow: true,
     autoHeight: true,
@@ -47,54 +47,54 @@ Ext.define('VM.view.Applicant.Edit',
             name: 'Email',
             fieldLabel: Strings.UserEmail,
             vtype: 'email'
-            //        }, 
-            //        {
-            //            xtype: 'fieldset',
-            //            id: 'RequirementsFieldSet',
-            //            title: Strings.Skills,
-            //            collapsible: false,
-            //            autoWidth: true,
-            //            autoHeight: true,
-            //            items: //Элементы fieldset 
-            //            [{
-            ///*** Грид для отображения навыков(Requirement) ***/
-            //                xtype: 'grid', 
-            //                id: 'ApplicantRequirementsGrid',
-            //                autoSizeColumns: true,
-            //                forceFit: true,
-            //                frame: false,
-            //               // split: true,
-            //                plugins: [cellEditing],
-            //                features: [Ext.create('Ext.grid.feature.Grouping', {
-            //                    groupHeaderTpl: '{name}: ({rows.length})'
-            //                })],
-            //                store: 'ApplicantRequirements',
-            //                columns: 
-            //                [{ 
-            //                     xtype: 'checkcolumn',
-            //                     dataIndex: 'IsChecked',
-            //                     width: 20,
-            //                     align: 'center',
-            //                     sortable: false,
-            //                     field: { xtype: 'checkboxfield' },
-            //                     menuDisabled: true
-            //                 }, {
-            //                     dataIndex: 'RequirementName',
-            //                     text: Strings.Skill,
-            //                     width: 120,
-            //                     sortable: true,
-            //                     field: { xtype: 'textfield' },
-            //                     menuDisabled: true
-            //                 }, {
-            //                     dataIndex: 'CommentText',
-            //                     text: Strings.UserCommentary,
-            //                     width: 120,
-            //                     sortable: false,
-            //                     field: { xtype: 'textfield' },
-            //                     menuDisabled: true
-            //                 }]
-            ///*** Конец - Грид для отображения навыков(Requirement) ***/
-            //            }]
+                    }, 
+                    {
+                        xtype: 'fieldset',
+                        id: 'RequirementsFieldSet',
+                        title: Strings.Skills,
+                        collapsible: false,
+                        autoWidth: true,
+                        autoHeight: true,
+                        items: //Элементы fieldset 
+                        [{
+            /*** Грид для отображения навыков(Requirement) ***/
+                            xtype: 'grid', 
+                            id: 'ApplicantRequirementsGrid',
+                            autoSizeColumns: true,
+                            forceFit: true,
+                            frame: false,
+                           // split: true,
+                            plugins: [cellEditing],
+                            features: [Ext.create('Ext.grid.feature.Grouping', {
+                                groupHeaderTpl: '{name}: ({rows.length})'
+                            })],
+                            store: 'ApplicantRequirements',
+                            columns: 
+                            [{ 
+                                 xtype: 'checkcolumn',
+                                 dataIndex: 'IsChecked',
+                                 width: 20,
+                                 align: 'center',
+                                 sortable: false,
+                                 field: { xtype: 'checkboxfield' },
+                                 menuDisabled: true
+                             }, {
+                                 dataIndex: 'RequirementName',
+                                 text: Strings.Skill,
+                                 width: 120,
+                                 sortable: true,
+                                 field: { xtype: 'textfield' },
+                                 menuDisabled: true
+                             }, {
+                                 dataIndex: 'CommentText',
+                                 text: Strings.UserCommentary,
+                                 width: 120,
+                                 sortable: false,
+                                 field: { xtype: 'textfield' },
+                                 menuDisabled: true
+                             }]
+            /*** Конец - Грид для отображения навыков(Requirement) ***/
+                        }]
         }],
 
         buttons: //Кнопки окна

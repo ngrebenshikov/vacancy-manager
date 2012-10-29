@@ -39,15 +39,38 @@ namespace VacancyManager.Controllers
             JavaScriptSerializer jss = new JavaScriptSerializer();
             List<Applicant> created = new List<Applicant>();
 
+            #region Так у вакансий
+            //if (data != null)
+            //{
+            //    var obj = jss.Deserialize<dynamic>(data);
+            //    created = ApplicantManager.Create(obj["FullName"].ToString(), obj["ContactPhone"].ToString(), obj["Email"].ToString());
+            //    resultMessage = "Соискатель конфигурации успешно добавлен";
+            //    success = true;
+            //}
+            //else
+            //    created = null;
+            #endregion
+
+            #region Так у меня
+
             if (data != null)
             {
                 var obj = jss.Deserialize<dynamic>(data);
-                created = ApplicantManager.Create(obj["FullName"].ToString(), obj["ContactPhone"].ToString(), obj["Email"].ToString());
+
+                var appObj = obj["params"]["data"];
+                created = ApplicantManager.Create(appObj["FullName"].ToString(), appObj["ContactPhone"].ToString(), appObj["Email"].ToString());
                 resultMessage = "Соискатель конфигурации успешно добавлен";
                 success = true;
+
+                var appReqObj = obj["params"]["grid"];
+                for (int i = 0; i <= appReqObj.Length - 1; i++)
+                    if (appReqObj[i]["IsChecked"])
+                        ApplicantRequirementsManager.Create(created[0].ApplicantID, appReqObj[i]["RequirementId"], appReqObj[i]["CommentText"]);
             }
             else
                 created = null;
+
+            #endregion
 
             return Json(new
             {
@@ -89,7 +112,7 @@ namespace VacancyManager.Controllers
             {
                 var obj = jss.Deserialize<dynamic>(data);
                 ApplicantManager.Update(obj["ApplicantID"], obj["FullName"].ToString(), obj["ContactPhone"].ToString(), obj["Email"].ToString());
-                resultMessage = "соискатель успешно изменен";
+                resultMessage = "Cоискатель успешно изменен";
                 success = true;
             }
 

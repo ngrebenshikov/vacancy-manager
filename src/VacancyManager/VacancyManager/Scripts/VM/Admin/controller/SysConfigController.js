@@ -41,7 +41,7 @@
             }
         },
 
-        UpdateForm: function (grid, record) {
+        UpdateForm: function (record) {
             var view = Ext.widget('SysConfigEdit');
             view.down('form').loadRecord(record);
         },
