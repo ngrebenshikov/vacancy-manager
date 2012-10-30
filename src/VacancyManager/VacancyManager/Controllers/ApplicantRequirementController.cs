@@ -99,5 +99,11 @@ namespace VacancyManager.Controllers
                 total = result.Count
             }, JsonRequestBehavior.AllowGet);
         }
+
+        [HttpPost]
+        public JsonResult Create()
+        {
+            return Json(new { });
+        }
     }
 }

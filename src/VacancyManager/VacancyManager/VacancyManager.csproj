@@ -122,6 +122,10 @@
     <Compile Include="Migrations\201210231103101_User_LastLoginDateCorrected.Designer.cs">
       <DependentUpon>201210231103101_User_LastLoginDateCorrected.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201210301016033_ApplicatRequirementAdded_And_ApplicantFullNameField.cs" />
+    <Compile Include="Migrations\201210301016033_ApplicatRequirementAdded_And_ApplicantFullNameField.Designer.cs">
+      <DependentUpon>201210301016033_ApplicatRequirementAdded_And_ApplicantFullNameField.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\Applicant.cs" />
