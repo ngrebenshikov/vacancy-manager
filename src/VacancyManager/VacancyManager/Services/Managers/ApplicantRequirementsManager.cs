@@ -33,5 +33,25 @@ namespace VacancyManager.Services.Managers
 
             _db.SaveChanges();
         }
+
+        internal static void Update(int id, string comment)
+        {
+            var obj = _db.ApplicantRequirements.Where(app => app.Id == id).FirstOrDefault();
+
+            if (obj != null && obj.Comment != comment)
+            {
+                obj.Comment = comment;
+
+                _db.SaveChanges();
+            }
+        }
+
+        internal static void Delete(int id)
+        {
+            var obj = _db.ApplicantRequirements.Where(app => app.Id == id).FirstOrDefault();
+
+            _db.ApplicantRequirements.Remove(obj);
+            _db.SaveChanges();
+        }
     }
 }

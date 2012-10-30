@@ -38,6 +38,7 @@ namespace VacancyManager.Controllers
             string resultMessage = "Ошибка при добавлении соискателя";
             JavaScriptSerializer jss = new JavaScriptSerializer();
             List<Applicant> created = new List<Applicant>();
+            ActionResult result = null;
 
             #region Так у вакансий
             //if (data != null)
@@ -57,27 +58,44 @@ namespace VacancyManager.Controllers
             {
                 var obj = jss.Deserialize<dynamic>(data);
 
-                var appObj = obj["params"]["data"];
-                created = ApplicantManager.Create(appObj["FullName"].ToString(), appObj["ContactPhone"].ToString(), appObj["Email"].ToString());
-                resultMessage = "Соискатель конфигурации успешно добавлен";
-                success = true;
+                if (obj["params"]["id"] < 0)
+                {
+                    var appObj = obj["params"]["data"];
+                    created = ApplicantManager.Create(appObj["FullName"].ToString(), appObj["ContactPhone"].ToString(), appObj["Email"].ToString());
+                    resultMessage = "Соискатель конфигурации успешно добавлен";
+                    success = true;
 
-                var appReqObj = obj["params"]["grid"];
-                for (int i = 0; i <= appReqObj.Length - 1; i++)
-                    if (appReqObj[i]["IsChecked"])
-                        ApplicantRequirementsManager.Create(created[0].ApplicantID, appReqObj[i]["RequirementId"], appReqObj[i]["CommentText"]);
+                    var appReqObj = obj["params"]["grid"];
+                    for (int i = 0; i <= appReqObj.Length - 1; i++)
+                        if (appReqObj[i]["IsChecked"])
+                            ApplicantRequirementsManager.Create(created[0].ApplicantID, appReqObj[i]["RequirementId"], appReqObj[i]["CommentText"]);
+
+                    result = Json(new
+                        {
+                            success = success,
+                            data = created,
+                            message = resultMessage
+                        }, JsonRequestBehavior.DenyGet);
+                }
+                else
+                {
+                    result = Update(data);
+                }
             }
             else
+            {
                 created = null;
+                result = Json(new
+                {
+                    success = success,
+                    data = created,
+                    message = resultMessage
+                }, JsonRequestBehavior.DenyGet);
+            }
 
             #endregion
 
-            return Json(new
-            {
-                success = success,
-                data = created,
-                message = resultMessage
-            }, JsonRequestBehavior.DenyGet);
+            return result;
         }
 
         [HttpPost]
@@ -89,7 +107,7 @@ namespace VacancyManager.Controllers
             if (data != null)
             {
                 var obj = jss.Deserialize<dynamic>(data);
-                ApplicantManager.Delete(int.Parse(obj["ApplicantID"].ToString()));
+                ApplicantManager.Delete(obj["ApplicantID"]);
                 resultMessage = "Соискатель успешно удален";
                 success = true;
             }
@@ -111,9 +129,22 @@ namespace VacancyManager.Controllers
             if (data != null)
             {
                 var obj = jss.Deserialize<dynamic>(data);
-                ApplicantManager.Update(obj["ApplicantID"], obj["FullName"].ToString(), obj["ContactPhone"].ToString(), obj["Email"].ToString());
+
+                int appId = obj["params"]["id"];
+
+                var appObj = obj["params"]["data"];
+                ApplicantManager.Update(appId, appObj["FullName"].ToString(), appObj["ContactPhone"].ToString(), appObj["Email"].ToString());
                 resultMessage = "Cоискатель успешно изменен";
                 success = true;
+
+                var appReqObj = obj["params"]["grid"];
+                for (int i = 0; i <= appReqObj.Length - 1; i++)
+                    if (appReqObj[i]["IsChecked"] && appReqObj[i]["CurrentId"] > 0)
+                        ApplicantRequirementsManager.Update(appReqObj[i]["CurrentId"], appReqObj[i]["CommentText"]);
+                    else if (appReqObj[i]["IsChecked"] && appReqObj[i]["CurrentId"] < 0)
+                        ApplicantRequirementsManager.Create(appId, appReqObj[i]["RequirementId"], appReqObj[i]["CommentText"]);
+                    else if (!appReqObj[i]["IsChecked"] && appReqObj[i]["CurrentId"] > 0)
+                        ApplicantRequirementsManager.Delete(appReqObj[i]["CurrentId"]);
             }
 
             return Json(new

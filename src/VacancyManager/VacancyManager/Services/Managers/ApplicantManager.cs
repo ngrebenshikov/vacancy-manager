@@ -42,7 +42,6 @@ namespace VacancyManager.Services.Managers
 
         internal static void Update(int id, string FullName, string contactPhone, string email)
         {
-            VacancyContext _db = new VacancyContext();
             var obj = _db.Applicants.Where(app => app.ApplicantID == id).FirstOrDefault();
 
             if (obj != null)
