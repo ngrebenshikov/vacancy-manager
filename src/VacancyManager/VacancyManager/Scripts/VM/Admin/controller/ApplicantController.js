@@ -46,7 +46,8 @@
             var form = Ext.getCmp('applicantCreateForm').getForm(),
                 grid = button.up('window').down('grid'),
                 store = this.getApplicantStore(),
-                curApplicant = form.getValues();
+
+            newRec = form.getValues();
 
             var ApplicantRequirementsStore = Ext.StoreManager.lookup('ApplicantRequirements');
             var records = [];
@@ -54,7 +55,7 @@
                 records.push(rec.data);
             });
 
-            store.add({ params: { "data": curApplicant, "grid": records} });
+            store.add({ params: { "id": -1, "data": newRec, "grid": records} });
 
             //curApplicant = form.getRecord();
             //            curApplicant.save({
@@ -96,31 +97,23 @@
                     rec = form.getRecord(),
                     newRec = form.getValues();
 
+                //                rec.set(newRec);
+
+                //                var ApplicantRequirementsStore = Ext.StoreManager.lookup('ApplicantRequirements');
+                //                ApplicantRequirementsStore.sync();
+
                 var ApplicantRequirementsStore = Ext.StoreManager.lookup('ApplicantRequirements');
                 var records = [];
                 ApplicantRequirementsStore.each(function (rec) {
                     records.push(rec.data);
                 });
 
-                rec.set(newRec);
+                var curId = rec.getId(); 
 
-//                var AppReqStore = this.getApplicantRequirementsStore();
-//                AppReqStore.sync();
-
-                store.sync();
+                store.add({ params: {"id": curId, "data": newRec, "grid": records} });
+                //store.sync();
                 win.close();
             }
-
-//            var wndvacanyEdit = button.up('window'),
-//           frm_vacancyform = wndvacanyEdit.down('form'),
-//           sel_vacancy = frm_vacancyform.getRecord(),
-//           newvalues = frm_vacancyform.getValues();
-//            var newdate = eval("({ dtm: new Date(newvalues['OpeningDate']) })");
-//            newvalues['OpeningDate'] = newdate.dtm;
-//            sel_vacancy.set(newvalues);
-//            VacancyRequirementsStore = Ext.StoreManager.lookup('VacancyRequirements');
-//            VacancyRequirementsStore.sync();
-//            wndvacanyEdit.close();
         },
 
         /* ===== */
@@ -130,7 +123,17 @@
                 selection = grid.getView().getSelectionModel().getSelection()[0];
 
             if (selection != null) {
-                store.remove(selection);
+                Ext.Msg.show({
+                    title: 'Удаление соискателя',
+                    msg: 'Удалить соискателя "' + selection.get('FullName') + '"',
+                    width: 300,
+                    buttons: Ext.Msg.YESNO,
+                    fn: function (btn) {
+                        if (btn == 'yes') {
+                            store.remove(selection);
+                        }
+                    }
+                });
             }
             button.disable();
         }

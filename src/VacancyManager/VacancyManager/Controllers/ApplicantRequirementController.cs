@@ -37,6 +37,7 @@ namespace VacancyManager.Controllers
                                       where appReq.RequirementId == req.RequirementID
                                       select new
                                       {
+                                          Id = appReq.Id,
                                           ApplicantId = appReq.ApplicantId,
                                           Comment = appReq.Comment
                                       }).ToList();
@@ -49,6 +50,7 @@ namespace VacancyManager.Controllers
                             RequirementId = req.RequirementID,
                             RequirementName = req.Name,
                             CommentText = appReqList[0].Comment,
+                            CurrentId = appReqList[0].Id,
                             IsChecked = true
                         });
                     else
@@ -59,6 +61,7 @@ namespace VacancyManager.Controllers
                             RequirementId = req.RequirementID,
                             RequirementName = req.Name,
                             CommentText = "",
+                            CurrentId = -1,
                             IsChecked = false
                         });
                 }
@@ -82,6 +85,7 @@ namespace VacancyManager.Controllers
                         RequirementId = req.RequirementID,
                         RequirementName = req.Name,
                         CommentText = "",
+                        CurrentId = -1,
                         IsChecked = false
                     });
                 }
@@ -94,28 +98,6 @@ namespace VacancyManager.Controllers
                 ApplicantRequirements = result,
                 total = result.Count
             }, JsonRequestBehavior.AllowGet);
-        }
-
-        [HttpPost]
-        public ActionResult UpdateApplicantRequirements(string data)
-        {
-            bool success = false;
-            string resultMessage = "Ошибка при изменении соискателя";
-            JavaScriptSerializer jss = new JavaScriptSerializer();
-
-            if (data != null)
-            {
-                var obj = jss.Deserialize<dynamic>(data);
-                ApplicantManager.Update(obj["ApplicantID"], obj["FullName"].ToString(), obj["ContactPhone"].ToString(), obj["Email"].ToString());
-                resultMessage = "Cоискатель успешно изменен";
-                success = true;
-            }
-
-            return Json(new
-            {
-                success = success,
-                message = resultMessage
-            });
         }
     }
 }
