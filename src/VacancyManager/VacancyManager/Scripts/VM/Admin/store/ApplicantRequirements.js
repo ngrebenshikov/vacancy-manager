@@ -9,6 +9,7 @@
     proxy: {
         type: 'ajax',
         api: {
+            create: '/ApplicantRequirement/Create',
             read: '/ApplicantRequirement/LoadApplicantRequirements',
             update: '/ApplicantRequirement/UpdateApplicantRequirements'
         },

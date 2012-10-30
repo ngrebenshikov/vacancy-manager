@@ -50,7 +50,8 @@ Ext.define('VM.controller.VacancyController', {
 
         var ConsiderationsStore = Ext.create('VM.store.Consideration', {
             extend: 'VM.store.Consideration',
-            id: considerationsStoreId
+            id: considerationsStoreId,
+            vacancy: record
         });
 
         ConsiderationsStore.load({ params: { "id": vacancyId} });

@@ -49,29 +49,32 @@
 
             newRec = form.getValues();
 
-            var ApplicantRequirementsStore = Ext.StoreManager.lookup('ApplicantRequirements');
-            var records = [];
-            ApplicantRequirementsStore.each(function (rec) {
-                records.push(rec.data);
-            });
-
-            store.add({ params: { "id": -1, "data": newRec, "grid": records} });
-
-            //curApplicant = form.getRecord();
-            //            curApplicant.save({
-            //                success: function (record, operation) {
-            //                    ApplicantId = record.getId();
-            //                    store.insert(0, record);
-
-            //                    ApplicantRequirementsStore.each(function (applicantRequirements) {
-            //                        if (applicantRequirements.get('IsChecked') == true) {
-            //                            applicantRequirements.set('ApplicantId', ApplicantId);
-            //                        }
-            //                    });
-            //                    ApplicantRequirementsStore = Ext.StoreManager.lookup('ApplicantRequirements');
-            //                    ApplicantRequirementsStore.sync();
-            //                }
+            //            var ApplicantRequirementsStore = Ext.StoreManager.lookup('ApplicantRequirements');
+            //            var records = [];
+            //            ApplicantRequirementsStore.each(function (rec) {
+            //                records.push(rec.data);
             //            });
+
+            //            store.add({ params: { "id": -1, "data": newRec, "grid": records} });
+
+            var curApplicant = form.getRecord();
+            form.updateRecord(curApplicant);
+            curApplicant.save({
+                success: function (record, operation) {
+                    ApplicantId = record.getId();
+                    store.insert(0, record);
+
+                    var ApplicantRequirementsStore = Ext.StoreManager.lookup('ApplicantRequirements');
+                    ApplicantRequirementsStore.each(function (applicantRequirements) {
+                        if (applicantRequirements.get('IsChecked') == true) {
+                            applicantRequirements.set('ApplicantId', ApplicantId);
+                        }
+                    });
+
+                    //TODO: удалить из ApplicantRequirementsStore все невыделенные
+                    ApplicantRequirementsStore.sync();
+                }
+            });
 
             button.up('window').close();
         },
@@ -108,9 +111,9 @@
                     records.push(rec.data);
                 });
 
-                var curId = rec.getId(); 
+                var curId = rec.getId();
 
-                store.add({ params: {"id": curId, "data": newRec, "grid": records} });
+                store.add({ params: { "id": curId, "data": newRec, "grid": records} });
                 //store.sync();
                 win.close();
             }

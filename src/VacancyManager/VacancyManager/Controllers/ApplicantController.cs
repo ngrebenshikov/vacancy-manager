@@ -41,60 +41,66 @@ namespace VacancyManager.Controllers
             ActionResult result = null;
 
             #region Так у вакансий
-            //if (data != null)
-            //{
-            //    var obj = jss.Deserialize<dynamic>(data);
-            //    created = ApplicantManager.Create(obj["FullName"].ToString(), obj["ContactPhone"].ToString(), obj["Email"].ToString());
-            //    resultMessage = "Соискатель конфигурации успешно добавлен";
-            //    success = true;
-            //}
-            //else
-            //    created = null;
+            if (data != null)
+            {
+                var obj = jss.Deserialize<dynamic>(data);
+                created = ApplicantManager.Create(obj["FullName"].ToString(), obj["ContactPhone"].ToString(), obj["Email"].ToString());
+                resultMessage = "Соискатель конфигурации успешно добавлен";
+                success = true;
+            }
+            else
+                created = null;
             #endregion
 
             #region Так у меня
 
-            if (data != null)
-            {
-                var obj = jss.Deserialize<dynamic>(data);
+            //if (data != null)
+            //{
+            //    var obj = jss.Deserialize<dynamic>(data);
 
-                if (obj["params"]["id"] < 0)
-                {
-                    var appObj = obj["params"]["data"];
-                    created = ApplicantManager.Create(appObj["FullName"].ToString(), appObj["ContactPhone"].ToString(), appObj["Email"].ToString());
-                    resultMessage = "Соискатель конфигурации успешно добавлен";
-                    success = true;
+            //    if (obj["params"]["id"] < 0)
+            //    {
+            //        var appObj = obj["params"]["data"];
+            //        created = ApplicantManager.Create(appObj["FullName"].ToString(), appObj["ContactPhone"].ToString(), appObj["Email"].ToString());
+            //        resultMessage = "Соискатель конфигурации успешно добавлен";
+            //        success = true;
 
-                    var appReqObj = obj["params"]["grid"];
-                    for (int i = 0; i <= appReqObj.Length - 1; i++)
-                        if (appReqObj[i]["IsChecked"])
-                            ApplicantRequirementsManager.Create(created[0].ApplicantID, appReqObj[i]["RequirementId"], appReqObj[i]["CommentText"]);
+            //        var appReqObj = obj["params"]["grid"];
+            //        for (int i = 0; i <= appReqObj.Length - 1; i++)
+            //            if (appReqObj[i]["IsChecked"])
+            //                ApplicantRequirementsManager.Create(created[0].ApplicantID, appReqObj[i]["RequirementId"], appReqObj[i]["CommentText"]);
 
-                    result = Json(new
-                        {
-                            success = success,
-                            data = created,
-                            message = resultMessage
-                        }, JsonRequestBehavior.DenyGet);
-                }
-                else
-                {
-                    result = Update(data);
-                }
-            }
-            else
-            {
-                created = null;
-                result = Json(new
+            //        result = Json(new
+            //            {
+            //                success = success,
+            //                data = created,
+            //                message = resultMessage
+            //            }, JsonRequestBehavior.DenyGet);
+            //    }
+            //    else
+            //    {
+            //        result = Update(data);
+            //    }
+            //}
+            //else
+            //{
+            //    created = null;
+            //    result = Json(new
+            //    {
+            //        success = success,
+            //        data = created,
+            //        message = resultMessage
+            //    }, JsonRequestBehavior.DenyGet);
+            //}
+
+            #endregion
+
+            result = Json(new
                 {
                     success = success,
                     data = created,
                     message = resultMessage
                 }, JsonRequestBehavior.DenyGet);
-            }
-
-            #endregion
-
             return result;
         }
 
