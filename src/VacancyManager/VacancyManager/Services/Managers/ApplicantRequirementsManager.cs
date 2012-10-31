@@ -10,7 +10,7 @@ namespace VacancyManager.Services.Managers
     {
         static VacancyContext _db = new VacancyContext();
 
-        internal static IEnumerable<ApplicantRequirement> GetApplicantRequirements(int id)
+        internal static IEnumerable<ApplicantRequirement> GetListByApplicantId(int id)
         {
             IEnumerable<ApplicantRequirement> obj = null;
 
@@ -23,12 +23,13 @@ namespace VacancyManager.Services.Managers
                 return null;
         }
 
-        internal static void Create(int appId, int reqId, string comment)
+        internal static void Create(int appId, int reqId, string comment, bool isChecked)
         {
             _db.ApplicantRequirements.Add(new ApplicantRequirement{
                 ApplicantId = appId,
                 RequirementId = reqId,
-                Comment = comment
+                Comment = comment,
+                IsChecked = isChecked
             });
 
             _db.SaveChanges();

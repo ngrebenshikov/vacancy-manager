@@ -126,6 +126,10 @@
     <Compile Include="Migrations\201210301016033_ApplicatRequirementAdded_And_ApplicantFullNameField.Designer.cs">
       <DependentUpon>201210301016033_ApplicatRequirementAdded_And_ApplicantFullNameField.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201210310103436_ApplicantRequirements_Added_IsChecked.cs" />
+    <Compile Include="Migrations\201210310103436_ApplicantRequirements_Added_IsChecked.Designer.cs">
+      <DependentUpon>201210310103436_ApplicantRequirements_Added_IsChecked.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\Applicant.cs" />

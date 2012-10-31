@@ -100,7 +100,7 @@ namespace VacancyManager.Controllers
                     success = success,
                     data = created,
                     message = resultMessage
-                }, JsonRequestBehavior.DenyGet);
+                });
             return result;
         }
 
@@ -147,8 +147,8 @@ namespace VacancyManager.Controllers
                 for (int i = 0; i <= appReqObj.Length - 1; i++)
                     if (appReqObj[i]["IsChecked"] && appReqObj[i]["CurrentId"] > 0)
                         ApplicantRequirementsManager.Update(appReqObj[i]["CurrentId"], appReqObj[i]["CommentText"]);
-                    else if (appReqObj[i]["IsChecked"] && appReqObj[i]["CurrentId"] < 0)
-                        ApplicantRequirementsManager.Create(appId, appReqObj[i]["RequirementId"], appReqObj[i]["CommentText"]);
+                    //else if (appReqObj[i]["IsChecked"] && appReqObj[i]["CurrentId"] < 0)
+                    //    ApplicantRequirementsManager.Create(appId, appReqObj[i]["RequirementId"], appReqObj[i]["CommentText"]);
                     else if (!appReqObj[i]["IsChecked"] && appReqObj[i]["CurrentId"] > 0)
                         ApplicantRequirementsManager.Delete(appReqObj[i]["CurrentId"]);
             }

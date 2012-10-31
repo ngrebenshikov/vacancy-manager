@@ -10,12 +10,12 @@
         type: 'ajax',
         api: {
             create: '/ApplicantRequirement/Create',
-            read: '/ApplicantRequirement/LoadApplicantRequirements',
-            update: '/ApplicantRequirement/UpdateApplicantRequirements'
+            read: '/ApplicantRequirement/Load',
+            update: '/ApplicantRequirement/Update'
         },
         reader: {
             type: 'json',
-            root: 'ApplicantRequirements',
+            root: 'data',
             totalProperty: 'total'
         },
         writer: {
@@ -23,10 +23,8 @@
             encode: false,
             listful: true,
             writeAllFields: true,
-            allowSingle: true,
-            root: 'data',
             getRecordData: function (record) {
-                return Ext.JSON.encode(record.data);
+                return { 'data': Ext.JSON.encode(record.data) }
             }
         },
         headers: { 'Content-Type': 'application/json; charset=UTF-8' }
