@@ -12,11 +12,11 @@ namespace VacancyManager.Controllers
     public class ApplicantRequirementController : Controller
     {
         [HttpGet]
-        public JsonResult LoadApplicantRequirements(int id)
+        public JsonResult Load(int id)
         {
             var requirementsStackList = RequirementsManager.GetAllRequirementStacks().ToList();
             var requirementsList = RequirementsManager.GetRequirements().ToList();
-            var applicantRequirementsList = ApplicantRequirementsManager.GetApplicantRequirements(id);
+            var applicantRequirementsList = ApplicantRequirementsManager.GetListByApplicantId(id);
 
             List<object> result = new List<object>();
 
@@ -95,15 +95,46 @@ namespace VacancyManager.Controllers
             return Json(new
             {
                 success = true,
-                ApplicantRequirements = result,
+                data = result,
                 total = result.Count
             }, JsonRequestBehavior.AllowGet);
         }
 
         [HttpPost]
-        public JsonResult Create()
+        public ActionResult Create(string data)
         {
-            return Json(new { });
+            bool success = false;
+            string resultMessage = "Ошибка при добавлении навыка";
+            JavaScriptSerializer jss = new JavaScriptSerializer();
+            List<Applicant> created = new List<Applicant>();
+
+            if (data != null)
+            {
+                var obj = jss.Deserialize<dynamic>(data);
+                created = ApplicantRequirementsManager.Create(obj["ApplicantId"], obj["RequirementId"], obj["Comment"], obj["IsChecked"]);
+                resultMessage = "Навык успешно добавлен";
+                success = true;
+            }
+            else
+                created = null;
+
+            return Json(new
+            {
+                success = success,
+                data = created,
+                message = resultMessage
+            });
+        }
+
+        [HttpPost]
+        public ActionResult Update(string data)
+        {
+            return Json(new
+            {
+                success = success,
+                data = created,
+                message = resultMessage
+            });
         }
     }
 }

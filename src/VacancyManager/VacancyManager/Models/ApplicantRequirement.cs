@@ -12,5 +12,6 @@ namespace VacancyManager.Models
         public int ApplicantId { get; set; }
         public int RequirementId { get; set; }
         public string Comment { get; set; }
+        public bool IsChecked { get; set; }
     }
 }

@@ -45,20 +45,10 @@
         CreateApplicant: function (button) {
             var form = Ext.getCmp('applicantCreateForm').getForm(),
                 grid = button.up('window').down('grid'),
-                store = this.getApplicantStore(),
+                store = this.getApplicantStore();
 
-            newRec = form.getValues();
-
-            //            var ApplicantRequirementsStore = Ext.StoreManager.lookup('ApplicantRequirements');
-            //            var records = [];
-            //            ApplicantRequirementsStore.each(function (rec) {
-            //                records.push(rec.data);
-            //            });
-
-            //            store.add({ params: { "id": -1, "data": newRec, "grid": records} });
-
-            var curApplicant = form.getRecord();
-            form.updateRecord(curApplicant);
+            var curApplicant = form.getRecord();    // Получаем record с формы, но тот record который загружали через loadRecord
+            form.updateRecord(curApplicant);        // Обновляем с формы полученный выше record 
             curApplicant.save({
                 success: function (record, operation) {
                     ApplicantId = record.getId();
@@ -66,12 +56,8 @@
 
                     var ApplicantRequirementsStore = Ext.StoreManager.lookup('ApplicantRequirements');
                     ApplicantRequirementsStore.each(function (applicantRequirements) {
-                        if (applicantRequirements.get('IsChecked') == true) {
-                            applicantRequirements.set('ApplicantId', ApplicantId);
-                        }
+                        applicantRequirements.set('ApplicantId', ApplicantId);
                     });
-
-                    //TODO: удалить из ApplicantRequirementsStore все невыделенные
                     ApplicantRequirementsStore.sync();
                 }
             });
