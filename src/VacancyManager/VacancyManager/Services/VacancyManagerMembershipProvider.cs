@@ -265,7 +265,7 @@ namespace VacancyManager.Services
     {
       VacancyContext _db = new VacancyContext();
       var realUser = (VMMembershipUser)user;
-      var update_rec = _db.Users.SingleOrDefault(a => a.UserName == realUser.UserName);
+      var update_rec = _db.Users.SingleOrDefault(a => a.Email == realUser.Email);
       if (update_rec == null)
         return;
 
@@ -310,8 +310,13 @@ namespace VacancyManager.Services
     {
       VacancyContext _db = new VacancyContext();
       var dbuser = _db.Users.FirstOrDefault(u => u.UserName == username);
-
-      return dbuser != null && dbuser.Password == CreatePasswordHash(password, dbuser.PasswordSalt) && dbuser.IsActivated && !dbuser.IsLockedOut;
+      bool flag = dbuser != null && dbuser.Password == CreatePasswordHash(password, dbuser.PasswordSalt) && dbuser.IsActivated && !dbuser.IsLockedOut;
+      if (flag)
+      {
+        dbuser.LastLoginDate = DateTime.Now;
+        _db.SaveChanges();
+      }
+      return flag;
     }
 
     #region Private methods
@@ -321,7 +326,7 @@ namespace VacancyManager.Services
       return (string.IsNullOrEmpty(configValue)) ? defaultValue : configValue;
     }
 
-    private MembershipUser getMembershipUserFromDBUser(User dbuser)
+    private static MembershipUser getMembershipUserFromDBUser(User dbuser)
     {
       if (dbuser != null)
       {
@@ -335,7 +340,7 @@ namespace VacancyManager.Services
           isApproved: dbuser.IsActivated,
           isLockedOut: dbuser.IsLockedOut,
           creationDate: dbuser.CreateDate,
-          lastLoginDate: dbuser.LastLoginDate.HasValue ? dbuser.LastLoginDate.Value : new DateTime(1,1,1),
+          lastLoginDate: dbuser.LastLoginDate.HasValue ? dbuser.LastLoginDate.Value : new DateTime(1, 1, 1),
           lastActivityDate: DateTime.Now,
           lastPasswordChangedDate: DateTime.Now,
           lastLockedOutDate: dbuser.LastLockedOutDate,

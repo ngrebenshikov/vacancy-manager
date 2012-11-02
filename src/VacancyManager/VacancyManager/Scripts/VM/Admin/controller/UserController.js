@@ -5,7 +5,7 @@
 
   models: ['User'],
 
-  views: ['User.List', 'User.Edit', 'User.BanReason', 'User.RoleManager'],
+  views: ['User.List', 'User.Edit', 'User.BanReason', 'User.Edit'],
 
   init: function ()
   {
@@ -23,11 +23,11 @@
                   'button[action = BanUser]': {
                     click: this.BanUser
                   },
-                  'button[action = callRoleManager]': {
-                    click: this.callRoleManager
+                  'button[action = callEdit]': {
+                    click: this.callEdit
                   },
-                  'button[action = ChangeRoles]': {
-                    click: this.ChangeRoles
+                  'button[action = ChangeUser]': {
+                    click: this.ChangeUser
                   },
                   'button[action = deleteUser]': {
                     click: this.deleteUser
@@ -44,9 +44,10 @@
     var Userstore = this.getUserStore();
     var wndUserCreate = button.up('window');
     var frm_Userform = wndUserCreate.down('form');
-    var sel_User = frm_Userform.getRecord();
+    //var sel_User = frm_Userform.getRecord();
     var newvalues = frm_Userform.getValues();
     Userstore.add(Ext.create('VM.model.User', newvalues));
+    this.getUserStore().sync();
     wndUserCreate.close();
   },
 
@@ -65,8 +66,10 @@
   banManager: function (button)
   {
     var grid = button.up('grid');
-    //var Userstore = grid.getStore();
     var sel_User = grid.getView().getSelectionModel().getSelection()[0];
+    if (sel_User == undefined)
+      return;
+    var Userstore = grid.getStore();
     if (sel_User.get('IsActivated'))
     {
       var BanWindow = Ext.create('VM.view.User.BanReason').show();
@@ -84,7 +87,7 @@
           if (btn == 'yes')
           {
             sel_User.set('IsActivated', true);
-            //Userstore.sync();
+            Userstore.sync();
           }
         }
       });
@@ -93,22 +96,23 @@
 
   BanUser: function (button)
   {
-    //var Userstore = this.getUserStore();
     var BanWindow = button.up('window');
     var BanForm = BanWindow.down('form');
     var sel_User = BanForm.getRecord();
     var newvalues = BanForm.getValues();
     newvalues['IsActivated'] = false;
     sel_User.set(newvalues);
-    //Userstore.sync();
+    this.getUserStore().sync();
     BanWindow.close();
   },
 
   deleteUser: function (button)
   {
-    var grid = button.up('grid'),
-            Userstore = grid.getStore(),
-            sel_User = grid.getView().getSelectionModel().getSelection()[0];
+    var grid = button.up('grid');
+    var sel_User = grid.getView().getSelectionModel().getSelection()[0];
+    if (sel_User == undefined)
+      return;
+    var Userstore = grid.getStore();
     Ext.Msg.show({
       title: 'Удаление пользователя',
       msg: 'Уладить пользователя? "' + sel_User.get('UserName') + '"',
@@ -121,41 +125,42 @@
           if (sel_User)
           {
             Userstore.remove(sel_User);
+            Userstore.sync();
           }
         }
       }
     });
   },
 
-  callRoleManager: function (button)
+  callEdit: function (button)
   {
-    changed = false;
     var grid = button.up('grid');
-    var UserStore = grid.getStore();
-    var sel_user = grid.getView().getSelectionModel().getSelection()[0];
-    RoleMngWindow = Ext.create('VM.view.User.RoleManager').show();
-    RoleMngWindow.down('form').loadRecord(sel_user);
-    roles = sel_user.get("Roles");
+    var sel_User = grid.getView().getSelectionModel().getSelection()[0];
+    if (sel_User == undefined)
+      return;
+    changed = false;
+    RoleMngWindow = Ext.create('VM.view.User.Edit').show();
+    RoleMngWindow.down('form').loadRecord(sel_User);
+    roles = sel_User.get("Roles");
     window.parent.setTimeout(function () { RoleMngWindow.CheckSelectedRoles(); }, 0);
   },
 
-  ChangeRoles: function (button)
+  ChangeUser: function (button)
   {
     var win = button.up('window');
+    var form = win.down('form');
+    var record = form.getRecord();
+    var values = form.getValues();
+    record.set(values);
     if (changed)
     {
-      win.down("form").getRecord().set("Roles", roles);
-      win.down("form").getRecord().setDirty();
-      this.getUserStore().sync();
+      form.getRecord().set("Roles", roles);
+      form.getRecord().setDirty();
+      //this.getUserStore().sync();
     }
+    this.getUserStore().sync();
     roles = null;
     win.close();
-  },
-
-  ButtonDisabler: function (button)
-  {
-    //Добавить сюда функционал хайда кнопок которые могут быть нажаты только если выделен пользователь
-    //Ext.Msg.alert('Наше пробное сообщение', 'Hello, World!');
   }
 });
 var RoleMngWindow; //Нужно для расставления галочек
