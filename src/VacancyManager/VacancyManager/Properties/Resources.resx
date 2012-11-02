@@ -133,9 +133,9 @@
     <value>Новый пользователь</value>
     <comment>Кнопка создания нового пользователя из вкладки пользователи</comment>
   </data>
-  <data name="UserBSetRoles" xml:space="preserve">
-    <value>Назначит роли</value>
-    <comment>Кнопка назначения ролей во вкладке пользователи</comment>
+  <data name="UserBEdit" xml:space="preserve">
+    <value>Редактировать пользователя</value>
+    <comment>Кнопка редактирования во вкладке пользователи</comment>
   </data>
   <data name="UserCommentary" xml:space="preserve">
     <value>Комментарий</value>

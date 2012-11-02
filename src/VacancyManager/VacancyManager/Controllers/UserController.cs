@@ -41,6 +41,13 @@ namespace VacancyManager.Controllers
       }, JsonRequestBehavior.AllowGet);
     }
 
+    public ActionResult ExtJSLogOff()
+    {
+      FormsAuthentication.SignOut();
+
+      return null;
+    }
+
     [HttpPost]
     [AuthorizeError(Roles = "Admin")]
     public JsonResult ExtJSCreateUser(string data)
@@ -102,6 +109,30 @@ namespace VacancyManager.Controllers
 
         Tuple<bool, string> result;
 
+        //Либо пользователя перименовали, либо запрос попоротился
+        if (userInDB == null)
+        {
+          //Если нужно будет добавить редактирование Email придётся как-то добавить свой метод в Membership
+          //А этого вроде сделать нельзя
+          userInDB = (VMMembershipUser)Membership.GetUser(Membership.GetUserNameByEmail(record["Email"].ToString()));
+          userInDB = new VMMembershipUser("VacancyManagerMembershipProvider",
+            username: record["UserName"],
+            providerUserKey: record["UserID"],
+            email: userInDB.Email,
+            passwordQuestion: string.Empty,
+            comment: userInDB.Comment,
+            lastLockedOutReason: userInDB.LastLockedOutReason,
+            isApproved: userInDB.IsApproved,
+            isLockedOut: userInDB.IsLockedOut,
+            creationDate: userInDB.CreationDate,
+            lastLoginDate: userInDB.LastLoginDate,
+            lastActivityDate: DateTime.Now,
+            lastPasswordChangedDate: DateTime.Now,
+            lastLockedOutDate: userInDB.LastLockoutDate,
+            EmailKey: userInDB.EmailKey);
+          Membership.UpdateUser(userInDB);
+        }
+
         //Проверка на возможность бана
         if (userInDB.IsApproved != (bool)record["IsActivated"])
         {
@@ -156,7 +187,8 @@ namespace VacancyManager.Controllers
       {
         if (currentRoles.Length != 0)
           Roles.RemoveUsersFromRoles(new[] { userInDB.UserName }, currentRoles);
-        Roles.AddUsersToRoles(new[] { userInDB.UserName }, changedRoles);
+        if (changedRoles.Length != 0)
+          Roles.AddUsersToRoles(new[] { userInDB.UserName }, changedRoles);
         return true;
       }
       return false;
@@ -192,7 +224,7 @@ namespace VacancyManager.Controllers
         user.Email,
         UserComment = user.Comment,
         CreateDate = user.CreationDate,
-        LaslLoginDate = user.LastLoginDate,
+        LastLoginDate = user.LastLoginDate,
         IsActivated = user.IsApproved,
         user.IsLockedOut,
         LastLockedOutDate = user.LastLockoutDate,

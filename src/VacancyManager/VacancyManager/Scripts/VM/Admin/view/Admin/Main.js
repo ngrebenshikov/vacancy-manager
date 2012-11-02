@@ -11,6 +11,17 @@
       Ext.applyIf
       (this,
         {
+          tools:
+          [{
+            type: 'close',
+            handler: function ()
+            {
+              Ext.Ajax.request(
+                {
+                  url: '../../User/ExtJSLogOff'
+                });
+            }
+          }],
           items:
           [
             {
@@ -53,38 +64,38 @@
               ]
             },
             {
-                xtype: 'panel',
-                title: "Конфигурация",
-                autoScroll: true,
-                layout: 'fit',
-                items:
+              xtype: 'panel',
+              title: "Конфигурация",
+              autoScroll: true,
+              layout: 'fit',
+              items:
                 [
                     { xtype: 'SysConfigList' }
                 ]
             },
             {
-                xtype: 'panel',
-                title: "Соискатели",
-                autoScroll: true,
-                layout: 'fit',
-                items:
+              xtype: 'panel',
+              title: "Соискатели",
+              autoScroll: true,
+              layout: 'fit',
+              items:
                 [
                     { xtype: 'ApplicantList' }
                 ]
             }
-            /*{
-              xtype:'panel',
-              layout: {
-                type: 'fit'
-              },
-              title: "Роли",
-              items:
-              [
-                {
-                  xtype: 'RolesList'
-                }
-              ]
-            }*/
+          /*{
+          xtype:'panel',
+          layout: {
+          type: 'fit'
+          },
+          title: "Роли",
+          items:
+          [
+          {
+          xtype: 'RolesList'
+          }
+          ]
+          }*/
           ]
         }
       );
