@@ -1,95 +1,87 @@
-﻿Ext.define('VM.view.User.Edit', {
+﻿Ext.define
+('VM.view.User.Edit',
+  {
     extend: 'Ext.window.Window',
-    alias: 'widget.UserEdit',
-    title: 'Редактирование пользователей(Not Implemented yet)',
-    height: 450,
-    width: 430,
-    autoShow: true,
-    maximizable: true,
-    collapsible: true,
-    modal: true,
+    alias: 'widget.Edit',
+
+    requires: ['Ext.form.Panel'],
+
+    title: 'User edit',
     layout: 'fit',
-    buttonAlign: 'center',
-    initComponent: function () {
-        this.items = [
+    autoShow: true,
+    height: 300,
+    width: 280,
+
+    initComponent: function ()
+    {
+      this.items =
+      [
+        {
+          xtype: 'form',
+          padding: '5 5 0 5',
+          border: false,
+          style: 'background-color: #fff;',
+          items:
+          [
             {
-                xtype: 'form',
-                padding: '15 15 5 5',
-                border: false,
-                style: 'background-color: #fff;',
-                layout: {
-                    type: 'vbox',
-                    align: 'stretch'
-                },
-                items: [
-                {
-                    xtype: 'textfield',
-                    id: 'txtUserName',
-                    fieldLabel: 'Имя пользователя',
-                    name: 'UserName',
-                    allowBlank: false
-                }, {
-                    xtype: 'textfield',
-                    id: 'txtEmail',
-                    fieldLabel: 'Email',
-                    name: 'Email',
-                    allowBlank: false
-                }, {
-                    xtype: 'textfield',
-                    id: 'txtPassword',
-                    fieldLabel: 'Password',
-                    name: 'Password',
-                    allowBlank: false
-                }, {
-                    xtype: 'textareafield',
-                    fieldLabel: 'Комментарий',
-                    flex: 1,
-                    id: 'txtUserComment',
-                    name: 'UserComment',
-                    margins: '0',
-                    allowBlank: false
-                }, {
-                    xtype: 'datefield',
-                    id: 'dtCreateDate',
-                    fieldLabel: 'Дата создания',
-                    name: 'CreateDate',
-                    allowBlank: false
-                }, {
-                    xtype: 'datefield',
-                    id: 'dtLastLoginDate',
-                    fieldLabel: 'Последний визит',
-                    name: 'LastLoginDate',
-                    allowBlank: false
-                }, {
-                    xtype: 'datefield',
-                    id: 'dtLastLockedOutDate',
-                    fieldLabel: 'Дата последней блокировки',
-                    name: 'LastLockedOutDate',
-                    allowBlank: false
-                }, {
-                    xtype: 'textfield',
-                    id: 'dtLastLockedOutReason',
-                    fieldLabel: 'Причина последней блокировки',
-                    name: 'LastLockedOutReason',
-                    allowBlank: false
-                }, {
-                    xtype: 'textfield',
-                    id: 'txtEmailKey',
-                    name: 'EmailKey',
-                    fieldLabel: 'EmailKey',
-                    allowBlank: false
-                }
-             ]
+              xtype: 'textfield',
+              name: 'UserName',
+              fieldLabel: "UserName",
+              allowBlank: false
             },
-             this.buttons = [{
-                 text: 'Сохранить',
-                 action: 'updateUser'
-             }, {
-                 text: 'Отмена',
-                 scope: this,
-                 handler: this.close
-             }]
-        ];
-        this.callParent(arguments);
+            {
+              xtype: 'dataview',
+              autoScroll: true, store: 'Roles',
+              tpl: '<tpl for="."><div class="DataView-list"><input type="checkbox" id="check{Name}" value="c{Name}" onclick="oncheck(id)">{Name}</div></tpl>',
+              autoHeight: false, height: 265,
+              multiSelect: true, itemSelector: 'DataView-list-item',
+              emptyText: 'No data to display',
+              loadingText: 'Please Wait...',
+              style: 'border:1px solid #99BBE8;background:#fff;'
+            }
+          ]
+        }
+      ];
+
+      this.buttons =
+      [
+        {
+          text: 'Change user',
+          action: 'ChangeUser'
+        },
+        {
+          text: 'Cancel',
+          scope: this,
+          handler: this.close
+        }
+      ];
+
+      this.callParent(arguments);
     }
+  }
+);
+
+VM.view.User.Edit.implement({
+  CheckSelectedRoles: function ()
+  {
+    var form = RoleMngWindow.down("form");
+    var record = form.getRecord();
+    var roles = record.get("Roles");
+    for (var i = 0; i < roles.length; i++)
+    {
+      document.getElementById("check" + roles[i]).checked = true;
+    }
+  }
 });
+function oncheck(str)
+{
+  changed = true;
+  if (document.getElementById(str).checked)
+  {
+    roles.push(str.slice("check".length));
+  } else
+  {
+    roles.splice(roles.indexOf(str.slice("check".length)), 1);
+  }
+}
+

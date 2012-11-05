@@ -47,14 +47,14 @@
                   field: { xtype: 'textfield' },
                   menuDisabled: true
                 },
-                {
+                /*{
                   dataIndex: 'UserComment',
                   text: Strings.UserCommentary,
                   width: 120,
                   sortable: false,
                   field: { xtype: 'textfield' },
                   menuDisabled: true
-                },
+                },*/
                 {
                   dataIndex: 'CreateDate',
                   text: Strings.UserCreationDate,
@@ -132,10 +132,10 @@
             action: 'banManager'
           },
           {
-            text: Strings.UserBSetRoles,
-            name: 'btnRoleManager',
-            id: 'RoleMng',
-            action: 'callRoleManager'
+            text: Strings.UserBEdit,
+            name: 'btnEdit',
+            id: 'UserEdit',
+            action: 'callEdit'
           },
           {
             text: Strings.UserBDelete,
