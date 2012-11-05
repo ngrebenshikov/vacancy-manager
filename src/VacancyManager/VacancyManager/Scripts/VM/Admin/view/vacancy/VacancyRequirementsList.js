@@ -1,5 +1,11 @@
 ﻿var cellEditing = Ext.create('Ext.grid.plugin.CellEditing', {
-    clicksToEdit: 2
+    clicksToEdit: 2,
+    listeners: {
+        beforeedit: function (e, editor) {
+            if (e.field == 'RequirementName')
+                return false;
+        }
+    }
 });
 
 Ext.define('VM.view.vacancy.VacancyRequirementsList', {
@@ -9,19 +15,18 @@ Ext.define('VM.view.vacancy.VacancyRequirementsList', {
     height: 500,
     id: 'vacancyrequirementsGrid',
     autoSizeColumns: true,
-    //autoHeight: true,
     forceFit: true,
     frame: false,
     split: true,
     plugins: [cellEditing],
     features: [Ext.create('Ext.grid.feature.Grouping',{
-              groupHeaderTpl: '{name} требований: ({rows.length})'
+        groupHeaderTpl: '{name}: ' + Strings.Skills + ' ({rows.length})'
     })],
-    title: 'Требования',  
+    title: Strings.Skills,  
     store: 'VacancyRequirements',
     columns: [
              {   xtype: 'checkcolumn',
-                 dataIndex: 'Require',
+                 dataIndex: 'IsRequire',
                  width: 10,
                  align: 'center',
                  sortable: false,
@@ -29,15 +34,17 @@ Ext.define('VM.view.vacancy.VacancyRequirementsList', {
                  menuDisabled: true
              }, {
                   dataIndex: 'RequirementName',
-                  text: 'RequirementName',
+                  text: Strings.Skill,
                   width: 120,
+                  align: 'center',
                   sortable: false,
                   field: { xtype: 'textfield' },
                   menuDisabled: true
              }, {
                   dataIndex: 'Comments',
-                  text: 'Comments',
+                  text: Strings.UserCommentary,
                   width: 120,
+                  align: 'center',
                   sortable: false,
                   field: { xtype: 'textfield' },
                   menuDisabled: true

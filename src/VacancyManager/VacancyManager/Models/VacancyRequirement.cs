@@ -18,6 +18,8 @@ namespace VacancyManager.Models
         [Display(Name = "Комментарий")]
         public string Comments { get; set; }
 
+        public bool IsRequire { get; set; }
+
         public VacancyRequirement()
         {
             VacancyRequirementID = -1;  

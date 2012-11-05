@@ -8,8 +8,9 @@
     proxy: {
         type: 'ajax',
         api: {
-            read: '/VacancyRequirement/LoadVacancyRequirements',
-            update: '/VacancyRequirement/UpdateVacancyRequirements'
+            read: '/VacancyRequirement/Load',
+            create: '/VacancyRequirement/Create',
+            update: '/VacancyRequirement/Update'
         },
         reader: {
             type: 'json',

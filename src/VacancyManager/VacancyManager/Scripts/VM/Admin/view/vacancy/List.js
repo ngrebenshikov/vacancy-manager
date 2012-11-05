@@ -4,11 +4,6 @@
     region: 'center',
     height: 500,
     id: 'vacancyGrid',
-    autoSizeColumns: true,
-    forceFit: true,
-    border: false,
-    frame: false,
-    split: true,
     store: 'Vacancy',
     columns: [
               {  
@@ -25,8 +20,7 @@
                   align: 'center',
                   sortable: true,
                   field: { xtype: 'datefield' },
-                  menuDisabled: true,
-                  renderer: Ext.util.Format.dateRenderer('d F Y')
+                  menuDisabled: true
               }, {
                   dataIndex: 'Requirements',
                   text: 'Требования',

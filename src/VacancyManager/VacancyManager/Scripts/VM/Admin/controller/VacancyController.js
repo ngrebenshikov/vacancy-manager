@@ -72,20 +72,18 @@ Ext.define('VM.controller.VacancyController', {
            newvalues = frm_vacancyform.getValues();
         var newOpeningDate = eval("({ dtm: new Date(newvalues['OpeningDate']) })");
         newvalues['OpeningDate'] = newOpeningDate.dtm;
-
+        sel_vacancy.set(newvalues);
         sel_vacancy.save({
             success: function (record, operation) {
                 VacancyID = record.getId();
                 vacancystore.insert(0, record);
 
                 VacancyRequirementsStore.each(function (vacancyRequirements) {
-
-                    if (vacancyRequirements.get('Require') == true) {
-                        vacancyRequirements.set('VacancyID', VacancyID);
-                    }
+                    vacancyRequirements.set('VacancyID', VacancyID);
                 });
                 VacancyRequirementsStore = Ext.StoreManager.lookup('VacancyRequirements');
                 VacancyRequirementsStore.sync();
+                vacancystore.load();
             }
         });
 
@@ -126,6 +124,7 @@ Ext.define('VM.controller.VacancyController', {
         sel_vacancy.set(newvalues);
         VacancyRequirementsStore = Ext.StoreManager.lookup('VacancyRequirements');
         VacancyRequirementsStore.sync();
+        this.getVacancyStore().load();
         wndvacanyEdit.close();
     },
 

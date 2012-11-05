@@ -33,7 +33,9 @@ namespace VacancyManager.Controllers
                                      ForeignLanguage = Vacancies.ForeignLanguage,
                                      Requirements = (from vac in Vacancies.VacancyRequirements
                                                      join req in Requirments on vac.RequirementID equals req.RequirementID
+                                                     where vac.IsRequire == true
                                                      select req.Name
+                                                  
                                                     ),
                                      IsVisible = Vacancies.IsVisible,
                                      Considerations = Vacancies.Considerations.Count
