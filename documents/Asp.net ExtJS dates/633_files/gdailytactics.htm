@@ -1,0 +1,203 @@
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
+
+	<script language="JavaScript" src="gdailytactics_data/jscript_dailytactics_en_18.js"></script>
+	<style type="text/css">
+
+.info {
+    font-family: verdana, arial, helvetica, sans-serif;
+    text-align: left;
+    vertical-align: middle;
+    font-size: 11px;
+    color: #455D7F;
+    cursor: default;
+}
+
+.shrinfo {
+    font-family: verdana, arial, helvetica, sans-serif;
+		font-style: italic;
+    text-align: right;
+    vertical-align: middle;
+    font-size: 10px;
+    color: rgb(181,189,206);
+    cursor: pointer;
+}
+.shrinfo2 {
+    font-family: verdana, arial, helvetica, sans-serif;
+		font-style: italic;
+    text-align: left;
+    vertical-align: middle;
+    font-size: 10px;
+    color: rgb(181,189,206);
+    cursor: pointer;
+}
+
+
+a {
+    font-family: verdana, arial, helvetica, sans-serif;
+		font-style: italic;
+    text-align: right;
+    text-decoration:none;
+    vertical-align: middle;
+    font-size: 10px;
+    color: rgb(181,189,206);
+    cursor: pointer;
+}
+a:hover {
+    font-family: verdana, arial, helvetica, sans-serif;
+		font-style: italic;
+    text-align: right;
+    text-decoration:underline;
+    vertical-align: middle;
+    font-size: 10px;
+    color: rgb(181,189,206);
+    cursor: pointer;
+}
+
+.choiceOn {
+    width: 102px;
+    height: 17px;
+    font-family: verdana, arial, helvetica, sans-serif;
+    text-align: center;
+    vertical-align: middle;
+    font-size: 11px;
+    font-weight: bold;
+    color: #E7F1FF;
+    border: 1px solid #CCD2DC;
+    background: #455D7F;
+    cursor: pointer;
+}
+
+.choiceOff {
+    width: 102px;
+    height: 17px;
+    font-family: verdana, arial, helvetica, sans-serif;
+    text-align: center;
+    vertical-align: middle;
+    font-size: 11px;
+    font-weight: bold;
+    color: #455D7F;
+    border: 1px solid #CCD2DC;
+    background: #E7F1FF;
+    cursor: pointer;
+}
+
+
+</style>
+
+	<script language="JavaScript">
+	
+	//self.focus();
+
+	function clickmore_de() {
+  	 mynewwindow = window.open("http://www.shredderchess.de/schachaufgaben-der-woche.html", "_blank");
+     mynewwindow.focus();
+	   }
+	function clickmore() {
+  	 mynewwindow = window.open("http://www.shredderchess.com/weekly-chess-problems.html", "_blank");
+     mynewwindow.focus();
+	   }
+	
+	function fx() {return false;}
+
+	function enmouse(b) {
+		window.onmousedown = b ? null : fx;
+		window.onmouseup = b ? null : fx;
+		window.onclick = b ? null : fx;
+	}	
+	enmouse(false);
+
+var initialTactics = '2kr4/ppq2ppp/4pn2/1Q6/3R4/N1P4P/PP3PP1/6K1 w - - 0 19_27-26 59-3';
+
+	</script>
+
+</head>
+
+<body style="background-color: transparent;" onload="javascript:setTimeout('buildIt();',5);">
+
+<div>
+<div id="info" class="info" style="position:absolute; left:0px; top:164px;">Best move for black?</div></div>
+
+<div class="choiceOff" style="position:absolute; left:144px; top:198px; width:38px;" onmouseover="over(this);" onmouseout="leave(this);" onclick="hint();">?</div><div id="level0" class="choiceOn" style="position:absolute; left:0px; top:198px; width:38px;" onmouseover="over(this);" onmouseout="leave(this);paintLevel();" onclick="setLevel(0);">L1</div><div id="level1" class="choiceOff" style="position:absolute; left:48px; top:198px; width:38px;" onmouseover="over(this);" onmouseout="leave(this);paintLevel();" onclick="setLevel(1);">L2</div><div id="level2" class="choiceOff" style="position:absolute; left:96px; top:198px; width:38px;" onmouseover="over(this);" onmouseout="leave(this);paintLevel();" onclick="setLevel(2);">L3</div><div class="shrinfo" style="position:absolute; left:36px; top:181px; width:146px;" onmouseover="enmouse(true);" onmouseout="enmouse(false);"><a href="http://www.shredderchess.com/" target="_blank" onfocus="blur();">www.shredderchess.com</a></div><div class="shrinfo2" style="position:absolute; left:0px; top:181px; width:36px;" onmouseover="enmouse(true);" onmouseout="enmouse(false);"><a href="http://chess.emrald.net/" target="_blank" onfocus="blur();">CTS</a></div><div class="choiceOff" style="position:absolute; left:165px; top:33px; width:17px; height:78px;" onmouseover="over(this);" onmouseout="leave(this);" onclick="clickmore();"><br>M<br>o<br>r<br>e</div>
+<script type="text/javascript" src="633_files/ga.js"></script>
+<script type="text/javascript">
+try {
+if (typeof(_gat) == 'object') {	
+	var pageTracker = _gat._getTracker("UA-6426331-7");
+	pageTracker._trackPageview();
+  }
+} catch(err) {}</script>
+
+
+
+
+<div style="visibility: visible; position: absolute; left: 0px; top: 0px;" id="b00.3553698643160559"><div id="b00.3553698643160559_0" style="position: absolute; left: 126px; top: 0px; width: 18px; height: 18px; background-color: rgb(181, 189, 206);" onmousedown="Board.Mousedown(event,this);" onmouseup="Board.Mouseup(event,this);" onmousemove="Board.Mousemove(event,this);"></div>
+<div id="b00.3553698643160559_1" style="position: absolute; left: 108px; top: 0px; width: 18px; height: 18px; background-color: rgb(233, 236, 240);" onmousedown="Board.Mousedown(event,this);" onmouseup="Board.Mouseup(event,this);" onmousemove="Board.Mousemove(event,this);"></div>
+<div id="b00.3553698643160559_2" style="position: absolute; left: 90px; top: 0px; width: 18px; height: 18px; background-color: rgb(181, 189, 206);" onmousedown="Board.Mousedown(event,this);" onmouseup="Board.Mouseup(event,this);" onmousemove="Board.Mousemove(event,this);"></div>
+<div id="b00.3553698643160559_3" style="position: absolute; left: 72px; top: 0px; width: 18px; height: 18px; background-color: rgb(233, 236, 240);" onmousedown="Board.Mousedown(event,this);" onmouseup="Board.Mouseup(event,this);" onmousemove="Board.Mousemove(event,this);"></div>
+<div id="b00.3553698643160559_4" style="position: absolute; left: 54px; top: 0px; width: 18px; height: 18px; background-color: rgb(181, 189, 206);" onmousedown="Board.Mousedown(event,this);" onmouseup="Board.Mouseup(event,this);" onmousemove="Board.Mousemove(event,this);"></div>
+<div id="b00.3553698643160559_5" style="position: absolute; left: 36px; top: 0px; width: 18px; height: 18px; background-color: rgb(233, 236, 240);" onmousedown="Board.Mousedown(event,this);" onmouseup="Board.Mouseup(event,this);" onmousemove="Board.Mousemove(event,this);"></div>
+<div id="b00.3553698643160559_6" style="position: absolute; left: 18px; top: 0px; width: 18px; height: 18px; background-color: rgb(181, 189, 206);" onmousedown="Board.Mousedown(event,this);" onmouseup="Board.Mouseup(event,this);" onmousemove="Board.Mousemove(event,this);"><img src="gdailytactics_data/a18wk.gif"></div>
+<div id="b00.3553698643160559_7" style="position: absolute; left: 0px; top: 0px; width: 18px; height: 18px; background-color: rgb(233, 236, 240);" onmousedown="Board.Mousedown(event,this);" onmouseup="Board.Mouseup(event,this);" onmousemove="Board.Mousemove(event,this);"></div>
+<div id="b00.3553698643160559_8" style="position: absolute; left: 126px; top: 18px; width: 18px; height: 18px; background-color: rgb(233, 236, 240);" onmousedown="Board.Mousedown(event,this);" onmouseup="Board.Mouseup(event,this);" onmousemove="Board.Mousemove(event,this);"><img src="gdailytactics_data/a18wp.gif"></div>
+<div id="b00.3553698643160559_9" style="position: absolute; left: 108px; top: 18px; width: 18px; height: 18px; background-color: rgb(181, 189, 206);" onmousedown="Board.Mousedown(event,this);" onmouseup="Board.Mouseup(event,this);" onmousemove="Board.Mousemove(event,this);"><img src="gdailytactics_data/a18wp.gif"></div>
+<div id="b00.3553698643160559_10" style="position: absolute; left: 90px; top: 18px; width: 18px; height: 18px; background-color: rgb(233, 236, 240);" onmousedown="Board.Mousedown(event,this);" onmouseup="Board.Mouseup(event,this);" onmousemove="Board.Mousemove(event,this);"></div>
+<div id="b00.3553698643160559_11" style="position: absolute; left: 72px; top: 18px; width: 18px; height: 18px; background-color: rgb(181, 189, 206);" onmousedown="Board.Mousedown(event,this);" onmouseup="Board.Mouseup(event,this);" onmousemove="Board.Mousemove(event,this);"></div>
+<div id="b00.3553698643160559_12" style="position: absolute; left: 54px; top: 18px; width: 18px; height: 18px; background-color: rgb(233, 236, 240);" onmousedown="Board.Mousedown(event,this);" onmouseup="Board.Mouseup(event,this);" onmousemove="Board.Mousemove(event,this);"></div>
+<div id="b00.3553698643160559_13" style="position: absolute; left: 36px; top: 18px; width: 18px; height: 18px; background-color: rgb(181, 189, 206);" onmousedown="Board.Mousedown(event,this);" onmouseup="Board.Mouseup(event,this);" onmousemove="Board.Mousemove(event,this);"><img src="gdailytactics_data/a18wp.gif"></div>
+<div id="b00.3553698643160559_14" style="position: absolute; left: 18px; top: 18px; width: 18px; height: 18px; background-color: rgb(233, 236, 240);" onmousedown="Board.Mousedown(event,this);" onmouseup="Board.Mouseup(event,this);" onmousemove="Board.Mousemove(event,this);"><img src="gdailytactics_data/a18wp.gif"></div>
+<div id="b00.3553698643160559_15" style="position: absolute; left: 0px; top: 18px; width: 18px; height: 18px; background-color: rgb(181, 189, 206);" onmousedown="Board.Mousedown(event,this);" onmouseup="Board.Mouseup(event,this);" onmousemove="Board.Mousemove(event,this);"></div>
+<div id="b00.3553698643160559_16" style="position: absolute; left: 126px; top: 36px; width: 18px; height: 18px; background-color: rgb(181, 189, 206);" onmousedown="Board.Mousedown(event,this);" onmouseup="Board.Mouseup(event,this);" onmousemove="Board.Mousemove(event,this);"><img src="gdailytactics_data/a18wn.gif"></div>
+<div id="b00.3553698643160559_17" style="position: absolute; left: 108px; top: 36px; width: 18px; height: 18px; background-color: rgb(233, 236, 240);" onmousedown="Board.Mousedown(event,this);" onmouseup="Board.Mouseup(event,this);" onmousemove="Board.Mousemove(event,this);"></div>
+<div id="b00.3553698643160559_18" style="position: absolute; left: 90px; top: 36px; width: 18px; height: 18px; background-color: rgb(181, 189, 206);" onmousedown="Board.Mousedown(event,this);" onmouseup="Board.Mouseup(event,this);" onmousemove="Board.Mousemove(event,this);"><img src="gdailytactics_data/a18wp.gif"></div>
+<div id="b00.3553698643160559_19" style="position: absolute; left: 72px; top: 36px; width: 18px; height: 18px; background-color: rgb(233, 236, 240);" onmousedown="Board.Mousedown(event,this);" onmouseup="Board.Mouseup(event,this);" onmousemove="Board.Mousemove(event,this);"></div>
+<div id="b00.3553698643160559_20" style="position: absolute; left: 54px; top: 36px; width: 18px; height: 18px; background-color: rgb(181, 189, 206);" onmousedown="Board.Mousedown(event,this);" onmouseup="Board.Mouseup(event,this);" onmousemove="Board.Mousemove(event,this);"></div>
+<div id="b00.3553698643160559_21" style="position: absolute; left: 36px; top: 36px; width: 18px; height: 18px; background-color: rgb(233, 236, 240);" onmousedown="Board.Mousedown(event,this);" onmouseup="Board.Mouseup(event,this);" onmousemove="Board.Mousemove(event,this);"></div>
+<div id="b00.3553698643160559_22" style="position: absolute; left: 18px; top: 36px; width: 18px; height: 18px; background-color: rgb(181, 189, 206);" onmousedown="Board.Mousedown(event,this);" onmouseup="Board.Mouseup(event,this);" onmousemove="Board.Mousemove(event,this);"></div>
+<div id="b00.3553698643160559_23" style="position: absolute; left: 0px; top: 36px; width: 18px; height: 18px; background-color: rgb(233, 236, 240);" onmousedown="Board.Mousedown(event,this);" onmouseup="Board.Mouseup(event,this);" onmousemove="Board.Mousemove(event,this);"><img src="gdailytactics_data/a18wp.gif"></div>
+<div id="b00.3553698643160559_24" style="position: absolute; left: 126px; top: 54px; width: 18px; height: 18px; background-color: rgb(233, 236, 240);" onmousedown="Board.Mousedown(event,this);" onmouseup="Board.Mouseup(event,this);" onmousemove="Board.Mousemove(event,this);"></div>
+<div id="b00.3553698643160559_25" style="position: absolute; left: 108px; top: 54px; width: 18px; height: 18px; background-color: rgb(181, 189, 206);" onmousedown="Board.Mousedown(event,this);" onmouseup="Board.Mouseup(event,this);" onmousemove="Board.Mousemove(event,this);"></div>
+<div id="b00.3553698643160559_26" style="position: absolute; left: 90px; top: 54px; width: 18px; height: 18px; background-color: rgb(233, 236, 240);" onmousedown="Board.Mousedown(event,this);" onmouseup="Board.Mouseup(event,this);" onmousemove="Board.Mousemove(event,this);"><img src="gdailytactics_data/a18wr.gif"></div>
+<div id="b00.3553698643160559_27" style="position: absolute; left: 72px; top: 54px; width: 18px; height: 18px; background-color: rgb(181, 189, 206);" onmousedown="Board.Mousedown(event,this);" onmouseup="Board.Mouseup(event,this);" onmousemove="Board.Mousemove(event,this);"><img src="gdailytactics_data/a18free.gif"></div>
+<div id="b00.3553698643160559_28" style="position: absolute; left: 54px; top: 54px; width: 18px; height: 18px; background-color: rgb(233, 236, 240);" onmousedown="Board.Mousedown(event,this);" onmouseup="Board.Mouseup(event,this);" onmousemove="Board.Mousemove(event,this);"></div>
+<div id="b00.3553698643160559_29" style="position: absolute; left: 36px; top: 54px; width: 18px; height: 18px; background-color: rgb(181, 189, 206);" onmousedown="Board.Mousedown(event,this);" onmouseup="Board.Mouseup(event,this);" onmousemove="Board.Mousemove(event,this);"></div>
+<div id="b00.3553698643160559_30" style="position: absolute; left: 18px; top: 54px; width: 18px; height: 18px; background-color: rgb(233, 236, 240);" onmousedown="Board.Mousedown(event,this);" onmouseup="Board.Mouseup(event,this);" onmousemove="Board.Mousemove(event,this);"></div>
+<div id="b00.3553698643160559_31" style="position: absolute; left: 0px; top: 54px; width: 18px; height: 18px; background-color: rgb(181, 189, 206);" onmousedown="Board.Mousedown(event,this);" onmouseup="Board.Mouseup(event,this);" onmousemove="Board.Mousemove(event,this);"></div>
+<div id="b00.3553698643160559_32" style="position: absolute; left: 126px; top: 72px; width: 18px; height: 18px; background-color: rgb(181, 189, 206);" onmousedown="Board.Mousedown(event,this);" onmouseup="Board.Mouseup(event,this);" onmousemove="Board.Mousemove(event,this);"></div>
+<div id="b00.3553698643160559_33" style="position: absolute; left: 108px; top: 72px; width: 18px; height: 18px; background-color: rgb(233, 236, 240);" onmousedown="Board.Mousedown(event,this);" onmouseup="Board.Mouseup(event,this);" onmousemove="Board.Mousemove(event,this);"><img src="gdailytactics_data/a18wq.gif"></div>
+<div id="b00.3553698643160559_34" style="position: absolute; left: 90px; top: 72px; width: 18px; height: 18px; background-color: rgb(181, 189, 206);" onmousedown="Board.Mousedown(event,this);" onmouseup="Board.Mouseup(event,this);" onmousemove="Board.Mousemove(event,this);"></div>
+<div id="b00.3553698643160559_35" style="position: absolute; left: 72px; top: 72px; width: 18px; height: 18px; background-color: rgb(233, 236, 240);" onmousedown="Board.Mousedown(event,this);" onmouseup="Board.Mouseup(event,this);" onmousemove="Board.Mousemove(event,this);"></div>
+<div id="b00.3553698643160559_36" style="position: absolute; left: 54px; top: 72px; width: 18px; height: 18px; background-color: rgb(181, 189, 206);" onmousedown="Board.Mousedown(event,this);" onmouseup="Board.Mouseup(event,this);" onmousemove="Board.Mousemove(event,this);"></div>
+<div id="b00.3553698643160559_37" style="position: absolute; left: 36px; top: 72px; width: 18px; height: 18px; background-color: rgb(233, 236, 240);" onmousedown="Board.Mousedown(event,this);" onmouseup="Board.Mouseup(event,this);" onmousemove="Board.Mousemove(event,this);"></div>
+<div id="b00.3553698643160559_38" style="position: absolute; left: 18px; top: 72px; width: 18px; height: 18px; background-color: rgb(181, 189, 206);" onmousedown="Board.Mousedown(event,this);" onmouseup="Board.Mouseup(event,this);" onmousemove="Board.Mousemove(event,this);"></div>
+<div id="b00.3553698643160559_39" style="position: absolute; left: 0px; top: 72px; width: 18px; height: 18px; background-color: rgb(233, 236, 240);" onmousedown="Board.Mousedown(event,this);" onmouseup="Board.Mouseup(event,this);" onmousemove="Board.Mousemove(event,this);"></div>
+<div id="b00.3553698643160559_40" style="position: absolute; left: 126px; top: 90px; width: 18px; height: 18px; background-color: rgb(233, 236, 240);" onmousedown="Board.Mousedown(event,this);" onmouseup="Board.Mouseup(event,this);" onmousemove="Board.Mousemove(event,this);"></div>
+<div id="b00.3553698643160559_41" style="position: absolute; left: 108px; top: 90px; width: 18px; height: 18px; background-color: rgb(181, 189, 206);" onmousedown="Board.Mousedown(event,this);" onmouseup="Board.Mouseup(event,this);" onmousemove="Board.Mousemove(event,this);"></div>
+<div id="b00.3553698643160559_42" style="position: absolute; left: 90px; top: 90px; width: 18px; height: 18px; background-color: rgb(233, 236, 240);" onmousedown="Board.Mousedown(event,this);" onmouseup="Board.Mouseup(event,this);" onmousemove="Board.Mousemove(event,this);"></div>
+<div id="b00.3553698643160559_43" style="position: absolute; left: 72px; top: 90px; width: 18px; height: 18px; background-color: rgb(181, 189, 206);" onmousedown="Board.Mousedown(event,this);" onmouseup="Board.Mouseup(event,this);" onmousemove="Board.Mousemove(event,this);"></div>
+<div id="b00.3553698643160559_44" style="position: absolute; left: 54px; top: 90px; width: 18px; height: 18px; background-color: rgb(233, 236, 240);" onmousedown="Board.Mousedown(event,this);" onmouseup="Board.Mouseup(event,this);" onmousemove="Board.Mousemove(event,this);"><img src="gdailytactics_data/a18bp.gif"></div>
+<div id="b00.3553698643160559_45" style="position: absolute; left: 36px; top: 90px; width: 18px; height: 18px; background-color: rgb(181, 189, 206);" onmousedown="Board.Mousedown(event,this);" onmouseup="Board.Mouseup(event,this);" onmousemove="Board.Mousemove(event,this);"><img src="gdailytactics_data/a18bn.gif"></div>
+<div id="b00.3553698643160559_46" style="position: absolute; left: 18px; top: 90px; width: 18px; height: 18px; background-color: rgb(233, 236, 240);" onmousedown="Board.Mousedown(event,this);" onmouseup="Board.Mouseup(event,this);" onmousemove="Board.Mousemove(event,this);"></div>
+<div id="b00.3553698643160559_47" style="position: absolute; left: 0px; top: 90px; width: 18px; height: 18px; background-color: rgb(181, 189, 206);" onmousedown="Board.Mousedown(event,this);" onmouseup="Board.Mouseup(event,this);" onmousemove="Board.Mousemove(event,this);"></div>
+<div id="b00.3553698643160559_48" style="position: absolute; left: 126px; top: 108px; width: 18px; height: 18px; background-color: rgb(181, 189, 206);" onmousedown="Board.Mousedown(event,this);" onmouseup="Board.Mouseup(event,this);" onmousemove="Board.Mousemove(event,this);"><img src="gdailytactics_data/a18bp.gif"></div>
+<div id="b00.3553698643160559_49" style="position: absolute; left: 108px; top: 108px; width: 18px; height: 18px; background-color: rgb(233, 236, 240);" onmousedown="Board.Mousedown(event,this);" onmouseup="Board.Mouseup(event,this);" onmousemove="Board.Mousemove(event,this);"><img src="gdailytactics_data/a18bp.gif"></div>
+<div id="b00.3553698643160559_50" style="position: absolute; left: 90px; top: 108px; width: 18px; height: 18px; background-color: rgb(181, 189, 206);" onmousedown="Board.Mousedown(event,this);" onmouseup="Board.Mouseup(event,this);" onmousemove="Board.Mousemove(event,this);"><img src="gdailytactics_data/a18bq.gif"></div>
+<div id="b00.3553698643160559_51" style="position: absolute; left: 72px; top: 108px; width: 18px; height: 18px; background-color: rgb(233, 236, 240);" onmousedown="Board.Mousedown(event,this);" onmouseup="Board.Mouseup(event,this);" onmousemove="Board.Mousemove(event,this);"></div>
+<div id="b00.3553698643160559_52" style="position: absolute; left: 54px; top: 108px; width: 18px; height: 18px; background-color: rgb(181, 189, 206);" onmousedown="Board.Mousedown(event,this);" onmouseup="Board.Mouseup(event,this);" onmousemove="Board.Mousemove(event,this);"></div>
+<div id="b00.3553698643160559_53" style="position: absolute; left: 36px; top: 108px; width: 18px; height: 18px; background-color: rgb(233, 236, 240);" onmousedown="Board.Mousedown(event,this);" onmouseup="Board.Mouseup(event,this);" onmousemove="Board.Mousemove(event,this);"><img src="gdailytactics_data/a18bp.gif"></div>
+<div id="b00.3553698643160559_54" style="position: absolute; left: 18px; top: 108px; width: 18px; height: 18px; background-color: rgb(181, 189, 206);" onmousedown="Board.Mousedown(event,this);" onmouseup="Board.Mouseup(event,this);" onmousemove="Board.Mousemove(event,this);"><img src="gdailytactics_data/a18bp.gif"></div>
+<div id="b00.3553698643160559_55" style="position: absolute; left: 0px; top: 108px; width: 18px; height: 18px; background-color: rgb(233, 236, 240);" onmousedown="Board.Mousedown(event,this);" onmouseup="Board.Mouseup(event,this);" onmousemove="Board.Mousemove(event,this);"><img src="gdailytactics_data/a18bp.gif"></div>
+<div id="b00.3553698643160559_56" style="position: absolute; left: 126px; top: 126px; width: 18px; height: 18px; background-color: rgb(233, 236, 240);" onmousedown="Board.Mousedown(event,this);" onmouseup="Board.Mouseup(event,this);" onmousemove="Board.Mousemove(event,this);"></div>
+<div id="b00.3553698643160559_57" style="position: absolute; left: 108px; top: 126px; width: 18px; height: 18px; background-color: rgb(181, 189, 206);" onmousedown="Board.Mousedown(event,this);" onmouseup="Board.Mouseup(event,this);" onmousemove="Board.Mousemove(event,this);"></div>
+<div id="b00.3553698643160559_58" style="position: absolute; left: 90px; top: 126px; width: 18px; height: 18px; background-color: rgb(233, 236, 240);" onmousedown="Board.Mousedown(event,this);" onmouseup="Board.Mouseup(event,this);" onmousemove="Board.Mousemove(event,this);"><img src="gdailytactics_data/a18bk.gif"></div>
+<div id="b00.3553698643160559_59" style="position: absolute; left: 72px; top: 126px; width: 18px; height: 18px; background-color: rgb(181, 189, 206);" onmousedown="Board.Mousedown(event,this);" onmouseup="Board.Mouseup(event,this);" onmousemove="Board.Mousemove(event,this);"><img src="gdailytactics_data/a18br.gif"></div>
+<div id="b00.3553698643160559_60" style="position: absolute; left: 54px; top: 126px; width: 18px; height: 18px; background-color: rgb(233, 236, 240);" onmousedown="Board.Mousedown(event,this);" onmouseup="Board.Mouseup(event,this);" onmousemove="Board.Mousemove(event,this);"></div>
+<div id="b00.3553698643160559_61" style="position: absolute; left: 36px; top: 126px; width: 18px; height: 18px; background-color: rgb(181, 189, 206);" onmousedown="Board.Mousedown(event,this);" onmouseup="Board.Mouseup(event,this);" onmousemove="Board.Mousemove(event,this);"></div>
+<div id="b00.3553698643160559_62" style="position: absolute; left: 18px; top: 126px; width: 18px; height: 18px; background-color: rgb(233, 236, 240);" onmousedown="Board.Mousedown(event,this);" onmouseup="Board.Mouseup(event,this);" onmousemove="Board.Mousemove(event,this);"></div>
+<div id="b00.3553698643160559_63" style="position: absolute; left: 0px; top: 126px; width: 18px; height: 18px; background-color: rgb(181, 189, 206);" onmousedown="Board.Mousedown(event,this);" onmouseup="Board.Mouseup(event,this);" onmousemove="Board.Mousemove(event,this);"></div>
+<div id="b00.3553698643160559_dr" style="position:absolute;left:0px;top:0px;visibility:hidden;" onmousedown="Board.Mousedown(event,this);" onmousemove="Board.Mousemove(event,this);" onmouseup="Board.Mouseup(event,this);"><img src="gdailytactics_data/a18free.gif"></div>
+<div id="b00.3553698643160559_pro0" style="position:absolute;left:0px;top:0px;width:18px;height:18px;visibility:hidden;" onmousemove="Board.Mousemove(event,this);" onmouseup="Board.Mouseup(event,this);"> </div><div id="b00.3553698643160559_pro1" style="position:absolute;left:0px;top:0px;width:18px;height:18px;visibility:hidden;" onmousemove="Board.Mousemove(event,this);" onmouseup="Board.Mouseup(event,this);"> </div><div id="b00.3553698643160559_pro2" style="position:absolute;left:0px;top:0px;width:18px;height:18px;visibility:hidden;" onmousemove="Board.Mousemove(event,this);" onmouseup="Board.Mouseup(event,this);"> </div><div id="b00.3553698643160559_miw" style="position: absolute; left: 164px; top: 0px; width: 18px; height: 18px; visibility: visible;" onmousedown="Board.Mousedownmoveind(event,this);"><img src="gdailytactics_data/a18mw0.gif"></div><div id="b00.3553698643160559_mib" style="position: absolute; left: 164px; top: 126px; width: 18px; height: 18px; visibility: visible;" onmousedown="Board.Mousedownmoveind(event,this);"><img src="gdailytactics_data/a18mb1.gif"></div><div id="b00.3553698643160559_lettersbottom" style="position: absolute; left: 0px; top: 144px; width: 144px; visibility: hidden;"><table border="0" cellpadding="0" cellspacing="0"><tbody><tr height="20px"><td style="color: rgb(81, 89, 106); font-family: verdana,arial,helvetica,sans-serif; font-size: 11px; vertical-align: middle; text-align: center;" width="18px">a</td><td style="color: rgb(81, 89, 106); font-family: verdana,arial,helvetica,sans-serif; font-size: 11px; vertical-align: middle; text-align: center;" width="18px">b</td><td style="color: rgb(81, 89, 106); font-family: verdana,arial,helvetica,sans-serif; font-size: 11px; vertical-align: middle; text-align: center;" width="18px">c</td><td style="color: rgb(81, 89, 106); font-family: verdana,arial,helvetica,sans-serif; font-size: 11px; vertical-align: middle; text-align: center;" width="18px">d</td><td style="color: rgb(81, 89, 106); font-family: verdana,arial,helvetica,sans-serif; font-size: 11px; vertical-align: middle; text-align: center;" width="18px">e</td><td style="color: rgb(81, 89, 106); font-family: verdana,arial,helvetica,sans-serif; font-size: 11px; vertical-align: middle; text-align: center;" width="18px">f</td><td style="color: rgb(81, 89, 106); font-family: verdana,arial,helvetica,sans-serif; font-size: 11px; vertical-align: middle; text-align: center;" width="18px">g</td><td style="color: rgb(81, 89, 106); font-family: verdana,arial,helvetica,sans-serif; font-size: 11px; vertical-align: middle; text-align: center;" width="18px">h</td></tr></tbody></table></div>
+<div id="b00.3553698643160559_lettersbottominv" style="visibility: visible; position: absolute; left: 0px; top: 144px; width: 144px;"><table border="0px" cellpadding="0px" cellspacing="0px"><tbody><tr height="20px"><td style="color: rgb(81, 89, 106); font-family: verdana,arial,helvetica,sans-serif; font-size: 11px; vertical-align: middle; text-align: center;" width="18px">h</td><td style="color: rgb(81, 89, 106); font-family: verdana,arial,helvetica,sans-serif; font-size: 11px; vertical-align: middle; text-align: center;" width="18px">g</td><td style="color: rgb(81, 89, 106); font-family: verdana,arial,helvetica,sans-serif; font-size: 11px; vertical-align: middle; text-align: center;" width="18px">f</td><td style="color: rgb(81, 89, 106); font-family: verdana,arial,helvetica,sans-serif; font-size: 11px; vertical-align: middle; text-align: center;" width="18px">e</td><td style="color: rgb(81, 89, 106); font-family: verdana,arial,helvetica,sans-serif; font-size: 11px; vertical-align: middle; text-align: center;" width="18px">d</td><td style="color: rgb(81, 89, 106); font-family: verdana,arial,helvetica,sans-serif; font-size: 11px; vertical-align: middle; text-align: center;" width="18px">c</td><td style="color: rgb(81, 89, 106); font-family: verdana,arial,helvetica,sans-serif; font-size: 11px; vertical-align: middle; text-align: center;" width="18px">b</td><td style="color: rgb(81, 89, 106); font-family: verdana,arial,helvetica,sans-serif; font-size: 11px; vertical-align: middle; text-align: center;" width="18px">a</td></tr></tbody></table></div>
+<div id="b00.3553698643160559_numbersright" style="position: absolute; left: 144px; top: 0px; height: 144px; width: 20px; visibility: hidden;"><table border="0px" cellpadding="0px" cellspacing="0px"><tbody><tr height="18"><td style="color: rgb(81, 89, 106); font-family: verdana,arial,helvetica,sans-serif; font-size: 11px; vertical-align: middle; text-align: center;" height="18px" width="20px">8</td></tr><tr height="18"><td style="color: rgb(81, 89, 106); font-family: verdana,arial,helvetica,sans-serif; font-size: 11px; vertical-align: middle; text-align: center;" height="18px" width="20px">7</td></tr><tr height="18"><td style="color: rgb(81, 89, 106); font-family: verdana,arial,helvetica,sans-serif; font-size: 11px; vertical-align: middle; text-align: center;" height="18px" width="20px">6</td></tr><tr height="18"><td style="color: rgb(81, 89, 106); font-family: verdana,arial,helvetica,sans-serif; font-size: 11px; vertical-align: middle; text-align: center;" height="18px" width="20px">5</td></tr><tr height="18"><td style="color: rgb(81, 89, 106); font-family: verdana,arial,helvetica,sans-serif; font-size: 11px; vertical-align: middle; text-align: center;" height="18px" width="20px">4</td></tr><tr height="18"><td style="color: rgb(81, 89, 106); font-family: verdana,arial,helvetica,sans-serif; font-size: 11px; vertical-align: middle; text-align: center;" height="18px" width="20px">3</td></tr><tr height="18"><td style="color: rgb(81, 89, 106); font-family: verdana,arial,helvetica,sans-serif; font-size: 11px; vertical-align: middle; text-align: center;" height="18px" width="20px">2</td></tr><tr height="18"><td style="color: rgb(81, 89, 106); font-family: verdana,arial,helvetica,sans-serif; font-size: 11px; vertical-align: middle; text-align: center;" height="18px" width="20px">1</td></tr></tbody></table></div>
+<div id="b00.3553698643160559_numbersrightinv" style="visibility: visible; position: absolute; left: 144px; top: 0px; height: 144px; width: 20px;"><table border="0px" cellpadding="0px" cellspacing="0px"><tbody><tr height="18px"><td style="color: rgb(81, 89, 106); font-family: verdana,arial,helvetica,sans-serif; font-size: 11px; vertical-align: middle; text-align: center;" height="18px" width="20px">1</td></tr><tr height="18px"><td style="color: rgb(81, 89, 106); font-family: verdana,arial,helvetica,sans-serif; font-size: 11px; vertical-align: middle; text-align: center;" height="18px" width="20px">2</td></tr><tr height="18px"><td style="color: rgb(81, 89, 106); font-family: verdana,arial,helvetica,sans-serif; font-size: 11px; vertical-align: middle; text-align: center;" height="18px" width="20px">3</td></tr><tr height="18px"><td style="color: rgb(81, 89, 106); font-family: verdana,arial,helvetica,sans-serif; font-size: 11px; vertical-align: middle; text-align: center;" height="18px" width="20px">4</td></tr><tr height="18px"><td style="color: rgb(81, 89, 106); font-family: verdana,arial,helvetica,sans-serif; font-size: 11px; vertical-align: middle; text-align: center;" height="18px" width="20px">5</td></tr><tr height="18px"><td style="color: rgb(81, 89, 106); font-family: verdana,arial,helvetica,sans-serif; font-size: 11px; vertical-align: middle; text-align: center;" height="18px" width="20px">6</td></tr><tr height="18px"><td style="color: rgb(81, 89, 106); font-family: verdana,arial,helvetica,sans-serif; font-size: 11px; vertical-align: middle; text-align: center;" height="18px" width="20px">7</td></tr><tr height="18px"><td style="color: rgb(81, 89, 106); font-family: verdana,arial,helvetica,sans-serif; font-size: 11px; vertical-align: middle; text-align: center;" height="18px" width="20px">8</td></tr></tbody></table></div>
+</div></body></html>
