@@ -13,7 +13,7 @@ namespace VacancyManager.Services.Managers
       return _db.Vacancies.Where(vacancy => vacancy.IsVisible).ToList();
     }
 
-    internal static List<Vacancy> CreateVacancy(string title, string description, DateTime? openingDate, string foreignLanguage, string requirments, bool isVisible)
+    internal static List<Vacancy> CreateVacancy(string title, string description, DateTime? openingDate, string requirments, bool isVisible)
     {
       VacancyContext _db = new VacancyContext();
       var vacancies = new List<Vacancy>
@@ -23,7 +23,6 @@ namespace VacancyManager.Services.Managers
                                   Title = title,
                                   Description = description,
                                   OpeningDate = openingDate,
-                                  ForeignLanguage = foreignLanguage,
                                   Requirments = requirments,
                                   IsVisible = isVisible
                                 }
@@ -31,13 +30,12 @@ namespace VacancyManager.Services.Managers
 
       _db.Vacancies.Add(vacancies.ElementAt(0));
       _db.SaveChanges();
-      //    Vacancies.Add(vacancy);
 
       return vacancies;
 
     }
 
-    internal static void UpdateVacancy(int vacancyid, string title, string description, DateTime? openingDate, string foreignLanguage, string requirments, bool isVisible)
+    internal static void UpdateVacancy(int vacancyid, string title, string description, DateTime? openingDate, string requirments, bool isVisible)
     {
       VacancyContext _db = new VacancyContext();
       var update_rec = _db.Vacancies.SingleOrDefault(a => a.VacancyID == vacancyid);
@@ -46,7 +44,6 @@ namespace VacancyManager.Services.Managers
         update_rec.Title = title;
         update_rec.Description = description;
         update_rec.OpeningDate = openingDate;
-        update_rec.ForeignLanguage = foreignLanguage;
         update_rec.Requirments = requirments;
         update_rec.IsVisible = isVisible;
         _db.SaveChanges();

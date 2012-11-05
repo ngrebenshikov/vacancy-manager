@@ -70,8 +70,6 @@ Ext.define('VM.controller.VacancyController', {
            frm_vacancyform = wndvacanyEdit.down('form'),
            sel_vacancy = frm_vacancyform.getRecord(),
            newvalues = frm_vacancyform.getValues();
-        var newOpeningDate = eval("({ dtm: new Date(newvalues['OpeningDate']) })");
-        newvalues['OpeningDate'] = newOpeningDate.dtm;
         sel_vacancy.set(newvalues);
         sel_vacancy.save({
             success: function (record, operation) {
@@ -97,21 +95,23 @@ Ext.define('VM.controller.VacancyController', {
         blankvacancy = Ext.create('VM.model.Vacancy', {
             Title: 'Новая вакансия',
             Description: 'Описание вакансии',
-            OpeningDate: new Date(),
-            ForeignLanguage: 'Иностранные языки',
+            OpeningDate: (Ext.Date.format(new Date(), 'd.m.Y')),
             Requirements: '',
             IsVisible: true
         });
+
         wndvacanyEdit.down('form').loadRecord(blankvacancy);
     },
 
     editVacancy: function (button) {
         var grid = button.up('grid'),
-            sel_vacancy = grid.getView().getSelectionModel().getSelection()[0],
-            wndvacanyEdit = Ext.create('VM.view.vacancy.Edit').show();
-        wndvacanyEdit.down('form').loadRecord(sel_vacancy);
-        VacancyRequirementsStore = Ext.StoreManager.lookup('VacancyRequirements');
-        VacancyRequirementsStore.load({ params: { "id": sel_vacancy.get('VacancyID')} });
+            sel_vacancy = grid.getView().getSelectionModel().getSelection()[0];
+        if (sel_vacancy != undefined) {
+            var wndvacanyEdit = Ext.create('VM.view.vacancy.Edit').show();
+            wndvacanyEdit.down('form').loadRecord(sel_vacancy);
+            VacancyRequirementsStore = Ext.StoreManager.lookup('VacancyRequirements');
+            VacancyRequirementsStore.load({ params: { "id": sel_vacancy.get('VacancyID')} });
+        }
     },
 
     updateVacancy: function (button) {
@@ -119,8 +119,6 @@ Ext.define('VM.controller.VacancyController', {
            frm_vacancyform = wndvacanyEdit.down('form'),
            sel_vacancy = frm_vacancyform.getRecord(),
            newvalues = frm_vacancyform.getValues();
-        var newdate = eval("({ dtm: new Date(newvalues['OpeningDate']) })");
-        newvalues['OpeningDate'] = newdate.dtm;
         sel_vacancy.set(newvalues);
         VacancyRequirementsStore = Ext.StoreManager.lookup('VacancyRequirements');
         VacancyRequirementsStore.sync();
@@ -132,20 +130,21 @@ Ext.define('VM.controller.VacancyController', {
         var grid = button.up('grid'),
             vacancystore = grid.getStore(),
             sel_vacancy = grid.getView().getSelectionModel().getSelection()[0];
-        Ext.Msg.show({
-            title: 'Удаление вакансии',
-            msg: 'Уладить вакансию "' + sel_vacancy.get('Title') + '"',
-            width: 300,
-            buttons: Ext.Msg.YESNO,
-            fn: function (btn) {
-                if (btn == 'yes') {
-                    if (sel_vacancy) {
-                        vacancystore.remove(sel_vacancy);
+        if (sel_vacancy != undefined) {
+            Ext.Msg.show({
+                title: 'Удаление вакансии',
+                msg: 'Уладить вакансию "' + sel_vacancy.get('Title') + '"',
+                width: 300,
+                buttons: Ext.Msg.YESNO,
+                fn: function (btn) {
+                    if (btn == 'yes') {
+                        if (sel_vacancy) {
+                            vacancystore.remove(sel_vacancy);
+                        }
                     }
                 }
-            }
-        });
-
+            });
+        }
 
     }
 

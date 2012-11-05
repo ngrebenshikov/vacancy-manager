@@ -138,6 +138,10 @@
     <Compile Include="Migrations\201211051331087_VacancyRequirement_IsRequireAdded.Designer.cs">
       <DependentUpon>201211051331087_VacancyRequirement_IsRequireAdded.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201211051632033_Vacancy_ForeignLanguageRemoved.cs" />
+    <Compile Include="Migrations\201211051632033_Vacancy_ForeignLanguageRemoved.Designer.cs">
+      <DependentUpon>201211051632033_Vacancy_ForeignLanguageRemoved.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\Applicant.cs" />

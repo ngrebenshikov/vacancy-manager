@@ -2,7 +2,7 @@
     clicksToEdit: 2,
     listeners: {
         beforeedit: function (e, editor) {
-            if (e.field == 'RequirementName')
+            if (e.colIdx == 1)
                 return false;
         }
     }
@@ -36,7 +36,6 @@ Ext.define('VM.view.vacancy.VacancyRequirementsList', {
                   dataIndex: 'RequirementName',
                   text: Strings.Skill,
                   width: 120,
-                  align: 'center',
                   sortable: false,
                   field: { xtype: 'textfield' },
                   menuDisabled: true
@@ -44,7 +43,6 @@ Ext.define('VM.view.vacancy.VacancyRequirementsList', {
                   dataIndex: 'Comments',
                   text: Strings.UserCommentary,
                   width: 120,
-                  align: 'center',
                   sortable: false,
                   field: { xtype: 'textfield' },
                   menuDisabled: true

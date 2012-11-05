@@ -19,7 +19,8 @@
                   width: 150,
                   align: 'center',
                   sortable: true,
-                  field: { xtype: 'datefield' },
+                  xtype: 'datecolumn', 
+                  format:'d.m.Y',
                   menuDisabled: true
               }, {
                   dataIndex: 'Requirements',
