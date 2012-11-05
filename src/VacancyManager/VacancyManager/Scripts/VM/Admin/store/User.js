@@ -3,8 +3,8 @@
   model: 'VM.model.User',
   id: 'VacancyStore',
   autoLoad: true,
-  autoSync: true,
-  autoSave: true,
+  //autoSync: true,
+  //autoSave: true,
   proxy: {
     type: 'ajax',
     api: {
