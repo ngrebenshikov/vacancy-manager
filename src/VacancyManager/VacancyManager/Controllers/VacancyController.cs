@@ -29,8 +29,7 @@ namespace VacancyManager.Controllers
                                      VacancyID = Vacancies.VacancyID,
                                      Title = Vacancies.Title,
                                      Description = Vacancies.Description,
-                                     OpeningDate = Vacancies.OpeningDate,
-                                     ForeignLanguage = Vacancies.ForeignLanguage,
+                                     OpeningDate = Vacancies.OpeningDate.Value.Date.ToShortDateString(),
                                      Requirements = (from vac in Vacancies.VacancyRequirements
                                                      join req in Requirments on vac.RequirementID equals req.RequirementID
                                                      where vac.IsRequire == true
@@ -66,20 +65,16 @@ namespace VacancyManager.Controllers
             {
                 var c_Vacancy = jss.Deserialize<dynamic>(data);
 
-                object Title = c_Vacancy["Title"];
-                object Description = c_Vacancy["Description"];
-                object OpeningDate = c_Vacancy["OpeningDate"];
-                object ForeignLanguage = c_Vacancy["ForeignLanguage"];
-                object Requirements = c_Vacancy["Requirements"];
-                object IsVisible = c_Vacancy["IsVisible"];
-                if (OpeningDate == null)
-                    OpeningDate = DateTime.Now.Date;
-                CreatedVacancy = (VacancyDbManager.CreateVacancy(Title.ToString(),
-                                          Description.ToString(),
-                                          Convert.ToDateTime(OpeningDate),
-                                          ForeignLanguage.ToString(),
-                                          Requirements.ToString(),
-                                          Convert.ToBoolean(IsVisible)
+                String Title = c_Vacancy["Title"].ToString();
+                String Description = c_Vacancy["Description"].ToString();
+                DateTime OpeningDate = Convert.ToDateTime(c_Vacancy["OpeningDate"]);
+                String Requirements = c_Vacancy["Requirements"].ToString();
+                Boolean IsVisible = Convert.ToBoolean(c_Vacancy["IsVisible"]);
+                CreatedVacancy = (VacancyDbManager.CreateVacancy(Title,
+                                                   Description,
+                                                   OpeningDate,
+                                                   Requirements,
+                                                   IsVisible
                  )).ToList();
                 c_message = "Вакансия успешно создана";
                 c_success = true;
@@ -87,11 +82,21 @@ namespace VacancyManager.Controllers
             else
                 CreatedVacancy = null;
 
-
+            var newVacancy = (from vac in CreatedVacancy.ToList()
+                              select new
+                              {
+                                  VacancyID = vac.VacancyID,
+                                  Title = vac.Title,
+                                  Description = vac.Description,
+                                  OpeningDate = vac.OpeningDate.Value.Date.ToShortDateString(),
+                                  Requirements = "",
+                                  IsVisible = vac.IsVisible,
+                                  Considerations = 0
+                              }).ToList();
 
             return Json(new
             {
-                data = CreatedVacancy,
+                data = newVacancy,
                 success = c_success,
                 message = c_message
             }, JsonRequestBehavior.DenyGet);
@@ -112,16 +117,12 @@ namespace VacancyManager.Controllers
                 object Title = u_vacancy["Title"];
                 object Description = u_vacancy["Description"];
                 object OpeningDate = u_vacancy["OpeningDate"];
-                object ForeignLanguage = u_vacancy["ForeignLanguage"];
                 object Requirments = u_vacancy["Requirements"];
                 object IsVisible = u_vacancy["IsVisible"];
-                if (OpeningDate == null)
-                    OpeningDate = DateTime.Now.Date;
                 VacancyDbManager.UpdateVacancy(Convert.ToInt32(VacancyID),
                                           Title.ToString(),
                                           Description.ToString(),
                                           Convert.ToDateTime(OpeningDate),
-                                          ForeignLanguage.ToString(),
                                           Requirments.ToString(),
                                           Convert.ToBoolean(IsVisible)
                  );

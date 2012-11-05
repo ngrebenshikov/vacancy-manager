@@ -50,7 +50,8 @@ Ext.define('VM.view.vacancy.Edit', {
                     id: 'dtOpeningDate',
                     fieldLabel: 'Дата открытия',
                     name: 'OpeningDate',
-                    format: 'd F Y',
+                    format: 'd.m.Y',
+                    altFormats: '|d.m.Y',
                     allowBlank: false
                 }, {
                     xtype: 'checkboxfield',

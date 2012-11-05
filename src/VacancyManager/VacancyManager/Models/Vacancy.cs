@@ -20,9 +20,6 @@ namespace VacancyManager.Models
         [Display(Name = "Дата открытия")]
         public DateTime? OpeningDate { get; set; }
 
-        [Display(Name = "Иностранные языки")]
-        public string ForeignLanguage { get; set; }
-
         [Display(Name = "Требования")]
         public string Requirments { get; set; }
 

@@ -17,10 +17,8 @@ Ext.define('VM.model.Vacancy', {
                  {
                      name: 'OpeningDate',
                      type: 'date',
-                     dateFormat: 'MS'
-                 },
-                 {
-                     name: 'ForeignLanguage'
+                     dateFormat: 'd.m.Y'
+
                  },
                  {
                      name: 'Requirements'
@@ -31,9 +29,6 @@ Ext.define('VM.model.Vacancy', {
                  {
                      name: 'Considerations',
                      type: 'int'
-                 },
-                 {
-                     name: 'TechnologyStacks'
                  }
         ]
         ,
