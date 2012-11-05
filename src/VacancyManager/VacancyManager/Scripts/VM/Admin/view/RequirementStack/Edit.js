@@ -11,6 +11,7 @@ Ext.define
       autoShow: true,
       height: 60,
       width: 280,
+      modal: true,
 
       initComponent: function () {
           this.items =

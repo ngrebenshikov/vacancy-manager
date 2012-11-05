@@ -133,6 +133,15 @@ namespace VacancyManager.Properties {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Скрыть.
+        /// </summary>
+        public static string btnHide {
+            get {
+                return ResourceManager.GetString("btnHide", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Удалить.
         /// </summary>
         public static string btnRemove {
@@ -156,6 +165,15 @@ namespace VacancyManager.Properties {
         public static string btnSave {
             get {
                 return ResourceManager.GetString("btnSave", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Показать.
+        /// </summary>
+        public static string btnShow {
+            get {
+                return ResourceManager.GetString("btnShow", resourceCulture);
             }
         }
         

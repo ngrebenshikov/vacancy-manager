@@ -1,4 +1,6 @@
-﻿Ext.define('VM.controller.ApplicantController',
+﻿var checkedCount = 0;
+
+Ext.define('VM.controller.ApplicantController',
     {
         extend: 'Ext.app.Controller',
         models: ['ApplicantModel', 'ApplicantRequirements'],
@@ -23,7 +25,10 @@
                     { click: this.EditApplicantShowForm },
                 // Сохранить изменения
                 'button[action=EditApplicant]':
-                    { click: this.EditApplicant }
+                    { click: this.EditApplicant },
+                // Скрыть/показать
+                'button[action=ShowHideSkills]':
+                    { click: this.ShowHideSkills }
             });
         },
 
@@ -32,12 +37,14 @@
             var view = Ext.widget('ApplicantCreate'),
                 newApplicant = Ext.create('VM.model.ApplicantModel', {
                     FullName: 'FullName',
-                    ContactPhone: 'ContactPhone',
+                    ContactPhone: '+123-456-78-90',
                     Email: 'email@example.net'
                 });
 
             var appReqStore = Ext.StoreManager.lookup('ApplicantRequirements');
             appReqStore.load({ params: { "id": -1} });
+
+            checkedCount = 0;
 
             view.down('form').loadRecord(newApplicant);
         },
@@ -59,10 +66,14 @@
                         applicantRequirements.set('ApplicantId', ApplicantId);
                     });
                     ApplicantRequirementsStore.sync();
+                    ApplicantRequirementsStore.clearFilter();
                 }
             });
 
             button.up('window').close();
+
+            var removeButton = Ext.getCmp('RemoveApplicant');
+            removeButton.disable();
         },
 
         /* ===== */
@@ -74,34 +85,41 @@
             var appReqStore = Ext.StoreManager.lookup('ApplicantRequirements');
             appReqStore.load({ params: { "id": obj.get("ApplicantID")} });
 
+            // Для фильтрации //
+            checkedCount = 0;
+            appReqStore.each(function (appReq) {
+                if (appReq.get('IsChecked') == true)
+                    checkedCount++;
+            });
+            if (checkedCount > 0)
+                Ext.getCmp('ShowHideSkills').enable();
+            // *** //
+
             view.down('form').loadRecord(record);
         },
 
         EditApplicant: function (button) {
             var form = Ext.getCmp('applicantEditForm').getForm(),
-                win = button.up('window');
+                grid = button.up('window').down('grid'),
+                store = this.getApplicantStore();
 
             if (form.isValid()) {
-                var store = this.getApplicantStore(),
-                    rec = form.getRecord(),
-                    newRec = form.getValues();
-
-                //                rec.set(newRec);
-
-                //                var ApplicantRequirementsStore = Ext.StoreManager.lookup('ApplicantRequirements');
-                //                ApplicantRequirementsStore.sync();
+                var curApplicant = form.getRecord();    // Получаем record с формы, но тот record который загружали через loadRecord
+                form.updateRecord(curApplicant);        // Обновляем с формы полученный выше record
 
                 var ApplicantRequirementsStore = Ext.StoreManager.lookup('ApplicantRequirements');
-                var records = [];
-                ApplicantRequirementsStore.each(function (rec) {
-                    records.push(rec.data);
+                ApplicantRequirementsStore.each(function (appReq) {
+                    if (appReq.get('ApplicantId') == "") {
+                        appReq.set('ApplicantId', curApplicant.get('ApplicantID'));
+                    }
+                    if ((appReq.get('IsChecked') == false) && (appReq.get('CommentText') != "")) {
+                        appReq.set('CommentText', "");
+                    }
                 });
+                ApplicantRequirementsStore.clearFilter();
+                ApplicantRequirementsStore.sync();
 
-                var curId = rec.getId();
-
-                store.add({ params: { "id": curId, "data": newRec, "grid": records} });
-                //store.sync();
-                win.close();
+                button.up('window').close();
             }
         },
 
@@ -120,11 +138,25 @@
                     fn: function (btn) {
                         if (btn == 'yes') {
                             store.remove(selection);
+                            button.disable();
                         }
                     }
                 });
             }
-            button.disable();
+        },
+
+        /* ===== */
+        ShowHideSkills: function (button) {
+            var store = Ext.StoreManager.lookup('ApplicantRequirements');
+
+            if (button.text == Strings.btnHide) {
+                button.setText(Strings.btnShow);
+                store.filter("IsChecked", true);
+            }
+            else {
+                button.setText(Strings.btnHide);
+                store.clearFilter();
+            }
         }
     }
 );

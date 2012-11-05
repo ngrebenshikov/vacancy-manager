@@ -8,7 +8,7 @@
     forceFit: true,
     split: true,
     frame: false,
-    title: Strings.ApplicantList,
+    //title: Strings.ApplicantList,
     store: 'Applicant',
 
     initComponent: function () {
@@ -22,7 +22,7 @@
                 field: { xtype: 'textfield' },
                 menuDisabled: true
             }, {
-                dataIndex: 'Requirement',
+                dataIndex: 'Requirements',
                 text: Strings.Skills,
                 width: 120,
                 sortable: false,

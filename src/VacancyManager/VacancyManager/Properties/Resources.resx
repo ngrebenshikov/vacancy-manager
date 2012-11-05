@@ -296,4 +296,10 @@
   <data name="ApplicantEdit" xml:space="preserve">
     <value>Редактор соискателя</value>
   </data>
+  <data name="btnShow" xml:space="preserve">
+    <value>Показать</value>
+  </data>
+  <data name="btnHide" xml:space="preserve">
+    <value>Скрыть</value>
+  </data>
 </root>

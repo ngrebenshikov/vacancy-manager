@@ -15,19 +15,38 @@ namespace VacancyManager.Controllers
         public ActionResult Load()
         {
             var list = ApplicantManager.GetList();
-            var obj = from applicant in list
-                      select new
-                      {
-                          ApplicantID = applicant.ApplicantID,
-                          FullName = applicant.FullName,
-                          ContactPhone = applicant.ContactPhone,
-                          Email = applicant.Email
-                      };
+            var reqList = RequirementsManager.GetRequirements();
+            List<object> result = new List<object>();
+
+            foreach (var applicant in list)
+            {
+                string reqText = "";
+                var appReqList = ApplicantRequirementsManager.GetListByApplicantId(applicant.ApplicantID);
+                foreach (var appReq in appReqList)
+                {
+                    if (appReq.IsChecked)
+                    {
+                        var reqName = (from req in reqList
+                                      where req.RequirementID == appReq.RequirementId
+                                      select req.Name).ToList();
+                        reqText += reqName[0] + ", ";
+                    }
+                }
+
+                result.Add(new
+                {
+                    ApplicantID = applicant.ApplicantID,
+                    FullName = applicant.FullName,
+                    ContactPhone = applicant.ContactPhone,
+                    Email = applicant.Email,
+                    Requirements = reqText.Length > 0 ? reqText.Remove(reqText.Length - 2) : "-"
+                });
+            }
 
             return Json(new
             {
                 success = true,
-                data = obj
+                data = result
             }, JsonRequestBehavior.AllowGet);
         }
 
@@ -38,9 +57,7 @@ namespace VacancyManager.Controllers
             string resultMessage = "Ошибка при добавлении соискателя";
             JavaScriptSerializer jss = new JavaScriptSerializer();
             List<Applicant> created = new List<Applicant>();
-            ActionResult result = null;
 
-            #region Так у вакансий
             if (data != null)
             {
                 var obj = jss.Deserialize<dynamic>(data);
@@ -50,58 +67,13 @@ namespace VacancyManager.Controllers
             }
             else
                 created = null;
-            #endregion
 
-            #region Так у меня
-
-            //if (data != null)
-            //{
-            //    var obj = jss.Deserialize<dynamic>(data);
-
-            //    if (obj["params"]["id"] < 0)
-            //    {
-            //        var appObj = obj["params"]["data"];
-            //        created = ApplicantManager.Create(appObj["FullName"].ToString(), appObj["ContactPhone"].ToString(), appObj["Email"].ToString());
-            //        resultMessage = "Соискатель конфигурации успешно добавлен";
-            //        success = true;
-
-            //        var appReqObj = obj["params"]["grid"];
-            //        for (int i = 0; i <= appReqObj.Length - 1; i++)
-            //            if (appReqObj[i]["IsChecked"])
-            //                ApplicantRequirementsManager.Create(created[0].ApplicantID, appReqObj[i]["RequirementId"], appReqObj[i]["CommentText"]);
-
-            //        result = Json(new
-            //            {
-            //                success = success,
-            //                data = created,
-            //                message = resultMessage
-            //            }, JsonRequestBehavior.DenyGet);
-            //    }
-            //    else
-            //    {
-            //        result = Update(data);
-            //    }
-            //}
-            //else
-            //{
-            //    created = null;
-            //    result = Json(new
-            //    {
-            //        success = success,
-            //        data = created,
-            //        message = resultMessage
-            //    }, JsonRequestBehavior.DenyGet);
-            //}
-
-            #endregion
-
-            result = Json(new
+            return Json(new
                 {
                     success = success,
                     data = created,
                     message = resultMessage
                 });
-            return result;
         }
 
         [HttpPost]
@@ -135,22 +107,9 @@ namespace VacancyManager.Controllers
             if (data != null)
             {
                 var obj = jss.Deserialize<dynamic>(data);
-
-                int appId = obj["params"]["id"];
-
-                var appObj = obj["params"]["data"];
-                ApplicantManager.Update(appId, appObj["FullName"].ToString(), appObj["ContactPhone"].ToString(), appObj["Email"].ToString());
-                resultMessage = "Cоискатель успешно изменен";
+                ApplicantManager.Update(obj["ApplicantID"], obj["FullName"], obj["ContactPhone"], obj["Email"]);
+                resultMessage = "Соискатель успешно изменен";
                 success = true;
-
-                var appReqObj = obj["params"]["grid"];
-                for (int i = 0; i <= appReqObj.Length - 1; i++)
-                    if (appReqObj[i]["IsChecked"] && appReqObj[i]["CurrentId"] > 0)
-                        ApplicantRequirementsManager.Update(appReqObj[i]["CurrentId"], appReqObj[i]["CommentText"]);
-                    //else if (appReqObj[i]["IsChecked"] && appReqObj[i]["CurrentId"] < 0)
-                    //    ApplicantRequirementsManager.Create(appId, appReqObj[i]["RequirementId"], appReqObj[i]["CommentText"]);
-                    else if (!appReqObj[i]["IsChecked"] && appReqObj[i]["CurrentId"] > 0)
-                        ApplicantRequirementsManager.Delete(appReqObj[i]["CurrentId"]);
             }
 
             return Json(new

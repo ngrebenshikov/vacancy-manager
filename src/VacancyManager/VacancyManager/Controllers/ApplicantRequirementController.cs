@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using VacancyManager.Services.Managers;
 using VacancyManager.Models;
 using System.Web.Script.Serialization;
+using System.IO;
 
 namespace VacancyManager.Controllers
 {
@@ -20,7 +21,7 @@ namespace VacancyManager.Controllers
 
             List<object> result = new List<object>();
 
-            if (applicantRequirementsList != null)
+            if (id > 0)
             {
                 foreach (var req in requirementsList)
                 {
@@ -39,19 +40,21 @@ namespace VacancyManager.Controllers
                                       {
                                           Id = appReq.Id,
                                           ApplicantId = appReq.ApplicantId,
-                                          Comment = appReq.Comment
+                                          Comment = appReq.Comment,
+                                          IsChecked = appReq.IsChecked
                                       }).ToList();
 
                     if (appReqList.Count > 0)
                         result.Add(new
                         {
+                            Id = appReqList[0].Id,
+                            ApplicantId = appReqList[0].ApplicantId,
                             StackId = stack[0].Id,
                             StackName = stack[0].Name,
                             RequirementId = req.RequirementID,
                             RequirementName = req.Name,
                             CommentText = appReqList[0].Comment,
-                            CurrentId = appReqList[0].Id,
-                            IsChecked = true
+                            IsChecked = appReqList[0].IsChecked
                         });
                     else
                         result.Add(new
@@ -61,7 +64,6 @@ namespace VacancyManager.Controllers
                             RequirementId = req.RequirementID,
                             RequirementName = req.Name,
                             CommentText = "",
-                            CurrentId = -1,
                             IsChecked = false
                         });
                 }
@@ -85,7 +87,6 @@ namespace VacancyManager.Controllers
                         RequirementId = req.RequirementID,
                         RequirementName = req.Name,
                         CommentText = "",
-                        CurrentId = -1,
                         IsChecked = false
                     });
                 }
@@ -100,39 +101,102 @@ namespace VacancyManager.Controllers
             }, JsonRequestBehavior.AllowGet);
         }
 
+
         [HttpPost]
-        public ActionResult Create(string data)
+        public ActionResult Create()
         {
             bool success = false;
             string resultMessage = "Ошибка при добавлении навыка";
             JavaScriptSerializer jss = new JavaScriptSerializer();
-            List<Applicant> created = new List<Applicant>();
+            StreamReader reader = new StreamReader(HttpContext.Request.InputStream);
+            string data = reader.ReadToEnd();
 
-            if (data != null)
+            try
             {
-                var obj = jss.Deserialize<dynamic>(data);
-                created = ApplicantRequirementsManager.Create(obj["ApplicantId"], obj["RequirementId"], obj["Comment"], obj["IsChecked"]);
-                resultMessage = "Навык успешно добавлен";
-                success = true;
+                if (data != null)
+                {
+                    var objArray = jss.Deserialize<dynamic>(data);
+
+                    // Проверка на тип данных нужна из-за формата приходящих данных.
+                    // Если у нас в списке "Требования" один элемент,
+                    // то после десериализации переменная objArray имеет тип Dictionary<string, object>,
+                    // когда больше одного элемента, то - object[].
+                    if (objArray is object[])
+                        foreach (var obj in objArray)
+                        {
+                            //var obj = jss.Deserialize<dynamic>(o);
+                            ApplicantRequirementsManager.Create(obj["ApplicantId"], obj["RequirementId"], obj["CommentText"], obj["IsChecked"]);
+                            resultMessage = "Навык успешно добавлен";
+                            success = true;
+                        }
+                    else if (objArray is Dictionary<string, object>)
+                    {
+                        ApplicantRequirementsManager.Create(objArray["ApplicantId"], objArray["RequirementId"], objArray["CommentText"], objArray["IsChecked"]);
+                        resultMessage = "Навык успешно добавлен";
+                        success = true;
+                    }
+                    else
+                        resultMessage = "Неверный тип данных запроса";
+                }
             }
-            else
-                created = null;
+            catch (Exception e)
+            {
+                resultMessage = e.Message;
+            }
 
             return Json(new
             {
                 success = success,
-                data = created,
                 message = resultMessage
             });
         }
 
+
         [HttpPost]
-        public ActionResult Update(string data)
+        public ActionResult Update()
         {
+            bool success = false;
+            string resultMessage = "Ошибка при изменении навыка";
+            JavaScriptSerializer jss = new JavaScriptSerializer();
+            StreamReader reader = new StreamReader(HttpContext.Request.InputStream);
+            string data = reader.ReadToEnd();
+
+            try
+            {
+                if (data != null)
+                {
+                    var objArray = jss.Deserialize<dynamic>(data);
+
+                    // Проверка на тип данных нужна из-за формата приходящих данных.
+                    // Если у нас в списке "Требования" один элемент,
+                    // то после десериализации переменная objArray имеет тип Dictionary<string, object>,
+                    // когда больше одного элемента, то - object[].
+                    if (objArray is object[])
+                        foreach (var obj in objArray)
+                        {
+                            //var obj = jss.Deserialize<dynamic>(o);
+                            ApplicantRequirementsManager.Update(obj["Id"], obj["CommentText"], obj["IsChecked"]);
+                            resultMessage = "Навык успешно добавлен";
+                            success = true;
+                        }
+                    else if (objArray is Dictionary<string, object>)
+                    {
+                        ApplicantRequirementsManager.Update(objArray["Id"], objArray["CommentText"], objArray["IsChecked"]);
+                        resultMessage = "Навык успешно изменен";
+                        success = true;
+                    }
+                    else
+                        resultMessage = "Неверный тип данных запроса";
+                }
+            }
+            catch (Exception e)
+            {
+                resultMessage = e.Message;
+            }
+
             return Json(new
             {
                 success = success,
-                data = created,
                 message = resultMessage
             });
         }

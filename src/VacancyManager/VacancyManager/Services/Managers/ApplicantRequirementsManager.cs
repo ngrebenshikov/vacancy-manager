@@ -14,13 +14,8 @@ namespace VacancyManager.Services.Managers
         {
             IEnumerable<ApplicantRequirement> obj = null;
 
-            if (id > 0)
-            {
-                obj = _db.ApplicantRequirements.Where(rec => rec.ApplicantId == id).ToList();
-                return obj;
-            }
-            else
-                return null;
+            obj = _db.ApplicantRequirements.Where(rec => rec.ApplicantId == id).ToList();
+            return obj;
         }
 
         internal static void Create(int appId, int reqId, string comment, bool isChecked)
@@ -35,13 +30,14 @@ namespace VacancyManager.Services.Managers
             _db.SaveChanges();
         }
 
-        internal static void Update(int id, string comment)
+        internal static void Update(int id, string comment, bool isChecked)
         {
             var obj = _db.ApplicantRequirements.Where(app => app.Id == id).FirstOrDefault();
 
-            if (obj != null && obj.Comment != comment)
+            if (obj != null && (obj.Comment != comment || obj.IsChecked != isChecked))
             {
                 obj.Comment = comment;
+                obj.IsChecked = isChecked;
 
                 _db.SaveChanges();
             }

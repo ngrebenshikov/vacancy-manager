@@ -8,7 +8,7 @@
     forceFit: true,
     split: true,
     frame: false,
-    title: Strings.Conf,
+    //title: Strings.Conf,
     store: 'SysConfig',
 
     initComponent: function () {
@@ -31,7 +31,7 @@
                 menuDisabled: true
             }],
 
-            bbar: [{
+            tbar: [{
                 text: Strings.btnAdd,
                 name: 'btnAdd',
                 id: 'Add',
