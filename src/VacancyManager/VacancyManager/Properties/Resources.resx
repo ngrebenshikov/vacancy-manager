@@ -146,7 +146,7 @@
     <comment>Столбец таблицы из вкладки пользователи</comment>
   </data>
   <data name="UserEmail" xml:space="preserve">
-    <value>E-Mail</value>
+    <value>E-mail</value>
     <comment>Столбец таблицы из вкладки пользователи</comment>
   </data>
   <data name="UserList_IsActivated" xml:space="preserve">
