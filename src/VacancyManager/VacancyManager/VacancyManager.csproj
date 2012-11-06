@@ -130,22 +130,6 @@
     <Compile Include="Migrations\201210310103436_ApplicantRequirements_Added_IsChecked.Designer.cs">
       <DependentUpon>201210310103436_ApplicantRequirements_Added_IsChecked.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201211021240368_Requirement_Added_AppReq.cs" />
-    <Compile Include="Migrations\201211021240368_Requirement_Added_AppReq.Designer.cs">
-      <DependentUpon>201211021240368_Requirement_Added_AppReq.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201211051331087_VacancyRequirement_IsRequireAdded.cs" />
-    <Compile Include="Migrations\201211051331087_VacancyRequirement_IsRequireAdded.Designer.cs">
-      <DependentUpon>201211051331087_VacancyRequirement_IsRequireAdded.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201211051632033_Vacancy_ForeignLanguageRemoved.cs" />
-    <Compile Include="Migrations\201211051632033_Vacancy_ForeignLanguageRemoved.Designer.cs">
-      <DependentUpon>201211051632033_Vacancy_ForeignLanguageRemoved.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201211051840118_Consideration_UserChangedToApplicant.cs" />
-    <Compile Include="Migrations\201211051840118_Consideration_UserChangedToApplicant.Designer.cs">
-      <DependentUpon>201211051840118_Consideration_UserChangedToApplicant.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\Applicant.cs" />
@@ -254,14 +238,6 @@
     <Content Include="ExtLib\resources\css\ext-sandbox.css" />
     <Content Include="ExtLib\resources\css\ext-standard-scoped.css" />
     <Content Include="ExtLib\resources\css\ext-standard.css" />
-    <Content Include="ExtLib\resources\icons\accept.gif" />
-    <Content Include="ExtLib\resources\icons\add.gif" />
-    <Content Include="ExtLib\resources\icons\add16.gif" />
-    <Content Include="ExtLib\resources\icons\delete.gif" />
-    <Content Include="ExtLib\resources\icons\group16.gif" />
-    <Content Include="ExtLib\resources\icons\user.gif" />
-    <Content Include="ExtLib\resources\icons\user_add.gif" />
-    <Content Include="ExtLib\resources\icons\user_delete.gif" />
     <Content Include="ExtLib\resources\themes\images\access\boundlist\trigger-arrow.png" />
     <Content Include="ExtLib\resources\themes\images\access\box\corners-blue.gif" />
     <Content Include="ExtLib\resources\themes\images\access\box\corners.gif" />
@@ -1442,7 +1418,6 @@
     <Content Include="ExtLib\ux\css\CenterLayout.css" />
     <Content Include="ExtLib\ux\css\CheckHeader.css" />
     <Content Include="ExtLib\ux\css\GroupTabPanel.css" />
-    <Content Include="ExtLib\ux\css\HeaderButtons.css" />
     <Content Include="ExtLib\ux\css\images\border.gif" />
     <Content Include="ExtLib\ux\css\images\bottom2.gif" />
     <Content Include="ExtLib\ux\css\images\checked.gif" />
@@ -1459,7 +1434,6 @@
     <Content Include="ExtLib\ux\css\ItemSelector.css" />
     <Content Include="ExtLib\ux\css\LiveSearchGridPanel.css" />
     <Content Include="ExtLib\ux\css\TabScrollerMenu.css" />
-    <Content Include="ExtLib\ux\HeaderButtons.js" />
     <Content Include="ExtLib\ux\RowExpander.js" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
@@ -1483,7 +1457,6 @@
     <Content Include="Scripts\VM\Admin\controller\VacancyController.js" />
     <Content Include="Scripts\VM\Admin\controller\Roles.js" />
     <Content Include="Scripts\VM\Admin\controller\ApplicantController.js" />
-    <Content Include="Scripts\VM\Admin\HeaderTabPanel.js" />
     <Content Include="Scripts\VM\Admin\model\Consideration.js" />
     <Content Include="Scripts\VM\Admin\model\RequirementListInStack.js" />
     <Content Include="Scripts\VM\Admin\model\RequirementStack.js" />
@@ -1509,7 +1482,6 @@
     <Content Include="Scripts\VM\Admin\view\Applicant\Create.js" />
     <Content Include="Scripts\VM\Admin\view\Applicant\Edit.js" />
     <Content Include="Scripts\VM\Admin\view\consideration\Add.js" />
-    <Content Include="Scripts\VM\Admin\view\consideration\ConsiderationApllicantsList.js" />
     <Content Include="Scripts\VM\Admin\view\consideration\Edit.js" />
     <Content Include="Scripts\VM\Admin\view\consideration\List.js" />
     <Content Include="Scripts\VM\Admin\view\RequirementListInStack\Create.js" />
