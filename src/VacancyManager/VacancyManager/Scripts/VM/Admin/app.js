@@ -74,6 +74,7 @@ Ext.Ajax.on('requestexception', function (conn, response, options)
                 closable: false,
                 bodyStyle: 'padding:5px;',
                 items: login_form,
+                modal: true,
                 buttons:
                   [
                     { text: 'Login',
