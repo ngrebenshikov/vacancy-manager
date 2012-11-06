@@ -62,6 +62,16 @@
                   region: 'center'
                 }
               ]
+            },            
+            {
+              xtype: 'panel',
+              title: "Соискатели",
+              autoScroll: true,
+              layout: 'fit',
+              items:
+                [
+                    { xtype: 'ApplicantList' }
+                ]
             },
             {
               xtype: 'panel',
@@ -71,16 +81,6 @@
               items:
                 [
                     { xtype: 'SysConfigList' }
-                ]
-            },
-            {
-              xtype: 'panel',
-              title: "Соискатели",
-              autoScroll: true,
-              layout: 'fit',
-              items:
-                [
-                    { xtype: 'ApplicantList' }
                 ]
             }
           /*{

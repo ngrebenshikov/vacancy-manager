@@ -1,6 +1,4 @@
-﻿var checkedCount = 0;
-
-Ext.define('VM.controller.ApplicantController',
+﻿Ext.define('VM.controller.ApplicantController',
     {
         extend: 'Ext.app.Controller',
         models: ['ApplicantModel', 'ApplicantRequirements'],
@@ -44,8 +42,6 @@ Ext.define('VM.controller.ApplicantController',
             var appReqStore = Ext.StoreManager.lookup('ApplicantRequirements');
             appReqStore.load({ params: { "id": -1} });
 
-            checkedCount = 0;
-
             view.down('form').loadRecord(newApplicant);
         },
 
@@ -85,17 +81,17 @@ Ext.define('VM.controller.ApplicantController',
             var appReqStore = Ext.StoreManager.lookup('ApplicantRequirements');
             appReqStore.load({ params: { "id": obj.get("ApplicantID")} });
 
-            // Для фильтрации //
-            checkedCount = 0;
-            appReqStore.each(function (appReq) {
-                if (appReq.get('IsChecked') == true)
-                    checkedCount++;
-            });
-            if (checkedCount > 0)
-                Ext.getCmp('ShowHideSkills').enable();
-            // *** //
-
             view.down('form').loadRecord(record);
+
+            // Для фильтрации //            
+            Ext.getCmp('ShowHideSkills').disable();
+            appReqStore.each(function (appReq) {
+                if (appReq.get('IsChecked') == true) {
+                    Ext.getCmp('ShowHideSkills').enable();
+                    return false;
+                }
+            });
+            // *** //
         },
 
         EditApplicant: function (button) {
