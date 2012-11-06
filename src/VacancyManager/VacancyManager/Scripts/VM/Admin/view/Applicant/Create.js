@@ -98,6 +98,7 @@ Ext.define('VM.view.Applicant.Create',
             xtype: 'panel', // панель справа
             region: 'center',
             border: false,
+            layout: 'fit',
             padding: '5 5 5 5',
             style: 'background-color: #fff;',
             items:
@@ -108,20 +109,25 @@ Ext.define('VM.view.Applicant.Create',
                 collapsible: false,
                 autoWidth: true,
                 autoHeight: true,
-                items: //Элементы fieldset 
+                layout: 'fit',
+                autoHeight: true,
+                items: //Элементы fieldset
                 [{
                     /*** Грид для отображения навыков(Requirement) ***/
                     xtype: 'grid',
                     id: 'ApplicantRequirementsGrid',
                     autoSizeColumns: true,
                     forceFit: true,
+                    margin: '0 0 12 0',
                     frame: false,
-                    autoWidth: true,
+                    layout: 'fit',
+                    split: true,
+                    region: 'center',
                     plugins: [cellEditing],
                     features: [Ext.create('Ext.grid.feature.Grouping', {
                         groupHeaderTpl: '{name}: ({rows.length})'
                     })],
-                    store: 'ApplicantRequirements',
+                    store: 'ApplicantRequirements', 
                     columns:
                     [{
                         xtype: 'checkcolumn',
@@ -132,15 +138,16 @@ Ext.define('VM.view.Applicant.Create',
                         menuDisabled: true,
                         listeners: {
                             checkchange: function (column, rowIndex, checked) {
-                                if (checked)
-                                    checkedCount++;
-                                else
-                                    checkedCount--;
-
-                                if (checkedCount > 0)
-                                    Ext.getCmp('ShowHideSkills').enable();
-                                else
-                                    Ext.getCmp('ShowHideSkills').disable();
+                                Ext.getCmp('ShowHideSkills').disable();
+                                
+                                var store = Ext.StoreManager.lookup('ApplicantRequirements');
+                                
+                                store.each(function (appReq) {
+                                    if (appReq.get('IsChecked') === true) {
+                                        Ext.getCmp('ShowHideSkills').enable();
+                                        return false;
+                                    }
+                                });
                             }
                         }
                     }, {
@@ -176,6 +183,7 @@ Ext.define('VM.view.Applicant.Create',
     buttons:
     [{
         text: Strings.btnAdd,
+        icon: '/ExtLib/resources/icons/accept.gif',
         action: 'CreateApplicant'
     }],
 

@@ -394,7 +394,7 @@ namespace VacancyManager.Properties {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на E-Mail.
+        ///   Ищет локализованную строку, похожую на E-mail.
         /// </summary>
         public static string UserEmail {
             get {
