@@ -1,9 +1,9 @@
 ﻿Ext.define('VM.view.consideration.List', {
     extend: 'Ext.grid.Panel',
     alias: 'widget.considerationList',
-    region: 'center',
     height: 180,
     border: false,
+    vacancy: undefined,
     padding: '5 0 0 0',
     autoSizeColumns: true,
     autoHeight: true,
@@ -12,11 +12,12 @@
     split: true,
     columns: [
             {
-                text: 'UserFullName',
-                sortable: false,
-                dataIndex: 'UserFullName'
+                text: Strings.FullName,
+                sortable: true,
+                width: 150,
+                dataIndex: 'FullName'
             }, {
-                text: 'LastCommentBody',
+                text: 'Текст комментария',
                 flex: 1,
                 width: 200,
                 sortable: false,
@@ -24,25 +25,25 @@
             }, {
                 text: 'Дата комментария',
                 width: 120,
-                sortable: true,
+                xtype: 'datecolumn',
+                format: 'd.m.Y',
+                align: 'center',
+                sortable: false,
                 dataIndex: 'LastCommentDate'
             }, {
                 text: 'Всего комментариев',
                 align: 'center',
                 width: 120,
-                sortable: true,
+                sortable: false,
                 dataIndex: 'CommentsCount'
             }
         ],
-    bbar: [{
+    bbar:
+     [{
         text: 'New Consideration',
-        name: 'btnLAddConsideration',
-        id: 'AddConsideration',
-        action: 'addConsideration' 
+        action: 'loadBlankConsideration' 
     }, {
         text: 'Edit Consideration',
-        name: 'btnEditConsideration',
-        id: 'EditConsideration',
         action: 'editConsideration' 
     },
     {

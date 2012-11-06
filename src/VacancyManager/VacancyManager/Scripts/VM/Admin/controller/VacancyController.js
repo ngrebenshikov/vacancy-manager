@@ -44,24 +44,25 @@ Ext.define('VM.controller.VacancyController', {
 
         var vacancyId = record.get('VacancyID'),
              gridId = 'ConsiderationsGrid' + vacancyId,
-             considerationsStoreId = 'ConsiderationStore' + vacancyId;
+             considerationsStoreId = 'Consideration' + vacancyId;
 
         var element = Ext.get(expandRow).down('.ux-row-expander-box');
 
         var ConsiderationsStore = Ext.create('VM.store.Consideration', {
             extend: 'VM.store.Consideration',
-            id: considerationsStoreId,
-            vacancy: record
+            id: considerationsStoreId
         });
 
         ConsiderationsStore.load({ params: { "id": vacancyId} });
 
         grid = Ext.create('VM.view.consideration.List', {
             id: gridId,
-            store: ConsiderationsStore
+            store: ConsiderationsStore,
+            vacancy: record
         });
 
         grid.render(element);
+        grid.getEl().swallowEvent(['mouseover', 'mousedown', 'click', 'dblclick', 'onRowFocus']);
     },
 
     addVacancy: function (button) {

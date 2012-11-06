@@ -3,38 +3,68 @@ Ext.define('VM.controller.ConsiderationController', {
 
     extend: 'Ext.app.Controller',
 
-    stores: ['Consideration'],
+    stores: ['Consideration', 'Applicant'],
 
     models: ['VM.model.Consideration'],
 
-    views: ['consideration.List'],
+    views: ['consideration.List', 'VM.view.consideration.ConsiderationApllicantsList'],
 
     init: function () {
         this.control(
-                {
-                    'considerationList dataview': {
-                        //    expandbody: this.loadcons,
-                        // collapsebody: this.destroygrid//,
-                        itemclick: this.selRecord
-                    },
+                { 'considerationList dataview': {
+                    itemclick: this.itemClick
+                },
+
                     'button[action = deleteConsideration]': {
                         click: this.deleteConsideration
                     },
-                    'button[action = addConsideration]': {
-                        click: this.addConsideration
+                    'button[action = loadBlankConsideration]': {
+                        click: this.loadBlankConsideration
+                    },
+                    'button[action = AddConsideration]': {
+                        click: this.AddConsideration
                     }
                 });
 
     },
-    selRecord: function (view, model) {
-        //   console.log(view);
-        //   view.getSelectionModel().deselectAll();
+
+    itemClick: function (view, record) {
+        vacancyId = record.get('VacancyID');
+        vacancyGrid = Ext.getCmp('vacancyGrid');
+        var index = vacancyGrid.getStore().find('VacancyID', vacancyId);
+        vacancyGrid.getSelectionModel().select(index);
     },
 
-    addConsideration: function (button) {
-        var compcmp = Ext.getCmp('ConsiderationsGrid1').down('button');
-        console.log(compcmp);
+    AddConsideration: function (button) {
+        var wndconsiderationAdd = button.up('window'),
+            considerationForm = wndconsiderationAdd.down('form'),
+            applicantGrid = considerationForm.down('grid'),
+            selectedVacancy = Ext.getCmp('vacancyGrid').getSelectionModel().getSelection()[0],
+            selectedVacancyId = selectedVacancy.getId(),
+            applicantStore = this.getApplicantStore(),
+            considerationStore = Ext.StoreManager.lookup('Consideration' + selectedVacancyId),
+            selectedApplicant = applicantGrid.getSelectionModel().getSelection()[0];
+        if (selectedApplicant != undefined) {
+            newConsideration = Ext.create('VM.model.Consideration', {
+                VacancyID: selectedVacancyId,
+                ApplicantID: selectedApplicant.get('ApplicantID'),
+                FullName: selectedApplicant.get('FullName')
+            });
 
+            considerationStore.insert(0, newConsideration);
+            wndconsiderationAdd.close();
+        }
+        else
+            alert('Выберите соискателя');
+
+    },
+
+    loadBlankConsideration: function (button) {
+        var considerationGrid = button.up('grid'),
+            vacancyGrid = Ext.getCmp('vacancyGrid'),
+            index = vacancyGrid.getStore().find('VacancyID', considerationGrid.vacancy.getId());
+        vacancyGrid.getSelectionModel().select(index);
+        var wndConsiderationAdd = Ext.create('VM.view.consideration.Add').show();
     },
 
     deleteConsideration: function (button) {
@@ -43,7 +73,7 @@ Ext.define('VM.controller.ConsiderationController', {
             sel_consideration = grid.getView().getSelectionModel().getSelection()[0];
         Ext.Msg.show({
             title: 'Удаление соискателя',
-            msg: 'Уладить соискателя "' + sel_consideration.get('UserFullName') + '"',
+            msg: 'Уладить соискателя "' + sel_consideration.get('FullName') + '"',
             width: 300,
             buttons: Ext.Msg.YESNO,
             fn: function (btn) {

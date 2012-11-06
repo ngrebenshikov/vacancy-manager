@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using VacancyManager.Services;
+using VacancyManager.Models;
 using VacancyManager.Services.Managers;
 using System.Web.Script.Serialization;
 
@@ -14,24 +15,23 @@ namespace VacancyManager.Controllers
         //
         // GET: /Considerations/
 
-        public JsonResult LoadConsiderations(int id)
+        public JsonResult Load(int id)
         {
             var Considerations = ConsiderationsManager.GetConsidrations(id);
             var ConsiderationList = (from Cons in Considerations
-                                    select new
-                                    { 
-                                        Cons.ApplicantID,
-                                        Cons.ConsiderationID,
-                                        Cons.VacancyID,
-                                        Cons.User.UserID,
-                                        UserFullName = "UserFullName",
-                                        LastCommentDate = "LastCommentDate",
-                                        LastCommentBody = (from Comms in Cons.Comments
-                                                           select Comms.Body
-                                                               ),
-                                        CommentsCount = Cons.Comments.Count
+                                     select new
+                                     {
+                                         Cons.ApplicantID,
+                                         Cons.ConsiderationID,
+                                         Cons.VacancyID,
+                                         FullName = Cons.Applicant.FullName,
+                                         LastCommentDate = (from Comms in Cons.Comments
+                                                            select Comms.CreationDate).LastOrDefault().ToShortDateString(),
+                                         LastCommentBody = (from Comms in Cons.Comments
+                                                            select Comms.Body).LastOrDefault(),
+                                         CommentsCount = Cons.Comments.Count
 
-                                    }).ToList();
+                                     }).ToList();
 
 
             return Json(new
@@ -44,7 +44,43 @@ namespace VacancyManager.Controllers
         }
 
         [HttpPost]
-        public JsonResult DeleteConsideration(string considerations)
+
+        public JsonResult Create(string considerations)
+        {
+            bool CreationSuccess = false;
+            string CreationMessage = "Во время добавления соискателя произошла ошибка";
+            JavaScriptSerializer jss = new JavaScriptSerializer();
+            Consideration CreatedConsideration;
+
+
+            if (considerations != null)
+            {
+                var NewConsideration = jss.Deserialize<dynamic>(considerations);
+
+
+                CreatedConsideration = ConsiderationsManager.CreateConsideration(Convert.ToInt32(NewConsideration["VacancyID"]),
+                                                          Convert.ToInt32(NewConsideration["ApplicantID"]));
+                CreationMessage = "Соискатель успешно добавлен";
+                CreationSuccess = true;
+            }
+            else
+            { 
+                CreatedConsideration = null; 
+            }
+
+            return Json(new
+            {
+                data = CreatedConsideration.ToString(),
+                success = CreationMessage,
+                message = CreationSuccess
+            });
+
+
+
+        }
+
+        [HttpPost]
+        public JsonResult Delete(string considerations)
         {
             bool d_success = false;
             string d_message = "Во время удаления соискателя произошла ошибка";
@@ -54,7 +90,7 @@ namespace VacancyManager.Controllers
             {
                 var d_consideration = jss.Deserialize<dynamic>(considerations);
 
-                ConsiderationsManager.DeleteConsidration(Convert.ToInt32(d_consideration["ConsiderationID"]));
+                ConsiderationsManager.DeleteConsideration(Convert.ToInt32(d_consideration["ConsiderationID"]));
                 d_message = "Соискатель успешно удален";
                 d_success = true;
             }

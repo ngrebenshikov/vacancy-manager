@@ -14,11 +14,12 @@ Ext.define('VM.model.Consideration', {
                      name: 'ApplicantID',
                      type: 'int'
                  }, {
-                     name: 'UserFullName',
+                     name: 'FullName',
                      type: 'string'
                  }, {
                      name: 'LastCommentDate',
-                     type: 'string'
+                     type: 'date',
+                     dateFormat: 'd.m.Y'
                  }, {
                      name: 'LastCommentBody',
                      type: 'string'

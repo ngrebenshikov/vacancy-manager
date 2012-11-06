@@ -142,6 +142,10 @@
     <Compile Include="Migrations\201211051632033_Vacancy_ForeignLanguageRemoved.Designer.cs">
       <DependentUpon>201211051632033_Vacancy_ForeignLanguageRemoved.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201211051840118_Consideration_UserChangedToApplicant.cs" />
+    <Compile Include="Migrations\201211051840118_Consideration_UserChangedToApplicant.Designer.cs">
+      <DependentUpon>201211051840118_Consideration_UserChangedToApplicant.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\Applicant.cs" />
@@ -1497,6 +1501,7 @@
     <Content Include="Scripts\VM\Admin\view\Applicant\Create.js" />
     <Content Include="Scripts\VM\Admin\view\Applicant\Edit.js" />
     <Content Include="Scripts\VM\Admin\view\consideration\Add.js" />
+    <Content Include="Scripts\VM\Admin\view\consideration\ConsiderationApllicantsList.js" />
     <Content Include="Scripts\VM\Admin\view\consideration\Edit.js" />
     <Content Include="Scripts\VM\Admin\view\consideration\List.js" />
     <Content Include="Scripts\VM\Admin\view\RequirementListInStack\Create.js" />

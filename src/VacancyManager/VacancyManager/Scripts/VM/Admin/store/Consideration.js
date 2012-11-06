@@ -2,17 +2,15 @@
   extend: 'VM.store.BaseStore',
   model: 'VM.model.Consideration',
   id: 'ConsiderationStore',
-  vacancy: null,
   autoLoad: false,
   autoSync: true,
   autoSave: true,
   proxy: {
     type: 'ajax',
     api: {
-      read: '/Considerations/LoadConsiderations',
-      create: '/Vacancy/CreateConsideration',
-      update: '/Vacancy/UpdateConsideration',
-      destroy: '/Considerations/DeleteConsideration'
+      read: '/Considerations/Load',
+      create: '/Considerations/Create',
+      destroy: '/Considerations/Delete'
     },
     reader: {
       type: 'json',
