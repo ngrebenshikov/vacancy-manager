@@ -190,7 +190,7 @@
     <comment>Текст для сообщений pagingTollbar'А</comment>
   </data>
   <data name="AddRequirementToStack" xml:space="preserve">
-    <value>Добавить требование к стеку</value>
+    <value>Добавить требование</value>
     <comment>Заголовок окна добавления требования в стек</comment>
   </data>
   <data name="btnAdd" xml:space="preserve">
@@ -198,7 +198,7 @@
     <comment>Кнопка "Добавить"</comment>
   </data>
   <data name="btnAddRequirementStack" xml:space="preserve">
-    <value>Новый стек требований</value>
+    <value>Новая категория</value>
     <comment>Кнопка добавления стека требований</comment>
   </data>
   <data name="btnCancel" xml:space="preserve">
@@ -214,19 +214,19 @@
     <comment>Кнопка "Сохранить"</comment>
   </data>
   <data name="CreateRequirementStackList" xml:space="preserve">
-    <value>Добавление стека требований</value>
+    <value>Добавление категории</value>
     <comment>Заголовок окна добавления стека требований</comment>
   </data>
   <data name="EditRequirementStackList" xml:space="preserve">
-    <value>Изменение стека требований</value>
+    <value>Изменение категории</value>
     <comment>Заголовок окна изменения стека требований</comment>
   </data>
   <data name="msgRequirementStackNotSelected" xml:space="preserve">
-    <value>Не выбран стек требований</value>
+    <value>Не выбрана категория</value>
     <comment>Сообщение</comment>
   </data>
   <data name="RequirementListinStack" xml:space="preserve">
-    <value>Список требований в стеке</value>
+    <value>Список требований</value>
     <comment>Заголовок панели списка требований в стеке</comment>
   </data>
   <data name="RequirementsTabTitle" xml:space="preserve">
@@ -234,7 +234,7 @@
     <comment>Заголовок вкладки требования</comment>
   </data>
   <data name="RequirementStackList" xml:space="preserve">
-    <value>Список стеков требований</value>
+    <value>Список категорий</value>
     <comment>Заголовок панели списка стеков</comment>
   </data>
   <data name="TitleRequirementName" xml:space="preserve">
@@ -242,7 +242,7 @@
     <comment>Заголовок поля требования</comment>
   </data>
   <data name="TitleRequirementStackName" xml:space="preserve">
-    <value>Стек требований</value>
+    <value>Категория</value>
     <comment>Заголовок поля стека требований</comment>
   </data>
   <data name="TitleWindowCreateRequirement" xml:space="preserve">
