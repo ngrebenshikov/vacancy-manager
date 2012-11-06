@@ -12,7 +12,7 @@
     this.control(
                 {
                   'UserList dataview': {
-                    itemclick: this.ButtonDisabler
+                    itemdblclick: this.callEdit
                   },
                   'button[action = CreateUser]': {
                     click: this.CreateUser
