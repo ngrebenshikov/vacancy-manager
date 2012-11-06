@@ -1,0 +1,28 @@
+﻿@model MVC3AppCodeFirst.Models.Blog
+
+@{
+    ViewBag.Title = "Удалить вакансию";
+}
+
+<h2>Удалить</h2>
+
+<h3>Вы действительно хотите удалить вакансию?</h3>
+<fieldset>
+    <legend>Вакансии</legend>
+
+    <div class="display-label">Предприятие</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Title)
+    </div>
+
+    <div class="display-label">Наименование вакансии</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.BloggerName)
+    </div>
+</fieldset>
+@using (Html.BeginForm()) {
+    <p>
+        <input type="submit" value="Delete" /> |
+        @Html.ActionLink("Назад", "Index")
+    </p>
+}
