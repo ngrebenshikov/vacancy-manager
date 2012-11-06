@@ -1,75 +1,35 @@
-body
+    .DataView-list
+    {
+      padding: 0 3px 0 3px;
+    }
+    .DataView-list-item
+    {
+      margin-top: 3px;
+      padding-left: 20px;
+      font-size: 11px;
+      line-height: 20px;
+      cursor: pointer;
+      border: 1px solid #fff;
+    }
+    .DataView-list .x-item-selected
+    {
+      font-weight: bold;
+      color: #15428B;
+      background-color: #DFE8F6;
+      border: 1px dotted #A3BAE9;
+    }
+    .DataView-list-item-hover
+    {
+      background-color: #eee;
+    }
+
+
+.x-grid-row-selected .x-grid-table .x-grid-cell 
 {
-    font-size: .85em;
-    font-family: "Trebuchet MS", Verdana, Helvetica, Sans-Serif;
-    color: #232323;
-    background-color: #fff;
+    background-color: transparent!important;
 }
 
-header,
-footer,
-nav,
-section {
-    display: block;
-}
-
-/* Styles for basic forms
------------------------------------------------------------*/
-
-fieldset 
+.x-grid-row-selected .x-grid-table .x-grid-row-selected .x-grid-cell 
 {
-    border:1px solid #ddd;
-    padding:0 1.4em 1.4em 1.4em;
-    margin:0 0 1.5em 0;
-}
-
-legend 
-{
-    font-size:1.2em;
-    font-weight: bold;
-}
-
-textarea 
-{
-    min-height: 75px;
-}
-
-.editor-label 
-{
-    margin: 1em 0 0 0;
-}
-
-.editor-field 
-{
-    margin:0.5em 0 0 0;
-}
-
-
-/* Styles for validation helpers
------------------------------------------------------------*/
-.field-validation-error
-{
-    color: #ff0000;
-}
-
-.field-validation-valid
-{
-    display: none;
-}
-
-.input-validation-error
-{
-    border: 1px solid #ff0000;
-    background-color: #ffeeee;
-}
-
-.validation-summary-errors
-{
-    font-weight: bold;
-    color: #ff0000;
-}
-
-.validation-summary-valid
-{
-    display: none;
+    background-color: #DFE8F6 !important;
 }
