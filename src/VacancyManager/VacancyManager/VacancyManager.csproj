@@ -1418,7 +1418,6 @@
     <Content Include="ExtLib\ux\css\CenterLayout.css" />
     <Content Include="ExtLib\ux\css\CheckHeader.css" />
     <Content Include="ExtLib\ux\css\GroupTabPanel.css" />
-    <Content Include="ExtLib\ux\css\HeaderButtons.css" />
     <Content Include="ExtLib\ux\css\images\border.gif" />
     <Content Include="ExtLib\ux\css\images\bottom2.gif" />
     <Content Include="ExtLib\ux\css\images\checked.gif" />
@@ -1435,7 +1434,6 @@
     <Content Include="ExtLib\ux\css\ItemSelector.css" />
     <Content Include="ExtLib\ux\css\LiveSearchGridPanel.css" />
     <Content Include="ExtLib\ux\css\TabScrollerMenu.css" />
-    <Content Include="ExtLib\ux\HeaderButtons.js" />
     <Content Include="ExtLib\ux\RowExpander.js" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
@@ -1459,7 +1457,6 @@
     <Content Include="Scripts\VM\Admin\controller\VacancyController.js" />
     <Content Include="Scripts\VM\Admin\controller\Roles.js" />
     <Content Include="Scripts\VM\Admin\controller\ApplicantController.js" />
-    <Content Include="Scripts\VM\Admin\HeaderTabPanel.js" />
     <Content Include="Scripts\VM\Admin\model\Consideration.js" />
     <Content Include="Scripts\VM\Admin\model\RequirementListInStack.js" />
     <Content Include="Scripts\VM\Admin\model\RequirementStack.js" />
