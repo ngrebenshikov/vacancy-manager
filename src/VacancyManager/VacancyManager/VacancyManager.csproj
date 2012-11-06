@@ -254,6 +254,14 @@
     <Content Include="ExtLib\resources\css\ext-sandbox.css" />
     <Content Include="ExtLib\resources\css\ext-standard-scoped.css" />
     <Content Include="ExtLib\resources\css\ext-standard.css" />
+    <Content Include="ExtLib\resources\icons\accept.gif" />
+    <Content Include="ExtLib\resources\icons\add.gif" />
+    <Content Include="ExtLib\resources\icons\add16.gif" />
+    <Content Include="ExtLib\resources\icons\delete.gif" />
+    <Content Include="ExtLib\resources\icons\group16.gif" />
+    <Content Include="ExtLib\resources\icons\user.gif" />
+    <Content Include="ExtLib\resources\icons\user_add.gif" />
+    <Content Include="ExtLib\resources\icons\user_delete.gif" />
     <Content Include="ExtLib\resources\themes\images\access\boundlist\trigger-arrow.png" />
     <Content Include="ExtLib\resources\themes\images\access\box\corners-blue.gif" />
     <Content Include="ExtLib\resources\themes\images\access\box\corners.gif" />
