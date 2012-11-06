@@ -115,6 +115,12 @@
                 ApplicantRequirementsStore.clearFilter();
                 ApplicantRequirementsStore.sync();
 
+                var f = function (storeAR, operation) {
+                    store.load();
+                    ApplicantRequirementsStore.un("write", f);
+                };
+                ApplicantRequirementsStore.on("write", f);
+
                 button.up('window').close();
             }
         },
