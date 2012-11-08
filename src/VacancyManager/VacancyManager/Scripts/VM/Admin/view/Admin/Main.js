@@ -34,8 +34,8 @@
             {
               xtype: 'panel',
               title: Strings.Users,
-              autoScroll: true,
               layout: 'fit',
+              //autoScroll: true,
               items:
               [
                 { xtype: 'UserList' }
@@ -44,7 +44,7 @@
             {
               xtype: 'panel',
               title: "Вакансии",
-              autoScroll: true,
+              //autoScroll: true,
               layout: 'fit',
               items:
               [
@@ -73,7 +73,7 @@
             {
               xtype: 'panel',
               title: "Конфигурация",
-              autoScroll: true,
+              //autoScroll: true,
               layout: 'fit',
               items:
                 [
@@ -83,7 +83,7 @@
             {
               xtype: 'panel',
               title: "Соискатели",
-              autoScroll: true,
+              //autoScroll: true,
               layout: 'fit',
               items:
                 [
