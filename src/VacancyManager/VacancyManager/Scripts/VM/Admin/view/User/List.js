@@ -1,7 +1,9 @@
 ﻿Ext.define('VM.view.User.List', {
   extend: 'Ext.grid.Panel',
   alias: 'widget.UserList',
-  region: "center",
+  //region: "center",
+  //layout:'fit',
+  layoutOnTabChange:true,
   id: 'UserGrid',
   autoSizeColumns: true,
   forceFit: true,
