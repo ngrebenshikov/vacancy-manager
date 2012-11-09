@@ -46,14 +46,14 @@
 
             tbar: [{
                 text: Strings.btnAdd,
-                icon: '/ExtLib/resources/icons/user_add.gif',
+                icon: '/Content/icons/user_add.gif',
                 tooltip: 'Добавить нового соискателя',
                 name: 'btnCreateApplicant',
                 id: 'CreateApplicant',
                 action: 'CreateApplicantShowForm'
             }, {
                 text: Strings.btnRemove,
-                icon: '/ExtLib/resources/icons/user_delete.gif',
+                icon: '/Content/icons/user_delete.gif',
                 tooltip: 'Удалить выбранного соискателя',
                 name: 'btnRemoveApplicant',
                 id: 'RemoveApplicant',

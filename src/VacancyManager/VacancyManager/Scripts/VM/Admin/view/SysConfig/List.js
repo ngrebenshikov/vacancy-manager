@@ -33,13 +33,13 @@
 
             tbar: [{
                 text: Strings.btnAdd,
-                icon: '/ExtLib/resources/icons/add.gif',
+                icon: '/Content/icons/add.gif',
                 name: 'btnAdd',
                 id: 'Add',
                 action: 'Add'
             }, {
                 text: Strings.btnRemove,
-                icon: '/ExtLib/resources/icons/delete.gif',
+                icon: '/Content/icons/delete.gif',
                 name: 'btnRemove',
                 id: 'Remove',
                 action: 'Remove',

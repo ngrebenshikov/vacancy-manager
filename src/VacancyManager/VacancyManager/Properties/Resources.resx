@@ -302,4 +302,28 @@
   <data name="btnHide" xml:space="preserve">
     <value>Скрыть</value>
   </data>
+  <data name="InputMessages" xml:space="preserve">
+    <value>Входящие сообщения</value>
+  </data>
+  <data name="Applicants" xml:space="preserve">
+    <value>Соискатели</value>
+  </data>
+  <data name="Configuration" xml:space="preserve">
+    <value>Конфигурация</value>
+  </data>
+  <data name="DeliveryDate" xml:space="preserve">
+    <value>Получено</value>
+  </data>
+  <data name="SendDate" xml:space="preserve">
+    <value>Отправлено</value>
+  </data>
+  <data name="Sender" xml:space="preserve">
+    <value>Отправитель</value>
+  </data>
+  <data name="Subject" xml:space="preserve">
+    <value>Тема</value>
+  </data>
+  <data name="Vacancy" xml:space="preserve">
+    <value>Вакансия</value>
+  </data>
 </root>

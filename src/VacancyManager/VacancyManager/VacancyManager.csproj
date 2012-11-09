@@ -69,6 +69,7 @@
     <Compile Include="Controllers\ApplicantRequirementController.cs" />
     <Compile Include="Controllers\ConsiderationsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\InputMessageController.cs" />
     <Compile Include="Controllers\RequirementStackController.cs" />
     <Compile Include="Controllers\RolesController.cs" />
     <Compile Include="Controllers\SysConfigController.cs" />
@@ -146,10 +147,15 @@
     <Compile Include="Migrations\201211051840118_Consideration_UserChangedToApplicant.Designer.cs">
       <DependentUpon>201211051840118_Consideration_UserChangedToApplicant.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201211090825112_InputMessage_Added.cs" />
+    <Compile Include="Migrations\201211090825112_InputMessage_Added.Designer.cs">
+      <DependentUpon>201211090825112_InputMessage_Added.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\Applicant.cs" />
     <Compile Include="Models\ApplicantRequirement.cs" />
+    <Compile Include="Models\InputMessage.cs" />
     <Compile Include="Models\RequirementResumeRecord.cs" />
     <Compile Include="Models\Comment.cs" />
     <Compile Include="Models\Consideration.cs" />
@@ -178,6 +184,7 @@
     <Compile Include="Services\Managers\ApplicantManager.cs" />
     <Compile Include="Services\Managers\ApplicantRequirementsManager.cs" />
     <Compile Include="Services\Managers\ConsiderationsManager.cs" />
+    <Compile Include="Services\Managers\InputMessageManager.cs" />
     <Compile Include="Services\Managers\RequirementsManager.cs" />
     <Compile Include="Services\Managers\SharedManager.cs" />
     <Compile Include="Services\Managers\SysConfigManager.cs" />
@@ -255,14 +262,14 @@
     <Content Include="ExtLib\resources\css\ext-sandbox.css" />
     <Content Include="ExtLib\resources\css\ext-standard-scoped.css" />
     <Content Include="ExtLib\resources\css\ext-standard.css" />
-    <Content Include="ExtLib\resources\icons\accept.gif" />
-    <Content Include="ExtLib\resources\icons\add.gif" />
-    <Content Include="ExtLib\resources\icons\add16.gif" />
-    <Content Include="ExtLib\resources\icons\delete.gif" />
-    <Content Include="ExtLib\resources\icons\group16.gif" />
-    <Content Include="ExtLib\resources\icons\user.gif" />
-    <Content Include="ExtLib\resources\icons\user_add.gif" />
-    <Content Include="ExtLib\resources\icons\user_delete.gif" />
+    <Content Include="Content\icons\accept.gif" />
+    <Content Include="Content\icons\add.gif" />
+    <Content Include="Content\icons\add16.gif" />
+    <Content Include="Content\icons\delete.gif" />
+    <Content Include="Content\icons\group16.gif" />
+    <Content Include="Content\icons\user.gif" />
+    <Content Include="Content\icons\user_add.gif" />
+    <Content Include="Content\icons\user_delete.gif" />
     <Content Include="ExtLib\resources\themes\images\access\boundlist\trigger-arrow.png" />
     <Content Include="ExtLib\resources\themes\images\access\box\corners-blue.gif" />
     <Content Include="ExtLib\resources\themes\images\access\box\corners.gif" />
@@ -1485,6 +1492,7 @@
     <Content Include="Scripts\VM\Admin\app.js" />
     <Content Include="Scripts\VM\Admin\controller\Admin.js" />
     <Content Include="Scripts\VM\Admin\controller\ConsiderationController.js" />
+    <Content Include="Scripts\VM\Admin\controller\InputMessageController.js" />
     <Content Include="Scripts\VM\Admin\controller\RequirementListInStack.js" />
     <Content Include="Scripts\VM\Admin\controller\RequirementStack.js" />
     <Content Include="Scripts\VM\Admin\controller\SysConfigController.js" />
@@ -1502,6 +1510,7 @@
     <Content Include="Scripts\VM\Admin\model\VacancyRequirements.js" />
     <Content Include="Scripts\VM\Admin\model\ApplicantRequirements.js" />
     <Content Include="Scripts\VM\Admin\model\ApplicantModel.js" />
+    <Content Include="Scripts\VM\Admin\model\InputMessage.js" />
     <Content Include="Scripts\VM\Admin\store\ApplicantRequirements.js" />
     <Content Include="Scripts\VM\Admin\store\BaseStore.js" />
     <Content Include="Scripts\VM\Admin\store\Consideration.js" />
@@ -1513,6 +1522,7 @@
     <Content Include="Scripts\VM\Admin\store\Roles.js" />
     <Content Include="Scripts\VM\Admin\store\VacancyRequirements.js" />
     <Content Include="Scripts\VM\Admin\store\Applicant.js" />
+    <Content Include="Scripts\VM\Admin\store\InputMessage.js" />
     <Content Include="Scripts\VM\Admin\view\Admin\Main.js" />
     <Content Include="Scripts\VM\Admin\view\Applicant\Create.js" />
     <Content Include="Scripts\VM\Admin\view\Applicant\Edit.js" />
@@ -1520,6 +1530,8 @@
     <Content Include="Scripts\VM\Admin\view\consideration\ConsiderationApllicantsList.js" />
     <Content Include="Scripts\VM\Admin\view\consideration\Edit.js" />
     <Content Include="Scripts\VM\Admin\view\consideration\List.js" />
+    <Content Include="Scripts\VM\Admin\view\InputMessage\Create.js" />
+    <Content Include="Scripts\VM\Admin\view\InputMessage\Index.js" />
     <Content Include="Scripts\VM\Admin\view\RequirementListInStack\Create.js" />
     <Content Include="Scripts\VM\Admin\view\RequirementListInStack\Edit.js" />
     <Content Include="Scripts\VM\Admin\view\RequirementListInStack\List.js" />

@@ -71,23 +71,39 @@
               ]
             },
             {
-              xtype: 'panel',
-              title: "Конфигурация",
-              autoScroll: true,
-              layout: 'fit',
-              items:
+                tabConfig: {
+                    title: Strings.Configuration
+                },
+                xtype: 'panel',
+                autoScroll: true,
+                layout: 'fit',
+                items:
                 [
                     { xtype: 'SysConfigList' }
                 ]
             },
             {
-              xtype: 'panel',
-              title: "Соискатели",
-              autoScroll: true,
-              layout: 'fit',
-              items:
+                tabConfig: {
+                    title: Strings.Applicants
+                },
+                xtype: 'panel',
+                autoScroll: true,
+                layout: 'fit',
+                items:
                 [
                     { xtype: 'ApplicantList' }
+                ]
+            },
+            {
+                tabConfig: {
+                    title: Strings.InputMessages
+                },
+                xtype: 'panel',
+                autoScroll: true,
+                layout: 'fit',
+                items:
+                [
+                    { xtype: 'InputMessageIndex' }
                 ]
             }
           /*{

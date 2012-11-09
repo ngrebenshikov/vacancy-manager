@@ -33,3 +33,8 @@
 {
     background-color: #DFE8F6 !important;
 }
+
+.new-message td
+{
+    font-weight: bold !important;
+}

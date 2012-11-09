@@ -10,6 +10,12 @@ namespace VacancyManager.Services.Managers
     {
         #region Consideration
 
+        internal static IEnumerable<Consideration> GetConsidrations()
+        {
+            VacancyContext _db = new VacancyContext();
+            return _db.Considerations.ToList();
+        }
+
         internal static IEnumerable<Consideration> GetConsidrations(int vacancyId)
         {
             VacancyContext _db = new VacancyContext();
