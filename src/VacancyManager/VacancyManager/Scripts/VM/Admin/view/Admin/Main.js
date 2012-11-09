@@ -34,7 +34,7 @@
             {
               xtype: 'panel',
               title: Strings.Users,
-              autoScroll: true,
+              //autoScroll: true,
               layout: 'fit',
               items:
               [
@@ -44,7 +44,7 @@
             {
               xtype: 'panel',
               title: "Вакансии",
-              autoScroll: true,
+              //autoScroll: true,
               layout: 'fit',
               items:
               [
@@ -75,7 +75,7 @@
                     title: Strings.Configuration
                 },
                 xtype: 'panel',
-                autoScroll: true,
+                //autoScroll: true,
                 layout: 'fit',
                 items:
                 [
@@ -87,7 +87,7 @@
                     title: Strings.Applicants
                 },
                 xtype: 'panel',
-                autoScroll: true,
+                //autoScroll: true,
                 layout: 'fit',
                 items:
                 [
@@ -99,7 +99,7 @@
                     title: Strings.InputMessages
                 },
                 xtype: 'panel',
-                autoScroll: true,
+                //autoScroll: true,
                 layout: 'fit',
                 items:
                 [
