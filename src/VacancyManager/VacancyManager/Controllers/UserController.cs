@@ -60,7 +60,7 @@ namespace VacancyManager.Controllers
         string UserName = json_User["UserName"].ToString();
         string Email = json_User["Email"].ToString();
         string Password = json_User["Password"].ToString();
-
+        var sendMail = MailSender.Send(json_User["Email"].ToString(), "Добро пожаловать", "Приветствуем вас в проекте!");
         Tuple<bool, string, VMMembershipUser> result = SharedCode.CreateNewUser(UserName, Email, Password, activate: true, setAsAdmin: true);
         return CreateJsonAnwser(result.Item1, result.Item2, result.Item3);
 
@@ -82,10 +82,11 @@ namespace VacancyManager.Controllers
 
         if (Membership.DeleteUser(json_User["UserName"]))
         {
+          var sendMail = MailSender.Send(json_User["Email"].ToString(), "Сообщение об удалении", "Вынуждены Вам сообщить, что Вы удалены из базы");
           message = "Пользователь удалён";
           success = true;
         }
-      }
+      }      
       return Json(new { success, message });
     }
 
