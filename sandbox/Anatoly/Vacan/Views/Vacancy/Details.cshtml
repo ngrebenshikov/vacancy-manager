@@ -1,0 +1,25 @@
+﻿@model Vacan.Models.Vacancy
+
+@{
+    ViewBag.Title = "Подробная информация";
+}
+
+<h2>Подробности о вакансии</h2>
+
+<fieldset>
+    <legend>Вакансия</legend>
+
+    <div class="display-label">Название</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Name)
+    </div>
+
+    <div class="display-label">Описание</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Description)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
