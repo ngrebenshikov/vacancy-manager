@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using VacancyManager.Services.Managers;
 using System.Web.Script.Serialization;
 using VacancyManager.Models;
+using System.IO;
 
 namespace VacancyManager.Controllers
 {
@@ -141,6 +142,9 @@ namespace VacancyManager.Controllers
             bool success = false;
             string resultMessage = "Ошибка при удалении сообщения";
             JavaScriptSerializer jss = new JavaScriptSerializer();
+
+            string httpData = new StreamReader(HttpContext.Request.InputStream).ReadToEnd();
+
             if (data != null)
             {
                 var obj = jss.Deserialize<dynamic>(data);

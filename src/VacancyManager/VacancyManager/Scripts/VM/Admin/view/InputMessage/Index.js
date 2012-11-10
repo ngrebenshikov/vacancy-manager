@@ -23,6 +23,7 @@
             frame: false,
             layout: 'fit',
             region: 'center',
+            multiSelect: true,
             store: 'InputMessage',
             columns:
             [{
@@ -36,29 +37,25 @@
                 text: Strings.Vacancy,
                 width: 120,
                 sortable: true,
-                //field: { xtype: 'textfield' },
                 menuDisabled: true
             }, {
                 dataIndex: 'Subject',
                 text: Strings.Subject,
                 width: 50,
                 sortable: true,
-                field: { xtype: 'textfield' },
                 menuDisabled: true
-//            }, {
-//                dataIndex: 'SendDate',
-//                text: Strings.SendDate,
-//                width: 50,
-//                sortable: true,
-//                //field: { xtype: 'textfield' },
-//                menuDisabled: true
-//            }, {
-//                dataIndex: 'DeliveryDate',
-//                text: Strings.DeliveryDate,
-//                width: 50,
-//                sortable: true,
-//                field: { xtype: 'textfield' },
-//                menuDisabled: true
+            }, {
+                dataIndex: 'SendDate',
+                text: Strings.SendDate,
+                width: 50,
+                sortable: true,
+                menuDisabled: true
+            }, {
+                dataIndex: 'DeliveryDate',
+                text: Strings.DeliveryDate,
+                width: 50,
+                sortable: true,
+                menuDisabled: true
             }],
             
             dockedItems: [{

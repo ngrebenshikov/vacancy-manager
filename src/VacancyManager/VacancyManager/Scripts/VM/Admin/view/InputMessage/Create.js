@@ -42,16 +42,16 @@
             name: 'Subject',
             fieldLabel: Strings.Subject
         }, {
-            xtype: 'textfield',
-            id: 'InputMessageSendDate',
-            name: 'SendDate',
-            fieldLabel: Strings.SendDate
-        }, {
-            xtype: 'textfield',
-            id: 'InputMessageDeliveryDate',
-            name: 'DeliveryDate',
-            fieldLabel: Strings.DeliveryDate
-        }, {
+//            xtype: 'textfield',
+//            id: 'InputMessageSendDate',
+//            name: 'SendDate',
+//            fieldLabel: Strings.SendDate
+//        }, {
+//            xtype: 'textfield',
+//            id: 'InputMessageDeliveryDate',
+//            name: 'DeliveryDate',
+//            fieldLabel: Strings.DeliveryDate
+//        }, {
             xtype: 'textareafield',
             name: 'Text',
             grow: true,

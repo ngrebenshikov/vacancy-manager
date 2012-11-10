@@ -56,13 +56,18 @@
             button.up('window').close();
         },
 
-        /* ===== */
+        // Вызывается при itemclick на гриде 
+        // 1. Грузит текст сообщения при itemclick.
+        // 2. Меняет IsRead сообщенияна true, при условии, что выбранно одно сообщение 
         ShowText: function (grid, record) {
             var isRead = record.get('IsRead');
             var store = Ext.StoreManager.lookup('InputMessage');
-            if (isRead != true) {
-                record.set('IsRead', true)
-                store.sync();
+
+            if (grid.getSelectionModel().getSelection().length == 1) {
+                if (isRead != true) {
+                    record.set('IsRead', true)
+                    //store.sync();
+                }
             }
 
             var obj = grid.getSelectionModel().getSelection()[0];
@@ -71,24 +76,57 @@
                 Ext.getCmp('InputMessageText').emptyText = 'Текст в выбранном сообщении отсутствует';
         },
 
+        /* ===== */
         RemoveInputMessage: function (button) {
             var grid = Ext.getCmp('InputMessageGrid'),
                 store = Ext.StoreManager.lookup('InputMessage'),
-                selection = grid.getView().getSelectionModel().getSelection()[0];
+                selection = grid.getView().getSelectionModel().getSelection();
 
             if (selection != null) {
-                Ext.Msg.show({
-                    title: 'Удалить?',
-                    msg: 'Удалить сообщение "' + selection.get('Subject') + '"',
-                    width: 300,
-                    buttons: Ext.Msg.YESNO,
-                    fn: function (btn) {
-                        if (btn == 'yes') {
-                            store.remove(selection);
-                            button.disable();
+                if (selection.length == 1) {
+                    Ext.Msg.show({
+                        title: 'Удалить?',
+                        msg: 'Удалить сообщение "' + selection[0].get('Subject') + '"?',
+                        width: 300,
+                        buttons: Ext.Msg.YESNO,
+                        fn: function (btn) {
+                            if (btn == 'yes') {
+                                store.remove(selection);
+                                button.disable();
+                            }
                         }
-                    }
-                });
+                    });
+                } else if (selection.length > 1 && selection.length < 5) {
+                    Ext.Msg.show({
+                        title: 'Удалить?',
+                        msg: 'Удалить ' + selection.length + ' сообщения?',
+                        width: 300,
+                        buttons: Ext.Msg.YESNO,
+                        fn: function (btn) {
+                            if (btn == 'yes') {
+                                Ext.each(selection, function(select){
+                                    store.remove(select);
+                                });
+                                button.disable();
+                            }
+                        }
+                    });
+                } else if (selection.length >= 5) {
+                    Ext.Msg.show({
+                        title: 'Удалить?',
+                        msg: 'Удалить ' + selection.length + ' сообщений?',
+                        width: 300,
+                        buttons: Ext.Msg.YESNO,
+                        fn: function (btn) {
+                            if (btn == 'yes') {
+                                Ext.each(selection, function(select){
+                                    store.remove(select);
+                                });                   
+                                button.disable();
+                            }
+                        }
+                    });
+                }
             }
         },
 
