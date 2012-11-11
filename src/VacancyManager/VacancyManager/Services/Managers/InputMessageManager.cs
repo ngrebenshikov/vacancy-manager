@@ -17,7 +17,7 @@ namespace VacancyManager.Services.Managers
             return obj;
         }
 
-        internal static void Create(string sender, string subject, string text, DateTime sendDate, DateTime deliveryDate, int considerId)
+        internal static void Create(string sender, string subject, string text, DateTime sendDate, DateTime deliveryDate, Nullable<int> considerId)
         {
             var obj = new InputMessage
             {

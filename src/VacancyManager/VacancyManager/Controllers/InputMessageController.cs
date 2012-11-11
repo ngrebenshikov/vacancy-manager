@@ -25,7 +25,7 @@ namespace VacancyManager.Controllers
 
             foreach (var message in list)
             {
-                if (message.ConsiderationId > 0)
+                if (message.ConsiderationId != null)
                 {
                     res = (from cons in considerationList
                            join app in applicantList on cons.ApplicantID equals app.ApplicantID
@@ -82,12 +82,12 @@ namespace VacancyManager.Controllers
             {
                 var obj = jss.Deserialize<dynamic>(data);
 
-                int considerationId = 0;
+                Nullable<int> considerationId = 0;
                 DateTime deliveryDate = new DateTime();
                 DateTime sendDate = new DateTime();
 
                 if (obj["ConsiderationId"].ToString() == "")
-                    considerationId = -1;
+                    considerationId = null;
                 else
                     considerationId = obj["ConsiderationId"];
 

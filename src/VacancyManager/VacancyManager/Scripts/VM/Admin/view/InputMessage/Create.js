@@ -52,6 +52,23 @@
 //            name: 'DeliveryDate',
 //            fieldLabel: Strings.DeliveryDate
 //        }, {
+            xtype: 'form',
+            id: 'UploadFileForm',
+            border: false,
+            //style: 'background-color: #fff;',
+            items: //Элементы формы
+            [{
+                xtype: 'filefield',
+                id: 'InputMessageAttachment',
+                emptyText: 'Выберите файл',
+                fieldLabel: 'Файл',
+                name: 'AttachmentFile',
+                buttonText: '',
+                buttonConfig: {
+                    iconCls: 'upload-icon'
+                }
+            }],
+        }, {
             xtype: 'textareafield',
             name: 'Text',
             grow: true,
@@ -63,6 +80,9 @@
         [{
             text: Strings.btnAdd,
             action: 'CreateInputMessage'
+        }, {
+            text: 'Upload',
+            action: 'Upload'
         }]
     }],
     initComponent: function () {
