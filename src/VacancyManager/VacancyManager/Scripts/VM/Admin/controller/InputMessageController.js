@@ -9,7 +9,8 @@
             this.control({
                 'InputMessageIndex #InputMessageGrid':
                     { itemclick: this.ShowText,
-                      selectionchange: this.SelectionChange },
+                        selectionchange: this.SelectionChange
+                    },
 
                 'InputMessageCreate #InputMessageVacancy':
                     { select: this.OnVacancyCboxSelect },
@@ -24,13 +25,16 @@
                 // Удалить
                 'button[action=RemoveInputMessage]':
                     { click: this.RemoveInputMessage },
-                
+
                 // Открыть форму "Редактировать"
                 'button[action=EditInputMessageShowForm]':
                     { click: this.EditInputMessageShowForm },
                 // Сохранить изменения
                 'button[action=EditInputMessage]':
                     { click: this.EditInputMessage },
+
+                'button[action=Upload]':
+                    { click: this.Upload }
             });
         },
 
@@ -51,7 +55,21 @@
             var obj = form.getRecord();    // Получаем record с формы, но тот record который загружали через loadRecord
             form.updateRecord(obj);        // Обновляем с формы полученный выше record 
 
-            store.add(obj);
+            var file = Ext.getCmp('InputMessageAttachment').getValue();
+
+            store.save({
+                success: function (record, operation) {
+                    var file = Ext.getCmp('InputMessageAttachment').getValue();
+
+                    var fileForm = Ext.getCmp('UploadFileForm').getForm();
+                    if (fileForm.isValid()) {
+                        fileForm.submit({
+                            url: 'Attachment/UploadFile',
+                            waitMsg: 'Saving your details...'
+                        });
+                    }
+                }
+            });
 
             button.up('window').close();
         },
@@ -104,7 +122,7 @@
                         buttons: Ext.Msg.YESNO,
                         fn: function (btn) {
                             if (btn == 'yes') {
-                                Ext.each(selection, function(select){
+                                Ext.each(selection, function (select) {
                                     store.remove(select);
                                 });
                                 button.disable();
@@ -119,9 +137,9 @@
                         buttons: Ext.Msg.YESNO,
                         fn: function (btn) {
                             if (btn == 'yes') {
-                                Ext.each(selection, function(select){
+                                Ext.each(selection, function (select) {
                                     store.remove(select);
-                                });                   
+                                });
                                 button.disable();
                             }
                         }
@@ -131,17 +149,31 @@
         },
 
         SelectionChange: function (view, selections, options) {
-                    var button = Ext.getCmp('RemoveInputMessage'); //Ищет по ID компонента
-                    if (selections != null)
-                        button.enable();
+            var button = Ext.getCmp('RemoveInputMessage'); //Ищет по ID компонента
+            if (selections != null)
+                button.enable();
         },
 
         OnVacancyCboxSelect: function (combo, records) {
             var comboSender = Ext.getCmp('InputMessageSender');
-            
+
             comboSender.clearValue();
-            comboSender.store.load({ params: {"id" : combo.getValue()} });
-            
+            comboSender.store.load({ params: { "id": combo.getValue()} });
+
             comboSender.enable();
+        },
+
+        Upload: function () {
+            var fileForm = Ext.getCmp('UploadFileForm').getForm();
+
+            var q = Ext.getCmp('InputMessageAttachment').getSubmitData();
+            var w = Ext.getCmp('InputMessageAttachment').getSubmitValue();
+
+            if (fileForm.isValid()) {
+                fileForm.submit({
+                    url: 'Attachment/UploadFile',
+                    waitMsg: 'Saving your details...'
+                });
+            }
         }
     })

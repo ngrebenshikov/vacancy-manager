@@ -18,7 +18,7 @@ namespace VacancyManager.Models
 
         public bool IsRead { get; set; }
 
-        public int ConsiderationId { get; set; }
+        public Nullable<int> ConsiderationId { get; set; }
 
         public virtual Consideration Consideration { get; set; }
         //public virtual ICollection<Attachment> Attachments { get; set; }

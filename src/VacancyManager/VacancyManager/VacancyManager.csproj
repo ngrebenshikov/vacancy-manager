@@ -67,6 +67,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ApplicantController.cs" />
     <Compile Include="Controllers\ApplicantRequirementController.cs" />
+    <Compile Include="Controllers\AttachmentController.cs" />
     <Compile Include="Controllers\ConsiderationsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\InputMessageController.cs" />
@@ -151,10 +152,19 @@
     <Compile Include="Migrations\201211090825112_InputMessage_Added.Designer.cs">
       <DependentUpon>201211090825112_InputMessage_Added.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201211110304512_InputMessage_Changed.cs" />
+    <Compile Include="Migrations\201211110304512_InputMessage_Changed.Designer.cs">
+      <DependentUpon>201211110304512_InputMessage_Changed.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201211110536576_Attachment_Added.cs" />
+    <Compile Include="Migrations\201211110536576_Attachment_Added.Designer.cs">
+      <DependentUpon>201211110536576_Attachment_Added.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\Applicant.cs" />
     <Compile Include="Models\ApplicantRequirement.cs" />
+    <Compile Include="Models\Attachment.cs" />
     <Compile Include="Models\InputMessage.cs" />
     <Compile Include="Models\RequirementResumeRecord.cs" />
     <Compile Include="Models\Comment.cs" />
@@ -181,8 +191,10 @@
     </Compile>
     <Compile Include="Services\AuthorizeErrorAttribute.cs" />
     <Compile Include="Services\EMailSender.cs" />
+    <Compile Include="Services\MailSender.cs" />
     <Compile Include="Services\Managers\ApplicantManager.cs" />
     <Compile Include="Services\Managers\ApplicantRequirementsManager.cs" />
+    <Compile Include="Services\Managers\AttachmentManager.cs" />
     <Compile Include="Services\Managers\ConsiderationsManager.cs" />
     <Compile Include="Services\Managers\InputMessageManager.cs" />
     <Compile Include="Services\Managers\RequirementsManager.cs" />
