@@ -17,7 +17,7 @@ namespace VacancyManager.Controllers
 
         public JsonResult Load(int id)
         {
-            var Considerations = ConsiderationsManager.GetConsidrations(id);
+            var Considerations = ConsiderationsManager.GetConsiderations(id);
             var ConsiderationList = (from Cons in Considerations
                                      select new
                                      {
@@ -25,10 +25,8 @@ namespace VacancyManager.Controllers
                                          Cons.ConsiderationID,
                                          Cons.VacancyID,
                                          FullName = Cons.Applicant.FullName,
-                                         LastCommentDate = (from Comms in Cons.Comments
-                                                            select Comms.CreationDate).LastOrDefault().ToShortDateString(),
-                                         LastCommentBody = (from Comms in Cons.Comments
-                                                            select Comms.Body).LastOrDefault(),
+                                         LastCommentDate = (Cons.Comments.Count == 0 ? "" : Cons.Comments.DefaultIfEmpty(new Comment()).Last().CreationDate.ToShortDateString()),
+                                         LastCommentBody =  Cons.Comments.DefaultIfEmpty(new Comment()).Last().Body,
                                          CommentsCount = Cons.Comments.Count
 
                                      }).ToList();
@@ -50,7 +48,7 @@ namespace VacancyManager.Controllers
             bool CreationSuccess = false;
             string CreationMessage = "Во время добавления соискателя произошла ошибка";
             JavaScriptSerializer jss = new JavaScriptSerializer();
-            Consideration CreatedConsideration;
+            Consideration CreatedConsideration = null;
 
 
             if (considerations != null)
@@ -59,18 +57,29 @@ namespace VacancyManager.Controllers
 
 
                 CreatedConsideration = ConsiderationsManager.CreateConsideration(Convert.ToInt32(NewConsideration["VacancyID"]),
-                                                          Convert.ToInt32(NewConsideration["ApplicantID"]));
+                                                                                  Convert.ToInt32(NewConsideration["ApplicantID"])
+                                                                                 );
                 CreationMessage = "Соискатель успешно добавлен";
                 CreationSuccess = true;
             }
-            else
-            { 
-                CreatedConsideration = null; 
-            }
+
+            var ConsiderationsList = ConsiderationsManager.GetConsideration(CreatedConsideration.ConsiderationID);
+
+            var NewConsiderations = (from cons in ConsiderationsList
+                                    select new
+                                    {
+                                        cons.ApplicantID,
+                                        cons.ConsiderationID,
+                                        cons.VacancyID,
+                                        FullName = cons.Applicant.FullName,
+                                        LastCommentDate = (cons.Comments.Count == 0 ? "" : cons.Comments.DefaultIfEmpty(new Comment()).Last().CreationDate.ToShortDateString()),
+                                        LastCommentBody = cons.Comments.DefaultIfEmpty(new Comment()).Last().Body,
+                                        CommentsCount = cons.Comments.Count
+                                    }).ToList();
 
             return Json(new
             {
-                data = CreatedConsideration.ToString(),
+                considerations = NewConsiderations,
                 success = CreationMessage,
                 message = CreationSuccess
             });

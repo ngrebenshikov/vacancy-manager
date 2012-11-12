@@ -14,6 +14,7 @@ Ext.define('VM.controller.VacancyController', {
                     'vacancyList dataview': {
                         expandbody: this.createConsiderationsGrid,
                         collapsebody: this.destroyConsiderationsGrid
+                   //     itemdblclick: this.editVacancy
                     },
 
                     'button[action = loadBlankVacancy]': {
@@ -71,6 +72,7 @@ Ext.define('VM.controller.VacancyController', {
            frm_vacancyform = wndvacanyEdit.down('form'),
            sel_vacancy = frm_vacancyform.getRecord(),
            newvalues = frm_vacancyform.getValues();
+
         sel_vacancy.set(newvalues);
         sel_vacancy.save({
             success: function (record, operation) {
