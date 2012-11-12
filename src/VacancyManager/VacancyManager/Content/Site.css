@@ -38,3 +38,9 @@
 {
     font-weight: bold !important;
 }
+
+#gridcomments .x-grid-cell-inner
+{
+    white-space: pre-line;
+    overflow: hidden;
+}

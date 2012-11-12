@@ -31,7 +31,7 @@
                 sortable: false,
                 dataIndex: 'LastCommentDate'
             }, {
-                text: 'Всего комментариев',
+                text: 'Комментариев',
                 align: 'center',
                 width: 120,
                 sortable: false,
@@ -40,16 +40,15 @@
         ],
     bbar:
      [{
-        text: 'New Consideration',
+        text: Strings.btnAddConsideration,
         action: 'loadBlankConsideration' 
     }, {
-        text: 'Edit Consideration',
-        action: 'editConsideration' 
+        text: Strings.btnCommentsView,
+        action: 'loadComments' 
     },
     {
-        text: 'Delete Consideration',
+        text: Strings.btnDeleteConsideration,
         action: 'deleteConsideration'
     }
    ],
-    title: 'Considerations'
 });

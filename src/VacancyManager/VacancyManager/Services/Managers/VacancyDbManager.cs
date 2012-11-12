@@ -28,7 +28,7 @@ namespace VacancyManager.Services.Managers
                                 }
                             };
 
-      _db.Vacancies.Add(vacancies.ElementAt(0));
+      _db.Vacancies.Add(vacancies.First());
       _db.SaveChanges();
 
       return vacancies;

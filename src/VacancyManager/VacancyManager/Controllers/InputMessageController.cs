@@ -16,7 +16,7 @@ namespace VacancyManager.Controllers
         public ActionResult Index()
         {
             var list = InputMessageManager.GetList();
-            var considerationList = ConsiderationsManager.GetConsidrations();
+            var considerationList = ConsiderationsManager.GetConsiderations();
             var applicantList = ApplicantManager.GetList();
             var vacancyList = VacancyDbManager.AllVisibleVacancies();
 

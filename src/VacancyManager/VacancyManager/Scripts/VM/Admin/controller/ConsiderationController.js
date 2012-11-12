@@ -3,11 +3,11 @@ Ext.define('VM.controller.ConsiderationController', {
 
     extend: 'Ext.app.Controller',
 
-    stores: ['Consideration', 'Applicant'],
+    stores: ['Consideration', 'Applicant', 'Comments'],
 
     models: ['VM.model.Consideration'],
 
-    views: ['consideration.List', 'VM.view.consideration.ConsiderationApllicantsList'],
+    views: ['consideration.List', 'VM.view.consideration.ConsiderationApllicantsList', 'VM.view.Comments.List'],
 
     init: function () {
         this.control(
@@ -23,9 +23,31 @@ Ext.define('VM.controller.ConsiderationController', {
                     },
                     'button[action = AddConsideration]': {
                         click: this.AddConsideration
+                    },
+                    'button[action = loadComments]': {
+                        click: this.loadComments
                     }
                 });
 
+    },
+
+    loadComments: function (button) {
+        var grid = button.up('grid'),
+        selectedConsideration = grid.getSelectionModel().getSelection()[0];
+        if (selectedConsideration != undefined) {
+            var considerationId = selectedConsideration.get('ConsiderationID')
+            commentsStore = this.getCommentsStore();
+            commentsStore.consideration = selectedConsideration;
+            commentsStore.load({ params: { "considerationId": considerationId} });
+            var wndCommentsManage = Ext.create('VM.view.Comments.Manage').show();
+        }
+        else
+            Ext.Msg.show({
+                title: 'Выберите соискателя',
+                msg: 'Не выбран соискатель',
+                width: 300,
+                buttons: Ext.Msg.OK
+            });
     },
 
     itemClick: function (view, record) {
@@ -53,9 +75,15 @@ Ext.define('VM.controller.ConsiderationController', {
 
             considerationStore.insert(0, newConsideration);
             wndconsiderationAdd.close();
+            considerationStore.load({ params: { "id": selectedVacancyId} });
         }
         else
-            alert('Выберите соискателя');
+            Ext.Msg.show({
+                title: 'Выберите соискателя',
+                msg: 'Не выбран соискатель',
+                width: 300,
+                buttons: Ext.Msg.OK
+            });
 
     },
 
@@ -71,19 +99,21 @@ Ext.define('VM.controller.ConsiderationController', {
         var grid = button.up('grid'),
             considerationStore = grid.getStore(),
             sel_consideration = grid.getView().getSelectionModel().getSelection()[0];
-        Ext.Msg.show({
-            title: 'Удаление соискателя',
-            msg: 'Уладить соискателя "' + sel_consideration.get('FullName') + '"',
-            width: 300,
-            buttons: Ext.Msg.YESNO,
-            fn: function (btn) {
-                if (btn == 'yes') {
-                    if (sel_consideration) {
-                        considerationStore.remove(sel_consideration)
+        if (sel_consideration != undefined) {
+            Ext.Msg.show({
+                title: 'Удаление соискателя',
+                msg: 'Уладить соискателя "' + sel_consideration.get('FullName') + '"',
+                width: 300,
+                buttons: Ext.Msg.YESNO,
+                fn: function (btn) {
+                    if (btn == 'yes') {
+                        if (sel_consideration) {
+                            considerationStore.remove(sel_consideration)
+                        }
                     }
                 }
-            }
-        });
+            });
+        }
     }
 });
 
