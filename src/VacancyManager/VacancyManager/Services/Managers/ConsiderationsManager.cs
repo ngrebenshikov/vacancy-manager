@@ -10,13 +10,19 @@ namespace VacancyManager.Services.Managers
     {
         #region Consideration
 
-        internal static IEnumerable<Consideration> GetConsidrations()
+        internal static IEnumerable<Consideration> GetConsideration(int considerationId)
+        {
+            VacancyContext _db = new VacancyContext();
+            return _db.Considerations.Where(v => v.ConsiderationID == considerationId).ToList();
+        }
+
+        internal static IEnumerable<Consideration> GetConsiderations()
         {
             VacancyContext _db = new VacancyContext();
             return _db.Considerations.ToList();
         }
 
-        internal static IEnumerable<Consideration> GetConsidrations(int vacancyId)
+        internal static IEnumerable<Consideration> GetConsiderations(int vacancyId)
         {
             VacancyContext _db = new VacancyContext();
             return _db.Considerations.Where(v => v.VacancyID == vacancyId).ToList();
@@ -27,15 +33,15 @@ namespace VacancyManager.Services.Managers
         {    
             VacancyContext _db = new VacancyContext();
 
-            Consideration CreatedConsideration = new Consideration
+            Consideration NewConsideration = new Consideration
                                 {
                                     VacancyID = vacancyId,
                                     ApplicantID = applicantId
                                 };
 
-            _db.Considerations.Add(CreatedConsideration);
+            _db.Considerations.Add(NewConsideration);
             _db.SaveChanges();
-            return CreatedConsideration;
+            return NewConsideration;
         }
 
         internal static void DeleteConsideration(int considerationId)

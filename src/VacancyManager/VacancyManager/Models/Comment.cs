@@ -5,7 +5,8 @@ namespace VacancyManager.Models
     public class Comment
     {
         public int CommentID { get; set; }
-
+        public int UserID { get; set; }
+        public int ConsiderationID { get; set; }
         public DateTime CreationDate { get; set; }
 
         public string Body { get; set; }
