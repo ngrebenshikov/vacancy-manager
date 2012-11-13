@@ -142,26 +142,26 @@ namespace VacancyManager.Controllers
         {
             bool success = false;
             string resultMessage = "Ошибка при удалении сообщения";
+            JavaScriptSerializer jss = new JavaScriptSerializer();
 
-            if (HttpContext.Request.InputStream != null)
+            if (data == null)
             {
-                HttpContext.Request.InputStream.Seek(0, SeekOrigin.Begin);
-                var str = new StreamReader(HttpContext.Request.InputStream).ReadToEnd();
-
+                if (HttpContext.Request.InputStream != null)
+                {
+                    HttpContext.Request.InputStream.Seek(0, SeekOrigin.Begin);
+                    var str = new StreamReader(HttpContext.Request.InputStream).ReadToEnd();
+                    var obj = jss.Deserialize<dynamic>(str);
+                    foreach (var o in obj)
+                        InputMessageManager.Delete(o["Id"]);
+                }
             }
-
-            
-            //bool success = false;
-            //string resultMessage = "Ошибка при удалении сообщения";
-            //JavaScriptSerializer jss = new JavaScriptSerializer();
-
-            //if (data != null)
-            //{
-            //    var obj = jss.Deserialize<dynamic>(data);
-            //    InputMessageManager.Delete(obj["Id"]);
-            //    resultMessage = "Сообщение успешно удалено";
-            //    success = true;
-            //}
+            else
+            {
+                var obj = jss.Deserialize<dynamic>(data);
+                InputMessageManager.Delete(obj["Id"]);
+                resultMessage = "Сообщение успешно удалено";
+                success = true;
+            }
 
             return Json(new
             {

@@ -29,8 +29,7 @@
             id: 'SysConfigValue',
             name: 'Value',
             fieldLabel: Strings.Value,
-            allowBlank: false,
-            vtype: 'alphanum'
+            allowBlank: false
         }],
 
         buttons: //Кнопки окна
