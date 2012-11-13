@@ -6,7 +6,7 @@
     border: false,
     layout: 'border',
     defaults: {
-        split: true,
+        split: true
     },
     items:
     [{
@@ -87,7 +87,7 @@
             grow: true,
             region: 'center',
             name: 'Text',
-            anchor: '100%'
+            anchor: '100% 100%'
         }]
     },{
         region: 'south',

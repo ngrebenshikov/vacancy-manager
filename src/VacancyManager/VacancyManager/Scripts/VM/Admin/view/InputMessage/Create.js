@@ -67,7 +67,7 @@
                 buttonConfig: {
                     iconCls: 'upload-icon'
                 }
-            }],
+            }]
         }, {
             xtype: 'textareafield',
             name: 'Text',

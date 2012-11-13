@@ -4,11 +4,11 @@ namespace VacancyManager.Migrations
     using System.Data.Entity.Migrations;
     using System.Data.Entity.Migrations.Infrastructure;
     
-    public sealed partial class Attachment_Added : IMigrationMetadata
+    public sealed partial class NewInputMessage : IMigrationMetadata
     {
         string IMigrationMetadata.Id
         {
-            get { return "201211110536576_Attachment_Added"; }
+            get { return "201211121348032_NewInputMessage2"; }
         }
         
         string IMigrationMetadata.Source

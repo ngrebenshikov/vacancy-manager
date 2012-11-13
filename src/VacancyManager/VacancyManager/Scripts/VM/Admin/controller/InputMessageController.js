@@ -8,7 +8,8 @@
         init: function () {
             this.control({
                 'InputMessageIndex #InputMessageGrid':
-                    { itemclick: this.ShowText,
+                    { 
+                        itemclick: this.ShowText,
                         selectionchange: this.SelectionChange
                     },
 
@@ -55,28 +56,33 @@
             var obj = form.getRecord();    // Получаем record с формы, но тот record который загружали через loadRecord
             form.updateRecord(obj);        // Обновляем с формы полученный выше record 
 
-            var file = Ext.getCmp('InputMessageAttachment').getValue();
 
-            store.save({
+            //*******************************************//
+            //*******************************************//
+            var fileForm = Ext.getCmp('UploadFileForm').getForm();
+            obj.save({
                 success: function (record, operation) {
-                    var file = Ext.getCmp('InputMessageAttachment').getValue();
+                    objId = record.getId();
+                    store.add(record);
 
-                    var fileForm = Ext.getCmp('UploadFileForm').getForm();
                     if (fileForm.isValid()) {
                         fileForm.submit({
                             url: 'Attachment/UploadFile',
-                            waitMsg: 'Saving your details...'
+                            //waitMsg: 'Saving your details...'
                         });
                     }
                 }
             });
+            ///////////////////////////////////////////////
+            ///////////////////////////////////////////////
+
 
             button.up('window').close();
         },
 
         // Вызывается при itemclick на гриде 
         // 1. Грузит текст сообщения при itemclick.
-        // 2. Меняет IsRead сообщенияна true, при условии, что выбранно одно сообщение 
+        // 2. Меняет IsRead сообщения на true, при условии, что выбранно одно сообщение 
         ShowText: function (grid, record) {
             var isRead = record.get('IsRead');
             var store = Ext.StoreManager.lookup('InputMessage');
@@ -86,7 +92,7 @@
                     record.set('IsRead', true)
                     //store.sync();
                 }
-            }
+            };
 
             var obj = grid.getSelectionModel().getSelection()[0];
             Ext.getCmp('InputMessageText').setValue(obj.get('Text'));
@@ -109,7 +115,7 @@
                         buttons: Ext.Msg.YESNO,
                         fn: function (btn) {
                             if (btn == 'yes') {
-                                store.remove(selection);
+                                store.remove(selection[0]);
                                 button.disable();
                             }
                         }
@@ -166,13 +172,10 @@
         Upload: function () {
             var fileForm = Ext.getCmp('UploadFileForm').getForm();
 
-            var q = Ext.getCmp('InputMessageAttachment').getSubmitData();
-            var w = Ext.getCmp('InputMessageAttachment').getSubmitValue();
-
             if (fileForm.isValid()) {
                 fileForm.submit({
-                    url: 'Attachment/UploadFile',
-                    waitMsg: 'Saving your details...'
+                    url: 'Attachment/UploadFile'
+                    //waitMsg: 'Saving your details...'
                 });
             }
         }

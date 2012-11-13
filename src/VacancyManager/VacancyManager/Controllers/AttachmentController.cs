@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using System.IO;
 using System.Web.Script.Serialization;
 using System.Text;
+using VacancyManager.Services.Managers;
 
 namespace VacancyManager.Controllers
 {
@@ -18,13 +19,42 @@ namespace VacancyManager.Controllers
 
         public ActionResult UploadFile()
         {
-            string data = new StreamReader(HttpContext.Request.InputStream).ReadToEnd();
+            bool success = false;
+            string resultMessage = "Ошибка при добавлении вложения";
 
-           
-            // "------WebKitFormBoundaryKMabHWgDZsdSm2Gi\r\nContent-Disposition: form-data; name=\"AttachmentFile\"; 
-            // filename=\"11.txt\"\r\nContent-Type: text/plain\r\n\r\n123\r\n------WebKitFormBoundaryKMabHWgDZsdSm2Gi--\r\n"
+            if (HttpContext.Request.InputStream != null)
+            {
+                AntsCode.Util.MultipartParser parser = new AntsCode.Util.MultipartParser(HttpContext.Request.InputStream);
 
-            return null;
+                if (parser.Success)
+                {
+                    AttachmentManager.Create(parser.ContentType, parser.FileContent, parser.FileName, 2);
+                    success = true;
+                    resultMessage = "Вложение добавлено";
+                }
+            }
+
+            #region для теста
+            //var list = AttachmentManager.GetList(18);
+            //if (list != null)
+            //{
+            //    var obj = (from att in list
+            //               select new
+            //               {
+            //                   ContentType = att.ContentType,
+            //                   FileName = att.FileName,
+            //                   FileContent = att.FileContent
+            //               }).ToList();
+
+            //    System.IO.File.WriteAllBytes(@"C:\Users\alexei\Desktop\out\" + obj[obj.Count - 1].FileName, obj[obj.Count - 1].FileContent);
+            //}
+            #endregion
+
+            return Json(new
+            {
+                success = success,
+                message = resultMessage
+            });
         }
     }
 }

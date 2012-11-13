@@ -76,7 +76,7 @@ namespace VacancyManager.Controllers
             bool success = false;
             string resultMessage = "Ошибка при добавлении сообщения";
             JavaScriptSerializer jss = new JavaScriptSerializer();
-            List<InputMessage> created = new List<InputMessage>();
+            InputMessage created = new InputMessage();
 
             if (data != null)
             {
@@ -103,7 +103,7 @@ namespace VacancyManager.Controllers
                     sendDate = Convert.ToDateTime(obj["SendDate"]);
                 }
 
-                InputMessageManager.Create(obj["Sender"], obj["Subject"], obj["Text"], sendDate, deliveryDate, considerationId);                
+                created = InputMessageManager.Create(obj["Sender"], obj["Subject"], obj["Text"], sendDate, deliveryDate, considerationId);                
                 resultMessage = "Сообщение успешно добавлено";
                 success = true;
             }
@@ -111,6 +111,7 @@ namespace VacancyManager.Controllers
             return Json(new
             {
                 success = success,
+                data = created,
                 message = resultMessage
             });
         }
@@ -142,8 +143,6 @@ namespace VacancyManager.Controllers
             bool success = false;
             string resultMessage = "Ошибка при удалении сообщения";
             JavaScriptSerializer jss = new JavaScriptSerializer();
-
-            string httpData = new StreamReader(HttpContext.Request.InputStream).ReadToEnd();
 
             if (data != null)
             {
