@@ -68,6 +68,7 @@
     <Compile Include="Controllers\ApplicantController.cs" />
     <Compile Include="Controllers\ApplicantRequirementController.cs" />
     <Compile Include="Controllers\AttachmentController.cs" />
+    <Compile Include="Controllers\CommentsController.cs" />
     <Compile Include="Controllers\ConsiderationsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\InputMessageController.cs" />
@@ -187,6 +188,7 @@
     <Compile Include="Services\Managers\ApplicantManager.cs" />
     <Compile Include="Services\Managers\ApplicantRequirementsManager.cs" />
     <Compile Include="Services\Managers\AttachmentManager.cs" />
+    <Compile Include="Services\Managers\CommentsManager.cs" />
     <Compile Include="Services\Managers\ConsiderationsManager.cs" />
     <Compile Include="Services\Managers\InputMessageManager.cs" />
     <Compile Include="Services\Managers\RequirementsManager.cs" />
@@ -1495,7 +1497,9 @@
     <Content Include="Scripts\modernizr-1.7.js" />
     <Content Include="Scripts\modernizr-1.7.min.js" />
     <Content Include="Scripts\VM\Admin\app.js" />
+    <Content Include="Scripts\VM\Admin\bootstrap.js" />
     <Content Include="Scripts\VM\Admin\controller\Admin.js" />
+    <Content Include="Scripts\VM\Admin\controller\CommentsController.js" />
     <Content Include="Scripts\VM\Admin\controller\ConsiderationController.js" />
     <Content Include="Scripts\VM\Admin\controller\InputMessageController.js" />
     <Content Include="Scripts\VM\Admin\controller\RequirementListInStack.js" />
@@ -1505,6 +1509,7 @@
     <Content Include="Scripts\VM\Admin\controller\VacancyController.js" />
     <Content Include="Scripts\VM\Admin\controller\Roles.js" />
     <Content Include="Scripts\VM\Admin\controller\ApplicantController.js" />
+    <Content Include="Scripts\VM\Admin\model\Comment.js" />
     <Content Include="Scripts\VM\Admin\model\Consideration.js" />
     <Content Include="Scripts\VM\Admin\model\RequirementListInStack.js" />
     <Content Include="Scripts\VM\Admin\model\RequirementStack.js" />
@@ -1518,6 +1523,7 @@
     <Content Include="Scripts\VM\Admin\model\InputMessage.js" />
     <Content Include="Scripts\VM\Admin\store\ApplicantRequirements.js" />
     <Content Include="Scripts\VM\Admin\store\BaseStore.js" />
+    <Content Include="Scripts\VM\Admin\store\Comments.js" />
     <Content Include="Scripts\VM\Admin\store\Consideration.js" />
     <Content Include="Scripts\VM\Admin\store\RequirementListInStack.js" />
     <Content Include="Scripts\VM\Admin\store\RequirementStack.js" />
@@ -1531,6 +1537,10 @@
     <Content Include="Scripts\VM\Admin\view\Admin\Main.js" />
     <Content Include="Scripts\VM\Admin\view\Applicant\Create.js" />
     <Content Include="Scripts\VM\Admin\view\Applicant\Edit.js" />
+    <Content Include="Scripts\VM\Admin\view\Comments\Add.js" />
+    <Content Include="Scripts\VM\Admin\view\Comments\Edit.js" />
+    <Content Include="Scripts\VM\Admin\view\Comments\List.js" />
+    <Content Include="Scripts\VM\Admin\view\Comments\Manage.js" />
     <Content Include="Scripts\VM\Admin\view\consideration\Add.js" />
     <Content Include="Scripts\VM\Admin\view\consideration\ConsiderationApllicantsList.js" />
     <Content Include="Scripts\VM\Admin\view\consideration\Edit.js" />

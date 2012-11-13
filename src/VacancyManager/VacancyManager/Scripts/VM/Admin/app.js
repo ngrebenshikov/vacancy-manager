@@ -19,6 +19,7 @@ Ext.application
       'ConsiderationController',
       'RequirementListInStack',
       'VacancyController',
+      'CommentsController',
       'UserController',
       'Roles',
       'SysConfigController',
@@ -123,60 +124,55 @@ function CreateLoginWindow()
             }
           ]
       });
-  var login_window =
+      var login_window =
     new Ext.Window(
       {
-        title: 'Login form',
-        width: 300,
-        height: 150,
-        layout: 'fit',
-        modal: true,
-        plain: true,
-        closable: false,
-        bodyStyle: 'padding:5px;',
-        items: login_form,
-        buttons:
+          title: 'Login form',
+          width: 300,
+          height: 150,
+          layout: 'fit',
+          modal: true,
+          plain: true,
+          closable: false,
+          bodyStyle: 'padding:5px;',
+          items: login_form,
+          buttons:
         [
           {
-            text: 'Login',
-            handler: function ()
-            {
-              Ext.Ajax.request(
+              text: 'Login',
+              handler: function () {
+                  Ext.Ajax.request(
                 {
-                  url: '../../User/ExtJSLogOn',
-                  params:
+                    url: '../../User/ExtJSLogOn',
+                    params:
                   {
-                    login: login_form.getForm().getValues().login,
-                    password: login_form.getForm().getValues().password
+                      login: login_form.getForm().getValues().login,
+                      password: login_form.getForm().getValues().password
                   },
-                  success: function (result, request)
-                  {
-                    var JsonResult = Ext.JSON.decode(result.responseText);
-                    if (JsonResult.LogOnResult != '')
-                    {
-                      Ext.MessageBox.show(
+                    success: function (result, request) {
+                         var JsonResult = Ext.JSON.decode(result.responseText);
+                        if (JsonResult.LogOnResult != '') {
+                            Ext.MessageBox.show(
                         {
-                          title: 'Error',
-                          msg: JsonResult.LogOnResult,
-                          minWidth: 200,
-                          buttons: Ext.MessageBox.OK,
-                          icon: Ext.MessageBox.WARNING
+                            title: 'Error',
+                            msg: JsonResult.LogOnResult,
+                            minWidth: 200,
+                            buttons: Ext.MessageBox.OK,
+                            icon: Ext.MessageBox.WARNING
                         });
-                      Login_window_Created = false;
+                            Login_window_Created = false;
+                        }
+                        else {
+                            for (var i = 0; i < PreviousRequest.length; i++) {
+                                Ext.Ajax.request(PreviousRequest[i]);
+                            }
+                            PreviousRequest = new Array();
+                            Login_window_Created = false;
+                            login_window.close();
+                        }
                     }
-                    else
-                    {
-                      for (var i = 0; i < PreviousRequest.length; i++)
-                      {
-                        Ext.Ajax.request(PreviousRequest[i]);
-                      }
-                      PreviousRequest = new Array();
-                      Login_window_Created = false;
-                      login_window.close();
-                    }
-                  }
                 });
-            }
+              }
           }/*,
           {
             text: 'Cancel',

@@ -1,8 +1,6 @@
 ﻿Ext.define('VM.view.vacancy.List', {
     extend: 'Ext.grid.Panel',
     alias: 'widget.vacancyList',
-    region: 'center',
-    height: 500,
     id: 'vacancyGrid',
     store: 'Vacancy',
     columns: [
@@ -11,7 +9,6 @@
                   text: 'Вакансия',
                   width: 180, 
                   sortable: true,
-                  field: { xtype: 'textfield' },
                   menuDisabled: true
               }, { 
                   dataIndex: 'OpeningDate',
@@ -35,7 +32,6 @@
                   text: 'Соискателей',
                   width: 120,
                   sortable: false,
-                  field: { xtype: 'textfield' },
                   menuDisabled: true
               }
              ],
@@ -49,7 +45,6 @@
                   ptype: 'rowexpander',
                   expandOnDblClick: false,
                   selectRowOnExpand : true,
-                  expandOnRender: true,
                   rowBodyTpl: ['<div class="ux-row-expander-box"></div>']
 
     }],    

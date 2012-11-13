@@ -58,7 +58,7 @@ namespace VacancyManager.Controllers
         {
             bool c_success = false;
             string c_message = "При создания вакансии произошла ошибка";
-            List<Vacancy> CreatedVacancy;
+            List<Vacancy> CreatedVacancy = null;
 
             JavaScriptSerializer jss = new JavaScriptSerializer();
             if (data != null)
@@ -79,8 +79,6 @@ namespace VacancyManager.Controllers
                 c_message = "Вакансия успешно создана";
                 c_success = true;
             }
-            else
-                CreatedVacancy = null;
 
             var newVacancy = (from vac in CreatedVacancy.ToList()
                               select new
