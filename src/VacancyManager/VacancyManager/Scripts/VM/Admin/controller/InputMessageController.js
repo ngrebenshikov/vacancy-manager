@@ -57,8 +57,6 @@
             form.updateRecord(obj);        // Обновляем с формы полученный выше record 
 
 
-            //*******************************************//
-            //*******************************************//
             var fileForm = Ext.getCmp('UploadFileForm').getForm();
             obj.save({
                 success: function (record, operation) {
@@ -68,7 +66,7 @@
                     if (fileForm.isValid()) {
                         fileForm.submit({
                             url: 'Attachment/UploadFile',
-                            //waitMsg: 'Saving your details...'
+                            waitMsg: 'Saving your details...',
                             success: function (form, action) {
                                 button.up('window').close();
                             }
@@ -77,10 +75,6 @@
                     
                 }
             });
-            ///////////////////////////////////////////////
-            ///////////////////////////////////////////////
-
-
         },
 
         // Вызывается при itemclick на гриде 
@@ -137,9 +131,6 @@
                         fn: function (btn) {
                             if (btn == 'yes') {
                                 store.remove(selection);
-//                                Ext.each(selection, function (select) {
-//                                    store.remove(select);
-//                                });
                                 button.disable();
                             }
                         }
@@ -152,9 +143,7 @@
                         buttons: Ext.Msg.YESNO,
                         fn: function (btn) {
                             if (btn == 'yes') {
-                                Ext.each(selection, function (select) {
-                                    store.remove(select);
-                                });
+                                store.remove(selection);
                                 button.disable();
                             }
                         }
