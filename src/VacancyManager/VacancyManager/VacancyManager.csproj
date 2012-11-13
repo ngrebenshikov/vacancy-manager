@@ -153,6 +153,10 @@
     <Compile Include="Migrations\201211121348032_NewInputMessage2.designer.cs">
       <DependentUpon>201211121348032_NewInputMessage2.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201211130331457_IvanChange.cs" />
+    <Compile Include="Migrations\201211130331457_IvanChange.Designer.cs">
+      <DependentUpon>201211130331457_IvanChange.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\Applicant.cs" />
