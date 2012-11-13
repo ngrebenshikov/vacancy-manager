@@ -12,11 +12,32 @@ namespace VacancyManager.Controllers
 {
     public class AttachmentController : Controller
     {
-        public ActionResult Index()
+        [HttpGet]
+        public ActionResult Index(int id)
         {
-            return View();
+            var list = AttachmentManager.GetList(id);
+            object obj = new object();
+
+            if (list != null)
+            {
+                obj = (from att in list
+                       select new
+                       {
+                           Id = att.Id,
+                           FileName = att.FileName,
+                           ContentType = att.ContentType,
+                           InputMessageId = id
+                       }).ToList();
+            }
+
+            return Json(new
+            {
+                success = true,
+                data = obj
+            }, JsonRequestBehavior.AllowGet);
         }
 
+        [HttpPost]
         public ActionResult UploadFile()
         {
             bool success = false;

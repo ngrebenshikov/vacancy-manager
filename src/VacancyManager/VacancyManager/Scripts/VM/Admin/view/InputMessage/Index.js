@@ -76,7 +76,7 @@
         }]       
     },{
         region: 'center',
-        title: 'Текст сообщения',
+        title: Strings.MessageText,
         border: true,
         layout: 'fit',
         items:
@@ -85,20 +85,36 @@
             xtype: 'textareafield',
             emptyText: 'Выберите сообщение',
             grow: true,
+            readOnly: true,
             region: 'center',
             name: 'Text',
-            anchor: '100% 100%'
+            anchor: '100%'
         }]
     },{
         region: 'south',
-        title: 'Вложения',
+        title: Strings.Attachment,
+        height: '30%',
         collapsible: true,
         collapsed: true,
         border: true,
         layout: 'fit',
         items:
         [{
-            xtype: 'textfield'
+            xtype: 'grid',
+            id: 'AttachmentGrid',
+            autoSizeColumns: true,
+            forceFit: true,
+            frame: false,
+            hideHeaders: true,
+            layout: 'fit',
+            region: 'center',
+            store: 'Attachment',
+            columns:
+            [{
+                dataIndex: 'FileName',
+                width: '100%',
+                menuDisabled: true
+            }]
         }]
     }],
     
