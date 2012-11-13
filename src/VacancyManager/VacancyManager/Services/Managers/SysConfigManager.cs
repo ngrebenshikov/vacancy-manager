@@ -17,6 +17,11 @@ namespace VacancyManager.Services.Managers
             return objList;
         }
 
+        internal static string Get(string name) {
+            var configItem = _db.SysConfigs.SingleOrDefault(sc => sc.Name == name);
+            return null != configItem ? configItem.Value : null;
+        }
+
         internal static void Create(string name, string value)
         {
             var obj = new SysConfig
