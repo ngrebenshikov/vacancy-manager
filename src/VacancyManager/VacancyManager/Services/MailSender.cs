@@ -5,6 +5,8 @@ namespace VacancyManager.Services
 {
     internal static class MailSender
     {
+        private const string PortConfigName = "Port";
+        
         internal static int Port = 587;
         internal static string SmtpServer = "smtp.gmail.com";
         internal static string UserName = "vacmana@gmail.com";
@@ -15,8 +17,9 @@ namespace VacancyManager.Services
             {
                 MailMessage mail = new MailMessage(UserName, To, Subject, Body);
                 SmtpClient client = new SmtpClient(SmtpServer);
-                client.Port = Port;
+                client.Port = null != Services.Managers.SysConfigManager.Get(PortConfigName) ? int.Parse(Services.Managers.SysConfigManager.Get(PortConfigName)) : Port;
                 client.Credentials = new System.Net.NetworkCredential(UserName, Password);
+                client.EnableSsl = true;
                 client.Send(mail);
                 return "Сообщение отправленно";
             }

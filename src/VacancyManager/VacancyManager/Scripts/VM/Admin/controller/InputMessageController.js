@@ -2,13 +2,13 @@
     {
         extend: 'Ext.app.Controller',
         models: ['InputMessage', 'Attachment'], // 'Vacancy', 'Consideration'],
-        stores: ['InputMessage', 'Attachment'],//, 'Vacancy', 'Consideration'],
+        stores: ['InputMessage', 'Attachment'], //, 'Vacancy', 'Consideration'],
         views: ['InputMessage.Index', 'InputMessage.Create'],
 
         init: function () {
             this.control({
                 'InputMessageIndex #InputMessageGrid':
-                    { 
+                    {
                         itemclick: this.ShowText,
                         selectionchange: this.SelectionChange
                     },
@@ -69,15 +69,18 @@
                         fileForm.submit({
                             url: 'Attachment/UploadFile',
                             //waitMsg: 'Saving your details...'
+                            success: function (form, action) {
+                                button.up('window').close();
+                            }
                         });
                     }
+                    
                 }
             });
             ///////////////////////////////////////////////
             ///////////////////////////////////////////////
 
 
-            button.up('window').close();
         },
 
         // Вызывается при itemclick на гриде 
@@ -95,8 +98,8 @@
             };
 
 
-//            var attStore = Ext.StoreManager.lookup('Attachment');
-//            attStore.load({params : { 'id' : record.getId() } });
+            //            var attStore = Ext.StoreManager.lookup('Attachment');
+            //            attStore.load({params : { 'id' : record.getId() } });
 
 
             var obj = grid.getSelectionModel().getSelection()[0];
@@ -134,9 +137,9 @@
                         fn: function (btn) {
                             if (btn == 'yes') {
                                 store.remove(selection);
-                                Ext.each(selection, function (select) {
-                                    store.remove(select);
-                                });
+//                                Ext.each(selection, function (select) {
+//                                    store.remove(select);
+//                                });
                                 button.disable();
                             }
                         }
