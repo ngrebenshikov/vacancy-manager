@@ -1525,6 +1525,7 @@
     <Content Include="Scripts\VM\Admin\model\ApplicantRequirements.js" />
     <Content Include="Scripts\VM\Admin\model\ApplicantModel.js" />
     <Content Include="Scripts\VM\Admin\model\InputMessage.js" />
+    <Content Include="Scripts\VM\Admin\model\Attachment.js" />
     <Content Include="Scripts\VM\Admin\store\ApplicantRequirements.js" />
     <Content Include="Scripts\VM\Admin\store\BaseStore.js" />
     <Content Include="Scripts\VM\Admin\store\Comments.js" />
@@ -1538,6 +1539,7 @@
     <Content Include="Scripts\VM\Admin\store\VacancyRequirements.js" />
     <Content Include="Scripts\VM\Admin\store\Applicant.js" />
     <Content Include="Scripts\VM\Admin\store\InputMessage.js" />
+    <Content Include="Scripts\VM\Admin\store\Attachment.js" />
     <Content Include="Scripts\VM\Admin\view\Admin\Main.js" />
     <Content Include="Scripts\VM\Admin\view\Applicant\Create.js" />
     <Content Include="Scripts\VM\Admin\view\Applicant\Edit.js" />

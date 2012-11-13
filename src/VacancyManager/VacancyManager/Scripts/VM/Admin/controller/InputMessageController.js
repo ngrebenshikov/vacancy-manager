@@ -1,8 +1,8 @@
 ﻿Ext.define('VM.controller.InputMessageController',
     {
         extend: 'Ext.app.Controller',
-        models: ['InputMessage', 'Vacancy', 'Consideration'],
-        stores: ['InputMessage', 'Vacancy', 'Consideration'],
+        models: ['InputMessage', 'Attachment'], // 'Vacancy', 'Consideration'],
+        stores: ['InputMessage', 'Attachment'],//, 'Vacancy', 'Consideration'],
         views: ['InputMessage.Index', 'InputMessage.Create'],
 
         init: function () {
@@ -94,6 +94,11 @@
                 }
             };
 
+
+//            var attStore = Ext.StoreManager.lookup('Attachment');
+//            attStore.load({params : { 'id' : record.getId() } });
+
+
             var obj = grid.getSelectionModel().getSelection()[0];
             Ext.getCmp('InputMessageText').setValue(obj.get('Text'));
             if (obj.get('Text') == '')
@@ -128,6 +133,7 @@
                         buttons: Ext.Msg.YESNO,
                         fn: function (btn) {
                             if (btn == 'yes') {
+                                store.remove(selection);
                                 Ext.each(selection, function (select) {
                                     store.remove(select);
                                 });

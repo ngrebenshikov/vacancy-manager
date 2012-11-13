@@ -335,4 +335,10 @@
   <data name="btnDeleteConsideration" xml:space="preserve">
     <value>Удалить соискателя</value>
   </data>
+  <data name="Attachment" xml:space="preserve">
+    <value>Вложение</value>
+  </data>
+  <data name="MessageText" xml:space="preserve">
+    <value>Текст сообщения</value>
+  </data>
 </root>
