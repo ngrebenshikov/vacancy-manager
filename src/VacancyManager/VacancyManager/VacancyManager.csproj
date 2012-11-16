@@ -188,6 +188,7 @@
     </Compile>
     <Compile Include="Services\AuthorizeErrorAttribute.cs" />
     <Compile Include="Services\EMailSender.cs" />
+    <Compile Include="Services\Helper.cs" />
     <Compile Include="Services\MailSender.cs" />
     <Compile Include="Services\Managers\ApplicantManager.cs" />
     <Compile Include="Services\Managers\ApplicantRequirementsManager.cs" />
@@ -207,6 +208,14 @@
     <Compile Include="Services\VacancyManagerRoleProvider.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\MIME-icons\default.png" />
+    <Content Include="Content\MIME-icons\mime_doc.png" />
+    <Content Include="Content\MIME-icons\mime_jpg.png" />
+    <Content Include="Content\MIME-icons\mime_mp3.png" />
+    <Content Include="Content\MIME-icons\mime_pdf.png" />
+    <Content Include="Content\MIME-icons\mime_rar.png" />
+    <Content Include="Content\MIME-icons\mime_txt.png" />
+    <Content Include="Content\MIME-icons\mime_zip.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
@@ -277,7 +286,6 @@
     <Content Include="Content\icons\add.gif" />
     <Content Include="Content\icons\add16.gif" />
     <Content Include="Content\icons\delete.gif" />
-    <Content Include="Content\icons\group16.gif" />
     <Content Include="Content\icons\user.gif" />
     <Content Include="Content\icons\user_add.gif" />
     <Content Include="Content\icons\user_delete.gif" />

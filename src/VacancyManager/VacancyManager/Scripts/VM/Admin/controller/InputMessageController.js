@@ -1,17 +1,20 @@
 ﻿Ext.define('VM.controller.InputMessageController',
     {
         extend: 'Ext.app.Controller',
-        models: ['InputMessage', 'Attachment'], // 'Vacancy', 'Consideration'],
-        stores: ['InputMessage', 'Attachment'], //, 'Vacancy', 'Consideration'],
+        models: ['InputMessage', 'Attachment'],
+        stores: ['InputMessage', 'Attachment'],
         views: ['InputMessage.Index', 'InputMessage.Create'],
 
         init: function () {
             this.control({
                 'InputMessageIndex #InputMessageGrid':
                     {
-                        itemclick: this.ShowText,
+                        itemclick: this.ItemClick,
                         selectionchange: this.SelectionChange
                     },
+
+                'InputMessageIndex #AttachmentGrid':
+                    { itemdblclick: this.Download },
 
                 'InputMessageCreate #InputMessageVacancy':
                     { select: this.OnVacancyCboxSelect },
@@ -25,17 +28,7 @@
 
                 // Удалить
                 'button[action=RemoveInputMessage]':
-                    { click: this.RemoveInputMessage },
-
-                // Открыть форму "Редактировать"
-                'button[action=EditInputMessageShowForm]':
-                    { click: this.EditInputMessageShowForm },
-                // Сохранить изменения
-                'button[action=EditInputMessage]':
-                    { click: this.EditInputMessage },
-
-                'button[action=Upload]':
-                    { click: this.Upload }
+                    { click: this.RemoveInputMessage }
             });
         },
 
@@ -56,50 +49,70 @@
             var obj = form.getRecord();    // Получаем record с формы, но тот record который загружали через loadRecord
             form.updateRecord(obj);        // Обновляем с формы полученный выше record 
 
-
             var fileForm = Ext.getCmp('UploadFileForm').getForm();
             obj.save({
                 success: function (record, operation) {
                     objId = record.getId();
                     store.add(record);
 
-                    if (fileForm.isValid()) {
-                        fileForm.submit({
-                            url: 'Attachment/UploadFile',
-                            waitMsg: 'Saving your details...',
-                            success: function (form, action) {
-                                button.up('window').close();
-                            }
-                        });
+                    if (Ext.getCmp('InputMessageAttachment').getValue() == "") {
+                        button.up('window').close();
                     }
-                    
+                    else {
+                        if (fileForm.isValid()) {
+                            fileForm.submit({
+                                url: 'Attachment/Upload/' + objId,
+                                success: function (form, action) {
+                                    button.up('window').close();
+                                }
+                            });
+                        }
+                    }
                 }
             });
         },
 
         // Вызывается при itemclick на гриде 
-        // 1. Грузит текст сообщения при itemclick.
-        // 2. Меняет IsRead сообщения на true, при условии, что выбранно одно сообщение 
-        ShowText: function (grid, record) {
+        // 1. Меняет IsRead сообщения на true, при условии, что выбранно одно сообщение.
+        // 2. Отображает вложения, если есть.
+        // 3. Грузит текст сообщения.
+        ItemClick: function (grid, record) {
             var isRead = record.get('IsRead');
             var store = Ext.StoreManager.lookup('InputMessage');
 
             if (grid.getSelectionModel().getSelection().length == 1) {
+// 1
                 if (isRead != true) {
                     record.set('IsRead', true)
-                    //store.sync();
+                }
+
+// 2
+                var attStore = Ext.StoreManager.lookup('Attachment');
+                attStore.load({ params: { 'id': record.getId()} });
+                var fn = function () {
+                    if (attStore.getCount() > 0) {
+                        Ext.getCmp('imAttachmentPanel').setTitle(Strings.Attachment + ' (' + attStore.getCount() + ')');
+                        if (attStore.getCount() <= 3) {
+                            Ext.getCmp('imAttachmentPanel').setHeight(30 + 26 * attStore.getCount());
+                        }
+                        Ext.getCmp('imAttachmentPanel').expand(false);
+                    } else {
+                        Ext.getCmp('imAttachmentPanel').setTitle(Strings.Attachment);
+                        Ext.getCmp('imAttachmentPanel').collapse(false);
+                    }
+                    attStore.un('load', fn);
+                }
+                attStore.on('load', fn);
+
+// 3
+                var textArea = Ext.getCmp('InputMessageText');
+                if (record.get('Text') == '') {
+                    textArea.reset();
+                    Ext.getCmp('InputMessageText').emptyText = 'Текст в выбранном сообщении отсутствует';
+                } else {
+                    Ext.getCmp('InputMessageText').setValue(record.get('Text'));
                 }
             };
-
-
-            //            var attStore = Ext.StoreManager.lookup('Attachment');
-            //            attStore.load({params : { 'id' : record.getId() } });
-
-
-            var obj = grid.getSelectionModel().getSelection()[0];
-            Ext.getCmp('InputMessageText').setValue(obj.get('Text'));
-            if (obj.get('Text') == '')
-                Ext.getCmp('InputMessageText').emptyText = 'Текст в выбранном сообщении отсутствует';
         },
 
         /* ===== */
@@ -152,10 +165,11 @@
             }
         },
 
-        SelectionChange: function (view, selections, options) {
-            var button = Ext.getCmp('RemoveInputMessage'); //Ищет по ID компонента
-            if (selections != null)
+        SelectionChange: function (view, selected, options) {
+            var button = Ext.getCmp('RemoveInputMessage');
+            if (selected.length > 0) {
                 button.enable();
+            }
         },
 
         OnVacancyCboxSelect: function (combo, records) {
@@ -167,14 +181,7 @@
             comboSender.enable();
         },
 
-        Upload: function () {
-            var fileForm = Ext.getCmp('UploadFileForm').getForm();
-
-            if (fileForm.isValid()) {
-                fileForm.submit({
-                    url: 'Attachment/UploadFile'
-                    //waitMsg: 'Saving your details...'
-                });
-            }
+        Download: function (view, record) {
+            location.href = 'Attachment/Download/' + record.getId();
         }
     })

@@ -1,4 +1,11 @@
-﻿Ext.define('VM.view.InputMessage.Index',
+﻿//var attTpl = new Ext.XTemplate(
+//    '<image  ',
+//    '<tpl for=".">',       // process the data.kids node
+//        '<p>{#}. {name}</p>',  // use current array index to autonumber
+//    '</tpl></p>'
+//);
+
+Ext.define('VM.view.InputMessage.Index',
 {
     extend: 'Ext.panel.Panel',
     alias: 'widget.InputMessageIndex',
@@ -77,8 +84,9 @@
     },{
         region: 'center',
         title: Strings.MessageText,
+        id: 'imTextPanel',
         border: true,
-        layout: 'fit',
+        layout: 'anchor',
         items:
         [{
             id: 'InputMessageText',
@@ -86,16 +94,16 @@
             emptyText: 'Выберите сообщение',
             grow: true,
             readOnly: true,
-            region: 'center',
-            name: 'Text',
+            name: 'Text',            
             anchor: '100%'
         }]
     },{
         region: 'south',
         title: Strings.Attachment,
-        height: '30%',
+        id: 'imAttachmentPanel',
         collapsible: true,
         collapsed: true,
+        height: 111,
         border: true,
         layout: 'fit',
         items:
@@ -111,8 +119,11 @@
             store: 'Attachment',
             columns:
             [{
+                xtype: 'templatecolumn',
+                tpl: '<img src="/Content/MIME-icons/' + '{Icon}' + '.png"/> {FileName} ({FileSize} Kb)',
+                text: 'FileName',
                 dataIndex: 'FileName',
-                width: '100%',
+                width: 300,
                 menuDisabled: true
             }]
         }]
@@ -134,5 +145,5 @@
         id: 'RemoveInputMessage',
         action: 'RemoveInputMessage',
         disabled: true
-    }]    
-}); 
+    }]
+});

@@ -16,7 +16,11 @@
                 if (st.get('IsRead') == false)
                     nonReadCount++;
             });
-            tab.setText(Strings.InputMessages + ' (' + nonReadCount + ')');
+            if (nonReadCount > 0) {
+                tab.setText(Strings.InputMessages + ' (' + nonReadCount + ')');
+            } else {
+                tab.setText(Strings.InputMessages);
+            }
         }
     }
 });

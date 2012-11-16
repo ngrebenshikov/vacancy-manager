@@ -5,13 +5,13 @@
     id: 'AttachmentStore',
     autoLoad: false,
     autoSync: false,
-    autoSave: false,
+    clearOnPageLoad: true,
 
     proxy: {
         type: 'ajax',
         api:
         {
-            read: '/Attachment/Index',
+            read: '/Attachment/Index'
         },
 
         reader:
