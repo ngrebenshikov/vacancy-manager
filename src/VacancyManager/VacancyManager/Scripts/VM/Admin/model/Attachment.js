@@ -2,5 +2,5 @@
     {
         extend: 'Ext.data.Model',
         idProperty: 'Id',
-        fields: ['Id', 'FileName', 'FileSize', 'ContentType', 'InputMessageId']
+        fields: ['Id', 'FileName', 'FileSize', 'Icon', 'ContentType']
 })

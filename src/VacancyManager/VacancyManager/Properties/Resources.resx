@@ -336,7 +336,7 @@
     <value>Удалить соискателя</value>
   </data>
   <data name="Attachment" xml:space="preserve">
-    <value>Вложение</value>
+    <value>Вложения</value>
   </data>
   <data name="MessageText" xml:space="preserve">
     <value>Текст сообщения</value>

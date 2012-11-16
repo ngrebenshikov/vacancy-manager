@@ -47,12 +47,17 @@ namespace AntsCode.Util
                 re = new Regex(@"(?<=filename\=\"")(.*?)(?=\"")");
                 Match filenameMatch = re.Match(content);
 
+                // Look for name
+                re = new Regex(@"(?<=name\=\"")(.*?)(?=\"")");
+                Match nameMatch = re.Match(content);
+
                 // Did we find the required values?
-                if (contentTypeMatch.Success && filenameMatch.Success)
+                if (contentTypeMatch.Success && filenameMatch.Success && nameMatch.Success)
                 {
                     // Set properties
                     this.ContentType = contentTypeMatch.Value.Trim();
                     this.FileName = filenameMatch.Value.Trim();
+                    this.Name = nameMatch.Value.Trim();
 
                     // Get the start & end indexes of the file contents
                     int startIndex = contentTypeMatch.Index + contentTypeMatch.Length + "\r\n\r\n".Length;
@@ -133,6 +138,12 @@ namespace AntsCode.Util
         }
 
         public string FileName
+        {
+            get;
+            private set;
+        }
+
+        public string Name
         {
             get;
             private set;

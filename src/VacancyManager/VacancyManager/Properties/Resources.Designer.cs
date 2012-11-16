@@ -115,7 +115,7 @@ namespace VacancyManager.Properties {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Вложение.
+        ///   Ищет локализованную строку, похожую на Вложения.
         /// </summary>
         public static string Attachment {
             get {

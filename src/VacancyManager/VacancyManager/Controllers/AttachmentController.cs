@@ -7,6 +7,7 @@ using System.IO;
 using System.Web.Script.Serialization;
 using System.Text;
 using VacancyManager.Services.Managers;
+using VacancyManager.Services;
 
 namespace VacancyManager.Controllers
 {
@@ -25,8 +26,9 @@ namespace VacancyManager.Controllers
                        {
                            Id = att.Id,
                            FileName = att.FileName,
-                           ContentType = att.ContentType,
-                           InputMessageId = id
+                           FileSize = att.FileContent.Length > 1024 ? att.FileContent.Length / 1024 : att.FileContent.Length,
+                           Icon = Helper.MimeIcons(att.ContentType),
+                           ContentType = att.ContentType
                        }).ToList();
             }
 
@@ -37,45 +39,48 @@ namespace VacancyManager.Controllers
             }, JsonRequestBehavior.AllowGet);
         }
 
-        [HttpPost]
-        public ActionResult UploadFile()
+        public ActionResult Upload(string id)
         {
             bool success = false;
             string resultMessage = "Ошибка при добавлении вложения";
 
-            if (HttpContext.Request.InputStream != null)
-            {
-                AntsCode.Util.MultipartParser parser = new AntsCode.Util.MultipartParser(HttpContext.Request.InputStream);
+            HttpContext.Request.InputStream.Seek(0, SeekOrigin.Begin);
+            AntsCode.Util.MultipartParser parser = new AntsCode.Util.MultipartParser(HttpContext.Request.InputStream);
 
-                if (parser.Success)
+            if (parser.Success)
+            {
+                if (!String.IsNullOrWhiteSpace(parser.FileName))
                 {
-                    AttachmentManager.Create(parser.ContentType, parser.FileContent, parser.FileName, 2);
+                    AttachmentManager.Create(parser.ContentType, parser.FileContent, parser.FileName, int.Parse(id));
                     success = true;
                     resultMessage = "Вложение добавлено";
                 }
+                else
+                {
+                    success = true;
+                    resultMessage = "Не выбран файл";
+                }
             }
-
-            #region для теста
-            //var list = AttachmentManager.GetList(18);
-            //if (list != null)
-            //{
-            //    var obj = (from att in list
-            //               select new
-            //               {
-            //                   ContentType = att.ContentType,
-            //                   FileName = att.FileName,
-            //                   FileContent = att.FileContent
-            //               }).ToList();
-
-            //    System.IO.File.WriteAllBytes(@"C:\Users\alexei\Desktop\out\" + obj[obj.Count - 1].FileName, obj[obj.Count - 1].FileContent);
-            //}
-            #endregion
 
             return Json(new
             {
                 success = success,
                 message = resultMessage
             });
+        }
+
+        public ActionResult Download(int id)
+        {
+            var obj = AttachmentManager.Get(id);
+
+            var cd = new System.Net.Mime.ContentDisposition
+            {
+                FileName = obj.FileName,
+                Inline = true
+            };
+
+            Response.AppendHeader("Content-Disposition", cd.ToString());
+            return File(obj.FileContent, obj.ContentType);
         }
     }
 }

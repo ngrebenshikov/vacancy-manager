@@ -63,10 +63,7 @@
                 emptyText: 'Выберите файл',
                 fieldLabel: 'Файл',
                 name: 'AttachmentFile',
-                buttonText: '',
-                buttonConfig: {
-                    iconCls: 'upload-icon'
-                }
+                buttonText: '...'
             }]
         }, {
             xtype: 'textareafield',
@@ -80,9 +77,6 @@
         [{
             text: Strings.btnAdd,
             action: 'CreateInputMessage'
-        }, {
-            text: 'Upload',
-            action: 'Upload'
         }]
     }],
     initComponent: function () {
