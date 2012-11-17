@@ -29,7 +29,7 @@ namespace VacancyManager.Services
       var msgs = _imap.SearchMessages(
         SearchCondition.Undeleted().And(
           SearchCondition.SentSince(fromDate)));
-      for (int index = 0; index < 10; index++)
+      for (int index = 0; index < msgs.Length; index++)
       {
         var m = msgs[index].Value;
         /*IList<Attachment> alternativeViews = m.AlternateViews as IList<Attachment>;
