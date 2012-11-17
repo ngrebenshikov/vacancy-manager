@@ -86,7 +86,7 @@ namespace VacancyManager.Controllers
           message = "Пользователь удалён";
           success = true;
         }
-      }      
+      }
       return Json(new { success, message });
     }
 
