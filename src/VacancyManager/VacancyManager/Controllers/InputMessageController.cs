@@ -13,15 +13,6 @@ namespace VacancyManager.Controllers
   [AuthorizeError(Roles = "Admin")]
   public class InputMessageController : Controller
   {
-    private const string MailAdressConfigName = "InboxEmail";
-    private const string MailAdressPassConfigName = "InboxEmailPass";
-    private const string MailImapHostConfigName = "InboxEmailImapHost";
-    private const string MailImapPortConfigName = "InboxEmailImapPort";
-
-    private const string MailAdressDefault = "vacmana@gmail.com";
-    private const string MailAdressPassDefault = "nextdaynewlive";
-    private const string MailImapHostDefault = "imap.gmail.com";
-    private const int MailImapPortDefault = 993;//С использованием SSL
 
     [HttpGet]
     public ActionResult Index()
@@ -188,14 +179,7 @@ namespace VacancyManager.Controllers
 
     public ActionResult UpdateMailsListFromIMAP()
     {
-      string mailAdress = SysConfigManager.GetStringParametr(MailAdressConfigName, MailAdressDefault);
-      string mailAdressPass = SysConfigManager.GetStringParametr(MailAdressPassConfigName, MailAdressPassDefault);
-      string mailImapHost = SysConfigManager.GetStringParametr(MailImapHostConfigName, MailImapHostDefault);
-      int mailImapPort = SysConfigManager.GetIntParametr(MailImapPortConfigName, MailImapPortDefault);
-      /*using (var imap = )
-      {
-
-      }*/
+      InputMessageManager.UpdateMailsListFromIMAP();
       return null;
     }
   }
