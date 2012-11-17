@@ -113,7 +113,7 @@ namespace VacancyManager.Services.Managers
       using (var imap = ImapClientGetter.getImapClient(mailImapHost, mailAdress, mailAdressPass, mailImapPort))
       {
         //TODO:Сделать подстановку даты последного обновления из базы
-        List<ImapMessage> messages = imap.GetNewLetters(new DateTime(2012, 9, 1));
+        List<ImapMessage> messages = imap.GetNewLetters(new DateTime(2012, 11, 10));
         foreach (ImapMessage msg in messages)
         {
           Create(msg.Sender, msg.Subject, msg.Text, msg.SendDate, msg.DeliveryDate, null);
