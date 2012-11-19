@@ -1,11 +1,4 @@
-﻿//var attTpl = new Ext.XTemplate(
-//    '<image  ',
-//    '<tpl for=".">',       // process the data.kids node
-//        '<p>{#}. {name}</p>',  // use current array index to autonumber
-//    '</tpl></p>'
-//);
-
-Ext.define('VM.view.InputMessage.Index',
+﻿Ext.define('VM.view.InputMessage.Index',
 {
     extend: 'Ext.panel.Panel',
     alias: 'widget.InputMessageIndex',
@@ -64,7 +57,7 @@ Ext.define('VM.view.InputMessage.Index',
                 sortable: true,
                 menuDisabled: true
             }],
-            
+
             dockedItems: [{
                 xtype: 'pagingtoolbar',
                 store: 'InputMessage',
@@ -72,16 +65,47 @@ Ext.define('VM.view.InputMessage.Index',
                 displayInfo: true
             }],
 
+            tbar: [{
+                text: Strings.btnAdd,
+                icon: '/Content/icons/add.gif',
+                tooltip: 'Добавить сообщение',
+                name: 'btnCreateInputMessage',
+                id: 'CreateInputMessage',
+                action: 'CreateInputMessageShowForm'
+            }, {
+                text: Strings.btnRemove,
+                icon: '/Content/icons/delete.gif',
+                tooltip: 'Добавить нового соискателя',
+                name: 'btnRemoveInputMessage',
+                id: 'RemoveInputMessage',
+                action: 'RemoveInputMessage',
+                disabled: true
+            }, {
+                xtype: 'tbfill' 
+            }, {
+                xtype: 'triggerfield',
+                emptyText: Strings.MessageFilter,
+                width: 250,
+                id: 'IMFilterField',
+                enableKeyEvents: true,
+                triggerCls: 'x-form-clear-trigger',
+
+                onTriggerClick: function (e) {
+                    this.reset();
+                    Ext.StoreManager.lookup('InputMessage').clearFilter();
+                }
+            }],
+
             viewConfig: {
-                getRowClass: function(record, index, rowParams, store) {
+                getRowClass: function (record, index, rowParams, store) {
                     var isRead = record.get('IsRead');
                     if (isRead != true) {
                         return 'new-message';
                     }
                 }
             }
-        }]       
-    },{
+        }]
+    }, {
         region: 'center',
         title: Strings.MessageText,
         id: 'imTextPanel',
@@ -94,10 +118,10 @@ Ext.define('VM.view.InputMessage.Index',
             emptyText: 'Выберите сообщение',
             grow: true,
             readOnly: true,
-            name: 'Text',            
+            name: 'Text',
             anchor: '100%'
         }]
-    },{
+    }, {
         region: 'south',
         title: Strings.Attachment,
         id: 'imAttachmentPanel',
@@ -127,23 +151,5 @@ Ext.define('VM.view.InputMessage.Index',
                 menuDisabled: true
             }]
         }]
-    }],
-    
-    tbar: 
-    [{
-        text: Strings.btnAdd,
-        icon: '/Content/icons/add.gif',
-        tooltip: 'Добавить сообщение',
-        name: 'btnCreateInputMessage',
-        id: 'CreateInputMessage',
-        action: 'CreateInputMessageShowForm'
-    },{
-        text: Strings.btnRemove,
-        icon: '/Content/icons/delete.gif',
-        tooltip: 'Добавить нового соискателя',
-        name: 'btnRemoveInputMessage',
-        id: 'RemoveInputMessage',
-        action: 'RemoveInputMessage',
-        disabled: true
     }]
 });

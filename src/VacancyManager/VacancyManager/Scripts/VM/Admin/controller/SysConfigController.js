@@ -37,7 +37,6 @@
                     newConf = form.getValues();
                 store.add(newConf);
                 win.close();
-                Ext.getCmp('SysConfigGrid').clearSelection();
             }
         },
 

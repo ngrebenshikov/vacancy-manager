@@ -17,15 +17,14 @@
             columns: [{
                 dataIndex: 'Name',
                 text: Strings.ConfName,
-                width: 40,
+                width: 50,
                 sortable: true,
                 field: { xtype: 'textfield' },
-                flex: 1,
                 menuDisabled: true
             }, {
                 dataIndex: 'Value',
                 text: Strings.Value,
-                width: 120,
+                //width: 120,
                 sortable: false,
                 field: { xtype: 'textfield' },
                 menuDisabled: true

@@ -322,6 +322,15 @@ namespace VacancyManager.Properties {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Фильтр сообщений....
+        /// </summary>
+        public static string MessageFilter {
+            get {
+                return ResourceManager.GetString("MessageFilter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Текст сообщения.
         /// </summary>
         public static string MessageText {

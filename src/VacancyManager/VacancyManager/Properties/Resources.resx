@@ -341,4 +341,7 @@
   <data name="MessageText" xml:space="preserve">
     <value>Текст сообщения</value>
   </data>
+  <data name="MessageFilter" xml:space="preserve">
+    <value>Фильтр сообщений...</value>
+  </data>
 </root>

@@ -59,7 +59,7 @@ Ext.define('VM.view.Applicant.Create',
                     name: 'FullName',
                     allowBlank: false,
                     anchor: '100%',
-                    invalidText: 'Поле не может быть пустым.'
+                    blankText: 'Поле не может быть пустым.'
                 }]
             }, {
                 xtype: 'fieldset',  // Контактный телефон

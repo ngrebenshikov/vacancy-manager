@@ -13,6 +13,9 @@
                         selectionchange: this.SelectionChange
                     },
 
+                'InputMessageIndex #IMFilterField':
+                    { keyup: this.FilterKeyUp },
+
                 'InputMessageIndex #AttachmentGrid':
                     { itemdblclick: this.Download },
 
@@ -81,12 +84,12 @@
             var store = Ext.StoreManager.lookup('InputMessage');
 
             if (grid.getSelectionModel().getSelection().length == 1) {
-// 1
+                // 1
                 if (isRead != true) {
                     record.set('IsRead', true)
                 }
 
-// 2
+                // 2
                 var attStore = Ext.StoreManager.lookup('Attachment');
                 attStore.load({ params: { 'id': record.getId()} });
                 var fn = function () {
@@ -104,7 +107,7 @@
                 }
                 attStore.on('load', fn);
 
-// 3
+                // 3
                 var textArea = Ext.getCmp('InputMessageText');
                 if (record.get('Text') == '') {
                     textArea.reset();
@@ -183,5 +186,16 @@
 
         Download: function (view, record) {
             location.href = 'Attachment/Download/' + record.getId();
+        },
+
+        FilterKeyUp: function (field, e) {
+            if (e.getKey() == 8 || e.isSpecialKey() == false) {
+                var regexp = new RegExp(field.getValue(), "i");
+                var store = Ext.StoreManager.lookup('InputMessage');
+                store.filterBy(function (record) {
+                    if (regexp.test(record.get("Sender")) || regexp.test(record.get("Vacancy")) || regexp.test(record.get("Subject")))
+                        return true;
+                })
+            }
         }
     })
