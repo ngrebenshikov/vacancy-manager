@@ -190,12 +190,28 @@
 
         FilterKeyUp: function (field, e) {
             if (e.getKey() == 8 || e.isSpecialKey() == false) {
+                var label = Ext.getCmp("LabelForFilter");
                 var regexp = new RegExp(field.getValue(), "i");
                 var store = Ext.StoreManager.lookup('InputMessage');
                 store.filterBy(function (record) {
                     if (regexp.test(record.get("Sender")) || regexp.test(record.get("Vacancy")) || regexp.test(record.get("Subject")))
                         return true;
-                })
+                });
+                if (store.getCount() == 1 && !(Ext.isEmpty(field.getValue()))) {
+                    field.labelEl.update('<font color="#038A0E">' + store.getCount() + ' сообщение</font>');
+                }
+                else if (store.getCount() > 1 && store.getCount() < 5 && !(Ext.isEmpty(field.getValue()))) {
+                    field.labelEl.update('<font color="#038A0E">' + store.getCount() + ' сообщения</font>');
+                }
+                else if (store.getCount() >= 5 && !(Ext.isEmpty(field.getValue()))) {
+                    field.labelEl.update('<font color="#038A0E">' + store.getCount() + ' сообщений</font>');
+                }
+                else if (store.getCount() <= 0 && !(Ext.isEmpty(field.getValue()))) {
+                    field.labelEl.update('<font color="#F25252">Не найдено</font>');
+                }
+                else {
+                    field.labelEl.update('');
+                }
             }
         }
     })
