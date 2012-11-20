@@ -46,39 +46,10 @@ namespace VacancyManager.Services.Managers
     }
 
     /// <summary>
-    /// Если вдруг понадобится обновлять все
+    /// Обновлять поле IsRead.
     /// </summary>
-    /// <param name="id"></param>
-    /// <param name="sender"></param>
-    /// <param name="subject"></param>
-    /// <param name="text"></param>
-    /// <param name="sendDate"></param>
-    /// <param name="deliveryDate"></param>
-    /// <param name="isRead"></param>
-    /// <param name="considerId"></param>
-    internal static void Update(int id, string sender, string subject, string text, DateTime sendDate, DateTime deliveryDate, bool isRead, int considerId)
-    {
-      var obj = _db.InputMessages.Where(message => message.Id == id).FirstOrDefault();
-
-      if (obj != null)
-      {
-        obj.Sender = sender;
-        obj.Subject = subject;
-        obj.Text = text;
-        obj.SendDate = sendDate;
-        obj.DeliveryDate = deliveryDate;
-        obj.IsRead = isRead;
-        obj.ConsiderationId = considerId;
-      }
-
-      _db.SaveChanges();
-    }
-
-    /// <summary>
-    /// Это если обновлять только поле IsRead. Думаю этого варианта будет достаточно
-    /// </summary>
-    /// <param name="id"></param>
-    /// <param name="isRead"></param>
+    /// <param name="id">id сообщения</param>
+    /// <param name="isRead">Новое значение поля IsRead</param>
     internal static void Update(int id, bool isRead)
     {
       var obj = _db.InputMessages.Where(message => message.Id == id).FirstOrDefault();

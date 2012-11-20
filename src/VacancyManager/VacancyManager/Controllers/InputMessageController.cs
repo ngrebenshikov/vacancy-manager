@@ -13,7 +13,6 @@ namespace VacancyManager.Controllers
   [AuthorizeError(Roles = "Admin")]
   public class InputMessageController : Controller
   {
-
     [HttpGet]
     public ActionResult Index()
     {

@@ -80,18 +80,19 @@
                 id: 'RemoveInputMessage',
                 action: 'RemoveInputMessage',
                 disabled: true
-            }, {
-                xtype: 'tbfill' 
-            }, {
+            }, '->', {
                 xtype: 'triggerfield',
                 emptyText: Strings.MessageFilter,
-                width: 250,
+                width: 350,
+                fieldLabel: ' ',
+                labelSeparator: '',
                 id: 'IMFilterField',
                 enableKeyEvents: true,
                 triggerCls: 'x-form-clear-trigger',
 
                 onTriggerClick: function (e) {
                     this.reset();
+                    this.labelEl.update('');
                     Ext.StoreManager.lookup('InputMessage').clearFilter();
                 }
             }],
