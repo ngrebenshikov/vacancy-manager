@@ -46,6 +46,7 @@
         },
 
         CreateApplicant: function (button) {
+            button.focus();
             var form = Ext.getCmp('applicantCreateForm').getForm(),
                 grid = button.up('window').down('grid'),
                 store = this.getApplicantStore();

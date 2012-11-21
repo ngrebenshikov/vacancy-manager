@@ -108,7 +108,8 @@
         }]
     }, {
         region: 'center',
-        title: Strings.MessageText,
+        //title: Strings.MessageText,
+        //title: 'Title Line 1<br>Title Line <br>212345',
         id: 'imTextPanel',
         border: true,
         layout: 'anchor',

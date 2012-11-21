@@ -109,6 +109,8 @@
 
                 // 3
                 var textArea = Ext.getCmp('InputMessageText');
+                var panel = Ext.getCmp('imTextPanel');
+                panel.setTitle('<font color="#837F7F">От: </font>' + record.get('Sender') + '<br><font color="#837F7F">Тема: </font>' + record.get('Subject') + '<br><font color="#837F7F">Вакансия: </font>' + record.get('Vacancy'))
                 if (record.get('Text') == '') {
                     textArea.reset();
                     Ext.getCmp('InputMessageText').emptyText = 'Текст в выбранном сообщении отсутствует';
@@ -185,7 +187,7 @@
         },
 
         Download: function (view, record) {
-            location.href = 'Attachment/Download/' + record.getId();
+            window.open('Attachment/Download/' + record.getId());
         },
 
         FilterKeyUp: function (field, e) {

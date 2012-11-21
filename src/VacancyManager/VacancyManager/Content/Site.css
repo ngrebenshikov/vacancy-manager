@@ -44,3 +44,21 @@
     white-space: pre-line;
     overflow: hidden;
 }
+
+#InputMessageText .x-form-field
+{
+    border: 0px;
+}
+
+#imTextPanel .x-panel-header-default
+{
+
+    background-color:#D3E1F1;
+    background-image:none;
+}
+
+#imTextPanel .x-panel-header-text-default
+{
+    font-weight:normal;
+    color:Black;
+}
