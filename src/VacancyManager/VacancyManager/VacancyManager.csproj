@@ -161,6 +161,22 @@
     <Compile Include="Migrations\201211130331457_IvanChange.Designer.cs">
       <DependentUpon>201211130331457_IvanChange.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201211210915060_Fixed_consider_message_keys.cs" />
+    <Compile Include="Migrations\201211210915060_Fixed_consider_message_keys.Designer.cs">
+      <DependentUpon>201211210915060_Fixed_consider_message_keys.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201211210918020_Fixed_again.cs" />
+    <Compile Include="Migrations\201211210918020_Fixed_again.Designer.cs">
+      <DependentUpon>201211210918020_Fixed_again.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201211210932143_TemporaryFix_DeleteKey_IM_Consider.cs" />
+    <Compile Include="Migrations\201211210932143_TemporaryFix_DeleteKey_IM_Consider.Designer.cs">
+      <DependentUpon>201211210932143_TemporaryFix_DeleteKey_IM_Consider.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201211220113068_TemporaryFix_AddedKey_IM_Consider.cs" />
+    <Compile Include="Migrations\201211220113068_TemporaryFix_AddedKey_IM_Consider.Designer.cs">
+      <DependentUpon>201211220113068_TemporaryFix_AddedKey_IM_Consider.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\Applicant.cs" />
@@ -209,6 +225,7 @@
     <Compile Include="Services\Managers\SysConfigManager.cs" />
     <Compile Include="Services\Managers\VacancyDbManager.cs" />
     <Compile Include="Services\Managers\VacancyRequirementsManager.cs" />
+    <Compile Include="Services\MessageTemplate.cs" />
     <Compile Include="Services\MultipartParser.cs" />
     <Compile Include="Services\ResourceSerialiser.cs" />
     <Compile Include="Services\SharedCode.cs" />
@@ -216,6 +233,7 @@
     <Compile Include="Services\VacancyManagerRoleProvider.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\MsgTpl.txt" />
     <Content Include="Content\MIME-icons\default.png" />
     <Content Include="Content\MIME-icons\mime_doc.png" />
     <Content Include="Content\MIME-icons\mime_jpg.png" />

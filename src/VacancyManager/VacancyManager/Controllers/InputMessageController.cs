@@ -10,7 +10,7 @@ using System.IO;
 
 namespace VacancyManager.Controllers
 {
-  [AuthorizeError(Roles = "Admin")]
+  //[AuthorizeError(Roles = "Admin")]
   public class InputMessageController : Controller
   {
     [HttpGet]
@@ -29,7 +29,6 @@ namespace VacancyManager.Controllers
         if (message.ConsiderationId != null)
         {
           res = (from cons in considerationList
-                 join app in applicantList on cons.ApplicantID equals app.ApplicantID
                  join vacancy in vacancyList on cons.VacancyID equals vacancy.VacancyID
                  where cons.ConsiderationID == message.ConsiderationId
                  select new
@@ -42,7 +41,7 @@ namespace VacancyManager.Controllers
                    DeliveryDate = message.DeliveryDate.ToString(),
                    Vacancy = vacancy.Title,
                    ConsiderationId = message.ConsiderationId,
-                   Sender = String.Format("{0} ({1})", app.FullName, app.Email)
+                   Sender = String.Format("{0} ({1})", cons.Applicant.FullName, cons.Applicant.Email)
                  }).ToList()[0];
           result.Add(res);
         }
@@ -58,7 +57,7 @@ namespace VacancyManager.Controllers
                   DeliveryDate = message.DeliveryDate.ToString(),
                   Vacancy = "",
                   ConsiderationId = message.ConsiderationId,
-                  Sender = "email@example.ru"
+                  Sender = message.Sender
                 };
           result.Add(res);
         }
@@ -180,6 +179,12 @@ namespace VacancyManager.Controllers
     {
       InputMessageManager.UpdateMailsListFromIMAP();
       return null;
+    }
+
+    public ActionResult MessageTemplateGet()
+    {
+        MessageTemplate.Get("New_Message", new TemplateProp { Email="ЕМАЙЛ", Name="НАМЕ" });
+        return null;
     }
   }
 }

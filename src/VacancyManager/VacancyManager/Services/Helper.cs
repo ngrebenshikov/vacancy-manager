@@ -32,4 +32,10 @@ namespace VacancyManager.Services
             return result;
         }
     }
+
+    public class TemplateProp
+    {
+        public string Email { get; set; }
+        public string Name { get; set; }
+    }
 }

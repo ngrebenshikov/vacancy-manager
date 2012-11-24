@@ -20,7 +20,6 @@ namespace VacancyManager.Models
 
         public Nullable<int> ConsiderationId { get; set; }
 
-        public virtual Consideration Consideration { get; set; }
-        //public virtual ICollection<Attachment> Attachments { get; set; }
+        public virtual ICollection<Attachment> Attachments { get; set; }
     }
 }
