@@ -79,7 +79,7 @@
                 name: 'btnRemoveInputMessage',
                 id: 'RemoveInputMessage',
                 action: 'RemoveInputMessage',
-                disabled: true
+                disabled: true  
             }, '->', {
                 xtype: 'triggerfield',
                 emptyText: Strings.MessageFilter,

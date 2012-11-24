@@ -8,16 +8,18 @@ namespace VacancyManager.Services.Managers
 {
     internal static class ApplicantManager
     {
-        static VacancyContext _db = new VacancyContext();
+        //static VacancyContext _db = new VacancyContext();
 
         internal static IEnumerable<Applicant> GetList()
         {
+            VacancyContext _db = new VacancyContext();
             var obj = _db.Applicants.ToList();
             return obj;
         }
 
         internal static List<Applicant> Create(string FullName, string contactPhone, string email)
         {
+            VacancyContext _db = new VacancyContext();
             var obj = new List<Applicant>();
             obj.Add(new Applicant
             {
@@ -34,6 +36,7 @@ namespace VacancyManager.Services.Managers
 
         internal static void Delete(int id)
         {
+            VacancyContext _db = new VacancyContext();
             var obj = _db.Applicants.Where(app => app.ApplicantID == id).FirstOrDefault();
 
             _db.Applicants.Remove(obj);
@@ -42,6 +45,7 @@ namespace VacancyManager.Services.Managers
 
         internal static void Update(int id, string FullName, string contactPhone, string email)
         {
+            VacancyContext _db = new VacancyContext();
             var obj = _db.Applicants.Where(app => app.ApplicantID == id).FirstOrDefault();
 
             if (obj != null)

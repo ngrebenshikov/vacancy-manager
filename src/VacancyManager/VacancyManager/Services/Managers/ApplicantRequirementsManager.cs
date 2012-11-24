@@ -8,10 +8,9 @@ namespace VacancyManager.Services.Managers
 {
     internal static class ApplicantRequirementsManager
     {
-        static VacancyContext _db = new VacancyContext();
-
         internal static IEnumerable<ApplicantRequirement> GetListByApplicantId(int id)
         {
+            VacancyContext _db = new VacancyContext();
             IEnumerable<ApplicantRequirement> obj = null;
 
             obj = _db.ApplicantRequirements.Where(rec => rec.ApplicantId == id).ToList();
@@ -20,6 +19,7 @@ namespace VacancyManager.Services.Managers
 
         internal static void Create(int appId, int reqId, string comment, bool isChecked)
         {
+            VacancyContext _db = new VacancyContext();
             _db.ApplicantRequirements.Add(new ApplicantRequirement{
                 ApplicantId = appId,
                 RequirementId = reqId,
@@ -32,6 +32,7 @@ namespace VacancyManager.Services.Managers
 
         internal static void Update(int id, string comment, bool isChecked)
         {
+            VacancyContext _db = new VacancyContext();
             var obj = _db.ApplicantRequirements.Where(app => app.Id == id).FirstOrDefault();
 
             if (obj != null && (obj.Comment != comment || obj.IsChecked != isChecked))
@@ -45,6 +46,7 @@ namespace VacancyManager.Services.Managers
 
         internal static void Delete(int id)
         {
+            VacancyContext _db = new VacancyContext();
             var obj = _db.ApplicantRequirements.Where(app => app.Id == id).FirstOrDefault();
 
             _db.ApplicantRequirements.Remove(obj);
