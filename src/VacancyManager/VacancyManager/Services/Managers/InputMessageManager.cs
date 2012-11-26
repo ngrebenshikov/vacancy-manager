@@ -78,9 +78,9 @@ namespace VacancyManager.Services.Managers
         {
             //Можно засунуть получение прямо в параметры getImapClient
             //Но тогда код загромождён будет
-            string mailAdress = SysConfigManager.GetStringParametr(MailAdressConfigName, MailAdressDefault);
-            string mailAdressPass = SysConfigManager.GetStringParametr(MailAdressPassConfigName, MailAdressPassDefault);
-            string mailImapHost = SysConfigManager.GetStringParametr(MailImapHostConfigName, MailImapHostDefault);
+            string mailAdress = SysConfigManager.GetStringParameter(MailAdressConfigName, MailAdressDefault);
+            string mailAdressPass = SysConfigManager.GetStringParameter(MailAdressPassConfigName, MailAdressPassDefault);
+            string mailImapHost = SysConfigManager.GetStringParameter(MailImapHostConfigName, MailImapHostDefault);
             int mailImapPort = SysConfigManager.GetIntParametr(MailImapPortConfigName, MailImapPortDefault);
 
             using (var imap = ImapClientGetter.getImapClient(mailImapHost, mailAdress, mailAdressPass, mailImapPort))

@@ -155,7 +155,7 @@ Ext.define('VM.view.Applicant.Edit',
                         dataIndex: 'RequirementName',
                         text: Strings.Skill,
                         width: 120,
-                        sortable: true,
+                        sortable: false,
                         field: { xtype: 'textfield' },
                         menuDisabled: true
                     }, {
