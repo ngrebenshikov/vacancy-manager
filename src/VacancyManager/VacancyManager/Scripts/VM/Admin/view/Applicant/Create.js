@@ -127,7 +127,7 @@ Ext.define('VM.view.Applicant.Create',
                     features: [Ext.create('Ext.grid.feature.Grouping', {
                         groupHeaderTpl: '{name}: ({rows.length})'
                     })],
-                    store: 'ApplicantRequirements', 
+                    store: 'ApplicantRequirements',
                     columns:
                     [{
                         xtype: 'checkcolumn',
@@ -139,9 +139,9 @@ Ext.define('VM.view.Applicant.Create',
                         listeners: {
                             checkchange: function (column, rowIndex, checked) {
                                 Ext.getCmp('ShowHideSkills').disable();
-                                
+
                                 var store = Ext.StoreManager.lookup('ApplicantRequirements');
-                                
+
                                 store.each(function (appReq) {
                                     if (appReq.get('IsChecked') === true) {
                                         Ext.getCmp('ShowHideSkills').enable();
@@ -154,7 +154,7 @@ Ext.define('VM.view.Applicant.Create',
                         dataIndex: 'RequirementName',
                         text: Strings.Skill,
                         width: 120,
-                        sortable: true,
+                        sortable: false,
                         field: { xtype: 'textfield' },
                         menuDisabled: true
                     }, {

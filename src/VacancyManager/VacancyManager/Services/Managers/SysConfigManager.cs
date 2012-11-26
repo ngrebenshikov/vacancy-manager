@@ -34,7 +34,7 @@ namespace VacancyManager.Services.Managers
             return tmp != null ? Int32.Parse(tmp) : defaultValue;
         }
 
-        internal static string GetStringParametr(string name, string defaultValue)
+        internal static string GetStringParameter(string name, string defaultValue)
         {
             string tmp = Get(name);
             /*Оператор ?? возвращает левый операнд, если он не равен null

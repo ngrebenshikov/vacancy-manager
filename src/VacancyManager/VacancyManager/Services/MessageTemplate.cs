@@ -4,6 +4,7 @@ using System.Linq;
 using System.ComponentModel;
 using System.IO;
 using System.Text.RegularExpressions;
+using VacancyManager.Services.Managers;
 
 namespace VacancyManager.Services
 {
@@ -11,7 +12,10 @@ namespace VacancyManager.Services
     {
         public static string Get(string name, TemplateProp prop)
         {
-            string file = @"D:\C#\StudProj\src\VacancyManager\VacancyManager\Content\MsgTpl.txt";
+            string defaultPath = @"D:\C#\StudProj\src\VacancyManager\VacancyManager\Content\MsgTpl.txt";
+            string configPath = "MessageTemplate";
+            string file = SysConfigManager.GetStringParameter(configPath, defaultPath);
+
             StreamReader sr = new StreamReader(file);
             string result = "";
             
@@ -38,9 +42,6 @@ namespace VacancyManager.Services
 
             result = Format(result, prop);
 
-            //StreamWriter sw = new StreamWriter(@"C:\Users\alexei\Desktop\111.txt");
-            //sw.Write(result);
-            //sw.Close();
             return result;
         }
 
