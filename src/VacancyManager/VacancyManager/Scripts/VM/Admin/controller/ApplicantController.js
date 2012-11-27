@@ -32,7 +32,7 @@
 
         /* ===== */
         CreateApplicantShowForm: function () {
-            var view = Ext.widget('ApplicantCreate'),
+            var view = Ext.widget('applicantCreate'),
                 newApplicant = Ext.create('VM.model.ApplicantModel', {
                     FullName: 'FullName',
                     ContactPhone: '+123-456-78-90',
@@ -46,8 +46,7 @@
         },
 
         CreateApplicant: function (button) {
-            button.focus();
-            var form = Ext.getCmp('applicantCreateForm').getForm(),
+            var form = Ext.getCmp('applicantInfoForm').getForm(),
                 grid = button.up('window').down('grid'),
                 store = this.getApplicantStore();
 
@@ -63,8 +62,8 @@
                         applicantRequirements.set('ApplicantId', ApplicantId);
                     });
                     ApplicantRequirementsStore.clearFilter();
-                    ApplicantRequirementsStore.sync();                    
-                    
+                    ApplicantRequirementsStore.sync();
+
                     var f = function (storeAR, operation) {
                         store.load();
                         ApplicantRequirementsStore.un("write", f);
@@ -81,7 +80,7 @@
 
         /* ===== */
         EditApplicantShowForm: function (grid, record) {
-            var view = Ext.widget('ApplicantEdit');
+            var view = Ext.widget('applicantEdit');
 
             var obj = grid.getSelectionModel().getSelection()[0];
 
@@ -102,9 +101,7 @@
         },
 
         EditApplicant: function (button) {
-            button.focus();
-
-            var form = Ext.getCmp('applicantEditForm').getForm(),
+            var form = Ext.getCmp('applicantInfoForm').getForm(),
                 grid = button.up('window').down('grid'),
                 store = this.getApplicantStore();
 

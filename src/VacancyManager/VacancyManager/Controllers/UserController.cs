@@ -60,7 +60,13 @@ namespace VacancyManager.Controllers
         string UserName = json_User["UserName"].ToString();
         string Email = json_User["Email"].ToString();
         string Password = json_User["Password"].ToString();
-        var sendMail = MailSender.Send(json_User["Email"].ToString(), "Добро пожаловать", "Приветствуем вас в проекте!");
+
+        string Body = MessageTemplate.Get("New_Registration", new TemplateProp { 
+            Name = json_User["UserName"].ToString(),
+            Email = json_User["Email"].ToString() 
+        });
+
+        var sendMail = MailSender.Send(json_User["Email"].ToString(), "Добро пожаловать", Body);
         Tuple<bool, string, VMMembershipUser> result = SharedCode.CreateNewUser(UserName, Email, Password, activate: true, setAsAdmin: true);
         return CreateJsonAnwser(result.Item1, result.Item2, result.Item3);
 

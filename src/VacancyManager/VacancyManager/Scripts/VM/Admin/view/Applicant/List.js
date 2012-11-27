@@ -61,16 +61,9 @@
                 disabled: true
             }],
 
-            dockedItems: [{
-                xtype: 'pagingtoolbar',
-                store: 'Applicant',
-                dock: 'bottom',
-                displayInfo: true
-            }],
-
             listeners: {
                 selectionchange: function (view, selections, options) {
-                    var button = Ext.getCmp('RemoveApplicant'); //Ищет по ID компонента
+                    var button = Ext.getCmp('RemoveApplicant');
                     if (selections != null)
                         button.enable();
                 }

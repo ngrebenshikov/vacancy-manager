@@ -1575,8 +1575,10 @@
     <Content Include="Scripts\VM\Admin\store\InputMessage.js" />
     <Content Include="Scripts\VM\Admin\store\Attachment.js" />
     <Content Include="Scripts\VM\Admin\view\Admin\Main.js" />
-    <Content Include="Scripts\VM\Admin\view\Applicant\Create.js" />
+    <Content Include="Scripts\VM\Admin\view\Applicant\CenterPanel.js" />
     <Content Include="Scripts\VM\Admin\view\Applicant\Edit.js" />
+    <Content Include="Scripts\VM\Admin\view\Applicant\Create.js" />
+    <Content Include="Scripts\VM\Admin\view\Applicant\WestPanel.js" />
     <Content Include="Scripts\VM\Admin\view\Comments\Add.js" />
     <Content Include="Scripts\VM\Admin\view\Comments\Edit.js" />
     <Content Include="Scripts\VM\Admin\view\Comments\List.js" />
@@ -1596,6 +1598,7 @@
     <Content Include="Scripts\VM\Admin\view\SysConfig\Create.js" />
     <Content Include="Scripts\VM\Admin\view\Applicant\List.js" />
     <Content Include="Scripts\VM\Admin\view\SysConfig\Edit.js" />
+    <Content Include="Scripts\VM\Admin\view\SysConfig\Form.js" />
     <Content Include="Scripts\VM\Admin\view\SysConfig\List.js" />
     <Content Include="Scripts\VM\Admin\view\User\Add.js" />
     <Content Include="Scripts\VM\Admin\view\User\BanReason.js" />
