@@ -43,7 +43,7 @@ namespace VacancyManager.Services.Managers
             return tmp ?? defaultValue;
         }
 
-        internal static void Create(string name, string value)
+        internal static SysConfig Create(string name, string value)
         {
             VacancyContext _db = new VacancyContext();
             var obj = new SysConfig
@@ -54,6 +54,8 @@ namespace VacancyManager.Services.Managers
 
             _db.SysConfigs.Add(obj);
             _db.SaveChanges();
+
+            return obj;
         }
 
         internal static void Update(int id, string name, string value)

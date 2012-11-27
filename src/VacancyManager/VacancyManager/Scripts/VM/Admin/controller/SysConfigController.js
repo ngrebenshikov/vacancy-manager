@@ -40,9 +40,10 @@
             }
         },
 
-        UpdateForm: function (record) {
+        UpdateForm: function () {
             var view = Ext.widget('SysConfigEdit');
-            view.down('form').loadRecord(record);
+            var record = Ext.getCmp('SysConfigGrid').getSelectionModel().getSelection();
+            view.down('form').loadRecord(record[0]);
         },
 
         Update: function (button) {
@@ -55,7 +56,6 @@
                     newConf = form.getValues();
 
                 rec.set(newConf);
-                store.sync();
                 win.close();
             }
         },

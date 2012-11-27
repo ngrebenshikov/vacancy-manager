@@ -46,35 +46,33 @@
         },
 
         CreateInputMessage: function (button) {
-            //            var form = Ext.getCmp('InputMessageCreateForm').getForm(),
-            //                store = Ext.StoreManager.lookup('InputMessage');
+            var form = Ext.getCmp('InputMessageCreateForm').getForm(),
+                store = Ext.StoreManager.lookup('InputMessage');
 
-            //            var obj = form.getRecord();    // Получаем record с формы, но тот record который загружали через loadRecord
-            //            form.updateRecord(obj);        // Обновляем с формы полученный выше record 
+            var obj = form.getRecord();    // Получаем record с формы, но тот record который загружали через loadRecord
+            form.updateRecord(obj);        // Обновляем с формы полученный выше record 
 
-            //            var fileForm = Ext.getCmp('UploadFileForm').getForm();
-            //            obj.save({
-            //                success: function (record, operation) {
-            //                    objId = record.getId();
-            //                    store.add(record);
+            var fileForm = Ext.getCmp('UploadFileForm').getForm();
+            obj.save({
+                success: function (record, operation) {
+                    objId = record.getId();
+                    store.add(record);
 
-            //                    if (Ext.getCmp('InputMessageAttachment').getValue() == "") {
-            //                        button.up('window').close();
-            //                    }
-            //                    else {
-            //                        if (fileForm.isValid()) {
-            //                            fileForm.submit({
-            //                                url: 'Attachment/Upload/' + objId,
-            //                                success: function (form, action) {
-            //                                    button.up('window').close();
-            //                                }
-            //                            });
-            //                        }
-            //                    }
-            //                }
-            //            });
-
-            location.href = "InputMessage/MessageTemplateGet";
+                    if (Ext.getCmp('InputMessageAttachment').getValue() == "") {
+                        button.up('window').close();
+                    }
+                    else {
+                        if (fileForm.isValid()) {
+                            fileForm.submit({
+                                url: 'Attachment/Upload/' + objId,
+                                success: function (form, action) {
+                                    button.up('window').close();
+                                }
+                            });
+                        }
+                    }
+                }
+            });
         },
 
         // Вызывается при itemclick на гриде 

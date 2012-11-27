@@ -180,11 +180,5 @@ namespace VacancyManager.Controllers
       InputMessageManager.UpdateMailsListFromIMAP();
       return null;
     }
-
-    public ActionResult MessageTemplateGet()
-    {
-        MessageTemplate.Get("New_Message", new TemplateProp { Email="ЕМАЙЛ", Name="НАМЕ" });
-        return null;
-    }
   }
 }

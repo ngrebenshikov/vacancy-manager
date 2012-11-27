@@ -2,7 +2,10 @@
 {
     extend: 'Ext.window.Window',
     alias: 'widget.SysConfigCreate',
-    requires: ['Ext.form.Panel'],
+    requires:
+    [
+        'VM.view.SysConfig.Form'
+    ],
 
     title: Strings.ConfNew,
     layout: 'fit',
@@ -12,38 +15,15 @@
     width: 280,
     items: //Элементы окна
     [{
-        xtype: 'form',
-        padding: '5 5 5 5',
-        border: false,
-        style: 'background-color: #fff;',
-        items: //Элементы формы
-        [{
-            xtype: 'textfield',
-            id: 'SysConfigName',
-            name: 'Name',
-            fieldLabel: Strings.ConfName,
-            allowBlank: false,
-            vtype: 'alphanum'
-        }, {
-            xtype: 'textfield',
-            id: 'SysConfigValue',
-            name: 'Value',
-            fieldLabel: Strings.Value,
-            allowBlank: false
-        }],
-
-        buttons: //Кнопки окна
-        [{
-            text: Strings.btnAdd,
-            action: 'CreateConf'
-        } 
-//        {
-//            text: 'Отмена',
-//            scope: this,
-//            handler: this.close
-//        }
-        ]
+        xtype: 'sysConfigForm'
     }],
+
+    buttons: //Кнопки окна
+    [{
+        text: Strings.btnAdd,
+        action: 'CreateConf'
+    }],
+
     initComponent: function () {
         this.callParent(arguments);
     }

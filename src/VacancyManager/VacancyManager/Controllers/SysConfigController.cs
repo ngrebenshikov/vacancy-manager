@@ -31,11 +31,12 @@ namespace VacancyManager.Controllers
             string resultMessage = "Ошибка при добавлении параметра конфигурации";
             JavaScriptSerializer jss = new JavaScriptSerializer();
             dynamic[] createdList = new dynamic[1];
+            SysConfig obj = new SysConfig();
 
             if (data != null)
             {
                 var sysConf = jss.Deserialize<dynamic>(data);
-                SysConfigManager.Create(sysConf["Name"].ToString(), sysConf["Value"].ToString());
+                obj = SysConfigManager.Create(sysConf["Name"].ToString(), sysConf["Value"].ToString());
                 createdList[0] = new
                 {
                     Name = sysConf["Name"].ToString(),
@@ -50,7 +51,7 @@ namespace VacancyManager.Controllers
                 return Json(new
                 {
                     success = success,
-                    SysConfigList = createdList,
+                    SysConfigList = obj,
                     message = resultMessage
                 });
             }
@@ -72,25 +73,17 @@ namespace VacancyManager.Controllers
             if (data != null)
             {
                 var sysConf = jss.Deserialize<dynamic>(data);
-                SysConfigManager.Update(sysConf["Id"], sysConf["Name"].ToString(), sysConf["Value"].ToString());
+                int id = int.Parse(sysConf["Id"].ToString());
+                SysConfigManager.Update(id, sysConf["Name"], sysConf["Value"]);
                 resultMessage = "Параметр конфигурации успешно изменен";
                 success = true;
             }
 
-            if (success)
+            return Json(new
             {
-                return Json(new
-                {
-                    success = success,
-                    message = resultMessage
-                });
-            }
-            else
-                return Json(new
-                {
-                    success = success,
-                    message = resultMessage
-                });
+                success = success,
+                message = resultMessage
+            });
         }
 
         [HttpPost]
