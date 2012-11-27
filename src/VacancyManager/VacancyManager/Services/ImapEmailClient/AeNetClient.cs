@@ -26,17 +26,40 @@ namespace VacancyManager.Services
 
       List<ImapMessage> result = new List<ImapMessage>();
 
-      var msgs = _imap.SearchMessages(
+      string[] uids = _imap.Search(SearchCondition.SentSince(fromDate));
+
+      for (int i = 0; i < uids.Length; i++)
+      {
+        var msg = _imap.GetMessage(uids[i], false, true);
+        string body = "";
+        //Множество потенциальных NullRefereceException, но в каждом case, если мы туда попали, 100% такой кастинг будет валидным, либо нам прислали битые данные
+        switch (msg.ContentType)
+        {
+          case "text/plain":
+            body = string.IsNullOrEmpty(msg.Body) ? (msg.AlternateViews as List<Attachment>)[0].Body : msg.Body;
+            break;
+          case "text/html":
+            //Текст сообщения будет выглядеть как нагромождение тегов
+            body = msg.Body;
+            break;
+          case "multipart/mixed":
+          case "multipart/alternative":
+            body = (msg.Attachments as List<Attachment>)[0].Body;
+            break;
+        }
+        result.Add(new ImapMessage(msg.From.Address, msg.Subject, body, msg.Date, msg.Date));
+      }
+      /*var msgs = _imap.SearchMessages(
         SearchCondition.Undeleted().And(
-          SearchCondition.SentSince(fromDate)));
-      for (int index = 0; index < msgs.Length; index++)
+          SearchCondition.SentSince(fromDate)));*/
+      /*for (int index = 0; index < msgs.Length; index++)
       {
         var m = msgs[index].Value;
         /*IList<Attachment> alternativeViews = m.AlternateViews as IList<Attachment>;
         if (alternativeViews == null)
           continue;*/
-        result.Add(new ImapMessage(m.From.Address, m.Subject, m.Body, m.Date, m.Date));
-      }
+      /*result.Add(new ImapMessage(m.From.Address, m.Subject, m.Body, m.Date, m.Date));
+    }*/
       return result;
     }
 
