@@ -66,3 +66,4 @@ src/VacancyManager/VacancyManager/Scripts/VM/Admin/view/Admin/Main.js.orig
 src/VacancyManager/VacancyManager/Scripts/VM/VacancyConfigurator/store/Vacancy.js.orig
 src/VacancyManager/VacancyManager/Services/IRepository.cs.orig
 src/VacancyManager/VacancyManager/Services/StandardRepository.cs.orig
+*.orig
