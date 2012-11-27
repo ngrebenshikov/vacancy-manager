@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.IO;
 using System.Text.RegularExpressions;
 using VacancyManager.Services.Managers;
+using System.Web;
 
 namespace VacancyManager.Services
 {
@@ -12,7 +13,7 @@ namespace VacancyManager.Services
     {
         public static string Get(string name, TemplateProp prop)
         {
-            string defaultPath = @"D:\C#\StudProj\src\VacancyManager\VacancyManager\Content\MsgTpl.txt";
+            string defaultPath = HttpContext.Current.Server.MapPath(@"~/Content/MsgTpl.txt");
             string configPath = "MessageTemplate";
             string file = SysConfigManager.GetStringParameter(configPath, defaultPath);
 
