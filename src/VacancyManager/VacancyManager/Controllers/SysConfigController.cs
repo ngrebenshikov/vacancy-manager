@@ -10,7 +10,7 @@ using VacancyManager.Services;
 namespace VacancyManager.Controllers
 {
     [AuthorizeError(Roles = "Admin")]
-    public class SysConfigController : Controller
+    public class SysConfigController : BaseController
     {
         [HttpGet]
         public ActionResult GetList()

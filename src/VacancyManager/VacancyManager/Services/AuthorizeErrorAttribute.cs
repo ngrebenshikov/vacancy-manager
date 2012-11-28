@@ -28,11 +28,11 @@ namespace VacancyManager.Services
         throw new ArgumentNullException("filterContext");
       }
 
-      if (!filterContext.HttpContext.Request.IsAjaxRequest())//Если Ajax запрос
-      {
-        filterContext.Result = new ViewResult { ViewName = "Access Denied" };
-        return;
-      }
+      //if (!filterContext.HttpContext.Request.IsAjaxRequest())//Если Ajax запрос
+      //{
+      //  filterContext.Result = new ViewResult { ViewName = "Access Denied" };
+      //  return;
+      //}
 
       if (!filterContext.HttpContext.User.Identity.IsAuthenticated//Не авторизован
         //И авторизация требуется для метода или контроллера

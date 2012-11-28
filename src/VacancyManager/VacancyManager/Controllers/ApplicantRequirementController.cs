@@ -11,7 +11,7 @@ using VacancyManager.Services;
 namespace VacancyManager.Controllers
 {
     [AuthorizeError(Roles = "Admin")]
-    public class ApplicantRequirementController : Controller
+    public class ApplicantRequirementController : BaseController
     {
         [HttpGet]
         public JsonResult Load(int id)

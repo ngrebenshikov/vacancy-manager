@@ -61,12 +61,12 @@ namespace VacancyManager.Controllers
         string Email = json_User["Email"].ToString();
         string Password = json_User["Password"].ToString();
 
-        string Body = MessageTemplate.Get("New_Registration", new TemplateProp { 
+        string Body = Helper.Format(Templates.UserAdd, new TemplateProp {
             Name = json_User["UserName"].ToString(),
-            Email = json_User["Email"].ToString() 
+            Email = json_User["Email"].ToString()
         });
 
-        var sendMail = MailSender.Send(json_User["Email"].ToString(), "Добро пожаловать", Body);
+        var sendMail = MailSender.Send(json_User["Email"].ToString(), Templates.UserAdd_Topic, Body);
         Tuple<bool, string, VMMembershipUser> result = SharedCode.CreateNewUser(UserName, Email, Password, activate: true, setAsAdmin: true);
         return CreateJsonAnwser(result.Item1, result.Item2, result.Item3);
 
@@ -88,7 +88,11 @@ namespace VacancyManager.Controllers
 
         if (Membership.DeleteUser(json_User["UserName"]))
         {
-          var sendMail = MailSender.Send(json_User["Email"].ToString(), "Сообщение об удалении", "Вынуждены Вам сообщить, что Вы удалены из базы");
+            string Body = Helper.Format(Templates.UserDelete, new TemplateProp
+            {
+                Name = json_User["UserName"].ToString(),
+            });
+          var sendMail = MailSender.Send(json_User["Email"].ToString(), Templates.UserDelete_Topic, Body);
           message = "Пользователь удалён";
           success = true;
         }

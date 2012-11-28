@@ -72,6 +72,7 @@
     <Compile Include="Controllers\ApplicantController.cs" />
     <Compile Include="Controllers\ApplicantRequirementController.cs" />
     <Compile Include="Controllers\AttachmentController.cs" />
+    <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\CommentsController.cs" />
     <Compile Include="Controllers\ConsiderationsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -208,6 +209,7 @@
     </Compile>
     <Compile Include="Services\AuthorizeErrorAttribute.cs" />
     <Compile Include="Services\EMailSender.cs" />
+    <Compile Include="Services\ExceptionErrorAttribute.cs" />
     <Compile Include="Services\Helper.cs" />
     <Compile Include="Services\ImapEmailClient\AeNetClient.cs" />
     <Compile Include="Services\ImapEmailClient\IImapClient.cs" />
@@ -225,15 +227,18 @@
     <Compile Include="Services\Managers\SysConfigManager.cs" />
     <Compile Include="Services\Managers\VacancyDbManager.cs" />
     <Compile Include="Services\Managers\VacancyRequirementsManager.cs" />
-    <Compile Include="Services\MessageTemplate.cs" />
     <Compile Include="Services\MultipartParser.cs" />
     <Compile Include="Services\ResourceSerialiser.cs" />
     <Compile Include="Services\SharedCode.cs" />
     <Compile Include="Services\VacancyManagerMembershipProvider.cs" />
     <Compile Include="Services\VacancyManagerRoleProvider.cs" />
+    <Compile Include="Templates.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Templates.resx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\MsgTpl.txt" />
     <Content Include="Content\MIME-icons\default.png" />
     <Content Include="Content\MIME-icons\mime_doc.png" />
     <Content Include="Content\MIME-icons\mime_jpg.png" />
@@ -1739,6 +1744,10 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Templates.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Templates.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

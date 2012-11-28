@@ -10,8 +10,8 @@ using System.IO;
 
 namespace VacancyManager.Controllers
 {
-  //[AuthorizeError(Roles = "Admin")]
-  public class InputMessageController : Controller
+  [AuthorizeError(Roles = "Admin")]
+  public class InputMessageController : BaseController
   {
     [HttpGet]
     public ActionResult Index()

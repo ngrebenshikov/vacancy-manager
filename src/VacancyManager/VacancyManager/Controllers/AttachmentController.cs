@@ -11,7 +11,7 @@ using VacancyManager.Services;
 namespace VacancyManager.Controllers
 {
     [AuthorizeError(Roles = "Admin")]
-    public class AttachmentController : Controller
+    public class AttachmentController : BaseController
     {
         [HttpGet]
         public ActionResult Index(int id)

@@ -10,7 +10,7 @@ using VacancyManager.Services;
 namespace VacancyManager.Controllers
 {
     [AuthorizeError(Roles = "Admin")]
-    public class ApplicantController : Controller
+    public class ApplicantController : BaseController
     {
         [HttpGet]
         public ActionResult Load()

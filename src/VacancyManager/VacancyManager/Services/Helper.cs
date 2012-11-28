@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
+using System.ComponentModel;
 
 namespace VacancyManager.Services
 {
@@ -30,6 +30,14 @@ namespace VacancyManager.Services
                     result = d.Key;
 
             return result;
+        }
+
+        internal static string Format(string input, TemplateProp prop)
+        {
+            foreach (PropertyDescriptor p in TypeDescriptor.GetProperties(prop))
+                input = input.Replace("{" + p.Name + "}", (p.GetValue(prop) ?? "NULL").ToString());
+
+            return input;
         }
     }
 
