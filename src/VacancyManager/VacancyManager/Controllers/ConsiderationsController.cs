@@ -10,7 +10,7 @@ using System.Web.Script.Serialization;
 
 namespace VacancyManager.Controllers
 {
-    public class ConsiderationsController : Controller
+    public class ConsiderationsController : BaseController
     {
         //
         // GET: /Considerations/

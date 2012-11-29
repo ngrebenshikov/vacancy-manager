@@ -9,7 +9,7 @@ using VacancyManager.Services.Managers;
 namespace VacancyManager.Controllers
 {
     [AuthorizeError(Roles = "Admin")]
-    public class VacancyRequirementController : Controller
+    public class VacancyRequirementController : BaseController
     {
         JavaScriptSerializer jss = new JavaScriptSerializer();
         // GET: /VacancyRequirement/

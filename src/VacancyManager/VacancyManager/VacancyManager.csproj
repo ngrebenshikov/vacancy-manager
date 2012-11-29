@@ -315,7 +315,6 @@
     <Content Include="ExtLib\resources\css\ext-standard.css" />
     <Content Include="Content\icons\accept.gif" />
     <Content Include="Content\icons\add.gif" />
-    <Content Include="Content\icons\add16.gif" />
     <Content Include="Content\icons\delete.gif" />
     <Content Include="Content\icons\user.gif" />
     <Content Include="Content\icons\user_add.gif" />

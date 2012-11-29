@@ -11,7 +11,7 @@ using System.Web.Script.Serialization;
 namespace VacancyManager.Controllers
 {
     [AuthorizeError(Roles = "Admin")]
-    public class VacancyController : Controller
+    public class VacancyController : BaseController
     {
 
         //

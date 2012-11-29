@@ -8,12 +8,16 @@ namespace VacancyManager.Services
         public override void OnException(ExceptionContext filterContext)
         {
             filterContext.ExceptionHandled = true;
+
+            string exception = filterContext.Exception.InnerException != null ?
+                filterContext.Exception.InnerException.InnerException.Message :
+                filterContext.Exception.Message;
             filterContext.Result = new JsonResult
             {
                 Data = new 
                 { 
-                    success = false, 
-                    message = filterContext.Exception.Message + " " + filterContext.Controller.ToString()
+                    success = false,
+                    message = exception + " " + filterContext.Controller.ToString()
                 },
                 JsonRequestBehavior = JsonRequestBehavior.AllowGet
             };
