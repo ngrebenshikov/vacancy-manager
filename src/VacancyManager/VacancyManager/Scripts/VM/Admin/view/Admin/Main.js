@@ -3,9 +3,11 @@
   {
     extend: 'Ext.tab.Panel',
     alias: 'widget.AdminMain',
+    id: 'MainTabPanel',
     title: Strings.AdminTitle,
     activeTab: 0,
     removePanelHeader: false,
+    minTabWidth: 50,
 
     initComponent: function ()
     {
@@ -50,8 +52,11 @@
           items:
           [
             {
+                tabConfig: {
+                    title: Strings.Users
+                },
               xtype: 'panel',
-              title: Strings.Users,
+              //title: Strings.Users,
               //autoScroll: true,
               layout: 'fit',
               items:
@@ -60,8 +65,11 @@
               ]
             },
             {
+                tabConfig: {
+                    title: Strings.Vacancies
+                },
               xtype: 'panel',
-              title: "Вакансии",
+              //title: "Вакансии",
               //autoScroll: true,
               layout: 'fit',
               items:
@@ -70,12 +78,16 @@
               ]
             },
             {
+                tabConfig: {
+                    title: Strings.RequirementsTabTitle
+                },
               xtype: 'panel',
               layout: {
                 type: 'border'
               },
+
               autoScroll: true,
-              title: Strings.RequirementsTabTitle,
+              //title: Strings.RequirementsTabTitle,
               items:
               [
                 {
@@ -90,7 +102,8 @@
             },
             {
               tabConfig: {
-                title: Strings.Configuration
+                title: Strings.Configuration,
+                icon: '/Content/icons/config.png'
               },
               xtype: 'panel',
               //autoScroll: true,
@@ -102,7 +115,8 @@
             },
             {
               tabConfig: {
-                title: Strings.Applicants
+                  title: Strings.Applicants,
+                  icon: '/Content/icons/user.png'
               },
               xtype: 'panel',
               //autoScroll: true,
@@ -115,7 +129,8 @@
             {
               tabConfig: {
                 title: Strings.InputMessages,
-                id: 'InputMessageTab'
+                id: 'InputMessageTab',
+                icon: '/Content/icons/email.png'
               },
               xtype: 'panel',
               //autoScroll: true,

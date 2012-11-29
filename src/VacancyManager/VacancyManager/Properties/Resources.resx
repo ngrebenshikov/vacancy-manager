@@ -344,4 +344,7 @@
   <data name="MessageFilter" xml:space="preserve">
     <value>Фильтр сообщений...</value>
   </data>
+  <data name="Vacancies" xml:space="preserve">
+    <value>Вакансии</value>
+  </data>
 </root>
