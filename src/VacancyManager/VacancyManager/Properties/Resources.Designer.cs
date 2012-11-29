@@ -610,6 +610,15 @@ namespace VacancyManager.Properties {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Вакансии.
+        /// </summary>
+        public static string Vacancies {
+            get {
+                return ResourceManager.GetString("Vacancies", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Вакансия.
         /// </summary>
         public static string Vacancy {
