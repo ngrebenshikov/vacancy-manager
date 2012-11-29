@@ -8,7 +8,7 @@ using VacancyManager.Services.Managers;
 namespace VacancyManager.Controllers
 {
   [AuthorizeError(Roles = "Admin")]
-  public class RolesController : Controller
+  public class RolesController : BaseController
   {
 
     [HttpGet]

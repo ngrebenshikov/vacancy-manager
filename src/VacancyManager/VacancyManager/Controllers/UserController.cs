@@ -10,7 +10,7 @@ using VacancyManager;
 
 namespace VacancyManager.Controllers
 {
-  public class UserController : Controller
+  public class UserController : BaseController
   {
     [HttpPost]
     public ActionResult ExtJSLogOn(string login, string password)

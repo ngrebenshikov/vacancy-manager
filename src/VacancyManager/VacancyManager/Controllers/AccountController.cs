@@ -8,7 +8,7 @@ using VacancyManager;
 namespace VacancyManager.Controllers
 {
   //TODO:Разобрать код на отностящийся к ExtJS и на всё что относится к ASP.NET MVC
-  public class AccountController : Controller
+  public class AccountController : BaseController
   {
 
     //
