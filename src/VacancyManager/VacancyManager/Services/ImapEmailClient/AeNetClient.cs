@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using AE.Net.Mail;
+using VacancyManager.Services.Managers;
 
 namespace VacancyManager.Services
 {
@@ -55,19 +56,19 @@ namespace VacancyManager.Services
 
         /*for (int j = 0; j < attachments.Count; j++)
         {
-         * 
-         * 
-         * 
-          //!!!Не факт что при таких contentType будет только один "лишний" элемент в attachments
-          //!!!Но мне такая ситуация не попадалась
-         * 
-         * 
-         * 
+          * 
+          * 
+           //TODO:Возможно заменить следующий if на проверку Content-Disposition Header
+           //!!!Не факт что при таких contentType будет только один "лишний" элемент в attachments
+           //!!!Но мне такая ситуация не попадалась
+          * 
+          * 
+          *
           if (((msg.ContentType == "multipart/mixed") || (msg.ContentType == "multipart/alternative")) && i == 0)
             continue;
           byte[] bytes = new byte[attachments[j].Body.Length * sizeof(char)];
-          System.Buffer.BlockCopy(attachments[j].Body.ToCharArray(), 0, bytes, 0, bytes.Length);
-          AttachmentManager.Create(attachments[j].ContentType, bytes, msg.Attachments[i].Filename, 0);
+          Buffer.BlockCopy(attachments[j].Body.ToCharArray(), 0, bytes, 0, bytes.Length);
+          //AttachmentManager.Create(attachments[j].ContentType, bytes, attachments[j].Filename, 0);
         }*/
       }
       return result;
