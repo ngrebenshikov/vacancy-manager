@@ -121,7 +121,7 @@
     <value>Новое сообщение</value>
   </data>
   <data name="NewMessage_Topic" xml:space="preserve">
-    <value>Новое сообщение</value>
+    <value>Message to consideration #{ConsiderationId}</value>
   </data>
   <data name="UserAdd" xml:space="preserve">
     <value>Добро пожаловать, {Name}.

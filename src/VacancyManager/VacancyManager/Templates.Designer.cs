@@ -70,7 +70,7 @@ namespace VacancyManager {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Новое сообщение.
+        ///   Ищет локализованную строку, похожую на Message to consideration #{ConsiderationId}.
         /// </summary>
         internal static string NewMessage_Topic {
             get {

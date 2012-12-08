@@ -68,6 +68,9 @@ namespace VacancyManager.Controllers
                 CreatedComment = (CommentsManager.CreateComment(ConsiderationID, CurrentUserKey, Body)).ToList();
                 CreateSuccess = true;
                 CreateMessage = "Комментарий успешно добавлен";
+
+                Consideration cons = ConsiderationsManager.GetConsideration(ConsiderationID).SingleOrDefault();
+                bool isSent = SendMailToApplicant(cons, Body, CurrentUser);
             }
 
             var NewComment = (from comms in CreatedComment
@@ -137,9 +140,13 @@ namespace VacancyManager.Controllers
             }, JsonRequestBehavior.DenyGet);
         }
 
-        //
-        // POST: /Comments/Delete/5
-
-
+        public bool SendMailToApplicant(Consideration cons, string comment, VMMembershipUser user)
+        {
+            TemplateProp prop = new TemplateProp()
+            string body = Helper.Format(Templates.NewMessage, null);
+            var state = MailSender.Send(cons.Applicant.Email, Templates.NewMessage_Topic, body, cons.ConsiderationID);
+            
+            return true;
+        }
     }
 }
