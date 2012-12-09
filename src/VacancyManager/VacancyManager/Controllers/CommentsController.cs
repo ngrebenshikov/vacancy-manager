@@ -56,7 +56,7 @@ namespace VacancyManager.Controllers
         {
             bool CreateSuccess = false;
             string CreateMessage = "При создании комментария произошла ошибка";
-            Comment CreatedComment = null;
+            object NewComment = null;
             if (comments != null)
             {
                 var Comment = jss.Deserialize<dynamic>(comments);
@@ -66,35 +66,35 @@ namespace VacancyManager.Controllers
                 VMMembershipUser CurrentUser = (VMMembershipUser)Membership.GetUser(CurrentUserName);
                 Int32 CurrentUserKey = Convert.ToInt32(CurrentUser.ProviderUserKey);
                 //CreatedComment = (CommentsManager.CreateComment(ConsiderationID, CurrentUserKey, Body)).ToList();
-                CreatedComment = (CommentsManager.CreateComment(ConsiderationID, CurrentUserKey, Body)).SingleOrDefault();
+                Comment CreatedComment = (CommentsManager.CreateComment(ConsiderationID, CurrentUserKey, Body)).SingleOrDefault();
                 CreateSuccess = true;
-                
+
                 var isSent = SendMessageToApplicant(CreatedComment.CommentID);
 
                 CreateMessage = isSent ? "Комментарий успешно добавлен. Письмо отправлено" : "Комментарий успешно добавлен. Письмо не отправлено";
+
+                //var NewComment = (from comms in CreatedComment
+                //                  select new
+                //                  {
+                //                      CommentID = comms.CommentID,
+                //                      CreationDate = comms.CreationDate.ToShortDateString(),
+                //                      Body = comms.Body,
+                //                      UserID = comms.UserID,
+                //                      User = "",
+                //                      ConsiderationID = comms.ConsiderationID
+                //                  }
+                //            ).ToList();
+
+                NewComment = new
+                {
+                    CommentID = CreatedComment.CommentID,
+                    CreationDate = CreatedComment.CreationDate.ToShortDateString(),
+                    Body = CreatedComment.Body,
+                    UserID = CreatedComment.UserID,
+                    User = CurrentUserName,
+                    ConsiderationID = CreatedComment.ConsiderationID
+                };
             }
-
-            //var NewComment = (from comms in CreatedComment
-            //                  select new
-            //                  {
-            //                      CommentID = comms.CommentID,
-            //                      CreationDate = comms.CreationDate.ToShortDateString(),
-            //                      Body = comms.Body,
-            //                      UserID = comms.UserID,
-            //                      User = "",
-            //                      ConsiderationID = comms.ConsiderationID
-            //                  }
-            //            ).ToList();
-
-            var NewComment = new
-            {
-                CommentID = CreatedComment.CommentID,
-                CreationDate = CreatedComment.CreationDate.ToShortDateString(),
-                Body = CreatedComment.Body,
-                UserID = CreatedComment.UserID,
-                User = "",
-                ConsiderationID = CreatedComment.ConsiderationID
-            };
             
             return Json(new
             {
@@ -124,7 +124,7 @@ namespace VacancyManager.Controllers
             lastComments.RemoveAt(0);
 
             int prevMessageCountParameter = SysConfigManager.GetIntParameter("PrevMessageCount", 2);
-            int prevMessageCount = lastComments.Count - 1 > prevMessageCountParameter ? prevMessageCountParameter : lastComments.Count - 1;
+            int prevMessageCount = lastComments.Count > prevMessageCountParameter ? prevMessageCountParameter : lastComments.Count;
             if (lastComments.Count > 0)
             {
                 for (int i = 0; i <= prevMessageCount - 1; i++)
