@@ -1,0 +1,25 @@
+﻿@model HelloWorldMvc3.Models.HelloWorldPhrase
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>HelloWorldPhrase</legend>
+
+    <div class="display-label">Phrase1</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Phrase1)
+    </div>
+
+    <div class="display-label">Phrase2</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Phrase2)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

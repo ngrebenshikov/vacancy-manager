@@ -1,0 +1,64 @@
+    .DataView-list
+    {
+      padding: 0 3px 0 3px;
+    }
+    .DataView-list-item
+    {
+      margin-top: 3px;
+      padding-left: 20px;
+      font-size: 11px;
+      line-height: 20px;
+      cursor: pointer;
+      border: 1px solid #fff;
+    }
+    .DataView-list .x-item-selected
+    {
+      font-weight: bold;
+      color: #15428B;
+      background-color: #DFE8F6;
+      border: 1px dotted #A3BAE9;
+    }
+    .DataView-list-item-hover
+    {
+      background-color: #eee;
+    }
+
+
+.x-grid-row-selected .x-grid-table .x-grid-cell 
+{
+    background-color: transparent!important;
+}
+
+.x-grid-row-selected .x-grid-table .x-grid-row-selected .x-grid-cell 
+{
+    background-color: #DFE8F6 !important;
+}
+
+.new-message td
+{
+    font-weight: bold !important;
+}
+
+#gridcomments .x-grid-cell-inner
+{
+    white-space: pre-line;
+    overflow: hidden;
+}
+
+#InputMessageText .x-form-field
+{
+    border: 0px;
+}
+
+#imTextPanel .x-panel-header-default
+{
+
+    background-color:#D3E1F1;
+    background-image:none;
+}
+
+#imTextPanel .x-panel-header-text-default
+{
+    font-weight:normal;
+    color:Black;
+}
