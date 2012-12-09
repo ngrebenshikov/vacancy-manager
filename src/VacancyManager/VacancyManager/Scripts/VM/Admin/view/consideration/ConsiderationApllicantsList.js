@@ -1,5 +1,4 @@
-﻿
-Ext.define('VM.view.consideration.ConsiderationApllicantsList', {
+﻿Ext.define('VM.view.consideration.ConsiderationApllicantsList', {
     extend: 'Ext.ux.LiveSearchGridPanel',
     id: 'considerationapllicantsGrid',
     alias: 'widget.considerationapllicantsList',
@@ -21,7 +20,7 @@ Ext.define('VM.view.consideration.ConsiderationApllicantsList', {
     }],
     height: 350,
     width: 550,
-    title: 'Applicants',
+    //title: 'Applicants',
     viewConfig: {
         stripeRows: true
     }

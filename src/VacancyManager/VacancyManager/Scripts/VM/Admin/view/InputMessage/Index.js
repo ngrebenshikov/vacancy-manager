@@ -66,13 +66,13 @@
             }],
 
             tbar: [{
-                text: Strings.btnAdd,
-                icon: '/Content/icons/add.gif',
-                tooltip: 'Добавить сообщение',
-                name: 'btnCreateInputMessage',
-                id: 'CreateInputMessage',
-                action: 'CreateInputMessageShowForm'
-            }, {
+//                text: Strings.btnAdd,
+//                icon: '/Content/icons/add.gif',
+//                tooltip: 'Добавить сообщение',
+//                name: 'btnCreateInputMessage',
+//                id: 'CreateInputMessage',
+//                action: 'CreateInputMessageShowForm'
+//            }, {
                 text: Strings.btnRemove,
                 icon: '/Content/icons/delete.gif',
                 tooltip: 'Добавить нового соискателя',

@@ -2,7 +2,7 @@
 Ext.define('VM.view.consideration.Add', {
     extend: 'Ext.window.Window',
     alias: 'widget.considerationAdd',
-    title: 'Add consideration',
+    title: Strings.AddApplicant,
     height: 430,
     width: 575,
     autoShow: true,
