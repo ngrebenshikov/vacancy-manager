@@ -347,4 +347,7 @@
   <data name="Vacancies" xml:space="preserve">
     <value>Вакансии</value>
   </data>
+  <data name="AddApplicant" xml:space="preserve">
+    <value>Добавить соискателя</value>
+  </data>
 </root>

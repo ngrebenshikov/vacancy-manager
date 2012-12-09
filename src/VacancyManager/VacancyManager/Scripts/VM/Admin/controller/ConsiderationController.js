@@ -12,7 +12,8 @@ Ext.define('VM.controller.ConsiderationController', {
     init: function () {
         this.control(
                 { 'considerationList dataview': {
-                    itemclick: this.itemClick
+                    itemclick: this.itemClick,
+                    itemdblclick: this.loadComments
                 },
 
                     'button[action = deleteConsideration]': {
