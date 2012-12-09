@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using AE.Net.Mail;
+using VacancyManager.Services.Managers;
 
 namespace VacancyManager.Services
 {
@@ -32,6 +33,7 @@ namespace VacancyManager.Services
       {
         var msg = _imap.GetMessage(uids[i], false, true);
         string body = "";
+        var attachments = (msg.Attachments as List<Attachment>);
         //Множество потенциальных NullRefereceException, но в каждом case, если мы туда попали, 100% такой кастинг будет валидным, либо нам прислали битые данные
         switch (msg.ContentType)
         {
@@ -42,24 +44,33 @@ namespace VacancyManager.Services
             //Текст сообщения будет выглядеть как нагромождение тегов
             body = msg.Body;
             break;
+          //Не знаю почему эта библиотека при таком contentType пихает сообщение в attachment
+          //Но это нужно будет учитывать когда attacments будем прикреплять
           case "multipart/mixed":
           case "multipart/alternative":
-            body = (msg.Attachments as List<Attachment>)[0].Body;
+            body = attachments[0].Body;
             break;
         }
         result.Add(new ImapMessage(msg.From.Address, msg.Subject, body, msg.Date, msg.Date));
+        //TODO:Разобраться как получше и не слишком костыльно получить id сообщения
+
+        /*for (int j = 0; j < attachments.Count; j++)
+        {
+          * 
+          * 
+           //TODO:Возможно заменить следующий if на проверку Content-Disposition Header
+           //!!!Не факт что при таких contentType будет только один "лишний" элемент в attachments
+           //!!!Но мне такая ситуация не попадалась
+          * 
+          * 
+          *
+          if (((msg.ContentType == "multipart/mixed") || (msg.ContentType == "multipart/alternative")) && i == 0)
+            continue;
+          byte[] bytes = new byte[attachments[j].Body.Length * sizeof(char)];
+          Buffer.BlockCopy(attachments[j].Body.ToCharArray(), 0, bytes, 0, bytes.Length);
+          //AttachmentManager.Create(attachments[j].ContentType, bytes, attachments[j].Filename, 0);
+        }*/
       }
-      /*var msgs = _imap.SearchMessages(
-        SearchCondition.Undeleted().And(
-          SearchCondition.SentSince(fromDate)));*/
-      /*for (int index = 0; index < msgs.Length; index++)
-      {
-        var m = msgs[index].Value;
-        /*IList<Attachment> alternativeViews = m.AlternateViews as IList<Attachment>;
-        if (alternativeViews == null)
-          continue;*/
-      /*result.Add(new ImapMessage(m.From.Address, m.Subject, m.Body, m.Date, m.Date));
-    }*/
       return result;
     }
 
