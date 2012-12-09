@@ -43,7 +43,45 @@ namespace VacancyManager.Services
 
     public class TemplateProp
     {
+        /// <summary>
+        /// Имя пользователя
+        /// </summary>
+        public string UserName { get; set; }
+
+        /// <summary>
+        /// 1. NewMessage - Пользователь добавивший новое сообщение
+        /// </summary>
+        public string Sender { get; set; }
+
+        /// <summary>
+        /// Почтовый ящик
+        /// </summary>
         public string Email { get; set; }
-        public string Name { get; set; }
+
+        /// <summary>
+        /// 1. NewMessage - Дата отправки сообщения
+        /// </summary>
+        public string Date { get; set; }
+
+        /// <summary>
+        /// 1. NewMessage - Название вакансии
+        /// </summary>
+        public string Vacancy { get; set; }
+
+        /// <summary>
+        /// 1. NewMessage - Текст сообщения
+        /// </summary>
+        public string Message { get; set; }
+
+        /// <summary>
+        /// 1. NewMessage - идентификатор сообщения
+        /// 2. NewMessage_Topic - идентификатор Consideration
+        /// </summary>
+        public string Id { get; set; }
+
+        /// <summary>
+        /// Имя соискателя
+        /// </summary>
+        public string Applicant { get; set; }
     }
 }

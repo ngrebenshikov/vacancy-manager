@@ -62,7 +62,7 @@ namespace VacancyManager.Controllers
         string Password = json_User["Password"].ToString();
 
         string Body = Helper.Format(Templates.UserAdd, new TemplateProp {
-            Name = json_User["UserName"].ToString(),
+            UserName = json_User["UserName"].ToString(),
             Email = json_User["Email"].ToString()
         });
 
@@ -90,7 +90,7 @@ namespace VacancyManager.Controllers
         {
             string Body = Helper.Format(Templates.UserDelete, new TemplateProp
             {
-                Name = json_User["UserName"].ToString(),
+                UserName = json_User["UserName"].ToString(),
             });
           var sendMail = MailSender.Send(json_User["Email"].ToString(), Templates.UserDelete_Topic, Body);
           message = "Пользователь удалён";

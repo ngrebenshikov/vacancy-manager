@@ -62,7 +62,7 @@ namespace VacancyManager.Controllers
             if (data != null)
             {
                 var obj = jss.Deserialize<dynamic>(data);
-                created = ApplicantManager.Create(obj["FullName1"].ToString(), obj["ContactPhone"].ToString(), obj["Email"].ToString());
+                created = ApplicantManager.Create(obj["FullName"].ToString(), obj["ContactPhone"].ToString(), obj["Email"].ToString());
                 resultMessage = "Соискатель успешно добавлен";
                 success = true;
             }

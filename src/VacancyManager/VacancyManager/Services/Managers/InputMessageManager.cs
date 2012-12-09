@@ -81,7 +81,7 @@ namespace VacancyManager.Services.Managers
       string mailAdress = SysConfigManager.GetStringParameter(MailAdressConfigName, MailAdressDefault);
       string mailAdressPass = SysConfigManager.GetStringParameter(MailAdressPassConfigName, MailAdressPassDefault);
       string mailImapHost = SysConfigManager.GetStringParameter(MailImapHostConfigName, MailImapHostDefault);
-      int mailImapPort = SysConfigManager.GetIntParametr(MailImapPortConfigName, MailImapPortDefault);
+      int mailImapPort = SysConfigManager.GetIntParameter(MailImapPortConfigName, MailImapPortDefault);
 
       using (var imap = ImapClientGetter.getImapClient(mailImapHost, mailAdress, mailAdressPass, mailImapPort))
       {

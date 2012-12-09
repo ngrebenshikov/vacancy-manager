@@ -117,21 +117,37 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="LastMessage" xml:space="preserve">
+    <value>
+{Message}
+	Отправлено: {Sender}, {Date}
+</value>
+  </data>
   <data name="NewMessage" xml:space="preserve">
-    <value>Новое сообщение</value>
+    <value>{Applicant}, для вас получено сообщение.
+
+Сообщение #{Id} по вакансии: "{Vacancy}"
+
+{Message}
+	Отправлено: {Sender}, {Date}
+
+
+
+Прошлые сообщения для вас:
+</value>
   </data>
   <data name="NewMessage_Topic" xml:space="preserve">
-    <value>Новое сообщение</value>
+    <value>#{Id}</value>
   </data>
   <data name="UserAdd" xml:space="preserve">
-    <value>Добро пожаловать, {Name}.
+    <value>Добро пожаловать, {UserName}.
 Твой мыло {Email}.</value>
   </data>
   <data name="UserAdd_Topic" xml:space="preserve">
     <value>Добро пожаловать</value>
   </data>
   <data name="UserDelete" xml:space="preserve">
-    <value>{Name}, тебя удалили!</value>
+    <value>{UserName}, тебя удалили!</value>
   </data>
   <data name="UserDelete_Topic" xml:space="preserve">
     <value>Вас удалили</value>

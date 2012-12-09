@@ -27,7 +27,7 @@ namespace VacancyManager.Services.Managers
             return null != configItem ? configItem.Value : null;
         }
 
-        internal static int GetIntParametr(string name, int defaultValue)
+        internal static int GetIntParameter(string name, int defaultValue)
         {
             VacancyContext _db = new VacancyContext();
             string tmp = Get(name);

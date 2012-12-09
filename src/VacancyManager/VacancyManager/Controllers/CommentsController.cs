@@ -56,7 +56,7 @@ namespace VacancyManager.Controllers
         {
             bool CreateSuccess = false;
             string CreateMessage = "При создании комментария произошла ошибка";
-            List<Comment> CreatedComment = null;
+            Comment CreatedComment = null;
             if (comments != null)
             {
                 var Comment = jss.Deserialize<dynamic>(comments);
@@ -65,29 +65,83 @@ namespace VacancyManager.Controllers
                 string CurrentUserName = System.Web.HttpContext.Current.User.Identity.Name;
                 VMMembershipUser CurrentUser = (VMMembershipUser)Membership.GetUser(CurrentUserName);
                 Int32 CurrentUserKey = Convert.ToInt32(CurrentUser.ProviderUserKey);
-                CreatedComment = (CommentsManager.CreateComment(ConsiderationID, CurrentUserKey, Body)).ToList();
+                //CreatedComment = (CommentsManager.CreateComment(ConsiderationID, CurrentUserKey, Body)).ToList();
+                CreatedComment = (CommentsManager.CreateComment(ConsiderationID, CurrentUserKey, Body)).SingleOrDefault();
                 CreateSuccess = true;
-                CreateMessage = "Комментарий успешно добавлен";
+                
+                var isSent = SendMessageToApplicant(CreatedComment.CommentID);
+
+                CreateMessage = isSent ? "Комментарий успешно добавлен. Письмо отправлено" : "Комментарий успешно добавлен. Письмо не отправлено";
             }
 
-            var NewComment = (from comms in CreatedComment
-                              select new
-                              {
-                                  CommentID = comms.CommentID,
-                                  CreationDate = comms.CreationDate.ToShortDateString(),
-                                  Body = comms.Body,
-                                  UserID = comms.UserID,
-                                  User = "",
-                                  ConsiderationID = comms.ConsiderationID
-                              }
-                        ).ToList();
+            //var NewComment = (from comms in CreatedComment
+            //                  select new
+            //                  {
+            //                      CommentID = comms.CommentID,
+            //                      CreationDate = comms.CreationDate.ToShortDateString(),
+            //                      Body = comms.Body,
+            //                      UserID = comms.UserID,
+            //                      User = "",
+            //                      ConsiderationID = comms.ConsiderationID
+            //                  }
+            //            ).ToList();
 
+            var NewComment = new
+            {
+                CommentID = CreatedComment.CommentID,
+                CreationDate = CreatedComment.CreationDate.ToShortDateString(),
+                Body = CreatedComment.Body,
+                UserID = CreatedComment.UserID,
+                User = "",
+                ConsiderationID = CreatedComment.ConsiderationID
+            };
+            
             return Json(new
             {
                 data = NewComment,
                 success = CreateSuccess,
                 message = CreateMessage
             }, JsonRequestBehavior.DenyGet);
+        }
+
+        private bool SendMessageToApplicant(int createdCommentId)
+        {
+            string body;
+
+            Comment createdComment = CommentsManager.GetComment(createdCommentId);
+
+            TemplateProp p = new TemplateProp();
+            p.Id = createdComment.CommentID.ToString();
+            p.Message = createdComment.Body;
+            p.Sender = createdComment.User.UserName;
+            p.Vacancy = createdComment.Consideration.Vacancy.Title;
+            p.Applicant = createdComment.Consideration.Applicant.FullName;
+            p.Date = createdComment.CreationDate.ToString();
+
+            body = Helper.Format(Templates.NewMessage, p);
+
+            List<Comment> lastComments = CommentsManager.GetComments(createdComment.ConsiderationID).OrderByDescending(c => c.CreationDate).ToList();
+            lastComments.RemoveAt(0);
+
+            int prevMessageCountParameter = SysConfigManager.GetIntParameter("PrevMessageCount", 2);
+            int prevMessageCount = lastComments.Count - 1 > prevMessageCountParameter ? prevMessageCountParameter : lastComments.Count - 1;
+            if (lastComments.Count > 0)
+            {
+                for (int i = 0; i <= prevMessageCount - 1; i++)
+                {
+                    p.Message = lastComments[i].Body;
+                    p.Sender = lastComments[i].User.UserName;
+                    p.Date = lastComments[i].CreationDate.ToString();
+                    body += Helper.Format(Templates.LastMessage, p);
+                }
+            }
+            else
+                body += "Сообщения отстуствуют";
+
+            p.Id = createdComment.ConsiderationID.ToString();
+            string str = MailSender.Send(createdComment.Consideration.Applicant.Email, Helper.Format(Templates.NewMessage_Topic, p), body);
+
+            return true;
         }
 
 
