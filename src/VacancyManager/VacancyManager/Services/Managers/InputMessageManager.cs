@@ -53,7 +53,7 @@ namespace VacancyManager.Services.Managers
     internal static void Update(int id, bool isRead)
     {
       VacancyContext _db = new VacancyContext();
-      var obj = _db.InputMessages.Where(message => message.Id == id).FirstOrDefault();
+      var obj = _db.InputMessages.FirstOrDefault(message => message.Id == id);
 
       if (obj != null)
       {
@@ -66,7 +66,7 @@ namespace VacancyManager.Services.Managers
     internal static void Delete(int id)
     {
       VacancyContext _db = new VacancyContext();
-      var obj = _db.InputMessages.Where(message => message.Id == id).FirstOrDefault();
+      var obj = _db.InputMessages.FirstOrDefault(message => message.Id == id);
 
       if (obj != null)
         _db.InputMessages.Remove(obj);
@@ -89,7 +89,8 @@ namespace VacancyManager.Services.Managers
         List<ImapMessage> messages = imap.GetNewLetters(new DateTime(2012, 12, 7));
         foreach (ImapMessage msg in messages)
         {
-          Create(msg.Sender, msg.Subject, msg.Text, msg.SendDate, msg.DeliveryDate, null);
+          msg.AddToBase();
+          //Create(msg.Sender, msg.Subject, msg.Text, msg.SendDate, msg.DeliveryDate, null);
         }
         //TODO:Записать в базу дату последнего получения писем
       }

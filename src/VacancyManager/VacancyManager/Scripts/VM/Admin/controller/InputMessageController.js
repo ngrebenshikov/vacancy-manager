@@ -94,10 +94,11 @@
                 attStore.load({ params: { 'id': record.getId()} });
                 var fn = function () {
                     if (attStore.getCount() > 0) {
-                        Ext.getCmp('imAttachmentPanel').setTitle(Strings.Attachment + ' (' + attStore.getCount() + ')');
-                        if (attStore.getCount() <= 3) {
-                            Ext.getCmp('imAttachmentPanel').setHeight(30 + 26 * attStore.getCount());
-                        }
+                      Ext.getCmp('imAttachmentPanel').setTitle(Strings.Attachment + ' (' + attStore.getCount() + ')');
+                      var numOfAttachments = attStore.getCount() >= 5 ? 5 : attStore.getCount();
+                        //if (attStore.getCount() <= 3) {
+                          Ext.getCmp('imAttachmentPanel').setHeight(30 + 26 * numOfAttachments);
+                        //}
                         Ext.getCmp('imAttachmentPanel').expand(false);
                     } else {
                         Ext.getCmp('imAttachmentPanel').setTitle(Strings.Attachment);
