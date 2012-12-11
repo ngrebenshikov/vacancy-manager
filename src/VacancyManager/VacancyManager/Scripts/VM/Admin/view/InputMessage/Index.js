@@ -119,7 +119,8 @@
             grow: true,
             readOnly: true,
             name: 'Text',
-            anchor: '100%'
+            anchor: '100%' ,
+            html: ""
         }]
     }, {
         region: 'south',

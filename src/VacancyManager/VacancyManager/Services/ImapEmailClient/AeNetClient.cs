@@ -41,7 +41,7 @@ namespace VacancyManager.Services
         switch (msg.ContentType)
         {
           case "text/plain":
-            body = string.IsNullOrEmpty(msg.Body) ? (msg.AlternateViews as List<Attachment>)[0].Body : msg.Body;
+            body = string.IsNullOrEmpty(msg.Body) ? "<pre>" + (attachments)[0].Body + "</pre>" : "<pre>" + msg.Body + "</pre>";
             break;
           case "text/html":
             //Текст сообщения будет выглядеть как нагромождение тегов
