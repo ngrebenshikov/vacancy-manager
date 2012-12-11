@@ -43,6 +43,13 @@ namespace VacancyManager.Services.Managers
             return tmp ?? defaultValue;
         }
 
+        internal static bool GetBoolParameter(string name, bool defaultValue)
+        {
+            VacancyContext _db = new VacancyContext();
+            string tmp = Get(name);
+            return tmp != null ? Boolean.Parse(tmp) : defaultValue;
+        }
+
         internal static SysConfig Create(string name, string value)
         {
             VacancyContext _db = new VacancyContext();

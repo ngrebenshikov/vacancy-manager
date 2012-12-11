@@ -32,13 +32,6 @@ namespace VacancyManager
           Roles.AddUsersToRoles(new[] { user.UserName }, new[] { "Admin" });
         }
 
-        //string Body = Helper.Format(Templates.UserAdd, new TemplateProp
-        //{
-        //    Name = name,
-        //    Email = email
-        //});
-        //var sendMail = MailSender.Send(email, Templates.UserAdd_Topic, Body);
-
         return new Tuple<bool, string, VMMembershipUser>(true, "Пользователь создан", (VMMembershipUser)Membership.GetUser(name, false));
       }
       return new Tuple<bool, string, VMMembershipUser>(false, ErrorCodeToString(createStatus), null);
