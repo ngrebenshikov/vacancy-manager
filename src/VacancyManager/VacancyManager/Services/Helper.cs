@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.ComponentModel;
+using System.Text.RegularExpressions;
 
 namespace VacancyManager.Services
 {
@@ -38,6 +39,22 @@ namespace VacancyManager.Services
                 input = input.Replace("{" + p.Name + "}", (p.GetValue(prop) ?? "NULL").ToString());
 
             return input;
+        }
+
+        internal static string CutTags(string input)
+        {
+            string result = String.Empty;
+            foreach (Match match in Regex.Matches(input, "<.*?>"))
+            {
+                result = input.Replace(match.Value, "").ToString();
+                input = result;
+            }
+            foreach (Match match in Regex.Matches(input, "&nbsp"))
+            {
+                result = input.Replace(match.Value, "  ").ToString();
+                input = result;
+            }
+            return result;
         }
     }
 

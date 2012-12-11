@@ -139,11 +139,13 @@ namespace VacancyManager.Controllers
                 body += "Сообщения отстуствуют";
 
             p.Id = createdComment.ConsiderationID.ToString();
-            string str = MailSender.Send(createdComment.Consideration.Applicant.Email, Helper.Format(Templates.NewMessage_Topic, p), body);
+            bool isBodyHtml = SysConfigManager.GetBoolParameter("IsBodyHtml", false);
+            if (!isBodyHtml)
+                body = Helper.CutTags(body);
+            string str = MailSender.Send(createdComment.Consideration.Applicant.Email, Helper.Format(Templates.NewMessage_Topic, p), body, isBodyHtml);
 
             return true;
         }
-
 
         //
         // GET: /Comments/Edit/5

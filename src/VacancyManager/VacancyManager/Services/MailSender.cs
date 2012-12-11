@@ -11,32 +11,13 @@ namespace VacancyManager.Services
         internal static string SmtpServer = "smtp.gmail.com";
         internal static string UserName = "vacmana@gmail.com";
         internal static string Password = "nextdaynewlive"; 
-        internal static string Send(string To, string Subject, string Body)
+
+        internal static string Send(string To, string Subject, string Body, bool IsBodyHtml)
         {
             try
             {
                 MailMessage mail = new MailMessage(UserName, To, Subject, Body);
-                SmtpClient client = new SmtpClient(SmtpServer);
-                client.Port = null != Services.Managers.SysConfigManager.Get(PortConfigName) ? int.Parse(Services.Managers.SysConfigManager.Get(PortConfigName)) : Port;
-                client.Credentials = new System.Net.NetworkCredential(UserName, Password);
-                client.EnableSsl = true;
-                client.Send(mail);
-                return "Сообщение отправленно";
-            }
-            catch (Exception ex)
-            {
-                return ex.Message;
-            }
-        }
-
-        internal static string Send(string To, string Subject, string Body, int consId)
-        {
-            try
-            {
-                MailMessage mail = new MailMessage(UserName, To, Subject, Body);
-
-                mail.Headers.Add("X-ConsiderationId", consId.ToString());
-
+                mail.IsBodyHtml = IsBodyHtml;
                 SmtpClient client = new SmtpClient(SmtpServer);
                 client.Port = null != Services.Managers.SysConfigManager.Get(PortConfigName) ? int.Parse(Services.Managers.SysConfigManager.Get(PortConfigName)) : Port;
                 client.Credentials = new System.Net.NetworkCredential(UserName, Password);

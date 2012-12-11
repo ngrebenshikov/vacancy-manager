@@ -7,6 +7,7 @@ using System.Web.Security;
 using VacancyManager.Models;
 using VacancyManager.Services;
 using VacancyManager;
+using VacancyManager.Services.Managers;
 
 namespace VacancyManager.Controllers
 {
@@ -66,8 +67,23 @@ namespace VacancyManager.Controllers
             Email = json_User["Email"].ToString()
         });
 
-        var sendMail = MailSender.Send(json_User["Email"].ToString(), Templates.UserAdd_Topic, Body);
+
         Tuple<bool, string, VMMembershipUser> result = SharedCode.CreateNewUser(UserName, Email, Password, activate: true, setAsAdmin: true);
+        if (result.Item1)
+        {
+            /* Данный кусочек получает значение параметра IsBodyHtml в конфигурации.
+             * Но в данный момент, если шаблон не содержит html теги, то со значением true,
+             * ломается табуляция и перенос строк в готовом сообщении.
+             * TODO. Реализовать какую-нибудь проверку шаблонов на наличие тегов и после
+             * проверки возвращать готовое значение в метод Send.
+            
+            bool isBodyHtml = SysConfigManager.GetBoolParameter("IsBodyHtml", false);
+            if (!isBodyHtml)
+                Body = Helper.CutTags(Body);
+             
+            */
+            //var sendMail = MailSender.Send(json_User["Email"].ToString(), Templates.UserAdd_Topic, Body, false);
+        }
         return CreateJsonAnwser(result.Item1, result.Item2, result.Item3);
 
       }
@@ -92,7 +108,19 @@ namespace VacancyManager.Controllers
             {
                 UserName = json_User["UserName"].ToString(),
             });
-          var sendMail = MailSender.Send(json_User["Email"].ToString(), Templates.UserDelete_Topic, Body);
+
+            /* Данный кусочек получает значение параметра IsBodyHtml в конфигурации.
+             * Но в данный момент, если шаблон не содержит html теги, то со значением true,
+             * ломается табуляция и перенос строк в готовом сообщении.
+             * TODO. Реализовать какую-нибудь проверку шаблонов на наличие тегов и после
+             * проверки возвращать готовое значение в метод Send.
+            
+            bool isBodyHtml = SysConfigManager.GetBoolParameter("IsBodyHtml", false);
+            if (!isBodyHtml)
+                Body = Helper.CutTags(Body);
+             
+            */
+            var sendMail = MailSender.Send(json_User["Email"].ToString(), Templates.UserDelete_Topic, Body, false);
           message = "Пользователь удалён";
           success = true;
         }

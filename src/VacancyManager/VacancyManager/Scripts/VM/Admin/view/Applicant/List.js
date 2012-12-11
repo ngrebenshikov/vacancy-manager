@@ -28,7 +28,7 @@
                 sortable: false,
                 field: { xtype: 'textfield' },
                 menuDisabled: true
-            },/* {
+            }, {
                 dataIndex: 'ContactPhone',
                 text: 'Контактный телефон',
                 width: 120,
@@ -42,7 +42,7 @@
                 sortable: true,
                 field: { xtype: 'textfield' },
                 menuDisabled: true
-            }*/],
+            }],
 
             tbar: [{
                 text: Strings.btnAdd,
