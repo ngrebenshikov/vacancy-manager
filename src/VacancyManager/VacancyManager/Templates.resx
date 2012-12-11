@@ -120,7 +120,7 @@
   <data name="LastMessage" xml:space="preserve">
     <value>&lt;br&gt;
 &lt;i&gt;{Message}&lt;/i&gt;&lt;br&gt;
-&amp;nbsp&amp;nbsp&amp;nbsp&amp;nbsp&amp;nbsp&amp;nbspОтправлено: &lt;b&gt;{Sender}, {Date}&lt;/b&gt;&lt;br&gt;
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;Отправлено: &lt;b&gt;{Sender}, {Date}&lt;/b&gt;&lt;br&gt;
 </value>
   </data>
   <data name="NewMessage" xml:space="preserve">
@@ -129,7 +129,7 @@
 Сообщение #{Id} по вакансии: "{Vacancy}"
 &lt;br&gt;&lt;br&gt;
 &lt;i&gt;{Message}&lt;/i&gt;&lt;br&gt;
-&amp;nbsp&amp;nbsp&amp;nbsp&amp;nbsp&amp;nbsp&amp;nbspОтправлено: &lt;b&gt;{Sender}, {Date}&lt;/b&gt;
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;Отправлено: &lt;b&gt;{Sender}, {Date}&lt;/b&gt;
 &lt;br&gt;
 &lt;br&gt;
 Прошлые сообщения для вас:
