@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using AE.Net.Mail;
 using VacancyManager.Services.Managers;
 
@@ -54,22 +55,20 @@ namespace VacancyManager.Services
         result.Add(new ImapMessage(msg.From.Address, msg.Subject, body, msg.Date, msg.Date));
         //TODO:Разобраться как получше и не слишком костыльно получить id сообщения
 
-        /*for (int j = 0; j < attachments.Count; j++)
+        for (int j = 0; j < attachments.Count; j++)
         {
-          * 
-          * 
-           //TODO:Возможно заменить следующий if на проверку Content-Disposition Header
-           //!!!Не факт что при таких contentType будет только один "лишний" элемент в attachments
-           //!!!Но мне такая ситуация не попадалась
-          * 
-          * 
-          *
-          if (((msg.ContentType == "multipart/mixed") || (msg.ContentType == "multipart/alternative")) && i == 0)
+          if (!attachments[j].Headers.ContainsKey("Content-Type"))
             continue;
-          byte[] bytes = new byte[attachments[j].Body.Length * sizeof(char)];
-          Buffer.BlockCopy(attachments[j].Body.ToCharArray(), 0, bytes, 0, bytes.Length);
-          //AttachmentManager.Create(attachments[j].ContentType, bytes, attachments[j].Filename, 0);
-        }*/
+
+          string filename = attachments[j].Headers["Content-Type"].RawValue;
+          int fileNamePos = filename.IndexOf("name=\"", StringComparison.Ordinal);
+
+          if (fileNamePos == -1)
+            continue;
+
+          filename = filename.Substring(fileNamePos + 6, filename.Length - 1 - (fileNamePos + 6));
+          result[result.Count - 1].AddAttachment(attachments[j].ContentType, attachments[j].GetData(), filename);
+        }
       }
       return result;
     }
