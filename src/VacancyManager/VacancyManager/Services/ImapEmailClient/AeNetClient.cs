@@ -28,11 +28,13 @@ namespace VacancyManager.Services
 
       List<ImapMessage> result = new List<ImapMessage>();
 
-      string[] uids = _imap.Search(SearchCondition.SentSince(fromDate));
+      string[] uids = _imap.Search(SearchCondition.Unseen());
+      //_imap.Search(SearchCondition.SentSince(fromDate));
 
       for (int i = 0; i < uids.Length; i++)
       {
         var msg = _imap.GetMessage(uids[i], false, true);
+        _imap.SetFlags(Flags.Seen, msg);
         string body = "";
         var attachments = (msg.Attachments as List<Attachment>);
         //Множество потенциальных NullRefereceException, но в каждом case, если мы туда попали, 100% такой кастинг будет валидным, либо нам прислали битые данные

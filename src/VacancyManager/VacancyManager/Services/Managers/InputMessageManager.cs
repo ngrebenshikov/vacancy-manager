@@ -90,7 +90,6 @@ namespace VacancyManager.Services.Managers
         foreach (ImapMessage msg in messages)
         {
           msg.AddToBase();
-          //Create(msg.Sender, msg.Subject, msg.Text, msg.SendDate, msg.DeliveryDate, null);
         }
         //TODO:Записать в базу дату последнего получения писем
       }
