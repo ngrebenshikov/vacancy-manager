@@ -45,12 +45,16 @@
                 sortable: true,
                 menuDisabled: true
             }, {
+                xtype: 'datecolumn',
+                format: 'd.m.Y H:i',
                 dataIndex: 'SendDate',
                 text: Strings.SendDate,
                 width: 50,
                 sortable: true,
                 menuDisabled: true
             }, {
+                xtype: 'datecolumn',
+                format: 'd.m.Y H:i',
                 dataIndex: 'DeliveryDate',
                 text: Strings.DeliveryDate,
                 width: 50,
