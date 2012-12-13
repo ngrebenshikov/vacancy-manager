@@ -37,8 +37,8 @@ namespace VacancyManager.Controllers
                    Subject = message.Subject,
                    Text = message.Text,
                    IsRead = message.IsRead,
-                   SendDate = message.SendDate.ToString(),
-                   DeliveryDate = message.DeliveryDate.ToString(),
+                   SendDate = message.SendDate,
+                   DeliveryDate = message.DeliveryDate,
                    Vacancy = vacancy.Title,
                    ConsiderationId = message.ConsiderationId,
                    Sender = String.Format("{0} ({1})", cons.Applicant.FullName, cons.Applicant.Email)
@@ -53,8 +53,8 @@ namespace VacancyManager.Controllers
                   Subject = message.Subject,
                   Text = message.Text,
                   IsRead = message.IsRead,
-                  SendDate = message.SendDate.ToString(),
-                  DeliveryDate = message.DeliveryDate.ToString(),
+                  SendDate = message.SendDate,
+                  DeliveryDate = message.DeliveryDate,
                   Vacancy = "",
                   ConsiderationId = message.ConsiderationId,
                   Sender = message.Sender
