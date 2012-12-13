@@ -2,7 +2,18 @@
     {
         extend: 'Ext.data.Model',
         idProperty: 'Id',
-        fields: ['Id', 'SendDate', 'DeliveryDate', 'Sender', 'Subject', 'Text', 'IsRead', 'Vacancy', 'ConsiderationId', 'AttachmentFile'],
+        fields: [
+            { name: 'Id', type: 'int' },
+            { name: 'SendDate', type: 'date', dateFormat: 'MS' },
+            { name: 'DeliveryDate', type: 'date', dateFormat: 'MS' },
+            { name: 'Sender', type: 'string' },
+            { name: 'Subject', type: 'string' },
+            { name: 'Text', type: 'string' },
+            { name: 'IsRead', type: 'boolean' },
+            { name: 'Vacancy', type: 'string' },
+            { name: 'ConsiderationId', type: 'int' },
+            'AttachmentFile'
+        ],
 
         proxy:
         {
@@ -35,4 +46,4 @@
             },
             headers: { 'Content-Type': 'application/json; charset=UTF-8' }
         }
-})
+    })
