@@ -49,7 +49,7 @@ namespace VacancyManager.Services
                 result = input.Replace(match.Value, "").ToString();
                 input = result;
             }
-            foreach (Match match in Regex.Matches(input, "&nbsp"))
+            foreach (Match match in Regex.Matches(input, "&nbsp;"))
             {
                 result = input.Replace(match.Value, "  ").ToString();
                 input = result;

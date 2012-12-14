@@ -62,10 +62,7 @@ namespace VacancyManager.Controllers
         string Email = json_User["Email"].ToString();
         string Password = json_User["Password"].ToString();
 
-        string Body = Helper.Format(Templates.UserAdd, new TemplateProp {
-            UserName = json_User["UserName"].ToString(),
-            Email = json_User["Email"].ToString()
-        });
+
 
 
         Tuple<bool, string, VMMembershipUser> result = SharedCode.CreateNewUser(UserName, Email, Password, activate: true, setAsAdmin: true);
@@ -76,7 +73,11 @@ namespace VacancyManager.Controllers
              * ломается табуляция и перенос строк в готовом сообщении.
              * TODO. Реализовать какую-нибудь проверку шаблонов на наличие тегов и после
              * проверки возвращать готовое значение в метод Send.
-            
+                    
+            string Body = Helper.Format(Templates.UserAdd, new TemplateProp {
+                UserName = json_User["UserName"].ToString(),
+                Email = json_User["Email"].ToString()
+            });
             bool isBodyHtml = SysConfigManager.GetBoolParameter("IsBodyHtml", false);
             if (!isBodyHtml)
                 Body = Helper.CutTags(Body);
@@ -104,23 +105,22 @@ namespace VacancyManager.Controllers
 
         if (Membership.DeleteUser(json_User["UserName"]))
         {
-            string Body = Helper.Format(Templates.UserDelete, new TemplateProp
-            {
-                UserName = json_User["UserName"].ToString(),
-            });
-
             /* Данный кусочек получает значение параметра IsBodyHtml в конфигурации.
              * Но в данный момент, если шаблон не содержит html теги, то со значением true,
              * ломается табуляция и перенос строк в готовом сообщении.
              * TODO. Реализовать какую-нибудь проверку шаблонов на наличие тегов и после
              * проверки возвращать готовое значение в метод Send.
             
+            string Body = Helper.Format(Templates.UserDelete, new TemplateProp
+            {
+                UserName = json_User["UserName"].ToString(),
+            });
             bool isBodyHtml = SysConfigManager.GetBoolParameter("IsBodyHtml", false);
             if (!isBodyHtml)
                 Body = Helper.CutTags(Body);
              
-            */
             var sendMail = MailSender.Send(json_User["Email"].ToString(), Templates.UserDelete_Topic, Body, false);
+             */
           message = "Пользователь удалён";
           success = true;
         }
