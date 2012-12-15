@@ -41,6 +41,11 @@ namespace VacancyManager.Services
             return input;
         }
 
+        /// <summary>
+        /// Вырезает html тэги из шаблона
+        /// </summary>
+        /// <param name="input">Шаблон</param>
+        /// <returns>Шаблон без тэгов</returns>
         internal static string CutTags(string input)
         {
             string result = String.Empty;
@@ -49,11 +54,11 @@ namespace VacancyManager.Services
                 result = input.Replace(match.Value, "").ToString();
                 input = result;
             }
-            foreach (Match match in Regex.Matches(input, "&nbsp;"))
-            {
-                result = input.Replace(match.Value, "  ").ToString();
-                input = result;
-            }
+            //foreach (Match match in Regex.Matches(input, "&nbsp;"))
+            //{
+            //    result = input.Replace(match.Value, " ").ToString();
+            //    input = result;
+            //}
             return result;
         }
     }

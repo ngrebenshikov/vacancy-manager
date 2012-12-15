@@ -70,6 +70,7 @@ namespace VacancyManager.Controllers
                 CreateSuccess = true;
 
                 bool isSent = MailSender.SendMessageToApplicant(CreatedComment.CommentID);
+                //bool isSent = MailSender.SendMessageToAdmins(CreatedComment.CommentID);
 
                 CreateMessage = isSent ? "Комментарий успешно добавлен. Письмо отправлено" : "Комментарий успешно добавлен. Письмо не отправлено";
 

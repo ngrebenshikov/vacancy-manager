@@ -118,22 +118,31 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="LastMessage" xml:space="preserve">
-    <value>&lt;br&gt;
-&lt;i&gt;{Message}&lt;/i&gt;&lt;br&gt;
-&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;Отправлено: &lt;b&gt;{Sender}, {Date}&lt;/b&gt;&lt;br&gt;
+    <value>&lt;pre&gt;
+&lt;i&gt;{Message}&lt;/i&gt;
+       Отправлено: &lt;b&gt;{Sender}, {Date}&lt;/b&gt;&lt;/pre&gt;
 </value>
   </data>
   <data name="NewMessage" xml:space="preserve">
-    <value>&lt;b&gt;{Applicant}&lt;/b&gt;, для вас получено сообщение.
-&lt;br&gt;&lt;br&gt;
+    <value>&lt;pre&gt;&lt;b&gt;{Applicant}&lt;/b&gt;, для вас получено сообщение.
+
 Сообщение #{Id} по вакансии: "{Vacancy}"
-&lt;br&gt;&lt;br&gt;
-&lt;i&gt;{Message}&lt;/i&gt;&lt;br&gt;
-&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;Отправлено: &lt;b&gt;{Sender}, {Date}&lt;/b&gt;
-&lt;br&gt;
-&lt;br&gt;
-Прошлые сообщения для вас:
+
+&lt;i&gt;{Message}&lt;/i&gt;
+       Отправлено: &lt;b&gt;{Sender}, {Date}&lt;/b&gt;
+
+
+Прошлые сообщения для вас:&lt;/pre&gt;
 </value>
+  </data>
+  <data name="NewMessageAdmin" xml:space="preserve">
+    <value>&lt;pre&gt;Получено новое сообщение (#{Id} ) по вакансии: "{Vacancy}".
+
+&lt;i&gt;{Message}&lt;/i&gt;
+       Отправлено: &lt;b&gt;{Sender}, {Date}&lt;/b&gt;
+
+
+Прошлые сообщения:&lt;/pre&gt;</value>
   </data>
   <data name="NewMessage_Topic" xml:space="preserve">
     <value>#{Id}</value>

@@ -4,6 +4,7 @@ using VacancyManager.Models;
 using VacancyManager.Services.Managers;
 using System.Collections.Generic;
 using System.Linq;
+using System.Web.Security;
 
 namespace VacancyManager.Services
 {
@@ -15,7 +16,7 @@ namespace VacancyManager.Services
         internal static string SmtpServer = "smtp.gmail.com";
         internal static string UserName = "vacmana@gmail.com";
         internal static string Password = "nextdaynewlive";
-        internal static List<string> Bcc = null;
+        internal static List<string> Bcc = new List<string>();
 
         internal static string Send(string To, string Subject, string Body, bool IsBodyHtml)
         {
@@ -23,7 +24,7 @@ namespace VacancyManager.Services
             {
                 MailMessage mail = new MailMessage(UserName, To, Subject, Body);
                 mail.IsBodyHtml = IsBodyHtml;
-                if (Bcc.Count > 0)
+                if (Bcc != null && Bcc.Count > 0)
                     foreach (string address in Bcc)
                         mail.Bcc.Add(address);
                 SmtpClient client = new SmtpClient(SmtpServer);
@@ -40,7 +41,8 @@ namespace VacancyManager.Services
         }
 
         /// <summary>
-        /// Отправляет сообщение соискателю, в случае появления новых комментариев по вакансии
+        /// Отправляет сообщение соискателю, 
+        /// в случае появления новых комментариев по вакансии
         /// </summary>
         /// <param name="createdCommentId">Id нового комментария</param>
         /// <returns>Возвращает true, если не ошибок</returns>
@@ -112,7 +114,7 @@ namespace VacancyManager.Services
             p.Applicant = createdComment.Consideration.Applicant.FullName;
             p.Date = createdComment.CreationDate.ToString();
 
-            body = Helper.Format(Templates.NewMessage, p);
+            body = Helper.Format(Templates.NewMessageAdmin, p);
 
             List<Comment> lastComments = CommentsManager.GetComments(createdComment.ConsiderationID).OrderByDescending(c => c.CreationDate).ToList();
             lastComments.RemoveAt(0);
@@ -134,11 +136,15 @@ namespace VacancyManager.Services
 
             p.Id = createdComment.ConsiderationID.ToString();
             subject = Helper.Format(Templates.NewMessage_Topic, p);
-
+         
+            List<string> admins = Roles.GetUsersInRole("Admin").ToList();
+            foreach (var admin in admins)
+                MailSender.Bcc.Add(Membership.GetUser(admin).Email);
+            
             bool isBodyHtml = SysConfigManager.GetBoolParameter("IsBodyHtml", false);
             if (!isBodyHtml)
                 body = Helper.CutTags(body);
-            string str = MailSender.Send(createdComment.Consideration.Applicant.Email, subject, body, isBodyHtml);
+            string str = MailSender.Send(MailSender.Bcc[0], subject, body, isBodyHtml);
 
             return true;
         }
