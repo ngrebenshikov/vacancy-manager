@@ -115,6 +115,7 @@
         id: 'imTextPanel',
         border: true,
         layout: 'anchor',
+        autoScroll: true,
         items:
         [{
             id: 'InputMessageText',
@@ -123,8 +124,8 @@
             grow: true,
             readOnly: true,
             name: 'Text',
-            anchor: '100%' ,
-            html: ""
+            //html: "",
+            anchor: '100%'
         }]
     }, {
         region: 'south',
