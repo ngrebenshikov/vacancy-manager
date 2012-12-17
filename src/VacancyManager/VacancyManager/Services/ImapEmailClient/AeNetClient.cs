@@ -31,17 +31,17 @@ namespace VacancyManager.Services
       string[] uids = _imap.Search(SearchCondition.Unseen());
       //_imap.Search(SearchCondition.SentSince(fromDate));
 
-      for (int i = 0; i < uids.Length; i++)
+      foreach (string uid in uids)
       {
-        var msg = _imap.GetMessage(uids[i], false, true);
+        var msg = _imap.GetMessage(uid, false, true);
         _imap.SetFlags(Flags.Seen, msg);
-        string body = "";
+        string body = "Default string for fail";
         var attachments = (msg.Attachments as List<Attachment>);
-        //Множество потенциальных NullRefereceException, но в каждом case, если мы туда попали, 100% такой кастинг будет валидным, либо нам прислали битые данные
         switch (msg.ContentType)
         {
           case "text/plain":
-            body = string.IsNullOrEmpty(msg.Body) ? "<pre>" + (attachments)[0].Body + "</pre>" : "<pre>" + msg.Body + "</pre>";
+            if (attachments != null)
+              body = string.IsNullOrEmpty(msg.Body) ? "<pre>" + (attachments)[0].Body + "</pre>" : "<pre>" + msg.Body + "</pre>";
             break;
           case "text/html":
             //Текст сообщения будет выглядеть как нагромождение тегов
@@ -51,25 +51,26 @@ namespace VacancyManager.Services
           //Но это нужно будет учитывать когда attacments будем прикреплять
           case "multipart/mixed":
           case "multipart/alternative":
-            body = attachments[0].Body;
+            if (attachments != null)
+              body = attachments[0].Body;
             break;
         }
-        result.Add(new ImapMessage(msg.From.Address, msg.Subject, body, msg.Date, msg.Date));
-        //TODO:Разобраться как получше и не слишком костыльно получить id сообщения
+        result.Add(new ImapMessage(msg.From.Address, msg.Subject, Microsoft.Security.Application.Sanitizer.GetSafeHtml(body), msg.Date, msg.Date));
 
-        for (int j = 0; j < attachments.Count; j++)
+        if (attachments == null) continue;
+        foreach (Attachment attachment in attachments)
         {
-          if (!attachments[j].Headers.ContainsKey("Content-Type"))
+          if (!attachment.Headers.ContainsKey("Content-Type"))
             continue;
 
-          string filename = attachments[j].Headers["Content-Type"].RawValue;
+          string filename = attachment.Headers["Content-Type"].RawValue;
           int fileNamePos = filename.IndexOf("name=\"", StringComparison.Ordinal);
 
           if (fileNamePos == -1)
             continue;
 
           filename = filename.Substring(fileNamePos + 6, filename.Length - 1 - (fileNamePos + 6));
-          result[result.Count - 1].AddAttachment(attachments[j].ContentType, attachments[j].GetData(), filename);
+          result[result.Count - 1].AddAttachment(attachment.ContentType, attachment.GetData(), filename);
         }
       }
       return result;

@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
+using System.Web.Security;
+using VacancyManager.Models;
 using VacancyManager.Services.Managers;
 
 namespace VacancyManager.Services
@@ -38,7 +41,28 @@ namespace VacancyManager.Services
 
     public void AddToBase()
     {
-      int messageId = InputMessageManager.Create(Sender, Subject, Text, SendDate, DeliveryDate, null).Id;
+      int? condsiderId = null;
+      string[] splittedSubject = Subject.Split(' ');
+      foreach (string word in splittedSubject)
+      {
+        int tmp;
+        if (int.TryParse(word.Substring(1), out tmp))
+        {
+          condsiderId = tmp;
+          break;
+        }
+      }
+
+      if (condsiderId.HasValue)
+      {
+        string CurrentUserName = System.Web.HttpContext.Current.User.Identity.Name;
+        VMMembershipUser CurrentUser = (VMMembershipUser)Membership.GetUser(CurrentUserName);
+        Int32 CurrentUserKey = Convert.ToInt32(CurrentUser.ProviderUserKey);
+        CommentsManager.CreateComment(condsiderId.Value, CurrentUserKey, Text);
+      }
+
+      int messageId = InputMessageManager.Create(Sender, Subject, Text, SendDate, DeliveryDate, condsiderId).Id;
+
       foreach (var attachment in Attachments)
       {
         AttachmentManager.Create(attachment.Item1, attachment.Item2, attachment.Item3, messageId);
