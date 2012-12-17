@@ -9,7 +9,7 @@
             this.control({
                 'InputMessageIndex #InputMessageGrid':
                     {
-                        itemclick: this.ItemClick,
+                        //itemclick: this.ItemClick,
                         selectionchange: this.SelectionChange
                     },
 
@@ -75,53 +75,6 @@
             });
         },
 
-        // Вызывается при itemclick на гриде 
-        // 1. Меняет IsRead сообщения на true, при условии, что выбранно одно сообщение.
-        // 2. Отображает вложения, если есть.
-        // 3. Грузит текст сообщения.
-        ItemClick: function (grid, record) {
-            var isRead = record.get('IsRead');
-            var store = Ext.StoreManager.lookup('InputMessage');
-
-            if (grid.getSelectionModel().getSelection().length == 1) {
-                // 1
-                if (isRead != true) {
-                    record.set('IsRead', true)
-                }
-
-                // 2
-                var attStore = Ext.StoreManager.lookup('Attachment');
-                attStore.load({ params: { 'id': record.getId()} });
-                var fn = function () {
-                    if (attStore.getCount() > 0) {
-                        Ext.getCmp('imAttachmentPanel').setTitle(Strings.Attachment + ' (' + attStore.getCount() + ')');
-                        var numOfAttachments = attStore.getCount() >= 3 ? 3 : attStore.getCount();
-                        //if (attStore.getCount() <= 3) {
-                        Ext.getCmp('imAttachmentPanel').setHeight(30 + 26 * numOfAttachments);
-                        //}
-                        Ext.getCmp('imAttachmentPanel').expand(false);
-                    } else {
-                        Ext.getCmp('imAttachmentPanel').setTitle(Strings.Attachment);
-                        Ext.getCmp('imAttachmentPanel').collapse(false);
-                    }
-                    attStore.un('load', fn);
-                }
-                attStore.on('load', fn);
-
-                // 3
-                var textArea = Ext.getCmp('InputMessageText');
-                var panel = Ext.getCmp('imTextPanel');
-                panel.setTitle('<font color="#837F7F">От: </font>' + record.get('Sender') + '<br><font color="#837F7F">Тема: </font>' + record.get('Subject') + '<br><font color="#837F7F">Вакансия: </font>' + record.get('Vacancy'))
-                if (record.get('Text') == '') {
-                    textArea.reset();
-                    Ext.getCmp('InputMessageText').emptyText = 'Текст в выбранном сообщении отсутствует';
-                } else {
-                    Ext.getCmp('InputMessageText').update(record.get('Text'));
-                    //console.log("breakpoint");
-                }
-            };
-        },
-
         /* ===== */
         RemoveInputMessage: function (button) {
             var grid = Ext.getCmp('InputMessageGrid'),
@@ -172,15 +125,60 @@
             }
         },
 
+        // Делает активной кнопку "Удалить".
+        // 1. Меняет IsRead сообщения на true, при условии, что выбранно одно сообщение.
+        // 2. Отображает вложения, если есть.
+        // 3. Грузит текст сообщения.
         SelectionChange: function (view, selected, options) {
             var button = Ext.getCmp('RemoveInputMessage');
             if (selected.length > 0) {
                 button.enable();
             }
 
-//            record = selected[0];
-//            grid = Ext.getCmp('InputMessageGrid');
-//            ItemClick(grid, record);
+            if (selected.length != 1) {
+                return
+            } else {
+                var record = selected[0];
+                var grid = Ext.getCmp('InputMessageGrid');
+                var isRead = record.get('IsRead');
+                var store = Ext.StoreManager.lookup('InputMessage');
+
+                if (selected.length == 1) {
+                    // 1
+                    if (isRead != true) {
+                        record.set('IsRead', true)
+                    }
+
+                    // 2
+                    var attStore = Ext.StoreManager.lookup('Attachment');
+                    attStore.load({ params: { 'id': record.getId()} });
+                    var fn = function () {
+                        if (attStore.getCount() > 0) {
+                            Ext.getCmp('imAttachmentPanel').setTitle(Strings.Attachment + ' (' + attStore.getCount() + ')');
+                            var numOfAttachments = attStore.getCount() >= 3 ? 3 : attStore.getCount();
+                            Ext.getCmp('imAttachmentPanel').setHeight(30 + 26 * numOfAttachments);
+                            Ext.getCmp('imAttachmentPanel').expand(false);
+                        } else {
+                            Ext.getCmp('imAttachmentPanel').setTitle(Strings.Attachment);
+                            Ext.getCmp('imAttachmentPanel').collapse(false);
+                        }
+                        attStore.un('load', fn);
+                    }
+                    attStore.on('load', fn);
+
+                    // 3
+                    var textArea = Ext.getCmp('InputMessageText');
+                    var panel = Ext.getCmp('imTextPanel');
+                    panel.setTitle('<font color="#837F7F">От: </font>' + record.get('Sender') + '<br><font color="#837F7F">Тема: </font>' + record.get('Subject') + '<br><font color="#837F7F">Вакансия: </font>' + record.get('Vacancy'))
+                    if (record.get('Text') == '') {
+                        textArea.reset();
+                        Ext.getCmp('InputMessageText').emptyText = 'Текст в выбранном сообщении отсутствует';
+                    } else {
+                        Ext.getCmp('InputMessageText').update(record.get('Text'));
+                        //console.log("breakpoint");
+                    }
+                }
+            }
         },
 
         OnVacancyCboxSelect: function (combo, records) {
