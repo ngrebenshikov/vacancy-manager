@@ -8,10 +8,7 @@
         init: function () {
             this.control({
                 'InputMessageIndex #InputMessageGrid':
-                    {
-                        //itemclick: this.ItemClick,
-                        selectionchange: this.SelectionChange
-                    },
+                    { selectionchange: this.SelectionChange },
 
                 'InputMessageIndex #IMFilterField':
                     { keyup: this.FilterKeyUp },
