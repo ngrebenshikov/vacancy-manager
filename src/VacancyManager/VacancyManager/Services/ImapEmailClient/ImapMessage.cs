@@ -58,7 +58,8 @@ namespace VacancyManager.Services
         string CurrentUserName = System.Web.HttpContext.Current.User.Identity.Name;
         VMMembershipUser CurrentUser = (VMMembershipUser)Membership.GetUser(CurrentUserName);
         Int32 CurrentUserKey = Convert.ToInt32(CurrentUser.ProviderUserKey);
-        CommentsManager.CreateComment(condsiderId.Value, CurrentUserKey, Text);
+        Comment CreatedComment = CommentsManager.CreateComment(condsiderId.Value, CurrentUserKey, Text).SingleOrDefault();
+        MailSender.SendMessageToAdmins(CreatedComment.CommentID);
       }
 
       int messageId = InputMessageManager.Create(Sender, Subject, Text, SendDate, DeliveryDate, condsiderId).Id;
