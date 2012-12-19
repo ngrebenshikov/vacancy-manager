@@ -55,10 +55,7 @@ namespace VacancyManager.Services
 
       if (condsiderId.HasValue)
       {
-        string CurrentUserName = System.Web.HttpContext.Current.User.Identity.Name;
-        VMMembershipUser CurrentUser = (VMMembershipUser)Membership.GetUser(CurrentUserName);
-        Int32 CurrentUserKey = Convert.ToInt32(CurrentUser.ProviderUserKey);
-        Comment CreatedComment = CommentsManager.CreateComment(condsiderId.Value, CurrentUserKey, Text).SingleOrDefault();
+        Comment CreatedComment = CommentsManager.CreateComment(condsiderId.Value, null, Text).SingleOrDefault();
         MailSender.SendMessageToAdmins(CreatedComment.CommentID);
       }
 

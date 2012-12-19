@@ -32,7 +32,7 @@ namespace VacancyManager.Controllers
                                      CreationDate = comms.CreationDate.ToShortDateString(),
                                      Body = comms.Body,
                                      UserID = comms.User.UserID,
-                                     User = comms.User.UserName,
+                                     User = comms.User.UserID != null ? comms.User.UserName : comms.Consideration.Applicant.FullName,
                                      ConsiderationID = comms.Consideration.ConsiderationID
                                  }
 
