@@ -1,0 +1,35 @@
+﻿@model VMProject.Models.Vacancy
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>Vacancy</legend>
+
+    <div class="display-label">Title</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Title)
+    </div>
+
+    <div class="display-label">OpeningDate</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.OpeningDate)
+    </div>
+
+    <div class="display-label">IsOpening</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.IsOpening)
+    </div>
+
+    <div class="display-label">Description</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Description)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.VacancyID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
