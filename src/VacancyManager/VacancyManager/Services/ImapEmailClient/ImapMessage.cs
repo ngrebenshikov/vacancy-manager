@@ -45,6 +45,8 @@ namespace VacancyManager.Services
       string[] splittedSubject = Subject.Split(' ');
       foreach (string word in splittedSubject)
       {
+        if (string.IsNullOrWhiteSpace(word) || word == "")
+          continue;
         int tmp;
         if (int.TryParse(word.Substring(1), out tmp))
         {
