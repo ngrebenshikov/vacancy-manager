@@ -20,7 +20,7 @@
                 xtype: 'templatecolumn',
                 tpl: 
                     new Ext.XTemplate(
-                       '<h3><span>{[Ext.Date.format(values.CreationDate, "d.m.Y")]} <br> от {User}</span></h3>'
+                       '<h3><span>{[Ext.Date.format(values.CreationDate, "d.m.Y")]} <br> от {CommentatorName}</span></h3>'
 
                  )
             }

@@ -124,7 +124,7 @@
             grow: true,
             readOnly: true,
             name: 'Text',
-            //html: "",
+            html: "",
             anchor: '100%'
         }]
     }, {
