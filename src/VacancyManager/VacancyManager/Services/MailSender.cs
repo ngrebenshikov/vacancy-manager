@@ -56,7 +56,7 @@ namespace VacancyManager.Services
             TemplateProp p = new TemplateProp();
             p.Id = createdComment.CommentID.ToString();
             p.Message = createdComment.Body;
-            p.Sender = createdComment.UserID != null ? createdComment.User.UserName : createdComment.Consideration.Applicant.FullName;
+            p.Sender = createdComment.User.UserName;
             p.Vacancy = createdComment.Consideration.Vacancy.Title;
             p.Applicant = createdComment.Consideration.Applicant.FullName;
             p.Date = createdComment.CreationDate.ToString();
@@ -87,7 +87,7 @@ namespace VacancyManager.Services
             bool isBodyHtml = SysConfigManager.GetBoolParameter("IsBodyHtml", false);
             if (!isBodyHtml)
                 body = Helper.CutTags(body);
-            MailSender.Send(createdComment.Consideration.Applicant.Email, subject, body, isBodyHtml);
+            string str = MailSender.Send(createdComment.Consideration.Applicant.Email, subject, body, isBodyHtml);
 
             return true;
         }
@@ -109,7 +109,7 @@ namespace VacancyManager.Services
             TemplateProp p = new TemplateProp();
             p.Id = createdComment.CommentID.ToString();
             p.Message = createdComment.Body;
-            p.Sender = createdComment.UserID != null ? createdComment.User.UserName : createdComment.Consideration.Applicant.FullName;
+            p.Sender = createdComment.User.UserName;
             p.Vacancy = createdComment.Consideration.Vacancy.Title;
             p.Applicant = createdComment.Consideration.Applicant.FullName;
             p.Date = createdComment.CreationDate.ToString();
@@ -126,7 +126,7 @@ namespace VacancyManager.Services
                 for (int i = 0; i <= prevMessageCount - 1; i++)
                 {
                     p.Message = lastComments[i].Body;
-                    p.Sender = lastComments[i].UserID != null ? lastComments[i].User.UserName : lastComments[i].Consideration.Applicant.FullName;
+                    p.Sender = lastComments[i].User.UserName;
                     p.Date = lastComments[i].CreationDate.ToString();
                     body += Helper.Format(Templates.LastMessage, p);
                 }
@@ -136,15 +136,16 @@ namespace VacancyManager.Services
 
             p.Id = createdComment.ConsiderationID.ToString();
             subject = Helper.Format(Templates.NewMessage_Topic, p);
+         
+            List<string> admins = Roles.GetUsersInRole("Admin").ToList();
+            foreach (var admin in admins)
+                MailSender.Bcc.Add(Membership.GetUser(admin).Email);
             
             bool isBodyHtml = SysConfigManager.GetBoolParameter("IsBodyHtml", false);
-                if (!isBodyHtml)
-                    body = Helper.CutTags(body);
-            
-            List<string> admins = Roles.GetUsersInRole("Admin").ToList();
-            foreach (var admin in admins)   
-                MailSender.Send(Membership.GetUser(admin).Email, subject, body, isBodyHtml);
-   
+            if (!isBodyHtml)
+                body = Helper.CutTags(body);
+            string str = MailSender.Send(MailSender.Bcc[0], subject, body, isBodyHtml);
+
             return true;
         }
     }
