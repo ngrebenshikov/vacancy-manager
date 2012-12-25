@@ -43,23 +43,37 @@ namespace VacancyManager.Services
     {
       int? condsiderId = null;
       string[] splittedSubject = Subject.Split(' ');
-      foreach (string word in splittedSubject)
+      foreach (string word in splittedSubject.Where(word => !string.IsNullOrWhiteSpace(word) && word != ""))
       {
         int tmp;
-        if (int.TryParse(word.Substring(1), out tmp))
-        {
-          condsiderId = tmp;
-          break;
-        }
+        if ((word[0] != '#') || !int.TryParse(word.Substring(1), out tmp) ||
+            !ConsiderationsManager.IsConsiderationExists(tmp))
+          continue;
+        condsiderId = tmp;
+        break;
       }
 
       if (condsiderId.HasValue)
       {
-        string CurrentUserName = System.Web.HttpContext.Current.User.Identity.Name;
-        VMMembershipUser CurrentUser = (VMMembershipUser)Membership.GetUser(CurrentUserName);
-        Int32 CurrentUserKey = Convert.ToInt32(CurrentUser.ProviderUserKey);
-        Comment CreatedComment = CommentsManager.CreateComment(condsiderId.Value, CurrentUserKey, Text).SingleOrDefault();
-        MailSender.SendMessageToAdmins(CreatedComment.CommentID);
+        //Проверяем не от админа ли письмо
+        MembershipUser possibleAdmin = Membership.GetUser(Membership.GetUserNameByEmail(Sender));
+        Comment CreatedComment = null;
+        if ((possibleAdmin != null) && Roles.IsUserInRole("Admin"))
+        {
+          CreatedComment = CommentsManager.CreateComment(condsiderId.Value, (int?)possibleAdmin.ProviderUserKey, Text, possibleAdmin.UserName).SingleOrDefault();
+        }
+
+        //Если не от админа, то проверим не от пользователя ли
+        if (CreatedComment == null)
+        {
+          Applicant possibleApplicant = ApplicantManager.GetList().SingleOrDefault(x => x.Email.Equals(Sender, StringComparison.OrdinalIgnoreCase));
+          if (possibleApplicant != null)
+            CreatedComment = CommentsManager.CreateComment(condsiderId.Value, null, Text, possibleApplicant.FullName).SingleOrDefault();
+        }
+
+        //Посылаем сообщение всем админам
+        if (CreatedComment != null)
+          MailSender.SendMessageToAdmins(CreatedComment.CommentID);
       }
 
       int messageId = InputMessageManager.Create(Sender, Subject, Text, SendDate, DeliveryDate, condsiderId).Id;
