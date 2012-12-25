@@ -184,10 +184,6 @@
     <Compile Include="Migrations\201211220113068_TemporaryFix_AddedKey_IM_Consider.Designer.cs">
       <DependentUpon>201211220113068_TemporaryFix_AddedKey_IM_Consider.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201212181052282_SetCommentUserIdNullable.cs" />
-    <Compile Include="Migrations\201212181052282_SetCommentUserIdNullable.Designer.cs">
-      <DependentUpon>201212181052282_SetCommentUserIdNullable.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\Applicant.cs" />
