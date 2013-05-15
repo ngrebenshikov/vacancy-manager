@@ -8,8 +8,7 @@ namespace VacancyManager.Services.Managers
 {
   public class CommentsManager
   {
-
-
+      
     internal static IEnumerable<Comment> GetComments(int considerationId)
     {
       VacancyContext _db = new VacancyContext();
@@ -52,6 +51,7 @@ namespace VacancyManager.Services.Managers
         _db.SaveChanges();
       }
     }
+
     internal static void DeleteComment(int commentId)
     {
       VacancyContext _db = new VacancyContext();

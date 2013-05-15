@@ -2,25 +2,24 @@
     extend: 'Ext.ux.LiveSearchGridPanel',
     id: 'considerationapllicantsGrid',
     alias: 'widget.considerationapllicantsList',
-    store: 'Applicant',
+    store: 'ConsiderationApplicants',
     columns: [{
-        dataIndex: 'FullName',
-        text: Strings.FullName,
-        width: 200,
-        sortable: true,
-        field: { xtype: 'textfield' },
-        menuDisabled: true
-    }, {
-        dataIndex: 'Requirement',
-        text: Strings.Skills,
-        flex: 1,
-        sortable: false,
-        field: { xtype: 'textfield' },
-        menuDisabled: true
-    }],
+                 dataIndex: 'FullName',
+                 text: Strings.FullName,
+                 width: 200,
+                 sortable: true,
+                 field: { xtype: 'textfield' },
+                 menuDisabled: true
+              }, {
+                 dataIndex: 'Requirements',
+                 text: Strings.Skills,
+                 width: 130,
+                 sortable: false,
+                 flex: 1,
+                 menuDisabled: true
+              }],
     height: 350,
     width: 550,
-    //title: 'Applicants',
     viewConfig: {
         stripeRows: true
     }

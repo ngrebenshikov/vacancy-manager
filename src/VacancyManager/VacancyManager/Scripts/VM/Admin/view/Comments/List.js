@@ -14,6 +14,14 @@
   	            align: 'justify',
   	            dataIndex: 'Body'
   	        },
+  	        {
+  	            width: 200,
+  	            flex: 1,
+  	            sortable: false,
+  	            menuDisabled: true,
+  	            align: 'justify',
+  	            dataIndex: 'UserRole'
+  	        },
             {
                 sortable: false,
                 width: 120,
@@ -26,26 +34,20 @@
             }
 
         ],
-
-            width: 525,
-            height: 375,
-    viewConfig: {
-        stripeRows: true
-    },
+    width: 525,
+    height: 375,
     bbar: [{
-        text: 'Новый комментарий',
-        name: 'btnLoadBlankComment',
-        id: 'BlankComment',
-        action: 'loadBlankComment' 
-    }, {
-        text: 'Редактировать',
-        name: 'btnEditComment',
-        id: 'EditComment',
-        action: 'editComment' 
-    },
-    {  
-        text: 'Удалить комментарий',
-        action: 'deleteComment'
+        text: 'Обновить список',
+        name: 'btnUpdateCommentsList',
+        align: 'right',
+        id: 'updateCommentsList',
+        action: 'updateCommentsList' 
     }
-   ]
+   ],
+    viewConfig: {
+        stripeRows: false,
+        getRowClass: function (record) {
+            return record.get('UserRoles') == 'Admin' ? 'admin-row' : 'user-row';
+        } 
+    }
 });

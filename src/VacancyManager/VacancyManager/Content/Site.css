@@ -39,6 +39,16 @@
     font-weight: bold !important;
 }
 
+.user-row .x-grid-cell { 
+    background-color: white; 
+    color: black; 
+} 
+ 
+.admin-row .x-grid-cell { 
+    background-color: white; 
+    color: green; 
+}
+
 #gridcomments .x-grid-cell-inner
 {
     white-space: pre-line;

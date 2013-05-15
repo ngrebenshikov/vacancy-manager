@@ -8,5 +8,12 @@ namespace VacancyManager.Models
     public string Name { get; set; }
 
     public virtual ICollection<User> User { get; set; }
-  }
+
+    public Role()
+    {
+        RoleID = -1;
+        Name = "";   
+    }
+
+   }
 }

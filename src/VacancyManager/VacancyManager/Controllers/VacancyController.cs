@@ -34,7 +34,6 @@ namespace VacancyManager.Controllers
                                                      join req in Requirments on vac.RequirementID equals req.RequirementID
                                                      where vac.IsRequire == true
                                                      select req.Name
-                                                  
                                                     ),
                                      IsVisible = Vacancies.IsVisible,
                                      Considerations = Vacancies.Considerations.Count
@@ -47,7 +46,7 @@ namespace VacancyManager.Controllers
                 total = VacanciesList.Count,
                 success = true
             },
-                            JsonRequestBehavior.AllowGet);
+            JsonRequestBehavior.AllowGet);
         }
 
         //

@@ -14,8 +14,7 @@ Ext.define('VM.controller.VacancyController', {
                     'vacancyList dataview': {
                         expandbody: this.createConsiderationsGrid,
                         collapsebody: this.destroyConsiderationsGrid
-                   //     itemdblclick: this.editVacancy
-                    },
+                     },
 
                     'button[action = loadBlankVacancy]': {
                         click: this.loadBlankVacancy

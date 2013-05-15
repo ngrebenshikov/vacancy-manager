@@ -21,7 +21,6 @@ namespace VacancyManager.Controllers
       bool LoadSuccess = true;
       string LoadMessage = "Комментариии успешно загружены";
       var Comments = CommentsManager.GetComments(considerationId);
-
       var CommentsList = (from comms in Comments
                           orderby comms.CommentID descending
                           select new
@@ -30,6 +29,8 @@ namespace VacancyManager.Controllers
                              CreationDate = comms.CreationDate.ToShortDateString(),
                              Body = comms.Body,
                              UserID = comms.User != null ? comms.User.UserID : -1,
+                             UserRoles = (from userRoles in comms.User.Roles.Where(r => r.Name == "Admin").DefaultIfEmpty(new Role()) 
+                                          select userRoles.Name).Single().ToString(),
                              CommentatorName = comms.CommenterName,
                              ConsiderationID = comms.Consideration.ConsiderationID
                            }

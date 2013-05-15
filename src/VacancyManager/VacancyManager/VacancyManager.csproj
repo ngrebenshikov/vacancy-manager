@@ -1571,6 +1571,7 @@
     <Content Include="Scripts\VM\Admin\controller\ApplicantController.js" />
     <Content Include="Scripts\VM\Admin\model\Comment.js" />
     <Content Include="Scripts\VM\Admin\model\Consideration.js" />
+    <Content Include="Scripts\VM\Admin\model\ConsiderationApplicants.js" />
     <Content Include="Scripts\VM\Admin\model\RequirementListInStack.js" />
     <Content Include="Scripts\VM\Admin\model\RequirementStack.js" />
     <Content Include="Scripts\VM\Admin\model\SysConfigModel.js" />
@@ -1586,6 +1587,7 @@
     <Content Include="Scripts\VM\Admin\store\BaseStore.js" />
     <Content Include="Scripts\VM\Admin\store\Comments.js" />
     <Content Include="Scripts\VM\Admin\store\Consideration.js" />
+    <Content Include="Scripts\VM\Admin\store\ConsiderationApplicants.js" />
     <Content Include="Scripts\VM\Admin\store\RequirementListInStack.js" />
     <Content Include="Scripts\VM\Admin\store\RequirementStack.js" />
     <Content Include="Scripts\VM\Admin\store\SysConfig.js" />

@@ -3,9 +3,9 @@ Ext.define('VM.controller.ConsiderationController', {
 
     extend: 'Ext.app.Controller',
 
-    stores: ['Consideration', 'Applicant', 'Comments'],
+    stores: ['Consideration', 'Applicant', 'ConsiderationApplicants', 'Comments'],
 
-    models: ['VM.model.Consideration'],
+    models: ['VM.model.Consideration', 'VM.model.ConsiderationApplicants'],
 
     views: ['consideration.List', 'VM.view.consideration.ConsiderationApllicantsList', 'VM.view.Comments.List'],
 
@@ -67,6 +67,7 @@ Ext.define('VM.controller.ConsiderationController', {
             applicantStore = this.getApplicantStore(),
             considerationStore = Ext.StoreManager.lookup('Consideration' + selectedVacancyId),
             selectedApplicant = applicantGrid.getSelectionModel().getSelection()[0];
+
         if (selectedApplicant != undefined) {
             newConsideration = Ext.create('VM.model.Consideration', {
                 VacancyID: selectedVacancyId,
@@ -91,9 +92,12 @@ Ext.define('VM.controller.ConsiderationController', {
     loadBlankConsideration: function (button) {
         var considerationGrid = button.up('grid'),
             vacancyGrid = Ext.getCmp('vacancyGrid'),
-            index = vacancyGrid.getStore().find('VacancyID', considerationGrid.vacancy.getId());
+            considerationApplicantsStore = this.getConsiderationApplicantsStore(),
+            selectedVacancyId = considerationGrid.vacancy.getId();
+        index = vacancyGrid.getStore().find('VacancyID', selectedVacancyId);
         vacancyGrid.getSelectionModel().select(index);
-        var wndConsiderationAdd = Ext.create('VM.view.consideration.Add').show();
+        Ext.create('VM.view.consideration.Add').show();
+        considerationApplicantsStore.load({ params: { "vacancyId": selectedVacancyId} });
     },
 
     deleteConsideration: function (button) {
