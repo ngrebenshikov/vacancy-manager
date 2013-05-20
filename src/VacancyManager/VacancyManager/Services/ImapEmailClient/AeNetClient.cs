@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using System.IO;
 using System.Web;
 using AE.Net.Mail;
+using VacancyManager.Services.Managers;
 
 namespace VacancyManager.Services
 {
   internal class AeNetClient : IImapClient
   {
     private readonly ImapClient _imap;
+    private const string IsAntiXssEnabledParamName = "IsAntiXssEnabled";
 
     public AeNetClient(string host, string username, string password, int port)
     {
@@ -20,7 +22,7 @@ namespace VacancyManager.Services
       switch (attachment.ContentType)
       {
         case "text/html":
-          return attachment.Body;//Microsoft.Security.Application.Encoder.JavaScriptEncode(attachment.Body);
+          return SysConfigManager.GetBoolParameter(IsAntiXssEnabledParamName, false) ? Microsoft.Security.Application.Sanitizer.GetSafeHtml(attachment.Body) : attachment.Body;
         case "text/plain":
           return "<pre>" + attachment.Body + "</pre>";
         default:
