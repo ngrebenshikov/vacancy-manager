@@ -44,26 +44,27 @@ namespace VacancyManager.Controllers
 
         [HttpPost]
 
-        public JsonResult Create(string considerations)
+        public JsonResult Create(string[] data)
         {
             bool CreationSuccess = false;
             string CreationMessage = "Во время добавления соискателя произошла ошибка";
             JavaScriptSerializer jss = new JavaScriptSerializer();
             Consideration CreatedConsideration = null;
 
-
-            if (considerations != null)
+            for (int i = 0; i <= data.Length - 1; i++)
             {
-                var NewConsideration = jss.Deserialize<dynamic>(considerations);
+                if (data != null)
+                {
+                    var NewConsideration = jss.Deserialize<dynamic>(data[i]);
 
 
-                CreatedConsideration = ConsiderationsManager.CreateConsideration(Convert.ToInt32(NewConsideration["VacancyID"]),
-                                                                                  Convert.ToInt32(NewConsideration["ApplicantID"])
-                                                                                 );
-                CreationMessage = "Соискатель успешно добавлен";
-                CreationSuccess = true;
+                    CreatedConsideration = ConsiderationsManager.CreateConsideration(Convert.ToInt32(NewConsideration["VacancyID"]),
+                                                                                      Convert.ToInt32(NewConsideration["ApplicantID"])
+                                                                                     );
+                    CreationMessage = "Соискатель успешно добавлен";
+                    CreationSuccess = true;
+                }
             }
-
             var ConsiderationsList = ConsiderationsManager.GetConsideration(CreatedConsideration.ConsiderationID);
 
             var NewConsiderations = (from cons in ConsiderationsList
@@ -80,7 +81,6 @@ namespace VacancyManager.Controllers
 
             return Json(new
             {
-                considerations = NewConsiderations,
                 success = CreationMessage,
                 message = CreationSuccess
             });
@@ -90,15 +90,15 @@ namespace VacancyManager.Controllers
         }
 
         [HttpPost]
-        public JsonResult Delete(string considerations)
+        public JsonResult Delete(string data)
         {
             bool d_success = false;
             string d_message = "Во время удаления соискателя произошла ошибка";
 
             JavaScriptSerializer jss = new JavaScriptSerializer();
-            if (considerations != null)
+            if (data != null)
             {
-                var d_consideration = jss.Deserialize<dynamic>(considerations);
+                var d_consideration = jss.Deserialize<dynamic>(data);
 
                 ConsiderationsManager.DeleteConsideration(Convert.ToInt32(d_consideration["ConsiderationID"]));
                 d_message = "Соискатель успешно удален";
@@ -117,7 +117,7 @@ namespace VacancyManager.Controllers
             var applicantList = ApplicantManager.GetList();
             var considerations = ConsiderationsManager.GetConsiderations(vacancyId);
             var Requirments = RequirementsManager.GetRequirements().ToList();
-            var ids = (from cons in considerations 
+            var ids = (from cons in considerations
                        select cons.ApplicantID).ToArray();
             List<int> validValues = ids.ToList();
             var freeApplicantList = (from applicants in applicantList
@@ -127,9 +127,10 @@ namespace VacancyManager.Controllers
                                          ApplicantID = applicants.ApplicantID,
                                          FullName = applicants.FullName,
                                          Requirements = (from req in applicants.ApplicantRequirements
+                                                         where req.IsChecked == true
                                                          join allrecs in Requirments on req.RequirementId equals allrecs.RequirementID
                                                          select allrecs.Name)
-                                     }).ToList();
+                                     }).ToList(); 
             return Json(new
             {
                 freeapplicants = freeApplicantList,

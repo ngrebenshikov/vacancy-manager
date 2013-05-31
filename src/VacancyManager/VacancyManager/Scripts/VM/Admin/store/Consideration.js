@@ -3,8 +3,8 @@
   model: 'VM.model.Consideration',
   id: 'ConsiderationStore',
   autoLoad: false,
-  autoSync: true,
-  autoSave: true,
+  autoSync: false,
+  autoSave: false,
   proxy: {
     type: 'ajax',
     api: {
@@ -17,16 +17,17 @@
       root: 'considerations',
       totalProperty: 'total'
     },
-    writer: {
+  writer: {
       type: 'json',
       encode: false,
       listful: true,
       writeAllFields: true,
-      getRecordData: function (record)
-      {
-        return { 'considerations': Ext.JSON.encode(record.data) };
+      allowSingle: true,
+      root: 'data',
+      getRecordData: function (record) {
+          return Ext.JSON.encode(record.data);
       }
-    },
+  },
     headers: { 'Content-Type': 'application/json; charset=UTF-8' }
   }
 });
