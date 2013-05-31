@@ -66,27 +66,26 @@ Ext.define('VM.controller.ConsiderationController', {
             selectedVacancyId = selectedVacancy.getId(),
             applicantStore = this.getApplicantStore(),
             considerationStore = Ext.StoreManager.lookup('Consideration' + selectedVacancyId),
+
             selectedApplicant = applicantGrid.getSelectionModel().getSelection()[0];
 
-        if (selectedApplicant != undefined) {
-            newConsideration = Ext.create('VM.model.Consideration', {
-                VacancyID: selectedVacancyId,
-                ApplicantID: selectedApplicant.get('ApplicantID'),
-                FullName: selectedApplicant.get('FullName')
-            });
+        applicantGrid.getStore().each(function (applicant) {
+            if (applicant.get('Selected') == true) {
 
-            considerationStore.insert(0, newConsideration);
-            wndconsiderationAdd.close();
-            considerationStore.load({ params: { "id": selectedVacancyId} });
-        }
-        else
-            Ext.Msg.show({
-                title: 'Выберите соискателя',
-                msg: 'Не выбран соискатель',
-                width: 300,
-                buttons: Ext.Msg.OK
-            });
+                newConsideration = Ext.create('VM.model.Consideration', {
+                    VacancyID: selectedVacancyId,
+                    ApplicantID: applicant.get('ApplicantID'),
+                    FullName: applicant.get('FullName')
+                });
 
+                considerationStore.insert(0, newConsideration);
+            }
+
+        });
+  
+        considerationStore.sync();
+        wndconsiderationAdd.close();
+        considerationStore.load({ params: { "id": selectedVacancyId} });
     },
 
     loadBlankConsideration: function (button) {
@@ -113,7 +112,8 @@ Ext.define('VM.controller.ConsiderationController', {
                 fn: function (btn) {
                     if (btn == 'yes') {
                         if (sel_consideration) {
-                            considerationStore.remove(sel_consideration)
+                            considerationStore.remove(sel_consideration);
+                            considerationStore.sync();
                         }
                     }
                 }

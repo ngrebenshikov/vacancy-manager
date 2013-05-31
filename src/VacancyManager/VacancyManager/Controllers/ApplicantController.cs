@@ -38,6 +38,7 @@ namespace VacancyManager.Controllers
                 {
                     ApplicantID = applicant.ApplicantID,
                     FullName = applicant.FullName,
+                    Selected = false,
                     ContactPhone = applicant.ContactPhone,
                     Email = applicant.Email,
                     Requirements = reqText.Length > 0 ? reqText.Remove(reqText.Length - 2) : "-"
@@ -50,6 +51,21 @@ namespace VacancyManager.Controllers
                 data = result
             }, JsonRequestBehavior.AllowGet);
         }
+
+        [HttpGet]
+        public JsonResult LoadSearchApplicants()
+        {
+            var list = ApplicantManager.GetList();
+            var reqList = RequirementsManager.GetRequirements();
+
+
+
+            return Json(new
+            {
+                success = true
+            }, JsonRequestBehavior.AllowGet);
+        }
+
 
         [HttpPost]
         public ActionResult Create(string data)

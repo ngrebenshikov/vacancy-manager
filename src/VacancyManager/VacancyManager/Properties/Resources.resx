@@ -158,11 +158,11 @@
     <comment>Столбец таблицы из вкладки пользователи</comment>
   </data>
   <data name="UserLastLockedOutDate" xml:space="preserve">
-    <value>Дата последне блокировки</value>
+    <value>Дата</value>
     <comment>Столбец таблицы из вкладки пользователи</comment>
   </data>
   <data name="UserLastLockedOutReason" xml:space="preserve">
-    <value>Причина последней блокировки</value>
+    <value>Причина</value>
     <comment>Столбец таблицы из вкладки пользователи</comment>
   </data>
   <data name="UserLastLoginDate" xml:space="preserve">

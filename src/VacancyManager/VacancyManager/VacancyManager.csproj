@@ -1569,6 +1569,7 @@
     <Content Include="Scripts\VM\Admin\controller\VacancyController.js" />
     <Content Include="Scripts\VM\Admin\controller\Roles.js" />
     <Content Include="Scripts\VM\Admin\controller\ApplicantController.js" />
+    <Content Include="Scripts\VM\Admin\searchApplicantGrid.js" />
     <Content Include="Scripts\VM\Admin\model\Comment.js" />
     <Content Include="Scripts\VM\Admin\model\Consideration.js" />
     <Content Include="Scripts\VM\Admin\model\ConsiderationApplicants.js" />

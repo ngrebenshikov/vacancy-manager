@@ -13,6 +13,31 @@ namespace VacancyManager.Controllers
 
     //
     // GET: /RequirementStack/Get
+      [HttpGet]
+      public JsonResult GetRequirementsWithStacks()
+      {
+          var RequirementsStackList = RequirementsManager.GetAllRequirementStacks().ToList();
+          var RequirementsList = RequirementsManager.GetRequirements().ToList();
+
+          var Complex = from o in RequirementsStackList
+                        join v in RequirementsList on o.RequirementStackID equals v.RequirementStackID
+                        select new
+                        {
+                            StackName = o.Name,
+                            RequirementStackID = v.RequirementStackID,
+                            RequirementID = v.RequirementID,
+                            RequirementName = v.Name
+                        };
+
+          return Json(new
+          {
+              reqs = Complex.ToList(),
+              total = Complex.ToList().Count,
+              success = true
+          }, JsonRequestBehavior.AllowGet
+          );
+      }
+
     [HttpGet]
     public ActionResult GetStack()
     {

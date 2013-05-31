@@ -5,12 +5,10 @@ Ext.define('VM.view.consideration.Add', {
     title: Strings.AddApplicant,
     height: 430,
     width: 575,
-    autoShow: true,
     modal: true,
-    layout: 'fit',
     buttonAlign: 'center',
     initComponent: function () {
-        this.items =
+     this.items =
       [
         {
             xtype: 'form',
@@ -19,15 +17,15 @@ Ext.define('VM.view.consideration.Add', {
             style: 'background-color: #fff;',
             items:
             [
-             { xtype: 'considerationapllicantsList',
+             { xtype: 'searchApplicantGrid',
                  viewconfig: {
                      width: 550
                  }
              }
             ]
         }
-      ];
-        this.buttons = [   
+       ];
+       this.buttons = [   
              {
                  text: 'Сохранить',
                  action: 'AddConsideration'
@@ -38,6 +36,6 @@ Ext.define('VM.view.consideration.Add', {
              }
       ];
 
-        this.callParent(arguments);
+      this.callParent(arguments);
     }
 });
