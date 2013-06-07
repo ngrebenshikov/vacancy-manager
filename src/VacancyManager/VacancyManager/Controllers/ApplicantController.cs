@@ -10,6 +10,7 @@ using VacancyManager.Services;
 namespace VacancyManager.Controllers
 {
     [AuthorizeError(Roles = "Admin")]
+
     public class ApplicantController : BaseController
     {
         [HttpGet]
@@ -38,7 +39,6 @@ namespace VacancyManager.Controllers
                 {
                     ApplicantID = applicant.ApplicantID,
                     FullName = applicant.FullName,
-                    Selected = false,
                     ContactPhone = applicant.ContactPhone,
                     Email = applicant.Email,
                     Requirements = reqText.Length > 0 ? reqText.Remove(reqText.Length - 2) : "-"
@@ -53,17 +53,35 @@ namespace VacancyManager.Controllers
         }
 
         [HttpGet]
-        public JsonResult LoadSearchApplicants()
+        public JsonResult GetSearchApplicants(int vacancyId)
         {
-            var list = ApplicantManager.GetList();
-            var reqList = RequirementsManager.GetRequirements();
+            var applicantList = ApplicantManager.GetList();
+            var considerations = ConsiderationsManager.GetConsiderations(vacancyId);
+            var Requirments = RequirementsManager.GetRequirements().ToList();
+            var ids = (from cons in considerations
+                       select cons.ApplicantID).ToArray();
+            List<int> validValues = ids.ToList();
+            var freeApplicantList = (from applicants in applicantList
+                                     where !validValues.Contains(applicants.ApplicantID)
+                                     select new
+                                     {
+                                         ApplicantID = applicants.ApplicantID,
+                                         FullName = applicants.FullName,
+                                         Requirements = (from req in applicants.ApplicantRequirements
+                                                         where req.IsChecked == true
+                                                         join allrecs in Requirments on req.RequirementId equals allrecs.RequirementID
+                                                         select allrecs.Name),
+                                         Vacancies = (from cons in applicants.Considerations
+                                                      select cons.Vacancy.Title)
 
-
-
+                                     }).ToList();
             return Json(new
             {
+                freeapplicants = freeApplicantList,
+                total = freeApplicantList.Count,
                 success = true
-            }, JsonRequestBehavior.AllowGet);
+            },
+                       JsonRequestBehavior.AllowGet);
         }
 
 

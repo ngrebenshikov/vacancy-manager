@@ -112,34 +112,6 @@ namespace VacancyManager.Controllers
             });
         }
 
-        public JsonResult GetApplicants(int vacancyId)
-        {
-            var applicantList = ApplicantManager.GetList();
-            var considerations = ConsiderationsManager.GetConsiderations(vacancyId);
-            var Requirments = RequirementsManager.GetRequirements().ToList();
-            var ids = (from cons in considerations
-                       select cons.ApplicantID).ToArray();
-            List<int> validValues = ids.ToList();
-            var freeApplicantList = (from applicants in applicantList
-                                     where !validValues.Contains(applicants.ApplicantID)
-                                     select new
-                                     {
-                                         ApplicantID = applicants.ApplicantID,
-                                         FullName = applicants.FullName,
-                                         Requirements = (from req in applicants.ApplicantRequirements
-                                                         where req.IsChecked == true
-                                                         join allrecs in Requirments on req.RequirementId equals allrecs.RequirementID
-                                                         select allrecs.Name)
-                                     }).ToList(); 
-            return Json(new
-            {
-                freeapplicants = freeApplicantList,
-                total = freeApplicantList.Count,
-                success = true
-            },
-                       JsonRequestBehavior.AllowGet);
-        }
-
         public ActionResult Index()
         {
             return View();
