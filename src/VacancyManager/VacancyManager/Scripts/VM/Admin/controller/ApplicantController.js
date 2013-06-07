@@ -68,6 +68,7 @@
                         store.load();
                         ApplicantRequirementsStore.un("write", f);
                     };
+
                     ApplicantRequirementsStore.on("write", f);
                 }
             });
@@ -125,6 +126,7 @@
                     store.load();
                     ApplicantRequirementsStore.un("write", f);
                 };
+
                 ApplicantRequirementsStore.on("write", f);
 
                 button.up('window').close();

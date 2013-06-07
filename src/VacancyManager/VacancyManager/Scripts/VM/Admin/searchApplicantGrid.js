@@ -3,7 +3,9 @@ Ext.define('VM.searchApplicantGrid', {
     extend: 'Ext.grid.Panel',
     id: 'searchApplicantGrid',
     alias: 'widget.searchApplicantGrid',
-    store: 'ConsiderationApplicants',
+    appSearchReqs: [],
+    appSearchVacs: [],
+    store: 'SearchApplicants',
     columns: [{
         dataIndex: 'Selected',
         text: '',
@@ -25,11 +27,21 @@ Ext.define('VM.searchApplicantGrid', {
         sortable: false,
         flex: 1,
         menuDisabled: true
+    },
+    {
+        dataIndex: 'Vacancies',
+        text: 'Вакансии',
+        width: 130,
+        sortable: false,
+        flex: 1,
+        menuDisabled: true
     }],
 
     initComponent: function () {
-        var me = this;
-        me.bbar = [{
+
+        var searchAppGrid = this;
+
+        searchAppGrid.bbar = [{
             xtype: 'panel',
             width: 550,
             border: true,
@@ -44,29 +56,18 @@ Ext.define('VM.searchApplicantGrid', {
                                         enableKeyEvents: true,
                                         triggerCls: 'x-form-clear-trigger',
                                         width: 485,
+                                        id: 'searchFullName',
                                         fieldLabel: 'ФИО',
-                                        margin: 2
-                                    }]
-                          },
-                          { xtype: 'panel',
-                              width: 500,
-                              layout: 'hbox',
-                              border: false,
-                              items: [
-                                    {
-                                        xtype: 'textfield',
-                                        fieldLabel: 'Требования',
-                                        id: 'searchReqs',
-                                        width: 420,
-                                        readOnly: true,
-                                        value: 'Выберите требования...',
-                                        margin: 2
-                                    },
-                                    {
-                                        xtype: 'button',
-                                        text: 'Изменить',
-                                        handler: function (button) {
-                                            me.onSelectReqButtonClick();
+                                        margin: 2,
+
+                                        onChange: function () {
+                                            searchAppGrid.filterApplicants();
+                                        },
+
+                                        onTriggerClick: function (e) {
+                                            me = this;
+                                            searchAppGrid.filterApplicants();
+                                            me.setValue('');
                                         }
                                     }]
                           },
@@ -76,19 +77,55 @@ Ext.define('VM.searchApplicantGrid', {
                               border: false,
                               items: [
                                     {
-                                        xtype: 'textfield',
-                                        fieldLabel: 'Вакансии',
-                                        readOnly: true,
+                                        xtype: 'triggerfield',
+                                        enableKeyEvents: false,
+                                        fieldLabel: 'Требования',
+                                        triggerCls: 'x-form-clear-trigger',
+                                        id: 'searchReqs',
                                         width: 420,
-                                        value: 'Выберите вакансии...',
-                                        id: 'searchVacs',
-                                        margin: 2
+                                        emptyText: 'Выберите требования...',
+                                        margin: 2,
+                                        onTriggerClick: function (e) {
+                                            me = this;
+                                            searchAppGrid.appSearchReqs = [];
+                                            searchAppGrid.filterApplicants();
+                                            me.setValue('');
+                                        }
                                     },
                                     {
                                         xtype: 'button',
                                         text: 'Изменить',
                                         handler: function (button) {
-                                            searchVacancyWin.show();
+                                            searchAppGrid.onSelectReqButtonClick();
+                                        }
+                                    }]
+                          },
+                          { xtype: 'panel',
+                              width: 500,
+                              layout: 'hbox',
+                              border: false,
+                              items: [
+                                    {
+                                        xtype: 'triggerfield',
+                                        enableKeyEvents: false,
+                                        fieldLabel: 'Вакансии',
+                                        width: 420,
+                                        emptyText: 'Выберите вакансии...',
+                                        triggerCls: 'x-form-clear-trigger',
+                                        id: 'searchVacs',
+                                        margin: 2,
+                                        onTriggerClick: function (e) {
+                                            me = this;
+                                            searchAppGrid.appSearchVacs = [];
+                                            searchAppGrid.filterApplicants();
+                                            me.setValue('');
+                                        }
+                                    },
+                                    {
+                                        xtype: 'button',
+                                        text: 'Изменить',
+                                        handler: function (button) {
+                                            searchAppGrid.onSelectVacancyButtonClick();
                                         }
                                     }]
                           }
@@ -96,11 +133,11 @@ Ext.define('VM.searchApplicantGrid', {
         }
      ],
 
-     me.callParent(arguments);
+     searchAppGrid.callParent(arguments);
 
     },
 
-    onSelectReqButtonClick: function () {
+    onSelectVacancyButtonClick: function () {
 
         var me = this;
 
@@ -168,16 +205,37 @@ Ext.define('VM.searchApplicantGrid', {
                 format: 'd.m.Y',
                 menuDisabled: true
             },
-         ], 
+         ],
 
-         bbar:  [{
-                   xtype: 'triggerfield',
-                   enableKeyEvents: true,
-                   triggerCls: 'x-form-clear-trigger',
-                   width: 485,
-                   fieldLabel: 'Поиск:',
-                   margin: 2
-                }]
+            bbar: ['Поиск: ',
+            {
+                xtype: 'triggerfield',
+                width: 315,
+                enableKeyEvents: true,
+                triggerCls: 'x-form-clear-trigger',
+
+                onChange: function () {
+                    me = this;
+                    searchVacancyStore.clearFilter();
+                    var searchStore = searchVacancyStore,
+                        fieldName = 'Title';
+
+                    var fieldValue = me.getValue();
+
+                    searchStore.filter({
+                        property: fieldName,
+                        value: fieldValue,
+                        exactMatch: false,
+                        caseSensitive: false
+                    });
+                },
+
+                onTriggerClick: function (e) {
+                    searchVacancyStore.clearFilter();
+                    me.value = '';
+
+                }
+            }]
         });
 
         var searchVacancyForm = Ext.widget('form', {
@@ -204,27 +262,34 @@ Ext.define('VM.searchApplicantGrid', {
                 handler: function () {
 
                     var records = searchVacancyGrid.getSelectionModel().getSelection(),
-                  selectedVacs = [],
-                  selectedVacsIDs = [];
+                    selectedVacs = [];
 
                     Ext.Array.each(records, function (rec) {
                         selectedVacs.push(rec.get('Title'));
-                        selectedVacsIDs.push(rec.get('VacancyID'));
-                    })
+                    });
+
                     var searchVacsField = Ext.getCmp('searchVacs');
                     searchVacsField.setValue(selectedVacs);
-                    searchVacancyWin.hide();
+
+                    var searchAppGrid = Ext.getCmp('searchApplicantGrid');
+                    searchAppGrid.appSearchVacs = selectedVacs;
+                    searchAppGrid.filterApplicants();
+
+                    searchVacancyWin.close();
+                    searchVacancyStore.clearFilter();
                 }
             },
+
           { text: 'Отмена',
-              handler: function ()
-              { this.up('window').hide(); }
+              handler: function () {
+                  this.up('window').close();
+                  searchVacancyStore.clearFilter();
+              }
           }]
         });
 
         searchVacancyWin = Ext.widget('window', {
             title: 'Выберите вакансии',
-            closeAction: 'hide',
             width: 400,
             height: 400,
             minHeight: 400,
@@ -232,6 +297,49 @@ Ext.define('VM.searchApplicantGrid', {
             resizable: true,
             modal: true,
             items: searchVacancyForm
+        });
+
+        searchVacancyWin.show();
+
+    },
+
+    filterApplicants: function () {
+
+        var me = this;
+        var searchApplicantsStore = me.getStore();
+
+        searchApplicantsStore.clearFilter();
+
+        var fullName = Ext.getCmp('searchFullName').getValue();
+
+        searchApplicantsStore.filterBy(function (record) {
+
+            var countReqs = 0,
+                countVacs = 0;
+
+            Ext.Array.each(me.appSearchReqs, function (rec) {
+
+                if (Ext.Array.contains(record.get('Requirements'), rec)) {
+                    countReqs++;
+                }
+            });
+
+            Ext.Array.each(me.appSearchVacs, function (rec) {
+
+                if (Ext.Array.contains(record.get('Vacancies'), rec)) {
+                    countVacs++;
+                }
+            });
+
+            var regexp = new RegExp(fullName, "i");
+
+            if ((countReqs >= me.appSearchReqs.length) && (countVacs >= me.appSearchVacs.length) && (regexp.test(record.get("FullName")))) {
+                return true;
+            }
+            else {
+                return false;
+            }
+
         });
     },
 
@@ -318,13 +426,17 @@ Ext.define('VM.searchApplicantGrid', {
             { text: 'Добавить',
                 handler: function () {
                     var records = reqGrid.getSelectionModel().getSelection(),
-                  selectedReqs = [],
-                  selectedReqsIDs = [];
+                        selectedReqs = [];
+
                     Ext.Array.each(records, function (rec) {
                         selectedReqs.push(rec.get('RequirementName'));
-                        selectedReqsIDs.push(rec.get('RequirementID'));
-                    })
+                    });
+
                     searchReqsField = Ext.getCmp('searchReqs').setValue(selectedReqs);
+
+                    var searchAppGrid = Ext.getCmp('searchApplicantGrid');
+                    searchAppGrid.appSearchReqs = selectedReqs;
+                    searchAppGrid.filterApplicants();
                     reqWin.hide();
                 }
             },

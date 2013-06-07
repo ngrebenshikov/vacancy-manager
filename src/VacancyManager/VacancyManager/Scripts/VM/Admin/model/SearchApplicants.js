@@ -1,14 +1,14 @@
-﻿Ext.define('VM.model.ConsiderationApplicants',
+﻿Ext.define('VM.model.SearchApplicants',
     {
         extend: 'Ext.data.Model',
         idProperty: 'ApplicantID',
-        fields: ['ApplicantID', 'FullName', 'Requirements'],
+        fields: ['ApplicantID', 'FullName', 'Requirements', 'Vacancies', 'Selected'],
         proxy:
         {
             type: 'ajax',
             api:
             {
-                read: '/Considerations/GetApplicants'
+                read: '/Applicant/GetSearchApplicants'
             },
 
             reader:
@@ -31,4 +31,4 @@
             },
             headers: { 'Content-Type': 'application/json; charset=UTF-8' }
         }
-    })
+    });
