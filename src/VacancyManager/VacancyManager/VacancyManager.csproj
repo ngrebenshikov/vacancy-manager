@@ -89,6 +89,7 @@
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Controllers\VacancyController.cs" />
     <Compile Include="Controllers\VacancyRequirementController.cs" />
+    <Compile Include="Controllers\VMMailMessageController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -1561,6 +1562,7 @@
     <Content Include="Scripts\VM\Admin\controller\Admin.js" />
     <Content Include="Scripts\VM\Admin\controller\CommentsController.js" />
     <Content Include="Scripts\VM\Admin\controller\ConsiderationController.js" />
+    <Content Include="Scripts\VM\Admin\controller\MailMessageController.js" />
     <Content Include="Scripts\VM\Admin\controller\InputMessageController.js" />
     <Content Include="Scripts\VM\Admin\controller\RequirementListInStack.js" />
     <Content Include="Scripts\VM\Admin\controller\RequirementStack.js" />
@@ -1613,6 +1615,8 @@
     <Content Include="Scripts\VM\Admin\view\consideration\List.js" />
     <Content Include="Scripts\VM\Admin\view\InputMessage\Create.js" />
     <Content Include="Scripts\VM\Admin\view\InputMessage\Index.js" />
+    <Content Include="Scripts\VM\Admin\view\MailMessage\Create.js" />
+    <Content Include="Scripts\VM\Admin\view\MailMessage\MailMessageApplicants.js" />
     <Content Include="Scripts\VM\Admin\view\RequirementListInStack\Create.js" />
     <Content Include="Scripts\VM\Admin\view\RequirementListInStack\Edit.js" />
     <Content Include="Scripts\VM\Admin\view\RequirementListInStack\List.js" />
