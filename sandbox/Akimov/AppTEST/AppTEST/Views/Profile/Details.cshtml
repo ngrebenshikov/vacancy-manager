@@ -1,0 +1,30 @@
+﻿@model AppTEST.Models.Profile
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>Profile</legend>
+
+    <div class="display-label">PublDate</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.PublDate)
+    </div>
+
+    <div class="display-label">Descr</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Descr)
+    </div>
+
+    <div class="display-label">userID</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.userID)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.profileId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

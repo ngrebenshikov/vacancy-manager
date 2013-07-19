@@ -1,0 +1,47 @@
+﻿@model IEnumerable<HelloWorldMvc3.Models.HelloWorldPhrase>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+
+<ul>
+@foreach (var item in Model)
+{
+    <li>@item.Phrase1 @item.Phrase2</li>
+}
+</ul>
+
+<table>
+    <tr>
+        <th>
+            Phrase1
+        </th>
+        <th>
+            Phrase2
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Phrase1)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Phrase2)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>
