@@ -20,9 +20,8 @@ namespace VacancyManager.Models
     public DbSet<SysConfig> SysConfigs { get; set; }
     public DbSet<Applicant> Applicants { get; set; }
     public DbSet<ApplicantRequirement> ApplicantRequirements { get; set; }
-    public DbSet<InputMessage> InputMessages { get; set; }
+    public DbSet<VMMailMessage> VMMailMessages { get; set; }  
     public DbSet<Attachment> Attachments { get; set; }
-
 
     protected override void OnModelCreating(DbModelBuilder modelBuilder)
     {

@@ -11,7 +11,7 @@ namespace VacancyManager.Services.Managers
 
         internal static IEnumerable<Attachment> GetList(int id)
         {
-            var obj = _db.Attachments.Where(attach => attach.InputMessageId == id).ToList();
+            var obj = _db.Attachments.Where(attach => attach.VMMailMessageId == id).ToList();
             return obj;
         }
 
@@ -21,7 +21,7 @@ namespace VacancyManager.Services.Managers
             return obj;
         }
 
-        internal static void Create(string contentType, byte[] fileContent, string fileName, int inputMessageId)
+        internal static void Create(string contentType, byte[] fileContent, string fileName, int messageId)
         {
             Attachment obj = new Attachment
                           {
@@ -29,7 +29,7 @@ namespace VacancyManager.Services.Managers
                               FileContent = fileContent,
                               FileGuid = Guid.NewGuid(),
                               FileName = fileName,
-                              InputMessageId = inputMessageId
+                              VMMailMessageId = messageId
                           };
 
             _db.Attachments.Add(obj);

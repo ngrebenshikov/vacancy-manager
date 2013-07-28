@@ -81,7 +81,7 @@
     }],
     buttons: [
           { text: 'Отправить',
-            action: 'NewMailMessage'
+            action: 'SendMailMessage'
           },
 
           { text: 'Отмена',

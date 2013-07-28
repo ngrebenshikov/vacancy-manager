@@ -24,7 +24,6 @@ Ext.application
       'Roles',
       'SysConfigController',
       'ApplicantController',
-      'InputMessageController',
       'MailMessageController'
     ],
     launch: function ()
