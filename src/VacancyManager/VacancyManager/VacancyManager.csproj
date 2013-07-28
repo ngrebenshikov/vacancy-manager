@@ -82,13 +82,13 @@
     <Compile Include="Controllers\CommentsController.cs" />
     <Compile Include="Controllers\ConsiderationsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\InputMessageController.cs" />
     <Compile Include="Controllers\RequirementStackController.cs" />
     <Compile Include="Controllers\RolesController.cs" />
     <Compile Include="Controllers\SysConfigController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Controllers\VacancyController.cs" />
     <Compile Include="Controllers\VacancyRequirementController.cs" />
+    <Compile Include="Controllers\VMMailMessageController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -192,11 +192,58 @@
     <Compile Include="Migrations\201212241220118_CommenterNameAdded.Designer.cs">
       <DependentUpon>201212241220118_CommenterNameAdded.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201307210054501_VMMailMessageAdded.cs" />
+    <Compile Include="Migrations\201307210054501_VMMailMessageAdded.Designer.cs">
+      <DependentUpon>201307210054501_VMMailMessageAdded.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201307210110080_VMMailMessage_MessageCategoryAdded.cs" />
+    <Compile Include="Migrations\201307210110080_VMMailMessage_MessageCategoryAdded.Designer.cs">
+      <DependentUpon>201307210110080_VMMailMessage_MessageCategoryAdded.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201307210250514_Attachment_Changed.cs" />
+    <Compile Include="Migrations\201307210250514_Attachment_Changed.Designer.cs">
+      <DependentUpon>201307210250514_Attachment_Changed.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201307211210144_ApplicantMailMessagesAdded.cs" />
+    <Compile Include="Migrations\201307211210144_ApplicantMailMessagesAdded.Designer.cs">
+      <DependentUpon>201307211210144_ApplicantMailMessagesAdded.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201307231445326_ApplicantMailMessageChanged.cs" />
+    <Compile Include="Migrations\201307231445326_ApplicantMailMessageChanged.Designer.cs">
+      <DependentUpon>201307231445326_ApplicantMailMessageChanged.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201307231451290_ApplicantMailMessageChanged_1.cs" />
+    <Compile Include="Migrations\201307231451290_ApplicantMailMessageChanged_1.Designer.cs">
+      <DependentUpon>201307231451290_ApplicantMailMessageChanged_1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201307251109388_InputMessageRemoved.cs" />
+    <Compile Include="Migrations\201307251109388_InputMessageRemoved.Designer.cs">
+      <DependentUpon>201307251109388_InputMessageRemoved.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201307251243367_Attachment_Changed1.cs" />
+    <Compile Include="Migrations\201307251243367_Attachment_Changed1.Designer.cs">
+      <DependentUpon>201307251243367_Attachment_Changed1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201307251309423_ApplicantMailMessage_Changed.cs" />
+    <Compile Include="Migrations\201307251309423_ApplicantMailMessage_Changed.Designer.cs">
+      <DependentUpon>201307251309423_ApplicantMailMessage_Changed.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201307280713113_Attachment_ChangedMessageId.cs" />
+    <Compile Include="Migrations\201307280713113_Attachment_ChangedMessageId.Designer.cs">
+      <DependentUpon>201307280713113_Attachment_ChangedMessageId.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201307280852519_Applicant_Changed.cs" />
+    <Compile Include="Migrations\201307280852519_Applicant_Changed.Designer.cs">
+      <DependentUpon>201307280852519_Applicant_Changed.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201307281223402_VmmailMessage_ApplicantIdAdded.cs" />
+    <Compile Include="Migrations\201307281223402_VmmailMessage_ApplicantIdAdded.Designer.cs">
+      <DependentUpon>201307281223402_VmmailMessage_ApplicantIdAdded.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\Applicant.cs" />
     <Compile Include="Models\ApplicantRequirement.cs" />
-    <Compile Include="Models\InputMessage.cs" />
     <Compile Include="Models\RequirementResumeRecord.cs" />
     <Compile Include="Models\Comment.cs" />
     <Compile Include="Models\Consideration.cs" />
@@ -213,6 +260,7 @@
     <Compile Include="Models\Vacancy.cs" />
     <Compile Include="Models\VacancyContext.cs" />
     <Compile Include="Models\VacancyRequirement.cs" />
+    <Compile Include="Models\VMMailMessage.cs" />
     <Compile Include="Models\VMMembershipUser.cs" />
     <Compile Include="Models\Attachment.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -235,12 +283,12 @@
     <Compile Include="Services\Managers\AttachmentManager.cs" />
     <Compile Include="Services\Managers\CommentsManager.cs" />
     <Compile Include="Services\Managers\ConsiderationsManager.cs" />
-    <Compile Include="Services\Managers\InputMessageManager.cs" />
     <Compile Include="Services\Managers\RequirementsManager.cs" />
     <Compile Include="Services\Managers\SharedManager.cs" />
     <Compile Include="Services\Managers\SysConfigManager.cs" />
     <Compile Include="Services\Managers\VacancyDbManager.cs" />
     <Compile Include="Services\Managers\VacancyRequirementsManager.cs" />
+    <Compile Include="Services\Managers\VMMailMessageManager.cs" />
     <Compile Include="Services\MultipartParser.cs" />
     <Compile Include="Services\ResourceSerialiser.cs" />
     <Compile Include="Services\SharedCode.cs" />
@@ -1561,7 +1609,7 @@
     <Content Include="Scripts\VM\Admin\controller\Admin.js" />
     <Content Include="Scripts\VM\Admin\controller\CommentsController.js" />
     <Content Include="Scripts\VM\Admin\controller\ConsiderationController.js" />
-    <Content Include="Scripts\VM\Admin\controller\InputMessageController.js" />
+    <Content Include="Scripts\VM\Admin\controller\MailMessageController.js" />
     <Content Include="Scripts\VM\Admin\controller\RequirementListInStack.js" />
     <Content Include="Scripts\VM\Admin\controller\RequirementStack.js" />
     <Content Include="Scripts\VM\Admin\controller\SysConfigController.js" />
@@ -1569,6 +1617,7 @@
     <Content Include="Scripts\VM\Admin\controller\VacancyController.js" />
     <Content Include="Scripts\VM\Admin\controller\Roles.js" />
     <Content Include="Scripts\VM\Admin\controller\ApplicantController.js" />
+    <Content Include="Scripts\VM\Admin\model\MailMessage.js" />
     <Content Include="Scripts\VM\Admin\model\SearchApplicants.js" />
     <Content Include="Scripts\VM\Admin\searchApplicantGrid.js" />
     <Content Include="Scripts\VM\Admin\model\Comment.js" />
@@ -1582,12 +1631,12 @@
     <Content Include="Scripts\VM\Admin\model\VacancyRequirements.js" />
     <Content Include="Scripts\VM\Admin\model\ApplicantRequirements.js" />
     <Content Include="Scripts\VM\Admin\model\ApplicantModel.js" />
-    <Content Include="Scripts\VM\Admin\model\InputMessage.js" />
     <Content Include="Scripts\VM\Admin\model\Attachment.js" />
     <Content Include="Scripts\VM\Admin\store\ApplicantRequirements.js" />
     <Content Include="Scripts\VM\Admin\store\BaseStore.js" />
     <Content Include="Scripts\VM\Admin\store\Comments.js" />
     <Content Include="Scripts\VM\Admin\store\Consideration.js" />
+    <Content Include="Scripts\VM\Admin\store\MailMessage.js" />
     <Content Include="Scripts\VM\Admin\store\RequirementListInStack.js" />
     <Content Include="Scripts\VM\Admin\store\RequirementStack.js" />
     <Content Include="Scripts\VM\Admin\store\SearchApplicants.js" />
@@ -1597,7 +1646,6 @@
     <Content Include="Scripts\VM\Admin\store\Roles.js" />
     <Content Include="Scripts\VM\Admin\store\VacancyRequirements.js" />
     <Content Include="Scripts\VM\Admin\store\Applicant.js" />
-    <Content Include="Scripts\VM\Admin\store\InputMessage.js" />
     <Content Include="Scripts\VM\Admin\store\Attachment.js" />
     <Content Include="Scripts\VM\Admin\view\Admin\Main.js" />
     <Content Include="Scripts\VM\Admin\view\Applicant\CenterPanel.js" />
@@ -1611,8 +1659,11 @@
     <Content Include="Scripts\VM\Admin\view\consideration\Add.js" />
     <Content Include="Scripts\VM\Admin\view\consideration\Edit.js" />
     <Content Include="Scripts\VM\Admin\view\consideration\List.js" />
-    <Content Include="Scripts\VM\Admin\view\InputMessage\Create.js" />
-    <Content Include="Scripts\VM\Admin\view\InputMessage\Index.js" />
+    <Content Include="Scripts\VM\Admin\view\MailMessage\AttachmentList.js" />
+    <Content Include="Scripts\VM\Admin\view\MailMessage\Create.js" />
+    <Content Include="Scripts\VM\Admin\view\MailMessage\MailMessageApplicants.js" />
+    <Content Include="Scripts\VM\Admin\view\MailMessage\List.js" />
+    <Content Include="Scripts\VM\Admin\view\MailMessage\ViewMessage.js" />
     <Content Include="Scripts\VM\Admin\view\RequirementListInStack\Create.js" />
     <Content Include="Scripts\VM\Admin\view\RequirementListInStack\Edit.js" />
     <Content Include="Scripts\VM\Admin\view\RequirementListInStack\List.js" />

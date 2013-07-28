@@ -331,6 +331,15 @@ namespace VacancyManager.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Сообщения.
+        /// </summary>
+        public static string MailMessages {
+            get {
+                return ResourceManager.GetString("MailMessages", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Фильтр сообщений....
         /// </summary>
         public static string MessageFilter {
@@ -399,6 +408,15 @@ namespace VacancyManager.Properties {
         public static string Sender {
             get {
                 return ResourceManager.GetString("Sender", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Отправить сообщение.
+        /// </summary>
+        public static string SendMessage {
+            get {
+                return ResourceManager.GetString("SendMessage", resourceCulture);
             }
         }
         

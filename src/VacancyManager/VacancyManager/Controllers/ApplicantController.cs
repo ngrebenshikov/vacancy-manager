@@ -6,6 +6,8 @@ using VacancyManager.Models;
 using VacancyManager.Services.Managers;
 using System.Web.Script.Serialization;
 using VacancyManager.Services;
+using System.Web.Security;
+using System.IO;
 
 namespace VacancyManager.Controllers
 {
@@ -29,8 +31,8 @@ namespace VacancyManager.Controllers
                     if (appReq.IsChecked)
                     {
                         var reqName = (from req in reqList
-                                      where req.RequirementID == appReq.RequirementId
-                                      select req.Name).ToList();
+                                       where req.RequirementID == appReq.RequirementId
+                                       select req.Name).ToList();
                         reqText += reqName[0] + ", ";
                     }
                 }
@@ -72,7 +74,8 @@ namespace VacancyManager.Controllers
                                                          join allrecs in Requirments on req.RequirementId equals allrecs.RequirementID
                                                          select allrecs.Name),
                                          Vacancies = (from cons in applicants.Considerations
-                                                      select cons.Vacancy.Title)
+                                                      select cons.Vacancy.Title),
+                                         Email = applicants.Email
 
                                      }).ToList();
             return Json(new
@@ -153,5 +156,6 @@ namespace VacancyManager.Controllers
                 message = resultMessage
             });
         }
-    }
+
+     }
 }

@@ -69,9 +69,8 @@ Ext.define('VM.controller.ConsiderationController', {
 
             selectedApplicant = applicantGrid.getSelectionModel().getSelection()[0];
 
-        applicantGrid.getStore().each(function (applicant) {
+            applicantGrid.getStore().each(function (applicant) {
             if (applicant.get('Selected') == true) {
-
                 newConsideration = Ext.create('VM.model.Consideration', {
                     VacancyID: selectedVacancyId,
                     ApplicantID: applicant.get('ApplicantID'),

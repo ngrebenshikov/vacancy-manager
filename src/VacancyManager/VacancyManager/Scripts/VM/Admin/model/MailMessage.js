@@ -1,4 +1,4 @@
-﻿Ext.define('VM.model.InputMessage',
+﻿Ext.define('VM.model.MailMessage',
     {
         extend: 'Ext.data.Model',
         idProperty: 'Id',
@@ -6,12 +6,11 @@
             { name: 'Id', type: 'int' },
             { name: 'SendDate', type: 'date', dateFormat: 'MS' },
             { name: 'DeliveryDate', type: 'date', dateFormat: 'MS' },
-            { name: 'Sender', type: 'string' },
+            { name: 'From', type: 'string' },
+            { name: 'To', type: 'string' },
             { name: 'Subject', type: 'string' },
             { name: 'Text', type: 'string' },
             { name: 'IsRead', type: 'boolean' },
-            { name: 'Vacancy', type: 'string' },
-            { name: 'ConsiderationId', type: 'int' },
             'AttachmentFile'
         ],
 
@@ -20,10 +19,10 @@
             type: 'ajax',
             api:
             {
-                read: '/InputMessage/Index',
-                create: '/InputMessage/Create',
-                update: '/InputMessage/Update',
-                destroy: '/InputMessage/Delete'
+                read: '/VMMailMessage/Index',
+                create: '/VMMailMessage/Create',
+                update: '/VMMailMessage/Update',
+                destroy: '/VMMailMessage/Delete'
             },
 
             reader:
