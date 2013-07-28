@@ -354,4 +354,7 @@
     <value>Отправить сообщение</value>
     <comment>Кнопка отправки сообщений пользователям</comment>
   </data>
+  <data name="MailMessages" xml:space="preserve">
+    <value>Сообщения</value>
+  </data>
 </root>

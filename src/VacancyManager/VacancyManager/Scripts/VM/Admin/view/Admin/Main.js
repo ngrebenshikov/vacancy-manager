@@ -14,31 +14,9 @@
       (this,
         {
             hbuttons:
-          [{
-              text: Strings.SendMessage,
-              handler: function () {
-                  var searchApplicantsStore = Ext.StoreManager.lookup("SearchApplicants");
-                  searchApplicantsStore.load({ params: { "vacancyId": 0} });
-                  var view = Ext.create('VM.view.MailMessage.Create').show();
-                }
-          },
-          {
-                text: "Update inbox",
-                handler: function () {
-                    Ext.Ajax.request
-                (
-                  {
-                      url: '../../InputMessage/UpdateMailsListFromIMAP',
-                      success: function (result, request) {
-
-                          //TODO:Обновление грида входящих сообщений
-                      }
-                  }
-                );
-                }
-            },
+          [
             {
-                text: "Log out",
+                text: "Выход",
                 handler: function () {
                     Ext.Ajax.request
                 (
@@ -131,8 +109,8 @@
             },
             {
                 tabConfig: {
-                    title: Strings.InputMessages,
-                    id: 'InputMessageTab',
+                    title: Strings.MailMessages,
+                    id: 'MessageTab',
                     icon: '/Content/icons/email.png'
                 },
                 xtype: 'panel',
@@ -140,7 +118,7 @@
                 layout: 'fit',
                 items:
                 [
-                    { xtype: 'InputMessageIndex' }
+                    { xtype: 'MailMessageList' }
                 ]
             }
             /*{
