@@ -5,6 +5,9 @@ using VacancyManager.Services.Managers;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Security;
+using System.Collections.Generic;
+
+
 
 namespace VacancyManager.Services
 {
@@ -17,6 +20,41 @@ namespace VacancyManager.Services
     internal static string UserName = "vacmana@gmail.com";
     internal static string Password = "nextdaynewlive";
     internal static List<string> Bcc = new List<string>();
+
+    internal static string SendTo(string[] To, string Subject, string Body, bool IsBodyHtml, System.Web.HttpFileCollectionBase wfiles)
+    {
+        try
+        {
+            MailMessage mail = new MailMessage(UserName, To[0], Subject, Body);
+         
+            for (int i = 0; i <= To.Length - 2; i++)
+                mail.To.Add(To[i+1]);
+
+
+            for (int j = 0; j <= wfiles.Count - 1; j++)
+            {
+                var attfile = wfiles[j];
+                System.Net.Mail.Attachment mailattach = new System.Net.Mail.Attachment(attfile.InputStream, attfile.ContentType);
+                mailattach.Name = attfile.FileName;
+                mail.Attachments.Add(mailattach);
+            }
+
+            mail.IsBodyHtml = IsBodyHtml;
+            if (Bcc != null && Bcc.Count > 0)
+                foreach (string address in Bcc)
+                    mail.Bcc.Add(address);
+            SmtpClient client = new SmtpClient(SmtpServer);
+            client.Port = null != Services.Managers.SysConfigManager.Get(PortConfigName) ? int.Parse(Services.Managers.SysConfigManager.Get(PortConfigName)) : Port;
+            client.Credentials = new System.Net.NetworkCredential(UserName, Password);
+            client.EnableSsl = true;
+            client.Send(mail);
+            return "Сообщение отправленно";
+        }
+        catch (Exception ex)
+        {
+            return ex.Message;
+        }
+    }
 
     internal static string Send(string To, string Subject, string Body, bool IsBodyHtml)
     {
@@ -39,6 +77,8 @@ namespace VacancyManager.Services
         return ex.Message;
       }
     }
+
+  
 
     /// <summary>
     /// Отправляет сообщение соискателю, 
@@ -91,6 +131,8 @@ namespace VacancyManager.Services
 
       return true;
     }
+
+
 
     /// <summary>
     /// Отправляет сообщение администраторам, 

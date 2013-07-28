@@ -10,6 +10,7 @@ namespace VacancyManager.Models
     {   
         [Key]
         public int ApplicantID { get; set; }
+
         public string FullName { get; set; }
         public string ContactPhone { get; set; }
         [DataType(DataType.EmailAddress)]
@@ -19,5 +20,6 @@ namespace VacancyManager.Models
         public virtual ICollection<Resume> Resumes { get; set; }
         public virtual ICollection<Consideration> Considerations { get; set; }
         public virtual ICollection<File> Files { get; set; }
+        public virtual ICollection<VMMailMessage> VMMailMessages { get; set; } 
     }
 }

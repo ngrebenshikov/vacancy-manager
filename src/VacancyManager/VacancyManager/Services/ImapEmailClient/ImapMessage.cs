@@ -10,18 +10,20 @@ namespace VacancyManager.Services
 {
   internal class ImapMessage
   {
-    private readonly string Sender;
+    private readonly string From;
+    private readonly string To;
     private readonly string Subject;
     private readonly string Text;
     private readonly DateTime SendDate;
     private readonly DateTime DeliveryDate;
-    private int InputMessageId;
+    private int MessageId;
     //Tuple<contentType, fileContent, fileName>
     private readonly List<Tuple<string, byte[], string>> Attachments;
 
-    public ImapMessage(string sender, string subject, string text, DateTime sendDate, DateTime deliveryDate)
+    public ImapMessage(string from, string subject, string text, DateTime sendDate, DateTime deliveryDate)
     {
-      Sender = sender;
+      From = from;
+      To = "vacmana@gmail.com";
       Subject = subject;
       Text = text;
       SendDate = sendDate;
@@ -29,10 +31,12 @@ namespace VacancyManager.Services
       Attachments = new List<Tuple<string, byte[], string>>();
     }
 
-    internal void SetInputMessageId(int id)
+    internal void SetMessageId(int id)
     {
-      InputMessageId = id;
+     MessageId = id;
     }
+
+
 
     internal void AddAttachment(string contentType, byte[] fileContent, string fileName)
     {
@@ -56,7 +60,7 @@ namespace VacancyManager.Services
       if (condsiderId.HasValue)
       {
         //Проверяем не от админа ли письмо
-        MembershipUser possibleAdmin = Membership.GetUser(Membership.GetUserNameByEmail(Sender));
+        MembershipUser possibleAdmin = Membership.GetUser(Membership.GetUserNameByEmail(From));
         Comment CreatedComment = null;
         if ((possibleAdmin != null) && Roles.IsUserInRole("Admin"))
         {
@@ -66,7 +70,7 @@ namespace VacancyManager.Services
         //Если не от админа, то проверим не от пользователя ли
         if (CreatedComment == null)
         {
-          Applicant possibleApplicant = ApplicantManager.GetList().SingleOrDefault(x => x.Email.Equals(Sender, StringComparison.OrdinalIgnoreCase));
+            Applicant possibleApplicant = ApplicantManager.GetList().SingleOrDefault(x => x.Email.Equals(From, StringComparison.OrdinalIgnoreCase));
           if (possibleApplicant != null)
             CreatedComment = CommentsManager.CreateComment(condsiderId.Value, null, Text, possibleApplicant.FullName).SingleOrDefault();
         }
@@ -76,12 +80,33 @@ namespace VacancyManager.Services
           MailSender.SendMessageToAdmins(CreatedComment.CommentID);
       }
 
-      int messageId = InputMessageManager.Create(Sender, Subject, Text, SendDate, DeliveryDate, condsiderId).Id;
+      int messageId = VMMailMessageManager.Create(From, "vacmana@gmail.com",Subject, Text, SendDate, DeliveryDate, 1, 0).Id;
 
       foreach (var attachment in Attachments)
       {
         AttachmentManager.Create(attachment.Item1, attachment.Item2, attachment.Item3, messageId);
       }
     }
+
+    public void SaveVMMailMessage(int messageType)
+    {
+        int ApplicantId = 0;
+        Applicant fromapp = new Applicant();
+        
+        if (fromapp != null)
+            ApplicantId= fromapp.ApplicantID;
+      
+        int messageId = VMMailMessageManager.Create(From, To, Subject, Text, SendDate, DeliveryDate, messageType, ApplicantId).Id;
+
+   
+        fromapp = ApplicantManager.GetApplicantByEMail(From);
+
+        foreach (var attachment in Attachments)
+        {
+            AttachmentManager.Create(attachment.Item1, attachment.Item2, attachment.Item3, messageId);
+        }
+    }
+
+
   }
 }
