@@ -118,7 +118,7 @@
                     mailMessageAppsField.selectedAppsMails.push(applicant.get('Email'));
                 }
             });
-            mailMessageAppsField.update(record.get('Text'))
+            mailMessageAppsField.setValue(selectedApps);
             button.up('window').close();
 
         },
