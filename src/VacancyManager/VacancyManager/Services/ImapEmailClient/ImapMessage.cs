@@ -92,14 +92,11 @@ namespace VacancyManager.Services
     {
         int ApplicantId = 0;
         Applicant fromapp = new Applicant();
-        
+        fromapp = ApplicantManager.GetApplicantByEMail(From);     
         if (fromapp != null)
             ApplicantId= fromapp.ApplicantID;
       
         int messageId = VMMailMessageManager.Create(From, To, Subject, Text, SendDate, DeliveryDate, messageType, ApplicantId).Id;
-
-   
-        fromapp = ApplicantManager.GetApplicantByEMail(From);
 
         foreach (var attachment in Attachments)
         {
