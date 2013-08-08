@@ -66,7 +66,7 @@
            { url: '../../VMMailMessage/UpdateMailsListFromIMAP',
              success: function (result, request) {
                  var mailsStore = Ext.StoreManager.lookup('MailMessage');
-                 mailsStore.load({ params: { "messagetype": defaultmessagetype} });
+                 mailsStore.load({ params: { "messagetype": mailMessageStore.currentMessageType} });
               }
             });
           }

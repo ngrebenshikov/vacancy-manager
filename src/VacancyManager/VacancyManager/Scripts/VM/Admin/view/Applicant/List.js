@@ -44,7 +44,7 @@
                 menuDisabled: true
             }],
 
-            tbar: [{
+            bbar: [{
                 text: Strings.btnAdd,
                 icon: '/Content/icons/user_add.gif',
                 tooltip: 'Добавить нового соискателя',
@@ -59,6 +59,13 @@
                 id: 'RemoveApplicant',
                 action: 'RemoveApplicant',
                 disabled: true
+            }],
+
+            dockedItems: [{
+                xtype: 'pagingtoolbar',
+                store: 'Applicant',
+                dock: 'bottom',
+                displayInfo: true
             }],
 
             listeners: {
