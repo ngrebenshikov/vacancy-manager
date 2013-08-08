@@ -15,6 +15,26 @@ namespace VacancyManager.Controllers
 
     public class ApplicantController : BaseController
     {
+
+        [HttpGet]
+        public ActionResult LoadAppConsiderations(int AppId)
+        {
+            var AppCons = ConsiderationsManager.GetAppConsiderations(AppId);
+            var AppConsList = (from appcons in AppCons
+                               select new
+                               {
+                                  ApplicantID = appcons.ApplicantID,
+                                  ConsiderationID = appcons.ConsiderationID,
+                                  VacancyTitle = appcons.Vacancy.Title
+
+                               }).ToList();
+            return Json(new
+            {
+                success = true,
+                data = AppConsList
+            }, JsonRequestBehavior.AllowGet);
+        }
+        
         [HttpGet]
         public ActionResult Load()
         {

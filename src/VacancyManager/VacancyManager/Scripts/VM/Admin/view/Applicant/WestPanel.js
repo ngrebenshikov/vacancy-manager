@@ -4,7 +4,7 @@
     region: 'west',
     border: false,
     id: 'applicantInfoForm',
-    width: 250,
+    width: 180,
     padding: '5 5 5 5',
     layout: {
         type: 'vbox',
