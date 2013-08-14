@@ -15,6 +15,5 @@ namespace VacancyManager.Models
         public virtual Applicant Applicant { get; set; }
         public virtual Vacancy Vacancy { get; set; }
         public virtual ICollection<Comment> Comments { get; set; }
-        public virtual ICollection<InputMessage> InputMessages { get; set; }
     }
 }

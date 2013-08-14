@@ -6,6 +6,8 @@ using VacancyManager.Models;
 using VacancyManager.Services.Managers;
 using System.Web.Script.Serialization;
 using VacancyManager.Services;
+using System.Web.Security;
+using System.IO;
 
 namespace VacancyManager.Controllers
 {
@@ -13,6 +15,26 @@ namespace VacancyManager.Controllers
 
     public class ApplicantController : BaseController
     {
+
+        [HttpGet]
+        public ActionResult LoadAppConsiderations(int AppId)
+        {
+            var AppCons = ConsiderationsManager.GetAppConsiderations(AppId);
+            var AppConsList = (from appcons in AppCons
+                               select new
+                               {
+                                  ApplicantID = appcons.ApplicantID,
+                                  ConsiderationID = appcons.ConsiderationID,
+                                  VacancyTitle = appcons.Vacancy.Title
+
+                               }).ToList();
+            return Json(new
+            {
+                success = true,
+                data = AppConsList
+            }, JsonRequestBehavior.AllowGet);
+        }
+        
         [HttpGet]
         public ActionResult Load()
         {
@@ -29,8 +51,8 @@ namespace VacancyManager.Controllers
                     if (appReq.IsChecked)
                     {
                         var reqName = (from req in reqList
-                                      where req.RequirementID == appReq.RequirementId
-                                      select req.Name).ToList();
+                                       where req.RequirementID == appReq.RequirementId
+                                       select req.Name).ToList();
                         reqText += reqName[0] + ", ";
                     }
                 }
@@ -72,7 +94,8 @@ namespace VacancyManager.Controllers
                                                          join allrecs in Requirments on req.RequirementId equals allrecs.RequirementID
                                                          select allrecs.Name),
                                          Vacancies = (from cons in applicants.Considerations
-                                                      select cons.Vacancy.Title)
+                                                      select cons.Vacancy.Title),
+                                         Email = applicants.Email
 
                                      }).ToList();
             return Json(new
@@ -153,5 +176,6 @@ namespace VacancyManager.Controllers
                 message = resultMessage
             });
         }
-    }
+
+     }
 }

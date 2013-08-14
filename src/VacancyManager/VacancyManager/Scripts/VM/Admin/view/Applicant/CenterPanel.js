@@ -9,7 +9,7 @@
 });
 
 Ext.define('VM.view.Applicant.CenterPanel', {
-    extend: 'Ext.panel.Panel',
+    extend: 'Ext.tab.Panel',
     alias: 'widget.centerPanel',
     region: 'center',
     border: false,
@@ -18,12 +18,7 @@ Ext.define('VM.view.Applicant.CenterPanel', {
     style: 'background-color: #fff;',
     items:
     [{
-        xtype: 'fieldset',
-        id: 'RequirementsFieldSet',
         title: Strings.Skills,
-        collapsible: false,
-        autoWidth: true,
-        autoHeight: true,
         layout: 'fit',
         autoHeight: true,
         items: //Элементы fieldset
@@ -36,6 +31,7 @@ Ext.define('VM.view.Applicant.CenterPanel', {
             margin: '0 0 12 0',
             frame: false,
             layout: 'fit',
+            autoHeight: true,
             split: true,
             region: 'center',
             plugins: [cellEditing],
@@ -92,5 +88,17 @@ Ext.define('VM.view.Applicant.CenterPanel', {
             }]
             /*** Конец - Грид для отображения навыков(Requirement) ***/
         }]
+    },
+    { title: Strings.Vacancies,
+      layout: 'hbox',
+      items:
+      [
+       { xtype: 'applicantConsiderationsList' },
+       { xtype: 'commentsList',
+         title: 'Комментарии',
+         width: 300,
+         height: 375 }
+
+      ]
     }]
 })

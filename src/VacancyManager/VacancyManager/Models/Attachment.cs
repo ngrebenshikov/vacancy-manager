@@ -12,8 +12,8 @@ namespace VacancyManager.Models
         public string FileName { get; set; }
         public string ContentType { get; set; }
         public byte[] FileContent { get; set; }
-        public int InputMessageId { get; set; }
+        public int VMMailMessageId { get; set; }
 
-        public virtual InputMessage InputMessage { get; set; }
+        public virtual VMMailMessage VMMailMessage { get; set; }
     }
 }

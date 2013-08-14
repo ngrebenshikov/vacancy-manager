@@ -138,6 +138,7 @@ Ext.define('VM.view.User.List', {
                         if (value) {
                             cls.push(cssPrefix + 'grid-checkheader-checked');
                         }
+ 
                         return '<div class="' + cls.join(' ') + '">&#160;</div>';
                     }
                 }

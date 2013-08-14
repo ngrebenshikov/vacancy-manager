@@ -62,5 +62,14 @@ namespace VacancyManager.Services.Managers
       VacancyContext _db = new VacancyContext();
       return _db.Applicants.Any(x => x.Email.Equals(email, StringComparison.OrdinalIgnoreCase));
     }
+
+    internal static Applicant GetApplicantByEMail(string Email)
+    {
+        Applicant app = new Applicant();
+        VacancyContext _db = new VacancyContext();
+        app = _db.Applicants.Where(applicant => applicant.Email == Email).FirstOrDefault();
+        return app;
+    }
+
   }
 }

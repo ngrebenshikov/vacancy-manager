@@ -8,10 +8,10 @@ Ext.define('VM.searchApplicantGrid', {
     store: 'SearchApplicants',
     columns: [{
         dataIndex: 'Selected',
-        text: '',
         xtype: 'checkcolumn',
         width: 30,
-        sortable: true,
+        align: 'center',
+        sortable: false,
         menuDisabled: true
     },
     {

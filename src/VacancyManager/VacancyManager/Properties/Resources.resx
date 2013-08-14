@@ -350,4 +350,11 @@
   <data name="AddApplicant" xml:space="preserve">
     <value>Добавить соискателя</value>
   </data>
+  <data name="SendMessage" xml:space="preserve">
+    <value>Отправить сообщение</value>
+    <comment>Кнопка отправки сообщений пользователям</comment>
+  </data>
+  <data name="MailMessages" xml:space="preserve">
+    <value>Сообщения</value>
+  </data>
 </root>

@@ -28,6 +28,11 @@ namespace VacancyManager.Services.Managers
       return _db.Considerations.Where(v => v.VacancyID == vacancyId).ToList();
     }
 
+    internal static IEnumerable<Consideration> GetAppConsiderations(int AppId)
+    {
+        VacancyContext _db = new VacancyContext();
+        return _db.Considerations.Where(v => v.ApplicantID == AppId).ToList();
+    }
 
     internal static Consideration CreateConsideration(int vacancyId, int applicantId)
     {
