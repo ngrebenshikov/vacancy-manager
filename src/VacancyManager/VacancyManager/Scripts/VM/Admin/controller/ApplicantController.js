@@ -1,14 +1,16 @@
 ﻿Ext.define('VM.controller.ApplicantController',
     {
         extend: 'Ext.app.Controller',
-        models: ['ApplicantModel', 'ApplicantRequirements'],
-        stores: ['Applicant', 'ApplicantRequirements'],
-        views: ['Applicant.List', 'Applicant.Create', 'Applicant.Edit'],
+        models: ['ApplicantModel', 'ApplicantRequirements', 'ApplicantConsiderations', ],
+        stores: ['Applicant', 'ApplicantRequirements', 'ApplicantConsiderations', 'Comments'],
+        views: ['Applicant.List', 'Applicant.Create', 'Applicant.Edit', 'Applicant.ApplicantConsiderations', 'Comments.List'],
 
         init: function () {
             this.control({
                 'ApplicantList':
                     { itemdblclick: this.EditApplicantShowForm },
+                'applicantConsiderationsList':
+                    { itemclick: this.GetComments },
                 // Открыть форму "Создать"
                 'button[action=CreateApplicantShowForm]':
                     { click: this.CreateApplicantShowForm },
@@ -28,6 +30,12 @@
                 'button[action=ShowHideSkills]':
                     { click: this.ShowHideSkills }
             });
+        },
+
+
+        GetComments: function (grid, row) {
+            commentsStore = this.getCommentsStore();
+            commentsStore.load({ params: { "considerationId": row.getId()} });
         },
 
         /* ===== */
@@ -84,7 +92,7 @@
             var view = Ext.widget('applicantEdit');
 
             var obj = grid.getSelectionModel().getSelection()[0];
-
+            var appConsStore = this.getApplicantConsiderationsStore();
             var appReqStore = Ext.StoreManager.lookup('ApplicantRequirements');
             appReqStore.load({ params: { "id": obj.get("ApplicantID")} });
 
@@ -99,7 +107,11 @@
                 }
             });
             // *** //
-        },
+            appReqStore.load({ params: { "id": obj.get("ApplicantID")} });
+            appConsStore.load({ params: { "AppId": obj.get("ApplicantID")} });
+            commentsStore = this.getCommentsStore();
+            commentsStore.load({ params: { "considerationId": -1} });
+         },
 
         EditApplicant: function (button) {
             var form = Ext.getCmp('applicantInfoForm').getForm(),

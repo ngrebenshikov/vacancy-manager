@@ -2,7 +2,7 @@
     {
         extend: 'Ext.data.Model',
         idProperty: 'ApplicantID',
-        fields: ['ApplicantID', 'FullName', 'Requirements', 'Vacancies'],
+        fields: ['ApplicantID', 'FullName', 'Requirements', 'Vacancies', 'Email'],
         proxy:
         {
             type: 'ajax',

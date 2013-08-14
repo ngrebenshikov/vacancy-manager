@@ -24,7 +24,7 @@
   	        },
             {
                 sortable: false,
-                width: 120,
+                width: 80,
                 xtype: 'templatecolumn',
                 tpl: 
                     new Ext.XTemplate(
