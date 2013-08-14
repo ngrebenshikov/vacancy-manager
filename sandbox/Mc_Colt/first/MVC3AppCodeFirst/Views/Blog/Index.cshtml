@@ -1,0 +1,39 @@
+﻿@model IEnumerable<MVC3AppCodeFirst.Models.Blog>
+
+@{
+    ViewBag.Title = "Управление вакансиями";
+}
+
+<h2>Управление вакансиями</h2>
+
+<p>
+    @Html.ActionLink("Добавить новую вакнсию", "create")
+</p>
+<table>
+    <tr>
+        <th>
+            Название предприятия
+        </th>
+        <th>
+            Вакансия
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Title)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BloggerName)
+        </td>
+        <td>
+            @Html.ActionLink("Редактировать", "Edit", new { id = item.Id }) |
+        
+            @Html.ActionLink("Удалить", "Delete", new { id = item.Id })
+        </td>
+    </tr>
+}
+
+</table>
