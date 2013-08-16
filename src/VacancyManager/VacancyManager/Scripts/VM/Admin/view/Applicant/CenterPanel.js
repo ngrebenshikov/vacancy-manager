@@ -90,15 +90,45 @@ Ext.define('VM.view.Applicant.CenterPanel', {
         }]
     },
     { title: Strings.Vacancies,
-      layout: 'hbox',
-      items:
-      [
+        layout: 'hbox',
+        id: 'tabAppVac',
+        items:
+       [
        { xtype: 'applicantConsiderationsList' },
        { xtype: 'commentsList',
          title: 'Комментарии',
-         width: 300,
-         height: 375 }
+           columns: [
+  	        {
+  	            width: 100,
+  	            flex: 1,
+  	            sortable: false,
+  	            menuDisabled: true,
+  	            textalign: 'justify',
+  	            dataIndex: 'Body',
+  	            tdCls: 'wrap-text'
+  	        },
+            {
+                width: 90,
+                xtype: 'templatecolumn',
+                tdCls: 'wrap-text',
+                tpl:
+                    new Ext.XTemplate(
+                       '<b>{[Ext.Date.format(values.CreationDate, "d.m.Y")]} <br> от {CommentatorName}</b>'
+                 )
+            },
+
+         ],
+           width: 300,
+           height: 375
+       }
 
       ]
-    }]
+    },
+    { title: 'Комментарии',
+      items: [
+        { xtype: 'appCommentsList' }
+      ]
+
+    }
+  ]
 })

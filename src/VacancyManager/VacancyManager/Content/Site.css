@@ -23,11 +23,12 @@
       background-color: #eee;
     }
 
-
 .x-grid-row-selected .x-grid-table .x-grid-cell 
 {
     background-color: transparent!important;
 }
+
+td.wrap-text div {     white-space: pre-wrap; } 
 
 .x-grid-row-selected .x-grid-table .x-grid-row-selected .x-grid-cell 
 {
@@ -49,11 +50,10 @@
     color: green; 
 }
 
-#gridcomments .x-grid-cell-inner
+/*#gridcomments .x-grid-cell-inner
 {
-    white-space: pre-line;
-    overflow: hidden;
-}
+    white-space: pre-line; 
+}*/
 
 #InputMessageText .x-form-field
 {

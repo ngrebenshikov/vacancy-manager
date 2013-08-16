@@ -2,7 +2,7 @@
     { extend: 'Ext.app.Controller',
         models: ['Comment'],
         stores: ['Comments'],
-        views:  ['Comments.List', 'Comments.Manage', 'Comments.Add', 'Comments.Edit'],
+        views: ['Comments.List', 'Comments.Manage', 'Comments.Add', 'Comments.Edit'],
 
         init: function () {
             this.control({
@@ -22,6 +22,7 @@
 
         clearCommentArea: function (button) {
             Ext.getCmp('txtareaConsiderationComment').setValue('');
+            console.log(Ext.getCmp('gridcomments'));
         },
 
         addComment: function (button) {
@@ -39,7 +40,7 @@
         },
 
         updateCommentsList: function (button) {
-                commentsStore = this.getCommentsStore(),
+            commentsStore = this.getCommentsStore(),
                 considerationId = commentsStore.consideration.getId(),
             commentsStore.load({ params: { "considerationId": considerationId} });
         }

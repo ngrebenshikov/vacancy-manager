@@ -15,6 +15,12 @@ namespace VacancyManager.Services.Managers
       return _db.Commentaries.Where(v => v.Consideration.ConsiderationID == considerationId).ToList();
     }
 
+    internal static IEnumerable<Comment> GetAppComments(int AppId)
+    {
+        VacancyContext _db = new VacancyContext();
+        return _db.Commentaries.Where(v => v.Consideration.ApplicantID == AppId).ToList();
+    }
+
     internal static Comment GetComment(int Id)
     {
       VacancyContext _db = new VacancyContext();
