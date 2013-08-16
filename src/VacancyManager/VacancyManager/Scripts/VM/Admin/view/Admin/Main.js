@@ -49,9 +49,6 @@
                 tabConfig: {
                     title: Strings.Vacancies
                 },
-                xtype: 'panel',
-                //title: "Вакансии",
-                //autoScroll: true,
                 layout: 'fit',
                 items:
               [

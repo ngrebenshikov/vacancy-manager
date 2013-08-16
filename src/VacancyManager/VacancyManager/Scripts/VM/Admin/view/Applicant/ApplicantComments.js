@@ -1,19 +1,17 @@
-﻿
-Ext.define('VM.view.Comments.List', {
+﻿Ext.define('VM.view.Applicant.ApplicantComments', {
     extend: 'Ext.grid.Panel',
-    alias: 'widget.commentsList',
+    alias: 'widget.appCommentsList',
     hideHeaders: true,
-    store: 'Comments',
-    region: 'center',
-    layout: 'fit',
-    id: 'gridcomments',
+    store: 'ApplicantComments',
+    height: 350,
+    id: 'appsCommentsList',
     columns: [
   	        {
   	            width: 100,
   	            flex: 1,
   	            sortable: false,
   	            menuDisabled: true,
-                textalign: 'justify',
+  	            textalign: 'justify',
   	            dataIndex: 'Body',
   	            tdCls: 'wrap-text'
   	        },
@@ -23,21 +21,12 @@ Ext.define('VM.view.Comments.List', {
                 menuDisabled: true,
                 xtype: 'templatecolumn',
                 tdCls: 'wrap-text',
-                tpl: 
+                tpl:
                     new Ext.XTemplate(
                        '<b>{[Ext.Date.format(values.CreationDate, "d.m.Y")]} <br> от {CommentatorName}</b>'
 
                  )
             }
-    ],
-    width: 520,
-    height: 375,
-    bbar: [{
-        text: 'Обновить список',
-        name: 'btnUpdateCommentsList',
-        align: 'right',
-        id: 'updateCommentsList',
-        action: 'updateCommentsList' 
-    }
-   ]
+    ]
 });
+
