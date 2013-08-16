@@ -1,9 +1,9 @@
 ﻿Ext.define('VM.controller.ApplicantController',
     {
         extend: 'Ext.app.Controller',
-        models: ['ApplicantModel', 'ApplicantRequirements', 'ApplicantConsiderations', ],
-        stores: ['Applicant', 'ApplicantRequirements', 'ApplicantConsiderations', 'Comments'],
-        views: ['Applicant.List', 'Applicant.Create', 'Applicant.Edit', 'Applicant.ApplicantConsiderations', 'Comments.List'],
+        models: ['ApplicantModel', 'ApplicantRequirements', 'ApplicantConsiderations'],
+        stores: ['Applicant', 'ApplicantRequirements', 'ApplicantConsiderations', 'Comments', 'ApplicantComments'],
+        views: ['Applicant.List', 'Applicant.Create', 'Applicant.Edit', 'Applicant.ApplicantConsiderations', 'Comments.List', 'Applicant.ApplicantComments'],
 
         init: function () {
             this.control({
@@ -111,7 +111,10 @@
             appConsStore.load({ params: { "AppId": obj.get("ApplicantID")} });
             commentsStore = this.getCommentsStore();
             commentsStore.load({ params: { "considerationId": -1} });
-         },
+            var appCommsStore = this.getApplicantCommentsStore();
+            appCommsStore.load({ params: { "appId": obj.get("ApplicantID")} });
+
+        },
 
         EditApplicant: function (button) {
             var form = Ext.getCmp('applicantInfoForm').getForm(),

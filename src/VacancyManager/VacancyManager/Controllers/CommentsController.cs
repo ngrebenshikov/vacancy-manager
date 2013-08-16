@@ -36,9 +36,6 @@ namespace VacancyManager.Controllers
                            }
 
                        ).ToList();
-
-
-
       return Json(new
     {
       comments = CommentsList,
@@ -47,6 +44,36 @@ namespace VacancyManager.Controllers
     }, JsonRequestBehavior.AllowGet);
     }
 
+
+    // GET: /Comments/
+    [HttpGet]
+    public JsonResult LoadAppComments(int appId)
+    {
+        bool LoadSuccess = true;
+        string LoadMessage = "Комментариии успешно загружены";
+        var Comments = CommentsManager.GetAppComments(appId);
+        var CommentsList = (from comms in Comments
+                            orderby comms.CommentID descending
+                            select new
+                            {
+                                CommentID = comms.CommentID,
+                                CreationDate = comms.CreationDate.ToShortDateString(),
+                                Body = comms.Body,
+                                UserID = comms.User != null ? comms.User.UserID : -1,
+                                UserRoles = (from userRoles in comms.User.Roles.Where(r => r.Name == "Admin").DefaultIfEmpty(new Role())
+                                             select userRoles.Name).Single().ToString(),
+                                CommentatorName = comms.CommenterName,
+                                ConsiderationID = comms.Consideration.ConsiderationID
+                            }
+
+                         ).ToList();
+        return Json(new
+        {
+            applicantcomments = CommentsList,
+            success = LoadSuccess,
+            message = LoadMessage
+        }, JsonRequestBehavior.AllowGet);
+    }
 
     //
     // GET: /Comments/Create
