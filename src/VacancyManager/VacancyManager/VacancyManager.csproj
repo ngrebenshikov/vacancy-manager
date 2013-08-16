@@ -1638,6 +1638,7 @@
     <Content Include="Scripts\VM\Admin\store\Comments.js" />
     <Content Include="Scripts\VM\Admin\store\Consideration.js" />
     <Content Include="Scripts\VM\Admin\store\ApplicantConsiderations.js" />
+    <Content Include="Scripts\VM\Admin\store\ApplicantComments.js" />
     <Content Include="Scripts\VM\Admin\store\MailMessage.js" />
     <Content Include="Scripts\VM\Admin\store\RequirementListInStack.js" />
     <Content Include="Scripts\VM\Admin\store\RequirementStack.js" />
@@ -1650,6 +1651,7 @@
     <Content Include="Scripts\VM\Admin\store\Applicant.js" />
     <Content Include="Scripts\VM\Admin\store\Attachment.js" />
     <Content Include="Scripts\VM\Admin\view\Admin\Main.js" />
+    <Content Include="Scripts\VM\Admin\view\Applicant\ApplicantComments.js" />
     <Content Include="Scripts\VM\Admin\view\Applicant\ApplicantConsiderations.js" />
     <Content Include="Scripts\VM\Admin\view\Applicant\CenterPanel.js" />
     <Content Include="Scripts\VM\Admin\view\Applicant\Edit.js" />
