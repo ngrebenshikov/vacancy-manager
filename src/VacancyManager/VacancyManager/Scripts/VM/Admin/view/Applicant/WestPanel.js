@@ -60,7 +60,21 @@
             vtype: 'email',
             vtypeText: 'Поле должно соответствовать формату "mail@example.com".'
         }]
-    }]
+    }, {
+		xtype: 'fieldset',
+        title: Strings.Employed,
+        collapsible: false,
+        autoWidth: true,
+        autoHeight: true,
+        items:
+        [{ 
+            xtype: 'checkbox',
+            id: 'ApplicantEmployed',
+            name: 'Emloyed',
+            boxLabel: 'Трудоустроен',
+            checked: 'true',
+		}]
+	}]
 })          
 
 /*        xtype: 'form',
