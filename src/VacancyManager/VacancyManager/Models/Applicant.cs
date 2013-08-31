@@ -13,6 +13,7 @@ namespace VacancyManager.Models
 
         public string FullName { get; set; }
         public string ContactPhone { get; set; }
+        public bool Employed { get; set; }
         [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
 
