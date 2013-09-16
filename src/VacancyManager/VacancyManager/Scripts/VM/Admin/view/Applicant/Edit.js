@@ -18,15 +18,16 @@
     width: 650,
     autoShow: true,
     modal: true,
+    maximizable: true,
+    maximized: true,
     layout: 'border',
-    resizable: false,
     initComponent: function () {
         this.items =
         [{
             xtype: 'westPanel'
         }, {
             xtype: 'centerPanel'
-        }],
+           }],
 
         this.buttons =
         [{

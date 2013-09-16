@@ -3,21 +3,23 @@
     alias: 'widget.appCommentsList',
     hideHeaders: true,
     store: 'ApplicantComments',
-    height: 350,
     id: 'appsCommentsList',
+    autoSizeColumns: true,
+    region: 'center',
+    layout: 'fit',
+    forceFit: true,
     columns: [
   	        {
   	            width: 100,
-  	            flex: 1,
+  	            flex: 2,
   	            sortable: false,
   	            menuDisabled: true,
-  	            textalign: 'justify',
-  	            dataIndex: 'Body',
+   	            dataIndex: 'Body',
   	            tdCls: 'wrap-text'
   	        },
             {
                 sortable: false,
-                width: 90,
+                align: 'center',
                 menuDisabled: true,
                 xtype: 'templatecolumn',
                 tdCls: 'wrap-text',

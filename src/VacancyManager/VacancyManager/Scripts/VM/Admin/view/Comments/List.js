@@ -5,7 +5,6 @@ Ext.define('VM.view.Comments.List', {
     hideHeaders: true,
     store: 'Comments',
     region: 'center',
-    layout: 'fit',
     id: 'gridcomments',
     columns: [
   	        {
@@ -13,13 +12,12 @@ Ext.define('VM.view.Comments.List', {
   	            flex: 1,
   	            sortable: false,
   	            menuDisabled: true,
-                textalign: 'justify',
   	            dataIndex: 'Body',
   	            tdCls: 'wrap-text'
   	        },
             {
                 sortable: false,
-                width: 90,
+                width: 100,
                 menuDisabled: true,
                 xtype: 'templatecolumn',
                 tdCls: 'wrap-text',
