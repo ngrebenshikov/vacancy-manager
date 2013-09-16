@@ -1,0 +1,38 @@
+﻿@model prjFactVakancies.Models.Vakancy
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<fieldset>
+    <legend>Vakancy</legend>
+
+    <div class="display-label">Profession</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Profession)
+    </div>
+
+    <div class="display-label">Pol</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Pol)
+    </div>
+
+    <div class="display-label">Vozrast</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Vozrast)
+    </div>
+
+    <div class="display-label">Oklad</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Oklad)
+    </div>
+</fieldset>
+@using (Html.BeginForm()) {
+    <p>
+        <input type="submit" value="Delete" /> |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+}
