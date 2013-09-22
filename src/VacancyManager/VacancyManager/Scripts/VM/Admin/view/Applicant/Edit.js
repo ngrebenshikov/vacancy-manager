@@ -19,7 +19,6 @@
     autoShow: true,
     modal: true,
     maximizable: true,
-    maximized: true,
     layout: 'border',
     initComponent: function () {
         this.items =
