@@ -5,6 +5,7 @@ Ext.define('VM.searchApplicantGrid', {
     alias: 'widget.searchApplicantGrid',
     appSearchReqs: [],
     appSearchVacs: [],
+    appSearchEmp: 1,
     store: 'SearchApplicants',
     columns: [{
         dataIndex: 'Selected',
@@ -34,6 +35,13 @@ Ext.define('VM.searchApplicantGrid', {
         width: 130,
         sortable: false,
         flex: 1,
+        menuDisabled: true
+    },
+    {
+        dataIndex: 'Employed',
+        text: 'Трудоустроен',
+        width: 130,
+        sortable: false,
         menuDisabled: true
     }],
 
@@ -128,6 +136,36 @@ Ext.define('VM.searchApplicantGrid', {
                                             searchAppGrid.onSelectVacancyButtonClick();
                                         }
                                     }]
+                          },
+                          {
+                              width: 500,
+                              border: false,
+                              id: 'searchEmployed',
+                              enableKeyEvents: true,
+                              padding: '10 0 15 2',
+                              items: [{
+                                  xtype: 'button',
+                                  text: 'Трудоустройство',
+                                  menu: [
+                                        {
+                                            text: 'Трудоустроен',
+                                            handler: function () {
+                                                searchAppGrid.appSearchEmp = 1;
+                                                searchAppGrid.filterApplicants();
+                                            }
+                                        },
+                                        {
+                                            text: 'Не трудоустроен',
+                                            handler: function () {
+                                                searchAppGrid.appSearchEmp = 0;
+                                                searchAppGrid.filterApplicants();
+                                            }
+                                        }
+
+                                  ]
+                              }]
+
+
                           }
                           ]
         }
@@ -333,7 +371,7 @@ Ext.define('VM.searchApplicantGrid', {
 
             var regexp = new RegExp(fullName, "i");
 
-            if ((countReqs >= me.appSearchReqs.length) && (countVacs >= me.appSearchVacs.length) && (regexp.test(record.get("FullName")))) {
+            if ((countReqs >= me.appSearchReqs.length) && (countVacs >= me.appSearchVacs.length) && (regexp.test(record.get("FullName"))) && (record.get("Employed") == me.appSearchEmp)) {
                 return true;
             }
             else {
