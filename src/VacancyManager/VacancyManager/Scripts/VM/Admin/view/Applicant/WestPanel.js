@@ -70,7 +70,7 @@
         [{ 
             xtype: 'checkbox',
             id: 'ApplicantEmployed',
-            name: 'Employed',
+            name: 'Emloyed',
             boxLabel: 'Трудоустроен',
             checked: 'true',
 		}]
