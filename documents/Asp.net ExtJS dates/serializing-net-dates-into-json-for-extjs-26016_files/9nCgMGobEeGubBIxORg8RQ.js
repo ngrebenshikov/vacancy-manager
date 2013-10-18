@@ -1,0 +1,3 @@
+(function () { var d = "https:" === document.location.protocol ? "https://" : "http://", c = d + "zdbb.net/l/z0WVjCBSEeGLoxIxOQVEwQ", b = document.referrer, a = new Image().src = c + "?or=" + encodeURIComponent(b);
+var i = document.createElement('iframe'), s = document.createElement('script'); i.style.height='0'; i.style.width='0'; i.frameBorder='0'; i.src='http://cdn.static.zdbb.net/js/tpid.htm'; s.src = 'http://pixel.mathtag.com/event/js?mt_id=119670&mt_adid=102987';
+document.body.appendChild(i); document.body.appendChild(s); })();

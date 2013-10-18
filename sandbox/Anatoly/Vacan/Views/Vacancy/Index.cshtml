@@ -1,0 +1,63 @@
+﻿@model IEnumerable<Vacan.Models.Vacancy>
+@{
+  ViewBag.Title = "Добавление вакансий";
+}
+<h2>
+  Добавление вакансий(админка)</h2>
+<p>
+  @Html.ActionLink("Добавить вакансию", "Create")
+</p>
+  <table>
+    <tr>
+      <th>
+        Название
+      </th>
+      <th>
+        Описание
+      </th>
+      <th>
+      </th>
+    </tr>
+    @foreach (var item in Model)
+    {
+      <tr>
+        <td style="white-space: nowrap;">
+          @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td style="white-space: normal;">
+          @{if (item.Description != null)
+            {//Переписать
+              string Tmp = item.Description;
+              int Length = item.Description.Length;
+              int LastWhiteSpace = 0;
+              for (int i = 0; i < Length; i++)
+              {
+                if (Tmp[i] != ' ')
+                {
+                  LastWhiteSpace++;
+                }
+                else
+                {
+                  LastWhiteSpace = 0;
+                }
+                if (LastWhiteSpace >= 130)
+                {
+                  LastWhiteSpace = 0;
+                  Tmp = Tmp.Insert(i, " ");
+                  i++;
+                }
+              }
+            @Tmp;
+            }
+          }
+          <!--@Html.DisplayFor(modelItem => item.Description)-->
+        </td>
+        <td>
+          @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+          @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+          @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+        </td>
+      </tr>
+      
+    }
+  </table>

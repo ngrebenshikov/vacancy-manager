@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html style="height: 100%;" xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="ru-RU"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta charset="UTF-8">
+<title>ExtJS: Валидация двух datefield для интервала времени - CodeStore.ru</title><link rel="profile" href="http://gmpg.org/xfn/11">
+<link rel="alternate" type="application/rss+xml" title="CodeStore.ru RSS Feed" href="http://codestore.ru/feed">
+<link rel="pingback" href="http://codestore.ru/xmlrpc.php">
+<link rel="stylesheet" href="633_files/style.css" type="text/css" media="screen">
+<!--[if lte IE 7]><link rel="stylesheet" href="http://codestore.ru/wp-content/themes/arjuna-x/ie7.css" type="text/css" media="screen" /><![endif]-->
+<!--[if lte IE 6]>
+<link rel="stylesheet" href="http://codestore.ru/wp-content/themes/arjuna-x/ie6.css" type="text/css" media="screen" />
+<script type="text/javascript" src="http://codestore.ru/wp-content/themes/arjuna-x/ie6.js"></script>
+<![endif]-->
+<style type="text/css">.contentWrapper .contentArea {width:700px;}.contentWrapper .sidebarsRight {width:220px;}.contentWrapper .sidebarsRight .sidebarLeft, .contentWrapper .sidebarsRight .sidebarRight {width:85px;}</style><link rel="alternate" type="application/rss+xml" title="CodeStore.ru » Лента" href="http://codestore.ru/feed">
+<link rel="alternate" type="application/rss+xml" title="CodeStore.ru » Лента комментариев" href="http://codestore.ru/comments/feed">
+<link rel="alternate" type="application/rss+xml" title="CodeStore.ru » Лента комментариев к «ExtJS: Валидация двух datefield для интервала времени»" href="http://codestore.ru/633/feed">
+<link rel="stylesheet" id="ppa-template-css" href="633_files/title-excerpt-thumbnail.css" type="text/css" media="all">
+<script src="633_files/ga.js" async="" type="text/javascript"></script><script type="text/javascript" src="633_files/jquery.js"></script>
+<script type="text/javascript" src="633_files/comment-reply.js"></script>
+<script type="text/javascript" src="633_files/default.js"></script>
+<script type="text/javascript" src="633_files/external-tracking.js"></script>
+<link rel="prev" title="JavaScript: Заполнение старших разрядов числа нулями" href="http://codestore.ru/631">
+<link rel="next" title="JavaScript: Некоторые функции для работы с датой и временем" href="http://codestore.ru/636">
+<link rel="canonical" href="http://codestore.ru/633">
+<link rel="shortlink" href="http://codestore.ru/?p=633">
+<style type="text/css">.addtoany_subscribe img{border:0;}</style>
+<link href="633_files/shCore.css" type="text/css" rel="stylesheet"><link href="633_files/shThemeDefault.css" type="text/css" rel="stylesheet" id="shTheme"><script type="text/javascript" src="633_files/shCore.js"></script>
+<script type="text/javascript" src="633_files/shBrushAS3.js"></script>
+<script type="text/javascript" src="633_files/shBrushBash.js"></script>
+<script type="text/javascript" src="633_files/shBrushCSharp.js"></script>
+<script type="text/javascript" src="633_files/shBrushCpp.js"></script>
+<script type="text/javascript" src="633_files/shBrushCss.js"></script>
+<script type="text/javascript" src="633_files/shBrushDelphi.js"></script>
+<script type="text/javascript" src="633_files/shBrushDiff.js"></script>
+<script type="text/javascript" src="633_files/shBrushGroovy.js"></script>
+<script type="text/javascript" src="633_files/shBrushJScript.js"></script>
+<script type="text/javascript" src="633_files/shBrushJava.js"></script>
+<script type="text/javascript" src="633_files/shBrushJavaFX.js"></script>
+<script type="text/javascript" src="633_files/shBrushPerl.js"></script>
+<script type="text/javascript" src="633_files/shBrushPhp.js"></script>
+<script type="text/javascript" src="633_files/shBrushPlain.js"></script>
+<script type="text/javascript" src="633_files/shBrushPowerShell.js"></script>
+<script type="text/javascript" src="633_files/shBrushPython.js"></script>
+<script type="text/javascript" src="633_files/shBrushRuby.js"></script>
+<script type="text/javascript" src="633_files/shBrushScala.js"></script>
+<script type="text/javascript" src="633_files/shBrushSql.js"></script>
+<script type="text/javascript" src="633_files/shBrushVb.js"></script>
+<script type="text/javascript" src="633_files/shBrushXml.js"></script>
+<script type="text/javascript">
+SyntaxHighlighter.config.strings.expandSource = '+ развернуть исходник';
+SyntaxHighlighter.config.strings.viewSource = 'показать исходник';
+SyntaxHighlighter.config.strings.copyToClipboard = 'скопировать в буфер';
+SyntaxHighlighter.config.strings.copyToClipboardConfirmation = 'Код в буфере обмена';
+SyntaxHighlighter.config.strings.print = 'печатать';
+SyntaxHighlighter.config.strings.alert = 'Подсветка кода\\n\\n';
+SyntaxHighlighter.config.strings.noBrush = 'Нет подсветки для: ';
+SyntaxHighlighter.config.strings.brushNotHtmlScript = 'Подсветка не для html: ';
+SyntaxHighlighter.config.clipboardSwf = 'http://codestore.ru/wp-content/plugins/easy-google-syntax-highlighter/scripts/clipboard.swf';
+SyntaxHighlighter.all();</script>
+
+<!-- Dynamic Widgets v1.5.2 by QURL - http://www.qurl.nl //-->
+<!-- Google Analytics Tracking by Google Analyticator 6.2: http://ronaldheft.com/code/analyticator/ -->
+<script type="text/javascript">
+	var analyticsFileTypes = [''];
+	var analyticsEventTracking = 'enabled';
+</script>
+<script type="text/javascript">
+	var _gaq = _gaq || [];
+	_gaq.push(['_setAccount', 'UA-18623789-1']);
+	_gaq.push(['_trackPageview']);
+	_gaq.push(['_trackPageLoadTime']);
+
+	(function() {
+		var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+		ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+		var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+	})();
+</script>
+<script src="633_files/ru.js" charset="UTF-8"></script><link href="633_files/translateelement.css" charset="UTF-8" rel="stylesheet" type="text/css"><script src="633_files/main.js" charset="UTF-8" type="text/javascript"></script><script src="633_files/element_main.js" charset="UTF-8" type="text/javascript"></script><style type="text/css">.a2a_menu, .a2a_menu *{float:none;margin:0;padding:0;height:auto;width:auto;}.a2a_menu{width: 300px;}.a2a_menu table{border-collapse:collapse;border-spacing:0;width:auto}.a2a_menu table,.a2a_menu tbody,.a2a_menu td,.a2a_menu tr{border:0;margin:0;padding:0;background-color:#FFF} .a2a_menu td{vertical-align:top}.a2a_menu,.a2a_menu_inside{border-radius:16px;-webkit-border-radius:16px;-moz-border-radius:16px}.a2a_menu{display:none;z-index:9999999;position:absolute;direction:ltr;min-width:200px;background:#EEE;background:rgba(238,238,238,.6);font:12px Arial,Helvetica,sans-serif;color:#000;line-height:12px;border:1px solid transparent;_border:1px solid #EEE;padding:7px;vertical-align:baseline;overflow:hidden}.a2a_menu_inside{background-color:#FFF;border: 1px solid #CCC;padding:8px}.a2a_menu a span, 	.a2a_tabs .a2a_tab_selected span{color:#00F}.a2a_menu a:hover span, 	.a2a_tabs div span,	.a2a_tabs a span{color:#000}.a2a_menu a,#a2a_hist_list a,.a2a_tabs div{color:#00F;text-decoration:none;font:12px Arial,Helvetica,sans-serif;line-height:12px;height:auto;width:auto;outline:none;-moz-outline:none;border-radius:8px;-webkit-border-radius:8px;-moz-border-radius:8px}.a2a_menu a:visited,#a2a_hist_list a:visited{color:#00F}.a2a_menu a:hover,.a2a_menu a:active,.a2a_menu a.a2a_i:focus,.a2a_tabs div:hover{color:#000;border:1px solid #CCC;background-color:#EEE;text-decoration:none}.a2a_menu span,.a2a_img{background:url(http://static.addtoany.com/menu/icons_22.png) no-repeat;border:0;display:block;line-height:16px}.a2a_menu span.a2a_i_find{height:16px;left:5px;position:absolute;top:2px;width:16px}#a2a_menu_container{display:inline-block} #a2a_menu_container{_display:inline} .a2a_menu_title_container{margin-bottom:2px;padding:6px}.a2a_menu_find_container{position:relative;text-align:left;margin:4px 1px;padding:1px 24px 1px 0;border:1px solid #CCC;border-radius:8px;-webkit-border-radius:8px;-moz-border-radius:8px}.a2a_cols_container{border-bottom-right-radius:8px;border-top-right-radius:8px}.a2a_cols_container .a2a_col1{overflow-x:hidden;overflow-y:auto;}.a2a_menu input, .a2a_menu input[type="text"]{display:block;background-image:none;box-shadow:none;line-height:100%;margin:0;overflow:hidden;padding:0;-moz-box-shadow:none;-webkit-box-shadow:none;-webkit-appearance:none} .a2a_menu_title_container input.a2a_menu_title{color:#000;background-color:#FFF;border:0;margin:0;padding:0;width:99%}.a2a_menu_find_container input.a2a_menu_find{position:relative;left:24px;color:#000;font-size:12px;padding:2px 0;outline:0;border:0;background-color:transparent;_background-color:#FFF;width:99%} .a2a_clear{clear:both} .a2a_default_style a{float:left;line-height:16px;padding:0 2px}.a2a_default_style .a2a_img{display:block;height:16px;line-height:16px;overflow:hidden;width:16px}.a2a_default_style .a2a_img, .a2a_default_style .a2a_dd{float:left}.a2a_default_style .a2a_img_text{margin-right:4px}.a2a_default_style .a2a_divider{border-left:1px solid #000;display:inline;float:left;height:16px;line-height:16px;margin:0 5px}.a2a_kit a{cursor:pointer}.a2a_nowrap{white-space:nowrap}.a2a_note{margin:0 auto;padding:9px;font-size:12px;text-align:center}.a2a_note .a2a_note_note{margin:0;color:#000}.a2a_wide a{display:block;margin-top:3px;border:1px solid #EEE;padding:3px;text-align:center}.a2a_tabs{float:left;margin:0 0 3px} .a2a_tabs a,.a2a_tabs div{margin:1px;background-color:#EEE; border:1px solid #EEE; font-size:11px; padding:6px 12px ; white-space:nowrap} .a2a_tabs a span, .a2a_tabs div span{display:inline-block;padding-left:20px;height:auto;width:auto} .a2a_tabs_default a span, .a2a_tabs_default div span{height:auto;max-width:99px;overflow:hidden;padding-left:20px;width:auto;_width:expression(this.clientWidth > 99? "97px" : "auto");}.a2a_tabs a, .a2a_tabs a:visited, .a2a_tabs a:hover, .a2a_tabs div, .a2a_tabs div:hover{cursor:pointer;border-bottom:1px solid #EEE;color:#000;border-bottom-left-radius:0;-webkit-border-bottom-left-radius:0;-moz-border-radius-bottomleft:0;border-bottom-right-radius:0;-webkit-border-bottom-right-radius:0;-moz-border-radius-bottomright:0}a.a2a_tab_selected, a.a2a_tab_selected:visited,a.a2a_tab_selected:hover,a.a2a_tab_selected:active,a.a2a_tab_selected:focus, div.a2a_tab_selected,div.a2a_tab_selected:hover{color:#00F;background-color:#FFF;border:1px solid #CCC;border-bottom:1px solid #FFF}a.a2a_i{display:block;float:left;border:1px solid #FFF;padding:4px 6px;text-align:left;white-space:nowrap;width:126px;}a.a2a_i span{padding-left:20px}.a2a_x_shorten a.a2a_i{width:116px}a.a2a_sss{font-weight:700}a.a2a_ind{display:inline;margin:0;padding:0} a.a2a_email_client span{display:inline-block;height:16px;line-height:16px;margin:0 2px;padding-left:0;width:16px;}a.a2a_menu_show_more_less{margin:4px 0 8px;padding:0}a.a2a_menu_show_more_less span{display:inline-block;height:14px;margin:0 auto;vertical-align:baseline;width:16px} div.a2a_menu_powered_by{background-color:#EEE;font-size:9px;color:#999;text-align:center;margin-top:4px;padding:3px;border-radius:8px;-webkit-border-radius:8px;-moz-border-radius:8px}div.a2a_menu_powered_by a,div.a2a_menu_powered_by a:visited{display:inline;font-size:9px;color:#999}div.a2a_menu_powered_by a:hover{border:0;text-decoration:underline}iframe.a2a_shim{border:0;position:absolute;z-index:999999;}.a2a_dd img{border:0;}.a2a_ptz_notes a, .a2a_ptz_notes a:hover { background: none; border: 0; }.a2a_ptz_notes .a2a_ptz_stats { font-size: 13px; }.a2a_ptz_notes .a2a_ptz_stats span { background: none; display: inline; font-weight: bold; }.a2a_ptz_notes .a2a_ptz_desc { line-height: 14px; margin: 14px 0 21px; }.a2a_ptz_notes .a2a_ptz_claim a { background-color: #EEE; border: 1px solid #EEE; color: #00F; font-size: 13px; font-weight: bold; padding: 7px 21px; border-radius: 8px; }.a2a_ptz_notes .a2a_ptz_claim a:hover { background-color: #EEE; border: 1px solid #CCC; color: #000; }.a2a_ptz_notes .a2a_ptz_login { line-height: 14px; margin: 21px 0 0; }.a2a_ptz_notes .a2a_ptz_login a:hover { text-decoration: underline; }.a2a_ptz_notes .a2a_i_lockerz { display: inline-block; margin: 20px 0 0; padding-left: 20px; height: auto; width:auto; }.a2a_i_a2a{background-position:0 0!important}.a2a_i_a2a_bw{background-position:0 -17px!important}.a2a_i_agregator{background-position:0 -34px!important}.a2a_i_aiderss{background-position:0 -51px!important}.a2a_i_aim{background-position:0 -68px!important}.a2a_i_allvoices{background-position:0 -85px!important}.a2a_i_amazon{background-position:0 -102px!important}.a2a_i_aol{background-position:0 -119px!important}.a2a_i_apple_mail{background-position:0 -136px!important}.a2a_i_arto{background-position:0 -153px!important}.a2a_i_ask{background-position:0 -170px!important}.a2a_i_backflip{background-position:0 -187px!important}.a2a_i_bebo{background-position:0 -204px!important}.a2a_i_bibsonomy{background-position:0 -221px!important}.a2a_i_bitty{background-position:0 -238px!important}.a2a_i_blinklist{background-position:0 -255px!important}.a2a_i_blogger{background-position:0 -272px!important}.a2a_i_bloglines{background-position:0 -289px!important}.a2a_i_blogmarks{background-position:0 -306px!important}.a2a_i_bookmark{background-position:0 -323px!important}.a2a_i_bookmarks_fr{background-position:0 -340px!important}.a2a_i_box{background-position:0 -357px!important}.a2a_i_buddymarks{background-position:0 -374px!important}.a2a_i_business_exchange{background-position:0 -391px!important}.a2a_i_care2{background-position:0 -408px!important}.a2a_i_chrome{background-position:0 -425px!important}.a2a_i_citeulike{background-position:0 -442px!important}.a2a_i_clear{background-position:0 -459px!important}.a2a_i_connotea{background-position:0 -476px!important}.a2a_i_current{background-position:0 -493px!important}.a2a_i_dailyme{background-position:0 -510px!important}.a2a_i_dailyrotation{background-position:0 -527px!important}.a2a_i_darr{background-position:0 -544px!important}.a2a_i_darr_wt{background-position:0 -561px!important}.a2a_i_default{background-position:0 -578px!important}.a2a_i_delicious{background-position:0 -595px!important}.a2a_i_designfloat{background-position:0 -612px!important}.a2a_i_digg{background-position:0 -629px!important}.a2a_i_diglog{background-position:0 -646px!important}.a2a_i_diigo{background-position:0 -663px!important}.a2a_i_dzone{background-position:0 -680px!important}.a2a_i_email{background-position:0 -697px!important}.a2a_i_email_bw{background-position:0 -714px!important}.a2a_i_evernote{background-position:0 -731px!important}.a2a_i_expression{background-position:0 -748px!important}.a2a_i_facebook{background-position:0 -765px!important}.a2a_i_fark{background-position:0 -782px!important}.a2a_i_faves{background-position:0 -799px!important}.a2a_i_feed{background-position:0 -816px!important}.a2a_i_feedblitz{background-position:0 -833px!important}.a2a_i_feedbucket{background-position:0 -850px!important}.a2a_i_feedmailer{background-position:0 -867px!important}.a2a_i_feedshow{background-position:0 -884px!important}.a2a_i_find{background-position:0 -901px!important}.a2a_i_fireant{background-position:0 -918px!important}.a2a_i_firefox{background-position:0 -935px!important}.a2a_i_folkd{background-position:0 -952px!important}.a2a_i_formspring{background-position:0 -969px!important}.a2a_i_friendfeed{background-position:0 -986px!important}.a2a_i_funp{background-position:0 -1003px!important}.a2a_i_furl{background-position:0 -1020px!important}.a2a_i_fwicki{background-position:0 -1036px!important}.a2a_i_gabbr{background-position:0 -1053px!important}.a2a_i_global_grind{background-position:0 -1070px!important}.a2a_i_gmail{background-position:0 -1087px!important}.a2a_i_google{background-position:0 -1104px!important}.a2a_i_google_plus{background-position:0 -1121px!important}.a2a_i_healthranker{background-position:0 -1138px!important}.a2a_i_hellotxt{background-position:0 -1155px!important}.a2a_i_hemidemi{background-position:0 -1172px!important}.a2a_i_hubdog{background-position:0 -1189px!important}.a2a_i_hugg{background-position:0 -1206px!important}.a2a_i_hyves{background-position:0 -1223px!important}.a2a_i_identica{background-position:0 -1240px!important}.a2a_i_imera{background-position:0 -1257px!important}.a2a_i_instapaper{background-position:0 -1274px!important}.a2a_i_itunes{background-position:0 -1291px!important}.a2a_i_jamespot{background-position:0 -1308px!important}.a2a_i_jots{background-position:0 -1325px!important}.a2a_i_jumptags{background-position:0 -1342px!important}.a2a_i_khabbr{background-position:0 -1359px!important}.a2a_i_kledy{background-position:0 -1376px!important}.a2a_i_klipfolio{background-position:0 -1393px!important}.a2a_i_linkagogo{background-position:0 -1410px!important}.a2a_i_linkatopia{background-position:0 -1427px!important}.a2a_i_linkedin{background-position:0 -1444px!important}.a2a_i_live{background-position:0 -1461px!important}.a2a_i_livejournal{background-position:0 -1478px!important}.a2a_i_lockerz{background-position:0 -1495px!important}.a2a_i_ma_gnolia{background-position:0 -1512px!important}.a2a_i_maple{background-position:0 -1529px!important}.a2a_i_meneame{background-position:0 -1546px!important}.a2a_i_messenger{background-position:0 -1563px!important}.a2a_i_mindbodygreen{background-position:0 -1580px!important}.a2a_i_miro{background-position:0 -1597px!important}.a2a_i_mister-wong{background-position:0 -1614px!important}.a2a_i_mixx{background-position:0 -1631px!important}.a2a_i_mobile{background-position:0 -1648px!important}.a2a_i_mozillaca{background-position:0 -1665px!important}.a2a_i_msdn{background-position:0 -1682px!important}.a2a_i_multiply{background-position:0 -1699px!important}.a2a_i_my_msn{background-position:0 -1716px!important}.a2a_i_mylinkvault{background-position:0 -1733px!important}.a2a_i_myspace{background-position:0 -1750px!important}.a2a_i_netimechannel{background-position:0 -1767px!important}.a2a_i_netlog{background-position:0 -1784px!important}.a2a_i_netvibes{background-position:0 -1801px!important}.a2a_i_netvouz{background-position:0 -1818px!important}.a2a_i_newsalloy{background-position:0 -1835px!important}.a2a_i_newscabby{background-position:0 -1852px!important}.a2a_i_newsgator{background-position:0 -1869px!important}.a2a_i_newshutch{background-position:0 -1886px!important}.a2a_i_newsisfree{background-position:0 -1903px!important}.a2a_i_newstrust{background-position:0 -1920px!important}.a2a_i_newsvine{background-position:0 -1937px!important}.a2a_i_nowpublic{background-position:0 -1954px!important}.a2a_i_oneview{background-position:0 -1971px!important}.a2a_i_openbm{background-position:0 -1988px!important}.a2a_i_orkut{background-position:0 -2005px!important}.a2a_i_outlook{background-position:0 -2022px!important}.a2a_i_pageflakes{background-position:0 -2039px!important}.a2a_i_pdf{background-position:0 -2056px!important}.a2a_i_phonefavs{background-position:0 -2073px!important}.a2a_i_ping{background-position:0 -2090px!important}.a2a_i_pinterest{background-position:0 -2107px!important}.a2a_i_plaxo{background-position:0 -2124px!important}.a2a_i_plurk{background-position:0 -2141px!important}.a2a_i_podnova{background-position:0 -2158px!important}.a2a_i_posterous{background-position:0 -2175px!important}.a2a_i_print{background-position:0 -2192px!important}.a2a_i_printfriendly{background-position:0 -2209px!important}.a2a_i_protopage{background-position:0 -2226px!important}.a2a_i_ptz{background-position:0 -2243px!important}.a2a_i_ptz_bw{background-position:0 -2260px!important}.a2a_i_pusha{background-position:0 -2277px!important}.a2a_i_rapidfeeds{background-position:0 -2294px!important}.a2a_i_read_it_later{background-position:0 -2311px!important}.a2a_i_reader{background-position:0 -2328px!important}.a2a_i_reddit{background-position:0 -2345px!important}.a2a_i_rediff{background-position:0 -2362px!important}.a2a_i_rssfwd{background-position:0 -2379px!important}.a2a_i_segnalo{background-position:0 -2396px!important}.a2a_i_share{background-position:0 -2413px!important}.a2a_i_shoutwire{background-position:0 -2430px!important}.a2a_i_simpy{background-position:0 -2447px!important}.a2a_i_sina_weibo{background-position:0 -2464px!important}.a2a_i_sitejot{background-position:0 -2481px!important}.a2a_i_skimbit{background-position:0 -2498px!important}.a2a_i_slashdot{background-position:0 -2515px!important}.a2a_i_smaknews{background-position:0 -2532px!important}.a2a_i_sodahead{background-position:0 -2549px!important}.a2a_i_sofomo{background-position:0 -2566px!important}.a2a_i_spaces{background-position:0 -2583px!important}.a2a_i_sphere{background-position:0 -2600px!important}.a2a_i_sphinn{background-position:0 -2616px!important}.a2a_i_spurl{background-position:0 -2633px!important}.a2a_i_squidoo{background-position:0 -2650px!important}.a2a_i_startaid{background-position:0 -2667px!important}.a2a_i_strands{background-position:0 -2684px!important}.a2a_i_stumbleupon{background-position:0 -2701px!important}.a2a_i_stumpedia{background-position:0 -2718px!important}.a2a_i_symbaloo{background-position:0 -2735px!important}.a2a_i_taggly{background-position:0 -2752px!important}.a2a_i_tagza{background-position:0 -2769px!important}.a2a_i_tailrank{background-position:0 -2786px!important}.a2a_i_technet{background-position:0 -2803px!important}.a2a_i_technorati{background-position:0 -2820px!important}.a2a_i_technotizie{background-position:0 -2837px!important}.a2a_i_thefreedictionary{background-position:0 -2854px!important}.a2a_i_thefreelibrary{background-position:0 -2871px!important}.a2a_i_thunderbird{background-position:0 -2888px!important}.a2a_i_tipd{background-position:0 -2905px!important}.a2a_i_toolbar_google{background-position:0 -2922px!important}.a2a_i_tuenti{background-position:0 -2939px!important}.a2a_i_tumblr{background-position:0 -2956px!important}.a2a_i_twiddla{background-position:0 -2973px!important}.a2a_i_twine{background-position:0 -2990px!important}.a2a_i_twitter{background-position:0 -3007px!important}.a2a_i_txtvox{background-position:0 -3024px!important}.a2a_i_typepad{background-position:0 -3041px!important}.a2a_i_uarr{background-position:0 -3058px!important}.a2a_i_uarr_wt{background-position:0 -3075px!important}.a2a_i_unalog{background-position:0 -3092px!important}.a2a_i_viadeo{background-position:0 -3109px!important}.a2a_i_vk{background-position:0 -3126px!important}.a2a_i_vodpod{background-position:0 -3143px!important}.a2a_i_webnews{background-position:0 -3160px!important}.a2a_i_webwag{background-position:0 -3178px!important}.a2a_i_wikio{background-position:0 -3195px!important}.a2a_i_windows_mail{background-position:0 -3212px!important}.a2a_i_wink{background-position:0 -3229px!important}.a2a_i_winksite{background-position:0 -3246px!important}.a2a_i_wists{background-position:0 -3263px!important}.a2a_i_wordpress{background-position:0 -3280px!important}.a2a_i_xerpi{background-position:0 -3297px!important}.a2a_i_xianguo{background-position:0 -3314px!important}.a2a_i_xing{background-position:0 -3331px!important}.a2a_i_yahoo{background-position:0 -3348px!important}.a2a_i_yample{background-position:0 -3365px!important}.a2a_i_yigg{background-position:0 -3382px!important}.a2a_i_yim{background-position:0 -3399px!important}.a2a_i_yoolink{background-position:0 -3416px!important}.a2a_i_youmob{background-position:0 -3433px!important}.a2a_i_zhuaxia{background-position:0 -3450px!important}.a2a_i_zune{background-position:0 -3467px!important}</style></head>
+
+<body class="single single-post postid-633 single-format-standard buttonStyle_default" style="background-color: rgb(233, 231, 231); position: relative; min-height: 100%; top: 0px;"><iframe src="633_files/sm9.htm" allowtransparency="true" transparency="true" style="border: 0pt none; left: 0pt; top: 0pt; position: absolute; z-index: 100000; display: none;" id="a2afeed_sm_ifr" frameborder="0" height="1" width="1"></iframe><div style="position: static;"><div id="a2afeed_dropdown" class="a2a_menu" onmouseover="a2a.onMouseOver_stay()" onmouseout="a2a.onMouseOut_delay()"><div class="a2a_menu_inside"><div id="a2afeed_title_container" class="a2a_menu_title_container" style="display:none"><input id="a2afeed_title" class="a2a_menu_title"></div><div class="a2afeed_wide a2a_wide"><div class="a2a_tabs a2a_tabs_default"><a href="" id="a2afeed_DEFAULT" class="a2a_tab_selected" style="margin-left: 1px;" target="_top" onclick="return a2a.tabs.open('DEFAULT')"><span class="a2a_i_feed">Подпишись</span></a></div><div class="a2a_tabs"><a href="" title="Подписаться по email" id="a2afeed_EMAIL" style="margin-right: 1px;" onclick="return a2a.tabs.open('EMAIL');return false"><span class="a2a_i_email">E-mail</span></a></div></div><div class="a2a_clear"></div><div id="a2afeed_find_container" class="a2a_menu_find_container"><input id="a2afeed_find" class="a2a_menu_find" onclick="a2a.focus_find()" onkeyup="a2a.do_find()" autocomplete="off" onfocus="a2a['feed'].find_focused=true;a2a.onMouseOver_stay()" title="Найти сервис для добавления" type="text"><span id="a2afeed_find_icon" class="a2a_i_find" onclick="a2a.focus_find()"></span></div><div id="a2afeed_cols_container" class="a2a_cols_container"><div class="a2a_col1" id="a2afeed_col1"><a target="_blank" href="http://codestore.ru/" class="a2a_i" rel="nofollow" id="a2afeed_google"><span class="a2a_i_google">Google</span></a><a target="_blank" href="http://codestore.ru/" class="a2a_i" rel="nofollow" id="a2afeed_netvibes"><span class="a2a_i_netvibes">Netvibes</span></a><a target="_blank" href="http://codestore.ru/" class="a2a_i" rel="nofollow" id="a2afeed_pageflakes"><span class="a2a_i_pageflakes">Pageflakes</span></a><a target="_blank" href="http://codestore.ru/" class="a2a_i" rel="nofollow" id="a2afeed_bloglines"><span class="a2a_i_bloglines">Bloglines</span></a><a target="_blank" href="http://codestore.ru/" class="a2a_i" rel="nofollow" id="a2afeed_feed"><span class="a2a_i_feed">Feed</span></a><a target="_blank" href="http://codestore.ru/" class="a2a_i" rel="nofollow" id="a2afeed_my_yahoo"><span class="a2a_i_yahoo">My Yahoo</span></a><a target="_blank" href="http://codestore.ru/" class="a2a_i" rel="nofollow" id="a2afeed_windows_live"><span class="a2a_i_live">Windows Live</span></a><a target="_blank" href="http://codestore.ru/" class="a2a_i" rel="nofollow" id="a2afeed_my_aol"><span class="a2a_i_aol">My AOL</span></a><a target="_blank" href="http://codestore.ru/" class="a2a_i" rel="nofollow" id="a2afeed_my_msn"><span class="a2a_i_my_msn">My MSN</span></a><a target="_blank" href="http://codestore.ru/" class="a2a_i" rel="nofollow" id="a2afeed_the_free_dictionary"><span class="a2a_i_thefreedictionary">The Free Dictionary</span></a><a style="display: none;" target="_blank" href="http://codestore.ru/" class="a2a_i" rel="nofollow" id="a2afeed_protopage_news_feeds"><span class="a2a_i_protopage">Protopage News Feeds</span></a><a style="display: none;" target="_blank" href="http://codestore.ru/" class="a2a_i" rel="nofollow" id="a2afeed_itunes"><span class="a2a_i_itunes">iTunes</span></a><a style="display: none;" target="_blank" href="http://codestore.ru/" class="a2a_i" rel="nofollow" id="a2afeed_zune"><span class="a2a_i_zune">Zune</span></a><a style="display: none;" target="_blank" href="http://codestore.ru/" class="a2a_i" rel="nofollow" id="a2afeed_podnova"><span class="a2a_i_podnova">PodNova</span></a><a style="display: none;" target="_blank" href="http://codestore.ru/" class="a2a_i" rel="nofollow" id="a2afeed_winksite"><span class="a2a_i_winksite">WINKsite</span></a><a style="display: none;" target="_blank" href="http://codestore.ru/" class="a2a_i" rel="nofollow" id="a2afeed_hubdog"><span class="a2a_i_hubdog">Hubdog</span></a><a style="display: none;" target="_blank" href="http://codestore.ru/" class="a2a_i" rel="nofollow" id="a2afeed_newsisfree"><span class="a2a_i_newsisfree">NewsIsFree</span></a><a style="display: none;" target="_blank" href="http://codestore.ru/" class="a2a_i" rel="nofollow" id="a2afeed_klipfolio"><span class="a2a_i_klipfolio">KlipFolio</span></a><a style="display: none;" target="_blank" href="http://codestore.ru/" class="a2a_i" rel="nofollow" id="a2afeed_netime_channel"><span class="a2a_i_netimechannel">NETime Channel</span></a><a style="display: none;" target="_blank" href="http://codestore.ru/" class="a2a_i" rel="nofollow" id="a2afeed_feed_mailer"><span class="a2a_i_feedmailer">Feed Mailer</span></a><a style="display: none;" target="_blank" href="http://codestore.ru/" class="a2a_i" rel="nofollow" id="a2afeed_blogger"><span class="a2a_i_blogger">Blogger</span></a><a style="display: none;" target="_blank" href="http://codestore.ru/" class="a2a_i" rel="nofollow" id="a2afeed_fireant"><span class="a2a_i_fireant">FireAnt</span></a><a style="display: none;" target="_blank" href="http://codestore.ru/" class="a2a_i" rel="nofollow" id="a2afeed_sofomo"><span class="a2a_i_sofomo">Sofomo</span></a><a style="display: none;" target="_blank" href="http://codestore.ru/" class="a2a_i" rel="nofollow" id="a2afeed_feedmarker"><span class="a2a_i_default">FeedMarker</span></a><a style="display: none;" target="_blank" href="http://codestore.ru/" class="a2a_i" rel="nofollow" id="a2afeed_feedbucket"><span class="a2a_i_feedbucket">FeedBucket</span></a><a style="display: none;" target="_blank" href="http://codestore.ru/" class="a2a_i" rel="nofollow" id="a2afeed_the_free_library"><span class="a2a_i_thefreelibrary">The Free Library</span></a><a style="display: none;" target="_blank" href="http://codestore.ru/" class="a2a_i" rel="nofollow" id="a2afeed_wikio"><span class="a2a_i_wikio">Wikio</span></a><a style="display: none;" target="_blank" href="http://codestore.ru/" class="a2a_i" rel="nofollow" id="a2afeed_webwag"><span class="a2a_i_webwag">Webwag</span></a><a style="display: none;" target="_blank" href="http://codestore.ru/" class="a2a_i" rel="nofollow" id="a2afeed_daily_rotation"><span class="a2a_i_dailyrotation">Daily Rotation</span></a><a style="display: none;" target="_blank" href="http://codestore.ru/" class="a2a_i" rel="nofollow" id="a2afeed_outlook"><span class="a2a_i_outlook">Outlook</span></a><a style="display: none;" target="_blank" href="http://codestore.ru/" class="a2a_i" rel="nofollow" id="a2afeed_google_toolbar"><span class="a2a_i_toolbar_google">Google Toolbar</span></a><a style="display: none;" target="_blank" href="http://codestore.ru/" class="a2a_i" rel="nofollow" id="a2afeed_bitty_browser_preview"><span class="a2a_i_bitty">Bitty Browser Preview</span></a><a style="display: none;" target="_blank" href="http://codestore.ru/" class="a2a_i" rel="nofollow" id="a2afeed_rss_2_pdf"><span class="a2a_i_pdf">RSS 2 PDF</span></a><a style="display: none;" target="_blank" href="http://codestore.ru/" class="a2a_i" rel="nofollow" id="a2afeed_litefeeds"><span class="a2a_i_default">LiteFeeds</span></a><a style="display: none;" target="_blank" href="http://codestore.ru/" class="a2a_i" rel="nofollow" id="a2afeed_gritwire"><span class="a2a_i_default">Gritwire</span></a><a style="display: none;" target="_blank" href="http://codestore.ru/" class="a2a_i" rel="nofollow" id="a2afeed_feedonsite"><span class="a2a_i_default">FeedOnSite</span></a><a style="display: none;" target="_blank" href="http://codestore.ru/" class="a2a_i" rel="nofollow" id="a2afeed_zhua_xia"><span class="a2a_i_zhuaxia">Zhua Xia</span></a><a style="display: none;" target="_blank" href="http://codestore.ru/" class="a2a_i" rel="nofollow" id="a2afeed_xian_guo"><span class="a2a_i_xianguo">Xian Guo</span></a><a style="display: none;" target="_blank" href="http://codestore.ru/" class="a2a_i" rel="nofollow" id="a2afeed_aiderss"><span class="a2a_i_aiderss">AideRSS</span></a><a style="display: none;" target="_blank" href="http://codestore.ru/" class="a2a_i" rel="nofollow" id="a2afeed_fwicki"><span class="a2a_i_fwicki">Fwicki</span></a><a style="display: none;" target="_blank" href="http://codestore.ru/" class="a2a_i" rel="nofollow" id="a2afeed_rapidfeeds"><span class="a2a_i_rapidfeeds">RapidFeeds</span></a><a style="display: none;" target="_blank" href="http://codestore.ru/" class="a2a_i" rel="nofollow" id="a2afeed_miro"><span class="a2a_i_miro">Miro</span></a><a style="display: none;" target="_blank" href="http://codestore.ru/" class="a2a_i" rel="nofollow" id="a2afeed_newsalloy"><span class="a2a_i_newsalloy">NewsAlloy</span></a><a style="display: none;" target="_blank" href="http://codestore.ru/" class="a2a_i" rel="nofollow" id="a2afeed_feedshow"><span class="a2a_i_feedshow">FeedShow</span></a><a style="display: none;" target="_blank" href="http://codestore.ru/" class="a2a_i" rel="nofollow" id="a2afeed_myspace_profile"><span class="a2a_i_myspace">MySpace Profile</span></a><a style="display: none;" target="_blank" href="http://codestore.ru/" class="a2a_i" rel="nofollow" id="a2afeed_symbaloo_bookmarks"><span class="a2a_i_symbaloo">Symbaloo Bookmarks</span></a><a style="display: none;" target="_blank" href="http://codestore.ru/" class="a2a_i" rel="nofollow" id="a2afeed_agregator"><span class="a2a_i_agregator">Agregator</span></a></div><div id="a2afeed_2_col1" style="display:none"><a target="_blank" href="http://codestore.ru/" class="a2a_i" rel="nofollow" id="a2afeed_feedblitz"><span class="a2a_i_feedblitz">FeedBlitz</span></a></div><div class="a2a_clear"></div></div><div id="a2afeed_note_PTZ" class="a2a_note" style="display:none"></div><div class="a2afeed_wide a2a_wide"><a href="javascript:void(0)" id="a2afeed_show_more_less" class="a2a_menu_show_more_less" onclick="return a2a.show_more_less(0)" onmouseover="img=this.firstChild;if(a2a.c.color_arrow_hover=='fff'){if(img.className.indexOf('_wt')==-1)img.className+='_wt'}else img.className=img.className.replace(/_wt/,'')" onmouseout="img=this.firstChild;if(a2a.c.color_arrow=='fff'){if(img.className.indexOf('_wt')==-1)img.className+='_wt'}else img.className=img.className.replace(/_wt/,'')" title="Показать все"><span class="a2a_i_darr"></span></a></div><div class="a2a_menu_powered_by" id="a2afeed_powered_by" onmouseover="if(this.innerHTML!=this.orig&amp;&amp;!window.opera)this.innerHTML=this.orig;this.style.textAlign='center'">By <a href="http://share.lockerz.com/" target="_blank" title="Share Buttons">Lockerz</a></div></div></div></div><a id="skipToPosts" href="#contentArea">Перейти к публикациям</a>
+<!--[if lte IE 6]>
+<div class="IENotice">Этот браузер устарел. Пожалуйста <a href="http://www.microsoft.com/windows/internet-explorer/default.aspx">обновите</a> ваш браузер для использования всех возможностей сайта.</div>
+<![endif]-->
+<div class="pageContainer">
+	<div class="header">
+	<div class="headerBG"></div>
+		<div class="headerMenu1">
+		<div class=""><ul><li class="page_item page-item-473"><a href="http://codestore.ru/%d0%bf%d1%80%d0%be%d0%b5%d0%ba%d1%82%d1%8b">Проекты</a></li><li class="page_item page-item-143"><a href="http://codestore.ru/hobby">Хобби</a></li><li class="page_item page-item-147"><a href="http://codestore.ru/albums">Альбомы</a></li><li class="page_item page-item-149"><a href="http://codestore.ru/contacts">Контакты</a></li></ul></div>
+		<span class="clear"></span>
+	</div>
+		<div class="headerMain header_lightBlue">
+			<h1><a href="http://codestore.ru/">CodeStore.ru</a></h1>
+		<span>Блог разработчика. Мои шпаргалки :)</span>
+		
+	<div class="headerSearch headerSearchBottom">	<form method="get" action="http://codestore.ru/">
+		<input class="searchQuery searchQueryIA" id="searchQuery" value="Поиск..." name="s" type="text">
+		<input class="searchButton" value="Поиск" type="submit">
+	</form>
+</div>
+</div>			<div class="headerMenu2 headerMenu2DS"><div class="helper"></div>
+	<ul id="headerMenu2"><li><a href="http://codestore.ru/" class="homeIcon">Начало</a></li><li class="page_item page-item-473"><a href="http://codestore.ru/%d0%bf%d1%80%d0%be%d0%b5%d0%ba%d1%82%d1%8b">Проекты</a></li>
+<li class="page_item page-item-143"><a href="http://codestore.ru/hobby">Хобби</a></li>
+<li class="page_item page-item-147"><a href="http://codestore.ru/albums">Альбомы</a></li>
+<li class="page_item page-item-149"><a href="http://codestore.ru/contacts">Контакты</a></li>
+</ul>	<span class="clear"></span>
+</div>	</div>
+	<div class="contentWrapper RS">
+		
+
+
+
+
+<div class="sidebars sidebarsRight">
+	<div class="t"><div></div></div>
+	<div class="i"><div class="i2"><div class="c">
+		<div class="sidebarIcons">
+	<div class="rssBtnExtended"><a class="primary" href="http://codestore.ru/feed"></a><div class="extended" id="rss-extended"><ul><li><a href="http://codestore.ru/633/feed">Post Comments</a></li><li><a href="http://codestore.ru/author/admin/feed">Posts by <em></em></a></li><li class="separator"></li><li><a href="http://codestore.ru/feed">Latest Posts</a></li><li><a href="http://codestore.ru/comments/feed">Latest Comments</a></li></ul></div></div>		<a class="facebookBtn" href="http://www.facebook.com/gappov"></a>	</div>		<div>
+		<div id="add_to_any_subscribe_widget-7" class="sidebarBox widget_add_to_any_subscribe_widget">
+        <a class="a2a_dd addtoany_subscribe" href="http://www.addtoany.com/subscribe?linkname=CodeStore.ru&amp;linkurl=http%3A%2F%2Fcodestore.ru%2Ffeed"><img src="633_files/subscribe_171_16.png" alt="Subscribe" height="16" width="171"></a>
+        
+<script type="text/javascript">//<![CDATA[
+var a2a_config = a2a_config || {};
+a2a_localize = {
+	Share: "Share",
+	Save: "Save",
+	Subscribe: "Subscribe",
+	Email: "E-mail",
+    Bookmark: "Bookmark",
+	ShowAll: "Show all",
+	ShowLess: "Show less",
+	FindServices: "Find service(s)",
+	FindAnyServiceToAddTo: "Instantly find any service to add to",
+	PoweredBy: "Powered by",
+	ShareViaEmail: "Share via e-mail",
+	SubscribeViaEmail: "Subscribe via e-mail",
+	BookmarkInYourBrowser: "Bookmark in your browser",
+	BookmarkInstructions: "Press Ctrl+D or Cmd+D to bookmark this page",
+	AddToYourFavorites: "Add to your favorites",
+	SendFromWebOrProgram: "Send from any e-mail address or e-mail program",
+    EmailProgram: "E-mail program"
+};
+a2a_config.linkname="CodeStore.ru";
+a2a_config.linkurl="http://codestore.ru/feed";
+//]]></script><script type="text/javascript" src="633_files/feed.js"></script>
+
+</div>	    <div id="google_translate_element"></div>
+	    <script>
+		function googleTranslateElementInit() {
+		    new google.translate.TranslateElement({
+			pageLanguage: 'ru',
+			includedLanguages: 'af,sq,ar,be,bg,ca,zh-CN,zh-TW,hr,cs,da,nl,en,et,tl,fi,fr,gl,de,el,ht,iw,hi,iu,is,id,ga,it,ja,ko,lv,lt,mk,ms,mt,no,fa,pl,pt,ro,ru,sr,sk,sl,es,sw,sv,th,tr,uk,vi,cy,yi'
+		    }, 'google_translate_element');
+		}
+	    </script><script src="633_files/element.js"></script>
+<div id="categories-6" class="sidebarBox widget_categories"><h4><span>Рубрики</span></h4>		<ul>
+	<li class="cat-item cat-item-20"><a href="http://codestore.ru/category/programming" title="Просмотреть все записи в рубрике «Программирование»">Программирование</a>
+<ul class="children">
+	<li class="cat-item cat-item-11"><a href="http://codestore.ru/category/programming/asp-net" title="Просмотреть все записи в рубрике «ASP .NET»">ASP .NET</a>
+</li>
+	<li class="cat-item cat-item-15"><a href="http://codestore.ru/category/programming/applescript" title="Просмотреть все записи в рубрике «AppleScript»">AppleScript</a>
+</li>
+	<li class="cat-item cat-item-3"><a href="http://codestore.ru/category/programming/c" title="Просмотреть все записи в рубрике «C#»">C#</a>
+</li>
+	<li class="cat-item cat-item-6"><a href="http://codestore.ru/category/programming/devexpress" title="Просмотреть все записи в рубрике «DevExpress»">DevExpress</a>
+</li>
+	<li class="cat-item cat-item-69"><a href="http://codestore.ru/category/programming/extjs" title="Просмотреть все записи в рубрике «ExtJS»">ExtJS</a>
+</li>
+	<li class="cat-item cat-item-5"><a href="http://codestore.ru/category/programming/firebird" title="Просмотреть все записи в рубрике «Firebird»">Firebird</a>
+</li>
+	<li class="cat-item cat-item-72"><a href="http://codestore.ru/category/programming/java" title="Просмотреть все записи в рубрике «Java»">Java</a>
+</li>
+	<li class="cat-item cat-item-16"><a href="http://codestore.ru/category/programming/javascript" title="Просмотреть все записи в рубрике «JavaScript»">JavaScript</a>
+</li>
+	<li class="cat-item cat-item-12"><a href="http://codestore.ru/category/programming/linq" title="Просмотреть все записи в рубрике «Linq»">Linq</a>
+</li>
+	<li class="cat-item cat-item-17"><a href="http://codestore.ru/category/programming/mysql" title="Просмотреть все записи в рубрике «MySQL»">MySQL</a>
+</li>
+	<li class="cat-item cat-item-56"><a href="http://codestore.ru/category/programming/sql-server" title="Просмотреть все записи в рубрике «SQL Server»">SQL Server</a>
+</li>
+	<li class="cat-item cat-item-70"><a href="http://codestore.ru/category/programming/sharepoint" title="Просмотреть все записи в рубрике «SharePoint»">SharePoint</a>
+</li>
+	<li class="cat-item cat-item-10"><a href="http://codestore.ru/category/programming/syntaxhighlighter" title="Просмотреть все записи в рубрике «Syntaxhighlighter»">Syntaxhighlighter</a>
+</li>
+	<li class="cat-item cat-item-9"><a href="http://codestore.ru/category/programming/visualstudio" title="Просмотреть все записи в рубрике «VisualStudio»">VisualStudio</a>
+</li>
+	<li class="cat-item cat-item-71"><a href="http://codestore.ru/category/programming/jquery" title="Просмотреть все записи в рубрике «jQuery»">jQuery</a>
+</li>
+</ul>
+</li>
+	<li class="cat-item cat-item-22"><a href="http://codestore.ru/category/cms" title="Просмотреть все записи в рубрике «CMS»">CMS</a>
+<ul class="children">
+	<li class="cat-item cat-item-25"><a href="http://codestore.ru/category/cms/wordpress" title="Просмотреть все записи в рубрике «WordPress»">WordPress</a>
+</li>
+	<li class="cat-item cat-item-18"><a href="http://codestore.ru/category/cms/mojoportal" title="Просмотреть все записи в рубрике «mojoPortal»">mojoPortal</a>
+</li>
+</ul>
+</li>
+	<li class="cat-item cat-item-57"><a href="http://codestore.ru/category/bugs" title="Просмотреть все записи в рубрике «Bugs»">Bugs</a>
+</li>
+	<li class="cat-item cat-item-58"><a href="http://codestore.ru/category/%d1%80%d0%b0%d0%b7%d0%bd%d0%be%d0%b5" title="Просмотреть все записи в рубрике «Разное»">Разное</a>
+</li>
+	<li class="cat-item cat-item-23"><a href="http://codestore.ru/category/finds" title="Просмотреть все записи в рубрике «Находки»">Находки</a>
+<ul class="children">
+	<li class="cat-item cat-item-13"><a href="http://codestore.ru/category/finds/%d0%b8%d0%bd%d1%82%d0%b5%d1%80%d0%b5%d1%81%d0%bd%d0%be%d0%b5" title="Просмотреть все записи в рубрике «Интересное»">Интересное</a>
+</li>
+	<li class="cat-item cat-item-14"><a href="http://codestore.ru/category/finds/%d0%bc%d1%83%d0%b7%d1%8b%d0%ba%d0%b0" title="Просмотреть все записи в рубрике «Музыка»">Музыка</a>
+</li>
+</ul>
+</li>
+	<li class="cat-item cat-item-21"><a href="http://codestore.ru/category/hobby" title="Просмотреть все записи в рубрике «Хобби»">Хобби</a>
+<ul class="children">
+	<li class="cat-item cat-item-4"><a href="http://codestore.ru/category/hobby/counterstrike" title="Просмотреть все записи в рубрике «CounterStrike»">CounterStrike</a>
+</li>
+	<li class="cat-item cat-item-55"><a href="http://codestore.ru/category/hobby/%d1%88%d0%b0%d1%85%d0%bc%d0%b0%d1%82%d1%8b" title="Просмотреть все записи в рубрике «Шахматы»">Шахматы</a>
+</li>
+</ul>
+</li>
+	<li class="cat-item cat-item-7"><a href="http://codestore.ru/category/%d1%8e%d0%bc%d0%be%d1%80" title="Просмотреть все записи в рубрике «Юмор»">Юмор</a>
+</li>
+		</ul>
+</div><div id="linkcat-24" class="sidebarBox widget_links"><h4><span>Для работы</span></h4>
+	<ul class="xoxo blogroll">
+<li><a href="http://ankhsvn.open.collab.net/" target="_blank">AnkhSVN</a></li>
+<li><a href="http://browsershots.org/" target="_blank">browsershots.org</a></li>
+<li><a href="http://www.colorpicker.com/">colorpicker.com</a></li>
+<li><a href="http://icon-generator.net/">icon-generator.net</a></li>
+<li><a href="http://technet.microsoft.com/ru-ru/library/bb741061.aspx">MOF</a></li>
+<li><a href="http://convert.neevia.com/pdfconvert/">PDF convert online</a></li>
+<li><a href="http://preloaders.net/" target="_blank">preloaders.net</a></li>
+<li><a href="http://smtp4dev.codeplex.com/" target="_blank">smtp4dev</a></li>
+<li><a href="http://citforum.ru/SE/project/selikhovkin/">Управление ИТ-проектом</a></li>
+
+	</ul>
+</div>
+<div id="linkcat-59" class="sidebarBox widget_links"><h4><span>Друзья</span></h4>
+	<ul class="xoxo blogroll">
+<li><a href="http://betolog.ru/" rel="friend neighbor" title="Денис Петров" target="_blank">betolog.ru</a></li>
+<li><a href="http://clevelus.ru/" rel="friend" title="Андрей Иванов" target="_blank">clevelus.ru</a></li>
+<li><a href="http://mai8.org/" rel="contact" title="Сергей Цимбалист" target="_blank">mai8.org</a></li>
+
+	</ul>
+</div>
+<div id="linkcat-2" class="sidebarBox widget_links"><h4><span>Рекомендую</span></h4>
+	<ul class="xoxo blogroll">
+<li><a href="http://chesscube.com/" title="Шахматы онлайн" target="_blank">chesscube.com</a></li>
+<li><a href="http://englishtips.org/" title="Английский язык" target="_blank">englishtips.org</a></li>
+<li><a href="http://fssmo.ru/" title="ФССМО" target="_blank">fssmo.ru</a></li>
+<li><a href="http://lmgtfy.com/" title="Давай я поищу в Google за тебя :)" target="_blank">lmgtfy.com</a></li>
+<li><a href="http://musicanchor.com/" title="Плейлисты YouTube на любую тему !">musicanchor.com</a></li>
+<li><a href="http://realyoga.ru/" title="Правильная йога" target="_blank">realyoga.ru</a></li>
+<li><a href="http://taichi-smysl.ru/" title="Тайцзицюань" target="_blank">taichi-smysl.ru</a></li>
+
+	</ul>
+</div>
+<div id="calendar-5" class="sidebarBox widget_calendar"><h4><span>Календарь</span></h4><div id="calendar_wrap"><table id="wp-calendar">
+	<caption>Май 2012</caption>
+	<thead>
+	<tr>
+		<th scope="col" title="Понедельник">Пн</th>
+		<th scope="col" title="Вторник">Вт</th>
+		<th scope="col" title="Среда">Ср</th>
+		<th scope="col" title="Четверг">Чт</th>
+		<th scope="col" title="Пятница">Пт</th>
+		<th scope="col" title="Суббота">Сб</th>
+		<th scope="col" title="Воскресенье">Вс</th>
+	</tr>
+	</thead>
+
+	<tfoot>
+	<tr>
+		<td colspan="3" id="prev"><a href="http://codestore.ru/date/2012/04" title="Посмотреть записи за Апрель 2012">« Апр</a></td>
+		<td class="pad">&nbsp;</td>
+		<td colspan="3" id="next" class="pad">&nbsp;</td>
+	</tr>
+	</tfoot>
+
+	<tbody>
+	<tr>
+		<td colspan="1" class="pad">&nbsp;</td><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td>
+	</tr>
+	<tr>
+		<td>7</td><td>8</td><td>9</td><td>10</td><td>11</td><td>12</td><td>13</td>
+	</tr>
+	<tr>
+		<td>14</td><td>15</td><td>16</td><td>17</td><td>18</td><td>19</td><td>20</td>
+	</tr>
+	<tr>
+		<td>21</td><td>22</td><td><a href="http://codestore.ru/date/2012/05/23" title="Шпаргалка по ubuntu">23</a></td><td>24</td><td>25</td><td>26</td><td>27</td>
+	</tr>
+	<tr>
+		<td id="today">28</td><td>29</td><td>30</td><td>31</td>
+		<td class="pad" colspan="3">&nbsp;</td>
+	</tr>
+	</tbody>
+	</table></div></div><div id="zerby-login-widget" class="sidebarBox Zerby_Login_Show"><h4><span>Авторизация</span></h4><form name="loginform" id="loginform" action="http://codestore.ru/wp-login.php" method="post">
+	<p>
+   		<label>Имя пользователя<br>
+		<input name="log" id="user_login" class="input" size="20" tabindex="10" type="text"></label>
+	</p>
+	<p>
+		<label>Пароль<br>
+		<input name="pwd" id="user_pass" class="input" value="" size="20" tabindex="20" type="password"></label>
+	</p>
+	<p class="forgetmenot"><label><input name="rememberme" id="rememberme" value="forever" tabindex="90" type="checkbox">Запомнить меня</label></p>
+	<p class="submit">
+		<input name="wp-submit" id="wp-submit" value="Вход" tabindex="100" type="submit">
+		<input name="redirect_to" value="http://codestore.ru/633" type="hidden">
+		<input name="testcookie" value="1" type="hidden">
+	</p>
+</form>
+<p id="nav">
+<a href="http://codestore.ru/wp-login.php?action=lostpassword" title="Забыли пароль?">Забыли пароль?</a>
+</p>
+<p id="nav">
+<a href="http://codestore.ru/wp-login.php?action=register" title="Зарегистрироваться">Зарегистрироваться</a>
+</p></div><div id="runive-htmlbox-2" class="sidebarBox widget_rnvhb2"><h4><span>Найди лучший ход</span></h4><div class="RnvHB2"><iframe src="633_files/gdailytactics.htm" frameborder="0" height="229" scrolling="no" width="184"></iframe>          </div></div><div id="runive-htmlbox-1" class="sidebarBox widget_rnvhb1"><h4><span>Карта визитов</span></h4><div class="RnvHB1"><div style="text-align:center; margin:0px; padding:0px; width:200px;"><embed src="633_files/g.swf" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" quality="high" wmode="window" allowscriptaccess="always" allownetworking="all" flashvars="m=0&amp;i=3pagl1cxme0&amp;r=true&amp;v=true&amp;b=e0e0e0&amp;n=true&amp;s=200&amp;c=baff00" height="200" width="200"><br><img src="633_files/3pagl1cxme0.gif" alt="" height="1" width="1"><a href="http://www.revolvermaps.com/?target=enlarge&amp;i=3pagl1cxme0&amp;color=baff00&amp;m=0">Large Visitor Globe</a></div></div></div>		</div>
+						<div class="clear">
+								</div>
+	</div></div></div>
+	<div class="b"><div></div></div>
+</div>
+
+<div class="contentArea" id="contentArea">
+				
+	<div id="post-633" class="post-633 post type-post status-publish format-standard hentry category-extjs category-javascript post">
+		<div class="postHeader">
+	<h1 class="postTitle"><a href="http://codestore.ru/633" title="Постоянная ссылка на ExtJS: Валидация двух datefield для интервала времени"><span>ExtJS: Валидация двух datefield для интервала времени</span></a></h1>
+	<div class="bottom"><div>
+		<span class="postDate">22.03.2012 в 16:05</span>
+				<span class="postAuthor"><a href="http://codestore.ru/author/admin" title="Записи admin" rel="author">admin</a></span>
+						<a href="http://codestore.ru/633#comments" class="postCommentLabel"><span>Комментариев нет</span></a>
+			</div></div>
+</div>		
+		<div class="postContent">
+			<p>Задача: есть два datefield на форме и необходимо, чтобы в первом, 
+где выбирается начальная дата, нельзя было выбрать значение, превышающее
+ дату окончания. И наоборот.<br>
+Решение:</p>
+<div class="syntaxhighlighter  " id="highlighter_893406"><div class="bar                      "><div class="toolbar"><a class="item viewSource" style="width: 16px; height: 16px;" title="показать исходник" href="#viewSource">показать исходник</a><div class="item copyToClipboard"><embed id="highlighter_893406_clipboard" type="application/x-shockwave-flash" title="скопировать в буфер" allowscriptaccess="always" wmode="transparent" flashvars="highlighterId=highlighter_893406" menu="false" src="633_files/clipboard.swf" height="16" width="16"></div><a class="item printSource" style="width: 16px; height: 16px;" title="печатать" href="#printSource">печатать</a><a class="item about" style="width: 16px; height: 16px;" title="?" href="#about">?</a></div></div><div class="lines"><div class="line alt1"><table><tbody><tr><td class="number"><code>01</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="plain">Ext.apply(Ext.form.field.VTypes, {</code></td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="number"><code>02</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="plain">daterange: </code><code class="keyword">function</code> <code class="plain">(val, field) {</code></td></tr></tbody></table></div><div class="line alt1"><table><tbody><tr><td class="number"><code>03</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="keyword">var</code> <code class="plain">date = field.parseDate(val);</code></td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="number"><code>04</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="keyword">if</code> <code class="plain">(!date) { </code><code class="keyword">return</code> <code class="keyword">false</code><code class="plain">; }</code></td></tr></tbody></table></div><div class="line alt1"><table><tbody><tr><td class="number"><code>05</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="keyword">if</code> <code class="plain">(field.startDateField &amp;&amp; (!</code><code class="keyword">this</code><code class="plain">.dateRangeMax || (date.getTime() != </code><code class="keyword">this</code><code class="plain">.dateRangeMax.getTime()))) {</code></td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="number"><code>06</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="keyword">var</code> <code class="plain">start = field.up(</code><code class="string">'form'</code><code class="plain">).down(</code><code class="string">'#'</code> <code class="plain">+ field.startDateField);</code></td></tr></tbody></table></div><div class="line alt1"><table><tbody><tr><td class="number"><code>07</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="plain">start.setMaxValue(date);</code></td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="number"><code>08</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="plain">start.validate();</code></td></tr></tbody></table></div><div class="line alt1"><table><tbody><tr><td class="number"><code>09</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="keyword">this</code><code class="plain">.dateRangeMax = date;</code></td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="number"><code>10</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="plain">}</code></td></tr></tbody></table></div><div class="line alt1"><table><tbody><tr><td class="number"><code>11</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="keyword">else</code> <code class="keyword">if</code> <code class="plain">(field.endDateField &amp;&amp; (!</code><code class="keyword">this</code><code class="plain">.dateRangeMin || (date.getTime() != </code><code class="keyword">this</code><code class="plain">.dateRangeMin.getTime()))) {</code></td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="number"><code>12</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="keyword">var</code> <code class="plain">end = field.up(</code><code class="string">'form'</code><code class="plain">).down(</code><code class="string">'#'</code> <code class="plain">+ field.endDateField);</code></td></tr></tbody></table></div><div class="line alt1"><table><tbody><tr><td class="number"><code>13</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="plain">end.setMinValue(date);</code></td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="number"><code>14</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="plain">end.validate();</code></td></tr></tbody></table></div><div class="line alt1"><table><tbody><tr><td class="number"><code>15</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="keyword">this</code><code class="plain">.dateRangeMin = date;</code></td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="number"><code>16</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="plain">}</code></td></tr></tbody></table></div><div class="line alt1"><table><tbody><tr><td class="number"><code>17</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="keyword">return</code> <code class="keyword">true</code><code class="plain">;</code></td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="number"><code>18</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="plain">},</code></td></tr></tbody></table></div><div class="line alt1"><table><tbody><tr><td class="number"><code>19</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="plain">daterangeText: </code><code class="string">'Начальная дата должна быть меньше конечной'</code></td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="number"><code>20</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="plain">});</code></td></tr></tbody></table></div><div class="line alt1"><table><tbody><tr><td class="number"><code>21</code></td><td class="content">&nbsp;</td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="number"><code>22</code></td><td class="content"><code class="comments">// способ применения (в конфиге формы, например)</code></td></tr></tbody></table></div><div class="line alt1"><table><tbody><tr><td class="number"><code>23</code></td><td class="content"><code class="plain">items: [{</code></td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="number"><code>24</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="plain">xtype: </code><code class="string">'datefield'</code><code class="plain">,</code></td></tr></tbody></table></div><div class="line alt1"><table><tbody><tr><td class="number"><code>25</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="plain">startDay: 1,</code></td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="number"><code>26</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="plain">fieldLabel: </code><code class="string">'Начало периода'</code><code class="plain">,</code></td></tr></tbody></table></div><div class="line alt1"><table><tbody><tr><td class="number"><code>27</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="plain">id: </code><code class="string">'startdt'</code><code class="plain">,</code></td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="number"><code>28</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="plain">vtype: </code><code class="string">'daterange'</code><code class="plain">,</code></td></tr></tbody></table></div><div class="line alt1"><table><tbody><tr><td class="number"><code>29</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="plain">endDateField: </code><code class="string">'enddt'</code></td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="number"><code>30</code></td><td class="content"><code class="plain">}, {</code></td></tr></tbody></table></div><div class="line alt1"><table><tbody><tr><td class="number"><code>31</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="plain">xtype: </code><code class="string">'datefield'</code><code class="plain">,</code></td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="number"><code>32</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="plain">startDay: 1,</code></td></tr></tbody></table></div><div class="line alt1"><table><tbody><tr><td class="number"><code>33</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="plain">fieldLabel: </code><code class="string">'Окончание периода'</code><code class="plain">,</code></td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="number"><code>34</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="plain">id: </code><code class="string">'enddt'</code><code class="plain">,</code></td></tr></tbody></table></div><div class="line alt1"><table><tbody><tr><td class="number"><code>35</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="plain">vtype: </code><code class="string">'daterange'</code><code class="plain">,</code></td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="number"><code>36</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="plain">startDateField: </code><code class="string">'startdt'</code></td></tr></tbody></table></div><div class="line alt1"><table><tbody><tr><td class="number"><code>37</code></td><td class="content"><code class="plain">}]</code></td></tr></tbody></table></div></div></div>
+
+		</div>
+		<div class="postLinkPages"><div>
+					</div></div>
+		<div class="postFooter"><div class="r"></div>
+	<div class="left">
+		<span class="postCategories"><a href="http://codestore.ru/category/programming/extjs" title="Просмотреть все записи в рубрике «ExtJS»" rel="category tag">ExtJS</a>, <a href="http://codestore.ru/category/programming/javascript" title="Просмотреть все записи в рубрике «JavaScript»" rel="category tag">JavaScript</a></span>
+				<span class="postTags"><span><i>нет</i></span></span>
+			</div>
+	</div>	</div>
+		<div class="postComments" id="comments">
+		<div class="commentHeader">
+	<ul class="tabs" id="arjuna_commentTabs">
+			<li><a href="http://codestore.ru/633#_comments" class="comments active"><span><i>Комментарии (0)</i></span></a></li>
+				<li><a href="http://codestore.ru/633#_trackbacks" class="trackbacks"><span><i>Обратные ссылки (0)</i></span></a></li>
+		</ul>
+	
+	<div class="buttons">
+			<a href="#respond" class="btnReply btn"><span>Добавить комментарий</span></a>
+				<a href="http://codestore.ru/633/trackback" class="btnTrackback btn"><span>Обратная ссылка</span></a>
+		</div>
+</div>
+
+<div class="commentBody">
+		<div id="arjuna_comments" class="contentBox active">
+		<p class="noComments">Никто пока ещё не оставил комментарии к статье.</p>	</div>
+			<div id="arjuna_trackbacks" class="contentBox">
+		<p class="noComments">Обратные ссылки отсутствуют.</p>	</div>
+	</div>
+
+<div class="commentReply" id="respond">
+	<div class="replyHeader">
+		<h4>Оставить комментарий</h4>
+					<div id="cancel-comment-reply" class="cancelReply"><a rel="nofollow" id="cancel-comment-reply-link" class="btnCancel btn" href="http://codestore.ru/633#respond" style="display: none;"><span>Отменить Повторить</span></a></div>
+			</div>
+			<form action="http://codestore.ru/wp-comments-post.php" name="reply" method="post" id="commentform">
+						<input id="replyNameDefault" value="Ваше имя" type="hidden">
+			<input id="replyEmailDefault" value="Ваш e-mail" type="hidden">
+			<input id="replyURLDefault" value="Ваш вебсайт" type="hidden">
+			<input id="replyMsgDefault" value="Текст комментария" type="hidden">
+											<div class="replyRow"><input _defaultvalue="Ваше имя" class="inputText inputIA" id="replyName" name="author" value="Ваше имя" type="text"></div>
+				<div class="replyRow"><input _defaultvalue="Ваш e-mail" class="inputText inputIA" id="replyEmail" name="email" value="Ваш e-mail" type="text"></div>
+				<div class="replyRow"><input _defaultvalue="Ваш вебсайт" class="inputText inputIA" id="replyURL" name="url" value="Ваш вебсайт" type="text"></div>
+										<input name="comment_post_ID" value="633" id="comment_post_ID" type="hidden">
+<input name="comment_parent" id="comment_parent" value="0" type="hidden">
+			<input name="comment_post_ID" value="633" type="hidden">
+			<div class="replyRow"><div class="replyRow"><textarea _defaultvalue="Текст комментария" class="inputIA" id="comment" name="comment">Текст комментария</textarea></div></div>
+			<div class="replySubmitArea">
+				<a href="http://codestore.ru/633/feed" class="btnSubscribe btn"><span>Подписаться на комментирование</span></a>
+				<button type="submit" class="inputBtn" value="Submit" name="submit">Отправить комментарий</button>
+			</div>
+			
+	<p>
+		</p><div align="left">
+		<img id="blcap_img" src="633_files/a.png" tabindex="40" title="Click to refresh Captcha Image" onclick="blcap_refresh_captcha();" height="50" width="200"><br><span onclick="blcap_refresh_captcha();" title="Click to refresh Captcha Image" onmouseout="style.color='black';style.cursor='';" onmouseover="style.color='red';style.cursor='pointer';">Refresh</span><br><br>
+		<label>Captcha<br>
+		<input name="user_captcha" id="user_captcha" title="Enter Captcha here" size="15" tabindex="50" type="text"></label><br><br>
+		<input name="captcha_id" value="C2612079133819592817" type="hidden">
+		</div>
+	<p></p>
+
+	<script language="javascript">
+	var blcap_refno = 0;
+	function blcap_refresh_captcha()
+	{
+		var im = new Image();
+		blcap_refno = blcap_refno + 1;
+		im.src="http://codestore.ru?bcapact=gen&id=C2612079133819592817&refresh=" + blcap_refno;
+		document.getElementById ("blcap_img").src = im.src;
+	}
+	</script>
+
+		</form>
+		</div>	</div>
+	
+			<div class="pagination"><div>
+	<a href="http://codestore.ru/631" rel="prev" class="newer"><span>Предыдущая статья</span></a>	<a href="http://codestore.ru/636" rel="next" class="older"><span>Следующая статья</span></a></div></div>		
+
+
+	</div>
+
+		<div class="clear"></div>
+	</div><!-- .contentWrapper -->
+	<div class="footer2 footer_lightBlue">
+		<div class="footerTop"></div>
+		<div class="footerContainer">
+			<a href="http://www.wordpress.org/" class="icon1"><img src="633_files/WordPressIcon.png" alt="Powered by WordPress" height="20" width="20"></a>
+			<a class="icon2"><img src="633_files/SRSIcon.png" alt="Web Design by SRS Solutions" height="18" width="31"></a>
+			<span class="copyright">© 2012 CodeStore.ru</span>
+			<span class="design"><a href="http://www.srssolutions.com/en/services/design/website_design/wordpress_design" title="Design by SRS Solutions">Design by <em>SRS Solutions</em></a></span>
+		</div>
+	</div>
+	<div class="clear"></div>
+</div><!-- .pageContainer --><div id="goog-gt-tt" class="skiptranslate"><div style="overflow:hidden"><div class="logo"><img src="633_files/mini_google.png"></div><a class="close-button" href="javascript:void(0)" title="Close"><img src="633_files/cleardot.gif" style="background-image: url(&quot;http://translate.googleapis.com/translate_static/img/te_ctrl3.gif&quot;); background-position: -28px 0px;" height="15" width="15"></a></div><div class="top"><hr style="color: #CCC; background-color: #CCC; height: 1px; border: none;"><div class="title left">Original Text:</div></div><div class="middle"><div class="original-text"></div></div><div class="bottom"><div class="activity-links"><span class="activity-link">Show alternative translations</span></div><div class="started-activity-container"><hr style="color: #CCC; background-color: #CCC; height: 1px; border: none;"><div class="activity-root"></div></div></div><div style="display: none;" class="status-message"></div></div>
+
+
+
+</body></html>
