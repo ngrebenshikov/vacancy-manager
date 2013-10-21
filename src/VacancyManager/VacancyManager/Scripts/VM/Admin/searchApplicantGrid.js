@@ -6,6 +6,7 @@ Ext.define('VM.searchApplicantGrid', {
     appSearchReqs: [],
     appSearchVacs: [],
     appSearchEmp: 1,
+    appSearchEmpC: 0,
     store: 'SearchApplicants',
     columns: [{
         dataIndex: 'Selected',
@@ -144,25 +145,33 @@ Ext.define('VM.searchApplicantGrid', {
                               enableKeyEvents: true,
                               padding: '10 0 15 2',
                               items: [{
-                                  xtype: 'button',
-                                  text: 'Трудоустройство',
-                                  menu: [
-                                        {
-                                            text: 'Трудоустроен',
-                                            handler: function () {
-                                                searchAppGrid.appSearchEmp = 1;
-                                                searchAppGrid.filterApplicants();
-                                            }
-                                        },
-                                        {
-                                            text: 'Не трудоустроен',
-                                            handler: function () {
-                                                searchAppGrid.appSearchEmp = 0;
-                                                searchAppGrid.filterApplicants();
-                                            }
-                                        }
+                                  xtype: 'combobox',
+                                  fieldLabel: 'Трудоустройство',
+                                  store: ['Трудоустроен', 'Не Трудоустроен', 'Не выбран'],
+                                  listeners: {
 
-                                  ]
+                                      change: function (field, newValue, oldValue) {
+                                          switch (newValue) {
+                                              case "Трудоустроен":
+                                                  searchAppGrid.appSearchEmp = 1;
+                                                  searchAppGrid.appSearchEmpC = 1;
+                                                  searchAppGrid.filterApplicants();
+                                                  break;
+                                              case "Не Трудоустроен":
+                                                  searchAppGrid.appSearchEmp = 0;
+                                                  searchAppGrid.appSearchEmpC = 0;
+                                                  searchAppGrid.filterApplicants();
+                                                  break;
+                                              case "Не выбран":
+                                                  searchAppGrid.appSearchEmp = 1;
+                                                  searchAppGrid.appSearchEmpC = 0;
+                                                  searchAppGrid.filterApplicants();
+                                                  break;
+                                          }
+
+                                      }
+                                  }
+                                  
                               }]
 
 
@@ -371,7 +380,7 @@ Ext.define('VM.searchApplicantGrid', {
 
             var regexp = new RegExp(fullName, "i");
 
-            if ((countReqs >= me.appSearchReqs.length) && (countVacs >= me.appSearchVacs.length) && (regexp.test(record.get("FullName"))) && (record.get("Employed") == me.appSearchEmp)) {
+            if ((countReqs >= me.appSearchReqs.length) && (countVacs >= me.appSearchVacs.length) && (regexp.test(record.get("FullName"))) && ((record.get("Employed") == me.appSearchEmp) || (record.get("Employed") == me.appSearchEmpC))) {
                 return true;
             }
             else {
