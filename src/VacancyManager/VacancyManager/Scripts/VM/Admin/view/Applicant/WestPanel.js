@@ -70,10 +70,15 @@
         [{ 
             xtype: 'checkbox',
             id: 'ApplicantEmployed',
-            name: 'Emloyed',
+            name: 'Employed',
             boxLabel: 'Трудоустроен',
             checked: 'true',
 		}]
 	}]
 })          
 
+/*        xtype: 'form',
+        id: 'applicantCreateForm',
+        border: false,
+        style: 'background-color: #fff;',
+        layout: 'border',*/
