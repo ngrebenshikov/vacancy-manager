@@ -1,0 +1,1670 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="en"><head profile="http://gmpg.org/xfn/11"><script async="" src="ExtJS%20and%20ASP.NET%20MVC%203%20%20CRUD%20DataGrid%20%C2%AB%20XaaB%20%E2%80%93%20Anything%20as%20a%20Blog_files/cbgapi.loaded_0"></script>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>ExtJS and ASP.NET MVC 3: CRUD DataGrid « XaaB – Anything as a Blog</title>
+
+<link rel="stylesheet" href="ExtJS%20and%20ASP.NET%20MVC%203%20%20CRUD%20DataGrid%20%C2%AB%20XaaB%20%E2%80%93%20Anything%20as%20a%20Blog_files/style_003.css" type="text/css" media="screen">
+
+<script type="text/javascript" async="" src="ExtJS%20and%20ASP.NET%20MVC%203%20%20CRUD%20DataGrid%20%C2%AB%20XaaB%20%E2%80%93%20Anything%20as%20a%20Blog_files/quant.js"></script><script type="text/javascript" src="ExtJS%20and%20ASP.NET%20MVC%203%20%20CRUD%20DataGrid%20%C2%AB%20XaaB%20%E2%80%93%20Anything%20as%20a%20Blog_files/base.js"></script>
+<script type="text/javascript" src="ExtJS%20and%20ASP.NET%20MVC%203%20%20CRUD%20DataGrid%20%C2%AB%20XaaB%20%E2%80%93%20Anything%20as%20a%20Blog_files/menu.js"></script>
+
+<link rel="pingback" href="http://myxaab.wordpress.com/xmlrpc.php">
+<link rel="alternate" type="application/rss+xml" title="XaaB - Anything as a Blog » Feed" href="http://myxaab.wordpress.com/feed/">
+<link rel="alternate" type="application/rss+xml" title="XaaB - Anything as a Blog » Comments Feed" href="http://myxaab.wordpress.com/comments/feed/">
+<link rel="alternate" type="application/rss+xml" title="XaaB - Anything as a Blog » ExtJS and ASP.NET MVC 3: CRUD&nbsp;DataGrid Comments Feed" href="http://myxaab.wordpress.com/2011/02/20/extjs-and-asp-net-mvc-3-crud-datagrid/feed/">
+<script type="text/javascript">
+/* <![CDATA[ */
+function addLoadEvent(func){var oldonload=window.onload;if(typeof window.onload!='function'){window.onload=func;}else{window.onload=function(){oldonload();func();}}}
+/* ]]> */
+</script>
+<link rel="stylesheet" id="loggedout-subscribe-css" href="ExtJS%20and%20ASP.NET%20MVC%203%20%20CRUD%20DataGrid%20%C2%AB%20XaaB%20%E2%80%93%20Anything%20as%20a%20Blog_files/widget.css" type="text/css" media="all">
+<link rel="stylesheet" id="infinity-inove-css" href="ExtJS%20and%20ASP.NET%20MVC%203%20%20CRUD%20DataGrid%20%C2%AB%20XaaB%20%E2%80%93%20Anything%20as%20a%20Blog_files/inove.css" type="text/css" media="all">
+<link rel="stylesheet" id="post-reactions-css" href="ExtJS%20and%20ASP.NET%20MVC%203%20%20CRUD%20DataGrid%20%C2%AB%20XaaB%20%E2%80%93%20Anything%20as%20a%20Blog_files/style.css" type="text/css" media="all">
+<link rel="stylesheet" id="h4-global-css" href="ExtJS%20and%20ASP.NET%20MVC%203%20%20CRUD%20DataGrid%20%C2%AB%20XaaB%20%E2%80%93%20Anything%20as%20a%20Blog_files/global.css" type="text/css" media="all">
+<script type="text/javascript" src="ExtJS%20and%20ASP.NET%20MVC%203%20%20CRUD%20DataGrid%20%C2%AB%20XaaB%20%E2%80%93%20Anything%20as%20a%20Blog_files/jquery_002.js"></script>
+<script type="text/javascript">
+/* <![CDATA[ */
+var LoggedOutFollow = {"invalid_email":"Your subscription did not succeed, please try again with a valid email address."};
+/* ]]> */
+</script>
+<script type="text/javascript" src="ExtJS%20and%20ASP.NET%20MVC%203%20%20CRUD%20DataGrid%20%C2%AB%20XaaB%20%E2%80%93%20Anything%20as%20a%20Blog_files/widget.js"></script>
+<script type="text/javascript" src="ExtJS%20and%20ASP.NET%20MVC%203%20%20CRUD%20DataGrid%20%C2%AB%20XaaB%20%E2%80%93%20Anything%20as%20a%20Blog_files/comment-reply.js"></script>
+<script type="text/javascript" src="ExtJS%20and%20ASP.NET%20MVC%203%20%20CRUD%20DataGrid%20%C2%AB%20XaaB%20%E2%80%93%20Anything%20as%20a%20Blog_files/spin.js"></script><style></style>
+<script type="text/javascript" src="ExtJS%20and%20ASP.NET%20MVC%203%20%20CRUD%20DataGrid%20%C2%AB%20XaaB%20%E2%80%93%20Anything%20as%20a%20Blog_files/jquery.js"></script>
+<link rel="stylesheet" id="highlander-comments-css" href="ExtJS%20and%20ASP.NET%20MVC%203%20%20CRUD%20DataGrid%20%C2%AB%20XaaB%20%E2%80%93%20Anything%20as%20a%20Blog_files/style_002.css" type="text/css" media="all">
+<!--[if lt IE 8]>
+<link rel='stylesheet' id='highlander-comments-ie7-css'  href='http://s0.wp.com/wp-content/mu-plugins/highlander-comments/style-ie7.css?m=1307172283g&#038;ver=20110606' type='text/css' media='all' />
+<![endif]-->
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://myxaab.wordpress.com/xmlrpc.php?rsd">
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="http://myxaab.wordpress.com/wp-includes/wlwmanifest.xml"> 
+<link rel="prev" title="Good C# Habits Can Encourage Bad JavaScript&nbsp;Habits" href="http://myxaab.wordpress.com/2011/02/17/good-c-habits-can-encourage-bad-javascript-habits/">
+<link rel="next" title="Countdown to ExtJS&nbsp;4" href="http://myxaab.wordpress.com/2011/02/21/countdown-to-extjs-4/">
+<meta name="generator" content="WordPress.com">
+<link rel="canonical" href="http://myxaab.wordpress.com/2011/02/20/extjs-and-asp-net-mvc-3-crud-datagrid/">
+<link rel="shortlink" href="http://wp.me/pIacA-5Y">
+<link rel="alternate" type="application/json+oembed" href="http://public-api.wordpress.com/oembed/1.0/?format=json&amp;url=http%3A%2F%2Fmyxaab.wordpress.com%2F2011%2F02%2F20%2Fextjs-and-asp-net-mvc-3-crud-datagrid%2F&amp;for=wpcom-auto-discovery"><link rel="alternate" type="application/xml+oembed" href="http://public-api.wordpress.com/oembed/1.0/?format=xml&amp;url=http%3A%2F%2Fmyxaab.wordpress.com%2F2011%2F02%2F20%2Fextjs-and-asp-net-mvc-3-crud-datagrid%2F&amp;for=wpcom-auto-discovery"><meta property="og:type" content="article">
+<meta property="og:title" content="ExtJS and ASP.NET MVC 3: CRUD&nbsp;DataGrid">
+<meta property="og:url" content="http://myxaab.wordpress.com/2011/02/20/extjs-and-asp-net-mvc-3-crud-datagrid/">
+<meta property="og:description" content="This short tutorial will walk though the implementation of DataGrid using ExtJS 3.3.1 and ASP.NET MVC 3. In this tutorial I focus more on the integration of the front-end, so you will not find any ...">
+<meta property="og:site_name" content="XaaB - Anything as a Blog">
+<meta property="og:image" content="http://myxaab.files.wordpress.com/2011/02/datagrid.png?w=300&amp;h=300">
+<link rel="shortcut icon" type="image/x-icon" href="http://s2.wp.com/i/favicon.ico?m=1311976024g" sizes="16x16 24x24 32x32 48x48">
+<link rel="icon" type="image/x-icon" href="http://s2.wp.com/i/favicon.ico?m=1311976024g" sizes="16x16 24x24 32x32 48x48">
+<link rel="apple-touch-icon-precomposed" href="http://s0.wp.com/i/webclip.png?m=1311618091g">
+<link rel="openid.server" href="http://myxaab.wordpress.com/?openidserver=1">
+<link rel="openid.delegate" href="http://myxaab.wordpress.com/">
+<link rel="search" type="application/opensearchdescription+xml" href="http://myxaab.wordpress.com/osd.xml" title="XaaB - Anything as a Blog">
+<link rel="search" type="application/opensearchdescription+xml" href="http://wordpress.com/opensearch.xml" title="WordPress.com">
+<meta name="application-name" content="XaaB - Anything as a Blog"><meta name="msapplication-window" content="width=device-width;height=device-height"><meta name="msapplication-tooltip" content="Code4Fun - My Development Notes"><meta name="msapplication-task" content="name=Subscribe;action-uri=http://myxaab.wordpress.com/feed/;icon-uri=http://s2.wp.com/i/favicon.ico"><meta name="msapplication-task" content="name=Sign up for a free blog;action-uri=http://wordpress.com/signup/;icon-uri=http://s2.wp.com/i/favicon.ico"><meta name="msapplication-task" content="name=WordPress.com Support;action-uri=http://support.wordpress.com/;icon-uri=http://s2.wp.com/i/favicon.ico"><meta name="msapplication-task" content="name=WordPress.com Forums;action-uri=http://forums.wordpress.com/;icon-uri=http://s2.wp.com/i/favicon.ico"><link href="ExtJS%20and%20ASP.NET%20MVC%203%20%20CRUD%20DataGrid%20%C2%AB%20XaaB%20%E2%80%93%20Anything%20as%20a%20Blog_files/shThemeDefault.css" type="text/css" rel="stylesheet"><link rel="stylesheet" type="text/css" id="gravatar-card-css" href="ExtJS%20and%20ASP.NET%20MVC%203%20%20CRUD%20DataGrid%20%C2%AB%20XaaB%20%E2%80%93%20Anything%20as%20a%20Blog_files/hovercard.css"><link rel="stylesheet" type="text/css" id="gravatar-card-services-css" href="ExtJS%20and%20ASP.NET%20MVC%203%20%20CRUD%20DataGrid%20%C2%AB%20XaaB%20%E2%80%93%20Anything%20as%20a%20Blog_files/services.css"></head>
+
+<body data-twttr-rendered="true" class="single single-post postid-370 single-format-standard highlander-enabled highlander-light">
+<!-- wrap START -->
+<div id="wrap">
+
+<!-- container START -->
+<div id="container">
+
+<!-- header START -->
+<div id="header">
+
+	<!-- banner START -->
+		<!-- banner END -->
+
+	<div id="caption">
+		<h1 id="title"><a href="http://myxaab.wordpress.com/">XaaB – Anything as a Blog</a></h1>
+		<div id="tagline">Code4Fun – My Development Notes</div>
+	</div>
+
+	<div class="fixed"></div>
+</div>
+<!-- header END -->
+
+<!-- navigation START -->
+<div id="navigation">
+	<!-- menus START -->
+	<ul id="menus">
+	<li class="page_item"><a class="home" title="Home" href="http://myxaab.wordpress.com/">Home</a></li>
+	<li class="page_item page-item-2"><a href="http://myxaab.wordpress.com/about/">About</a></li>
+	<li><a class="lastmenu" href="javascript:void(0);"></a></li>
+</ul>
+
+	<!-- menus END -->
+
+	<!-- searchbox START -->
+	<div id="searchbox">
+		<form action="http://myxaab.wordpress.com" method="get">
+			<div class="content">
+				<input class="textfield searchtip" name="s" size="24" value="Type text to search here..." type="text">
+				<input class="button" value="" type="submit">
+			</div>
+		</form>
+	</div>
+<script type="text/javascript">
+//<![CDATA[
+	var searchbox = MGJS.$("searchbox");
+	var searchtxt = MGJS.getElementsByClassName("textfield", "input", searchbox)[0];
+	var searchbtn = MGJS.getElementsByClassName("button", "input", searchbox)[0];
+	var tiptext = "Type text to search here...";
+	if(searchtxt.value == "" || searchtxt.value == tiptext) {
+		searchtxt.className += " searchtip";
+		searchtxt.value = tiptext;
+	}
+	searchtxt.onfocus = function(e) {
+		if(searchtxt.value == tiptext) {
+			searchtxt.value = "";
+			searchtxt.className = searchtxt.className.replace(" searchtip", "");
+		}
+	}
+	searchtxt.onblur = function(e) {
+		if(searchtxt.value == "") {
+			searchtxt.className += " searchtip";
+			searchtxt.value = tiptext;
+		}
+	}
+	searchbtn.onclick = function(e) {
+		if(searchtxt.value == "" || searchtxt.value == tiptext) {
+			return false;
+		}
+	}
+//]]>
+</script>
+	<!-- searchbox END -->
+
+	<div class="fixed"></div>
+</div>
+<!-- navigation END -->
+
+<!-- content START -->
+<div id="content">
+
+	<!-- main START -->
+	<div id="main">
+
+
+	<div id="postpath">
+		<a title="Go to homepage" href="http://myxaab.wordpress.com/">Home</a>
+		 &gt; <a href="http://myxaab.wordpress.com/category/application-development/" title="View all posts in Application Development" rel="category tag">Application Development</a>		 &gt; ExtJS and ASP.NET MVC 3: CRUD&nbsp;DataGrid	</div>
+
+	<div class="post" id="post-370">
+		<h2>ExtJS and ASP.NET MVC 3: CRUD&nbsp;DataGrid</h2>
+		<div class="info">
+			<span class="date">February 20, 2011</span>
+			<span class="author"><a href="http://myxaab.wordpress.com/author/wsw1jaya/" title="Posts by wowi" rel="author">wowi</a></span>										<span class="addcomment"><a href="#respond">Leave a comment</a></span>
+				<span class="comments"><a href="#comments">Go to comments</a></span>
+						<div class="fixed"></div>
+		</div>
+		<div class="content">
+			<p>This short tutorial will walk though the implementation of DataGrid using <span style="text-decoration:underline;">ExtJS 3.3.1</span> and <span style="text-decoration:underline;">ASP.NET MVC 3</span>.
+ In this tutorial I focus more on the integration of the front-end, so 
+you will not find any database code. Whenever we deal with data we 
+usually create, read/retrieve, update or delete them. ExtJS provides a 
+great data grid component and the ability to perform CRUD operation with
+ very little coding. I used JSON as data format in the example below.</p>
+<div id="attachment_371" class="wp-caption aligncenter" style="width: 507px"><a href="http://myxaab.files.wordpress.com/2011/02/datagrid.png"><img class="size-full wp-image-371" title="ExtJS DataGrid" src="ExtJS%20and%20ASP.NET%20MVC%203%20%20CRUD%20DataGrid%20%C2%AB%20XaaB%20%E2%80%93%20Anything%20as%20a%20Blog_files/datagrid.png" alt="ExtJS DataGrid"></a><p class="wp-caption-text">ExtJS DataGrid</p></div>
+<p>Let’s start with the server-side by developing the data model and controller.</p>
+<p><span style="text-decoration:underline;"><strong>Controller:</strong></span></p>
+<p></p><div class="syntaxhighlighter  " id="highlighter_889178"><div class="bar"><div class="toolbar"><a class="item viewSource" style="width: 16px; height: 16px;" title="view source" href="#viewSource">view source</a><div class="item copyToClipboard"><embed id="highlighter_889178_clipboard" type="application/x-shockwave-flash" title="copy to clipboard" allowscriptaccess="always" wmode="transparent" flashvars="highlighterId=highlighter_889178" menu="false" src="ExtJS%20and%20ASP.NET%20MVC%203%20%20CRUD%20DataGrid%20%C2%AB%20XaaB%20%E2%80%93%20Anything%20as%20a%20Blog_files/clipboard.swf" height="16" width="16"></div><a class="item printSource" style="width: 16px; height: 16px;" title="print" href="#printSource">print</a><a class="item about" style="width: 16px; height: 16px;" title="?" href="#about">?</a></div></div><div class="lines"><div class="line alt1"><table><tbody><tr><td class="number"><code>01</code></td><td class="content"><code class="keyword">public</code> <code class="keyword">class</code> <code class="plain">ContactController : Controller</code></td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="number"><code>02</code></td><td class="content"><code class="plain">{</code></td></tr></tbody></table></div><div class="line alt1"><table><tbody><tr><td class="number"><code>03</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="comments">//</code></td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="number"><code>04</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="comments">// GET: /Contact/</code></td></tr></tbody></table></div><div class="line alt1"><table><tbody><tr><td class="number"><code>05</code></td><td class="content">&nbsp;</td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="number"><code>06</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="keyword">public</code> <code class="plain">ActionResult Index()</code></td></tr></tbody></table></div><div class="line alt1"><table><tbody><tr><td class="number"><code>07</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="plain">{</code></td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="number"><code>08</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="keyword">return</code> <code class="plain">View();</code></td></tr></tbody></table></div><div class="line alt1"><table><tbody><tr><td class="number"><code>09</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="plain">}</code></td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="number"><code>10</code></td><td class="content">&nbsp;</td></tr></tbody></table></div><div class="line alt1"><table><tbody><tr><td class="number"><code>11</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="keyword">public</code> <code class="plain">JsonResult Load()</code></td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="number"><code>12</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="plain">{</code></td></tr></tbody></table></div><div class="line alt1"><table><tbody><tr><td class="number"><code>13</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="plain">var contact = </code><code class="keyword">new</code> <code class="plain">List&lt;Contact&gt; {</code></td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="number"><code>14</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="keyword">new</code> <code class="plain">Contact(</code><code class="string">"Smith"</code><code class="plain">,</code><code class="string">"95746325"</code><code class="plain">,</code><code class="string">"smith@me.com"</code><code class="plain">),</code></td></tr></tbody></table></div><div class="line alt1"><table><tbody><tr><td class="number"><code>15</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="keyword">new</code> <code class="plain">Contact(</code><code class="string">"Adam"</code><code class="plain">,</code><code class="string">"87291034"</code><code class="plain">,</code><code class="string">"adam@me.com"</code><code class="plain">),</code></td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="number"><code>16</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="keyword">new</code> <code class="plain">Contact(</code><code class="string">"Eve"</code><code class="plain">,</code><code class="string">"98271345"</code><code class="plain">,</code><code class="string">"eve@me.com"</code><code class="plain">),</code></td></tr></tbody></table></div><div class="line alt1"><table><tbody><tr><td class="number"><code>17</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="keyword">new</code> <code class="plain">Contact(</code><code class="string">"Chun Li"</code><code class="plain">,</code><code class="string">"81728312"</code><code class="plain">,</code><code class="string">"chun.li@me.com"</code><code class="plain">)</code></td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="number"><code>18</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="plain">};</code></td></tr></tbody></table></div><div class="line alt1"><table><tbody><tr><td class="number"><code>19</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="keyword">return</code> <code class="plain">Json(</code><code class="keyword">new</code></td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="number"><code>20</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="plain">{</code></td></tr></tbody></table></div><div class="line alt1"><table><tbody><tr><td class="number"><code>21</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="plain">total = contact.Count,</code></td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="number"><code>22</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="plain">data = contact,</code></td></tr></tbody></table></div><div class="line alt1"><table><tbody><tr><td class="number"><code>23</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="plain">}, JsonRequestBehavior.AllowGet);</code></td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="number"><code>24</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="plain">}</code></td></tr></tbody></table></div><div class="line alt1"><table><tbody><tr><td class="number"><code>25</code></td><td class="content">&nbsp;</td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="number"><code>26</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="plain">[HttpPost]</code></td></tr></tbody></table></div><div class="line alt1"><table><tbody><tr><td class="number"><code>27</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="keyword">public</code> <code class="plain">JsonResult Create(List&lt;Contact&gt; data)</code></td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="number"><code>28</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="plain">{</code></td></tr></tbody></table></div><div class="line alt1"><table><tbody><tr><td class="number"><code>29</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="comments">//insert Create code</code></td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="number"><code>30</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="keyword">return</code> <code class="plain">Json(</code><code class="keyword">new</code></td></tr></tbody></table></div><div class="line alt1"><table><tbody><tr><td class="number"><code>31</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="plain">{</code></td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="number"><code>32</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="plain">data = </code><code class="keyword">new</code> <code class="plain">Contact(data[0].Name, data[0].Phone, data[0].Email),</code></td></tr></tbody></table></div><div class="line alt1"><table><tbody><tr><td class="number"><code>33</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="plain">success = </code><code class="keyword">true</code><code class="plain">,</code></td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="number"><code>34</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="plain">message = </code><code class="string">"Create method called successfully"</code></td></tr></tbody></table></div><div class="line alt1"><table><tbody><tr><td class="number"><code>35</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="plain">});</code></td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="number"><code>36</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="plain">}</code></td></tr></tbody></table></div><div class="line alt1"><table><tbody><tr><td class="number"><code>37</code></td><td class="content">&nbsp;</td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="number"><code>38</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="plain">[HttpPost]</code></td></tr></tbody></table></div><div class="line alt1"><table><tbody><tr><td class="number"><code>39</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="keyword">public</code> <code class="plain">JsonResult Update(List&lt;Contact&gt; data)</code></td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="number"><code>40</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="plain">{</code></td></tr></tbody></table></div><div class="line alt1"><table><tbody><tr><td class="number"><code>41</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="comments">//insert Update code</code></td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="number"><code>42</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="keyword">return</code> <code class="plain">Json(</code><code class="keyword">new</code></td></tr></tbody></table></div><div class="line alt1"><table><tbody><tr><td class="number"><code>43</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="plain">{</code></td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="number"><code>44</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="plain">success = </code><code class="keyword">true</code><code class="plain">,</code></td></tr></tbody></table></div><div class="line alt1"><table><tbody><tr><td class="number"><code>45</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="plain">message = </code><code class="string">"Update method called successfully"</code></td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="number"><code>46</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="plain">});</code></td></tr></tbody></table></div><div class="line alt1"><table><tbody><tr><td class="number"><code>47</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="plain">}</code></td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="number"><code>48</code></td><td class="content">&nbsp;</td></tr></tbody></table></div><div class="line alt1"><table><tbody><tr><td class="number"><code>49</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="plain">[HttpPost]</code></td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="number"><code>50</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="keyword">public</code> <code class="plain">JsonResult Delete(List&lt;</code><code class="keyword">string</code><code class="plain">&gt; data)</code></td></tr></tbody></table></div><div class="line alt1"><table><tbody><tr><td class="number"><code>51</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="plain">{</code></td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="number"><code>52</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="comments">//insert Delete code</code></td></tr></tbody></table></div><div class="line alt1"><table><tbody><tr><td class="number"><code>53</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="keyword">return</code> <code class="plain">Json(</code><code class="keyword">new</code></td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="number"><code>54</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="plain">{</code></td></tr></tbody></table></div><div class="line alt1"><table><tbody><tr><td class="number"><code>55</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="plain">success = </code><code class="keyword">true</code><code class="plain">,</code></td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="number"><code>56</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="plain">message = </code><code class="string">"Delete method called successfully"</code></td></tr></tbody></table></div><div class="line alt1"><table><tbody><tr><td class="number"><code>57</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="plain">});</code></td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="number"><code>58</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="plain">}</code></td></tr></tbody></table></div><div class="line alt1"><table><tbody><tr><td class="number"><code>59</code></td><td class="content"><code class="plain">}</code></td></tr></tbody></table></div></div></div><p></p>
+<p><span style="text-decoration:underline;"><strong>Data Model:</strong></span></p>
+<p></p><div class="syntaxhighlighter  " id="highlighter_148189"><div class="bar"><div class="toolbar"><a class="item viewSource" style="width: 16px; height: 16px;" title="view source" href="#viewSource">view source</a><div class="item copyToClipboard"><embed id="highlighter_148189_clipboard" type="application/x-shockwave-flash" title="copy to clipboard" allowscriptaccess="always" wmode="transparent" flashvars="highlighterId=highlighter_148189" menu="false" src="ExtJS%20and%20ASP.NET%20MVC%203%20%20CRUD%20DataGrid%20%C2%AB%20XaaB%20%E2%80%93%20Anything%20as%20a%20Blog_files/clipboard.swf" height="16" width="16"></div><a class="item printSource" style="width: 16px; height: 16px;" title="print" href="#printSource">print</a><a class="item about" style="width: 16px; height: 16px;" title="?" href="#about">?</a></div></div><div class="lines"><div class="line alt1"><table><tbody><tr><td class="number"><code>01</code></td><td class="content"><code class="keyword">public</code> <code class="keyword">class</code> <code class="plain">Contact</code></td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="number"><code>02</code></td><td class="content"><code class="plain">{</code></td></tr></tbody></table></div><div class="line alt1"><table><tbody><tr><td class="number"><code>03</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="keyword">public</code> <code class="keyword">string</code> <code class="plain">Id { </code><code class="keyword">get</code><code class="plain">; </code><code class="keyword">set</code><code class="plain">; }</code></td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="number"><code>04</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="keyword">public</code> <code class="keyword">string</code> <code class="plain">Name { </code><code class="keyword">get</code><code class="plain">; </code><code class="keyword">set</code><code class="plain">; }</code></td></tr></tbody></table></div><div class="line alt1"><table><tbody><tr><td class="number"><code>05</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="keyword">public</code> <code class="keyword">string</code> <code class="plain">Phone { </code><code class="keyword">get</code><code class="plain">; </code><code class="keyword">set</code><code class="plain">; }</code></td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="number"><code>06</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="keyword">public</code> <code class="keyword">string</code> <code class="plain">Email { </code><code class="keyword">get</code><code class="plain">; </code><code class="keyword">set</code><code class="plain">; }</code></td></tr></tbody></table></div><div class="line alt1"><table><tbody><tr><td class="number"><code>07</code></td><td class="content">&nbsp;</td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="number"><code>08</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="keyword">public</code> <code class="plain">Contact(</code><code class="keyword">string</code> <code class="plain">pName, </code><code class="keyword">string</code> <code class="plain">pPhone, </code><code class="keyword">string</code> <code class="plain">pEmail)</code></td></tr></tbody></table></div><div class="line alt1"><table><tbody><tr><td class="number"><code>09</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="plain">{</code></td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="number"><code>10</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="keyword">this</code><code class="plain">.Id = System.Guid.NewGuid().ToString();</code></td></tr></tbody></table></div><div class="line alt1"><table><tbody><tr><td class="number"><code>11</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="keyword">this</code><code class="plain">.Name = pName;</code></td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="number"><code>12</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="keyword">this</code><code class="plain">.Phone = pPhone;</code></td></tr></tbody></table></div><div class="line alt1"><table><tbody><tr><td class="number"><code>13</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="keyword">this</code><code class="plain">.Email = pEmail;</code></td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="number"><code>14</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="plain">}</code></td></tr></tbody></table></div><div class="line alt1"><table><tbody><tr><td class="number"><code>15</code></td><td class="content">&nbsp;</td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="number"><code>16</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="keyword">public</code> <code class="plain">Contact() { }</code></td></tr></tbody></table></div><div class="line alt1"><table><tbody><tr><td class="number"><code>17</code></td><td class="content"><code class="plain">}</code></td></tr></tbody></table></div></div></div><p></p>
+<p><span style="text-decoration:underline;"><strong>ExtJS</strong>:</span></p>
+<p>Now, you move on to the view and work on the ExtJS.&nbsp;First, you define the record type which matches the server-side object.</p>
+<p></p><div class="syntaxhighlighter  " id="highlighter_84911"><div class="bar"><div class="toolbar"><a class="item viewSource" style="width: 16px; height: 16px;" title="view source" href="#viewSource">view source</a><div class="item copyToClipboard"><embed id="highlighter_84911_clipboard" type="application/x-shockwave-flash" title="copy to clipboard" allowscriptaccess="always" wmode="transparent" flashvars="highlighterId=highlighter_84911" menu="false" src="ExtJS%20and%20ASP.NET%20MVC%203%20%20CRUD%20DataGrid%20%C2%AB%20XaaB%20%E2%80%93%20Anything%20as%20a%20Blog_files/clipboard.swf" height="16" width="16"></div><a class="item printSource" style="width: 16px; height: 16px;" title="print" href="#printSource">print</a><a class="item about" style="width: 16px; height: 16px;" title="?" href="#about">?</a></div></div><div class="lines"><div class="line alt1"><table><tbody><tr><td class="number"><code>01</code></td><td class="content"><code class="keyword">var</code> <code class="plain">Contact = Ext.data.Record.create([</code></td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="number"><code>02</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="plain">{</code></td></tr></tbody></table></div><div class="line alt1"><table><tbody><tr><td class="number"><code>03</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="plain">name: </code><code class="string">'Id'</code><code class="plain">,</code></td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="number"><code>04</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="plain">type: </code><code class="string">'string'</code></td></tr></tbody></table></div><div class="line alt1"><table><tbody><tr><td class="number"><code>05</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="plain">}, {</code></td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="number"><code>06</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="plain">name: </code><code class="string">'Name'</code><code class="plain">,</code></td></tr></tbody></table></div><div class="line alt1"><table><tbody><tr><td class="number"><code>07</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="plain">type: </code><code class="string">'string'</code></td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="number"><code>08</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="plain">}, {</code></td></tr></tbody></table></div><div class="line alt1"><table><tbody><tr><td class="number"><code>09</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="plain">name: </code><code class="string">'Phone'</code><code class="plain">,</code></td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="number"><code>10</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="plain">type: </code><code class="string">'string'</code></td></tr></tbody></table></div><div class="line alt1"><table><tbody><tr><td class="number"><code>11</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="plain">}, {</code></td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="number"><code>12</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="plain">name: </code><code class="string">'Email'</code><code class="plain">,</code></td></tr></tbody></table></div><div class="line alt1"><table><tbody><tr><td class="number"><code>13</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="plain">type: </code><code class="string">'string'</code></td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="number"><code>14</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="plain">}</code></td></tr></tbody></table></div><div class="line alt1"><table><tbody><tr><td class="number"><code>15</code></td><td class="content"><code class="plain">]);</code></td></tr></tbody></table></div></div></div><p></p>
+<p>Now you need to setup the Writer and Reader</p>
+<p></p><div class="syntaxhighlighter  " id="highlighter_393468"><div class="bar"><div class="toolbar"><a class="item viewSource" style="width: 16px; height: 16px;" title="view source" href="#viewSource">view source</a><div class="item copyToClipboard"><embed id="highlighter_393468_clipboard" type="application/x-shockwave-flash" title="copy to clipboard" allowscriptaccess="always" wmode="transparent" flashvars="highlighterId=highlighter_393468" menu="false" src="ExtJS%20and%20ASP.NET%20MVC%203%20%20CRUD%20DataGrid%20%C2%AB%20XaaB%20%E2%80%93%20Anything%20as%20a%20Blog_files/clipboard.swf" height="16" width="16"></div><a class="item printSource" style="width: 16px; height: 16px;" title="print" href="#printSource">print</a><a class="item about" style="width: 16px; height: 16px;" title="?" href="#about">?</a></div></div><div class="lines"><div class="line alt1"><table><tbody><tr><td class="number"><code>01</code></td><td class="content"><code class="keyword">var</code> <code class="plain">writer = </code><code class="keyword">new</code> <code class="plain">Ext.data.JsonWriter({</code></td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="number"><code>02</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="plain">encode: </code><code class="keyword">false</code><code class="plain">,</code></td></tr></tbody></table></div><div class="line alt1"><table><tbody><tr><td class="number"><code>03</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="plain">listful: </code><code class="keyword">true</code><code class="plain">,</code></td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="number"><code>04</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="plain">writeAllFields: </code><code class="keyword">true</code></td></tr></tbody></table></div><div class="line alt1"><table><tbody><tr><td class="number"><code>05</code></td><td class="content"><code class="plain">});</code></td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="number"><code>06</code></td><td class="content">&nbsp;</td></tr></tbody></table></div><div class="line alt1"><table><tbody><tr><td class="number"><code>07</code></td><td class="content"><code class="keyword">var</code> <code class="plain">reader = </code><code class="keyword">new</code> <code class="plain">Ext.data.JsonReader({</code></td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="number"><code>08</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="plain">totalProperty: </code><code class="string">'total'</code><code class="plain">,</code></td></tr></tbody></table></div><div class="line alt1"><table><tbody><tr><td class="number"><code>09</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="plain">successProperty: </code><code class="string">'success'</code><code class="plain">,</code></td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="number"><code>10</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="plain">idProperty: </code><code class="string">'Id'</code><code class="plain">,</code></td></tr></tbody></table></div><div class="line alt1"><table><tbody><tr><td class="number"><code>11</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="plain">root: </code><code class="string">'data'</code><code class="plain">,</code></td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="number"><code>12</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="plain">messageProperty: </code><code class="string">'message'</code>&nbsp; <code class="comments">// &lt;-- New "messageProperty" meta-data</code></td></tr></tbody></table></div><div class="line alt1"><table><tbody><tr><td class="number"><code>13</code></td><td class="content"><code class="plain">}, Contact);</code></td></tr></tbody></table></div></div></div><p></p>
+<p>Then, setup a proxy to define the connection to the controller.</p>
+<p></p><div class="syntaxhighlighter  " id="highlighter_826684"><div class="bar"><div class="toolbar"><a class="item viewSource" style="width: 16px; height: 16px;" title="view source" href="#viewSource">view source</a><div class="item copyToClipboard"><embed id="highlighter_826684_clipboard" type="application/x-shockwave-flash" title="copy to clipboard" allowscriptaccess="always" wmode="transparent" flashvars="highlighterId=highlighter_826684" menu="false" src="ExtJS%20and%20ASP.NET%20MVC%203%20%20CRUD%20DataGrid%20%C2%AB%20XaaB%20%E2%80%93%20Anything%20as%20a%20Blog_files/clipboard.swf" height="16" width="16"></div><a class="item printSource" style="width: 16px; height: 16px;" title="print" href="#printSource">print</a><a class="item about" style="width: 16px; height: 16px;" title="?" href="#about">?</a></div></div><div class="lines"><div class="line alt1"><table><tbody><tr><td class="number"><code>1</code></td><td class="content"><code class="keyword">var</code> <code class="plain">proxy = </code><code class="keyword">new</code> <code class="plain">Ext.data.HttpProxy({</code></td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="number"><code>2</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="plain">api: {</code></td></tr></tbody></table></div><div class="line alt1"><table><tbody><tr><td class="number"><code>3</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="plain">read: </code><code class="string">'/Contact/Load'</code><code class="plain">,</code></td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="number"><code>4</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="plain">create: </code><code class="string">'/Contact/Create'</code><code class="plain">,</code></td></tr></tbody></table></div><div class="line alt1"><table><tbody><tr><td class="number"><code>5</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="plain">update: </code><code class="string">'/Contact/Update'</code><code class="plain">,</code></td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="number"><code>6</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="plain">destroy: </code><code class="string">'/Contact/Delete'</code></td></tr></tbody></table></div><div class="line alt1"><table><tbody><tr><td class="number"><code>7</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="plain">},</code></td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="number"><code>8</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="plain">headers: { </code><code class="string">'Content-Type'</code><code class="plain">: </code><code class="string">'application/json; charset=UTF-8'</code> <code class="plain">}</code></td></tr></tbody></table></div><div class="line alt1"><table><tbody><tr><td class="number"><code>9</code></td><td class="content"><code class="plain">});</code></td></tr></tbody></table></div></div></div><p></p>
+<p>Hooks the above components (reader, writer, proxy) to the store.</p>
+<p></p><div class="syntaxhighlighter  " id="highlighter_271795"><div class="bar"><div class="toolbar"><a class="item viewSource" style="width: 16px; height: 16px;" title="view source" href="#viewSource">view source</a><div class="item copyToClipboard"><embed id="highlighter_271795_clipboard" type="application/x-shockwave-flash" title="copy to clipboard" allowscriptaccess="always" wmode="transparent" flashvars="highlighterId=highlighter_271795" menu="false" src="ExtJS%20and%20ASP.NET%20MVC%203%20%20CRUD%20DataGrid%20%C2%AB%20XaaB%20%E2%80%93%20Anything%20as%20a%20Blog_files/clipboard.swf" height="16" width="16"></div><a class="item printSource" style="width: 16px; height: 16px;" title="print" href="#printSource">print</a><a class="item about" style="width: 16px; height: 16px;" title="?" href="#about">?</a></div></div><div class="lines"><div class="line alt1"><table><tbody><tr><td class="number"><code>1</code></td><td class="content"><code class="keyword">var</code> <code class="plain">store = </code><code class="keyword">new</code> <code class="plain">Ext.data.Store({</code></td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="number"><code>2</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="plain">id: </code><code class="string">'user'</code><code class="plain">,</code></td></tr></tbody></table></div><div class="line alt1"><table><tbody><tr><td class="number"><code>3</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="plain">proxy: proxy,</code></td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="number"><code>4</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="plain">reader: reader,</code></td></tr></tbody></table></div><div class="line alt1"><table><tbody><tr><td class="number"><code>5</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="plain">writer: writer,</code></td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="number"><code>6</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="plain">autoSave: </code><code class="keyword">false</code></td></tr></tbody></table></div><div class="line alt1"><table><tbody><tr><td class="number"><code>7</code></td><td class="content"><code class="plain">});</code></td></tr></tbody></table></div></div></div><p></p>
+<p>Add the data grid declaration</p>
+<p></p><div class="syntaxhighlighter  " id="highlighter_151081"><div class="bar"><div class="toolbar"><a class="item viewSource" style="width: 16px; height: 16px;" title="view source" href="#viewSource">view source</a><div class="item copyToClipboard"><embed id="highlighter_151081_clipboard" type="application/x-shockwave-flash" title="copy to clipboard" allowscriptaccess="always" wmode="transparent" flashvars="highlighterId=highlighter_151081" menu="false" src="ExtJS%20and%20ASP.NET%20MVC%203%20%20CRUD%20DataGrid%20%C2%AB%20XaaB%20%E2%80%93%20Anything%20as%20a%20Blog_files/clipboard.swf" height="16" width="16"></div><a class="item printSource" style="width: 16px; height: 16px;" title="print" href="#printSource">print</a><a class="item about" style="width: 16px; height: 16px;" title="?" href="#about">?</a></div></div><div class="lines"><div class="line alt1"><table><tbody><tr><td class="number"><code>01</code></td><td class="content"><code class="keyword">var</code> <code class="plain">grid = </code><code class="keyword">new</code> <code class="plain">Ext.grid.GridPanel({</code></td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="number"><code>02</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="plain">store: store,</code></td></tr></tbody></table></div><div class="line alt1"><table><tbody><tr><td class="number"><code>03</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="plain">columns: [</code></td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="number"><code>04</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="plain">{ header: </code><code class="string">"Name"</code><code class="plain">,</code></td></tr></tbody></table></div><div class="line alt1"><table><tbody><tr><td class="number"><code>05</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="plain">width: 170,</code></td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="number"><code>06</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="plain">sortable: </code><code class="keyword">true</code><code class="plain">,</code></td></tr></tbody></table></div><div class="line alt1"><table><tbody><tr><td class="number"><code>07</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="plain">dataIndex: </code><code class="string">'Name'</code><code class="plain">,</code></td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="number"><code>08</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="plain">editor: {</code></td></tr></tbody></table></div><div class="line alt1"><table><tbody><tr><td class="number"><code>09</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="plain">xtype: </code><code class="string">'textfield'</code><code class="plain">,</code></td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="number"><code>10</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="plain">allowBlank: </code><code class="keyword">false</code></td></tr></tbody></table></div><div class="line alt1"><table><tbody><tr><td class="number"><code>11</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="plain">}</code></td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="number"><code>12</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="plain">},</code></td></tr></tbody></table></div><div class="line alt1"><table><tbody><tr><td class="number"><code>13</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="plain">{ header: </code><code class="string">"Phone No."</code><code class="plain">,</code></td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="number"><code>14</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="plain">width: 160,</code></td></tr></tbody></table></div><div class="line alt1"><table><tbody><tr><td class="number"><code>15</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="plain">sortable: </code><code class="keyword">true</code><code class="plain">,</code></td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="number"><code>16</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="plain">dataIndex: </code><code class="string">'Phone'</code><code class="plain">,</code></td></tr></tbody></table></div><div class="line alt1"><table><tbody><tr><td class="number"><code>17</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="plain">editor: {</code></td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="number"><code>18</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="plain">xtype: </code><code class="string">'textfield'</code><code class="plain">,</code></td></tr></tbody></table></div><div class="line alt1"><table><tbody><tr><td class="number"><code>19</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="plain">allowBlank: </code><code class="keyword">false</code></td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="number"><code>20</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="plain">}</code></td></tr></tbody></table></div><div class="line alt1"><table><tbody><tr><td class="number"><code>21</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="plain">},</code></td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="number"><code>22</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="plain">{ header: </code><code class="string">"EMail"</code><code class="plain">,</code></td></tr></tbody></table></div><div class="line alt1"><table><tbody><tr><td class="number"><code>23</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="plain">width: 170,</code></td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="number"><code>24</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="plain">sortable: </code><code class="keyword">true</code><code class="plain">,</code></td></tr></tbody></table></div><div class="line alt1"><table><tbody><tr><td class="number"><code>25</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="plain">dataIndex: </code><code class="string">'Email'</code><code class="plain">,</code></td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="number"><code>26</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="plain">editor: {</code></td></tr></tbody></table></div><div class="line alt1"><table><tbody><tr><td class="number"><code>27</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="plain">xtype: </code><code class="string">'textfield'</code><code class="plain">,</code></td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="number"><code>28</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="plain">allowBlank: </code><code class="keyword">false</code></td></tr></tbody></table></div><div class="line alt1"><table><tbody><tr><td class="number"><code>29</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="plain">}</code></td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="number"><code>30</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="plain">}</code></td></tr></tbody></table></div><div class="line alt1"><table><tbody><tr><td class="number"><code>31</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="plain">],</code></td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="number"><code>32</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="plain">plugins: [editor],</code></td></tr></tbody></table></div><div class="line alt1"><table><tbody><tr><td class="number"><code>33</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="plain">title: </code><code class="string">'Contacts DataGrid'</code><code class="plain">,</code></td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="number"><code>34</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="plain">height: 300,</code></td></tr></tbody></table></div><div class="line alt1"><table><tbody><tr><td class="number"><code>35</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="plain">width: 510,</code></td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="number"><code>36</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="plain">tbar: [{</code></td></tr></tbody></table></div><div class="line alt1"><table><tbody><tr><td class="number"><code>37</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="plain">iconCls: </code><code class="string">'icon-user-add'</code><code class="plain">,</code></td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="number"><code>38</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="plain">text: </code><code class="string">'Add Contact'</code><code class="plain">,</code></td></tr></tbody></table></div><div class="line alt1"><table><tbody><tr><td class="number"><code>39</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="plain">handler: </code><code class="keyword">function</code> <code class="plain">() {</code></td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="number"><code>40</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="keyword">var</code> <code class="plain">e = </code><code class="keyword">new</code> <code class="plain">Contact({</code></td></tr></tbody></table></div><div class="line alt1"><table><tbody><tr><td class="number"><code>41</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="plain">Name: </code><code class="string">'New Friend'</code><code class="plain">,</code></td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="number"><code>42</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="plain">Phone: </code><code class="string">'(65) 89182736'</code><code class="plain">,</code></td></tr></tbody></table></div><div class="line alt1"><table><tbody><tr><td class="number"><code>43</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="plain">Email: </code><code class="string">'new@google.com'</code></td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="number"><code>44</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="plain">});</code></td></tr></tbody></table></div><div class="line alt1"><table><tbody><tr><td class="number"><code>45</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="plain">editor.stopEditing();</code></td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="number"><code>46</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="plain">store.insert(0, e);</code></td></tr></tbody></table></div><div class="line alt1"><table><tbody><tr><td class="number"><code>47</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="plain">grid.getView().refresh();</code></td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="number"><code>48</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="plain">grid.getSelectionModel().selectRow(0);</code></td></tr></tbody></table></div><div class="line alt1"><table><tbody><tr><td class="number"><code>49</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="plain">editor.startEditing(0);</code></td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="number"><code>50</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="plain">}</code></td></tr></tbody></table></div><div class="line alt1"><table><tbody><tr><td class="number"><code>51</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="plain">}, {</code></td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="number"><code>52</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="plain">ref: </code><code class="string">'../removeBtn'</code><code class="plain">,</code></td></tr></tbody></table></div><div class="line alt1"><table><tbody><tr><td class="number"><code>53</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="plain">iconCls: </code><code class="string">'icon-user-delete'</code><code class="plain">,</code></td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="number"><code>54</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="plain">text: </code><code class="string">'Remove Contact'</code><code class="plain">,</code></td></tr></tbody></table></div><div class="line alt1"><table><tbody><tr><td class="number"><code>55</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="plain">handler: </code><code class="keyword">function</code> <code class="plain">() {</code></td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="number"><code>56</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="plain">editor.stopEditing();</code></td></tr></tbody></table></div><div class="line alt1"><table><tbody><tr><td class="number"><code>57</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="keyword">var</code> <code class="plain">s = grid.getSelectionModel().getSelections();</code></td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="number"><code>58</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="keyword">for</code> <code class="plain">(</code><code class="keyword">var</code> <code class="plain">i = 0, r; r = s[i]; i++) {</code></td></tr></tbody></table></div><div class="line alt1"><table><tbody><tr><td class="number"><code>59</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="plain">store.remove(r);</code></td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="number"><code>60</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="plain">}</code></td></tr></tbody></table></div><div class="line alt1"><table><tbody><tr><td class="number"><code>61</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="plain">}</code></td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="number"><code>62</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="plain">}, {</code></td></tr></tbody></table></div><div class="line alt1"><table><tbody><tr><td class="number"><code>63</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="plain">iconCls: </code><code class="string">'icon-user-save'</code><code class="plain">,</code></td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="number"><code>64</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="plain">text: </code><code class="string">'Save All Modifications'</code><code class="plain">,</code></td></tr></tbody></table></div><div class="line alt1"><table><tbody><tr><td class="number"><code>65</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="plain">handler: </code><code class="keyword">function</code> <code class="plain">() {</code></td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="number"><code>66</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="plain">store.save();</code></td></tr></tbody></table></div><div class="line alt1"><table><tbody><tr><td class="number"><code>67</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="plain">}</code></td></tr></tbody></table></div><div class="line alt2"><table><tbody><tr><td class="number"><code>68</code></td><td class="content"><code class="spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="plain">}]</code></td></tr></tbody></table></div><div class="line alt1"><table><tbody><tr><td class="number"><code>69</code></td><td class="content"><code class="plain">});</code></td></tr></tbody></table></div></div></div><p></p>
+<p>Some observations:</p>
+<ul>
+<li>When submitting data as JSON,&nbsp;set the headers “Content-Type” to
+ “application/json” in the proxy object and set the encoding to false in
+ the JsonWriter. If not, it will be treated as form submission.</li>
+<li>Since I set the auto save to false. DataGrid will submit list of 
+contact when there are 2 or more changes, however it will send a single 
+object when there is 1 change. In order to make it consistent to send as
+ list, set list full to true in the JsonWriter.</li>
+<li>ASP.NET MVC 3 able to recognize the JSON without additional coding.</li>
+</ul>
+<p>If you want to see the complete source code, download it from <a title="VS2010 Project" href="http://bit.ly/e0PBe2" target="_blank">here</a>. Hope it’s useful. <img src="ExtJS%20and%20ASP.NET%20MVC%203%20%20CRUD%20DataGrid%20%C2%AB%20XaaB%20%E2%80%93%20Anything%20as%20a%20Blog_files/icon_smile.gif" alt=":)" class="wp-smiley"> </p>
+<p>Happy hacking!</p>
+<div id="jp-post-flair" class="sharedaddy sd-like-enabled sd-sharing-enabled"><div class="robots-nocontent sd-block sd-social sd-social-icon-text sd-sharing"><h3 class="sd-title">Share this:</h3><div class="sd-content"><ul><li class="share-twitter"><a rel="nofollow" class="share-twitter sd-button share-icon" href="http://myxaab.wordpress.com/2011/02/20/extjs-and-asp-net-mvc-3-crud-datagrid/?share=twitter&amp;nb=1" title="Click to share on Twitter" id="sharing-twitter-370"><span>Twitter<span class="share-count">4</span></span></a></li><li class="share-facebook"><a rel="nofollow" class="share-facebook sd-button share-icon" href="http://myxaab.wordpress.com/2011/02/20/extjs-and-asp-net-mvc-3-crud-datagrid/?share=facebook&amp;nb=1" title="Share on Facebook" id="sharing-facebook-370"><span>Facebook<span class="share-count">3</span></span></a></li><li class="share-digg"><a rel="nofollow" class="share-digg sd-button share-icon" href="http://myxaab.wordpress.com/2011/02/20/extjs-and-asp-net-mvc-3-crud-datagrid/?share=digg&amp;nb=1" title="Click to Digg this post"><span>Digg</span></a></li><li class="share-google-plus-1"><div class="googleplus1_button"><div style="height: 20px; width: 90px; display: inline-block; text-indent: 0pt; margin: 0pt; padding: 0pt; background: none repeat scroll 0% 0% transparent; border-style: none; float: none; line-height: normal; font-size: 1px; vertical-align: baseline;" id="___plusone_0"><iframe title="+1" src="ExtJS%20and%20ASP.NET%20MVC%203%20%20CRUD%20DataGrid%20%C2%AB%20XaaB%20%E2%80%93%20Anything%20as%20a%20Blog_files/fastbutton.htm" name="I0_1338195981334" id="I0_1338195981334" vspace="0" tabindex="0" style="position: static; top: 0pt; width: 90px; margin: 0px; border-style: none; height: 20px; left: 0pt; visibility: visible;" marginwidth="0" marginheight="0" hspace="0" allowtransparency="true" frameborder="0" scrolling="no" width="100%"></iframe></div></div></li><li class="share-stumbleupon"><a rel="nofollow" class="share-stumbleupon sd-button share-icon" href="http://myxaab.wordpress.com/2011/02/20/extjs-and-asp-net-mvc-3-crud-datagrid/?share=stumbleupon&amp;nb=1" title="Click to share on StumbleUpon"><span>StumbleUpon</span></a></li><li class="share-end"></li></ul><div class="sharing-clear"></div></div></div><div class="wpl-likebox sd-block sd-like"><h3 class="sd-title">Like this:</h3><div class="sd-content"><div id="like-370" class="wpl-button "><a href="http://myxaab.wordpress.com/2011/02/20/extjs-and-asp-net-mvc-3-crud-datagrid/?like=1&amp;_wpnonce=a3c67da906" title="I like this post" class="like needs-login sd-button" rel="nofollow"><span>Like</span></a></div><div class="wpl-count sd-like-count">One blogger likes this post.</div><ul class="wpl-avatars sd-like-gravatars"><li><a href="http://gravatar.com/anbinhtrong" class="wpl-liker" rel="nofollow"><img id="grav-eabedb46780385c8a023f0b778b8e9b3-0" src="ExtJS%20and%20ASP.NET%20MVC%203%20%20CRUD%20DataGrid%20%C2%AB%20XaaB%20%E2%80%93%20Anything%20as%20a%20Blog_files/eabedb46780385c8a023f0b778b8e9b3.jpg" class="avatar avatar-30 grav-hashed" alt="Án Bình Trọng" height="30" width="30"></a></li></ul></div></div></div>						<div class="fixed"></div>
+		</div>
+		<div class="under">
+			<span><span class="categories">Categories: </span><a href="http://myxaab.wordpress.com/category/application-development/" title="View all posts in Application Development" rel="category tag">Application Development</a></span>
+			<span><span class="tags">Tags: </span><a href="http://myxaab.wordpress.com/tag/asp-net-mvc-3/" rel="tag">ASP.NET MVC 3</a>, <a href="http://myxaab.wordpress.com/tag/datagrid/" rel="tag">DataGrid</a>, <a href="http://myxaab.wordpress.com/tag/extjs/" rel="tag">ExtJS</a></span>
+		</div>
+		<div class="fixed"></div>
+	</div>
+
+	
+<script type="text/javascript" src="ExtJS%20and%20ASP.NET%20MVC%203%20%20CRUD%20DataGrid%20%C2%AB%20XaaB%20%E2%80%93%20Anything%20as%20a%20Blog_files/comment.js"></script>
+
+
+
+<div id="comments">
+
+<div id="cmtswitcher">
+			<a id="commenttab" class="curtab" href="javascript:void(0);" onclick="MGJS.switchTab('thecomments,commentnavi', 'thetrackbacks', 'commenttab', 'curtab', 'trackbacktab', 'tab');">Comments (26)</a>
+		<a id="trackbacktab" class="tab" href="javascript:void(0);" onclick="MGJS.switchTab('thetrackbacks', 'thecomments,commentnavi', 'trackbacktab', 'curtab', 'commenttab', 'tab');">Trackbacks (1)</a>
+				<span class="addcomment"><a href="#respond">Leave a comment</a></span>
+				<span class="addtrackback"><a href="http://myxaab.wordpress.com/2011/02/20/extjs-and-asp-net-mvc-3-crud-datagrid/trackback/">Trackback</a></span>
+		<div class="fixed"></div>
+</div>
+
+<div id="commentlist">
+	<!-- comments START -->
+	<ol id="thecomments">
+		<li class="comment even thread-even depth-1 regularcomment highlander-comment" id="comment-53">
+		<div class="author">
+			<div class="pic">
+				<img id="grav-9ee71863ca3c14fa438a606419766f6a-0" alt="" src="ExtJS%20and%20ASP.NET%20MVC%203%20%20CRUD%20DataGrid%20%C2%AB%20XaaB%20%E2%80%93%20Anything%20as%20a%20Blog_files/9ee71863ca3c14fa438a606419766f6a.jpg" class="avatar avatar-32 grav-hashed grav-hijack" height="32" width="32">			</div>
+			<div class="name">
+									<span id="commentauthor-53">Empanada</span>
+							</div>
+		</div>
+
+		<div class="info">
+			<div class="date">
+				March 4, 2011 at 12:35 pm					 | <a href="#comment-53">#1</a>
+			</div>
+			<div class="act">
+				<a class="comment-reply-link" href="http://myxaab.wordpress.com/2011/02/20/extjs-and-asp-net-mvc-3-crud-datagrid/?replytocom=53#respond" onclick='return addComment.moveForm("comment-53", "53", "respond", "370")'>Reply</a> | 				<a href="javascript:void(0);" onclick="MGJS_CMT.quote('commentauthor-53', 'comment-53', 'commentbody-53', 'comment');">Quote</a>
+							</div>
+			<div class="fixed"></div>
+			<div class="content">
+				
+				<div id="commentbody-53">
+					<p>Thanks for the post. Just one question, when i try to create, 
+update or delete the data parameter is always null. I am using VS 2008, 
+with MVC version 1 so presume i am missing some of the additional coding
+ you mentioned. Currently i can’t upgrade so if you could point me in 
+the right direction for this extra code i would really appreciate it.</p>
+				</div>
+			</div>
+		</div>
+		<div class="fixed"></div>
+	</li>
+<ul class="children">
+	<li class="comment byuser comment-author-wsw1jaya bypostauthor odd alt depth-2 admincomment highlander-comment" id="comment-54">
+		<div class="author">
+			<div class="pic">
+				<img id="grav-24f623b52e3d6e71e1599b86e0c5f512-0" alt="" src="ExtJS%20and%20ASP.NET%20MVC%203%20%20CRUD%20DataGrid%20%C2%AB%20XaaB%20%E2%80%93%20Anything%20as%20a%20Blog_files/24f623b52e3d6e71e1599b86e0c5f512.jpg" class="avatar avatar-32 grav-hashed grav-hijack" height="32" width="32">			</div>
+			<div class="name">
+									<span id="commentauthor-54">wowi</span>
+							</div>
+		</div>
+
+		<div class="info">
+			<div class="date">
+				March 5, 2011 at 3:28 am					 | <a href="#comment-54">#2</a>
+			</div>
+			<div class="act">
+				<a class="comment-reply-link" href="http://myxaab.wordpress.com/2011/02/20/extjs-and-asp-net-mvc-3-crud-datagrid/?replytocom=54#respond" onclick='return addComment.moveForm("comment-54", "54", "respond", "370")'>Reply</a> | 				<a href="javascript:void(0);" onclick="MGJS_CMT.quote('commentauthor-54', 'comment-54', 'commentbody-54', 'comment');">Quote</a>
+							</div>
+			<div class="fixed"></div>
+			<div class="content">
+				
+				<div id="commentbody-54">
+					<p>Hi.. I’m afraid that there is no easy way out here for v1.0. in v3.0 the JSON handler is build-in.<br>
+I have 2 references below, </p>
+<p>1. To use Ext.Direct. <a href="http://code.google.com/p/ext-direct-mvc/" rel="nofollow">http://code.google.com/p/ext-direct-mvc/</a>. Looks like this is a cleaner alternative.</p>
+<p>2. Code own JSON serializer. You can refer to example from the MVC team at <a href="http://aspnet.codeplex.com/releases/view/24471" rel="nofollow">http://aspnet.codeplex.com/releases/view/24471</a> – Look for “Rest for ASP.NET MVC” under Other Available Downloads.<br>
+Look for the the “Product” solutions, you will see a project call EdmSample. There are 2 source files you can start with<br>
+a. Global.asax.cs – you will see the custom format manager, FormatManager.Current = new MyFormatManager();<br>
+b. Site.Master – you will the menu where it links to the sample using xml and json.<br>
+This example looks experimental</p>
+<p>I hope that help. Do let me know if it works for your project.</p>
+				</div>
+			</div>
+		</div>
+		<div class="fixed"></div>
+	</li>
+
+</ul>
+
+	<li class="comment even thread-odd thread-alt depth-1 regularcomment highlander-comment" id="comment-64">
+		<div class="author">
+			<div class="pic">
+				<img id="grav-795f14ea5e619167ed546f7fd8d7bae1-0" alt="" src="ExtJS%20and%20ASP.NET%20MVC%203%20%20CRUD%20DataGrid%20%C2%AB%20XaaB%20%E2%80%93%20Anything%20as%20a%20Blog_files/795f14ea5e619167ed546f7fd8d7bae1.jpg" class="avatar avatar-32 grav-hashed grav-hijack" height="32" width="32">			</div>
+			<div class="name">
+									<a id="commentauthor-64" class="url" href="http://peterkellner.net/" rel="external nofollow">Peter Kellner</a>
+							</div>
+		</div>
+
+		<div class="info">
+			<div class="date">
+				March 14, 2011 at 4:31 am					 | <a href="#comment-64">#3</a>
+			</div>
+			<div class="act">
+				<a class="comment-reply-link" href="http://myxaab.wordpress.com/2011/02/20/extjs-and-asp-net-mvc-3-crud-datagrid/?replytocom=64#respond" onclick='return addComment.moveForm("comment-64", "64", "respond", "370")'>Reply</a> | 				<a href="javascript:void(0);" onclick="MGJS_CMT.quote('commentauthor-64', 'comment-64', 'commentbody-64', 'comment');">Quote</a>
+							</div>
+			<div class="fixed"></div>
+			<div class="content">
+				
+				<div id="commentbody-64">
+					<p>Thanks for putting this up here.  Very clear and easy to follow and it’s always nice to have the source project.</p>
+				</div>
+			</div>
+		</div>
+		<div class="fixed"></div>
+	</li>
+
+	<li class="comment odd alt thread-even depth-1 regularcomment highlander-comment" id="comment-74">
+		<div class="author">
+			<div class="pic">
+				<img id="grav-d7b857dbda62bd441a8f8a88aca1e008-0" alt="" src="ExtJS%20and%20ASP.NET%20MVC%203%20%20CRUD%20DataGrid%20%C2%AB%20XaaB%20%E2%80%93%20Anything%20as%20a%20Blog_files/d7b857dbda62bd441a8f8a88aca1e008.jpg" class="avatar avatar-32 grav-hashed grav-hijack" height="32" width="32">			</div>
+			<div class="name">
+									<span id="commentauthor-74">spsp</span>
+							</div>
+		</div>
+
+		<div class="info">
+			<div class="date">
+				April 1, 2011 at 2:42 am					 | <a href="#comment-74">#4</a>
+			</div>
+			<div class="act">
+				<a class="comment-reply-link" href="http://myxaab.wordpress.com/2011/02/20/extjs-and-asp-net-mvc-3-crud-datagrid/?replytocom=74#respond" onclick='return addComment.moveForm("comment-74", "74", "respond", "370")'>Reply</a> | 				<a href="javascript:void(0);" onclick="MGJS_CMT.quote('commentauthor-74', 'comment-74', 'commentbody-74', 'comment');">Quote</a>
+							</div>
+			<div class="fixed"></div>
+			<div class="content">
+				
+				<div id="commentbody-74">
+					<p>Thank you for sharing the source code, its helped. I have 
+problem in ‘boolean’,'date’,'number’ types in “Contact” entity 
+propertys, read and write Json data. ‘date’ can write, but cant read. 
+‘boolean’ and ‘number’ cant write and read. Why? How can I do to make 
+this work?</p>
+				</div>
+			</div>
+		</div>
+		<div class="fixed"></div>
+	</li>
+<ul class="children">
+	<li class="comment even depth-2 regularcomment highlander-comment" id="comment-77">
+		<div class="author">
+			<div class="pic">
+				<img id="grav-69cbb7dac1ab52b9624ba9f8a7877e9c-0" alt="" src="ExtJS%20and%20ASP.NET%20MVC%203%20%20CRUD%20DataGrid%20%C2%AB%20XaaB%20%E2%80%93%20Anything%20as%20a%20Blog_files/69cbb7dac1ab52b9624ba9f8a7877e9c.jpg" class="avatar avatar-32 grav-hashed grav-hijack" height="32" width="32">			</div>
+			<div class="name">
+									<span id="commentauthor-77">Elluis Invento</span>
+							</div>
+		</div>
+
+		<div class="info">
+			<div class="date">
+				April 1, 2011 at 12:15 pm					 | <a href="#comment-77">#5</a>
+			</div>
+			<div class="act">
+				<a class="comment-reply-link" href="http://myxaab.wordpress.com/2011/02/20/extjs-and-asp-net-mvc-3-crud-datagrid/?replytocom=77#respond" onclick='return addComment.moveForm("comment-77", "77", "respond", "370")'>Reply</a> | 				<a href="javascript:void(0);" onclick="MGJS_CMT.quote('commentauthor-77', 'comment-77', 'commentbody-77', 'comment');">Quote</a>
+							</div>
+			<div class="fixed"></div>
+			<div class="content">
+				
+				<div id="commentbody-77">
+					<p>Hi spsp,</p>
+<p>Best is to convert the date into a format, as it goes down (json), 
+that matches your format for the date data model on ExtJS 4. You won’t 
+have a problem with reading and writing.</p>
+<p>Also, for your boolean and number, make sure to define its data type on the data model.</p>
+				</div>
+			</div>
+		</div>
+		<div class="fixed"></div>
+	</li>
+
+	<li class="comment byuser comment-author-wsw1jaya bypostauthor odd alt depth-2 admincomment highlander-comment" id="comment-78">
+		<div class="author">
+			<div class="pic">
+				<img id="grav-24f623b52e3d6e71e1599b86e0c5f512-1" alt="" src="ExtJS%20and%20ASP.NET%20MVC%203%20%20CRUD%20DataGrid%20%C2%AB%20XaaB%20%E2%80%93%20Anything%20as%20a%20Blog_files/24f623b52e3d6e71e1599b86e0c5f512.jpg" class="avatar avatar-32 grav-hashed grav-hijack" height="32" width="32">			</div>
+			<div class="name">
+									<span id="commentauthor-78">wowi</span>
+							</div>
+		</div>
+
+		<div class="info">
+			<div class="date">
+				April 1, 2011 at 5:54 pm					 | <a href="#comment-78">#6</a>
+			</div>
+			<div class="act">
+				<a class="comment-reply-link" href="http://myxaab.wordpress.com/2011/02/20/extjs-and-asp-net-mvc-3-crud-datagrid/?replytocom=78#respond" onclick='return addComment.moveForm("comment-78", "78", "respond", "370")'>Reply</a> | 				<a href="javascript:void(0);" onclick="MGJS_CMT.quote('commentauthor-78', 'comment-78', 'commentbody-78', 'comment');">Quote</a>
+							</div>
+			<div class="fixed"></div>
+			<div class="content">
+				
+				<div id="commentbody-78">
+					<p>Hi spsp,<br>
+In ExtJS Date there is a special format for Microsoft AJAX serialized dates. It is “M$” and used as part of the Ext.data.Record.<br>
+<code>{<br>
+     name: 'BirthDate',<br>
+     type: 'date',<br>
+     dateFormat: 'M$'<br>
+},</code><br>
+I updated the project file and include boolean &amp; int type in the data model. You can download from <a href="https://github.com/wswijaya/ExtJsDataGridMvcApp" rel="nofollow">https://github.com/wswijaya/ExtJsDataGridMvcApp</a>. Changes are in the model, controller and contact/Index.aspx.</p>
+<p>Btw, it seems there is a problem with createContextualFragment in 
+IE9. I have not seen the update for the community version but I found 
+the temporary workaround below. It is only applicable if you are using 
+the HTML 5, if not remove the Html5 Doctype and no change required. For 
+html 5, without the code, you will see error when you click the calendar
+ button.<br>
+<code>    if ((typeof Range !== "undefined") &amp;&amp; !Range.prototype.createContextualFragment) {<br>
+        Range.prototype.createContextualFragment = function (html) {<br>
+            var doc = window.document;<br>
+            var container = doc.createElement("div");<br>
+            container.innerHTML = html;<br>
+            var frag = doc.createDocumentFragment(), n;<br>
+            while ((n = container.firstChild)) {<br>
+                frag.appendChild(n);<br>
+            }<br>
+            return frag;<br>
+        };<br>
+    }</code><br>
+Hope that help….</p>
+				</div>
+			</div>
+		</div>
+		<div class="fixed"></div>
+	</li>
+
+</ul>
+
+	<li class="comment even thread-odd thread-alt depth-1 regularcomment highlander-comment" id="comment-75">
+		<div class="author">
+			<div class="pic">
+				<img id="grav-795f14ea5e619167ed546f7fd8d7bae1-1" alt="" src="ExtJS%20and%20ASP.NET%20MVC%203%20%20CRUD%20DataGrid%20%C2%AB%20XaaB%20%E2%80%93%20Anything%20as%20a%20Blog_files/795f14ea5e619167ed546f7fd8d7bae1.jpg" class="avatar avatar-32 grav-hashed grav-hijack" height="32" width="32">			</div>
+			<div class="name">
+									<a id="commentauthor-75" class="url" href="http://peterkellner.net/" rel="external nofollow">Peter Kellner</a>
+							</div>
+		</div>
+
+		<div class="info">
+			<div class="date">
+				April 1, 2011 at 4:50 am					 | <a href="#comment-75">#7</a>
+			</div>
+			<div class="act">
+				<a class="comment-reply-link" href="http://myxaab.wordpress.com/2011/02/20/extjs-and-asp-net-mvc-3-crud-datagrid/?replytocom=75#respond" onclick='return addComment.moveForm("comment-75", "75", "respond", "370")'>Reply</a> | 				<a href="javascript:void(0);" onclick="MGJS_CMT.quote('commentauthor-75', 'comment-75', 'commentbody-75', 'comment');">Quote</a>
+							</div>
+			<div class="fixed"></div>
+			<div class="content">
+				
+				<div id="commentbody-75">
+					<p>Hi spsp,</p>
+<p>I did a similar thing with extjs4 and have date conversion working to mvc3 if you want to check it out.</p>
+<p><a href="http://peterkellner.net/2011/03/30/devconnections-orlando-build-advanced-web-uis-with-a-rich-javascript-ui-language/" rel="nofollow">http://peterkellner.net/2011/03/30/devconnections-orlando-build-advanced-web-uis-with-a-rich-javascript-ui-language/</a></p>
+<p> var dateConvert = function (val, record) {        if 
+(val.split(‘(‘).length == 2) {            var dateObj = new 
+Date(parseInt(val.substr(6)));            return 
+Ext.util.Date.format(dateObj, ‘m/d/Y’);        } else {            
+return val;        }</p>
+				</div>
+			</div>
+		</div>
+		<div class="fixed"></div>
+	</li>
+
+	<li class="comment odd alt thread-even depth-1 regularcomment highlander-comment" id="comment-76">
+		<div class="author">
+			<div class="pic">
+				<img id="grav-d7b857dbda62bd441a8f8a88aca1e008-1" alt="" src="ExtJS%20and%20ASP.NET%20MVC%203%20%20CRUD%20DataGrid%20%C2%AB%20XaaB%20%E2%80%93%20Anything%20as%20a%20Blog_files/d7b857dbda62bd441a8f8a88aca1e008.jpg" class="avatar avatar-32 grav-hashed grav-hijack" height="32" width="32">			</div>
+			<div class="name">
+									<span id="commentauthor-76">spsp</span>
+							</div>
+		</div>
+
+		<div class="info">
+			<div class="date">
+				April 1, 2011 at 5:49 am					 | <a href="#comment-76">#8</a>
+			</div>
+			<div class="act">
+				<a class="comment-reply-link" href="http://myxaab.wordpress.com/2011/02/20/extjs-and-asp-net-mvc-3-crud-datagrid/?replytocom=76#respond" onclick='return addComment.moveForm("comment-76", "76", "respond", "370")'>Reply</a> | 				<a href="javascript:void(0);" onclick="MGJS_CMT.quote('commentauthor-76', 'comment-76', 'commentbody-76', 'comment');">Quote</a>
+							</div>
+			<div class="fixed"></div>
+			<div class="content">
+				
+				<div id="commentbody-76">
+					<p>Hi Peter Kellner, thank you for offering me the result. By 
+finding the relating source I can make this work now, because we will 
+use it soon.</p>
+				</div>
+			</div>
+		</div>
+		<div class="fixed"></div>
+	</li>
+
+	<li class="comment even thread-odd thread-alt depth-1 regularcomment highlander-comment" id="comment-99">
+		<div class="author">
+			<div class="pic">
+				<img id="grav-d7b857dbda62bd441a8f8a88aca1e008-2" alt="" src="ExtJS%20and%20ASP.NET%20MVC%203%20%20CRUD%20DataGrid%20%C2%AB%20XaaB%20%E2%80%93%20Anything%20as%20a%20Blog_files/d7b857dbda62bd441a8f8a88aca1e008.jpg" class="avatar avatar-32 grav-hashed grav-hijack" height="32" width="32">			</div>
+			<div class="name">
+									<span id="commentauthor-99">spsp</span>
+							</div>
+		</div>
+
+		<div class="info">
+			<div class="date">
+				April 12, 2011 at 8:09 am					 | <a href="#comment-99">#9</a>
+			</div>
+			<div class="act">
+				<a class="comment-reply-link" href="http://myxaab.wordpress.com/2011/02/20/extjs-and-asp-net-mvc-3-crud-datagrid/?replytocom=99#respond" onclick='return addComment.moveForm("comment-99", "99", "respond", "370")'>Reply</a> | 				<a href="javascript:void(0);" onclick="MGJS_CMT.quote('commentauthor-99', 'comment-99', 'commentbody-99', 'comment');">Quote</a>
+							</div>
+			<div class="fixed"></div>
+			<div class="content">
+				
+				<div id="commentbody-99">
+					<p>How can I write Load Method to get params pass from js like below.<br>
+       store.load([params:{start:0,limit:5}]);<br>
+Please help me. Thank you!</p>
+				</div>
+			</div>
+		</div>
+		<div class="fixed"></div>
+	</li>
+<ul class="children">
+	<li class="comment byuser comment-author-wsw1jaya bypostauthor odd alt depth-2 admincomment highlander-comment" id="comment-100">
+		<div class="author">
+			<div class="pic">
+				<img id="grav-24f623b52e3d6e71e1599b86e0c5f512-2" alt="" src="ExtJS%20and%20ASP.NET%20MVC%203%20%20CRUD%20DataGrid%20%C2%AB%20XaaB%20%E2%80%93%20Anything%20as%20a%20Blog_files/24f623b52e3d6e71e1599b86e0c5f512.jpg" class="avatar avatar-32 grav-hashed grav-hijack" height="32" width="32">			</div>
+			<div class="name">
+									<span id="commentauthor-100">wowi</span>
+							</div>
+		</div>
+
+		<div class="info">
+			<div class="date">
+				April 12, 2011 at 1:36 pm					 | <a href="#comment-100">#10</a>
+			</div>
+			<div class="act">
+				<a class="comment-reply-link" href="http://myxaab.wordpress.com/2011/02/20/extjs-and-asp-net-mvc-3-crud-datagrid/?replytocom=100#respond" onclick='return addComment.moveForm("comment-100", "100", "respond", "370")'>Reply</a> | 				<a href="javascript:void(0);" onclick="MGJS_CMT.quote('commentauthor-100', 'comment-100', 'commentbody-100', 'comment');">Quote</a>
+							</div>
+			<div class="fixed"></div>
+			<div class="content">
+				
+				<div id="commentbody-100">
+					<p>hi spsp,<br>
+in my example i set the header as json thus when you pass the params in the load the server-side unable to convert properly.<br>
+if the purpose is just to pass the value then do JSON encode as shown below.<br>
+<code>store.load({ params: Ext.util.JSON.encode({ start: 0, limit: 25 }) });</code></p>
+<p>on the server side modify the load to accept the parameters<br>
+<code><br>
+        public JsonResult Load(int? start, int? limit)<br>
+        {<br>
+            if (start.HasValue &amp;&amp; limit.HasValue) // do something<br>
+            ...<br>
+</code></p>
+<p>If you intend to use the pagingtoolbar. I think you need to customize
+ the paging toolbar to pass json also. Look the doLoad() and modified it
+ as below.<br>
+I haven’t think of another simpler way.</p>
+<p><code>    doLoad: function (start) {<br>
+        var o = {}, pn = this.getParams();<br>
+        o[pn.start] = start;<br>
+        o[pn.limit] = this.pageSize;<br>
+        if (this.fireEvent('beforechange', this, o) !== false) {<br>
+            this.store.load({ params: Ext.util.JSON.encode(o) });<br>
+        }<br>
+    },</code></p>
+<p>hope that helps.</p>
+				</div>
+			</div>
+		</div>
+		<div class="fixed"></div>
+	</li>
+<ul class="children">
+	<li class="comment even depth-3 regularcomment highlander-comment" id="comment-101">
+		<div class="author">
+			<div class="pic">
+				<img id="grav-d7b857dbda62bd441a8f8a88aca1e008-3" alt="" src="ExtJS%20and%20ASP.NET%20MVC%203%20%20CRUD%20DataGrid%20%C2%AB%20XaaB%20%E2%80%93%20Anything%20as%20a%20Blog_files/d7b857dbda62bd441a8f8a88aca1e008.jpg" class="avatar avatar-32 grav-hashed grav-hijack" height="32" width="32">			</div>
+			<div class="name">
+									<span id="commentauthor-101">spsp</span>
+							</div>
+		</div>
+
+		<div class="info">
+			<div class="date">
+				April 13, 2011 at 5:04 am					 | <a href="#comment-101">#11</a>
+			</div>
+			<div class="act">
+								<a href="javascript:void(0);" onclick="MGJS_CMT.quote('commentauthor-101', 'comment-101', 'commentbody-101', 'comment');">Quote</a>
+							</div>
+			<div class="fixed"></div>
+			<div class="content">
+				
+				<div id="commentbody-101">
+					<p>Thank you for your help! I do things you said above, and pass 
+real total, then it can move to next page now. But the cursor which in 
+PagingToolbar didnt change to 0+pageSize, because of in onLoad function 
+o.params isn’t have start parameter, maybe this is caused by encoding 
+params in store.load(params:…)<br>
+what can I do about this?<br>
+Quote:<br>
+onLoad : function(store, r, o){<br>
+        if(!this.rendered){<br>
+            this.dsLoaded = [store, r, o];<br>
+            return;<br>
+        }<br>
+        var p = this.getParams();<br>
+        this.cursor = (o.params &amp;&amp; o.params[p.start]) ? o.params[p.start] : 0;</p>
+				</div>
+			</div>
+		</div>
+		<div class="fixed"></div>
+	</li>
+
+	<li class="comment byuser comment-author-wsw1jaya bypostauthor odd alt depth-3 admincomment highlander-comment" id="comment-103">
+		<div class="author">
+			<div class="pic">
+				<img id="grav-24f623b52e3d6e71e1599b86e0c5f512-3" alt="" src="ExtJS%20and%20ASP.NET%20MVC%203%20%20CRUD%20DataGrid%20%C2%AB%20XaaB%20%E2%80%93%20Anything%20as%20a%20Blog_files/24f623b52e3d6e71e1599b86e0c5f512.jpg" class="avatar avatar-32 grav-hashed grav-hijack" height="32" width="32">			</div>
+			<div class="name">
+									<span id="commentauthor-103">wowi</span>
+							</div>
+		</div>
+
+		<div class="info">
+			<div class="date">
+				April 13, 2011 at 11:32 am					 | <a href="#comment-103">#12</a>
+			</div>
+			<div class="act">
+								<a href="javascript:void(0);" onclick="MGJS_CMT.quote('commentauthor-103', 'comment-103', 'commentbody-103', 'comment');">Quote</a>
+							</div>
+			<div class="fixed"></div>
+			<div class="content">
+				
+				<div id="commentbody-103">
+					<p>i missed that out. look at the doLoad() in <a href="https://github.com/wswijaya/ExtJsDataGridMvcApp/blob/master/ExtJsDataGridMvcApp/Lib/ext-3.3.1/examples/ux/JsonPagingToolbar.js" rel="nofollow">https://github.com/wswijaya/ExtJsDataGridMvcApp/blob/master/ExtJsDataGridMvcApp/Lib/ext-3.3.1/examples/ux/JsonPagingToolbar.js</a></p>
+				</div>
+			</div>
+		</div>
+		<div class="fixed"></div>
+	</li>
+
+</ul>
+
+</ul>
+
+	<li class="comment even thread-even depth-1 regularcomment highlander-comment" id="comment-104">
+		<div class="author">
+			<div class="pic">
+				<img id="grav-d7b857dbda62bd441a8f8a88aca1e008-4" alt="" src="ExtJS%20and%20ASP.NET%20MVC%203%20%20CRUD%20DataGrid%20%C2%AB%20XaaB%20%E2%80%93%20Anything%20as%20a%20Blog_files/d7b857dbda62bd441a8f8a88aca1e008.jpg" class="avatar avatar-32 grav-hashed grav-hijack" height="32" width="32">			</div>
+			<div class="name">
+									<span id="commentauthor-104">spsp</span>
+							</div>
+		</div>
+
+		<div class="info">
+			<div class="date">
+				April 14, 2011 at 11:58 am					 | <a href="#comment-104">#13</a>
+			</div>
+			<div class="act">
+				<a class="comment-reply-link" href="http://myxaab.wordpress.com/2011/02/20/extjs-and-asp-net-mvc-3-crud-datagrid/?replytocom=104#respond" onclick='return addComment.moveForm("comment-104", "104", "respond", "370")'>Reply</a> | 				<a href="javascript:void(0);" onclick="MGJS_CMT.quote('commentauthor-104', 'comment-104', 'commentbody-104', 'comment');">Quote</a>
+							</div>
+			<div class="fixed"></div>
+			<div class="content">
+				
+				<div id="commentbody-104">
+					<p>Thanks! That reallhy helped.</p>
+				</div>
+			</div>
+		</div>
+		<div class="fixed"></div>
+	</li>
+
+	<li class="comment odd alt thread-odd thread-alt depth-1 regularcomment highlander-comment" id="comment-181">
+		<div class="author">
+			<div class="pic">
+				<img id="grav-56c304f0660ba78002c4fe32f34f69be-0" alt="" src="ExtJS%20and%20ASP.NET%20MVC%203%20%20CRUD%20DataGrid%20%C2%AB%20XaaB%20%E2%80%93%20Anything%20as%20a%20Blog_files/56c304f0660ba78002c4fe32f34f69be.png" class="avatar avatar-32 grav-hashed grav-hijack" height="32" width="32">			</div>
+			<div class="name">
+									<a id="commentauthor-181" class="url" href="http://gravatar.com/mitni455" rel="external nofollow">The Mighty Horst</a>
+							</div>
+		</div>
+
+		<div class="info">
+			<div class="date">
+				August 5, 2011 at 2:48 pm					 | <a href="#comment-181">#14</a>
+			</div>
+			<div class="act">
+				<a class="comment-reply-link" href="http://myxaab.wordpress.com/2011/02/20/extjs-and-asp-net-mvc-3-crud-datagrid/?replytocom=181#respond" onclick='return addComment.moveForm("comment-181", "181", "respond", "370")'>Reply</a> | 				<a href="javascript:void(0);" onclick="MGJS_CMT.quote('commentauthor-181', 'comment-181', 'commentbody-181', 'comment');">Quote</a>
+							</div>
+			<div class="fixed"></div>
+			<div class="content">
+				
+				<div id="commentbody-181">
+					<p>Sensationally clear tute – I owe you a beer. </p>
+<p>I came across Dextop on another blog, would be interested to hear 
+your thoughts. Pretty good, my only criticism was the way the demo 
+implemented the MVC pattern</p>
+<p><a href="http://dextop.codaxy.com/showcase" rel="nofollow">http://dextop.codaxy.com/showcase</a></p>
+				</div>
+			</div>
+		</div>
+		<div class="fixed"></div>
+	</li>
+
+	<li class="comment even thread-even depth-1 regularcomment highlander-comment" id="comment-199">
+		<div class="author">
+			<div class="pic">
+				<img id="grav-ad0c5e562399a17020c80f8ccb476472-0" alt="" src="ExtJS%20and%20ASP.NET%20MVC%203%20%20CRUD%20DataGrid%20%C2%AB%20XaaB%20%E2%80%93%20Anything%20as%20a%20Blog_files/ad0c5e562399a17020c80f8ccb476472.jpg" class="avatar avatar-32 grav-hashed grav-hijack" height="32" width="32">			</div>
+			<div class="name">
+									<a id="commentauthor-199" class="url" href="http://sunplanets.com/" rel="external nofollow">joseph</a>
+							</div>
+		</div>
+
+		<div class="info">
+			<div class="date">
+				August 24, 2011 at 7:39 am					 | <a href="#comment-199">#15</a>
+			</div>
+			<div class="act">
+				<a class="comment-reply-link" href="http://myxaab.wordpress.com/2011/02/20/extjs-and-asp-net-mvc-3-crud-datagrid/?replytocom=199#respond" onclick='return addComment.moveForm("comment-199", "199", "respond", "370")'>Reply</a> | 				<a href="javascript:void(0);" onclick="MGJS_CMT.quote('commentauthor-199', 'comment-199', 'commentbody-199', 'comment');">Quote</a>
+							</div>
+			<div class="fixed"></div>
+			<div class="content">
+				
+				<div id="commentbody-199">
+					<p>xKrTa8 <a href="http://wnbuj5n0mxqpcvm27hms.biz/" rel="nofollow">http://wnbUj5n0mXqpcvm27Hms.biz</a></p>
+				</div>
+			</div>
+		</div>
+		<div class="fixed"></div>
+	</li>
+
+	<li class="comment odd alt thread-odd thread-alt depth-1 regularcomment highlander-comment" id="comment-202">
+		<div class="author">
+			<div class="pic">
+				<img id="grav-26e35b3effb143f10bab2885cf4c6bc5-0" alt="" src="ExtJS%20and%20ASP.NET%20MVC%203%20%20CRUD%20DataGrid%20%C2%AB%20XaaB%20%E2%80%93%20Anything%20as%20a%20Blog_files/26e35b3effb143f10bab2885cf4c6bc5.jpg" class="avatar avatar-32 grav-hashed grav-hijack" height="32" width="32">			</div>
+			<div class="name">
+									<span id="commentauthor-202">mark foley</span>
+							</div>
+		</div>
+
+		<div class="info">
+			<div class="date">
+				September 5, 2011 at 4:07 am					 | <a href="#comment-202">#16</a>
+			</div>
+			<div class="act">
+				<a class="comment-reply-link" href="http://myxaab.wordpress.com/2011/02/20/extjs-and-asp-net-mvc-3-crud-datagrid/?replytocom=202#respond" onclick='return addComment.moveForm("comment-202", "202", "respond", "370")'>Reply</a> | 				<a href="javascript:void(0);" onclick="MGJS_CMT.quote('commentauthor-202', 'comment-202', 'commentbody-202', 'comment');">Quote</a>
+							</div>
+			<div class="fixed"></div>
+			<div class="content">
+				
+				<div id="commentbody-202">
+					<p>Hi – this looks great.  How much of it would need to be changed 
+to make it work for ExtJS v4?  Is there an updated project .zip 
+available for that?  Thanks for your time.</p>
+				</div>
+			</div>
+		</div>
+		<div class="fixed"></div>
+	</li>
+<ul class="children">
+	<li class="comment byuser comment-author-wsw1jaya bypostauthor even depth-2 admincomment highlander-comment" id="comment-204">
+		<div class="author">
+			<div class="pic">
+				<img id="grav-24f623b52e3d6e71e1599b86e0c5f512-4" alt="" src="ExtJS%20and%20ASP.NET%20MVC%203%20%20CRUD%20DataGrid%20%C2%AB%20XaaB%20%E2%80%93%20Anything%20as%20a%20Blog_files/24f623b52e3d6e71e1599b86e0c5f512.jpg" class="avatar avatar-32 grav-hashed grav-hijack" height="32" width="32">			</div>
+			<div class="name">
+									<span id="commentauthor-204">wowi</span>
+							</div>
+		</div>
+
+		<div class="info">
+			<div class="date">
+				September 6, 2011 at 12:29 am					 | <a href="#comment-204">#17</a>
+			</div>
+			<div class="act">
+				<a class="comment-reply-link" href="http://myxaab.wordpress.com/2011/02/20/extjs-and-asp-net-mvc-3-crud-datagrid/?replytocom=204#respond" onclick='return addComment.moveForm("comment-204", "204", "respond", "370")'>Reply</a> | 				<a href="javascript:void(0);" onclick="MGJS_CMT.quote('commentauthor-204', 'comment-204', 'commentbody-204', 'comment');">Quote</a>
+							</div>
+			<div class="fixed"></div>
+			<div class="content">
+				
+				<div id="commentbody-204">
+					<p>hi, there is a bit of changes in how the object define, the data
+ model (proxy, store, model) are defined and the roweditor is now part 
+of the main API (Ext.grid.plugin.RowEditing). I haven’t updated the 
+sample yet.</p>
+				</div>
+			</div>
+		</div>
+		<div class="fixed"></div>
+	</li>
+
+</ul>
+
+	<li class="comment odd alt thread-even depth-1 regularcomment highlander-comment" id="comment-205">
+		<div class="author">
+			<div class="pic">
+				<img id="grav-26e35b3effb143f10bab2885cf4c6bc5-1" alt="" src="ExtJS%20and%20ASP.NET%20MVC%203%20%20CRUD%20DataGrid%20%C2%AB%20XaaB%20%E2%80%93%20Anything%20as%20a%20Blog_files/26e35b3effb143f10bab2885cf4c6bc5.jpg" class="avatar avatar-32 grav-hashed grav-hijack" height="32" width="32">			</div>
+			<div class="name">
+									<span id="commentauthor-205">mark foley</span>
+							</div>
+		</div>
+
+		<div class="info">
+			<div class="date">
+				September 6, 2011 at 12:44 am					 | <a href="#comment-205">#18</a>
+			</div>
+			<div class="act">
+				<a class="comment-reply-link" href="http://myxaab.wordpress.com/2011/02/20/extjs-and-asp-net-mvc-3-crud-datagrid/?replytocom=205#respond" onclick='return addComment.moveForm("comment-205", "205", "respond", "370")'>Reply</a> | 				<a href="javascript:void(0);" onclick="MGJS_CMT.quote('commentauthor-205', 'comment-205', 'commentbody-205', 'comment');">Quote</a>
+							</div>
+			<div class="fixed"></div>
+			<div class="content">
+				
+				<div id="commentbody-205">
+					<p>Thanks for the reply mate.  If you happen to update it perhaps 
+you can reply in the thread so I can grab it.  I’m in ‘framework 
+evaluation’ mode at the moment <img src="ExtJS%20and%20ASP.NET%20MVC%203%20%20CRUD%20DataGrid%20%C2%AB%20XaaB%20%E2%80%93%20Anything%20as%20a%20Blog_files/icon_smile.gif" alt=":)" class="wp-smiley"> </p>
+				</div>
+			</div>
+		</div>
+		<div class="fixed"></div>
+	</li>
+
+	<li class="comment even thread-odd thread-alt depth-1 regularcomment highlander-comment" id="comment-206">
+		<div class="author">
+			<div class="pic">
+				<img id="grav-1c9e974c08914cda5ca2e7620c4fd3b6-0" alt="" src="ExtJS%20and%20ASP.NET%20MVC%203%20%20CRUD%20DataGrid%20%C2%AB%20XaaB%20%E2%80%93%20Anything%20as%20a%20Blog_files/1c9e974c08914cda5ca2e7620c4fd3b6.jpg" class="avatar avatar-32 grav-hashed grav-hijack" height="32" width="32">			</div>
+			<div class="name">
+									<a id="commentauthor-206" class="url" href="http://www.flickr.com/people/57299634@N05" rel="external nofollow">Iwszincy</a>
+							</div>
+		</div>
+
+		<div class="info">
+			<div class="date">
+				September 8, 2011 at 2:18 pm					 | <a href="#comment-206">#19</a>
+			</div>
+			<div class="act">
+				<a class="comment-reply-link" href="http://myxaab.wordpress.com/2011/02/20/extjs-and-asp-net-mvc-3-crud-datagrid/?replytocom=206#respond" onclick='return addComment.moveForm("comment-206", "206", "respond", "370")'>Reply</a> | 				<a href="javascript:void(0);" onclick="MGJS_CMT.quote('commentauthor-206', 'comment-206', 'commentbody-206', 'comment');">Quote</a>
+							</div>
+			<div class="fixed"></div>
+			<div class="content">
+				
+				<div id="commentbody-206">
+					<p>How long have you lived here? <a href="http://www.flickr.com/people/57302748@N05" rel="nofollow">cp fans club<br>
+</a>  8-P</p>
+				</div>
+			</div>
+		</div>
+		<div class="fixed"></div>
+	</li>
+
+	<li class="comment odd alt thread-even depth-1 regularcomment highlander-comment" id="comment-208">
+		<div class="author">
+			<div class="pic">
+				<img id="grav-1c9e974c08914cda5ca2e7620c4fd3b6-1" alt="" src="ExtJS%20and%20ASP.NET%20MVC%203%20%20CRUD%20DataGrid%20%C2%AB%20XaaB%20%E2%80%93%20Anything%20as%20a%20Blog_files/1c9e974c08914cda5ca2e7620c4fd3b6.jpg" class="avatar avatar-32 grav-hashed grav-hijack" height="32" width="32">			</div>
+			<div class="name">
+									<a id="commentauthor-208" class="url" href="http://www.ted.com/profiles/895339" rel="external nofollow">Kgehsnpm</a>
+							</div>
+		</div>
+
+		<div class="info">
+			<div class="date">
+				September 17, 2011 at 12:46 am					 | <a href="#comment-208">#20</a>
+			</div>
+			<div class="act">
+				<a class="comment-reply-link" href="http://myxaab.wordpress.com/2011/02/20/extjs-and-asp-net-mvc-3-crud-datagrid/?replytocom=208#respond" onclick='return addComment.moveForm("comment-208", "208", "respond", "370")'>Reply</a> | 				<a href="javascript:void(0);" onclick="MGJS_CMT.quote('commentauthor-208', 'comment-208', 'commentbody-208', 'comment');">Quote</a>
+							</div>
+			<div class="fixed"></div>
+			<div class="content">
+				
+				<div id="commentbody-208">
+					<p>A law firm <a href="http://www.ted.com/profiles/895331" rel="nofollow">Lesbian Model Playboy<br>
+</a>  270082</p>
+				</div>
+			</div>
+		</div>
+		<div class="fixed"></div>
+	</li>
+
+	<li class="comment even thread-odd thread-alt depth-1 regularcomment highlander-comment" id="comment-213">
+		<div class="author">
+			<div class="pic">
+				<img id="grav-4e83ebd61abb269a9708a6c1a7f513c6-0" alt="" src="ExtJS%20and%20ASP.NET%20MVC%203%20%20CRUD%20DataGrid%20%C2%AB%20XaaB%20%E2%80%93%20Anything%20as%20a%20Blog_files/4e83ebd61abb269a9708a6c1a7f513c6.jpg" class="avatar avatar-32 grav-hashed grav-hijack" height="32" width="32">			</div>
+			<div class="name">
+									<a id="commentauthor-213" class="url" href="http://thebestdietforyou.com/" rel="external nofollow">What is the Best Diet for YOU?</a>
+							</div>
+		</div>
+
+		<div class="info">
+			<div class="date">
+				September 20, 2011 at 8:21 am					 | <a href="#comment-213">#21</a>
+			</div>
+			<div class="act">
+				<a class="comment-reply-link" href="http://myxaab.wordpress.com/2011/02/20/extjs-and-asp-net-mvc-3-crud-datagrid/?replytocom=213#respond" onclick='return addComment.moveForm("comment-213", "213", "respond", "370")'>Reply</a> | 				<a href="javascript:void(0);" onclick="MGJS_CMT.quote('commentauthor-213', 'comment-213', 'commentbody-213', 'comment');">Quote</a>
+							</div>
+			<div class="fixed"></div>
+			<div class="content">
+				
+				<div id="commentbody-213">
+					<p>Hi there, just became aware of your weblog through Google, and 
+found that it’s really informative. I?m going to watch out for brussels.
+ I?ll be grateful in case you proceed this in future. Lots of other 
+folks will probably be benefited from your writing. Cheers!</p>
+				</div>
+			</div>
+		</div>
+		<div class="fixed"></div>
+	</li>
+
+	<li class="comment odd alt thread-even depth-1 regularcomment highlander-comment" id="comment-219">
+		<div class="author">
+			<div class="pic">
+				<img id="grav-1c9e974c08914cda5ca2e7620c4fd3b6-2" alt="" src="ExtJS%20and%20ASP.NET%20MVC%203%20%20CRUD%20DataGrid%20%C2%AB%20XaaB%20%E2%80%93%20Anything%20as%20a%20Blog_files/1c9e974c08914cda5ca2e7620c4fd3b6.jpg" class="avatar avatar-32 grav-hashed grav-hijack" height="32" width="32">			</div>
+			<div class="name">
+									<a id="commentauthor-219" class="url" href="http://www.collegehumor.com/user/6477901" rel="external nofollow">Qshpzswb</a>
+							</div>
+		</div>
+
+		<div class="info">
+			<div class="date">
+				September 28, 2011 at 12:57 pm					 | <a href="#comment-219">#22</a>
+			</div>
+			<div class="act">
+				<a class="comment-reply-link" href="http://myxaab.wordpress.com/2011/02/20/extjs-and-asp-net-mvc-3-crud-datagrid/?replytocom=219#respond" onclick='return addComment.moveForm("comment-219", "219", "respond", "370")'>Reply</a> | 				<a href="javascript:void(0);" onclick="MGJS_CMT.quote('commentauthor-219', 'comment-219', 'commentbody-219', 'comment');">Quote</a>
+							</div>
+			<div class="fixed"></div>
+			<div class="content">
+				
+				<div id="commentbody-219">
+					<p>Very funny pictures <a href="http://www.collegehumor.com/user/6477901" rel="nofollow">italian lolita kid models</a>  =]]]</p>
+				</div>
+			</div>
+		</div>
+		<div class="fixed"></div>
+	</li>
+
+	<li class="comment even thread-odd thread-alt depth-1 regularcomment highlander-comment" id="comment-262">
+		<div class="author">
+			<div class="pic">
+				<img id="grav-6e01c26ac7d6f79c8217117f0000333b-0" alt="" src="ExtJS%20and%20ASP.NET%20MVC%203%20%20CRUD%20DataGrid%20%C2%AB%20XaaB%20%E2%80%93%20Anything%20as%20a%20Blog_files/6e01c26ac7d6f79c8217117f0000333b.jpg" class="avatar avatar-32 grav-hashed grav-hijack" height="32" width="32">			</div>
+			<div class="name">
+									<span id="commentauthor-262">Mohit</span>
+							</div>
+		</div>
+
+		<div class="info">
+			<div class="date">
+				February 3, 2012 at 2:35 am					 | <a href="#comment-262">#23</a>
+			</div>
+			<div class="act">
+				<a class="comment-reply-link" href="http://myxaab.wordpress.com/2011/02/20/extjs-and-asp-net-mvc-3-crud-datagrid/?replytocom=262#respond" onclick='return addComment.moveForm("comment-262", "262", "respond", "370")'>Reply</a> | 				<a href="javascript:void(0);" onclick="MGJS_CMT.quote('commentauthor-262', 'comment-262', 'commentbody-262', 'comment');">Quote</a>
+							</div>
+			<div class="fixed"></div>
+			<div class="content">
+				
+				<div id="commentbody-262">
+					<p>This is very good article. But can you please tell me how to 
+implement paging in it. I am new to ext JS so please guide me how to 
+implement paging in this sample</p>
+				</div>
+			</div>
+		</div>
+		<div class="fixed"></div>
+	</li>
+
+	<li class="comment odd alt thread-even depth-1 regularcomment highlander-comment" id="comment-268">
+		<div class="author">
+			<div class="pic">
+				<img id="grav-41098c7d32ab59bbc904707cb0806abb-0" alt="" src="ExtJS%20and%20ASP.NET%20MVC%203%20%20CRUD%20DataGrid%20%C2%AB%20XaaB%20%E2%80%93%20Anything%20as%20a%20Blog_files/41098c7d32ab59bbc904707cb0806abb.jpg" class="avatar avatar-32 grav-hashed grav-hijack" height="32" width="32">			</div>
+			<div class="name">
+									<span id="commentauthor-268">AlexV</span>
+							</div>
+		</div>
+
+		<div class="info">
+			<div class="date">
+				March 4, 2012 at 10:11 pm					 | <a href="#comment-268">#24</a>
+			</div>
+			<div class="act">
+				<a class="comment-reply-link" href="http://myxaab.wordpress.com/2011/02/20/extjs-and-asp-net-mvc-3-crud-datagrid/?replytocom=268#respond" onclick='return addComment.moveForm("comment-268", "268", "respond", "370")'>Reply</a> | 				<a href="javascript:void(0);" onclick="MGJS_CMT.quote('commentauthor-268', 'comment-268', 'commentbody-268', 'comment');">Quote</a>
+							</div>
+			<div class="fixed"></div>
+			<div class="content">
+				
+				<div id="commentbody-268">
+					<p>Hi very good example!! Does anyone have a EXTJS 4 MVC + ASP.NET 
+MVC 3.0 sample application. I have a project that will be done using MVC
+ on both sides (client and server) and would like to see an example.</p>
+<p>Thanks a lot!</p>
+				</div>
+			</div>
+		</div>
+		<div class="fixed"></div>
+	</li>
+<ul class="children">
+	<li class="comment even depth-2 regularcomment highlander-comment" id="comment-269">
+		<div class="author">
+			<div class="pic">
+				<img id="grav-795f14ea5e619167ed546f7fd8d7bae1-2" alt="" src="ExtJS%20and%20ASP.NET%20MVC%203%20%20CRUD%20DataGrid%20%C2%AB%20XaaB%20%E2%80%93%20Anything%20as%20a%20Blog_files/795f14ea5e619167ed546f7fd8d7bae1.jpg" class="avatar avatar-32 grav-hashed grav-hijack" height="32" width="32">			</div>
+			<div class="name">
+									<a id="commentauthor-269" class="url" href="http://gravatar.com/pkellner" rel="external nofollow">pkellner</a>
+							</div>
+		</div>
+
+		<div class="info">
+			<div class="date">
+				March 5, 2012 at 1:26 am					 | <a href="#comment-269">#25</a>
+			</div>
+			<div class="act">
+				<a class="comment-reply-link" href="http://myxaab.wordpress.com/2011/02/20/extjs-and-asp-net-mvc-3-crud-datagrid/?replytocom=269#respond" onclick='return addComment.moveForm("comment-269", "269", "respond", "370")'>Reply</a> | 				<a href="javascript:void(0);" onclick="MGJS_CMT.quote('commentauthor-269', 'comment-269', 'commentbody-269', 'comment');">Quote</a>
+							</div>
+			<div class="fixed"></div>
+			<div class="content">
+				
+				<div id="commentbody-269">
+					<p>I posted an example of using MVC3 with ExtJS4.  a very simple example.  Hope this helps.<br>
+<a href="http://peterkellner.net/2011/11/04/building-an-senchas-extjs-4-0-mvc-application-with-microsofts-asp-net-mvc3-series-basics/" rel="nofollow">http://peterkellner.net/2011/11/04/building-an-senchas-extjs-4-0-mvc-application-with-microsofts-asp-net-mvc3-series-basics/</a></p>
+				</div>
+			</div>
+		</div>
+		<div class="fixed"></div>
+	</li>
+
+</ul>
+
+	<li class="comment odd alt thread-odd thread-alt depth-1 regularcomment highlander-comment" id="comment-273">
+		<div class="author">
+			<div class="pic">
+				<img id="grav-1c9e974c08914cda5ca2e7620c4fd3b6-3" alt="" src="ExtJS%20and%20ASP.NET%20MVC%203%20%20CRUD%20DataGrid%20%C2%AB%20XaaB%20%E2%80%93%20Anything%20as%20a%20Blog_files/1c9e974c08914cda5ca2e7620c4fd3b6.jpg" class="avatar avatar-32 grav-hashed grav-hijack" height="32" width="32">			</div>
+			<div class="name">
+									<a id="commentauthor-273" class="url" href="http://oresuuesej.de.tl/" rel="external nofollow">Fozurjka</a>
+							</div>
+		</div>
+
+		<div class="info">
+			<div class="date">
+				May 3, 2012 at 9:28 am					 | <a href="#comment-273">#26</a>
+			</div>
+			<div class="act">
+				<a class="comment-reply-link" href="http://myxaab.wordpress.com/2011/02/20/extjs-and-asp-net-mvc-3-crud-datagrid/?replytocom=273#respond" onclick='return addComment.moveForm("comment-273", "273", "respond", "370")'>Reply</a> | 				<a href="javascript:void(0);" onclick="MGJS_CMT.quote('commentauthor-273', 'comment-273', 'commentbody-273', 'comment');">Quote</a>
+							</div>
+			<div class="fixed"></div>
+			<div class="content">
+				
+				<div id="commentbody-273">
+					<p>What’s the exchange rate for euros? <a href="http://gulunisuot.de.tl/" rel="nofollow">http://gulunisuot.de.tl</a>
+ bbs pedophilia  THIS VIDEO IS OVERRATED THE CHICK IS CUTE NICE BODY AND
+ NEEDS TRAINING LEX STEELE SHOULD HAVE DONE ANOTHER VIDEO A WASTE OF 
+TALENT AND TIME………………</p>
+				</div>
+			</div>
+		</div>
+		<div class="fixed"></div>
+	</li>
+
+	</ol>
+	<!-- comments END -->
+
+
+	<!-- trackbacks START -->
+			<ol id="thetrackbacks">
+												<li class="trackback">
+						<div class="date">
+							October 22, 2011 at 10:58 pm							 | <a href="#comment-226">#1</a>
+						</div>
+						<div class="act">
+													</div>
+						<div class="fixed"></div>
+						<div class="title">
+							<a href="http://sochinda.wordpress.com/2011/10/23/extjs-and-asp-net-mvc-3-crud-datagrid/">
+								ExtJS and ASP.NET MVC 3: CRUD DataGrid « Sochinda's Blog							</a>
+						</div>
+					</li>
+				
+					</ol>
+		<div class="fixed"></div>
+	<!-- trackbacks END -->
+</div>
+
+</div>
+
+
+								<div class="js" id="respond">
+				<h3 id="reply-title">Leave a Reply <small><a rel="nofollow" id="cancel-comment-reply-link" href="http://myxaab.wordpress.com/2011/02/20/extjs-and-asp-net-mvc-3-crud-datagrid/#respond" style="display: none;">Cancel reply</a></small></h3>
+									<form action="http://myxaab.wordpress.com/wp-comments-post.php" method="post" id="commentform">
+																										
+
+
+												
+<input name="hc_post_as" id="hc_post_as" value="guest" type="hidden">
+
+<div class="comment-form-field comment-textarea">
+	<label for="comment">Enter your comment here...</label>
+	<div id="comment-form-comment"><textarea tabindex="-1" style="height: 37px; resize: none; overflow-y: hidden; position: absolute; top: 0px; left: -9999px; width: 583px; line-height: 17px; text-decoration: none; letter-spacing: normal;"></textarea><textarea style="height: 37px; resize: none; overflow-y: hidden;" id="comment" name="comment"></textarea></div>
+</div>
+
+<div style="display: none;" id="comment-form-identity">
+
+	<div id="comment-form-nascar">
+		<p>Fill in your details below or click an icon to log in:</p>
+		<ul>
+			<li class="selected" style="display:none;">
+				<a href="#comment-form-guest" id="postas-guest" title="Guest">
+					<span></span>
+				</a>
+			</li>
+			<li>
+				<a href="#comment-form-load-service:WordPress.com" id="postas-wordpress" title="WordPress.com">
+					<span></span>
+				</a>
+			</li>
+			<li>
+				<a href="#comment-form-load-service:Twitter" id="postas-twitter" title="Twitter">
+					<span></span>
+				</a>
+			</li>
+			<li>
+				<a href="#comment-form-load-service:Facebook" id="postas-facebook" title="Facebook">
+					<span></span>
+				</a>
+			</li>
+		</ul>
+	</div>
+
+	<div id="comment-form-guest" class="comment-form-service selected">
+		<div class="comment-form-padder">
+			<div class="comment-form-avatar">
+<a href="https://gravatar.com/site/signup/" target="_blank">				<img src="ExtJS%20and%20ASP.NET%20MVC%203%20%20CRUD%20DataGrid%20%C2%AB%20XaaB%20%E2%80%93%20Anything%20as%20a%20Blog_files/ad516503a11cd5ca435acc9bb6523536.jpg" alt="Gravatar" class="no-grav" width="25">
+</a>			</div>
+
+				<div class="comment-form-fields">
+				<div class="comment-form-field comment-form-email">
+					<label for="email">Email <span class="required">(required)</span> <span class="nopublish">(Address never made public)</span></label>
+					<div class="comment-form-input"><input id="email" name="email" type="text"></div>
+				</div>
+				<div class="comment-form-field comment-form-author">
+					<label for="author">Name <span class="required">(required)</span></label>
+					<div class="comment-form-input"><input id="author" name="author" type="text"></div>
+				</div>
+				<div class="comment-form-field comment-form-url">
+					<label for="url">Website</label>
+					<div class="comment-form-input"><input id="url" name="url" type="text"></div>
+				</div> 
+			</div>
+	
+		</div>
+	</div>
+
+	<div id="comment-form-wordpress" class="comment-form-service">
+		<div class="comment-form-padder">
+			<div class="comment-form-avatar">
+				<img src="ExtJS%20and%20ASP.NET%20MVC%203%20%20CRUD%20DataGrid%20%C2%AB%20XaaB%20%E2%80%93%20Anything%20as%20a%20Blog_files/wplogo.png" alt="WordPress.com Logo" class="no-grav" width="25">
+			</div>
+
+				<div class="comment-form-fields">
+				<input name="wp_avatar" id="wordpress-avatar" class="comment-meta-wordpress" value="" type="hidden">
+				<input name="wp_user_id" id="wordpress-user_id" class="comment-meta-wordpress" value="" type="hidden">
+				<input name="wp_access_token" id="wordpress-access_token" class="comment-meta-wordpress" value="" type="hidden">
+				<p class="comment-form-posting-as pa-wordpress"><strong></strong> You are commenting using your WordPress.com account. <span class="comment-form-log-out">(&nbsp;<a href="javascript:HighlanderComments.doExternalLogout(%20'wordpress'%20);">Log&nbsp;Out</a>&nbsp;/&nbsp;<a href="#" onclick="javascript:HighlanderComments.switchAccount();return false;">Change</a>&nbsp;)</span></p>
+			</div>
+	
+		</div>
+	</div>
+
+	<div id="comment-form-twitter" class="comment-form-service">
+		<div class="comment-form-padder">
+			<div class="comment-form-avatar">
+				<img src="ExtJS%20and%20ASP.NET%20MVC%203%20%20CRUD%20DataGrid%20%C2%AB%20XaaB%20%E2%80%93%20Anything%20as%20a%20Blog_files/ad516503a11cd5ca435acc9bb6523536.png" alt="Twitter picture" class="no-grav" width="25">
+			</div>
+
+				<div class="comment-form-fields">
+				<input name="twitter_avatar" id="twitter-avatar" class="comment-meta-twitter" value="" type="hidden">
+				<input name="twitter_user_id" id="twitter-user_id" class="comment-meta-twitter" value="" type="hidden">
+				<input name="twitter_access_token" id="twitter-access_token" class="comment-meta-twitter" value="" type="hidden">
+				<p class="comment-form-posting-as pa-twitter"><strong></strong> You are commenting using your Twitter account. <span class="comment-form-log-out">(&nbsp;<a href="javascript:HighlanderComments.doExternalLogout(%20'twitter'%20);">Log&nbsp;Out</a>&nbsp;/&nbsp;<a href="#" onclick="javascript:HighlanderComments.switchAccount();return false;">Change</a>&nbsp;)</span></p>
+			</div>
+	
+		</div>
+	</div>
+
+	<div id="comment-form-facebook" class="comment-form-service">
+		<div class="comment-form-padder">
+			<div class="comment-form-avatar">
+				<img src="ExtJS%20and%20ASP.NET%20MVC%203%20%20CRUD%20DataGrid%20%C2%AB%20XaaB%20%E2%80%93%20Anything%20as%20a%20Blog_files/ad516503a11cd5ca435acc9bb6523536.png" alt="Facebook photo" class="no-grav" width="25">
+			</div>
+
+				<div class="comment-form-fields">
+				<input name="fb_avatar" id="facebook-avatar" class="comment-meta-facebook" value="" type="hidden">
+				<input name="fb_user_id" id="facebook-user_id" class="comment-meta-facebook" value="" type="hidden">
+				<input name="fb_access_token" id="facebook-access_token" class="comment-meta-facebook" value="" type="hidden">
+				<p class="comment-form-posting-as pa-facebook"><strong></strong> You are commenting using your Facebook account. <span class="comment-form-log-out">(&nbsp;<a href="javascript:HighlanderComments.doExternalLogout(%20'facebook'%20);">Log&nbsp;Out</a>&nbsp;/&nbsp;<a href="#" onclick="javascript:HighlanderComments.switchAccount();return false;">Change</a>&nbsp;)</span></p>
+			</div>
+	
+		</div>
+	</div>
+
+
+	<div id="comment-form-load-service" class="comment-form-service">
+		<div class="comment-form-posting-as-cancel"><a href="javascript:HighlanderComments.cancelExternalWindow();">Cancel</a></div>
+		<p>Connecting to %s</p>
+	</div>
+	
+	
+</div>
+
+<script type="text/javascript">
+jQuery(document).ready(function(){
+	// Expando Mode: start small, then auto-resize on first click + text length
+	jQuery( '#comment-form-identity' ).hide();
+	jQuery( '#comment-form-subscribe' ).hide();
+	jQuery( '#commentform .form-submit' ).hide();
+	jQuery( '#comment' ).css( { 'height':'10px' } ).one( 'focus', function() {
+		var timer = setInterval( HighlanderComments.resizeCallback, 10 );
+		jQuery( this ).animate( { 'height': HighlanderComments.initialHeight } ).delay( 100 ).queue( function(n) { clearInterval( timer ); HighlanderComments.resizeCallback(); n(); } );
+		jQuery( '#comment-form-identity' ).slideDown();
+		jQuery( '#comment-form-subscribe' ).slideDown();
+		jQuery( '#commentform .form-submit' ).slideDown();
+	});
+});
+</script>
+
+<div style="display: none;" id="comment-form-subscribe"> 
+	<p class="comment-subscription-form"><input name="subscribe" id="subscribe" value="subscribe" style="width: auto;" tabindex="6" type="checkbox"> <label class="subscribe-label" id="subscribe-label" for="subscribe">Notify me of follow-up comments via email.</label></p><p class="post-subscription-form"><input name="subscribe_blog" id="subscribe_blog" value="subscribe" style="width: auto;" tabindex="7" type="checkbox"> <label class="subscribe-label" id="subscribe-blog-label" for="subscribe_blog">Notify me of new posts via email.</label></p></div>
+
+												<p style="display: none;" class="form-submit">
+							<input name="submit" id="comment-submit" value="Post Comment" type="submit">
+							<input name="comment_post_ID" value="370" id="comment_post_ID" type="hidden">
+<input name="comment_parent" id="comment_parent" value="0" type="hidden">
+						</p>
+						
+<input name="genseq" value="1338195976" type="hidden">
+<p style="display: none;"><input id="akismet_comment_nonce" name="akismet_comment_nonce" value="810dc277da" type="hidden"></p><script type="text/javascript" src="ExtJS%20and%20ASP.NET%20MVC%203%20%20CRUD%20DataGrid%20%C2%AB%20XaaB%20%E2%80%93%20Anything%20as%20a%20Blog_files/form.js"></script>
+<p style="display: none;"><input id="ak_js" name="ak_js" value="1338195981543" type="hidden"></p>					</form>
+							</div><!-- #respond -->
+			<div style="clear: both"></div>			
+	
+
+	<div id="postnavi">
+		<span class="prev"><a href="http://myxaab.wordpress.com/2011/02/21/countdown-to-extjs-4/" rel="next">Countdown to ExtJS&nbsp;4</a></span>
+		<span class="next"><a href="http://myxaab.wordpress.com/2011/02/17/good-c-habits-can-encourage-bad-javascript-habits/" rel="prev">Good C# Habits Can Encourage Bad JavaScript&nbsp;Habits</a></span>
+		<div class="fixed"></div>
+	</div>
+
+
+	</div>
+	<!-- main END -->
+
+	
+<!-- sidebar START -->
+<div id="sidebar">
+
+<!-- sidebar north START -->
+<div id="northsidebar" class="sidebar">
+
+	<!-- feeds -->
+	<div class="widget widget_feeds">
+		<div class="content">
+			<div id="subscribe-feeds"><a rel="external nofollow" id="feedrss" title="Subscribe to this blog..." href="http://myxaab.wordpress.com/feed/"><abbr title="Really Simple Syndication">RSS</abbr> feed</a><ul style="visibility: hidden; display: block;" id="feed_readers"><li id="google_reader"><a rel="external nofollow" class="reader" title="Subscribe with Google" href="http://fusion.google.com/add?feedurl=http://myxaab.wordpress.com/feed/"><span>Google</span></a></li><li id="youdao_reader"><a rel="external nofollow" class="reader" title="Subscribe with Youdao" href="http://reader.youdao.com/#url=http://myxaab.wordpress.com/feed/"><span>Youdao</span></a></li><li id="xianguo_reader"><a rel="external nofollow" class="reader" title="Subscribe with Xian Guo" href="http://www.xianguo.com/subscribe.php?url=http://myxaab.wordpress.com/feed/"><span>Xian Guo</span></a></li><li id="zhuaxia_reader"><a rel="external nofollow" class="reader" title="Subscribe with Zhua Xia" href="http://www.zhuaxia.com/add_channel.php?url=http://myxaab.wordpress.com/feed/"><span>Zhua Xia</span></a></li><li id="yahoo_reader"><a rel="external nofollow" class="reader" title="Subscribe with My Yahoo!" href="http://add.my.yahoo.com/rss?url=http://myxaab.wordpress.com/feed/"><span>My Yahoo!</span></a></li><li id="newsgator_reader"><a rel="external nofollow" class="reader" title="Subscribe with newsgator" href="http://www.newsgator.com/ngs/subscriber/subfext.aspx?url=http://myxaab.wordpress.com/feed/"><span>newsgator</span></a></li><li id="bloglines_reader"><a rel="external nofollow" class="reader" title="Subscribe with Bloglines" href="http://www.bloglines.com/sub/http://myxaab.wordpress.com/feed/"><span>Bloglines</span></a></li><li id="inezha_reader"><a rel="external nofollow" class="reader last" title="Subscribe with iNezha" href="http://inezha.com/add?url=http://myxaab.wordpress.com/feed/"><span>iNezha</span></a></li></ul></div>
+
+			<!-- twitter -->
+			
+			<div class="fixed"></div>
+		</div>
+	</div>
+
+	<!-- showcase -->
+	
+<div id="rss_links-3" class="widget widget_rss_links"><ul><li><a href="http://myxaab.wordpress.com/feed/" title="Subscribe to Posts">RSS - Posts</a></li><li><a href="http://myxaab.wordpress.com/comments/feed/" title="Subscribe to Comments">RSS - Comments</a></li></ul>
+</div>		<div id="recent-posts-2" class="widget widget_recent_entries">		<h3>Recent Posts</h3>		<ul>
+				<li><a href="http://myxaab.wordpress.com/2011/07/24/deploying-grails-application-to-cloudfoundry/" title="Deploying Grails Application to&nbsp;CloudFoundry">Deploying Grails Application to&nbsp;CloudFoundry</a></li>
+				<li><a href="http://myxaab.wordpress.com/2011/07/20/customizing-spring-security-login-using-extjs-in-grails-apps/" title="Customizing Spring Security Login using ExtJS in Grails&nbsp;Apps">Customizing Spring Security Login using ExtJS in Grails&nbsp;Apps</a></li>
+				<li><a href="http://myxaab.wordpress.com/2011/07/16/integrating-sencha-touch-login-form-with-spring-security/" title="Integrating Sencha Touch Login Form with Spring&nbsp;Security">Integrating Sencha Touch Login Form with Spring&nbsp;Security</a></li>
+				<li><a href="http://myxaab.wordpress.com/2011/07/12/custom-number-formatting-in-flex/" title="Custom Number Formatting in&nbsp;Flex.">Custom Number Formatting in&nbsp;Flex.</a></li>
+				<li><a href="http://myxaab.wordpress.com/2011/07/09/display-json-data-using-extjs4-store/" title="Display JSON Data using ExtJS 4&nbsp;Store">Display JSON Data using ExtJS 4&nbsp;Store</a></li>
+				<li><a href="http://myxaab.wordpress.com/2011/06/22/html5-google-io-2011/" title="HTML5 @Google I/O&nbsp;2011">HTML5 @Google I/O&nbsp;2011</a></li>
+				<li><a href="http://myxaab.wordpress.com/2011/03/22/integrating-jsr303-with-spring-mvc-3-and-extjs-forms/" title="Integrating JSR303 with Spring MVC 3 and ExtJS&nbsp;Forms">Integrating JSR303 with Spring MVC 3 and ExtJS&nbsp;Forms</a></li>
+				<li><a href="http://myxaab.wordpress.com/2011/03/20/customizing-spring-security-login-using-extjs/" title="Customizing Spring Security Login using&nbsp;ExtJS">Customizing Spring Security Login using&nbsp;ExtJS</a></li>
+				</ul>
+		</div><div id="archives-3" class="widget widget_archive"><h3>Archives</h3>		<ul>
+			<li><a href="http://myxaab.wordpress.com/2011/07/" title="July 2011">July 2011</a></li>
+	<li><a href="http://myxaab.wordpress.com/2011/06/" title="June 2011">June 2011</a></li>
+	<li><a href="http://myxaab.wordpress.com/2011/03/" title="March 2011">March 2011</a></li>
+	<li><a href="http://myxaab.wordpress.com/2011/02/" title="February 2011">February 2011</a></li>
+	<li><a href="http://myxaab.wordpress.com/2010/09/" title="September 2010">September 2010</a></li>
+	<li><a href="http://myxaab.wordpress.com/2010/08/" title="August 2010">August 2010</a></li>
+	<li><a href="http://myxaab.wordpress.com/2010/07/" title="July 2010">July 2010</a></li>
+	<li><a href="http://myxaab.wordpress.com/2010/03/" title="March 2010">March 2010</a></li>
+	<li><a href="http://myxaab.wordpress.com/2009/12/" title="December 2009">December 2009</a></li>
+	<li><a href="http://myxaab.wordpress.com/2009/11/" title="November 2009">November 2009</a></li>
+		</ul>
+</div><div id="twitter-3" class="widget widget_twitter"><h3><a href="http://twitter.com/itMatter5">Twitter Updates</a></h3><ul class="tweets">
+<li>RT @<a href="http://twitter.com/TechCrunch">TechCrunch</a>: 3,997 Models: Android Fragmentation As Seen By The Developers Of OpenSignalMaps <a href="http://tcrn.ch/JRwkxO"> tcrn.ch/JRwkxO</a> by @<a href="http://twitter.com/chrisvelazco">chrisvelazco</a> <a href="http://twitter.com/itMatter5/statuses/202919695815417856" class="timesince">1&nbsp;week&nbsp;ago</a></li>
+<li>RT @<a href="http://twitter.com/WiredFeed">WiredFeed</a>: Hands On: LinkedIn Windows Phone App Better Than iOS, Android Versions: Business-oriented social ... <a href="http://bit.ly/J5x3wJ"> bit.ly/J5x3wJ</a> <a href="http://twitter.com/itMatter5/statuses/202386893491544065" class="timesince">1&nbsp;week&nbsp;ago</a></li>
+<li>RT @<a href="http://twitter.com/FastCoExist">FastCoExist</a>: Learn how Singapore is quickly becoming one of Asia's smartest cities. <a href="http://bit.ly/K9DybZ"> bit.ly/K9DybZ</a> <a href="http://twitter.com/itMatter5/statuses/202367327411515392" class="timesince">1&nbsp;week&nbsp;ago</a></li>
+<li>Survey: Singaporeans show strong support for e-gov services <a href="http://www.zdnetasia.com/survey-singaporeans-show-strong-support-for-e-gov-services-62304791.htm?src=twt"> zdnetasia.com/survey-singapo…</a> via @<a href="http://twitter.com/zdnetasia">zdnetasia</a> <a href="http://twitter.com/itMatter5/statuses/202347435564085248" class="timesince">1&nbsp;week&nbsp;ago</a></li>
+<li>SingTel wins Singapore G-Cloud tender <a href="http://www.zdnetasia.com/singtel-wins-singapore-g-cloud-tender-62304806.htm?src=twt"> zdnetasia.com/singtel-wins-s…</a> via @<a href="http://twitter.com/zdnetasia">zdnetasia</a> <a href="http://twitter.com/itMatter5/statuses/202340171029544960" class="timesince">1&nbsp;week&nbsp;ago</a></li>
+</ul>
+</div><div id="calendar-3" class="widget widget_calendar"><h3>&nbsp;</h3><div id="calendar_wrap"><table id="wp-calendar">
+	<caption>February 2011</caption>
+	<thead>
+	<tr>
+		<th scope="col" title="Monday">M</th>
+		<th scope="col" title="Tuesday">T</th>
+		<th scope="col" title="Wednesday">W</th>
+		<th scope="col" title="Thursday">T</th>
+		<th scope="col" title="Friday">F</th>
+		<th scope="col" title="Saturday">S</th>
+		<th scope="col" title="Sunday">S</th>
+	</tr>
+	</thead>
+
+	<tfoot>
+	<tr>
+		<td colspan="3" id="prev"><a href="http://myxaab.wordpress.com/2010/09/" title="View posts for September 2010">« Sep</a></td>
+		<td class="pad">&nbsp;</td>
+		<td colspan="3" id="next"><a href="http://myxaab.wordpress.com/2011/03/" title="View posts for March 2011">Mar »</a></td>
+	</tr>
+	</tfoot>
+
+	<tbody>
+	<tr>
+		<td colspan="1" class="pad">&nbsp;</td><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td>
+	</tr>
+	<tr>
+		<td>7</td><td>8</td><td>9</td><td>10</td><td>11</td><td>12</td><td>13</td>
+	</tr>
+	<tr>
+		<td>14</td><td>15</td><td>16</td><td><a href="http://myxaab.wordpress.com/2011/02/17/" title="Good C# Habits Can Encourage Bad JavaScript&nbsp;Habits">17</a></td><td>18</td><td>19</td><td><a href="http://myxaab.wordpress.com/2011/02/20/" title="ExtJS and ASP.NET MVC 3: CRUD&nbsp;DataGrid">20</a></td>
+	</tr>
+	<tr>
+		<td><a href="http://myxaab.wordpress.com/2011/02/21/" title="Countdown to ExtJS&nbsp;4">21</a></td><td>22</td><td>23</td><td>24</td><td>25</td><td><a href="http://myxaab.wordpress.com/2011/02/26/" title="Sencha Touch MVC Application – Part&nbsp;1">26</a></td><td><a href="http://myxaab.wordpress.com/2011/02/27/" title="Sencha Touch MVC Application – Part&nbsp;2">27</a></td>
+	</tr>
+	<tr>
+		<td><a href="http://myxaab.wordpress.com/2011/02/28/" title="Going Native with&nbsp;PhoneGap">28</a></td>
+		<td class="pad" colspan="6">&nbsp;</td>
+	</tr>
+	</tbody>
+	</table></div></div><div id="pages-3" class="widget widget_pages"><h3>Pages</h3>		<ul>
+			<li class="page_item page-item-2"><a href="http://myxaab.wordpress.com/about/">About</a></li>
+		</ul>
+		</div><div id="linkcat-1356" class="widget widget_links"><h3>Blogroll</h3>
+	<ul class="xoxo blogroll">
+<li><a href="http://wordpress.com/?ref=footer" rel="generator">Blog at WordPress.com</a>.</li>
+<li><a href="http://www.springsource.org/">SpringSource</a></li>
+<li><a href="http://edspencer.net/" target="_blank">Ed Spencer – A Sencha Architect</a></li>
+<li><a href="http://code.google.com/apis/maps/documentation/javascript/" title="Google Maps JavaScript API V3 – home of the latest Google Maps API. Find developer’s guide, tutorial and other refences.">Google Maps JavaScript API V3</a></li>
+<li><a href="http://virtual-red-dot.blogspot.com/">Virtual Red Dot</a></li>
+<li><a href="http://wordpress.com/?ref=footer" rel="generator">Blog at WordPress.com</a>.</li>
+
+	</ul>
+</div>
+	</div>
+</div>
+<!-- sidebar END -->
+	<div class="fixed"></div>
+</div>
+<!-- content END -->
+
+<!-- footer START -->
+<div id="footer">
+	<a id="gotop" href="#" onclick="MGJS.goTop();return false;">Top</a>
+	<a id="powered" href="http://wordpress.com/">WordPress</a>
+	<div id="themeinfo">
+		<a href="http://wordpress.com/?ref=footer" rel="generator">Blog at WordPress.com</a>. Theme: <a href="http://theme.wordpress.com/themes/inove/" title="Learn more about this theme">INove</a> by <a href="http://www.neoease.com/" rel="designer">NeoEase</a>.	</div>
+</div>
+<!-- footer END -->
+
+</div>
+<!-- container END -->
+</div>
+<!-- wrap END -->
+
+<script type="text/javascript" src="ExtJS%20and%20ASP.NET%20MVC%203%20%20CRUD%20DataGrid%20%C2%AB%20XaaB%20%E2%80%93%20Anything%20as%20a%20Blog_files/gprofiles.js"></script>
+<script type="text/javascript">
+/* <![CDATA[ */
+var WPGroHo = {"my_hash":""};
+/* ]]> */
+</script>
+<script type="text/javascript" src="ExtJS%20and%20ASP.NET%20MVC%203%20%20CRUD%20DataGrid%20%C2%AB%20XaaB%20%E2%80%93%20Anything%20as%20a%20Blog_files/wpgroho.js"></script>
+
+<script type="text/javascript">
+var _qevents = _qevents || [], wpcomQuantcastData = {"qacct":"p-18-mFEk4J448M","labels":",language.en,type.wpcom,posttag.asp-net-mvc-3,posttag.datagrid,posttag.extjs"};
+function wpcomQuantcastPixel( labels, options ) {
+	var i, defaults = wpcomQuantcastData, data = { event: 'ajax' };
+
+	labels  = labels  || '';
+	options = options || {};
+
+	if ( typeof labels != 'string' )
+		options = labels;
+
+	for ( i in defaults ) {
+		data[i] = defaults[i];
+	}
+
+	for ( i in options ) {
+		data[i] = options[i];
+	}
+
+	if ( data.labels ) {
+		data.labels += ',' + labels;
+	} else {
+		data.labels = labels;
+	}
+
+	_qevents.push( data );
+};
+(function() {var elem = document.createElement('script');elem.src = (document.location.protocol == "https:" ? "https://secure" : "http://edge") + ".quantserve.com/quant.js";elem.async = true;elem.type = "text/javascript";var scpt = document.getElementsByTagName('script')[0];scpt.parentNode.insertBefore(elem, scpt);  })();
+_qevents.push( wpcomQuantcastData );
+</script>
+<noscript><div style="display: none;"><img src="//pixel.quantserve.com/pixel/p-18-mFEk4J448M.gif?labels=%2Clanguage.en%2Ctype.wpcom%2Cposttag.asp-net-mvc-3%2Cposttag.datagrid%2Cposttag.extjs" height="1" width="1" alt="" /></div></noscript>
+
+
+	<script type="text/javascript">
+	/* <![CDATA[ */
+	(function($){
+		$(document).on( 'ready post-load', function() {
+
+			// Remove the login box when clicking the page
+			$( document ).mousedown( function( e ) {
+				if ( null == $( e.target ).closest( '#wpl-mustlogin' ).get( 0 ) ) {
+					$( '#wpl-mustlogin' ).remove();
+				}
+			});
+
+			// Handle clicking the like button itself
+			$('.wpl-button > a.like').click( function(e) {
+				e.preventDefault();
+
+				var postid = $(this).parent().attr('id').split('like-')[1];
+				$.post( 'http://myxaab.wordpress.com/wp-admin/admin-ajax.php', {
+					'action': 'wpl_record_stat',
+					'stat_name': 'loggedout_like_click'
+				} );
+
+				var tenMins = new Date();
+				tenMins.setTime( tenMins.getTime() + 600000 );
+				document.cookie = 'wpl_rand=1dae8d6ea3; expires=' + tenMins.toGMTString() + '; domain=wordpress.com; path=/;';
+
+				$(this).parent().siblings('.wpl-count').after( '\
+					<div id="wpl-mustlogin"> \
+						<form action="https://myxaab.wordpress.com/wp-login.php" method="post"> \
+							<p>Just one more step to like this:</p> \
+							<label><span>Username</span> <input type="text" name="log" id="user_login" class="input" value="" size="20" tabindex="80" /></label> \
+							<label><span>Password</span> <input type="password" name="pwd" id="user_pass" class="input" value="" size="20" tabindex="81" /></label> \
+							<input type="submit" name="wp-submit" id="wp-submit" class="button-primary" value="Log In" tabindex="82" /> \
+							<input type="hidden" name="postid" value="' + postid + '" /> \
+							<input type="hidden" name="redirect_to" value="http://myxaab.wordpress.com/2011/02/20/extjs-and-asp-net-mvc-3-crud-datagrid?year=2011&monthnum=02&day=20&name=extjs-and-asp-net-mvc-3-crud-datagrid&like=1" /> \
+							<input type="hidden" name="wpl_rand" value="1dae8d6ea3" /> \
+							<p>Not a member yet? <a href="http://wordpress.com/signup/?ref=likebox" id="wpl-signup-link">Sign up with WordPress.com</a></p> \
+						</form> \
+					</div> \
+				');
+
+				$('#wpl-mustlogin').hide().slideDown('fast');
+			} );
+
+			$('#wpl-mustlogin input.input').live( 'focus', function() {
+				$(this).prev().hide();
+			}).live( 'blur', function() {
+				if ( $(this).val() == '' ) {
+					$(this).prev().show();
+				}
+			});
+
+			$('#wpl-mustlogin input#wp-submit').live( 'click', function(e) {
+				e.preventDefault();
+
+				$.post( 'http://myxaab.wordpress.com/wp-admin/admin-ajax.php', {
+					'action': 'wpl_record_stat',
+					'stat_name': 'loggedout_login_submit'
+				}, function() {
+					$('#wpl-mustlogin form').submit();
+				} );
+			});
+
+			$('#wpl-mustlogin a#wpl-signup-link').live( 'click', function(e) {
+				e.preventDefault();
+
+				var link = $(this).attr('href');
+
+				$.post( 'http://myxaab.wordpress.com/wp-admin/admin-ajax.php', {
+					'action': 'wpl_record_stat',
+					'stat_name': 'loggedout_signup_click'
+				}, function() {
+					location.href = link;
+				} );
+			});
+		})
+	})(jQuery);
+	/* ]]> */
+	</script>
+
+	<script type="text/javascript">
+		WPCOM_sharing_counts = {'http://myxaab.wordpress.com/2011/02/20/extjs-and-asp-net-mvc-3-crud-datagrid/':'370'};
+	</script>
+	
+<script>jQuery(document).ready(function($){ Gravatar.profile_cb = function( h, d ) { WPGroHo.syncProfileData( h, d );	}; Gravatar.my_hash = WPGroHo.my_hash; Gravatar.init( 'body', '#wp-admin-bar-my-account' ); });</script>	<div style="display:none">
+	<div class="grofile-hash-map-9ee71863ca3c14fa438a606419766f6a">
+	</div>
+	<div class="grofile-hash-map-24f623b52e3d6e71e1599b86e0c5f512">
+	</div>
+	<div class="grofile-hash-map-795f14ea5e619167ed546f7fd8d7bae1">
+	</div>
+	<div class="grofile-hash-map-d7b857dbda62bd441a8f8a88aca1e008">
+	</div>
+	<div class="grofile-hash-map-69cbb7dac1ab52b9624ba9f8a7877e9c">
+	</div>
+	<div class="grofile-hash-map-56c304f0660ba78002c4fe32f34f69be">
+	</div>
+	<div class="grofile-hash-map-ad0c5e562399a17020c80f8ccb476472">
+	</div>
+	<div class="grofile-hash-map-26e35b3effb143f10bab2885cf4c6bc5">
+	</div>
+	<div class="grofile-hash-map-1c9e974c08914cda5ca2e7620c4fd3b6">
+	</div>
+	<div class="grofile-hash-map-4e83ebd61abb269a9708a6c1a7f513c6">
+	</div>
+	<div class="grofile-hash-map-6e01c26ac7d6f79c8217117f0000333b">
+	</div>
+	<div class="grofile-hash-map-41098c7d32ab59bbc904707cb0806abb">
+	</div>
+	</div>
+		<style type="text/css">
+			
+				.reblog-from img                   { margin: 0 10px 0 0; vertical-align: middle; padding: 0; border: 0; }
+				.reblogger-note img.avatar         { float: left; padding: 0; border: 0; }
+				.reblogger-note-content            { margin: 0 0 20px 35px; }
+				.reblog-post                       { border-left: 3px solid #eee; padding-left: 15px; }
+				.reblog-post ul.thumb-list         { display: block; list-style: none; margin: 2px 0; padding: 0; clear: both; }
+				.reblog-post ul.thumb-list li      { display: inline; margin: 0; padding: 0 1px; border: 0; }
+				.reblog-post ul.thumb-list li a    { margin: 0; padding: 0; border: 0; }
+				.reblog-post ul.thumb-list li img  { margin: 0; padding: 0; border: 0; }
+				.reblog-post                       { border-left: 3px solid #eee; padding-left: 15px; }
+
+				.reblog-post .wpcom-enhanced-excerpt { clear: both; }
+
+				.reblog-post .wpcom-enhanced-excerpt address,
+				.reblog-post .wpcom-enhanced-excerpt li,
+				.reblog-post .wpcom-enhanced-excerpt h1,
+				.reblog-post .wpcom-enhanced-excerpt h2,
+				.reblog-post .wpcom-enhanced-excerpt h3,
+				.reblog-post .wpcom-enhanced-excerpt h4,
+				.reblog-post .wpcom-enhanced-excerpt h5,
+				.reblog-post .wpcom-enhanced-excerpt h6,
+				.reblog-post .wpcom-enhanced-excerpt p { font-size: 100% !important; }
+
+				.reblog-post .wpcom-enhanced-excerpt blockquote,
+				.reblog-post .wpcom-enhanced-excerpt pre,
+				.reblog-post .wpcom-enhanced-excerpt code,
+				.reblog-post .wpcom-enhanced-excerpt q { font-size: 98% !important; }
+					</style><script type="text/javascript">
+/* <![CDATA[ */
+var HighlanderComments = {"loggingInText":"Logging In\u2026","submittingText":"Posting Comment\u2026","postCommentText":"Post Comment","connectingToText":"Connecting to %s","commentingAsText":"%1$s: You are commenting using your %2$s account.","logoutText":"Log Out","loginText":"Log In","connectURL":"http:\/\/myxaab.wordpress.com\/public.api\/connect\/?action=request","logoutURL":"http:\/\/myxaab.wordpress.com\/wp-login.php?action=logout&_wpnonce=def57b4a98","homeURL":"http:\/\/myxaab.wordpress.com\/","postID":"370","gravDefault":"gravatar_default","enterACommentError":"Please enter a comment","enterEmailError":"Please enter your email address here","invalidEmailError":"Invalid email address","enterAuthorError":"Please enter your name here","gravatarFromEmail":"This picture will show whenever you leave a comment. Click to customize it.","logInToExternalAccount":"Log in to use details from one of these accounts.","change":"Change","changeAccount":"Change Account","comment_registration":"","userIsLoggedIn":""};
+/* ]]> */
+</script>
+<script type="text/javascript" src="ExtJS%20and%20ASP.NET%20MVC%203%20%20CRUD%20DataGrid%20%C2%AB%20XaaB%20%E2%80%93%20Anything%20as%20a%20Blog_files/script.js"></script>
+	
+	<div style="bottom: -235px;" id="bit" class="loggedout-follow-normal">
+		<a class="bsub" href="javascript:void(0)"><span id="bsub-text">Follow</span></a>
+		<div id="bitsubscribe">
+			
+					<h3><label for="loggedout-follow-field">Follow “XaaB - Anything as a Blog”</label></h3>
+		
+			<form action="https://subscribe.wordpress.com" method="post" accept-charset="utf-8" id="loggedout-follow">
+			<p>Get every new post delivered to your Inbox.</p>
+			
+			<p id="loggedout-follow-error" style="display: none;"></p>
+
+					
+			
+			<p><input name="email" style="width: 95%; padding: 1px 2px;" value="Enter your email address" onfocus='this.value=(this.value=="Enter your email address") ? "" : this.value;' onblur='this.value=(this.value=="") ? "Enter email address" : this.value;' id="loggedout-follow-field" type="text"></p>
+
+			<input name="action" value="subscribe" type="hidden">
+			<input name="blog_id" value="10525652" type="hidden">
+			<input name="source" value="http://myxaab.wordpress.com/2011/02/20/extjs-and-asp-net-mvc-3-crud-datagrid/" type="hidden">
+			<input name="sub-type" value="loggedout-follow" type="hidden">
+
+			<input id="_wpnonce" name="_wpnonce" value="9d8f5178e8" type="hidden"><input name="_wp_http_referer" value="/2011/02/20/extjs-and-asp-net-mvc-3-crud-datagrid/" type="hidden">
+			<p id="bsub-subscribe-button"><input value="Sign me up" type="submit"></p>
+			</form>
+					<div id="bsub-credit"><a href="http://wordpress.com/signup/?ref=lof">Powered by WordPress.com</a></div>
+		</div><!-- #bitsubscribe -->
+	</div><!-- #bit -->
+<script type="text/javascript" src="ExtJS%20and%20ASP.NET%20MVC%203%20%20CRUD%20DataGrid%20%C2%AB%20XaaB%20%E2%80%93%20Anything%20as%20a%20Blog_files/sharing.js"></script>
+		<script type="text/javascript" charset="utf-8">
+		jQuery(document).ready(function(){
+			jQuery( '.share-twitter' ).click(function(){
+				window.open( jQuery(this).attr( 'href' ), 'wpcomtwitter', 'menubar=1,resizable=1,width=600,height=350' );
+				return false;
+			});
+		});
+		</script>
+				<script type="text/javascript" charset="utf-8">
+		jQuery(document).ready(function(){
+			jQuery( '.share-facebook' ).click(function(){
+				window.open( jQuery(this).attr( 'href' ), 'wpcomfacebook', 'menubar=1,resizable=1,width=600,height=400' );
+				return false;
+			});
+		});
+		</script>
+			<script type="text/javascript" charset="utf-8">
+	function sharing_plusone( obj ) { 
+		jQuery.ajax( {
+			url: 'http://myxaab.wordpress.com/2011/02/20/extjs-and-asp-net-mvc-3-crud-datagrid/?share=google-plus-1',
+			type: 'POST',
+			data: obj
+		} );
+	}
+	</script>
+	<script gapi_processed="true" type="text/javascript" src="ExtJS%20and%20ASP.NET%20MVC%203%20%20CRUD%20DataGrid%20%C2%AB%20XaaB%20%E2%80%93%20Anything%20as%20a%20Blog_files/plusone.js"></script>
+<script type="text/javascript" src="ExtJS%20and%20ASP.NET%20MVC%203%20%20CRUD%20DataGrid%20%C2%AB%20XaaB%20%E2%80%93%20Anything%20as%20a%20Blog_files/widgets.js"></script>
+<script type="text/javascript" src="ExtJS%20and%20ASP.NET%20MVC%203%20%20CRUD%20DataGrid%20%C2%AB%20XaaB%20%E2%80%93%20Anything%20as%20a%20Blog_files/beacon.js"></script><script type="text/javascript">try{COMSCORE.beacon({c1:2,c2:7518284});}catch(e){}</script><noscript><p class="robots-nocontent"><img src="http://b.scorecardresearch.com/p?cj=1c1=2&#038;c2=7518284" alt="" style="display:none" width="1" height="1" /></p></noscript><script type="text/javascript" src="ExtJS%20and%20ASP.NET%20MVC%203%20%20CRUD%20DataGrid%20%C2%AB%20XaaB%20%E2%80%93%20Anything%20as%20a%20Blog_files/shCore.js"></script>
+<script type="text/javascript" src="ExtJS%20and%20ASP.NET%20MVC%203%20%20CRUD%20DataGrid%20%C2%AB%20XaaB%20%E2%80%93%20Anything%20as%20a%20Blog_files/shBrushCSharp.js"></script>
+<script type="text/javascript" src="ExtJS%20and%20ASP.NET%20MVC%203%20%20CRUD%20DataGrid%20%C2%AB%20XaaB%20%E2%80%93%20Anything%20as%20a%20Blog_files/shBrushJScript.js"></script>
+<script type="text/javascript">
+	(function(){
+		var corecss = document.createElement('link');
+		var themecss = document.createElement('link');
+		var themecssurl = "http://s0.wp.com/wp-content/plugins/syntaxhighlighter-wpcom/shThemeDefault.css?m=1267535107g&amp;ver=2.1.364b";
+		if ( themecss.setAttribute ) {
+				themecss.setAttribute( "rel", "stylesheet" );
+				themecss.setAttribute( "type", "text/css" );
+				themecss.setAttribute( "href", themecssurl );
+		} else {
+				themecss.rel = "stylesheet";
+				themecss.href = themecssurl;
+		}
+		document.getElementsByTagName("head")[0].appendChild(themecss);
+	})();
+	SyntaxHighlighter.config.clipboardSwf = 'http://s2.wp.com/wp-content/plugins/syntaxhighlighter/syntaxhighlighter/scripts/clipboard.swf?m=1305292836g';
+	SyntaxHighlighter.config.strings.expandSource = 'show source';
+	SyntaxHighlighter.config.strings.viewSource = 'view source';
+	SyntaxHighlighter.config.strings.copyToClipboard = 'copy to clipboard';
+	SyntaxHighlighter.config.strings.copyToClipboardConfirmation = 'The code is in your clipboard now';
+	SyntaxHighlighter.config.strings.print = 'print';
+	SyntaxHighlighter.config.strings.help = '?';
+	SyntaxHighlighter.config.strings.alert = 'SyntaxHighlighter\n\n';
+	SyntaxHighlighter.config.strings.noBrush = 'Can\'t find brush for: ';
+	SyntaxHighlighter.config.strings.brushNotHtmlScript = 'Brush wasn\'t configured for html-script option: ';
+	SyntaxHighlighter.all();
+</script>
+<script type="text/javascript" src="ExtJS%20and%20ASP.NET%20MVC%203%20%20CRUD%20DataGrid%20%C2%AB%20XaaB%20%E2%80%93%20Anything%20as%20a%20Blog_files/underscore-min.js"></script>
+<script type="text/javascript" src="ExtJS%20and%20ASP.NET%20MVC%203%20%20CRUD%20DataGrid%20%C2%AB%20XaaB%20%E2%80%93%20Anything%20as%20a%20Blog_files/backbone-min.js"></script>
+<script type="text/javascript" src="ExtJS%20and%20ASP.NET%20MVC%203%20%20CRUD%20DataGrid%20%C2%AB%20XaaB%20%E2%80%93%20Anything%20as%20a%20Blog_files/mustache.js"></script>
+<script type="text/javascript" src="ExtJS%20and%20ASP.NET%20MVC%203%20%20CRUD%20DataGrid%20%C2%AB%20XaaB%20%E2%80%93%20Anything%20as%20a%20Blog_files/notes-rest-common.js"></script>
+<script type="text/javascript">
+// <![CDATA[
+(function() {
+try{
+  if ( window.external &&'msIsSiteMode' in window.external) {
+    if (window.external.msIsSiteMode()) {
+      var jl = document.createElement('script');
+      jl.type='text/javascript';
+      jl.async=true;
+      jl.src='/wp-content/plugins/ie-sitemode/custom-jumplist.php';
+      var s = document.getElementsByTagName('script')[0];
+      s.parentNode.insertBefore(jl, s);
+    }
+  }
+}catch(e){}
+})();
+// ]]>
+</script><script src="ExtJS%20and%20ASP.NET%20MVC%203%20%20CRUD%20DataGrid%20%C2%AB%20XaaB%20%E2%80%93%20Anything%20as%20a%20Blog_files/w.js" type="text/javascript"></script>
+<script type="text/javascript">
+st_go({'blog':'10525652','v':'wpcom','user_id':'0','post':'370','subd':'myxaab'});
+ex_go({'crypt':'UE40eW5QN0p8M2Y/RE1oOHBqWkJdYy5wL35xRnR4SVtWLmluVHQrZ3JBRDNRaV9yeU4rX041RXBzU1FiayxfJjYsMDhLNmIrWEkxPVkwSzNZPVJ+V3NGTUNpQWhaN0ktW0liU28udEEla0I2cyZETlVYc2RtRzl1cSstJklDdUFNblhZTywtT1huN0xqL0dzJjJWUjglUkFEZEVCOUlLamJTL00vclltT1d1X1NtOENTW1JFaUltdHBzd2ZML25ZLFsyS2luQz94cTQ0eGE4bixtbHZIaXAyaVJzTSsxMjlPL0RmWUR3em5beFhSUmFyJTk0dmtCcG1fV19aQ0MtSlp5L3QuVUlheDNMSXRYY0Q2c2FYTC1nVzBGL3p0WHxDNkpnNjY='});
+addLoadEvent(function(){linktracker_init('10525652',370);});
+	</script><img id="wpstats" src="ExtJS%20and%20ASP.NET%20MVC%203%20%20CRUD%20DataGrid%20%C2%AB%20XaaB%20%E2%80%93%20Anything%20as%20a%20Blog_files/g.gif" alt=""><img id="wpstats2" src="ExtJS%20and%20ASP.NET%20MVC%203%20%20CRUD%20DataGrid%20%C2%AB%20XaaB%20%E2%80%93%20Anything%20as%20a%20Blog_files/g_002.gif" alt="" style="display: none;">
+<noscript><img src="http://stats.wordpress.com/b.gif?v=noscript" style="height:0px;width:0px;overflow:hidden" alt="" /></noscript>
+
+
+
+</body></html>

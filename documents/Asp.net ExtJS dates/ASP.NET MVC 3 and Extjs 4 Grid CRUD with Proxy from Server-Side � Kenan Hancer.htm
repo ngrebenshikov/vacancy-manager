@@ -1,0 +1,1059 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="en-US"><head><style></style>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>ASP.NET MVC 3 and Extjs 4 Grid CRUD with Proxy from Server-Side « Kenan Hancer</title>
+	<link rel="shortcut icon" href="http://www.kenanhancer.com/wp-content/themes/atahualpa/images/favicon/new-favicon.ico">
+<link rel="profile" href="http://gmpg.org/xfn/11">
+<link rel="pingback" href="http://www.kenanhancer.com/xmlrpc.php">
+<link rel="alternate" type="application/rss+xml" title="Kenan Hancer » Feed" href="http://www.kenanhancer.com/feed/">
+<link rel="alternate" type="application/rss+xml" title="Kenan Hancer » Comments Feed" href="http://www.kenanhancer.com/comments/feed/">
+<link rel="alternate" type="application/rss+xml" title="Kenan Hancer » ASP.NET MVC 3 and Extjs 4 Grid CRUD with Proxy from Server-Side Comments Feed" href="http://www.kenanhancer.com/asp-net-mvc-3-extjs-4-grid-crud-proxy-server-side/feed/">
+<script type="text/javascript" async="" src="ASP.NET%20MVC%203%20and%20Extjs%204%20Grid%20CRUD%20with%20Proxy%20from%20Server-Side%20%C2%AB%20Kenan%20Hancer_files/quant.js"></script><script src="ASP.NET%20MVC%203%20and%20Extjs%204%20Grid%20CRUD%20with%20Proxy%20from%20Server-Side%20%C2%AB%20Kenan%20Hancer_files/ga.js" async="" type="text/javascript"></script><script type="text/javascript" src="ASP.NET%20MVC%203%20and%20Extjs%204%20Grid%20CRUD%20with%20Proxy%20from%20Server-Side%20%C2%AB%20Kenan%20Hancer_files/comment-reply.js"></script>
+<script type="text/javascript" src="ASP.NET%20MVC%203%20and%20Extjs%204%20Grid%20CRUD%20with%20Proxy%20from%20Server-Side%20%C2%AB%20Kenan%20Hancer_files/jquery.js"></script>
+<script type="text/javascript" src="ASP.NET%20MVC%203%20and%20Extjs%204%20Grid%20CRUD%20with%20Proxy%20from%20Server-Side%20%C2%AB%20Kenan%20Hancer_files/DD_roundies.js"></script>
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://www.kenanhancer.com/xmlrpc.php?rsd">
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="http://www.kenanhancer.com/wp-includes/wlwmanifest.xml"> 
+<link rel="prev" title="ASP.NET MVC 3 and Extjs 4 Grid Loading with Proxy from Server-Side" href="http://www.kenanhancer.com/asp-net-mvc-3-extjs-4-grid-loading-proxy-server-side/">
+<link rel="next" title="Background Processing with Task Parallel Library and WPF" href="http://www.kenanhancer.com/background-processing-task-parallel-library-wpf/">
+<link rel="canonical" href="http://www.kenanhancer.com/asp-net-mvc-3-extjs-4-grid-crud-proxy-server-side/">
+<link rel="shortlink" href="http://wp.me/p2nQez-2k">
+        <script type="text/javascript">
+          var _gaq = _gaq || [];
+          _gaq.push(['_setAccount', 'UA-29247411-1']);
+          _gaq.push(['_trackPageview']);
+
+          (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+          })();
+        </script>
+    <style type="text/css">body{text-align:center;margin:0;padding:0;font-family:tahoma,arial,sans-serif;font-size:0.8em;color:#000000;background:#ffffff}a:link,a:visited,a:active{color:#666666;font-weight:bold;text-decoration:none;}a:hover{color:#CC0000;font-weight:bold;text-decoration:underline}ul,ol,dl,p,h1,h2,h3,h4,h5,h6{margin-top:10px;margin-bottom:10px;padding-top:0;padding-bottom:0;}ul ul,ul ol,ol ul,ol ol{margin-top:0;margin-bottom:0}code,pre{font-family:"Courier New",Courier,monospace;font-size:1em}pre{overflow:auto;word-wrap:normal;padding-bottom:1.5em;overflow-y:hidden;width:99%}abbr[title],acronym[title]{border-bottom:1px dotted}hr{display:block;height:2px;border:none;margin:0.5em auto;color:#cccccc;background-color:#cccccc}table{font-size:1em;}div.post,ul.commentlist li,ol.commentlist li{word-wrap:break-word;}pre,.wp_syntax{word-wrap:normal;}div#wrapper{text-align:center;margin-left:auto;margin-right:auto;display:block;width:99%}div#container{padding:0;width:auto;margin-left:auto;margin-right:auto;text-align:left;display:block}table#layout{font-size:100%;width:100%;table-layout:fixed}.colone{width:200px}.colone-inner{width:200px}.coltwo{width:100% }.colthree-inner{width:200px}.colthree{width:200px}td#header{width:auto;padding:0}table#logoarea,table#logoarea tr,table#logoarea td{margin:0;padding:0;background:none;border:0}table#logoarea{width:100%;border-spacing:0px}img.logo{display:block;margin:0 10px 0 0}td.logoarea-logo{width:1%}h1.blogtitle,h2.blogtitle{ display:block;margin:0;padding:0;letter-spacing:-1px;line-height:1.0em;font-family:tahoma,arial,sans-serif;font-size:240%;font-smooth:always}h1.blogtitle a:link,h1.blogtitle a:visited,h1.blogtitle a:active,h2.blogtitle a:link,h2.blogtitle a:visited,h2.blogtitle a:active{ text-decoration:none;color:#666666;font-weight:bold;font-smooth:always}h1.blogtitle a:hover,h2.blogtitle a:hover{ text-decoration:none;color:#000000;font-weight:bold}p.tagline{margin:0;padding:0;font-size:1.2em;font-weight:bold;color:#666666}td.feed-icons{white-space:nowrap;}div.rss-box{height:1%;display:block;padding:10px 0 10px 10px;margin:0;width:280px}a.comments-icon{height:22px;line-height:22px;margin:0 5px 0 5px;padding-left:22px;display:block;text-decoration:none;float:right;white-space:nowrap}a.comments-icon:link,a.comments-icon:active,a.comments-icon:visited{background:transparent url(http://www.kenanhancer.com/wp-content/themes/atahualpa/images/comment-gray.png) no-repeat scroll center left}a.comments-icon:hover{background:transparent url(http://www.kenanhancer.com/wp-content/themes/atahualpa/images/comment.png) no-repeat scroll center left}a.posts-icon{height:22px;line-height:22px;margin:0 5px 0 0;padding-left:20px;display:block;text-decoration:none;float:right;white-space:nowrap}a.posts-icon:link,a.posts-icon:active,a.posts-icon:visited{background:transparent url(http://www.kenanhancer.com/wp-content/themes/atahualpa/images/rss-gray.png) no-repeat scroll center left}a.posts-icon:hover{background:transparent url(http://www.kenanhancer.com/wp-content/themes/atahualpa/images/rss.png) no-repeat scroll center left}a.email-icon{height:22px;line-height:22px;margin:0 5px 0 5px;padding-left:24px;display:block;text-decoration:none;float:right;white-space:nowrap}a.email-icon:link,a.email-icon:active,a.email-icon:visited{background:transparent url(http://www.kenanhancer.com/wp-content/themes/atahualpa/images/email-gray.png) no-repeat scroll center left}a.email-icon:hover{background:transparent url(http://www.kenanhancer.com/wp-content/themes/atahualpa/images/email.png) no-repeat scroll center left}td.search-box{height:1%}div.searchbox{height:35px;border:1px dashed #cccccc;border-bottom:0;width:200px;margin:0;padding:0}div.searchbox-form{margin:5px 10px 5px 10px}div.horbar1,div.horbar2{font-size:1px;clear:both;display:block;position:relative;padding:0;margin:0;width:100%;}div.horbar1{height:5px;background:#ffffff;border-top:dashed 1px #cccccc}div.horbar2{height:5px;background:#ffffff;border-bottom:dashed 1px #cccccc}div.header-image-container{position:relative;margin:0;padding:0;height:0px;}div.opacityleft{position:absolute;z-index:2;top:0;left:0;background-color:#FFFFFF;height:0px;width:200px;filter:alpha(opacity=40);opacity:.40}div.opacityright{position:absolute;z-index:2;top:0;right:0;background-color:#FFFFFF;height:0px;width:200px;filter:alpha(opacity=40);opacity:.40}a.divclick:link,a.divclick:visited,a.divclick:active,a.divclick:hover{width:100%;height:100%;display:block;text-decoration:none}td#left{vertical-align:top;border-right:dashed 1px #CCCCCC;padding:10px 10px 10px 10px;background:#ffffff}td#left-inner{vertical-align:top;border-right:dashed 1px #CCCCCC;padding:10px 10px 10px 10px;background:#ffffff}td#right{vertical-align:top;border-left:dashed 1px #CCCCCC;padding:10px 10px 10px 10px;background:#ffffff}td#right-inner{vertical-align:top;border-left:dashed 1px #CCCCCC;padding:10px 10px 10px 10px;background:#ffffff}td#middle{vertical-align:top;width:100%;padding:10px 15px}td#footer{width:auto;background-color:#ffffff;border-top:dashed 1px #cccccc;padding:10px;text-align:center;color:#777777;font-size:95%}td#footer a:link,td#footer a:visited,td#footer a:active{text-decoration:none;color:#777777;font-weight:normal}td#footer a:hover{text-decoration:none;color:#777777;font-weight:normal}div.widget{display:block;width:auto;margin:0 0 15px 0}div.widget-title{display:block;width:auto}div.widget-title h3,td#left h3.tw-widgettitle,td#right h3.tw-widgettitle,td#left ul.tw-nav-list,td#right ul.tw-nav-list{padding:0;margin:0;font-size:1.6em;font-weight:bold}div.widget ul,div.textwidget{display:block;width:auto}div.widget select{width:98%;margin-top:5px;}div.widget ul{list-style-type:none;margin:0;padding:0;width:auto}div.widget ul li{display:block;margin:2px 0 2px 0px;padding:0 0 0 5px;border-left:solid 7px #cccccc}div.widget ul li:hover,div.widget ul li.sfhover{display:block;width:auto;border-left:solid 7px #000000;}div.widget ul li ul li{margin:2px 0 2px 5px;padding:0 0 0 5px;border-left:solid 7px #cccccc;}div.widget ul li ul li:hover,div.widget ul li ul li.sfhover{border-left:solid 7px #000000;}div.widget ul li ul li ul li{margin:2px 0 2px 5px;padding:0 0 0 5px;border-left:solid 7px #cccccc;}div.widget ul li ul li ul li:hover,div.widget ul li ul li ul li.sfhover{border-left:solid 7px #000000;}div.widget a:link,div.widget a:visited,div.widget a:active,div.widget td a:link,div.widget td a:visited,div.widget td a:active,div.widget ul li a:link,div.widget ul li a:visited,div.widget ul li a:active{text-decoration:none;font-weight:normal;color:#666666;font-weight:normal;}div.widget ul li ul li a:link,div.widget ul li ul li a:visited,div.widget ul li ul li a:active{color:#666666;font-weight:normal;}div.widget ul li ul li ul li a:link,div.widget ul li ul li ul li a:visited,div.widget ul li ul li ul li a:active{color:#666666;font-weight:normal;}div.widget a:hover,div.widget ul li a:hover{color:#000000;}div.widget ul li ul li a:hover{color:#000000;}div.widget ul li ul li ul li a:hover{color:#000000;}div.widget ul li a:link,div.widget ul li a:visited,div.widget ul li a:active,div.widget ul li a:hover{display:inline}* html div.widget ul li a:link,* html div.widget ul li a:visited,* html div.widget ul li a:active,* html div.widget ul li a:hover{height:1%; } div.widget_nav_menu ul li,div.widget_pages ul li,div.widget_categories ul li{border-left:0 !important;padding:0 !important}div.widget_nav_menu ul li a:link,div.widget_nav_menu ul li a:visited,div.widget_nav_menu ul li a:active,div.widget_pages ul li a:link,div.widget_pages ul li a:visited,div.widget_pages ul li a:active,div.widget_categories ul li a:link,div.widget_categories ul li a:visited,div.widget_categories ul li a:active{padding:0 0 0 5px;border-left:solid 7px #cccccc}div.widget_nav_menu ul li a:hover,div.widget_pages ul li a:hover,div.widget_categories ul li a:hover{border-left:solid 7px #000000;}div.widget_nav_menu ul li ul li a:link,div.widget_nav_menu ul li ul li a:visited,div.widget_nav_menu ul li ul li a:active,div.widget_pages ul li ul li a:link,div.widget_pages ul li ul li a:visited,div.widget_pages ul li ul li a:active,div.widget_categories ul li ul li a:link,div.widget_categories ul li ul li a:visited,div.widget_categories ul li ul li a:active{padding:0 0 0 5px;border-left:solid 7px #cccccc}div.widget_nav_menu ul li ul li a:hover,div.widget_pages ul li ul li a:hover,div.widget_categories ul li ul li a:hover{border-left:solid 7px #000000;}div.widget_nav_menu ul li ul li ul li a:link,div.widget_nav_menu ul li ul li ul li a:visited,div.widget_nav_menu ul li ul li ul li a:active,div.widget_pages ul li ul li ul li a:link,div.widget_pages ul li ul li ul li a:visited,div.widget_pages ul li ul li ul li a:active,div.widget_categories ul li ul li ul li a:link,div.widget_categories ul li ul li ul li a:visited,div.widget_categories ul li ul li ul li a:active{padding:0 0 0 5px;border-left:solid 7px #cccccc}div.widget_nav_menu ul li ul li ul li a:hover,div.widget_pages ul li ul li ul li a:hover,div.widget_categories ul li ul li ul li a:hover{border-left:solid 7px #000000;}div.widget_nav_menu ul li a:link,div.widget_nav_menu ul li a:active,div.widget_nav_menu ul li a:visited,div.widget_nav_menu ul li a:hover,div.widget_pages ul li a:link,div.widget_pages ul li a:active,div.widget_pages ul li a:visited,div.widget_pages ul li a:hover{display:block !important}div.widget_categories ul li a:link,div.widget_categories ul li a:active,div.widget_categories ul li a:visited,div.widget_categories ul li a:hover{display:inline !important}table.subscribe{width:100%}table.subscribe td.email-text{padding:0 0 5px 0;vertical-align:top}table.subscribe td.email-field{padding:0;width:100%}table.subscribe td.email-button{padding:0 0 0 5px}table.subscribe td.post-text{padding:7px 0 0 0;vertical-align:top}table.subscribe td.comment-text{padding:7px 0 0 0;vertical-align:top}div.post,div.page{display:block;margin:0 0 30px 0}div.sticky{background:#eee url('<?php bloginfo('template_directory');?>/images/sticky.gif') 99% 5% no-repeat;border:dashed 1px #cccccc;padding:10px}div.post-kicker{margin:0 0 5px 0}div.post-kicker a:link,div.post-kicker a:visited,div.post-kicker a:active{color:#000000;text-decoration:none;text-transform:uppercase}div.post-kicker a:hover{color:#cc0000}div.post-headline{}div.post-headline h1,div.post-headline h2{ margin:0; padding:0;padding:0;margin:0}div.post-headline h2 a:link,div.post-headline h2 a:visited,div.post-headline h2 a:active,div.post-headline h1 a:link,div.post-headline h1 a:visited,div.post-headline h1 a:active{color:#666666;text-decoration:none}div.post-headline h2 a:hover,div.post-headline h1 a:hover{color:#000000;text-decoration:none}div.post-byline{margin:5px 0 10px 0}div.post-byline a:link,div.post-byline a:visited,div.post-byline a:active{}div.post-byline a:hover{}div.post-bodycopy{}div.post-bodycopy p{margin:1em 0;padding:0;display:block}div.post-pagination{}div.post-footer{clear:both;display:block;margin:0;padding:5px;background:#eeeeee;color:#666;line-height:18px}div.post-footer a:link,div.post-footer a:visited,div.post-footer a:active{color:#333;font-weight:normal;text-decoration:none}div.post-footer a:hover{color:#333;font-weight:normal;text-decoration:underline}div.post-kicker img,div.post-byline img,div.post-footer img{border:0;padding:0;margin:0 0 -1px 0;background:none}span.post-ratings{display:inline-block;width:auto;white-space:nowrap}div.navigation-top{margin:0 0 10px 0;padding:0 0 10px 0;border-bottom:dashed 1px #cccccc}div.navigation-middle{margin:10px 0 20px 0;padding:10px 0 10px 0;border-top:dashed 1px #cccccc;border-bottom:dashed 1px #cccccc}div.navigation-bottom{margin:20px 0 0 0;padding:10px 0 0 0;border-top:dashed 1px #cccccc}div.navigation-comments-above{margin:0 0 10px 0;padding:5px 0 5px 0}div.navigation-comments-below{margin:0 0 10px 0;padding:5px 0 5px 0}div.older{float:left;width:48%;text-align:left;margin:0;padding:0}div.newer{float:right;width:48%;text-align:right;margin:0;padding:0;}div.older-home{float:left;width:44%;text-align:left;margin:0;padding:0}div.newer-home{float:right;width:44%;text-align:right;margin:0;padding:0;}div.home{float:left;width:8%;text-align:center;margin:0;padding:0}form,.feedburner-email-form{margin:0;padding:0;}fieldset{border:1px solid #cccccc;width:auto;padding:0.35em 0.625em 0.75em;display:block;}legend{color:#000000;background:#f4f4f4;border:1px solid #cccccc;padding:2px 6px;margin-bottom:15px;}form p{margin:5px 0 0 0;padding:0;}div.xhtml-tags p{margin:0}label{margin-right:0.5em;font-family:arial;cursor:pointer;}input.text,input.textbox,input.password,input.file,input.TextField,textarea{padding:3px;color:#000000;border-top:solid 1px #333333;border-left:solid 1px #333333;border-right:solid 1px #999999;border-bottom:solid 1px #cccccc;background:url(http://www.kenanhancer.com/wp-content/themes/atahualpa/images/inputbackgr.gif) top left no-repeat}textarea{width:96%;}input.inputblur{color:#777777;width:95%}input.inputfocus{color:#000000;width:95%}input.highlight,textarea.highlight{background:#e8eff7;border-color:#37699f}.button,.Button,input[type=submit]{padding:0 2px;height:24px;line-height:16px;background-color:#777777;color:#ffffff;border:solid 2px #555555;font-weight:bold}input.buttonhover{padding:0 2px;cursor:pointer;background-color:#6b9c6b;color:#ffffff;border:solid 2px #496d49}form#commentform input#submit{ padding:0 .25em; overflow:visible}form#commentform input#submit[class]{width:auto}form#commentform input#submit{padding:4px 10px 4px 10px;font-size:1.2em;line-height:1.5em;height:36px}table.searchform{width:100%}table.searchform td.searchfield{padding:0;width:100%}table.searchform td.searchbutton{padding:0 0 0 5px}table.searchform td.searchbutton input{padding:0 0 0 5px}blockquote{height:1%;display:block;clear:both;color:#555555;padding:1em 1em;background:#f4f4f4;border:solid 1px #e1e1e1}blockquote blockquote{height:1%;display:block;clear:both;color:#444444;padding:1em 1em;background:#e1e1e1;border:solid 1px #d3d3d3}div.post table{border-collapse:collapse;margin:10px 0}div.post table caption{width:auto;margin:0 auto;background:#eeeeee;border:#999999;padding:4px 8px;color:#666666}div.post table th{background:#888888;color:#ffffff;font-weight:bold;font-size:90%;padding:4px 8px;border:solid 1px #ffffff;text-align:left}div.post table td{padding:4px 8px;background-color:#ffffff;border-bottom:1px solid #dddddd;text-align:left}div.post table tfoot td{}div.post table tr.alt td{background:#f4f4f4}div.post table tr.over td{background:#e2e2e2}#calendar_wrap{padding:0;border:none}table#wp-calendar{width:100%;font-size:90%;border-collapse:collapse;background-color:#ffffff;margin:0 auto}table#wp-calendar caption{width:auto;background:#eeeeee;border:none;;padding:3px;margin:0 auto;font-size:1em}table#wp-calendar th{border:solid 1px #eeeeee;background-color:#999999;color:#ffffff;font-weight:bold;padding:2px;text-align:center}table#wp-calendar td{padding:0;line-height:18px;background-color:#ffffff;border:1px solid #dddddd;text-align:center}table#wp-calendar tfoot td{border:solid 1px #eeeeee;background-color:#eeeeee}table#wp-calendar td a{display:block;background-color:#eeeeee;width:100%;height:100%;padding:0}div#respond{margin:25px 0;padding:25px;background:#eee;-moz-border-radius:8px;-khtml-border-radius:8px;-webkit-border-radius:8px;border-radius:8px}p.thesetags{margin:10px 0}h3.reply,h3#reply-title{margin:0;padding:0 0 10px 0}ol.commentlist{margin:15px 0 25px 0;list-style-type:none;padding:0;display:block;border-top:dotted 1px #cccccc}ol.commentlist li{padding:15px 10px;display:block;height:1%;margin:0;background-color:#ffffff;border-bottom:dotted 1px #cccccc}ol.commentlist li.alt{display:block;height:1%;background-color:#eeeeee;border-bottom:dotted 1px #cccccc}ol.commentlist li.authorcomment{display:block;height:1%;background-color:#ffecec}ol.commentlist span.authorname{font-weight:bold;font-size:110%}ol.commentlist span.commentdate{color:#666666;font-size:90%;margin-bottom:5px;display:block}ol.commentlist span.editcomment{display:block}ol.commentlist li p{margin:2px 0 5px 0}div.comment-number{float:right;font-size:2em;line-height:2em;font-family:georgia,serif;font-weight:bold;color:#ddd;margin:-10px 0 0 0;position:relative;height:1%}div.comment-number a:link,div.comment-number a:visited,div.comment-number a:active{color:#ccc}textarea#comment{width:98%;margin:10px 0;display:block}ul.commentlist{margin:15px 0 15px 0;list-style-type:none;padding:0;display:block;border-top:dotted 1px #cccccc}ul.commentlist ul{margin:0;border:none;list-style-type:none;padding:0}ul.commentlist li{padding:0; margin:0;display:block;clear:both;height:1%;}ul.commentlist ul.children li{ margin-left:30px}ul.commentlist div.comment-container{padding:10px;margin:0}ul.children div.comment-container{background-color:transparent;border:dotted 1px #ccc;padding:10px;margin:0 10px 8px 0; border-radius:5px}ul.children div.bypostauthor{}ul.commentlist li.thread-even{background-color:#ffffff;border-bottom:dotted 1px #cccccc}ul.commentlist li.thread-odd{background-color:#eeeeee;border-bottom:dotted 1px #cccccc}ul.commentlist div.bypostauthor{background-color:#ffecec}ul.children div.bypostauthor{border:dotted 1px #ffbfbf}ul.commentlist span.authorname{font-size:110%}div.comment-meta a:link,div.comment-meta a:visited,div.comment-meta a:active,div.comment-meta a:hover{font-weight:normal}div#cancel-comment-reply{margin:-5px 0 10px 0}div.comment-number{float:right;font-size:2em;line-height:2em;font-family:georgia,serif;font-weight:bold;color:#ddd;margin:-10px 0 0 0;position:relative;height:1%}div.comment-number a:link,div.comment-number a:visited,div.comment-number a:active{color:#ccc}.page-numbers{padding:2px 6px;border:solid 1px #000000;border-radius:6px}span.current{background:#ddd}a.prev,a.next{border:none}a.page-numbers:link,a.page-numbers:visited,a.page-numbers:active{text-decoration:none;color:#666666;border-color:#666666}a.page-numbers:hover{text-decoration:none;color:#CC0000;border-color:#CC0000}div.xhtml-tags{display:none}abbr em{border:none !important;border-top:dashed 1px #aaa !important;display:inline-block !important;background:url(http://www.kenanhancer.com/wp-content/themes/atahualpa/images/commentluv.gif) 0% 90% no-repeat;margin-top:8px;padding:5px 5px 2px 20px !important;font-style:normal}p.subscribe-to-comments{margin-bottom:10px}div#gsHeader{display:none;}div.g2_column{margin:0 !important;width:100% !important;font-size:1.2em}div#gsNavBar{border-top-width:0 !important}p.giDescription{font-size:1.2em;line-height:1 !important}p.giTitle{margin:0.3em 0 !important;font-size:1em;font-weight:normal;color:#666}div#wp-email img{border:0;padding:0}div#wp-email input,div#wp-email textarea{margin-top:5px;margin-bottom:2px}div#wp-email p{margin-bottom:10px}input#wp-email-submit{ padding:0; font-size:30px; height:50px; line-height:50px; overflow:visible;}img.WP-EmailIcon{ vertical-align:text-bottom !important}.tw-accordion .tw-widgettitle,.tw-accordion .tw-widgettitle:hover,.tw-accordion .tw-hovered,.tw-accordion .selected,.tw-accordion .selected:hover{ background:transparent !important; background-image:none !important}.tw-accordion .tw-widgettitle span{ padding-left:0 !important}.tw-accordion h3.tw-widgettitle{border-bottom:solid 1px #ccc}.tw-accordion h3.selected{border-bottom:none}td#left .without_title,td#right .without_title{ margin-top:0;margin-bottom:0}ul.tw-nav-list{border-bottom:solid 1px #999;display:block;margin-bottom:5px !important}td#left ul.tw-nav-list li,td#right ul.tw-nav-list li{padding:0 0 1px 0;margin:0 0 -1px 5px; border:solid 1px #ccc;border-bottom:none;border-radius:5px;border-bottom-right-radius:0;border-bottom-left-radius:0;background:#eee}td#left ul.tw-nav-list li.ui-tabs-selected,td#right ul.tw-nav-list li.ui-tabs-selected{ background:none;border:solid 1px #999;border-bottom:solid 1px #fff !important}ul.tw-nav-list li a:link,ul.tw-nav-list li a:visited,ul.tw-nav-list li a:active,ul.tw-nav-list li a:hover{padding:0 8px !important;background:none;border-left:none !important;outline:none}td#left ul.tw-nav-list li.ui-tabs-selected a,td#left li.ui-tabs-selected a:hover,td#right ul.tw-nav-list li.ui-tabs-selected a,td#right li.ui-tabs-selected a:hover{ color:#000000; text-decoration:none;font-weight:bold;background:none !important;outline:none}td#left .ui-tabs-panel,td#right .ui-tabs-panel{ margin:0; padding:0}img{border:0}#dbem-location-map img{ background:none !important}.post img{padding:5px;border:solid 1px #dddddd;background-color:#f3f3f3;-moz-border-radius:3px;-khtml-border-radius:3px;-webkit-border-radius:3px;border-radius:3px}.post img.size-full{max-width:96%;width:auto;margin:5px 0 5px 0}div.post img[class~=size-full]{height:auto;}.post img.alignleft{float:left;margin:10px 10px 5px 0;}.post img.alignright{float:right;margin:10px 0 5px 10px;}.post img.aligncenter{display:block;margin:10px auto}.aligncenter,div.aligncenter{ display:block; margin-left:auto; margin-right:auto}.alignleft,div.alignleft{float:left;margin:10px 10px 5px 0}.alignright,div.alignright{ float:right; margin:10px 0 5px 10px}div.archives-page img{border:0;padding:0;background:none;margin-bottom:0;vertical-align:-10%}.wp-caption{max-width:96%;width:auto 100%;height:auto;display:block;border:1px solid #dddddd;text-align:center;background-color:#f3f3f3;padding-top:4px;margin:10px 0 0 0;-moz-border-radius:3px;-khtml-border-radius:3px;-webkit-border-radius:3px;border-radius:3px}* html .wp-caption{height:100%;}.wp-caption img{ margin:0 !important; padding:0 !important; border:0 none !important}.wp-caption p.wp-caption-text{font-size:0.8em;line-height:13px;padding:2px 4px 5px;margin:0;color:#666666}img.wp-post-image{float:left;border:0;padding:0;background:none;margin:0 10px 5px 0}img.wp-smiley{ float:none;border:none !important;margin:0 1px -1px 1px;padding:0 !important;background:none !important}img.avatar{float:left;display:block;margin:0 8px 1px 0;padding:3px;border:solid 1px #ddd;background-color:#f3f3f3;-moz-border-radius:3px;-khtml-border-radius:3px;-webkit-border-radius:3px;border-radius:3px}#comment_quicktags{text-align:left;padding:10px 0 2px 0;display:block}#comment_quicktags input.ed_button{background:#f4f4f4;border:2px solid #cccccc;color:#444444;margin:2px 4px 2px 0;width:auto;padding:0 4px;height:24px;line-height:16px}#comment_quicktags input.ed_button_hover{background:#dddddd;border:2px solid #666666;color:#000000;margin:2px 4px 2px 0;width:auto;padding:0 4px;height:24px;line-height:16px;cursor:pointer}#comment_quicktags #ed_strong{font-weight:bold}#comment_quicktags #ed_em{font-style:italic}@media print{body{background:white;color:black;margin:0;font-size:10pt !important;font-family:arial,sans-serif;}div.post-footer{line-height:normal !important;color:#555 !important;font-size:9pt !important}a:link,a:visited,a:active,a:hover{text-decoration:underline !important;color:#000}h2{color:#000;font-size:14pt !important;font-weight:normal !important}h3{color:#000;font-size:12pt !important;}#header,#footer,.colone,.colthree,.navigation,.navigation-top,.navigation-middle,.navigation-bottom,.wp-pagenavi-navigation,#comment,#respond,.remove-for-print{display:none}td#left,td#right,td#left-inner,td#right-inner{width:0;display:none}td#middle{width:100% !important;display:block}*:lang(en) td#left{ display:none}*:lang(en) td#right{ display:none}*:lang(en) td#left-inner{ display:none}*:lang(en) td#right-inner{ display:none}td#left:empty{ display:none}td#right:empty{ display:none}td#left-inner:empty{ display:none}td#right-inner:empty{ display:none}}ul.rMenu,ul.rMenu ul,ul.rMenu li,ul.rMenu a{display:block;margin:0;padding:0}ul.rMenu,ul.rMenu li,ul.rMenu ul{list-style:none}ul.rMenu ul{display:none}ul.rMenu li{position:relative;z-index:1}ul.rMenu li:hover{z-index:999}ul.rMenu li:hover > ul{display:block;position:absolute}ul.rMenu li:hover{background-position:0 0} ul.rMenu-hor li{float:left;width:auto}ul.rMenu-hRight li{float:right}ul.sub-menu li,ul.rMenu-ver li{float:none}div#menu1 ul.sub-menu,div#menu1 ul.sub-menu ul,div#menu1 ul.rMenu-ver,div#menu1 ul.rMenu-ver ul{width:11em}div#menu2 ul.sub-menu,div#menu2 ul.sub-menu ul,div#menu2 ul.rMenu-ver,div#menu2 ul.rMenu-ver ul{width:11em}ul.rMenu-wide{width:100%}ul.rMenu-vRight{float:right}ul.rMenu-lFloat{float:left}ul.rMenu-noFloat{float:none}div.rMenu-center ul.rMenu{float:left;position:relative;left:50%}div.rMenu-center ul.rMenu li{position:relative;left:-50%}div.rMenu-center ul.rMenu li li{left:auto}ul.rMenu-hor ul{top:auto;right:auto;left:auto;margin-top:-1px}ul.rMenu-hor ul ul{margin-top:0;margin-left:0px}ul.sub-menu ul,ul.rMenu-ver ul{left:100%;right:auto;top:auto;top:0}ul.rMenu-vRight ul,ul.rMenu-hRight ul.sub-menu ul,ul.rMenu-hRight ul.rMenu-ver ul{left:-100%;right:auto;top:auto}ul.rMenu-hRight ul{left:auto;right:0;top:auto;margin-top:-1px}div#menu1 ul.rMenu{background:#FFFFFF;border:dashed 1px #cccccc}div#menu2 ul.rMenu{background:#777777;border:solid 1px #000000}div#menu1 ul.rMenu li a{border:dashed 1px #cccccc}div#menu2 ul.rMenu li a{border:solid 1px #000000}ul.rMenu-hor li{margin-bottom:-1px;margin-top:-1px;margin-left:-1px}ul#rmenu li{}ul#rmenu li ul li{}ul.rMenu-hor{padding-left:1px }ul.sub-menu li,ul.rMenu-ver li{margin-left:0;margin-top:-1px; }div#menu1 ul.sub-menu,div#menu1 ul.rMenu-ver{border-top:dashed 1px #cccccc}div#menu2 ul.sub-menu,div#menu2 ul.rMenu-ver{border-top:solid 1px #000000}div#menu1 ul.rMenu li a{padding:4px 5px}div#menu2 ul.rMenu li a{padding:4px 5px}div#menu1 ul.rMenu li a:link,div#menu1 ul.rMenu li a:hover,div#menu1 ul.rMenu li a:visited,div#menu1 ul.rMenu li a:active{text-decoration:none;margin:0;color:#777777;text-transform:uppercase;font:11px Arial,Verdana,sans-serif;}div#menu2 ul.rMenu li a:link,div#menu2 ul.rMenu li a:hover,div#menu2 ul.rMenu li a:visited,div#menu2 ul.rMenu li a:active{text-decoration:none;margin:0;color:#FFFFFF;text-transform:uppercase;font:11px Arial,Verdana,sans-serif;}div#menu1 ul.rMenu li{background-color:#FFFFFF}div#menu2 ul.rMenu li{background-color:#777777}div#menu1 ul.rMenu li:hover,div#menu1 ul.rMenu li.sfhover{background:#DDDDDD}div#menu2 ul.rMenu li:hover,div#menu2 ul.rMenu li.sfhover{background:#000000}div#menu1 ul.rMenu li.current-menu-item > a:link,div#menu1 ul.rMenu li.current-menu-item > a:active,div#menu1 ul.rMenu li.current-menu-item > a:hover,div#menu1 ul.rMenu li.current-menu-item > a:visited,div#menu1 ul.rMenu li.current_page_item > a:link,div#menu1 ul.rMenu li.current_page_item > a:active,div#menu1 ul.rMenu li.current_page_item > a:hover,div#menu1 ul.rMenu li.current_page_item > a:visited{background-color:#EEEEEE;color:#000000}div#menu1 ul.rMenu li.current-menu-item a:link,div#menu1 ul.rMenu li.current-menu-item a:active,div#menu1 ul.rMenu li.current-menu-item a:hover,div#menu1 ul.rMenu li.current-menu-item a:visited,div#menu1 ul.rMenu li.current_page_item a:link,div#menu1 ul.rMenu li.current_page_item a:active,div#menu1 ul.rMenu li.current_page_item a:hover,div#menu1 ul.rMenu li.current_page_item a:visited,div#menu1 ul.rMenu li a:hover{background-color:#EEEEEE;color:#000000}div#menu2 ul.rMenu li.current-menu-item > a:link,div#menu2 ul.rMenu li.current-menu-item > a:active,div#menu2 ul.rMenu li.current-menu-item > a:hover,div#menu2 ul.rMenu li.current-menu-item > a:visited,div#menu2 ul.rMenu li.current-cat > a:link,div#menu2 ul.rMenu li.current-cat > a:active,div#menu2 ul.rMenu li.current-cat > a:hover,div#menu2 ul.rMenu li.current-cat > a:visited{background-color:#CC0000;color:#FFFFFF}div#menu2 ul.rMenu li.current-menu-item a:link,div#menu2 ul.rMenu li.current-menu-item a:active,div#menu2 ul.rMenu li.current-menu-item a:hover,div#menu2 ul.rMenu li.current-menu-item a:visited,div#menu2 ul.rMenu li.current-cat a:link,div#menu2 ul.rMenu li.current-cat a:active,div#menu2 ul.rMenu li.current-cat a:hover,div#menu2 ul.rMenu li.current-cat a:visited,div#menu2 ul.rMenu li a:hover{background-color:#CC0000;color:#FFFFFF}div#menu1 ul.rMenu li.rMenu-expand a,div#menu1 ul.rMenu li.rMenu-expand li.rMenu-expand a,div#menu1 ul.rMenu li.rMenu-expand li.rMenu-expand li.rMenu-expand a,div#menu1 ul.rMenu li.rMenu-expand li.rMenu-expand li.rMenu-expand li.rMenu-expand a,div#menu1 ul.rMenu li.rMenu-expand li.rMenu-expand li.rMenu-expand li.rMenu-expand li.rMenu-expand a,div#menu1 ul.rMenu li.rMenu-expand li.rMenu-expand li.rMenu-expand li.rMenu-expand li.rMenu-expand li.rMenu-expand a,div#menu1 ul.rMenu li.rMenu-expand li.rMenu-expand li.rMenu-expand li.rMenu-expand li.rMenu-expand li.rMenu-expand li.rMenu-expand a,div#menu1 ul.rMenu li.rMenu-expand li.rMenu-expand li.rMenu-expand li.rMenu-expand li.rMenu-expand li.rMenu-expand li.rMenu-expand li.rMenu-expand a,div#menu1 ul.rMenu li.rMenu-expand li.rMenu-expand li.rMenu-expand li.rMenu-expand li.rMenu-expand li.rMenu-expand li.rMenu-expand li.rMenu-expand li.rMenu-expand a,div#menu1 ul.rMenu li.rMenu-expand li.rMenu-expand li.rMenu-expand li.rMenu-expand li.rMenu-expand li.rMenu-expand li.rMenu-expand li.rMenu-expand li.rMenu-expand li.rMenu-expand a{padding-right:15px;padding-left:5px;background-repeat:no-repeat;background-position:100% 50%;background-image:url(http://www.kenanhancer.com/wp-content/themes/atahualpa/images/expand-right.gif)}div#menu2 ul.rMenu li.rMenu-expand a,div#menu2 ul.rMenu li.rMenu-expand li.rMenu-expand a,div#menu2 ul.rMenu li.rMenu-expand li.rMenu-expand li.rMenu-expand a,div#menu2 ul.rMenu li.rMenu-expand li.rMenu-expand li.rMenu-expand li.rMenu-expand a,div#menu2 ul.rMenu li.rMenu-expand li.rMenu-expand li.rMenu-expand li.rMenu-expand li.rMenu-expand a,div#menu2 ul.rMenu li.rMenu-expand li.rMenu-expand li.rMenu-expand li.rMenu-expand li.rMenu-expand li.rMenu-expand a,div#menu2 ul.rMenu li.rMenu-expand li.rMenu-expand li.rMenu-expand li.rMenu-expand li.rMenu-expand li.rMenu-expand li.rMenu-expand a,div#menu2 ul.rMenu li.rMenu-expand li.rMenu-expand li.rMenu-expand li.rMenu-expand li.rMenu-expand li.rMenu-expand li.rMenu-expand li.rMenu-expand a,div#menu2 ul.rMenu li.rMenu-expand li.rMenu-expand li.rMenu-expand li.rMenu-expand li.rMenu-expand li.rMenu-expand li.rMenu-expand li.rMenu-expand li.rMenu-expand a,div#menu2 ul.rMenu li.rMenu-expand li.rMenu-expand li.rMenu-expand li.rMenu-expand li.rMenu-expand li.rMenu-expand li.rMenu-expand li.rMenu-expand li.rMenu-expand li.rMenu-expand a{padding-right:15px;padding-left:5px;background-repeat:no-repeat;background-position:100% 50%;background-image:url(http://www.kenanhancer.com/wp-content/themes/atahualpa/images/expand-right-white.gif)}ul.rMenu-vRight li.rMenu-expand a,ul.rMenu-vRight li.rMenu-expand li.rMenu-expand a,ul.rMenu-vRight li.rMenu-expand li.rMenu-expand li.rMenu-expand a,ul.rMenu-vRight li.rMenu-expand li.rMenu-expand li.rMenu-expand li.rMenu-expand a,ul.rMenu-vRight li.rMenu-expand li.rMenu-expand li.rMenu-expand li.rMenu-expand li.rMenu-expand a,ul.rMenu-vRight li.rMenu-expand li.rMenu-expand li.rMenu-expand li.rMenu-expand li.rMenu-expand li.rMenu-expand a,ul.rMenu-vRight li.rMenu-expand li.rMenu-expand li.rMenu-expand li.rMenu-expand li.rMenu-expand li.rMenu-expand li.rMenu-expand a,ul.rMenu-vRight li.rMenu-expand li.rMenu-expand li.rMenu-expand li.rMenu-expand li.rMenu-expand li.rMenu-expand li.rMenu-expand li.rMenu-expand a,ul.rMenu-vRight li.rMenu-expand li.rMenu-expand li.rMenu-expand li.rMenu-expand li.rMenu-expand li.rMenu-expand li.rMenu-expand li.rMenu-expand li.rMenu-expand a,ul.rMenu-vRight li.rMenu-expand li.rMenu-expand li.rMenu-expand li.rMenu-expand li.rMenu-expand li.rMenu-expand li.rMenu-expand li.rMenu-expand li.rMenu-expand li.rMenu-expand a,ul.rMenu-hRight li.rMenu-expand a,ul.rMenu-hRight li.rMenu-expand li.rMenu-expand a,ul.rMenu-hRight li.rMenu-expand li.rMenu-expand li.rMenu-expand a,ul.rMenu-hRight li.rMenu-expand li.rMenu-expand li.rMenu-expand li.rMenu-expand a,ul.rMenu-hRight li.rMenu-expand li.rMenu-expand li.rMenu-expand li.rMenu-expand li.rMenu-expand a,ul.rMenu-hRight li.rMenu-expand li.rMenu-expand li.rMenu-expand li.rMenu-expand li.rMenu-expand li.rMenu-expand a,ul.rMenu-hRight li.rMenu-expand li.rMenu-expand li.rMenu-expand li.rMenu-expand li.rMenu-expand li.rMenu-expand li.rMenu-expand a,ul.rMenu-hRight li.rMenu-expand li.rMenu-expand li.rMenu-expand li.rMenu-expand li.rMenu-expand li.rMenu-expand li.rMenu-expand li.rMenu-expand a,ul.rMenu-hRight li.rMenu-expand li.rMenu-expand li.rMenu-expand li.rMenu-expand li.rMenu-expand li.rMenu-expand li.rMenu-expand li.rMenu-expand li.rMenu-expand a,ul.rMenu-hRight li.rMenu-expand li.rMenu-expand li.rMenu-expand li.rMenu-expand li.rMenu-expand li.rMenu-expand li.rMenu-expand li.rMenu-expand li.rMenu-expand li.rMenu-expand a{padding-right:5px;padding-left:20px;background-image:url(http://www.kenanhancer.com/wp-content/themes/atahualpa/images/expand-left.gif);background-repeat:no-repeat;background-position:-5px 50%}div#menu1 ul.rMenu-hor li.rMenu-expand a{padding-left:5px;padding-right:15px !important;background-position:100% 50%;background-image:url(http://www.kenanhancer.com/wp-content/themes/atahualpa/images/expand-down.gif)}div#menu2 ul.rMenu-hor li.rMenu-expand a{padding-left:5px;padding-right:15px !important;background-position:100% 50%;background-image:url(http://www.kenanhancer.com/wp-content/themes/atahualpa/images/expand-down-white.gif)}div#menu1 ul.rMenu li.rMenu-expand li a,div#menu1 ul.rMenu li.rMenu-expand li.rMenu-expand li a,div#menu1 ul.rMenu li.rMenu-expand li.rMenu-expand li.rMenu-expand li a,div#menu1 ul.rMenu li.rMenu-expand li.rMenu-expand li.rMenu-expand li.rMenu-expand li a,div#menu1 ul.rMenu li.rMenu-expand li.rMenu-expand li.rMenu-expand li.rMenu-expand li.rMenu-expand li a{background-image:none;padding-right:5px;padding-left:5px}div#menu2 ul.rMenu li.rMenu-expand li a,div#menu2 ul.rMenu li.rMenu-expand li.rMenu-expand li a,div#menu2 ul.rMenu li.rMenu-expand li.rMenu-expand li.rMenu-expand li a,div#menu2 ul.rMenu li.rMenu-expand li.rMenu-expand li.rMenu-expand li.rMenu-expand li a,div#menu2 ul.rMenu li.rMenu-expand li.rMenu-expand li.rMenu-expand li.rMenu-expand li.rMenu-expand li a{background-image:none;padding-right:5px;padding-left:5px}* html ul.rMenu{display:inline-block;display:block;position:relative;position:static}* html ul.rMenu ul{float:left;float:none}ul.rMenu ul{background-color:#fff}* html ul.sub-menu li,* html ul.rMenu-ver li,* html ul.rMenu-hor li ul.sub-menu li,* html ul.rMenu-hor li ul.rMenu-ver li{width:100%;float:left;clear:left}*:first-child+html ul.sub-menu > li:hover ul,*:first-child+html ul.rMenu-ver > li:hover ul{min-width:0}ul.rMenu li a{position:relative;min-width:0}* html ul.rMenu-hor li{width:6em;width:auto}* html div.rMenu-center{position:relative;z-index:1}html:not([lang*=""]) div.rMenu-center ul.rMenu li a:hover{height:100%}html:not([lang*=""]) div.rMenu-center ul.rMenu li a:hover{height:auto}* html ul.rMenu ul{display:block;position:absolute}* html ul.rMenu ul,* html ul.rMenu-hor ul,* html ul.sub-menu ul,* html ul.rMenu-ver ul,* html ul.rMenu-vRight ul,* html ul.rMenu-hRight ul.sub-menu ul,* html ul.rMenu-hRight ul.rMenu-ver ul,* html ul.rMenu-hRight ul{left:-10000px}* html ul.rMenu li.sfhover{z-index:999}* html ul.rMenu li.sfhover ul{left:auto}* html ul.rMenu li.sfhover ul ul,* html ul.rMenu li.sfhover ul ul ul{display:none}* html ul.rMenu li.sfhover ul,* html ul.rMenu li li.sfhover ul,* html ul.rMenu li li li.sfhover ul{display:block}* html ul.sub-menu li.sfhover ul,* html ul.rMenu-ver li.sfhover ul{left:60%}* html ul.rMenu-vRight li.sfhover ul,* html ul.rMenu-hRight ul.sub-menu li.sfhover ul* html ul.rMenu-hRight ul.rMenu-ver li.sfhover ul{left:-60%}* html ul.rMenu iframe{position:absolute;left:0;top:0;z-index:-1}* html ul.rMenu{margin-left:1px}* html ul.rMenu ul,* html ul.rMenu ul ul,* html ul.rMenu ul ul ul,* html ul.rMenu ul ul ul ul{margin-left:0}.clearfix:after{ content:".";display:block;height:0;clear:both;visibility:hidden}.clearfix{min-width:0;display:inline-block;display:block}* html .clearfix{height:1%;}.clearboth{clear:both;height:1%;font-size:1%;line-height:1%;display:block;padding:0;margin:0}h1{font-size:34px;line-height:1.2;margin:0.3em 0 10px;}h2{font-size:28px;line-height:1.3;margin:1em 0 .2em;}h3{font-size:24px;line-height:1.3;margin:1em 0 .2em;}h4{font-size:19px;margin:1.33em 0 .2em;}h5{font-size:1.3em;margin:1.67em 0;font-weight:bold;}h6{font-size:1.15em;margin:1.67em 0;font-weight:bold;}</style>
+<script type="text/javascript">
+//<![CDATA[
+
+
+
+/* JQUERY */
+jQuery(document).ready(function(){ 
+    
+   
+  
+
+	/* jQuery('ul#rmenu').superfish(); */
+	/* jQuery('ul#rmenu').superfish().find('ul').bgIframe({opacity:false}); */
+ 
+	/* For IE6 */
+	if (jQuery.browser.msie && /MSIE 6\.0/i.test(window.navigator.userAgent) && !/MSIE 7\.0/i.test(window.navigator.userAgent) && !/MSIE 8\.0/i.test(window.navigator.userAgent)) {
+
+		/* Max-width for images in IE6 */		
+		var centerwidth = jQuery("td#middle").width(); 
+		
+		/* Images without caption */
+		jQuery(".post img").each(function() { 
+			var maxwidth = centerwidth - 10 + 'px';
+			var imgwidth = jQuery(this).width(); 
+			var imgheight = jQuery(this).height(); 
+			var newimgheight = (centerwidth / imgwidth * imgheight) + 'px';	
+			if (imgwidth > centerwidth) { 
+				jQuery(this).css({width: maxwidth}); 
+				jQuery(this).css({height: newimgheight}); 
+			}
+		});
+		
+		/* Images with caption */
+		jQuery("div.wp-caption").each(function() { 
+			var captionwidth = jQuery(this).width(); 
+			var maxcaptionwidth = centerwidth + 'px';
+			var captionheight = jQuery(this).height();
+			var captionimgwidth =  jQuery("div.wp-caption img").width();
+			var captionimgheight =  jQuery("div.wp-caption img").height();
+			if (captionwidth > centerwidth) { 
+				jQuery(this).css({width: maxcaptionwidth}); 
+				var newcaptionheight = (centerwidth / captionwidth * captionheight) + 'px';
+				var newcaptionimgheight = (centerwidth / captionimgwidth * captionimgheight) + 'px';
+				jQuery(this).css({height: newcaptionheight}); 
+				jQuery("div.wp-caption img").css({height: newcaptionimgheight}); 
+				}
+		});
+		
+		/* sfhover for LI:HOVER support in IE6: */
+		jQuery("ul li").
+			hover( function() {
+					jQuery(this).addClass("sfhover")
+				}, 
+				function() {
+					jQuery(this).removeClass("sfhover")
+				} 
+			); 
+
+	/* End IE6 */
+	}
+	
+	jQuery(".post table tr").
+		mouseover(function() {
+			jQuery(this).addClass("over");
+		}).
+		mouseout(function() {
+			jQuery(this).removeClass("over");
+		});
+
+	
+	jQuery(".post table tr:even").
+		addClass("alt");
+
+	
+	jQuery("input.text, input.TextField, input.file, input.password, textarea").
+		focus(function () {  
+			jQuery(this).addClass("highlight"); 
+		}).
+		blur(function () { 
+			jQuery(this).removeClass("highlight"); 
+		})
+	
+	jQuery("input.inputblur").
+		focus(function () {  
+			jQuery(this).addClass("inputfocus"); 
+		}).
+		blur(function () { 
+			jQuery(this).removeClass("inputfocus"); 
+		})
+
+		
+
+	
+	jQuery("input.button, input.Button, input#submit").
+		mouseover(function() {
+			jQuery(this).addClass("buttonhover");
+		}).
+		mouseout(function() {
+			jQuery(this).removeClass("buttonhover");
+		});
+
+	/* toggle "you can use these xhtml tags" */
+	jQuery("a.xhtmltags").
+		click(function(){ 
+			jQuery("div.xhtml-tags").slideToggle(300); 
+		});
+
+	/* For the Tabbed Widgets plugin: */
+	jQuery("ul.tw-nav-list").
+		addClass("clearfix");
+
+		
+	
+});
+
+//]]>
+</script>
+
+<!--[if IE 6]>
+<script type="text/javascript">DD_roundies.addRule("a.posts-icon, a.comments-icon, a.email-icon, img.logo");</script>
+<![endif]-->
+<link rel="stylesheet" type="text/css" id="gravatar-card-css" href="ASP.NET%20MVC%203%20and%20Extjs%204%20Grid%20CRUD%20with%20Proxy%20from%20Server-Side%20%C2%AB%20Kenan%20Hancer_files/hovercard.css"><link rel="stylesheet" type="text/css" id="gravatar-card-services-css" href="ASP.NET%20MVC%203%20and%20Extjs%204%20Grid%20CRUD%20with%20Proxy%20from%20Server-Side%20%C2%AB%20Kenan%20Hancer_files/services.css"></head>
+<body class="single single-post postid-144 single-format-standard">
+<div id="wrapper">
+<div id="container">
+<table id="layout" border="0" cellpadding="0" cellspacing="0">
+<colgroup>
+<col class="colone"><col class="coltwo">
+</colgroup> 
+	<tbody><tr>
+
+		<!-- Header -->
+		<td id="header" colspan="2">
+
+		<div id="menu1"><ul id="rmenu2" class="clearfix rMenu-hor rMenu">
+<li class="page_item"><a href="http://www.kenanhancer.com/" title="Kenan Hancer"><span>Home</span></a></li>
+</ul></div>
+ <table id="logoarea" border="0" cellpadding="0" cellspacing="0" width="100%"><tbody><tr><td rowspan="2" class="logoarea-logo" valign="middle"><a href="http://www.kenanhancer.com/"><img class="logo" src="ASP.NET%20MVC%203%20and%20Extjs%204%20Grid%20CRUD%20with%20Proxy%20from%20Server-Side%20%C2%AB%20Kenan%20Hancer_files/logo.png" alt="Kenan Hancer"></a></td><td rowspan="2" class="logoarea-title" valign="middle"><h2 class="blogtitle"><a href="http://www.kenanhancer.com/">Kenan Hancer</a></h2><p class="tagline">My Software Development Adventures</p></td><td class="feed-icons" align="right" valign="middle"><div class="clearfix rss-box"><a class="comments-icon" href="http://www.kenanhancer.com/comments/feed/" title="Subscribe to the COMMENTS feed">Comments</a><a class="posts-icon" href="http://www.kenanhancer.com/feed/" title="Subscribe to the POSTS feed">Posts</a></div></td></tr><tr><td class="search-box" align="right" valign="bottom"><div class="searchbox">
+					<form method="get" class="searchform" action="http://www.kenanhancer.com/">
+					<div class="searchbox-form"><input class="text inputblur" onfocus="this.value=''" onblur="this.value=''" name="s" type="text"></div>
+					</form>
+				</div>
+				</td></tr></tbody></table> <div class="horbar1">&nbsp;</div> <div id="imagecontainer" class="header-image-container" style="background: url('http://www.kenanhancer.com/wp-content/themes/atahualpa/images/header/header6.jpg') top center no-repeat;"><div class="codeoverlay"></div><div class="opacityleft">&nbsp;</div><div class="opacityright">&nbsp;</div></div> <div class="horbar2">&nbsp;</div>
+		</td>
+		<!-- / Header -->
+
+	</tr>
+
+	<!-- Main Body -->	
+	<tr id="bodyrow">
+
+				<!-- Left Sidebar -->
+		<td id="left">
+
+			<div id="text-2" class="widget widget_text">			<div class="textwidget"><img style="background-image: none; padding-left: 0px; padding-right: 0px; display: inline; padding-top: 0px; border-width: 0px;" title="" src="ASP.NET%20MVC%203%20and%20Extjs%204%20Grid%20CRUD%20with%20Proxy%20from%20Server-Side%20%C2%AB%20Kenan%20Hancer_files/kenan.jpg" border="0" height="135" width="180"></div>
+		</div><div id="calendar-3" class="widget widget_calendar"><div class="widget-title"><h3>&nbsp;</h3></div><div id="calendar_wrap"><table id="wp-calendar">
+	<caption>May 2012</caption>
+	<thead>
+	<tr>
+		<th scope="col" title="Monday">M</th>
+		<th scope="col" title="Tuesday">T</th>
+		<th scope="col" title="Wednesday">W</th>
+		<th scope="col" title="Thursday">T</th>
+		<th scope="col" title="Friday">F</th>
+		<th scope="col" title="Saturday">S</th>
+		<th scope="col" title="Sunday">S</th>
+	</tr>
+	</thead>
+
+	<tfoot>
+	<tr>
+		<td colspan="3" id="prev"><a href="http://www.kenanhancer.com/2012/04/" title="View posts for April 2012">« Apr</a></td>
+		<td class="pad">&nbsp;</td>
+		<td colspan="3" id="next" class="pad">&nbsp;</td>
+	</tr>
+	</tfoot>
+
+	<tbody>
+	<tr>
+		<td colspan="1" class="pad">&nbsp;</td><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td>
+	</tr>
+	<tr>
+		<td>7</td><td>8</td><td>9</td><td>10</td><td>11</td><td>12</td><td>13</td>
+	</tr>
+	<tr>
+		<td>14</td><td>15</td><td>16</td><td>17</td><td>18</td><td>19</td><td>20</td>
+	</tr>
+	<tr>
+		<td>21</td><td>22</td><td>23</td><td>24</td><td>25</td><td>26</td><td>27</td>
+	</tr>
+	<tr>
+		<td id="today">28</td><td>29</td><td>30</td><td>31</td>
+		<td class="pad" colspan="3">&nbsp;</td>
+	</tr>
+	</tbody>
+	</table></div></div>		<div id="recent-posts-4" class="widget widget_recent_entries">		<div class="widget-title"><h3>Recent Posts</h3></div>		<ul>
+				<li><a href="http://www.kenanhancer.com/asp-net-mvc-3-basic-i/" title="ASP.NET MVC 3 Basic I">ASP.NET MVC 3 Basic I</a></li>
+				<li><a href="http://www.kenanhancer.com/background-processing-task-parallel-library-wpf/" title="Background Processing with Task Parallel Library and WPF">Background Processing with Task Parallel Library and WPF</a></li>
+				<li><a href="http://www.kenanhancer.com/asp-net-mvc-3-extjs-4-grid-crud-proxy-server-side/" title="ASP.NET MVC 3 and Extjs 4 Grid CRUD with Proxy from Server-Side">ASP.NET MVC 3 and Extjs 4 Grid CRUD with Proxy from Server-Side</a></li>
+				<li><a href="http://www.kenanhancer.com/asp-net-mvc-3-extjs-4-grid-loading-proxy-server-side/" title="ASP.NET MVC 3 and Extjs 4 Grid Loading with Proxy from Server-Side">ASP.NET MVC 3 and Extjs 4 Grid Loading with Proxy from Server-Side</a></li>
+				<li><a href="http://www.kenanhancer.com/asp-net-mvc-3-extjs-4-basic-grid-ii/" title="ASP.NET MVC 3 and Extjs 4 Basic Grid II">ASP.NET MVC 3 and Extjs 4 Basic Grid II</a></li>
+				<li><a href="http://www.kenanhancer.com/asp-net-mvc-3-extjs-4-basic-grid/" title="ASP.NET MVC 3 and Extjs 4 Basic Grid I">ASP.NET MVC 3 and Extjs 4 Basic Grid I</a></li>
+				<li><a href="http://www.kenanhancer.com/asp-net-mvc-3-extjs-4/" title="ASP.NET MVC 3 and Extjs 4">ASP.NET MVC 3 and Extjs 4</a></li>
+				<li><a href="http://www.kenanhancer.com/bulkcopy-from-datatable-and-datareader-which-are-created-from-excel-file/" title="BulkCopy from DataTable and DataReader which are created from Excel File">BulkCopy from DataTable and DataReader which are created from Excel File</a></li>
+				<li><a href="http://www.kenanhancer.com/waiting-all-tasks-to-finish-executions/" title="Waiting All Tasks to finish executions">Waiting All Tasks to finish executions</a></li>
+				<li><a href="http://www.kenanhancer.com/creating-task-in-some-ways/" title="Creating task in some ways">Creating task in some ways</a></li>
+				<li><a href="http://www.kenanhancer.com/using-function-delegates-2/" title="Using Function Delegates">Using Function Delegates</a></li>
+				</ul>
+		</div><div id="categories-3" class="widget widget_categories"><div class="widget-title"><h3>Categories</h3></div>		<ul>
+	<li class="cat-item cat-item-11"><a href="http://www.kenanhancer.com/category/asp-net/" title="View all posts filed under ASP.NET">ASP.NET</a> (6)
+</li>
+	<li class="cat-item cat-item-6"><a href="http://www.kenanhancer.com/category/c/" title="View all posts filed under C#">C#</a> (11)
+</li>
+	<li class="cat-item cat-item-10"><a href="http://www.kenanhancer.com/category/extjs/" title="View all posts filed under Extjs">Extjs</a> (5)
+</li>
+	<li class="cat-item cat-item-14"><a href="http://www.kenanhancer.com/category/mvc-3/" title="View all posts filed under MVC 3">MVC 3</a> (1)
+</li>
+	<li class="cat-item cat-item-12"><a href="http://www.kenanhancer.com/category/task-parallel-library/" title="View all posts filed under Task Parallel Library">Task Parallel Library</a> (1)
+</li>
+	<li class="cat-item cat-item-13"><a href="http://www.kenanhancer.com/category/wpf/" title="View all posts filed under WPF">WPF</a> (1)
+</li>
+		</ul>
+</div><div id="archives-3" class="widget widget_archive"><div class="widget-title"><h3>Archives</h3></div>		<ul>
+			<li><a href="http://www.kenanhancer.com/2012/04/" title="April 2012">April 2012</a>&nbsp;(1)</li>
+	<li><a href="http://www.kenanhancer.com/2012/02/" title="February 2012">February 2012</a>&nbsp;(1)</li>
+	<li><a href="http://www.kenanhancer.com/2012/01/" title="January 2012">January 2012</a>&nbsp;(5)</li>
+	<li><a href="http://www.kenanhancer.com/2011/12/" title="December 2011">December 2011</a>&nbsp;(3)</li>
+	<li><a href="http://www.kenanhancer.com/2011/10/" title="October 2011">October 2011</a>&nbsp;(1)</li>
+		</ul>
+</div><div id="tag_cloud-3" class="widget widget_tag_cloud"><div class="widget-title"><h3>Tags</h3></div><div class="tagcloud"><a href="http://www.kenanhancer.com/tag/net/" class="tag-link-9" title="1 topic" style="font-size: 8pt;">.NET</a>
+<a href="http://www.kenanhancer.com/tag/c-net/" class="tag-link-8" title="1 topic" style="font-size: 8pt;">C#.NET</a></div>
+</div>
+		</td>
+		<!-- / Left Sidebar -->
+		
+				
+
+		<!-- Main Column -->
+		<td id="middle">
+
+		
+		
+				<div class="clearfix navigation-top">
+		<div class="older">« <a href="http://www.kenanhancer.com/background-processing-task-parallel-library-wpf/" rel="next">Background Processing with Task Parallel Library and WPF</a> &nbsp;</div><div class="newer">&nbsp; <a href="http://www.kenanhancer.com/asp-net-mvc-3-extjs-4-grid-loading-proxy-server-side/" rel="prev">ASP.NET MVC 3 and Extjs 4 Grid Loading with Proxy from Server-Side</a> »</div></div>				<div class="post-144 post type-post status-publish format-standard hentry category-asp-net category-c category-extjs odd" id="post-144">
+						<div class="post-headline"><h1>ASP.NET MVC 3 and Extjs 4 Grid CRUD with Proxy from Server-Side</h1></div>				<div class="post-bodycopy clearfix"><p>&nbsp;</p>
+<p>Hi everybody,</p>
+<p>In this post, I tried to show how to achieve CRUD with ASP.NET MVC 3 and Extjs 4 technologies. I hope that you like it <img style="border-style: none;" class="wlEmoticon wlEmoticon-winkingsmile" alt="Winking smile" src="ASP.NET%20MVC%203%20and%20Extjs%204%20Grid%20CRUD%20with%20Proxy%20from%20Server-Side%20%C2%AB%20Kenan%20Hancer_files/wlEmoticon-winkingsmile.png"></p>
+<pre class="code"><span style="color: blue">using </span>System;
+<span style="color: blue">using </span>System.Collections.Generic;
+<span style="color: blue">using </span>System.Linq;
+<span style="color: blue">using </span>System.Web;
+<span style="color: blue">using </span>System.Web.Mvc;
+
+<span style="color: blue">namespace </span>MvcApplication_Extjs4.Controllers
+{
+    <span style="color: blue">public class </span><span style="color: #2b91af">PersonController </span>: <span style="color: #2b91af">Controller
+    </span>{
+        <span style="color: green">//
+        // GET: /Person/
+
+        </span><span style="color: blue">public </span><span style="color: #2b91af">ActionResult </span>Index1()
+        {
+            <span style="color: blue">return </span>View();
+        }
+
+        <span style="color: blue">public </span><span style="color: #2b91af">ActionResult </span>Index2()
+        {
+            <span style="color: blue">return </span>View();
+        }
+
+        <span style="color: blue">public </span><span style="color: #2b91af">ActionResult </span>Index3()
+        {
+            <span style="color: blue">return </span>View();
+        }
+
+        <span style="color: blue">public </span><span style="color: #2b91af">ActionResult </span>Index4()
+        {
+            <span style="color: blue">return </span>View();
+        }
+
+        <span style="color: blue">public </span><span style="color: #2b91af">ActionResult </span>Index5()
+        {
+            <span style="color: blue">return </span>View();
+        }
+
+        <span style="color: blue">public </span><span style="color: #2b91af">JsonResult </span>PersonList(<span style="color: blue">string </span>firstName, <span style="color: blue">string </span>lastName, <span style="color: blue">string </span>email)
+        {
+            <span style="color: #2b91af">List</span>&lt;<span style="color: blue">dynamic</span>&gt; persons = <span style="color: blue">new </span><span style="color: #2b91af">List</span>&lt;<span style="color: blue">dynamic</span>&gt;();
+            persons.Add(<span style="color: blue">new </span>{ ID = 1, FirstName = <span style="color: #a31515">"kenan"</span>, LastName = <span style="color: #a31515">"Hançer"</span>, Email = <span style="color: #a31515">"kenanhancer@hotmail.com" </span>});
+            persons.Add(<span style="color: blue">new </span>{ ID = 2, FirstName = firstName, LastName = lastName, Email = email });
+
+            <span style="color: blue">return </span>Json(<span style="color: blue">new </span>{ data = persons, total = persons.Count }, <span style="color: #2b91af">JsonRequestBehavior</span>.AllowGet);
+        }
+
+        <span style="color: blue">public </span><span style="color: #2b91af">JsonResult </span>PersonNewList()
+        {
+            <span style="color: #2b91af">List</span>&lt;<span style="color: blue">dynamic</span>&gt; persons = <span style="color: blue">new </span><span style="color: #2b91af">List</span>&lt;<span style="color: blue">dynamic</span>&gt;();
+            persons.Add(<span style="color: blue">new </span>{ PersonID = 1, FirstName = <span style="color: #a31515">"Kenan"</span>, LastName = <span style="color: #a31515">"Hançer"</span>, CreateDate = <span style="color: #2b91af">DateTime</span>.Now });
+            persons.Add(<span style="color: blue">new </span>{ PersonID = 2, FirstName = <span style="color: #a31515">"Kagan"</span>, LastName = <span style="color: #a31515">"Demir"</span>, CreateDate = <span style="color: #2b91af">DateTime</span>.Now });
+
+            <span style="color: blue">return </span>Json(<span style="color: blue">new </span>{ data = persons, total = persons.Count }, <span style="color: #2b91af">JsonRequestBehavior</span>.AllowGet);
+        }
+
+        <span style="color: blue">public </span><span style="color: #2b91af">JsonResult </span>CommunicationInfoList(<span style="color: blue">int </span>personID)
+        {
+            <span style="color: #2b91af">List</span>&lt;<span style="color: blue">dynamic</span>&gt; comInfo = <span style="color: blue">new </span><span style="color: #2b91af">List</span>&lt;<span style="color: blue">dynamic</span>&gt;();
+            comInfo.Add(<span style="color: blue">new </span>{ ComInfoID = 1, PersonID = 1, ComType = <span style="color: #a31515">"HomeAddress"</span>, Value = <span style="color: #a31515">"Avcılar/İstanbul" </span>});
+            comInfo.Add(<span style="color: blue">new </span>{ ComInfoID = 2, PersonID = 1, ComType = <span style="color: #a31515">"JobAddress"</span>, Value = <span style="color: #a31515">"Giyimkent/İstanbul" </span>});
+            comInfo.Add(<span style="color: blue">new </span>{ ComInfoID = 3, PersonID = 1, ComType = <span style="color: #a31515">"Mail"</span>, Value = <span style="color: #a31515">"kenanhancer@hotmail.com" </span>});
+            comInfo.Add(<span style="color: blue">new </span>{ ComInfoID = 4, PersonID = 1, ComType = <span style="color: #a31515">"Mail"</span>, Value = <span style="color: #a31515">"kenan.hancer@albtelecom.com" </span>});
+            comInfo.Add(<span style="color: blue">new </span>{ ComInfoID = 5, PersonID = 1, ComType = <span style="color: #a31515">"Mail"</span>, Value = <span style="color: #a31515">"kenanhancer@gmail.com" </span>});
+            comInfo.Add(<span style="color: blue">new </span>{ ComInfoID = 6, PersonID = 1, ComType = <span style="color: #a31515">"WebAddress"</span>, Value = <span style="color: #a31515">"www.kenanhancer.com" </span>});
+
+            comInfo.Add(<span style="color: blue">new </span>{ ComInfoID = 7, PersonID = 2, ComType = <span style="color: #a31515">"HomeAddress"</span>, Value = <span style="color: #a31515">"Kızılay/Ankara" </span>});
+            comInfo.Add(<span style="color: blue">new </span>{ ComInfoID = 8, PersonID = 2, ComType = <span style="color: #a31515">"JobAddress"</span>, Value = <span style="color: #a31515">"Kasar/Tiran" </span>});
+            comInfo.Add(<span style="color: blue">new </span>{ ComInfoID = 9, PersonID = 2, ComType = <span style="color: #a31515">"Mail"</span>, Value = <span style="color: #a31515">"kagan.demir@albtelecom.al" </span>});
+
+            <span style="color: blue">var </span>dataa = comInfo.Where(f =&gt; f.PersonID == personID).ToList();
+            <span style="color: blue">return </span>Json(<span style="color: blue">new </span>{ data = dataa, total = dataa.Count }, <span style="color: #2b91af">JsonRequestBehavior</span>.AllowGet);
+        }
+
+        [<span style="color: #2b91af">HttpPost</span>]
+        <span style="color: blue">public </span><span style="color: #2b91af">ActionResult </span>Create(<span style="color: blue">string </span>data)
+        {
+            System.Web.Script.Serialization.<span style="color: #2b91af">JavaScriptSerializer </span>jss = <span style="color: blue">new </span>System.Web.Script.Serialization.<span style="color: #2b91af">JavaScriptSerializer</span>();
+            <span style="color: blue">var </span>deserializedData = jss.Deserialize&lt;<span style="color: blue">dynamic</span>&gt;(data);
+
+            <span style="color: blue">object </span>personID = deserializedData[<span style="color: #a31515">"PersonID"</span>];
+            <span style="color: blue">object </span>firstName = deserializedData[<span style="color: #a31515">"FirstName"</span>];
+            <span style="color: blue">object </span>lastName = deserializedData[<span style="color: #a31515">"LastName"</span>];
+            <span style="color: blue">object </span>createDate = deserializedData[<span style="color: #a31515">"CreateDate"</span>];
+
+            <span style="color: blue">return </span>Json(<span style="color: blue">new
+            </span>{
+                success = <span style="color: blue">true</span>,
+                message = <span style="color: #a31515">"Create method called successfully"
+            </span>});
+        }
+
+        [<span style="color: #2b91af">HttpPost</span>]
+        <span style="color: blue">public </span><span style="color: #2b91af">ActionResult </span>Edit(<span style="color: blue">string </span>data)
+        {
+            System.Web.Script.Serialization.<span style="color: #2b91af">JavaScriptSerializer </span>jss = <span style="color: blue">new </span>System.Web.Script.Serialization.<span style="color: #2b91af">JavaScriptSerializer</span>();
+            <span style="color: blue">var </span>deserializedData = jss.Deserialize&lt;<span style="color: blue">dynamic</span>&gt;(data);
+
+            <span style="color: blue">object </span>personID = deserializedData[<span style="color: #a31515">"PersonID"</span>];
+            <span style="color: blue">object </span>firstName = deserializedData[<span style="color: #a31515">"FirstName"</span>];
+            <span style="color: blue">object </span>lastName = deserializedData[<span style="color: #a31515">"LastName"</span>];
+            <span style="color: blue">object </span>createDate = deserializedData[<span style="color: #a31515">"CreateDate"</span>];
+
+            <span style="color: blue">return </span>Json(<span style="color: blue">new
+            </span>{
+                success = <span style="color: blue">true</span>,
+                message = <span style="color: #a31515">"Update method called successfully"
+            </span>});
+        }
+
+        [<span style="color: #2b91af">HttpPost</span>, <span style="color: #2b91af">ActionName</span>(<span style="color: #a31515">"Delete"</span>)]
+        <span style="color: blue">public </span><span style="color: #2b91af">ActionResult </span>DeleteConfirmed(<span style="color: blue">int </span>id)
+        {
+            <span style="color: blue">return </span>Json(<span style="color: blue">new
+            </span>{
+                success = <span style="color: blue">true</span>,
+                message = <span style="color: #a31515">"Delete method called successfully"
+            </span>});
+        }
+    }
+}</pre>
+<p>****************************************************************************************************************</p>
+<pre class="code"><span style="color: blue">&lt;</span><span style="color: maroon">script </span><span style="color: red">type</span><span style="color: blue">="text/javascript"&gt;
+    </span>Ext.onReady(<span style="color: blue">function </span>() {
+        Ext.define(<span style="color: maroon">'Person'</span>, {
+            extend: <span style="color: maroon">'Ext.data.Model'</span>,
+            idProperty: <span style="color: maroon">'PersonID'</span>,
+            fields: [
+                    { name: <span style="color: maroon">'PersonID'</span>, type: <span style="color: maroon">'int'</span>, useNull: <span style="color: blue">true </span>},
+                    { name: <span style="color: maroon">'FirstName'</span>, type: <span style="color: maroon">'string' </span>},
+                    { name: <span style="color: maroon">'LastName'</span>, type: <span style="color: maroon">'string' </span>},
+                    { name: <span style="color: maroon">'CreateDate'</span>, type: <span style="color: maroon">'date'</span>, dateFormat: <span style="color: maroon">'MS' </span>}
+                    ]
+        });
+
+        Ext.define(<span style="color: maroon">'CommunicationInformation'</span>, {
+            extend: <span style="color: maroon">'Ext.data.Model'</span>,
+            idProperty: <span style="color: maroon">'ComInfoID'</span>,
+            fields: [
+                    { name: <span style="color: maroon">'ComInfoID'</span>, type: <span style="color: maroon">'int'</span>, useNull: <span style="color: blue">true </span>},
+                    { name: <span style="color: maroon">'PersonID'</span>, type: <span style="color: maroon">'int' </span>},
+                    { name: <span style="color: maroon">'ComType'</span>, type: <span style="color: maroon">'string' </span>},
+                    { name: <span style="color: maroon">'Value'</span>, type: <span style="color: maroon">'string' </span>},
+                    ]
+        });
+
+        <span style="color: blue">var </span>personStore = Ext.create(<span style="color: maroon">'Ext.data.Store'</span>, {
+            autoLoad: <span style="color: blue">true</span>,
+            autoSync: <span style="color: blue">true</span>,
+            model: <span style="color: maroon">'Person'</span>,
+            proxy: {
+                type: <span style="color: maroon">'ajax'</span>,
+                url: <span style="color: maroon">'</span><span style="background: yellow; color: maroon">@</span>Url.Content(<span style="color: #a31515">"~/Person/PersonNewList"</span>)<span style="color: maroon">'</span>,
+                api: {
+                    read: <span style="color: maroon">'</span><span style="background: yellow; color: maroon">@</span>Url.Content(<span style="color: #a31515">"~/Person/PersonNewList"</span>)<span style="color: maroon">'</span>,
+                    create: <span style="color: maroon">'</span><span style="background: yellow; color: maroon">@</span>Url.Content(<span style="color: #a31515">"~/Person/Create"</span>)<span style="color: maroon">'</span>,
+                    update: <span style="color: maroon">'</span><span style="background: yellow; color: maroon">@</span>Url.Content(<span style="color: #a31515">"~/Person/Edit"</span>)<span style="color: maroon">'</span>,
+                    destroy: <span style="color: maroon">'</span><span style="background: yellow; color: maroon">@</span>Url.Content(<span style="color: #a31515">"~/Person/Delete"</span>)<span style="color: maroon">'
+                </span>},
+                reader: {
+                    type: <span style="color: maroon">'json'</span>,
+                    root: <span style="color: maroon">'data'</span>,
+                    totalProperty : <span style="color: maroon">'total'
+                </span>},
+                writer: {
+                    type: <span style="color: maroon">'json'</span>,
+                    encode: <span style="color: blue">false</span>,
+                    listful: <span style="color: blue">true</span>,
+                    writeAllFields: <span style="color: blue">true</span>,
+                    getRecordData:<span style="color: blue">function</span>(record){
+                        <span style="color: blue">return </span>{<span style="color: maroon">'data'</span>: Ext.JSON.encode(record.data)};
+                    }
+                },
+                headers: { <span style="color: maroon">'Content-Type'</span>: <span style="color: maroon">'application/json; charset=UTF-8' </span>}
+            }
+        });
+
+        <span style="color: blue">var </span>comInfoStore = Ext.create(<span style="color: maroon">'Ext.data.Store'</span>, {
+            autoLoad: <span style="color: blue">false</span>,
+            model: <span style="color: maroon">'CommunicationInformation'</span>,
+            proxy: {
+                type: <span style="color: maroon">'ajax'</span>,
+                url: <span style="color: maroon">'</span><span style="background: yellow; color: maroon">@</span>Url.Content(<span style="color: #a31515">"~/Person/CommunicationInfoList"</span>)<span style="color: maroon">'</span>,
+                reader: {
+                    type: <span style="color: maroon">'json'</span>,
+                    root: <span style="color: maroon">'data'</span>,
+                    totalProperty : <span style="color: maroon">'total'
+                </span>},
+            }
+        });
+
+        <span style="color: blue">var </span>personGrid = Ext.create(<span style="color: maroon">'Ext.grid.Panel'</span>, {
+            renderTo: <span style="color: maroon">'personGrid'</span>,
+            width: 600,
+            height: 300,
+            frame: <span style="color: blue">true</span>,
+            title: <span style="color: maroon">'Persons'</span>,
+            store: personStore,
+            iconCls: <span style="color: maroon">'icon-user'</span>,
+            columns: [
+                    { dataIndex: <span style="color: maroon">'PersonID'</span>, text: <span style="color: maroon">'PersonID'</span>, width: 40, sortable: <span style="color: blue">true </span>},
+                    { dataIndex: <span style="color: maroon">'FirstName'</span>, text: <span style="color: maroon">'First Name'</span>, width: 120, sortable: <span style="color: blue">true</span>,
+                        field: { xtype: <span style="color: maroon">'textfield' </span>}
+                    },
+                    { dataIndex: <span style="color: maroon">'LastName'</span>, text: <span style="color: maroon">'Last Name'</span>, width: 120, sortable: <span style="color: blue">true</span>,
+                        field: { xtype: <span style="color: maroon">'textfield' </span>}
+                    },
+                    { dataIndex: <span style="color: maroon">'CreateDate'</span>, text: <span style="color: maroon">'Create Date'</span>, width: 120, sortable: <span style="color: blue">true</span>, renderer: Ext.util.Format.dateRenderer(<span style="color: maroon">'d/m/Y'</span>),
+                        field: { xtype: <span style="color: maroon">'datefield' </span>}
+                    }],
+            plugins: [
+                    Ext.create(<span style="color: maroon">'Ext.grid.plugin.RowEditing'</span>, {
+                        clicksToEdit: 1,
+                        pluginId: <span style="color: maroon">'rowEditing'
+                    </span>})
+            ],
+            listeners: {
+                itemclick: <span style="color: blue">function </span>(view, record, item, index, e) {
+                    <span style="color: blue">var </span>personID = record.get(<span style="color: maroon">'PersonID'</span>);
+                    comInfoStore.load({params:{
+                        personID: personID
+                    }});
+                }
+            },
+            dockedItems: [{
+                        xtype: <span style="color: maroon">'pagingtoolbar'</span>,
+                        store: personStore,
+                        dock: <span style="color: maroon">'bottom'</span>,
+                        displayInfo: <span style="color: blue">true</span>,
+                        emptyMsg : <span style="color: maroon">'No data to displayy'
+                    </span>}]
+        });
+
+        <span style="color: blue">var </span>comInfoGrid = Ext.create(<span style="color: maroon">'Ext.grid.Panel'</span>, {
+            renderTo: <span style="color: maroon">'comInfoGrid'</span>,
+            width: 600,
+            height: 300,
+            frame: <span style="color: blue">true</span>,
+            title: <span style="color: maroon">'Communication Information'</span>,
+            store: comInfoStore,
+            iconCls: <span style="color: maroon">'icon-user'</span>,
+            columns: [
+                    { dataIndex: <span style="color: maroon">'ComInfoID'</span>, text: <span style="color: maroon">'ComInfoID'</span>, width: 40, sortable: <span style="color: blue">true </span>},
+                    { dataIndex: <span style="color: maroon">'PersonID'</span>, text: <span style="color: maroon">'PersonID'</span>, width: 40, sortable: <span style="color: blue">true </span>},
+                    { dataIndex: <span style="color: maroon">'ComType'</span>, text: <span style="color: maroon">'Communication Type'</span>, width: 80, sortable: <span style="color: blue">true</span>,
+                        field: { xtype: <span style="color: maroon">'textfield' </span>}
+                    },
+                    { dataIndex: <span style="color: maroon">'Value'</span>, text: <span style="color: maroon">'Value'</span>, width: 80, sortable: <span style="color: blue">true</span>,
+                        field: { xtype: <span style="color: maroon">'textfield' </span>}
+                    }],
+            dockedItems: [{
+                        xtype: <span style="color: maroon">'pagingtoolbar'</span>,
+                        store: comInfoStore,
+                        dock: <span style="color: maroon">'bottom'</span>,
+                        displayInfo: <span style="color: blue">true</span>,
+                        emptyMsg : <span style="color: maroon">'No data to displayyy'
+                    </span>}]
+        });
+
+    });
+<span style="color: blue">&lt;/</span><span style="color: maroon">script</span><span style="color: blue">&gt;
+</span><span style="background: yellow">@{
+</span>    ViewBag.Title = <span style="color: #a31515">"Persons"</span>;
+<span style="background: yellow">}
+
+</span><span style="color: blue">&lt;</span><span style="color: maroon">h2</span><span style="color: blue">&gt;</span>Persons<span style="color: blue">&lt;/</span><span style="color: maroon">h2</span><span style="color: blue">&gt;
+
+&lt;</span><span style="color: maroon">div </span><span style="color: red">id</span><span style="color: blue">="personGrid"&gt;&lt;/</span><span style="color: maroon">div</span><span style="color: blue">&gt;
+&lt;</span><span style="color: maroon">br </span><span style="color: blue">/&gt;
+&lt;</span><span style="color: maroon">div </span><span style="color: red">id</span><span style="color: blue">="comInfoGrid"&gt;&lt;/</span><span style="color: maroon">div</span><span style="color: blue">&gt;
+</span></pre>
+<p>&nbsp;</p>
+<p><a href="http://www.kenanhancer.com/wp-content/uploads/ASP.NET-MVC-3-and-Extjs-4-Grid-Loading-w_14263/image.png"><img style="background-image: none; border-width: 0px; border-style: none; border-color: -moz-use-text-color; padding-left: 0px; padding-right: 0px; display: inline; padding-top: 0px;" title="image" alt="image" src="ASP.NET%20MVC%203%20and%20Extjs%204%20Grid%20CRUD%20with%20Proxy%20from%20Server-Side%20%C2%AB%20Kenan%20Hancer_files/image_thumb.png" border="0" height="724" width="1284"></a></p>
+<p><a href="http://www.kenanhancer.com/wp-content/uploads/ASP.NET-MVC-3-and-Extjs-4-Grid-Loading-w_14263/image_3.png"><img style="background-image: none; border-width: 0px; border-style: none; border-color: -moz-use-text-color; padding-left: 0px; padding-right: 0px; display: inline; padding-top: 0px;" title="image" alt="image" src="ASP.NET%20MVC%203%20and%20Extjs%204%20Grid%20CRUD%20with%20Proxy%20from%20Server-Side%20%C2%AB%20Kenan%20Hancer_files/image_thumb_3.png" border="0" height="724" width="1284"></a></p>
+<p>&nbsp;</p>
+<p>When you look at the data parameter, you will see that it is JSON formatted. So that we should deserialize</p>
+<p><a href="http://www.kenanhancer.com/wp-content/uploads/ASP.NET-MVC-3-and-Extjs-4-Grid-Loading-w_14263/image_4.png"><img style="background-image: none; border-width: 0px; border-style: none; border-color: -moz-use-text-color; padding-left: 0px; padding-right: 0px; display: inline; padding-top: 0px;" title="image" alt="image" src="ASP.NET%20MVC%203%20and%20Extjs%204%20Grid%20CRUD%20with%20Proxy%20from%20Server-Side%20%C2%AB%20Kenan%20Hancer_files/image_thumb_4.png" border="0" height="724" width="1284"></a></p>
+<p>&nbsp;</p>
+<p>When we deserialized the data parameter to dynamic data you can reach all values.</p>
+<p><a href="http://www.kenanhancer.com/wp-content/uploads/ASP.NET-MVC-3-and-Extjs-4-Grid-Loading-w_14263/image_5.png"><img style="background-image: none; border-width: 0px; border-style: none; border-color: -moz-use-text-color; padding-left: 0px; padding-right: 0px; display: inline; padding-top: 0px;" title="image" alt="image" src="ASP.NET%20MVC%203%20and%20Extjs%204%20Grid%20CRUD%20with%20Proxy%20from%20Server-Side%20%C2%AB%20Kenan%20Hancer_files/image_thumb_5.png" border="0" height="724" width="1284"></a></p>
+<p>&nbsp;</p>
+<p><a href="http://www.kenanhancer.com/wp-content/uploads/ASP.NET-MVC-3-and-Extjs-4-Grid-Loading-w_14263/image_6.png"><img style="background-image: none; border-width: 0px; border-style: none; border-color: -moz-use-text-color; padding-left: 0px; padding-right: 0px; display: inline; padding-top: 0px;" title="image" alt="image" src="ASP.NET%20MVC%203%20and%20Extjs%204%20Grid%20CRUD%20with%20Proxy%20from%20Server-Side%20%C2%AB%20Kenan%20Hancer_files/image_thumb_6.png" border="0" height="724" width="1284"></a></p>
+<p>&nbsp;</p>
+<p>As you can see that when you select one row from persons grid, Communication Informations is loaded up to person row.</p>
+<p><a href="http://www.kenanhancer.com/wp-content/uploads/ASP.NET-MVC-3-and-Extjs-4-Grid-Loading-w_14263/image_7.png"><img style="background-image: none; border-width: 0px; border-style: none; border-color: -moz-use-text-color; padding-left: 0px; padding-right: 0px; display: inline; padding-top: 0px;" title="image" alt="image" src="ASP.NET%20MVC%203%20and%20Extjs%204%20Grid%20CRUD%20with%20Proxy%20from%20Server-Side%20%C2%AB%20Kenan%20Hancer_files/image_thumb_7.png" border="0" height="724" width="1284"></a></p>
+</div>						<div class="post-footer">January 30th, 2012 |  Category: <a href="http://www.kenanhancer.com/category/asp-net/" title="View all posts in ASP.NET" rel="category tag">ASP.NET</a>, <a href="http://www.kenanhancer.com/category/c/" title="View all posts in C#" rel="category tag">C#</a>, <a href="http://www.kenanhancer.com/category/extjs/" title="View all posts in Extjs" rel="category tag">Extjs</a> </div>		</div><!-- / Post -->	
+						
+	
+			
+
+	<a name="comments"></a><!-- named anchor for skip links -->
+	<h3 id="comments">24 comments to ASP.NET MVC 3 and Extjs 4 Grid CRUD with Proxy from Server-Side</h3>
+
+	
+	<!-- Comment List -->
+	<ul class="commentlist">
+		
+			<li class="comment even thread-even depth-1 clearfix" id="comment-50">
+		<div id="div-comment-50" class="clearfix comment-container">
+		<div class="comment-author vcard">
+		<img id="grav-f1dab7a041274165657202ef820fc7b0-0" alt="" src="ASP.NET%20MVC%203%20and%20Extjs%204%20Grid%20CRUD%20with%20Proxy%20from%20Server-Side%20%C2%AB%20Kenan%20Hancer_files/f1dab7a041274165657202ef820fc7b0.png" class="avatar avatar-55 photo grav-hashed grav-hijack" height="55" width="55">		<span class="authorname"><a href="http://devenirriche.outilblog.com/The-first-blog-b1/Comment-devenir-riche-en-investissent-dans-les-maisons-b1-p3.htm" rel="external nofollow" class="url">Comment devenir riche</a></span>
+		</div>
+				<div class="comment-meta commentmetadata">
+		<a href="http://www.kenanhancer.com/asp-net-mvc-3-extjs-4-grid-crud-proxy-server-side/#comment-50">
+		February 18, 2012 at 10:55 am</a>
+        <span class="comment-reply-link"><a class="comment-reply-link" href="http://www.kenanhancer.com/asp-net-mvc-3-extjs-4-grid-crud-proxy-server-side/?replytocom=50#respond" onclick='return addComment.moveForm("comment-50", "50", "respond", "144")'> · Reply</a></span>		 
+		</div>
+		<p>Very good written article. It will be valuable to anybody who 
+utilizes it, as well as me. Keep doing what you are doing – looking 
+forward to more posts.</p>
+		</div>
+</li>
+		<li class="comment odd alt thread-odd thread-alt depth-1 clearfix" id="comment-65">
+		<div id="div-comment-65" class="clearfix comment-container">
+		<div class="comment-author vcard">
+		<img id="grav-9544ce000dd22a80cfd3f45a2e8b6c75-0" alt="" src="ASP.NET%20MVC%203%20and%20Extjs%204%20Grid%20CRUD%20with%20Proxy%20from%20Server-Side%20%C2%AB%20Kenan%20Hancer_files/9544ce000dd22a80cfd3f45a2e8b6c75.png" class="avatar avatar-55 photo grav-hashed grav-hijack" height="55" width="55">		<span class="authorname"><a href="http://www.toplawnmowerreviews.com/" rel="external nofollow" class="url">albert</a></span>
+		</div>
+				<div class="comment-meta commentmetadata">
+		<a href="http://www.kenanhancer.com/asp-net-mvc-3-extjs-4-grid-crud-proxy-server-side/#comment-65">
+		February 24, 2012 at 12:00 am</a>
+        <span class="comment-reply-link"><a class="comment-reply-link" href="http://www.kenanhancer.com/asp-net-mvc-3-extjs-4-grid-crud-proxy-server-side/?replytocom=65#respond" onclick='return addComment.moveForm("comment-65", "65", "respond", "144")'> · Reply</a></span>		 
+		</div>
+		<p>Cool blog!</p>
+		</div>
+</li>
+		<li class="comment even thread-even depth-1 clearfix" id="comment-73">
+		<div id="div-comment-73" class="clearfix comment-container">
+		<div class="comment-author vcard">
+		<img id="grav-24c53941fa8fae74baeec95abff71c2f-0" alt="" src="ASP.NET%20MVC%203%20and%20Extjs%204%20Grid%20CRUD%20with%20Proxy%20from%20Server-Side%20%C2%AB%20Kenan%20Hancer_files/24c53941fa8fae74baeec95abff71c2f.png" class="avatar avatar-55 photo grav-hashed grav-hijack" height="55" width="55">		<span class="authorname"><a href="http://www.vilago21.com/event/R_cup_rer+son+ex+rapidement/433135/profile" rel="external nofollow" class="url">comment récupérer son ex</a></span>
+		</div>
+				<div class="comment-meta commentmetadata">
+		<a href="http://www.kenanhancer.com/asp-net-mvc-3-extjs-4-grid-crud-proxy-server-side/#comment-73">
+		February 29, 2012 at 6:35 am</a>
+        <span class="comment-reply-link"><a class="comment-reply-link" href="http://www.kenanhancer.com/asp-net-mvc-3-extjs-4-grid-crud-proxy-server-side/?replytocom=73#respond" onclick='return addComment.moveForm("comment-73", "73", "respond", "144")'> · Reply</a></span>		 
+		</div>
+		<p>Some really quality articles on this website, saved to favorites.</p>
+		</div>
+</li>
+		<li class="comment odd alt thread-odd thread-alt depth-1 clearfix" id="comment-96">
+		<div id="div-comment-96" class="clearfix comment-container">
+		<div class="comment-author vcard">
+		<img id="grav-7fab04adf199b884ab14567746780df0-0" alt="" src="ASP.NET%20MVC%203%20and%20Extjs%204%20Grid%20CRUD%20with%20Proxy%20from%20Server-Side%20%C2%AB%20Kenan%20Hancer_files/7fab04adf199b884ab14567746780df0.png" class="avatar avatar-55 photo grav-hashed grav-hijack" height="55" width="55">		<span class="authorname"><a href="http://www.ugrhpdsb.net/" rel="external nofollow" class="url">Elisa Shepperdson</a></span>
+		</div>
+				<div class="comment-meta commentmetadata">
+		<a href="http://www.kenanhancer.com/asp-net-mvc-3-extjs-4-grid-crud-proxy-server-side/#comment-96">
+		March 23, 2012 at 2:53 am</a>
+        <span class="comment-reply-link"><a class="comment-reply-link" href="http://www.kenanhancer.com/asp-net-mvc-3-extjs-4-grid-crud-proxy-server-side/?replytocom=96#respond" onclick='return addComment.moveForm("comment-96", "96", "respond", "144")'> · Reply</a></span>		 
+		</div>
+		<p>Thanks for the auspicious writeup. It in reality was once a 
+amusement account it. Glance complex to more added agreeable from you! 
+However, how could we keep up a correspondence?</p>
+		</div>
+</li>
+		<li class="comment even thread-even depth-1 clearfix" id="comment-100">
+		<div id="div-comment-100" class="clearfix comment-container">
+		<div class="comment-author vcard">
+		<img id="grav-7cc526a98c5813b5edd7f3883500e4f6-0" alt="" src="ASP.NET%20MVC%203%20and%20Extjs%204%20Grid%20CRUD%20with%20Proxy%20from%20Server-Side%20%C2%AB%20Kenan%20Hancer_files/7cc526a98c5813b5edd7f3883500e4f6.png" class="avatar avatar-55 photo grav-hashed grav-hijack" height="55" width="55">		<span class="authorname"><a href="http://longfeatherearrings.zoomshare.com/" rel="external nofollow" class="url">silver hoops earrings</a></span>
+		</div>
+				<div class="comment-meta commentmetadata">
+		<a href="http://www.kenanhancer.com/asp-net-mvc-3-extjs-4-grid-crud-proxy-server-side/#comment-100">
+		March 28, 2012 at 12:07 am</a>
+        <span class="comment-reply-link"><a class="comment-reply-link" href="http://www.kenanhancer.com/asp-net-mvc-3-extjs-4-grid-crud-proxy-server-side/?replytocom=100#respond" onclick='return addComment.moveForm("comment-100", "100", "respond", "144")'> · Reply</a></span>		 
+		</div>
+		<p>Many thanks for an incredible post, can see your others topics. i 
+appreciate your notions on this, I experienced a bit thump by this post.
+ Merit again! You make a great moment. Has excellent data here. I feel 
+if more people consideration for it like that, they’d have got a better 
+time have the suspend ofing the matter.</p>
+		</div>
+</li>
+		<li class="comment odd alt thread-odd thread-alt depth-1 clearfix" id="comment-102">
+		<div id="div-comment-102" class="clearfix comment-container">
+		<div class="comment-author vcard">
+		<img id="grav-41a53c241cbc3ac1b9c38bdbde813188-0" alt="" src="ASP.NET%20MVC%203%20and%20Extjs%204%20Grid%20CRUD%20with%20Proxy%20from%20Server-Side%20%C2%AB%20Kenan%20Hancer_files/41a53c241cbc3ac1b9c38bdbde813188.png" class="avatar avatar-55 photo grav-hashed grav-hijack" height="55" width="55">		<span class="authorname"><a href="http://www.revendaautorizada.com/" rel="external nofollow" class="url">Claudenice</a></span>
+		</div>
+				<div class="comment-meta commentmetadata">
+		<a href="http://www.kenanhancer.com/asp-net-mvc-3-extjs-4-grid-crud-proxy-server-side/#comment-102">
+		March 30, 2012 at 2:21 pm</a>
+        <span class="comment-reply-link"><a class="comment-reply-link" href="http://www.kenanhancer.com/asp-net-mvc-3-extjs-4-grid-crud-proxy-server-side/?replytocom=102#respond" onclick='return addComment.moveForm("comment-102", "102", "respond", "144")'> · Reply</a></span>		 
+		</div>
+		<p>thank you for all the help.</p>
+		</div>
+</li>
+		<li class="comment even thread-even depth-1 clearfix" id="comment-117">
+		<div id="div-comment-117" class="clearfix comment-container">
+		<div class="comment-author vcard">
+		<img id="grav-01bc043ad8898fb453cff1f6018d957d-0" alt="" src="ASP.NET%20MVC%203%20and%20Extjs%204%20Grid%20CRUD%20with%20Proxy%20from%20Server-Side%20%C2%AB%20Kenan%20Hancer_files/01bc043ad8898fb453cff1f6018d957d.png" class="avatar avatar-55 photo grav-hashed grav-hijack" height="55" width="55">		<span class="authorname"><a href="http://androidappsel.blogspot.com/" rel="external nofollow" class="url">Download Android Apps</a></span>
+		</div>
+				<div class="comment-meta commentmetadata">
+		<a href="http://www.kenanhancer.com/asp-net-mvc-3-extjs-4-grid-crud-proxy-server-side/#comment-117">
+		April 9, 2012 at 8:29 am</a>
+        <span class="comment-reply-link"><a class="comment-reply-link" href="http://www.kenanhancer.com/asp-net-mvc-3-extjs-4-grid-crud-proxy-server-side/?replytocom=117#respond" onclick='return addComment.moveForm("comment-117", "117", "respond", "144")'> · Reply</a></span>		 
+		</div>
+		<p>Wow, wonderful blog layout! How long have you been blogging for? 
+you made blogging look easy. The overall look of your site is wonderful,
+ let alone the content!. Thanks For Your article about ASP.NET MVC 3 and
+ Extjs 4 Grid CRUD with Proxy from Server-Side  Kenan Hancer .</p>
+		</div>
+</li>
+		<li class="comment odd alt thread-odd thread-alt depth-1 clearfix" id="comment-118">
+		<div id="div-comment-118" class="clearfix comment-container">
+		<div class="comment-author vcard">
+		<img id="grav-6a2dc0ad914b85ea5cec18f87c6eaafb-0" alt="" src="ASP.NET%20MVC%203%20and%20Extjs%204%20Grid%20CRUD%20with%20Proxy%20from%20Server-Side%20%C2%AB%20Kenan%20Hancer_files/6a2dc0ad914b85ea5cec18f87c6eaafb.png" class="avatar avatar-55 photo grav-hashed grav-hijack" height="55" width="55">		<span class="authorname"><a href="http://www.headphones-dr-dre.net/" rel="external nofollow" class="url">Monster Beats</a></span>
+		</div>
+				<div class="comment-meta commentmetadata">
+		<a href="http://www.kenanhancer.com/asp-net-mvc-3-extjs-4-grid-crud-proxy-server-side/#comment-118">
+		April 9, 2012 at 9:53 am</a>
+        <span class="comment-reply-link"><a class="comment-reply-link" href="http://www.kenanhancer.com/asp-net-mvc-3-extjs-4-grid-crud-proxy-server-side/?replytocom=118#respond" onclick='return addComment.moveForm("comment-118", "118", "respond", "144")'> · Reply</a></span>		 
+		</div>
+		<p>Another great post. I really enjoy it every time I visit this site.
+ I’s obvious that a lot of time and effort is be put into every post and
+ the entire website as a whole. Just wanted to let you know much I enjoy
+ this place and prevaricate it, Thank again. Cheers!</p>
+		</div>
+</li>
+		<li class="comment even thread-even depth-1 clearfix" id="comment-123">
+		<div id="div-comment-123" class="clearfix comment-container">
+		<div class="comment-author vcard">
+		<img id="grav-56b2f5838db1e0fb82945c2c084487b1-0" alt="" src="ASP.NET%20MVC%203%20and%20Extjs%204%20Grid%20CRUD%20with%20Proxy%20from%20Server-Side%20%C2%AB%20Kenan%20Hancer_files/56b2f5838db1e0fb82945c2c084487b1.png" class="avatar avatar-55 photo grav-hashed grav-hijack" height="55" width="55">		<span class="authorname"><a href="http://droidgameapk.blogspot.com/2012/04/cafeteria-nipponica-download-android.html" rel="external nofollow" class="url">Cafeteria Nipponica apk</a></span>
+		</div>
+				<div class="comment-meta commentmetadata">
+		<a href="http://www.kenanhancer.com/asp-net-mvc-3-extjs-4-grid-crud-proxy-server-side/#comment-123">
+		April 12, 2012 at 4:58 am</a>
+        <span class="comment-reply-link"><a class="comment-reply-link" href="http://www.kenanhancer.com/asp-net-mvc-3-extjs-4-grid-crud-proxy-server-side/?replytocom=123#respond" onclick='return addComment.moveForm("comment-123", "123", "respond", "144")'> · Reply</a></span>		 
+		</div>
+		<p>Hello There. I found your blog using msn. This is a very well 
+written article. I will be sure to bookmark it and come back to read 
+more of ASP.NET MVC 3 and Extjs 4 Grid CRUD with Proxy from Server-Side 
+ Kenan Hancer . Thanks for the post. I’ll certainly comeback.</p>
+		</div>
+</li>
+		<li class="comment odd alt thread-odd thread-alt depth-1 clearfix" id="comment-128">
+		<div id="div-comment-128" class="clearfix comment-container">
+		<div class="comment-author vcard">
+		<img id="grav-6a12053c3029e4dc06a440443096c59d-0" alt="" src="ASP.NET%20MVC%203%20and%20Extjs%204%20Grid%20CRUD%20with%20Proxy%20from%20Server-Side%20%C2%AB%20Kenan%20Hancer_files/6a12053c3029e4dc06a440443096c59d.png" class="avatar avatar-55 photo grav-hashed grav-hijack" height="55" width="55">		<span class="authorname"><a href="http://reversephonelookupe.blogspot.com/" rel="external nofollow" class="url">Reverse Phone Lookup</a></span>
+		</div>
+				<div class="comment-meta commentmetadata">
+		<a href="http://www.kenanhancer.com/asp-net-mvc-3-extjs-4-grid-crud-proxy-server-side/#comment-128">
+		April 14, 2012 at 4:22 am</a>
+        <span class="comment-reply-link"><a class="comment-reply-link" href="http://www.kenanhancer.com/asp-net-mvc-3-extjs-4-grid-crud-proxy-server-side/?replytocom=128#respond" onclick='return addComment.moveForm("comment-128", "128", "respond", "144")'> · Reply</a></span>		 
+		</div>
+		<p>Hey There. I found your blog using msn. This is a really well 
+written article. I will be sure to bookmark it and come back to read 
+more of ASP.NET MVC 3 and Extjs 4 Grid CRUD with Proxy from Server-Side 
+ Kenan Hancer . Thanks for the post. I’ll definitely return.</p>
+		</div>
+</li>
+		<li class="comment even thread-even depth-1 clearfix" id="comment-140">
+		<div id="div-comment-140" class="clearfix comment-container">
+		<div class="comment-author vcard">
+		<img id="grav-ef9eee9b1a664cb9ee338f582fc3d449-0" alt="" src="ASP.NET%20MVC%203%20and%20Extjs%204%20Grid%20CRUD%20with%20Proxy%20from%20Server-Side%20%C2%AB%20Kenan%20Hancer_files/ef9eee9b1a664cb9ee338f582fc3d449.png" class="avatar avatar-55 photo grav-hashed grav-hijack" height="55" width="55">		<span class="authorname"><a href="http://udroidapp.blogspot.com/2012/04/wheres-my-water.html" rel="external nofollow" class="url">wheres my water apk</a></span>
+		</div>
+				<div class="comment-meta commentmetadata">
+		<a href="http://www.kenanhancer.com/asp-net-mvc-3-extjs-4-grid-crud-proxy-server-side/#comment-140">
+		April 17, 2012 at 7:54 pm</a>
+        <span class="comment-reply-link"><a class="comment-reply-link" href="http://www.kenanhancer.com/asp-net-mvc-3-extjs-4-grid-crud-proxy-server-side/?replytocom=140#respond" onclick='return addComment.moveForm("comment-140", "140", "respond", "144")'> · Reply</a></span>		 
+		</div>
+		<p>ASP.NET MVC 3 and Extjs 4 Grid CRUD with Proxy from Server-Side  
+Kenan Hancer I was suggested this blog by my cousin. I am not sure 
+whether this post is written by him as nobody else know such detailed 
+about my trouble. You’re amazing! Thanks! your article about ASP.NET MVC
+ 3 and Extjs 4 Grid CRUD with Proxy from Server-Side  Kenan HancerBest 
+Regards Justin</p>
+		</div>
+</li>
+		<li class="comment odd alt thread-odd thread-alt depth-1 clearfix" id="comment-149">
+		<div id="div-comment-149" class="clearfix comment-container">
+		<div class="comment-author vcard">
+		<img id="grav-81df8166d60f2cf0c8695e29611df5c8-0" alt="" src="ASP.NET%20MVC%203%20and%20Extjs%204%20Grid%20CRUD%20with%20Proxy%20from%20Server-Side%20%C2%AB%20Kenan%20Hancer_files/81df8166d60f2cf0c8695e29611df5c8.png" class="avatar avatar-55 photo grav-hashed grav-hijack" height="55" width="55">		<span class="authorname"><a href="http://www.galerystore.com/" rel="external nofollow" class="url">baju bayi</a></span>
+		</div>
+				<div class="comment-meta commentmetadata">
+		<a href="http://www.kenanhancer.com/asp-net-mvc-3-extjs-4-grid-crud-proxy-server-side/#comment-149">
+		April 20, 2012 at 1:57 am</a>
+        <span class="comment-reply-link"><a class="comment-reply-link" href="http://www.kenanhancer.com/asp-net-mvc-3-extjs-4-grid-crud-proxy-server-side/?replytocom=149#respond" onclick='return addComment.moveForm("comment-149", "149", "respond", "144")'> · Reply</a></span>		 
+		</div>
+		<p>Hello There. I found your blog using msn. This is a really well 
+written article. I’ll make sure to bookmark it and come back to read 
+more of ASP.NET MVC 3 and Extjs 4 Grid CRUD with Proxy from Server-Side 
+ Kenan Hancer . Thanks for the post. I will certainly comeback.</p>
+		</div>
+</li>
+		<li class="comment even thread-even depth-1 clearfix" id="comment-154">
+		<div id="div-comment-154" class="clearfix comment-container">
+		<div class="comment-author vcard">
+		<img id="grav-f00b2a4bde5d7bbdb6186ca4e18b9984-0" alt="" src="ASP.NET%20MVC%203%20and%20Extjs%204%20Grid%20CRUD%20with%20Proxy%20from%20Server-Side%20%C2%AB%20Kenan%20Hancer_files/f00b2a4bde5d7bbdb6186ca4e18b9984.png" class="avatar avatar-55 photo grav-hashed grav-hijack" height="55" width="55">		<span class="authorname"><a href="http://www.vitaminfaq.net/2012/04/b-vitamins.html" rel="external nofollow" class="url">vitamin a</a></span>
+		</div>
+				<div class="comment-meta commentmetadata">
+		<a href="http://www.kenanhancer.com/asp-net-mvc-3-extjs-4-grid-crud-proxy-server-side/#comment-154">
+		April 21, 2012 at 5:14 am</a>
+        <span class="comment-reply-link"><a class="comment-reply-link" href="http://www.kenanhancer.com/asp-net-mvc-3-extjs-4-grid-crud-proxy-server-side/?replytocom=154#respond" onclick='return addComment.moveForm("comment-154", "154", "respond", "144")'> · Reply</a></span>		 
+		</div>
+		<p>I love your helpful blog. good work. I hope you produce others. I will continue watching</p>
+		</div>
+</li>
+		<li class="comment odd alt thread-odd thread-alt depth-1 clearfix" id="comment-164">
+		<div id="div-comment-164" class="clearfix comment-container">
+		<div class="comment-author vcard">
+		<img id="grav-2ddd8700315c9be8c7107a2a234f96e9-0" alt="" src="ASP.NET%20MVC%203%20and%20Extjs%204%20Grid%20CRUD%20with%20Proxy%20from%20Server-Side%20%C2%AB%20Kenan%20Hancer_files/2ddd8700315c9be8c7107a2a234f96e9.png" class="avatar avatar-55 photo grav-hashed grav-hijack" height="55" width="55">		<span class="authorname"><a href="http://omotivationalquotes.blogspot.com/" rel="external nofollow" class="url">motivational quotes</a></span>
+		</div>
+				<div class="comment-meta commentmetadata">
+		<a href="http://www.kenanhancer.com/asp-net-mvc-3-extjs-4-grid-crud-proxy-server-side/#comment-164">
+		April 24, 2012 at 10:04 am</a>
+        <span class="comment-reply-link"><a class="comment-reply-link" href="http://www.kenanhancer.com/asp-net-mvc-3-extjs-4-grid-crud-proxy-server-side/?replytocom=164#respond" onclick='return addComment.moveForm("comment-164", "164", "respond", "144")'> · Reply</a></span>		 
+		</div>
+		<p>ASP.NET MVC 3 and Extjs 4 Grid CRUD with Proxy from Server-Side  
+Kenan Hancer I was suggested this website by my cousin. I’m not sure 
+whether this post is written by him as no one else know such detailed 
+about my problem. You’re amazing! Thanks! your article about ASP.NET MVC
+ 3 and Extjs 4 Grid CRUD with Proxy from Server-Side  Kenan HancerBest 
+Regards Veronica</p>
+		</div>
+</li>
+		<li class="comment even thread-even depth-1 clearfix" id="comment-168">
+		<div id="div-comment-168" class="clearfix comment-container">
+		<div class="comment-author vcard">
+		<img id="grav-552e6c741361a6a0f1515ea3bff41746-0" alt="" src="ASP.NET%20MVC%203%20and%20Extjs%204%20Grid%20CRUD%20with%20Proxy%20from%20Server-Side%20%C2%AB%20Kenan%20Hancer_files/552e6c741361a6a0f1515ea3bff41746.png" class="avatar avatar-55 photo grav-hashed grav-hijack" height="55" width="55">		<span class="authorname"><a href="http://freeandroid-apps.blogspot.com/2012/04/backstab-apk-droid.html" rel="external nofollow" class="url">BackStab apk</a></span>
+		</div>
+				<div class="comment-meta commentmetadata">
+		<a href="http://www.kenanhancer.com/asp-net-mvc-3-extjs-4-grid-crud-proxy-server-side/#comment-168">
+		April 25, 2012 at 11:50 am</a>
+        <span class="comment-reply-link"><a class="comment-reply-link" href="http://www.kenanhancer.com/asp-net-mvc-3-extjs-4-grid-crud-proxy-server-side/?replytocom=168#respond" onclick='return addComment.moveForm("comment-168", "168", "respond", "144")'> · Reply</a></span>		 
+		</div>
+		<p>Hey There. I found your blog using msn. This is an extremely well 
+written article. I’ll make sure to bookmark it and return to read more 
+of ASP.NET MVC 3 and Extjs 4 Grid CRUD with Proxy from Server-Side  
+Kenan Hancer . Thanks for the post. I will certainly return.</p>
+		</div>
+</li>
+		<li class="comment odd alt thread-odd thread-alt depth-1 clearfix" id="comment-169">
+		<div id="div-comment-169" class="clearfix comment-container">
+		<div class="comment-author vcard">
+		<img id="grav-34779bc8119850762fff4c509e7455a1-0" alt="" src="ASP.NET%20MVC%203%20and%20Extjs%204%20Grid%20CRUD%20with%20Proxy%20from%20Server-Side%20%C2%AB%20Kenan%20Hancer_files/34779bc8119850762fff4c509e7455a1.png" class="avatar avatar-55 photo grav-hashed grav-hijack" height="55" width="55">		<span class="authorname"><a href="http://uinspirationalquotes.blogspot.com/p/inspirational-quotes.html" rel="external nofollow" class="url">Inspirational Quotes</a></span>
+		</div>
+				<div class="comment-meta commentmetadata">
+		<a href="http://www.kenanhancer.com/asp-net-mvc-3-extjs-4-grid-crud-proxy-server-side/#comment-169">
+		April 25, 2012 at 5:21 pm</a>
+        <span class="comment-reply-link"><a class="comment-reply-link" href="http://www.kenanhancer.com/asp-net-mvc-3-extjs-4-grid-crud-proxy-server-side/?replytocom=169#respond" onclick='return addComment.moveForm("comment-169", "169", "respond", "144")'> · Reply</a></span>		 
+		</div>
+		<p>Hey There. I found your blog using msn. This is an extremely well 
+written article. I will make sure to bookmark it and return to read more
+ of ASP.NET MVC 3 and Extjs 4 Grid CRUD with Proxy from Server-Side  
+Kenan Hancer . Thanks for the post. I’ll certainly comeback.</p>
+		</div>
+</li>
+		<li class="comment even thread-even depth-1 clearfix" id="comment-173">
+		<div id="div-comment-173" class="clearfix comment-container">
+		<div class="comment-author vcard">
+		<img id="grav-41d1449df1062af23bad0640a12cd3ce-0" alt="" src="ASP.NET%20MVC%203%20and%20Extjs%204%20Grid%20CRUD%20with%20Proxy%20from%20Server-Side%20%C2%AB%20Kenan%20Hancer_files/41d1449df1062af23bad0640a12cd3ce.png" class="avatar avatar-55 photo grav-hashed grav-hijack" height="55" width="55">		<span class="authorname"><a href="http://udroidapp.blogspot.com/p/h.html" rel="external nofollow" class="url">Angry Birds Space Premium</a></span>
+		</div>
+				<div class="comment-meta commentmetadata">
+		<a href="http://www.kenanhancer.com/asp-net-mvc-3-extjs-4-grid-crud-proxy-server-side/#comment-173">
+		April 27, 2012 at 4:04 pm</a>
+        <span class="comment-reply-link"><a class="comment-reply-link" href="http://www.kenanhancer.com/asp-net-mvc-3-extjs-4-grid-crud-proxy-server-side/?replytocom=173#respond" onclick='return addComment.moveForm("comment-173", "173", "respond", "144")'> · Reply</a></span>		 
+		</div>
+		<p>Excellent post at ASP.NET MVC 3 and Extjs 4 Grid CRUD with Proxy 
+from Server-Side  Kenan Hancer. I was checking constantly this blog and I
+ am impressed! Extremely helpful information specially the last part <img src="ASP.NET%20MVC%203%20and%20Extjs%204%20Grid%20CRUD%20with%20Proxy%20from%20Server-Side%20%C2%AB%20Kenan%20Hancer_files/icon_smile.gif" alt=":)" class="wp-smiley">  I care for such information a lot. I was seeking this certain information for a long time. Thank you and best of luck.</p>
+		</div>
+</li>
+		<li class="comment odd alt thread-odd thread-alt depth-1 clearfix" id="comment-175">
+		<div id="div-comment-175" class="clearfix comment-container">
+		<div class="comment-author vcard">
+		<img id="grav-49c222fb8abbdd4fffac002bf627f3d9-0" alt="" src="ASP.NET%20MVC%203%20and%20Extjs%204%20Grid%20CRUD%20with%20Proxy%20from%20Server-Side%20%C2%AB%20Kenan%20Hancer_files/49c222fb8abbdd4fffac002bf627f3d9.png" class="avatar avatar-55 photo grav-hashed grav-hijack" height="55" width="55">		<span class="authorname"><a href="http://www.bancofiat.net/" rel="external nofollow" class="url">Dione</a></span>
+		</div>
+				<div class="comment-meta commentmetadata">
+		<a href="http://www.kenanhancer.com/asp-net-mvc-3-extjs-4-grid-crud-proxy-server-side/#comment-175">
+		April 27, 2012 at 8:35 pm</a>
+        <span class="comment-reply-link"><a class="comment-reply-link" href="http://www.kenanhancer.com/asp-net-mvc-3-extjs-4-grid-crud-proxy-server-side/?replytocom=175#respond" onclick='return addComment.moveForm("comment-175", "175", "respond", "144")'> · Reply</a></span>		 
+		</div>
+		<p>awesome post.</p>
+		</div>
+</li>
+		<li class="comment even thread-even depth-1 clearfix" id="comment-176">
+		<div id="div-comment-176" class="clearfix comment-container">
+		<div class="comment-author vcard">
+		<img id="grav-6e104f7f87e6adbc9ec78ee4294f6a0b-0" alt="" src="ASP.NET%20MVC%203%20and%20Extjs%204%20Grid%20CRUD%20with%20Proxy%20from%20Server-Side%20%C2%AB%20Kenan%20Hancer_files/6e104f7f87e6adbc9ec78ee4294f6a0b.png" class="avatar avatar-55 photo grav-hashed grav-hijack" height="55" width="55">		<span class="authorname"><a href="http://somewifi.com/" rel="external nofollow" class="url">arduino wifi</a></span>
+		</div>
+				<div class="comment-meta commentmetadata">
+		<a href="http://www.kenanhancer.com/asp-net-mvc-3-extjs-4-grid-crud-proxy-server-side/#comment-176">
+		April 27, 2012 at 11:42 pm</a>
+        <span class="comment-reply-link"><a class="comment-reply-link" href="http://www.kenanhancer.com/asp-net-mvc-3-extjs-4-grid-crud-proxy-server-side/?replytocom=176#respond" onclick='return addComment.moveForm("comment-176", "176", "respond", "144")'> · Reply</a></span>		 
+		</div>
+		<p>Your home is valueble for me. Thanks!…</p>
+		</div>
+</li>
+		<li class="comment odd alt thread-odd thread-alt depth-1 clearfix" id="comment-177">
+		<div id="div-comment-177" class="clearfix comment-container">
+		<div class="comment-author vcard">
+		<img id="grav-a30870478cabe6be464a0c40a62cb849-0" alt="" src="ASP.NET%20MVC%203%20and%20Extjs%204%20Grid%20CRUD%20with%20Proxy%20from%20Server-Side%20%C2%AB%20Kenan%20Hancer_files/a30870478cabe6be464a0c40a62cb849.png" class="avatar avatar-55 photo grav-hashed grav-hijack" height="55" width="55">		<span class="authorname"><a href="http://freeandroid-apps.blogspot.com/p/adventures-of-tintin-apk.html" rel="external nofollow" class="url">adventures of tintin apk</a></span>
+		</div>
+				<div class="comment-meta commentmetadata">
+		<a href="http://www.kenanhancer.com/asp-net-mvc-3-extjs-4-grid-crud-proxy-server-side/#comment-177">
+		April 28, 2012 at 4:30 am</a>
+        <span class="comment-reply-link"><a class="comment-reply-link" href="http://www.kenanhancer.com/asp-net-mvc-3-extjs-4-grid-crud-proxy-server-side/?replytocom=177#respond" onclick='return addComment.moveForm("comment-177", "177", "respond", "144")'> · Reply</a></span>		 
+		</div>
+		<p>ASP.NET MVC 3 and Extjs 4 Grid CRUD with Proxy from Server-Side  
+Kenan Hancer I was suggested this website by my cousin. I’m not sure 
+whether this post is written by him as nobody else know such detailed 
+about my problem. You’re incredible! Thanks! your article about ASP.NET 
+MVC 3 and Extjs 4 Grid CRUD with Proxy from Server-Side  Kenan 
+HancerBest Regards Lisa</p>
+		</div>
+</li>
+		<li class="comment even thread-even depth-1 clearfix" id="comment-179">
+		<div id="div-comment-179" class="clearfix comment-container">
+		<div class="comment-author vcard">
+		<img id="grav-1d60db398f7b002533fc5d824a1b30e3-0" alt="" src="ASP.NET%20MVC%203%20and%20Extjs%204%20Grid%20CRUD%20with%20Proxy%20from%20Server-Side%20%C2%AB%20Kenan%20Hancer_files/1d60db398f7b002533fc5d824a1b30e3.png" class="avatar avatar-55 photo grav-hashed grav-hijack" height="55" width="55">		<span class="authorname"><a href="http://www.koreanturk.com/kategori/kore-dizileri/love-rain" rel="external nofollow" class="url">love rain</a></span>
+		</div>
+				<div class="comment-meta commentmetadata">
+		<a href="http://www.kenanhancer.com/asp-net-mvc-3-extjs-4-grid-crud-proxy-server-side/#comment-179">
+		April 28, 2012 at 12:40 pm</a>
+        <span class="comment-reply-link"><a class="comment-reply-link" href="http://www.kenanhancer.com/asp-net-mvc-3-extjs-4-grid-crud-proxy-server-side/?replytocom=179#respond" onclick='return addComment.moveForm("comment-179", "179", "respond", "144")'> · Reply</a></span>		 
+		</div>
+		<p>I wanted for this web site post admin seriously thanks i’ll look your next sharings i bookmarked your blog site</p>
+		</div>
+</li>
+		<li class="comment odd alt thread-odd thread-alt depth-1 clearfix" id="comment-207">
+		<div id="div-comment-207" class="clearfix comment-container">
+		<div class="comment-author vcard">
+		<img id="grav-4f67ad7b9a2bf8c8f11b1298c85e8608-0" alt="" src="ASP.NET%20MVC%203%20and%20Extjs%204%20Grid%20CRUD%20with%20Proxy%20from%20Server-Side%20%C2%AB%20Kenan%20Hancer_files/4f67ad7b9a2bf8c8f11b1298c85e8608.png" class="avatar avatar-55 photo grav-hashed grav-hijack" height="55" width="55">		<span class="authorname"><a href="http://www.camacasal.com/" rel="external nofollow" class="url">Aila</a></span>
+		</div>
+				<div class="comment-meta commentmetadata">
+		<a href="http://www.kenanhancer.com/asp-net-mvc-3-extjs-4-grid-crud-proxy-server-side/#comment-207">
+		May 1, 2012 at 9:41 am</a>
+        <span class="comment-reply-link"><a class="comment-reply-link" href="http://www.kenanhancer.com/asp-net-mvc-3-extjs-4-grid-crud-proxy-server-side/?replytocom=207#respond" onclick='return addComment.moveForm("comment-207", "207", "respond", "144")'> · Reply</a></span>		 
+		</div>
+		<p>nicely explained. it’s indeed an art to stop new visitors with your
+ attractive writing style. truly impressive and nice information. thanks
+ for sharing.</p>
+		</div>
+</li>
+		<li class="comment even thread-even depth-1 clearfix" id="comment-369">
+		<div id="div-comment-369" class="clearfix comment-container">
+		<div class="comment-author vcard">
+		<img id="grav-c5d471b2d0d4e35632a01cc8c76fad2a-0" alt="" src="ASP.NET%20MVC%203%20and%20Extjs%204%20Grid%20CRUD%20with%20Proxy%20from%20Server-Side%20%C2%AB%20Kenan%20Hancer_files/c5d471b2d0d4e35632a01cc8c76fad2a.png" class="avatar avatar-55 photo grav-hashed grav-hijack" height="55" width="55">		<span class="authorname"><a href="http://www.myownshite34.com/" rel="external nofollow" class="url">Luigi Ashbacher</a></span>
+		</div>
+				<div class="comment-meta commentmetadata">
+		<a href="http://www.kenanhancer.com/asp-net-mvc-3-extjs-4-grid-crud-proxy-server-side/#comment-369">
+		May 15, 2012 at 8:46 am</a>
+        <span class="comment-reply-link"><a class="comment-reply-link" href="http://www.kenanhancer.com/asp-net-mvc-3-extjs-4-grid-crud-proxy-server-side/?replytocom=369#respond" onclick='return addComment.moveForm("comment-369", "369", "respond", "144")'> · Reply</a></span>		 
+		</div>
+		<p>I just want to say I’m beginner to blogging and certainly savored 
+your web blog. More than likely I’m going to bookmark your blog . You 
+amazingly come with superb writings. Appreciate it for sharing your 
+web-site.</p>
+		</div>
+</li>
+		<li class="comment odd alt thread-odd thread-alt depth-1 clearfix" id="comment-450">
+		<div id="div-comment-450" class="clearfix comment-container">
+		<div class="comment-author vcard">
+		<img id="grav-992ab3d5f7ef16bced42e22dfa2904d4-0" alt="" src="ASP.NET%20MVC%203%20and%20Extjs%204%20Grid%20CRUD%20with%20Proxy%20from%20Server-Side%20%C2%AB%20Kenan%20Hancer_files/992ab3d5f7ef16bced42e22dfa2904d4.png" class="avatar avatar-55 photo grav-hashed grav-hijack" height="55" width="55">		<span class="authorname"><a href="http://baiud052301.com/" rel="external nofollow" class="url">johnshue</a></span>
+		</div>
+				<div class="comment-meta commentmetadata">
+		<a href="http://www.kenanhancer.com/asp-net-mvc-3-extjs-4-grid-crud-proxy-server-side/#comment-450">
+		May 23, 2012 at 7:20 pm</a>
+        <span class="comment-reply-link"><a class="comment-reply-link" href="http://www.kenanhancer.com/asp-net-mvc-3-extjs-4-grid-crud-proxy-server-side/?replytocom=450#respond" onclick='return addComment.moveForm("comment-450", "450", "respond", "144")'> · Reply</a></span>		 
+		</div>
+		<p>Hey very cool web site!! Man .. Beautiful .. Superb .. I will 
+bookmark your web site and take the feeds also…I am satisfied to search 
+out numerous useful information right here within the submit, we’d like 
+develop extra techniques on this regard, thanks for sharing.</p>
+		</div>
+</li>
+	
+	</ul>
+	<!-- / Comment List -->
+
+	
+
+
+
+								<div id="respond">
+				<h3 id="reply-title">Leave a Reply <small><a rel="nofollow" id="cancel-comment-reply-link" href="http://www.kenanhancer.com/asp-net-mvc-3-extjs-4-grid-crud-proxy-server-side/#respond" style="display: none;">Cancel reply</a></small></h3>
+									<form action="http://www.kenanhancer.com/wp-comments-post.php" method="post" id="commentform">
+																										<p><input class="text author" id="author" name="author" size="30" tabindex="1" type="text">&nbsp;&nbsp;<label for="author"><strong>Name </strong> (required)</label></p>
+<p><input class="text email" id="email" name="email" size="30" tabindex="2" type="text">&nbsp;&nbsp;<label for="email"><strong>Email</strong> (will not be published) (required)</label></p>
+<p><input class="text url" id="url" name="url" size="30" tabindex="3" type="text">&nbsp;&nbsp;<label for="url">Website</label></p>
+												<p><textarea name="comment" id="comment" rows="10" cols="10" tabindex="4"></textarea></p>						
+		<p class="thesetags clearfix">You can use <a class="xhtmltags" href="#" onclick="return false;">these HTML tags</a></p>
+		<div class="xhtml-tags"><p><code>&lt;a href="" title=""&gt; &lt;abbr 
+title=""&gt; &lt;acronym title=""&gt; &lt;b&gt; &lt;blockquote 
+cite=""&gt; &lt;cite&gt; &lt;code&gt; &lt;del datetime=""&gt; &lt;em&gt;
+ &lt;i&gt; &lt;q cite=""&gt; &lt;strike&gt; &lt;strong&gt; 
+		</code></p></div>						<p class="form-submit">
+							<input name="submit" id="submit" value="Post Comment" type="submit">
+							<input name="comment_post_ID" value="144" id="comment_post_ID" type="hidden">
+<input name="comment_parent" id="comment_parent" value="0" type="hidden">
+						</p>
+						<p class="comment-subscription-form"><input name="subscribe_comments" id="subscribe_comments" value="subscribe" style="width: auto; -moz-appearance: checkbox;" type="checkbox"> <label class="subscribe-label" id="subscribe-label" for="subscribe_comments">Notify me of follow-up comments by email.</label></p><p class="comment-subscription-form"><input name="subscribe_blog" id="subscribe_blog" value="subscribe" style="width: auto; -moz-appearance: checkbox;" type="checkbox"> <label class="subscribe-label" id="subscribe-blog-label" for="subscribe_blog">Notify me of new posts by email.</label></p>					</form>
+							</div><!-- #respond -->
+								
+
+</td>
+<!-- / Main Column -->
+
+<!-- Right Inner Sidebar -->
+
+<!-- Right Sidebar -->
+<!-- / Right Sidebar -->
+
+</tr>
+<!-- / Main Body -->
+<tr>
+
+<!-- Footer -->
+<td id="footer" colspan="2">
+    Copyright © 2012 <a href="http://www.kenanhancer.com/">Kenan Hancer</a> - All Rights Reserved<br>Powered by <a href="http://wordpress.org/">WordPress</a> &amp; <a href="http://forum.bytesforall.com/">Atahualpa</a>    
+    
+    <script type="text/javascript" src="ASP.NET%20MVC%203%20and%20Extjs%204%20Grid%20CRUD%20with%20Proxy%20from%20Server-Side%20%C2%AB%20Kenan%20Hancer_files/gprofiles.js"></script>
+<script type="text/javascript">
+/* <![CDATA[ */
+var WPGroHo = {"my_hash":""};
+/* ]]> */
+</script>
+<script type="text/javascript" src="ASP.NET%20MVC%203%20and%20Extjs%204%20Grid%20CRUD%20with%20Proxy%20from%20Server-Side%20%C2%AB%20Kenan%20Hancer_files/wpgroho.js"></script>
+	<div style="display:none">
+	<div class="grofile-hash-map-6e67d98069955e9e288a2a4518deaed1">
+	</div>
+	<div class="grofile-hash-map-9544ce000dd22a80cfd3f45a2e8b6c75">
+	</div>
+	<div class="grofile-hash-map-7d93a504a7353b97ced025d2098c9f63">
+	</div>
+	<div class="grofile-hash-map-25792a2398580d76616b06738761937c">
+	</div>
+	<div class="grofile-hash-map-3b2ce57f01afd18a6549d49a2c0b6ba5">
+	</div>
+	<div class="grofile-hash-map-41a53c241cbc3ac1b9c38bdbde813188">
+	</div>
+	<div class="grofile-hash-map-20d16f523bb374bb4b85fc03094b2362">
+	</div>
+	<div class="grofile-hash-map-243384f80a413b5f0da327630840d272">
+	</div>
+	<div class="grofile-hash-map-b7be10ae16e71fe383403cc8a7ed9ab2">
+	</div>
+	<div class="grofile-hash-map-a73f98863a3cf061360f045efc2c0b6c">
+	</div>
+	<div class="grofile-hash-map-ae9130c291c9969aaa397f960ef191df">
+	</div>
+	<div class="grofile-hash-map-b2dc9d503bc31a4c5db52c74efb8d86e">
+	</div>
+	<div class="grofile-hash-map-e16efbb56cc972274367a1fe09df18f4">
+	</div>
+	<div class="grofile-hash-map-bf5abfd5733a5d75ab8e77db2bfa5e98">
+	</div>
+	<div class="grofile-hash-map-bc32c0eee1a1f637786b087ec4b9e582">
+	</div>
+	<div class="grofile-hash-map-5a5eddefb7cf807b27a4a020fc9e3f7b">
+	</div>
+	<div class="grofile-hash-map-47686fc9a0cea101d4015822eb8ea3b5">
+	</div>
+	<div class="grofile-hash-map-49c222fb8abbdd4fffac002bf627f3d9">
+	</div>
+	<div class="grofile-hash-map-6e104f7f87e6adbc9ec78ee4294f6a0b">
+	</div>
+	<div class="grofile-hash-map-0cb87c7494a49dac88fcfdebd3518abf">
+	</div>
+	<div class="grofile-hash-map-55c06161a0cb40dd35b7239f0ab24751">
+	</div>
+	<div class="grofile-hash-map-4f67ad7b9a2bf8c8f11b1298c85e8608">
+	</div>
+	<div class="grofile-hash-map-a7440d2bc9ebe71cd5ae9928d1c7b4d3">
+	</div>
+	<div class="grofile-hash-map-b7ce2ed42e51ce69879ee236b15a6fc2">
+	</div>
+	</div>
+
+	<script src="ASP.NET%20MVC%203%20and%20Extjs%204%20Grid%20CRUD%20with%20Proxy%20from%20Server-Side%20%C2%AB%20Kenan%20Hancer_files/e-201222.js" type="text/javascript"></script>
+	<script type="text/javascript">
+	st_go({v:'ext',j:'1:1.3',blog:'35235007',post:'144'});
+	var load_cmc = function(){linktracker_init(35235007,144,2);};
+	if ( typeof addLoadEvent != 'undefined' ) addLoadEvent(load_cmc);
+	else load_cmc();
+	</script><img id="wpstats" src="ASP.NET%20MVC%203%20and%20Extjs%204%20Grid%20CRUD%20with%20Proxy%20from%20Server-Side%20%C2%AB%20Kenan%20Hancer_files/g.gif" alt=""></td>
+
+
+</tr>
+</tbody></table><!-- / layout -->
+</div><!-- / container -->
+</div><!-- / wrapper -->
+
+</body></html>
