@@ -90,19 +90,12 @@ Ext.define('VM.view.Applicant.CenterPanel', {
         }]
     },
     { title: Strings.Vacancies,
-        layout: 'border',
+        layout: 'hbox',
         id: 'tabAppVac',
-        autoHeight: true,
         items:
        [
-       { xtype: 'applicantConsiderationsList',
-         region: 'west',
-         split: true
-       },
+       { xtype: 'applicantConsiderationsList' },
        { xtype: 'commentsList',
-         region: 'center',
-         autoSizeColumns: true,
-         autoHeight: true,
          title: 'Комментарии',
            columns: [
   	        {
@@ -110,11 +103,12 @@ Ext.define('VM.view.Applicant.CenterPanel', {
   	            flex: 1,
   	            sortable: false,
   	            menuDisabled: true,
+  	            textalign: 'justify',
   	            dataIndex: 'Body',
   	            tdCls: 'wrap-text'
   	        },
             {
-                width: 100,
+                width: 90,
                 xtype: 'templatecolumn',
                 tdCls: 'wrap-text',
                 tpl:
@@ -125,16 +119,14 @@ Ext.define('VM.view.Applicant.CenterPanel', {
 
          ],
            width: 300,
-           height: 375,
-         bbar: []
+           height: 375
        }
 
       ]
     },
     { title: 'Комментарии',
-      layout: 'fit',
       items: [
-        { xtype: 'appCommentsList'}
+        { xtype: 'appCommentsList' }
       ]
 
     }
