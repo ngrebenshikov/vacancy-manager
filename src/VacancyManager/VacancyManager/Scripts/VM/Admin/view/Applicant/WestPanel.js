@@ -77,3 +77,8 @@
 	}]
 })          
 
+/*        xtype: 'form',
+        id: 'applicantCreateForm',
+        border: false,
+        style: 'background-color: #fff;',
+        layout: 'border',*/

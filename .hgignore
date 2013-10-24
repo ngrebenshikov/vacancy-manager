@@ -67,6 +67,3 @@ src/VacancyManager/VacancyManager/Scripts/VM/VacancyConfigurator/store/Vacancy.j
 src/VacancyManager/VacancyManager/Services/IRepository.cs.orig
 src/VacancyManager/VacancyManager/Services/StandardRepository.cs.orig
 *.orig
-src/VacancyManager/VacancyManager/Web.Debug.config
-src/VacancyManager/VacancyManager/Web.Release.config
-src/VacancyManager/VacancyManager/Web.config

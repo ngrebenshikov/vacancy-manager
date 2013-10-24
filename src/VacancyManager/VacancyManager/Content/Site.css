@@ -28,11 +28,7 @@
     background-color: transparent!important;
 }
 
-td.wrap-text div {    
-	margin:5px  !important;
-	white-space:pre-wrap !important;
-	word-wrap: break-word;
-}
+td.wrap-text div {     white-space: pre-wrap; } 
 
 .x-grid-row-selected .x-grid-table .x-grid-row-selected .x-grid-cell 
 {
@@ -52,7 +48,6 @@ td.wrap-text div {
 .admin-row .x-grid-cell { 
     background-color: white; 
     color: green; 
-    overflow: auto;
 }
 
 /*#gridcomments .x-grid-cell-inner
