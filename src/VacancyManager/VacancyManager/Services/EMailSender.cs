@@ -1,0 +1,27 @@
+﻿using System.Net.Mail;
+
+namespace VacancyManager.Services
+{
+  internal static class EMailSender
+  {
+    internal static bool SendMail(string messageBody, string to)
+    {
+      try
+      {
+        var message = new MailMessage("StudVacancyProject@mail.ru", to)
+        {
+          Subject = "Activate your account",
+          Body = messageBody
+        };
+        var client = new SmtpClient("smtp.mail.ru")
+                       {Credentials = new System.Net.NetworkCredential("StudVacancyProject", "StudVacancyProject!")};
+        client.Send(message);
+        return true;
+      }
+      catch
+      {
+        return false;
+      }
+    }
+  }
+}

@@ -1,0 +1,23 @@
+﻿@model IEnumerable<Vacan.Models.Vacancy>
+@{
+    ViewBag.Title = "Стартовая страница";
+}
+<h2>@ViewBag.Message</h2>
+<table align="center">
+    <!--<tr>
+        <th>
+            Название
+        </th>
+    </tr>-->
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.ActionLink(item.Name, "Details", new { id = item.ID })
+            </td>
+        </tr>
+    }
+</table>
+<ul id="menu">
+    <li>@Html.ActionLink("Базовый функционал для работы с соискателями", "../Applicant/")</li>
+</ul>
