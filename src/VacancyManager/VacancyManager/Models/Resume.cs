@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
@@ -19,6 +20,9 @@ namespace VacancyManager.Models
         [Display(Name = "Иностранные языки")]
         public string ForeignLanguage { get; set; }
 
+        public DateTime Date { get; set; }
+        public int ApplicantId { get; set; }
+      
         public virtual User User { get; set; }
         public virtual ICollection<PreviousExperience> PreviousExperiences { get; set; }
         public virtual ICollection<Education> Educations { get; set; }
