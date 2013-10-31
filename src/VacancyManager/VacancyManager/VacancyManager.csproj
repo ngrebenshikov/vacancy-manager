@@ -244,17 +244,30 @@
     <Compile Include="Migrations\201308311108324_ApplicantEmloyed.designer.cs">
       <DependentUpon>201308311108324_ApplicantEmloyed.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201310291453509_ResumeDateAndApplicantId.cs" />
+    <Compile Include="Migrations\201310291453509_ResumeDateAndApplicantId.Designer.cs">
+      <DependentUpon>201310291453509_ResumeDateAndApplicantId.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201310310317028_Resume_Applicant.cs" />
+    <Compile Include="Migrations\201310310317028_Resume_Applicant.Designer.cs">
+      <DependentUpon>201310310317028_Resume_Applicant.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201310310408049_Resume-Renew.cs" />
+    <Compile Include="Migrations\201310310408049_Resume-Renew.Designer.cs">
+      <DependentUpon>201310310408049_Resume-Renew.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\Applicant.cs" />
     <Compile Include="Models\ApplicantRequirement.cs" />
-    <Compile Include="Models\RequirementResumeRecord.cs" />
+    <Compile Include="Models\ExperienceRequirement.cs" />
+    <Compile Include="Models\ResumeRequirement.cs" />
     <Compile Include="Models\Comment.cs" />
     <Compile Include="Models\Consideration.cs" />
     <Compile Include="Models\DAL\VacancyInitializer.cs" />
     <Compile Include="Models\Education.cs" />
     <Compile Include="Models\File.cs" />
-    <Compile Include="Models\PreviousExperience.cs" />
+    <Compile Include="Models\Experience.cs" />
     <Compile Include="Models\Resume.cs" />
     <Compile Include="Models\Role.cs" />
     <Compile Include="Models\Requirement.cs" />
