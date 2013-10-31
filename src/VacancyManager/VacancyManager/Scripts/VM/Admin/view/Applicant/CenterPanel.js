@@ -155,8 +155,22 @@ Ext.define('VM.view.Applicant.CenterPanel', {
                      sortable: false,
                      menuDisabled: true,
                      flex: 1
-                 }
-                 ]
+                 }],
+
+                tbar: [{
+                    text: Strings.btnAdd,
+                    icon: '/Content/icons/add.gif',
+                    name: 'btnAdd',
+                    id: 'Add',
+                    action: 'AddResume'
+                }, {
+                    text: Strings.btnRemove,
+                    icon: '/Content/icons/delete.gif',
+                    name: 'btnRemove',
+                    id: 'Remove',
+                    action: 'RemoveResume',
+                    disabled: true
+                }],
              }
            ]
            

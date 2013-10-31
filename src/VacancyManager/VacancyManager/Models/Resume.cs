@@ -9,23 +9,18 @@ namespace VacancyManager.Models
     /// </summary>
     public class Resume
     {
-        public int ResumeID { get; set; }
+        public int ResumeId { get; set; }
 
-        [Display(Name = "Должность")]
         public string Position { get; set; }
-
-        [Display(Name = "Краткая информация")]
         public string Summary { get; set; }
 
-        [Display(Name = "Иностранные языки")]
-        public string ForeignLanguage { get; set; }
+        public virtual ICollection<ResumeRequirement> ResumeRequirements { get; set; }
+        public virtual ICollection<Experience> Experiences { get; set; }
 
         public DateTime Date { get; set; }
-        public int ApplicantId { get; set; }
-      
-        public virtual User User { get; set; }
-        public virtual ICollection<PreviousExperience> PreviousExperiences { get; set; }
-        public virtual ICollection<Education> Educations { get; set; }
-        public virtual ICollection<RequirementResumeRecord> Technologies { get; set; } 
+        public virtual Applicant Applicant { get; set; }
+
+        public string Training { get; set; }
+        public string AdditionalInformation { get; set; }
     }
 }

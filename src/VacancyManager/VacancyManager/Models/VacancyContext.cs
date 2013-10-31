@@ -11,7 +11,7 @@ namespace VacancyManager.Models
     public DbSet<User> Users { get; set; }
     public DbSet<Comment> Commentaries { get; set; }
     public DbSet<File> Files { get; set; }
-    public DbSet<PreviousExperience> PreviousExperiences { get; set; }
+    public DbSet<Experience> PreviousExperiences { get; set; }
     public DbSet<Education> Educations { get; set; }
     public DbSet<RequirementStack> RequirementStacks { get; set; }
     public DbSet<Requirement> Requirements { get; set; }
