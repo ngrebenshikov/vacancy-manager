@@ -28,7 +28,11 @@
     background-color: transparent!important;
 }
 
-td.wrap-text div {     white-space: pre-wrap; } 
+td.wrap-text div {    
+	margin:5px  !important;
+	white-space:pre-wrap !important;
+	word-wrap: break-word;
+}
 
 .x-grid-row-selected .x-grid-table .x-grid-row-selected .x-grid-cell 
 {
