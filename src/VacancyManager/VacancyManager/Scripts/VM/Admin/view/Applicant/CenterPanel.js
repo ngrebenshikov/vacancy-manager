@@ -90,14 +90,21 @@ Ext.define('VM.view.Applicant.CenterPanel', {
         }]
     },
     { title: Strings.Vacancies,
-        layout: 'hbox',
+        layout: 'border',
         id: 'tabAppVac',
+        autoHeight: true,
         items:
        [
-       { xtype: 'applicantConsiderationsList' },
+       { xtype: 'applicantConsiderationsList',
+         region: 'west',
+         split: true
+       },
        { xtype: 'commentsList',
-         title: 'Комментарии',
-           columns: [
+          region: 'center',
+          autoSizeColumns: true,
+          autoHeight: true,
+          title: 'Комментарии',
+            columns: [
   	        {
   	            width: 100,
   	            flex: 1,

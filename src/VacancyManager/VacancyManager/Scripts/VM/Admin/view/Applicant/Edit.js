@@ -17,6 +17,7 @@
     height: 450,
     width: 650,
     autoShow: true,
+    maximizable: true,
     modal: true,
     layout: 'border',
     resizable: false,
