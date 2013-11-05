@@ -1,0 +1,50 @@
+﻿@model IEnumerable<prjFactVakancies.Models.Vakancy>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table>
+    <tr>
+        <th align = "center">
+            Вакансия
+        </th>
+        <th align = "center">
+            Пол
+        </th>
+        <th align = "center">
+            Возраст
+        </th>
+        <th align = "center">
+            Оклад
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Profession)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Pol)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Vozrast)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Oklad)
+        </td>
+        <td>
+            @Html.ActionLink("Редактировать", "Edit", new {  id=item.Vakancy_ID  }) |
+            @Html.ActionLink("Удалить", "Delete", new { id = item.Vakancy_ID })
+        </td>
+    </tr>
+}
+
+</table>
