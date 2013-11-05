@@ -15,12 +15,12 @@ namespace VacancyManager.Services.Managers
       return obj;
     }
 
-    /*internal static IEnumerable<Resume> GetResume(int appId)
+    internal static IEnumerable<Resume> GetResume(int appId)
     {
         VacancyContext _db = new VacancyContext();
-        return _db.Resumes.Where(v => v.ApplicantId == appId).ToList(); 
+        return _db.Resumes.Where(v => v.Applicant.ApplicantID == appId).ToList(); 
     }
-      */
+      
   
   }
 }

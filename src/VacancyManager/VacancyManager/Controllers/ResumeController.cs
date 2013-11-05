@@ -17,7 +17,7 @@ namespace VacancyManager.Controllers
       [HttpGet]
       public ActionResult LoadResume (int appId)
       {
-          var Resume = ResumeManager.GetList();
+          var Resume = ResumeManager.GetResume(appId);
           var ResumeList = (from res in Resume
                              select new
                              {
