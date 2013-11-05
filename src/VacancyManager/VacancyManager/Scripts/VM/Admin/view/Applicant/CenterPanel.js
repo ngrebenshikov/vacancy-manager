@@ -137,7 +137,7 @@ Ext.define('VM.view.Applicant.CenterPanel', {
                  xtype: 'grid',
                  id: 'ApplicantResume',
                  autoSizeColumns: true,
-                 store: 'ApplicantRequirements',
+                 store: 'ApplicantResumeGr',
                  columns:
                  [{
                      header: 'Дата',
@@ -151,7 +151,7 @@ Ext.define('VM.view.Applicant.CenterPanel', {
                  },
                  {
                      header: 'Резюме',
-                     dataIndex: 'ApplicantId',
+                     dataIndex: 'ResumeId',
                      sortable: false,
                      menuDisabled: true,
                      flex: 1
