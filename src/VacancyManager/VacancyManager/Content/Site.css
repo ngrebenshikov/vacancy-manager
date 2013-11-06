@@ -37,6 +37,8 @@ td.wrap-text div {
 .x-grid-row-selected .x-grid-table .x-grid-row-selected .x-grid-cell 
 {
     background-color: #DFE8F6 !important;
+    border-bottom: 1px dotted #A3BAE9;
+    border-top: 1px dotted #A3BAE9;
 }
 
 .new-message td

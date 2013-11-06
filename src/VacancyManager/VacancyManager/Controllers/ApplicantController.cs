@@ -17,6 +17,33 @@ namespace VacancyManager.Controllers
     {
 
         [HttpGet]
+        public ActionResult LoadAppMessages(int AppId)
+        {
+           
+            var list = VMMailMessageManager.GetList();
+            var res = (from apps in list
+                       where (apps.ApplicantId == AppId)
+                       select new
+                       {
+                           Id = apps.Id,
+                           Subject = apps.Subject,
+                           From = apps.From,
+                           Text = apps.Text,
+                           IsRead = apps.IsRead,
+                           SendDate = apps.SendDate,
+                           DeliveryDate = apps.DeliveryDate.Date.ToShortDateString(),
+                           Sender = String.Format("{0} ({1})", " ", apps.From)
+
+                       }).ToList();
+
+            return Json(new
+            {
+                success = true,
+                data = res
+            }, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpGet]
         public ActionResult LoadAppConsiderations(int AppId)
         {
             var AppCons = ConsiderationsManager.GetAppConsiderations(AppId);

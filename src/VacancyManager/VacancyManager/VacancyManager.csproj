@@ -1635,6 +1635,7 @@
     <Content Include="Scripts\VM\Admin\controller\Roles.js" />
     <Content Include="Scripts\VM\Admin\controller\ApplicantController.js" />
     <Content Include="Scripts\VM\Admin\model\ApplicantConsiderations.js" />
+    <Content Include="Scripts\VM\Admin\model\ApplicantMessage.js" />
     <Content Include="Scripts\VM\Admin\model\MailMessage.js" />
     <Content Include="Scripts\VM\Admin\model\SearchApplicants.js" />
     <Content Include="Scripts\VM\Admin\searchApplicantGrid.js" />
@@ -1656,6 +1657,7 @@
     <Content Include="Scripts\VM\Admin\store\Consideration.js" />
     <Content Include="Scripts\VM\Admin\store\ApplicantConsiderations.js" />
     <Content Include="Scripts\VM\Admin\store\ApplicantComments.js" />
+    <Content Include="Scripts\VM\Admin\store\ApplicantMessages.js" />
     <Content Include="Scripts\VM\Admin\store\MailMessage.js" />
     <Content Include="Scripts\VM\Admin\store\RequirementListInStack.js" />
     <Content Include="Scripts\VM\Admin\store\RequirementStack.js" />
@@ -1670,6 +1672,7 @@
     <Content Include="Scripts\VM\Admin\view\Admin\Main.js" />
     <Content Include="Scripts\VM\Admin\view\Applicant\ApplicantComments.js" />
     <Content Include="Scripts\VM\Admin\view\Applicant\ApplicantConsiderations.js" />
+    <Content Include="Scripts\VM\Admin\view\Applicant\ApplicantMessages.js" />
     <Content Include="Scripts\VM\Admin\view\Applicant\CenterPanel.js" />
     <Content Include="Scripts\VM\Admin\view\Applicant\Edit.js" />
     <Content Include="Scripts\VM\Admin\view\Applicant\Create.js" />

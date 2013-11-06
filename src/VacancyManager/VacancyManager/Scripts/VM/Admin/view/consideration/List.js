@@ -45,8 +45,10 @@
     }, {
         text: Strings.btnCommentsView,
         action: 'loadComments' 
-    },
-    {
+    }, {
+        text: 'Почтовые сообщения',
+        action: 'loadMessages' 
+    }, {
         text: Strings.btnDeleteConsideration,
         action: 'deleteConsideration'
     }
