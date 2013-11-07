@@ -3,11 +3,11 @@ Ext.define('VM.controller.ConsiderationController', {
 
     extend: 'Ext.app.Controller',
 
-    stores: ['Consideration', 'Applicant', 'SearchApplicants', 'Comments'],
+    stores: ['Consideration', 'Applicant', 'SearchApplicants', 'Comments', 'ApplicantMessages'],
 
-    models: ['VM.model.Consideration', 'VM.model.SearchApplicants'],
+    models: ['VM.model.Consideration', 'VM.model.SearchApplicants', 'VM.model.ApplicantMessage'],
 
-    views: ['consideration.List', 'VM.view.Comments.List'],
+    views: ['consideration.List', 'VM.view.Comments.List', 'Applicant.ApplicantMessages'],
 
     init: function () {
         this.control(
@@ -27,7 +27,10 @@ Ext.define('VM.controller.ConsiderationController', {
                     },
                     'button[action = loadComments]': {
                         click: this.loadComments
-                    }
+                    },
+                    'button[action = loadMessages]': {
+                        click: this.loadMessages
+                    } 
                 });
 
     },
@@ -49,6 +52,24 @@ Ext.define('VM.controller.ConsiderationController', {
                 width: 300,
                 buttons: Ext.Msg.OK
             });
+    },
+
+    loadMessages: function (button) {
+        var grid = button.up('grid'),
+        selectedConsideration = grid.getSelectionModel().getSelection()[0];
+            if (selectedConsideration != undefined) {
+                var appId = selectedConsideration.get('ApplicantID')
+                applicantMessagesStore = this.getApplicantMessagesStore();
+                applicantMessagesStore.load({ params: { "AppId": appId} });
+                var wndapplicantMessagesManage = Ext.create('VM.view.Applicant.ApplicantMessages').show();
+            }
+            else
+                Ext.Msg.show({
+                    title: 'Выберите соискателя',
+                    msg: 'Не выбран соискатель',
+                    width: 300,
+                    buttons: Ext.Msg.OK
+                });
     },
 
     itemClick: function (view, record) {

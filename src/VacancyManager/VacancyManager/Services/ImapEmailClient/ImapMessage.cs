@@ -95,12 +95,15 @@ namespace VacancyManager.Services
         fromapp = ApplicantManager.GetApplicantByEMail(From);     
         if (fromapp != null)
             ApplicantId= fromapp.ApplicantID;
-      
-        int messageId = VMMailMessageManager.Create(From, To, Subject, Text, SendDate, DeliveryDate, messageType, ApplicantId).Id;
-
-        foreach (var attachment in Attachments)
+        
+        if (ApplicantId != 0)
         {
-            AttachmentManager.Create(attachment.Item1, attachment.Item2, attachment.Item3, messageId);
+            int messageId = VMMailMessageManager.Create(From, To, Subject, Text, SendDate, DeliveryDate, messageType, ApplicantId).Id;
+
+            foreach (var attachment in Attachments)
+            {
+                AttachmentManager.Create(attachment.Item1, attachment.Item2, attachment.Item3, messageId);
+            }
         }
     }
 

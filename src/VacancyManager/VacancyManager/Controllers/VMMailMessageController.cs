@@ -67,6 +67,7 @@ namespace VacancyManager.Controllers
                 }, "text/html");
         }
 
+
         [HttpPost]
         public ActionResult Create(string data)
         {
