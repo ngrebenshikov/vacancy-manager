@@ -83,6 +83,7 @@
     <Compile Include="Controllers\ConsiderationsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\RequirementStackController.cs" />
+    <Compile Include="Controllers\ResumeController.cs" />
     <Compile Include="Controllers\RolesController.cs" />
     <Compile Include="Controllers\SysConfigController.cs" />
     <Compile Include="Controllers\UserController.cs" />
@@ -301,6 +302,7 @@
     <Compile Include="Services\Managers\CommentsManager.cs" />
     <Compile Include="Services\Managers\ConsiderationsManager.cs" />
     <Compile Include="Services\Managers\RequirementsManager.cs" />
+    <Compile Include="Services\Managers\ResumeManager.cs" />
     <Compile Include="Services\Managers\SharedManager.cs" />
     <Compile Include="Services\Managers\SysConfigManager.cs" />
     <Compile Include="Services\Managers\VacancyDbManager.cs" />
@@ -1629,6 +1631,7 @@
     <Content Include="Scripts\VM\Admin\controller\MailMessageController.js" />
     <Content Include="Scripts\VM\Admin\controller\RequirementListInStack.js" />
     <Content Include="Scripts\VM\Admin\controller\RequirementStack.js" />
+    <Content Include="Scripts\VM\Admin\controller\ResumeController.js" />
     <Content Include="Scripts\VM\Admin\controller\SysConfigController.js" />
     <Content Include="Scripts\VM\Admin\controller\UserController.js" />
     <Content Include="Scripts\VM\Admin\controller\VacancyController.js" />
@@ -1636,7 +1639,9 @@
     <Content Include="Scripts\VM\Admin\controller\ApplicantController.js" />
     <Content Include="Scripts\VM\Admin\model\ApplicantConsiderations.js" />
     <Content Include="Scripts\VM\Admin\model\ApplicantMessage.js" />
+    <Content Include="Scripts\VM\Admin\model\ApplicantResumeGr.js" />
     <Content Include="Scripts\VM\Admin\model\MailMessage.js" />
+    <Content Include="Scripts\VM\Admin\model\ResumeApplicant.js" />
     <Content Include="Scripts\VM\Admin\model\SearchApplicants.js" />
     <Content Include="Scripts\VM\Admin\searchApplicantGrid.js" />
     <Content Include="Scripts\VM\Admin\model\Comment.js" />
@@ -1652,6 +1657,7 @@
     <Content Include="Scripts\VM\Admin\model\ApplicantModel.js" />
     <Content Include="Scripts\VM\Admin\model\Attachment.js" />
     <Content Include="Scripts\VM\Admin\store\ApplicantRequirements.js" />
+    <Content Include="Scripts\VM\Admin\store\ApplicantResumeGr.js" />
     <Content Include="Scripts\VM\Admin\store\BaseStore.js" />
     <Content Include="Scripts\VM\Admin\store\Comments.js" />
     <Content Include="Scripts\VM\Admin\store\Consideration.js" />
@@ -1661,6 +1667,7 @@
     <Content Include="Scripts\VM\Admin\store\MailMessage.js" />
     <Content Include="Scripts\VM\Admin\store\RequirementListInStack.js" />
     <Content Include="Scripts\VM\Admin\store\RequirementStack.js" />
+    <Content Include="Scripts\VM\Admin\store\ResumeApplicant.js" />
     <Content Include="Scripts\VM\Admin\store\SearchApplicants.js" />
     <Content Include="Scripts\VM\Admin\store\SysConfig.js" />
     <Content Include="Scripts\VM\Admin\store\User.js" />

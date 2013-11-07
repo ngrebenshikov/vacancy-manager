@@ -7,6 +7,7 @@ using System.Web.Script.Serialization;
 using VacancyManager.Services;
 using System.Web.Security;
 using System.IO;
+using System.Collections.Generic;
 
 namespace VacancyManager.Controllers
 {
@@ -15,21 +16,32 @@ namespace VacancyManager.Controllers
   public class ResumeController : BaseController
   {
       [HttpGet]
-      public ActionResult LoadResume (int appId)
+      public ActionResult LoadResume (Nullable<int> appId)
       {
-          var Resume = ResumeManager.GetResume(appId);
-          var ResumeList = (from res in Resume
-                             select new
-                             {
-                                 ResumeId = res.ResumeId,
-                                 Date = res.Date,
-                              //   Applicant = res.Applicant
-                             }).ToList();
-          return Json(new
+          if (appId.HasValue)
           {
-              success = true,
-              data = ResumeList
-          }, JsonRequestBehavior.AllowGet);
+              var Resume = ResumeManager.GetResumes(appId.Value);
+              var ResumeList = (from res in Resume
+                                select new
+                                {
+                                    ResumeId = res.ResumeId,
+                                    Date = res.Date.ToShortDateString(),
+                                    //   Applicant = res.Applicant
+                                }).ToList();
+              return Json(new
+              {
+                  success = true,
+                  data = ResumeList
+              }, JsonRequestBehavior.AllowGet);
+          }
+          else
+          {
+              return Json(new
+              {
+                  success = true,
+                  data = new List<Resume>()
+              }, JsonRequestBehavior.AllowGet);
+          }
       }
    
 

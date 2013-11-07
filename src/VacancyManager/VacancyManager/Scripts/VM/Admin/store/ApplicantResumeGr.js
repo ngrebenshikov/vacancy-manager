@@ -2,9 +2,9 @@
     extend: 'VM.store.BaseStore',
     model: 'VM.model.ApplicantResumeGr',
     id: 'ApplicantResumeGr',
-    autoLoad: true,
-    autoSync: true,
-    autoSave: true,
+    autoLoad: false,
+    autoSync: false,
+    autoSave: false,
     proxy: {
         type: 'ajax',
         api: {
