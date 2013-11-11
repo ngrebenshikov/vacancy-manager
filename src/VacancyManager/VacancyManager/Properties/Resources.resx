@@ -290,6 +290,9 @@
   <data name="Skills" xml:space="preserve">
     <value>Навыки</value>
   </data>
+  <data name="Resumes" xml:space="preserve">
+    <value>Резюме</value>
+  </data>
   <data name="Value" xml:space="preserve">
     <value>Значение</value>
   </data>

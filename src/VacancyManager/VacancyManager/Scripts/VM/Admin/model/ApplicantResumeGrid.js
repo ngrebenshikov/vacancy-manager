@@ -1,4 +1,4 @@
-﻿Ext.define('VM.model.ApplicantResumeGr',
+﻿Ext.define('VM.model.ApplicantResumeGrid',
     {
         extend: 'Ext.data.Model',
         idProperty: 'ResumeId',
