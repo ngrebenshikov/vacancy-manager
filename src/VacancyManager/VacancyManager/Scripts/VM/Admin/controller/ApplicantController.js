@@ -2,7 +2,7 @@
     {
         extend: 'Ext.app.Controller',
         models: ['ApplicantModel', 'ApplicantRequirements', 'ApplicantConsiderations'],
-        stores: ['Applicant', 'ApplicantRequirements', 'ApplicantConsiderations', 'Comments', 'ApplicantComments', "ApplicantResumeGr"],
+        stores: ['Applicant', 'ApplicantRequirements', 'ApplicantConsiderations', 'Comments', 'ApplicantComments', 'ApplicantResumeGrid'],
         views: ['Applicant.List', 'Applicant.Create', 'Applicant.Edit', 'Applicant.ApplicantConsiderations', 'Comments.List', 'Applicant.ApplicantComments'],
 
         init: function () {
@@ -114,7 +114,7 @@
             var appCommsStore = this.getApplicantCommentsStore();
             appCommsStore.load({ params: { "appId": obj.get("ApplicantID")} });
 
-            var appResumeStore = Ext.StoreManager.lookup('ApplicantResumeGr');
+            var appResumeStore = Ext.StoreManager.lookup('ApplicantResumeGrid');
             appResumeStore.load({ params: { "appId": obj.get("ApplicantID")} });
         },
 

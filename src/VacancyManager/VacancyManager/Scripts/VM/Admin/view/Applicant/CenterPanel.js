@@ -138,13 +138,13 @@ Ext.define('VM.view.Applicant.CenterPanel', {
 
     },
        {
-           title: 'Резюме',
+           title: Strings.Resumes,
+           id: 'ApplicantResumeTab',
            items: [
              {
                  xtype: 'grid',
-                 id: 'ApplicantResume',
                  autoSizeColumns: true,
-                 store: 'ApplicantResumeGr',
+                 store: 'ApplicantResumeGrid',
                  columns:
                  [{
                      header: 'Дата',
