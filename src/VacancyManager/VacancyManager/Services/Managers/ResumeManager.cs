@@ -20,7 +20,15 @@ namespace VacancyManager.Services.Managers
         VacancyContext _db = new VacancyContext();
         return _db.Resumes.Where(v => v.Applicant.ApplicantID == appId).ToList(); 
     }
-      
+
+    internal static void DeleteResume(int id)
+    {
+        VacancyContext _db = new VacancyContext();
+        var obj = _db.Resumes.Where(res => res.ResumeId == id).FirstOrDefault();
+
+        _db.Resumes.Remove(obj);
+        _db.SaveChanges();
+    }
   
   }
 }

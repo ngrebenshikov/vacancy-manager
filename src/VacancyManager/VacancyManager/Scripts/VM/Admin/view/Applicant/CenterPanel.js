@@ -144,6 +144,7 @@ Ext.define('VM.view.Applicant.CenterPanel', {
              {
                  xtype: 'grid',
                  autoSizeColumns: true,
+                 id: 'ApplicantRes',
                  store: 'ApplicantResumeGrid',
                  columns:
                  [{
@@ -174,10 +175,17 @@ Ext.define('VM.view.Applicant.CenterPanel', {
                     text: Strings.btnRemove,
                     icon: '/Content/icons/delete.gif',
                     name: 'btnRemove',
-                    id: 'Remove',
+                    id: 'RemoveResume',
                     action: 'RemoveResume',
                     disabled: true
                 }],
+                listeners: {
+                    selectionchange: function (view, selections, options) {
+                        var button = Ext.getCmp('RemoveResume');
+                        if (selections != null)
+                            button.enable();
+                    }
+                }
              }
            ]
            
