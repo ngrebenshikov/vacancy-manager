@@ -17,6 +17,9 @@
                 // Удалить
                 'button[action=RemoveApplicant]':
                     { click: this.RemoveApplicant },
+                // Удалить резюме
+                'button[action=RemoveResume]':
+                    { click: this.RemoveResume },
                 // Создать
                 'button[action=CreateApplicant]':
                     { click: this.CreateApplicant },
@@ -173,6 +176,21 @@
         },
 
         /* ===== */
+
+
+        RemoveResume: function (button) {
+            var grid = Ext.getCmp('ApplicantRes');
+            var store = this.getApplicantResumeGridStore();
+            var selection = grid.getView().getSelectionModel().getSelection()[0];
+            var id = grid.getView().getSelectionModel().getSelection()[0].get("ResumeId");
+
+            if (selection != null) {
+                store.remove(selection);
+                button.disable();
+            }
+        },
+
+
         ShowHideSkills: function (button) {
             var store = Ext.StoreManager.lookup('ApplicantRequirements');
 
