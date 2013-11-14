@@ -138,13 +138,14 @@ Ext.define('VM.view.Applicant.CenterPanel', {
 
     },
        {
-           title: 'Резюме',
+           title: Strings.Resumes,
+           id: 'ApplicantResumeTab',
            items: [
              {
                  xtype: 'grid',
-                 id: 'ApplicantResume',
                  autoSizeColumns: true,
-                 store: 'ApplicantResumeGr',
+                 id: 'ApplicantRes',
+                 store: 'ApplicantResumeGrid',
                  columns:
                  [{
                      header: 'Дата',
@@ -174,10 +175,17 @@ Ext.define('VM.view.Applicant.CenterPanel', {
                     text: Strings.btnRemove,
                     icon: '/Content/icons/delete.gif',
                     name: 'btnRemove',
-                    id: 'Remove',
+                    id: 'RemoveResume',
                     action: 'RemoveResume',
                     disabled: true
                 }],
+                listeners: {
+                    selectionchange: function (view, selections, options) {
+                        var button = Ext.getCmp('RemoveResume');
+                        if (selections != null)
+                            button.enable();
+                    }
+                }
              }
            ]
            
