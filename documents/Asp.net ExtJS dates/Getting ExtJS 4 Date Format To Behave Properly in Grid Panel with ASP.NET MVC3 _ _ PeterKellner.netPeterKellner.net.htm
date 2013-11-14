@@ -1,0 +1,1043 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html class=" ext-strict" xmlns="http://www.w3.org/1999/xhtml"><head profile="http://gmpg.org/xfn/11">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<title>Getting ExtJS 4 Date Format To Behave Properly in Grid Panel with ASP.NET MVC3  |    |  PeterKellner.netPeterKellner.net</title>
+
+<meta name="generator" content="WordPress 3.3.2"> <!-- leave this for stats -->
+<!-- site js -->
+<script type="text/javascript" async="" src="Getting%20ExtJS%204%20Date%20Format%20To%20Behave%20Properly%20in%20Grid%20Panel%20with%20ASP.NET%20MVC3%20_%20_%20PeterKellner.netPeterKellner.net_files/quant.js"></script><script src="Getting%20ExtJS%204%20Date%20Format%20To%20Behave%20Properly%20in%20Grid%20Panel%20with%20ASP.NET%20MVC3%20_%20_%20PeterKellner.netPeterKellner.net_files/ga.js" async="" type="text/javascript"></script><script type="text/javascript" src="Getting%20ExtJS%204%20Date%20Format%20To%20Behave%20Properly%20in%20Grid%20Panel%20with%20ASP.NET%20MVC3%20_%20_%20PeterKellner.netPeterKellner.net_files/jquery_003.js"></script>
+<script type="text/javascript" src="Getting%20ExtJS%204%20Date%20Format%20To%20Behave%20Properly%20in%20Grid%20Panel%20with%20ASP.NET%20MVC3%20_%20_%20PeterKellner.netPeterKellner.net_files/ext-core.js"></script>
+
+<link rel="stylesheet" href="Getting%20ExtJS%204%20Date%20Format%20To%20Behave%20Properly%20in%20Grid%20Panel%20with%20ASP.NET%20MVC3%20_%20_%20PeterKellner.netPeterKellner.net_files/style.css" type="text/css" media="screen">
+<link rel="stylesheet" href="Getting%20ExtJS%204%20Date%20Format%20To%20Behave%20Properly%20in%20Grid%20Panel%20with%20ASP.NET%20MVC3%20_%20_%20PeterKellner.netPeterKellner.net_files/print.css" type="text/css" media="print">
+<link rel="alternate" type="application/rss+xml" title="PeterKellner.net RSS Feed" href="http://peterkellner.net/feed/">
+<link rel="pingback" href="http://peterkellner.net/wp/xmlrpc.php">
+
+
+<!-- This site is optimized with the Yoast WordPress SEO plugin v1.1.6 - http://yoast.com/wordpress/seo/ -->
+<link rel="canonical" href="http://peterkellner.net/2011/08/24/getting-extjs-4-date-format-to-behave-properly-in-grid-panel-with-asp-net-mvc3/">
+<!-- / Yoast WordPress SEO plugin. -->
+
+				
+	<script type="text/javascript">//<![CDATA[
+	// Google Analytics for WordPress by Yoast v4.2.3 | http://yoast.com/wordpress/google-analytics/
+	var _gaq = _gaq || [];
+	_gaq.push(['_setAccount','UA-648264-1']);
+	_gaq.push(['_trackPageview']);
+	(function() {
+		var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+		ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+		var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+	})();
+	//]]></script>
+<link rel="alternate" type="application/rss+xml" title="PeterKellner.net » Getting ExtJS 4 Date Format To Behave Properly in Grid Panel with ASP.NET MVC3 Comments Feed" href="http://peterkellner.net/2011/08/24/getting-extjs-4-date-format-to-behave-properly-in-grid-panel-with-asp-net-mvc3/feed/">
+<link rel="stylesheet" id="contact-form-7-css" href="Getting%20ExtJS%204%20Date%20Format%20To%20Behave%20Properly%20in%20Grid%20Panel%20with%20ASP.NET%20MVC3%20_%20_%20PeterKellner.netPeterKellner.net_files/styles.css" type="text/css" media="all">
+<script type="text/javascript" src="Getting%20ExtJS%204%20Date%20Format%20To%20Behave%20Properly%20in%20Grid%20Panel%20with%20ASP.NET%20MVC3%20_%20_%20PeterKellner.netPeterKellner.net_files/swfobject.js"></script>
+<script type="text/javascript" src="Getting%20ExtJS%204%20Date%20Format%20To%20Behave%20Properly%20in%20Grid%20Panel%20with%20ASP.NET%20MVC3%20_%20_%20PeterKellner.netPeterKellner.net_files/jquery_002.js"></script>
+<script type="text/javascript" src="Getting%20ExtJS%204%20Date%20Format%20To%20Behave%20Properly%20in%20Grid%20Panel%20with%20ASP.NET%20MVC3%20_%20_%20PeterKellner.netPeterKellner.net_files/index.php"></script>
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://peterkellner.net/wp/xmlrpc.php?rsd">
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="http://peterkellner.net/wp/wp-includes/wlwmanifest.xml"> 
+<meta name="generator" content="WordPress 3.3.2">
+<link rel="shortlink" href="http://wp.me/p2nGbL-p6">
+
+	<style type="text/css" media="screen">
+	a#ribbon {
+	position: absolute;
+	top: 0px;
+	right: 0px;
+	display: block;
+	width: 129px;
+	height: 129px;
+	background: transparent url("http://peterkellner.net/wp/wp-content/plugins/nofollow-free/images/css_nofollow_badgeblueright.gif") no-repeat top left;
+	text-indent: -999em;
+	text-decoration: none;
+	z-index: 1000;
+	}
+	</style>
+
+<style type="text/css">
+object {outline:none;}
+</style>
+<script type="text/javascript" src="Getting%20ExtJS%204%20Date%20Format%20To%20Behave%20Properly%20in%20Grid%20Panel%20with%20ASP.NET%20MVC3%20_%20_%20PeterKellner.netPeterKellner.net_files/init.js"></script>
+
+<link rel="stylesheet" type="text/css" id="gravatar-card-css" href="Getting%20ExtJS%204%20Date%20Format%20To%20Behave%20Properly%20in%20Grid%20Panel%20with%20ASP.NET%20MVC3%20_%20_%20PeterKellner.netPeterKellner.net_files/hovercard.css"><link rel="stylesheet" type="text/css" id="gravatar-card-services-css" href="Getting%20ExtJS%204%20Date%20Format%20To%20Behave%20Properly%20in%20Grid%20Panel%20with%20ASP.NET%20MVC3%20_%20_%20PeterKellner.netPeterKellner.net_files/services.css"></head>
+<body class="  ext-gecko ext-gecko3">
+  <div id="header">
+    <div id="headerimg">
+	  <h1><a href="http://peterkellner.net/">PeterKellner.net</a></h1>
+	  <div class="description">Microsoft Focused, JavaScript,HTML5 (ExtJS, SenchaTouch &amp; Windows 8 Metro)</div>
+	  <div class="imgBox">
+	    <div class="images">
+	        <a href="http://peterkellner.net/"><img src="Getting%20ExtJS%204%20Date%20Format%20To%20Behave%20Properly%20in%20Grid%20Panel%20with%20ASP.NET%20MVC3%20_%20_%20PeterKellner.netPeterKellner.net_files/Peter-Kellner.jpg"></a>
+	    </div>
+        <div class="images">
+            <a href="https://mvp.support.microsoft.com/profile=23539213-9F81-4150-A58D-2068039F6477" target="_blank" rel="no-follow"><img src="Getting%20ExtJS%204%20Date%20Format%20To%20Behave%20Properly%20in%20Grid%20Panel%20with%20ASP.NET%20MVC3%20_%20_%20PeterKellner.netPeterKellner.net_files/mvp.gif" alt="Microsoft MVP Most Valuable Professional"></a>
+        </div>
+        <div class="images">
+            <a href="http://aspinsiders.com/" target="_blank" rel="no-follow"><img src="Getting%20ExtJS%204%20Date%20Format%20To%20Behave%20Properly%20in%20Grid%20Panel%20with%20ASP.NET%20MVC3%20_%20_%20PeterKellner.netPeterKellner.net_files/asp-insiders.jpg" alt="ASP Insiders"></a>
+        </div>
+        <div class="images">
+            <a href="http://peterkellner.net/open-source-javascript-extjs-and-jquery/" target="_blank"><img src="Getting%20ExtJS%204%20Date%20Format%20To%20Behave%20Properly%20in%20Grid%20Panel%20with%20ASP.NET%20MVC3%20_%20_%20PeterKellner.netPeterKellner.net_files/sencha-leader.png" alt="SenchaTouch and ExtJS Community Leader"></a>
+        </div>
+	  </div>
+      <div id="search">
+		<form method="get" id="searchform" action="http://peterkellner.net/">
+<div><input name="s" id="s" type="text">
+<input id="searchsubmit" value="" type="submit">
+</div>
+</form>
+	  </div>
+
+	</div>
+	<div id="navi">
+		<ul id="nav">
+          <li class="page_item "><a href="http://peterkellner.net/technologies/" class="">Technologies</a>
+          <div>
+            <ul class="first">
+                <li><span>Microsoft Technologies <img src="Getting%20ExtJS%204%20Date%20Format%20To%20Behave%20Properly%20in%20Grid%20Panel%20with%20ASP.NET%20MVC3%20_%20_%20PeterKellner.netPeterKellner.net_files/arrow_down.gif" class="page_item_down"></span></li>
+                <li><a href="http://peterkellner.net/microsoft-asp-net/">ASP.NET</a></li>
+                <li><a href="http://peterkellner.net/microsoft-entity-framework-and-linq2sql/">Entity Framework and LINQ2SQL</a></li>
+                <li><a href="http://peterkellner.net/microsoft-wcf-data-services/">WCF Data Services</a></li>
+                <li><a href="http://peterkellner.net/microsoft-sql-server/">SQL Server</a></li>
+                <li><a href="http://peterkellner.net/microsoft-silverlight/">Silverlight</a></li>
+                <li><span>Open Source Technologies <img src="Getting%20ExtJS%204%20Date%20Format%20To%20Behave%20Properly%20in%20Grid%20Panel%20with%20ASP.NET%20MVC3%20_%20_%20PeterKellner.netPeterKellner.net_files/arrow_down.gif" class="page_item_down"></span></li>
+                <li><a href="http://peterkellner.net/open-source-javascript-extjs-and-jquery/">Javascript - ExtJS, SenchaTouch and jQuery</a></li>
+                <li><a href="http://peterkellner.net/open-source-odata/">OData</a></li>
+            </ul>
+          </div>
+          </li>
+		  <li class="page_item liCurrent"><a href="http://peterkellner.net/" class="aCurrent">Kellner Blog</a></li>
+<li class="page_item "><a href="http://peterkellner.net/peter-kellner-bio/" class="">Kellner Bio</a>		    <ul>
+                <li><a href="http://peterkellner.net/peter-kellner-resume/">Resume</a></li>
+            </ul>
+          </li>
+		  <li class="page_item "><a href="http://peterkellner.net/services-offered/" class="">Consulting Services</a></li>
+		  <li class="page_item "><a href="http://peterkellner.net/contact/" class="">Contact</a></li>
+		</ul>
+	</div>
+  </div>
+  <!--/header -->
+<div id="wrapper">
+<div id="page">  <div id="content">
+  
+    
+    <div class="post" id="post-1556">
+	  <div class="entrytop"><div class="entry">
+        <h2><span class="inpost-date">August 24th, 2011</span><a href="http://peterkellner.net/2011/08/24/getting-extjs-4-date-format-to-behave-properly-in-grid-panel-with-asp-net-mvc3/" rel="bookmark" title="Permanent Link to Getting ExtJS 4 Date Format To Behave Properly in Grid Panel with ASP.NET MVC3">Getting ExtJS 4 Date Format To Behave Properly in Grid Panel with ASP.NET MVC3</a></h2>
+	  </div></div>
+			<span class="post-meta">Posted by <a href="http://peterkellner.net/">Peter Kellner</a> in <a href="http://peterkellner.net/category/net-4-0/" title="View all posts in .NET 4.0" rel="category tag">.NET 4.0</a>, <a href="http://peterkellner.net/category/c/" title="View all posts in C#" rel="category tag">C#</a>, <a href="http://peterkellner.net/category/database/" title="View all posts in Database" rel="category tag">Database</a>, <a href="http://peterkellner.net/category/dateformat/" title="View all posts in DateFormat" rel="category tag">DateFormat</a>, <a href="http://peterkellner.net/category/mvc3/" title="View all posts in MVC3" rel="category tag">MVC3</a>, <a href="http://peterkellner.net/category/sencha/" title="View all posts in Sencha" rel="category tag">Sencha</a></span>
+
+		<div class="post-content">
+		<p>&nbsp;</p>
+<h3>Introduction and Problem</h3>
+<p>Converting Data Formats back and forth between browser and back end 
+servers can be a little confusing.&nbsp; In my case, I have a simple <a href="http://www.sencha.com/" onclick="javascript:_gaq.push(['_trackEvent','outbound-article','http://www.sencha.com']);">Sencha</a>&nbsp;<a href="http://www.sencha.com/products/extjs/" onclick="javascript:_gaq.push(['_trackEvent','outbound-article','http://www.sencha.com']);">ExtJS 4.0</a> form that the user types a date into.&nbsp; That date gets passed through an <a href="http://www.w3schools.com/ajax/default.asp" onclick="javascript:_gaq.push(['_trackEvent','outbound-article','http://www.w3schools.com']);">ajax request</a> to the <a href="http://www.microsoft.com/en-us/default.aspx" onclick="javascript:_gaq.push(['_trackEvent','outbound-article','http://www.microsoft.com']);">Microsoft</a> <a href="http://www.asp.net/" onclick="javascript:_gaq.push(['_trackEvent','outbound-article','http://www.asp.net']);">asp.net</a> <a href="http://www.asp.net/mvc/mvc3" onclick="javascript:_gaq.push(['_trackEvent','outbound-article','http://www.asp.net']);">controller</a>, then that dates updates the <a href="http://en.wikipedia.org/wiki/Microsoft_SQL_Server" onclick="javascript:_gaq.push(['_trackEvent','outbound-article','http://en.wikipedia.org']);">SqlServer</a>
+ Database.&nbsp; When the Date is displayed on a Grid Panel, again, an 
+ajax request is made that grabs the date from the controller, then 
+formats it using the MS <a href="http://dev.sencha.com/deploy/ext-4.0.2a/docs/#/api/Ext.data.Field-cfg-dateFormat" onclick="javascript:_gaq.push(['_trackEvent','outbound-article','http://dev.sencha.com']);">dateFormat</a> from ExtJS and hopefully, the same date the user typed in gets re-displayed.</p>
+<div>
+<div class="peterkellnerpromo"><a href="http://peterkellner.net/open-source-javascript-extjs-and-jquery/" target="_blank">If
+ you have a problem like this involving ASP.NET or Sencha Tools (ExtJS, 
+SenchaTouch), more information about our consulting services are <span>here.</span></a></div>
+</div>
+<p>So, let’s look at the details.</p>
+<h3>Posting the Date To the Server (View From JavaScript)</h3>
+<p>First, we need to define an ExtJS Model that has the date in it.&nbsp; That codes looks like this in my case.</p>
+<p><span id="more-1556"></span></p>
+<p>&nbsp;</p>
+<div id="codeSnippetWrapper">
+<pre style="border-bottom-style: none; text-align: left; padding-bottom: 0px; line-height: 12pt; background-color: #f4f4f4; margin: 0em; border-left-style: none; padding-left: 0px; width: 100%; padding-right: 0px; font-family: 'Courier New', courier, monospace; direction: ltr; border-top-style: none; color: black; border-right-style: none; font-size: 8pt; overflow: visible; padding-top: 0px" id="codeSnippet">Ext.define(<span style="color: #006080">'EvMgr.model.SponsorListJobListing'</span>, {    extend: <span style="color: #006080">'Ext.data.Model'</span>,    fields: [        <span style="color: #006080">'Id'</span>,        <span style="color: #006080">'SponsorListId'</span>,        <span style="color: #006080">'JobName'</span>,        <span style="color: #006080">'JobLocation'</span>,        <span style="color: #006080">'JobURL'</span>,        <span style="color: #006080">'JobBrief'</span>,        <span style="color: #006080">'JobTagline'</span>,        <span style="color: #006080">'JobButtonToolTip'</span>,        { name: <span style="color: #006080">'EnteredDate'</span>, type: <span style="color: #006080">'date'</span>, dateFormat: <span style="color: #006080">'MS'</span> },        <span style="color: #006080">'JobCompanyName'</span>,        { name: <span style="color: #006080">'StartRunDate'</span>, type: <span style="color: #006080">'date'</span>, dateFormat: <span style="color: #006080">'MS'</span> },        { name: <span style="color: #006080">'EndRunDate'</span>, type: <span style="color: #006080">'date'</span>, dateFormat: <span style="color: #006080">'MS'</span> },        { name: <span style="color: #006080">'HideListing'</span>, type: <span style="color: #006080">'boolean'</span> },        <span style="color: #006080">'Notes'</span>    ],    idProperty: <span style="color: #006080">'Id'</span>,
+
+    proxy: {        type: <span style="color: #006080">'ajax'</span>,        api: {            read: <span style="color: #006080">'SponsorListJobListing/Get'</span>,            update: <span style="color: #006080">'SponsorListJobListing/Update'</span>,            create: <span style="color: #006080">'SponsorListJobListing/Create'</span>,            destroy: <span style="color: #006080">'SponsorListJobListing/Delete'</span>        },        reader: {            type: <span style="color: #006080">'json'</span>,            root: <span style="color: #006080">'Data'</span>,            successProperty: <span style="color: #006080">'success'</span>        }    },
+
+    belongsTo: <span style="color: #006080">'EvMgr.model.SponsorList'</span>});</pre>
+<p></p></div>
+<p>Notice the StartRunDate field has dateFormat of ‘MS”.</p>
+<p>Now, we have an ExtJS Window that we use to collect the data from the user.&nbsp; The code is as follows:</p>
+<div>
+<pre style="border-bottom-style: none; text-align: left; padding-bottom: 0px; line-height: 12pt; background-color: #f4f4f4; margin: 0em; border-left-style: none; padding-left: 0px; width: 100%; padding-right: 0px; font-family: 'Courier New', courier, monospace; direction: ltr; border-top-style: none; color: black; border-right-style: none; font-size: 8pt; overflow: visible; padding-top: 0px" id="codeSnippet">Ext.define(<span style="color: #006080">'EvMgr.view.sponsorlist.ListJobListingsEdit'</span>, {    extend: <span style="color: #006080">'Ext.window.Window'</span>,    alias: <span style="color: #006080">'widget.sponsorlistjoblistingsedit'</span>,    title: <span style="color: #006080">'Edit Job Listing'</span>,    layout: <span style="color: #006080">'fit'</span>,    width: 1000,    autoShow: <span style="color: #0000ff">true</span>,
+
+    initComponent: <span style="color: #0000ff">function</span>() {
+
+        <span style="color: #0000ff">this</span>.items = [            {                xtype: <span style="color: #006080">'form'</span>,
+
+                items: [                    {                        xtype: <span style="color: #006080">'textfield'</span>,                        name: <span style="color: #006080">'JobName'</span>,                        fieldLabel: <span style="color: #006080">'JobName'</span>,                        width: 850                    },                    {                        xtype: <span style="color: #006080">'textfield'</span>,                        name: <span style="color: #006080">'JobLocation'</span>,                        fieldLabel: <span style="color: #006080">'JobLocation'</span>,                        width: 850                    },                     {                         xtype: <span style="color: #006080">'textfield'</span>,                         name: <span style="color: #006080">'JobURL'</span>,                         fieldLabel: <span style="color: #006080">'JobURL'</span>,                         width: 850                     },                     {                         xtype: <span style="color: #006080">'textfield'</span>,                         name: <span style="color: #006080">'JobBrief'</span>,                         fieldLabel: <span style="color: #006080">'JobBrief'</span>,                         width: 850                     }, {                         xtype: <span style="color: #006080">'textfield'</span>,                         name: <span style="color: #006080">'JobTagline'</span>,                         fieldLabel: <span style="color: #006080">'JobTagline'</span>,                         width: 850                     },                     {                         xtype: <span style="color: #006080">'textfield'</span>,                         name: <span style="color: #006080">'JobButtonToolTip'</span>,                         fieldLabel: <span style="color: #006080">'JobButtonToolTip'</span>,                         width: 850                     },                     {                         xtype: <span style="color: #006080">'textfield'</span>,                         name: <span style="color: #006080">'JobCompanyName'</span>,                         fieldLabel: <span style="color: #006080">'JobCompanyName'</span>,                         width: 850                     },                     {                         xtype: <span style="color: #006080">'textfield'</span>,  <span style="color: #008000">// checkbox makesthe value not come back for some reason</span>                         name: <span style="color: #006080">'HideListing'</span>,                         fieldLabel: <span style="color: #006080">'HideListing'</span>,                         width: 850                     },                     {                         xtype: <span style="color: #006080">'datefield'</span>,                         name: <span style="color: #006080">'StartRunDate'</span>,                         fieldLabel: <span style="color: #006080">'StartRunDate'</span>,                         width: 850                     },                     {                         xtype: <span style="color: #006080">'datefield'</span>,                         name: <span style="color: #006080">'EndRunDate'</span>,                         fieldLabel: <span style="color: #006080">'EndRunDate'</span>,                         width: 850                     },                    {                        xtype: <span style="color: #006080">'textfield'</span>,                        name: <span style="color: #006080">'SponsorListId'</span>,                        fieldLabel: <span style="color: #006080">'SponsorListId'</span>,                        width: 850                    }                ]            }        ];
+
+        <span style="color: #0000ff">this</span>.buttons = [            {                text: <span style="color: #006080">'Save'</span>,                action: <span style="color: #006080">'save'</span>            }, {                text: <span style="color: #006080">'Cancel'</span>,                scope: <span style="color: #0000ff">this</span>,                handler: <span style="color: #0000ff">this</span>.close            }        ];
+
+        <span style="color: #0000ff">this</span>.callParent(arguments);    }});</pre>
+</div>
+<div>Notice we don’t have to mention the StartRunDate’s format because the model has that already.</div>
+<div>&nbsp;</div>
+<div>When we run the app and press the “save” button, the actual post 
+that goes back to the asp.net MVC3 controller looks like the following 
+(notice the screen shot of the app first, then what happens when the 
+Save button is pressed)</div>
+<div>&nbsp;</div>
+<div><a href="http://petersblogcdn.s3.amazonaws.com/wp/wp/wp-content/uploads/2011/08/image4.png"><img style="background-image: none; border-width: 0px; padding-left: 0px; padding-right: 0px; display: inline; padding-top: 0px;" title="image" alt="image" src="Getting%20ExtJS%204%20Date%20Format%20To%20Behave%20Properly%20in%20Grid%20Panel%20with%20ASP.NET%20MVC3%20_%20_%20PeterKellner.netPeterKellner.net_files/image_thumb3.png" border="0" height="320" width="608"></a></div>
+<div>&nbsp;</div>
+<div><a href="http://petersblogcdn.s3.amazonaws.com/wp/wp/wp-content/uploads/2011/08/image5.png"><img style="background-image: none; border-width: 0px; padding-left: 0px; padding-right: 0px; display: inline; padding-top: 0px;" title="image" alt="image" src="Getting%20ExtJS%204%20Date%20Format%20To%20Behave%20Properly%20in%20Grid%20Panel%20with%20ASP.NET%20MVC3%20_%20_%20PeterKellner.netPeterKellner.net_files/image_thumb4.png" border="0" height="395" width="466"></a></div>
+<div>&nbsp;</div>
+<div>You can see that the date is passed back as 
+Date(1313996400000).&nbsp; This is actually UTC time so we will need to 
+make sure we check for that on the server.&nbsp; It’s always a good idea
+ to store all dates on the server in UTC time anyhow.</div>
+<div>&nbsp;</div>
+<h3>Posting the Date To the Server (View From ASP.NET)</h3>
+<div>&nbsp;</div>
+<div>So let’s take a look at what is coming to the server.&nbsp; 
+Remember that in the model, we defined what REST api is hit by a post 
+from this model.&nbsp; In this case, it’s “update: 
+‘SponsorListJobListing/Update’,”.&nbsp; So, let’s debug into the C# 
+(asp.net) side and see what is actually coming in.&nbsp; Here is what we
+ see:</div>
+<div>&nbsp;</div>
+<div><a href="http://petersblogcdn.s3.amazonaws.com/wp/wp/wp-content/uploads/2011/08/image6.png"><img style="background-image: none; border-width: 0px; padding-left: 0px; padding-right: 0px; display: inline; padding-top: 0px;" title="image" alt="image" src="Getting%20ExtJS%204%20Date%20Format%20To%20Behave%20Properly%20in%20Grid%20Panel%20with%20ASP.NET%20MVC3%20_%20_%20PeterKellner.netPeterKellner.net_files/image_thumb5.png" border="0" height="324" width="624"></a></div>
+<div>&nbsp;</div>
+<div>Notice that the date comes in very simply as midnight on 8/22/2011 
+(the date we put in).&nbsp; The tricky part is we need to store this 
+date as UTC so that when we end it back, it can get converted back to 
+local.&nbsp; To do this, in our repository class, we have code to 
+convert to UTC as follows:</div>
+<div>&nbsp;</div>
+<div><a href="http://petersblogcdn.s3.amazonaws.com/wp/wp/wp-content/uploads/2011/08/image7.png"><img style="background-image: none; border-width: 0px; padding-left: 0px; padding-right: 0px; display: inline; padding-top: 0px;" title="image" alt="image" src="Getting%20ExtJS%204%20Date%20Format%20To%20Behave%20Properly%20in%20Grid%20Panel%20with%20ASP.NET%20MVC3%20_%20_%20PeterKellner.netPeterKellner.net_files/image_thumb6.png" border="0" height="444" width="594"></a></div>
+<div>&nbsp;</div>
+<div>&nbsp;</div>
+<div>Your repository will look different, but this is a good example.&nbsp; Now, notice the StartRunDate will be 8/22/2011 at 7AM.</div>
+<div>&nbsp;</div>
+<div><a href="http://petersblogcdn.s3.amazonaws.com/wp/wp/wp-content/uploads/2011/08/image8.png"><img style="background-image: none; border-width: 0px; padding-left: 0px; padding-right: 0px; display: inline; padding-top: 0px;" title="image" alt="image" src="Getting%20ExtJS%204%20Date%20Format%20To%20Behave%20Properly%20in%20Grid%20Panel%20with%20ASP.NET%20MVC3%20_%20_%20PeterKellner.netPeterKellner.net_files/image_thumb7.png" border="0" height="76" width="620"></a></div>
+<p>&nbsp;</p>
+<p>I’m over simplifying a little because it’s calculating UTC based on 
+the Servers time zone, not the browsers.&nbsp; It would be better to 
+send the timezone of the browser also and then calculate UTC correctly 
+in <a href="http://en.wikipedia.org/wiki/JavaScript" onclick="javascript:_gaq.push(['_trackEvent','outbound-article','http://en.wikipedia.org']);">JavaScript</a>,
+ but I just want to give you the idea here.&nbsp; In my case, I’m always
+ running this app from California and my server is always inCalifornia 
+so at least things stay consistent.&nbsp; I do realize I’m simplifying 
+and you need to make sure you think this through.</p>
+<p>&nbsp;</p>
+<p>Now, when I query the server for the returned data using the same 
+ExtJS data model, the data comes down as follows.&nbsp; In ASP.NET it 
+looks like this:</p>
+<p><a href="http://petersblogcdn.s3.amazonaws.com/wp/wp/wp-content/uploads/2011/08/image9.png"><img style="background-image: none; border-width: 0px; margin: 0px; padding-left: 0px; padding-right: 0px; display: inline; padding-top: 0px;" title="image" alt="image" src="Getting%20ExtJS%204%20Date%20Format%20To%20Behave%20Properly%20in%20Grid%20Panel%20with%20ASP.NET%20MVC3%20_%20_%20PeterKellner.netPeterKellner.net_files/image_thumb8.png" border="0" height="191" width="244"></a></p>
+<p>Which is actually different than what was pushed up.&nbsp; It seems 
+though that when ExtJS displays this, it converts it to local time.</p>
+<p>Our browser Grid shows it like this (as we would expect)</p>
+<p><a href="http://petersblogcdn.s3.amazonaws.com/wp/wp/wp-content/uploads/2011/08/image10.png"><img style="background-image: none; border-width: 0px; margin: 0px; padding-left: 0px; padding-right: 0px; display: inline; padding-top: 0px;" title="image" alt="image" src="Getting%20ExtJS%204%20Date%20Format%20To%20Behave%20Properly%20in%20Grid%20Panel%20with%20ASP.NET%20MVC3%20_%20_%20PeterKellner.netPeterKellner.net_files/image_thumb9.png" border="0" height="112" width="156"></a></p>
+<p>Hope this helps!</p>
+		
+				
+				
+		</div>
+		
+		
+<!-- You can start editing here. -->
+
+	<h3 id="comments">One Response to “Getting ExtJS 4 Date Format To Behave Properly in Grid Panel with ASP.NET MVC3”</h3> 
+
+	<ul class="commentlist">
+
+	
+		<li class="alt" id="comment-31146">
+			<div class="comment-btm"><cite>Anas</cite> Says:
+						<br>
+
+			<small class="commentmetadata"><a href="#comment-31146" title="">October 18th, 2011 at 12:49 pm</a> </small>
+			<p>Great article, it helped me to solve my problem. thanks</p>
+</div>
+
+		</li>
+
+	
+	
+	</ul>
+
+ 
+
+
+<h3 id="respond">Leave a Reply</h3>
+
+
+<form action="http://peterkellner.net/wp/wp-comments-post.php" method="post" id="commentform">
+
+
+<p><input name="author" id="author" size="22" tabindex="1" type="text">
+<label for="author"><strong>Name</strong> (required)</label></p>
+
+<p><input name="email" id="email" size="22" tabindex="2" type="text">
+<label for="email"><strong>Mail</strong> (will not be published) (required)</label></p>
+
+<p><input name="url" id="url" size="22" tabindex="3" type="text">
+<label for="url"><strong>Website</strong></label></p>
+
+
+<p><textarea name="comment" id="comment" cols="100%" rows="10" tabindex="4"></textarea></p>
+
+<p><input name="submit" id="submit" tabindex="5" value="Submit Comment" type="submit">
+<input name="comment_post_ID" value="1556" type="hidden">
+</p>
+<p style="display: none;"><input id="akismet_comment_nonce" name="akismet_comment_nonce" value="2b883d0f8b" type="hidden"></p><p class="comment-subscription-form"><input name="subscribe_comments" id="subscribe_comments" value="subscribe" style="width: auto; -moz-appearance: checkbox;" type="checkbox"> <label class="subscribe-label" id="subscribe-label" for="subscribe_comments">Notify me of follow-up comments by email.</label></p><p class="comment-subscription-form"><input name="subscribe_blog" id="subscribe_blog" value="subscribe" style="width: auto; -moz-appearance: checkbox;" type="checkbox"> <label class="subscribe-label" id="subscribe-blog-label" for="subscribe_blog">Notify me of new posts by email.</label></p>
+</form>
+
+
+		
+			
+	</div><!--/post -->
+
+  </div><!--/content -->
+
+<div id="sidebar">
+<div class="socialMediaIconWrap">
+    <div class="socialMediaIcon">
+        <a href="http://peterkellner.net/feed/" target="_new" title="Subscribe to RSS Feed"><img src="Getting%20ExtJS%204%20Date%20Format%20To%20Behave%20Properly%20in%20Grid%20Panel%20with%20ASP.NET%20MVC3%20_%20_%20PeterKellner.netPeterKellner.net_files/feed.png"></a>
+    </div>
+    <div class="socialMediaIcon">
+        <a href="http://www.linkedin.com/in/peterkellner99" target="_new" title="Go to Peter Kellner's LinkedIn page"><img src="Getting%20ExtJS%204%20Date%20Format%20To%20Behave%20Properly%20in%20Grid%20Panel%20with%20ASP.NET%20MVC3%20_%20_%20PeterKellner.netPeterKellner.net_files/linkedin.png"></a>
+    </div>
+    <div class="socialMediaIcon">
+        <a href="http://twitter.com/pkellner" target="_new" title="Follow Peter Kellner's Tweets"><img src="Getting%20ExtJS%204%20Date%20Format%20To%20Behave%20Properly%20in%20Grid%20Panel%20with%20ASP.NET%20MVC3%20_%20_%20PeterKellner.netPeterKellner.net_files/twitter.png"></a>
+    </div>
+    <div class="socialMediaIcon">
+        <a href="http://www.facebook.com/peterkellner99" target="_new" title="Go to Peter Kellner's Facebook page"><img src="Getting%20ExtJS%204%20Date%20Format%20To%20Behave%20Properly%20in%20Grid%20Panel%20with%20ASP.NET%20MVC3%20_%20_%20PeterKellner.netPeterKellner.net_files/facebook.png"></a>
+    </div>
+</div>
+<br>
+<a href="http://www.siliconvalley-codecamp.com/" target="_new" title="CodeCamp at FootHill College.  Click Here for Details and Registration"><img class=" oclvkcqeulpuqqbyyike" src="Getting%20ExtJS%204%20Date%20Format%20To%20Behave%20Properly%20in%20Grid%20Panel%20with%20ASP.NET%20MVC3%20_%20_%20PeterKellner.netPeterKellner.net_files/DisplayAd.jpg" alt="CodeCamp at FootHill College.  Click Here for Details and Registration" longdesc="" align="middle"></a>
+<ul>
+
+  
+        <li>
+        <br>
+      <h2 class="sidebartitle">Tag Cloud</h2>
+      <div style="width:204px">
+              <a href="http://peterkellner.net/category/net-20/" class="tag-link-3" title="28 topics" style="font-size: 12.9455pt;">.Net 2.0</a>&nbsp; &nbsp; &nbsp;<a href="http://peterkellner.net/category/net-4-0/" class="tag-link-102" title="32 topics" style="font-size: 13.3818pt;">.NET 4.0</a>&nbsp; &nbsp; &nbsp;<a href="http://peterkellner.net/category/aspnet/" class="tag-link-4" title="28 topics" style="font-size: 12.9455pt;">ASP.NET 2.0</a>&nbsp; &nbsp; &nbsp;<a href="http://peterkellner.net/category/aspnet-20/" class="tag-link-53" title="50 topics" style="font-size: 14.7636pt;">ASP.NET 2.0</a>&nbsp; &nbsp; &nbsp;<a href="http://peterkellner.net/category/aspnet-35/" class="tag-link-5" title="44 topics" style="font-size: 14.3273pt;">ASP.NET 3.5</a>&nbsp; &nbsp; &nbsp;<a href="http://peterkellner.net/category/asp-net-4-0/" class="tag-link-121" title="11 topics" style="font-size: 10.1818pt;">ASP.NET 4.0</a>&nbsp; &nbsp; &nbsp;<a href="http://peterkellner.net/category/atlasajax/" class="tag-link-6" title="7 topics" style="font-size: 8.87273pt;">Atlas/AJAX</a>&nbsp; &nbsp; &nbsp;<a href="http://peterkellner.net/category/azure/" class="tag-link-104" title="15 topics" style="font-size: 11.0545pt;">Azure</a>&nbsp; &nbsp; &nbsp;<a href="http://peterkellner.net/category/azure-blob-storage/" class="tag-link-141" title="7 topics" style="font-size: 8.87273pt;">Azure Blob Storage</a>&nbsp; &nbsp; &nbsp;<a href="http://peterkellner.net/category/best-practices/" class="tag-link-7" title="19 topics" style="font-size: 11.7818pt;">Best Practices</a>&nbsp; &nbsp; &nbsp;<a href="http://peterkellner.net/category/book-reviews/" class="tag-link-8" title="17 topics" style="font-size: 11.4909pt;">Book Reviews</a>&nbsp; &nbsp; &nbsp;<a href="http://peterkellner.net/category/c/" class="tag-link-9" title="63 topics" style="font-size: 15.4909pt;">C#</a>&nbsp; &nbsp; &nbsp;<a href="http://peterkellner.net/category/code-camp-web-site-series/" class="tag-link-11" title="10 topics" style="font-size: 9.89091pt;">Code Camp Web Site Series</a>&nbsp; &nbsp; &nbsp;<a href="http://peterkellner.net/category/codefirst/" class="tag-link-193" title="7 topics" style="font-size: 8.87273pt;">CodeFirst</a>&nbsp; &nbsp; &nbsp;<a href="http://peterkellner.net/category/community/" class="tag-link-13" title="74 topics" style="font-size: 16pt;">Community</a>&nbsp; &nbsp; &nbsp;<a href="http://peterkellner.net/category/entity-framework/" class="tag-link-103" title="15 topics" style="font-size: 11.0545pt;">Entity Framework</a>&nbsp; &nbsp; &nbsp;<a href="http://peterkellner.net/category/extjs/" class="tag-link-59" title="30 topics" style="font-size: 13.1636pt;">ExtJS</a>&nbsp; &nbsp; &nbsp;<a href="http://peterkellner.net/category/gridview/" class="tag-link-19" title="6 topics" style="font-size: 8.50909pt;">GridView</a>&nbsp; &nbsp; &nbsp;<a href="http://peterkellner.net/category/how-things-work/" class="tag-link-20" title="8 topics" style="font-size: 9.23636pt;">How Things Work</a>&nbsp; &nbsp; &nbsp;<a href="http://peterkellner.net/category/iis7/" class="tag-link-54" title="6 topics" style="font-size: 8.50909pt;">IIS7</a>&nbsp; &nbsp; &nbsp;<a href="http://peterkellner.net/category/javascript/" class="tag-link-21" title="22 topics" style="font-size: 12.2182pt;">JavaScript</a>&nbsp; &nbsp; &nbsp;<a href="http://peterkellner.net/category/linq/" class="tag-link-22" title="28 topics" style="font-size: 12.9455pt;">LINQ</a>&nbsp; &nbsp; &nbsp;<a href="http://peterkellner.net/category/linq-to-sql/" class="tag-link-78" title="12 topics" style="font-size: 10.4pt;">LINQ to SQL</a>&nbsp; &nbsp; &nbsp;<a href="http://peterkellner.net/category/membership/" class="tag-link-23" title="12 topics" style="font-size: 10.4pt;">Membership</a>&nbsp; &nbsp; &nbsp;<a href="http://peterkellner.net/category/microsoft/" class="tag-link-151" title="6 topics" style="font-size: 8.50909pt;">Microsoft</a>&nbsp; &nbsp; &nbsp;<a href="http://peterkellner.net/category/msdn-articles/" class="tag-link-24" title="5 topics" style="font-size: 8pt;">MSDN Articles</a>&nbsp; &nbsp; &nbsp;<a href="http://peterkellner.net/category/aspnet-35/mvc/" class="tag-link-56" title="9 topics" style="font-size: 9.6pt;">MVC</a>&nbsp; &nbsp; &nbsp;<a href="http://peterkellner.net/category/net-20/objectdatasource/" class="tag-link-26" title="20 topics" style="font-size: 11.9273pt;">ObjectDataSource</a>&nbsp; &nbsp; &nbsp;<a href="http://peterkellner.net/category/presentations/" class="tag-link-29" title="19 topics" style="font-size: 11.7818pt;">Presentations</a>&nbsp; &nbsp; &nbsp;<a href="http://peterkellner.net/category/resharper/" class="tag-link-93" title="6 topics" style="font-size: 8.50909pt;">ReSharper</a>&nbsp; &nbsp; &nbsp;<a href="http://peterkellner.net/category/ria-services/" class="tag-link-99" title="9 topics" style="font-size: 9.6pt;">RIA Services</a>&nbsp; &nbsp; &nbsp;<a href="http://peterkellner.net/category/sencha/" class="tag-link-172" title="12 topics" style="font-size: 10.4pt;">Sencha</a>&nbsp; &nbsp; &nbsp;<a href="http://peterkellner.net/category/silverlight/" class="tag-link-32" title="20 topics" style="font-size: 11.9273pt;">Silverlight</a>&nbsp; &nbsp; &nbsp;<a href="http://peterkellner.net/category/sql-server/" class="tag-link-58" title="13 topics" style="font-size: 10.6909pt;">Sql Server</a>&nbsp; &nbsp; &nbsp;<a href="http://peterkellner.net/category/sql-server-2008/" class="tag-link-77" title="10 topics" style="font-size: 9.89091pt;">Sql Server 2008</a>&nbsp; &nbsp; &nbsp;<a href="http://peterkellner.net/category/tools/" class="tag-link-34" title="7 topics" style="font-size: 8.87273pt;">Tools</a>&nbsp; &nbsp; &nbsp;<a href="http://peterkellner.net/category/uncategorized/" class="tag-link-1" title="8 topics" style="font-size: 9.23636pt;">Uncategorized</a>&nbsp; &nbsp; &nbsp;<a href="http://peterkellner.net/category/vista/" class="tag-link-38" title="7 topics" style="font-size: 8.87273pt;">Vista</a>&nbsp; &nbsp; &nbsp;<a href="http://peterkellner.net/category/visual-studio/" class="tag-link-40" title="32 topics" style="font-size: 13.3818pt;">Visual Studio</a>&nbsp; &nbsp; &nbsp;<a href="http://peterkellner.net/category/visual-studio-2010/" class="tag-link-98" title="29 topics" style="font-size: 13.0909pt;">Visual Studio 2010</a>&nbsp; &nbsp; &nbsp;<a href="http://peterkellner.net/category/vs2010/" class="tag-link-101" title="13 topics" style="font-size: 10.6909pt;">VS2010</a>&nbsp; &nbsp; &nbsp;<a href="http://peterkellner.net/category/web/" class="tag-link-42" title="8 topics" style="font-size: 9.23636pt;">web</a>&nbsp; &nbsp; &nbsp;<a href="http://peterkellner.net/category/windows-7/" class="tag-link-64" title="15 topics" style="font-size: 11.0545pt;">Windows 7</a>&nbsp; &nbsp; &nbsp;<a href="http://peterkellner.net/category/windows-8/" class="tag-link-191" title="10 topics" style="font-size: 9.89091pt;">Windows 8</a>&nbsp; &nbsp; &nbsp;<a href="http://peterkellner.net/category/windows-8-metro/" class="tag-link-192" title="12 topics" style="font-size: 10.4pt;">Windows 8 Metro</a>        </div>
+        <br>
+    </li>
+          <li id="linkcat-2" class="linkcat"><h2>Blogroll</h2>
+	<ul>
+<li><a href="http://www.asp.net/" title="A Great Resource For All Things ASP.NET" target="" onclick="javascript:_gaq.push(['_trackEvent','outbound-blogroll','http://www.asp.net/']);">ASP.NET Web Site</a></li>
+<li><a href="http://connectionroad.com/" title="A Great Site Dealing With Sync Technology and SyncToy Among Other Technologies" target="" onclick="javascript:_gaq.push(['_trackEvent','outbound-blogroll','http://ConnectionRoad.com']);">ConnectionRoad</a></li>
+<li><a href="http://msdn.microsoft.com/en-us/sync/default.aspx" title="This is the Microsoft Sync Framework Developer Center.  It has all resources about developing sync applications " target="" onclick="javascript:_gaq.push(['_trackEvent','outbound-blogroll','http://msdn.microsoft.com/en-us/sync/default.aspx']);">Microsoft Sync Framework</a></li>
+<li><a href="http://timheuer.com/blog/" title="A Great Resource for Microsoft Developers, Lots about Silverlight and other technology" target="" onclick="javascript:_gaq.push(['_trackEvent','outbound-blogroll','http://timheuer.com/blog/']);">Tim Heuer's Blog</a></li>
+
+	</ul>
+</li>
+    <li>
+    
+    </li>
+    <li>          
+      <h2 class="sidebartitle" id="categories">Categories</h2>
+      <ul class="list-cat">
+        <div class="sideCat">
+        <div id="sideCatWrap" class="sideCatWrap">
+        	<li class="cat-item cat-item-3"><a href="http://peterkellner.net/category/net-20/" title="View all posts filed under .Net 2.0">.Net 2.0</a> (28)
+</li>
+	<li class="cat-item cat-item-102"><a href="http://peterkellner.net/category/net-4-0/" title="View all posts filed under .NET 4.0">.NET 4.0</a> (32)
+</li>
+	<li class="cat-item cat-item-187"><a href="http://peterkellner.net/category/net-4-5/" title="View all posts filed under .NET 4.5">.NET 4.5</a> (2)
+</li>
+	<li class="cat-item cat-item-209"><a href="http://peterkellner.net/category/net-5-0/" title="View all posts filed under .NET 5.0">.NET 5.0</a> (1)
+</li>
+	<li class="cat-item cat-item-160"><a href="http://peterkellner.net/category/3g/" title="View all posts filed under 3G">3G</a> (1)
+</li>
+	<li class="cat-item cat-item-109"><a href="http://peterkellner.net/category/4g/" title="View all posts filed under 4G">4G</a> (2)
+</li>
+	<li class="cat-item cat-item-91"><a href="http://peterkellner.net/category/agile/" title="View all posts filed under Agile">Agile</a> (2)
+</li>
+	<li class="cat-item cat-item-136"><a href="http://peterkellner.net/category/android/" title="View all posts filed under android">android</a> (5)
+</li>
+	<li class="cat-item cat-item-184"><a href="http://peterkellner.net/category/asp-net/" title="View all posts filed under asp.net">asp.net</a> (2)
+</li>
+	<li class="cat-item cat-item-4"><a href="http://peterkellner.net/category/aspnet/" title="View all posts filed under ASP.NET 2.0">ASP.NET 2.0</a> (28)
+</li>
+	<li class="cat-item cat-item-53"><a href="http://peterkellner.net/category/aspnet-20/" title="View all posts filed under ASP.NET 2.0">ASP.NET 2.0</a> (50)
+</li>
+	<li class="cat-item cat-item-5"><a href="http://peterkellner.net/category/aspnet-35/" title="View all posts filed under ASP.NET 3.5">ASP.NET 3.5</a> (44)
+</li>
+	<li class="cat-item cat-item-121"><a href="http://peterkellner.net/category/asp-net-4-0/" title="View all posts filed under ASP.NET 4.0">ASP.NET 4.0</a> (11)
+</li>
+	<li class="cat-item cat-item-97"><a href="http://peterkellner.net/category/asp-net-dynamic-data/" title="View all posts filed under ASP.NET Dynamic Data">ASP.NET Dynamic Data</a> (1)
+</li>
+	<li class="cat-item cat-item-6"><a href="http://peterkellner.net/category/atlasajax/" title="View all posts filed under Atlas/AJAX">Atlas/AJAX</a> (7)
+</li>
+	<li class="cat-item cat-item-185"><a href="http://peterkellner.net/category/attack-vectors/" title="View all posts filed under Attack Vectors">Attack Vectors</a> (1)
+</li>
+	<li class="cat-item cat-item-126"><a href="http://peterkellner.net/category/automation/" title="View all posts filed under Automation">Automation</a> (1)
+</li>
+	<li class="cat-item cat-item-104"><a href="http://peterkellner.net/category/azure/" title="View all posts filed under Azure">Azure</a> (15)
+</li>
+	<li class="cat-item cat-item-141"><a href="http://peterkellner.net/category/azure-blob-storage/" title="View all posts filed under Azure Blob Storage">Azure Blob Storage</a> (7)
+</li>
+	<li class="cat-item cat-item-168"><a href="http://peterkellner.net/category/azure-deployment/" title="View all posts filed under Azure Deployment">Azure Deployment</a> (3)
+</li>
+	<li class="cat-item cat-item-159"><a href="http://peterkellner.net/category/azure-table-storage/" title="View all posts filed under Azure Table Storage">Azure Table Storage</a> (2)
+</li>
+	<li class="cat-item cat-item-167"><a href="http://peterkellner.net/category/azure-web-role/" title="View all posts filed under Azure Web Role">Azure Web Role</a> (4)
+</li>
+	<li class="cat-item cat-item-116"><a href="http://peterkellner.net/category/backup/" title="View all posts filed under backup">backup</a> (1)
+</li>
+	<li class="cat-item cat-item-7"><a href="http://peterkellner.net/category/best-practices/" title="View all posts filed under Best Practices">Best Practices</a> (19)
+</li>
+	<li class="cat-item cat-item-143"><a href="http://peterkellner.net/category/bitbucket-org/" title="View all posts filed under BitBucket.Org">BitBucket.Org</a> (1)
+</li>
+	<li class="cat-item cat-item-8"><a href="http://peterkellner.net/category/book-reviews/" title="View all posts filed under Book Reviews">Book Reviews</a> (17)
+</li>
+	<li class="cat-item cat-item-95"><a href="http://peterkellner.net/category/build-products/" title="View all posts filed under Build Products">Build Products</a> (1)
+</li>
+	<li class="cat-item cat-item-66"><a href="http://peterkellner.net/category/business-intelligence/" title="View all posts filed under Business Intelligence">Business Intelligence</a> (1)
+</li>
+	<li class="cat-item cat-item-9"><a href="http://peterkellner.net/category/c/" title="View all posts filed under C#">C#</a> (63)
+</li>
+	<li class="cat-item cat-item-140"><a href="http://peterkellner.net/category/camera/" title="View all posts filed under camera">camera</a> (1)
+</li>
+	<li class="cat-item cat-item-154"><a href="http://peterkellner.net/category/cerebrata/" title="View all posts filed under Cerebrata">Cerebrata</a> (1)
+</li>
+	<li class="cat-item cat-item-10"><a href="http://peterkellner.net/category/charity/" title="View all posts filed under Charity">Charity</a> (2)
+</li>
+	<li class="cat-item cat-item-110"><a href="http://peterkellner.net/category/clearwire/" title="View all posts filed under CLEARWIRE">CLEARWIRE</a> (1)
+</li>
+	<li class="cat-item cat-item-176"><a href="http://peterkellner.net/category/clickonce/" title="View all posts filed under ClickOnce">ClickOnce</a> (1)
+</li>
+	<li class="cat-item cat-item-76"><a href="http://peterkellner.net/category/cloud-computing/" title="View all posts filed under Cloud Computing">Cloud Computing</a> (2)
+</li>
+	<li class="cat-item cat-item-132"><a href="http://peterkellner.net/category/cms/" title="View all posts filed under CMS">CMS</a> (1)
+</li>
+	<li class="cat-item cat-item-124"><a href="http://peterkellner.net/category/code-camp/" title="View all posts filed under Code Camp">Code Camp</a> (5)
+</li>
+	<li class="cat-item cat-item-11"><a href="http://peterkellner.net/category/code-camp-web-site-series/" title="View all posts filed under Code Camp Web Site Series">Code Camp Web Site Series</a> (10)
+</li>
+	<li class="cat-item cat-item-193"><a href="http://peterkellner.net/category/codefirst/" title="View all posts filed under CodeFirst">CodeFirst</a> (7)
+</li>
+	<li class="cat-item cat-item-130"><a href="http://peterkellner.net/category/coderush/" title="View all posts filed under CodeRush">CodeRush</a> (3)
+</li>
+	<li class="cat-item cat-item-12"><a href="http://peterkellner.net/category/codesmith/" title="View all posts filed under CodeSmith">CodeSmith</a> (1)
+</li>
+	<li class="cat-item cat-item-13"><a href="http://peterkellner.net/category/community/" title="View all posts filed under Community">Community</a> (74)
+</li>
+	<li class="cat-item cat-item-210"><a href="http://peterkellner.net/category/compile/" title="View all posts filed under Compile">Compile</a> (1)
+</li>
+	<li class="cat-item cat-item-150"><a href="http://peterkellner.net/category/conferences/" title="View all posts filed under Conferences">Conferences</a> (1)
+</li>
+	<li class="cat-item cat-item-162"><a href="http://peterkellner.net/category/connection/" title="View all posts filed under Connection">Connection</a> (1)
+</li>
+	<li class="cat-item cat-item-155"><a href="http://peterkellner.net/category/cryptography/" title="View all posts filed under Cryptography">Cryptography</a> (2)
+</li>
+	<li class="cat-item cat-item-14"><a href="http://peterkellner.net/category/css-adapters/" title="View all posts filed under CSS Adapters">CSS Adapters</a> (2)
+</li>
+	<li class="cat-item cat-item-207"><a href="http://peterkellner.net/category/css3/" title="View all posts filed under CSS3">CSS3</a> (1)
+</li>
+	<li class="cat-item cat-item-15"><a href="http://peterkellner.net/category/custom-controls/" title="View all posts filed under Custom Controls">Custom Controls</a> (1)
+</li>
+	<li class="cat-item cat-item-60"><a href="http://peterkellner.net/category/database/" title="View all posts filed under Database">Database</a> (4)
+</li>
+	<li class="cat-item cat-item-182"><a href="http://peterkellner.net/category/databinding/" title="View all posts filed under DataBinding">DataBinding</a> (1)
+</li>
+	<li class="cat-item cat-item-180"><a href="http://peterkellner.net/category/dateformat/" title="View all posts filed under DateFormat">DateFormat</a> (1)
+</li>
+	<li class="cat-item cat-item-122"><a href="http://peterkellner.net/category/debugging/" title="View all posts filed under Debugging">Debugging</a> (4)
+</li>
+	<li class="cat-item cat-item-88"><a href="http://peterkellner.net/category/detailsview/" title="View all posts filed under DetailsView">DetailsView</a> (1)
+</li>
+	<li class="cat-item cat-item-16"><a href="http://peterkellner.net/category/dev-connections-lv06/" title="View all posts filed under Dev Connections LV06">Dev Connections LV06</a> (1)
+</li>
+	<li class="cat-item cat-item-128"><a href="http://peterkellner.net/category/devexpress/" title="View all posts filed under DevExpress">DevExpress</a> (2)
+</li>
+	<li class="cat-item cat-item-174"><a href="http://peterkellner.net/category/downthemall/" title="View all posts filed under DownThemAll">DownThemAll</a> (1)
+</li>
+	<li class="cat-item cat-item-125"><a href="http://peterkellner.net/category/elevators/" title="View all posts filed under Elevators">Elevators</a> (1)
+</li>
+	<li class="cat-item cat-item-103"><a href="http://peterkellner.net/category/entity-framework/" title="View all posts filed under Entity Framework">Entity Framework</a> (15)
+</li>
+	<li class="cat-item cat-item-145"><a href="http://peterkellner.net/category/excel/" title="View all posts filed under Excel">Excel</a> (1)
+</li>
+	<li class="cat-item cat-item-152"><a href="http://peterkellner.net/category/exceptions/" title="View all posts filed under Exceptions">Exceptions</a> (1)
+</li>
+	<li class="cat-item cat-item-138"><a href="http://peterkellner.net/category/exchange/" title="View all posts filed under exchange">exchange</a> (1)
+</li>
+	<li class="cat-item cat-item-59"><a href="http://peterkellner.net/category/extjs/" title="View all posts filed under ExtJS">ExtJS</a> (30)
+</li>
+	<li class="cat-item cat-item-82"><a href="http://peterkellner.net/category/facebook/" title="View all posts filed under facebook">facebook</a> (1)
+</li>
+	<li class="cat-item cat-item-175"><a href="http://peterkellner.net/category/fiddler/" title="View all posts filed under Fiddler">Fiddler</a> (1)
+</li>
+	<li class="cat-item cat-item-105"><a href="http://peterkellner.net/category/finalbuilder/" title="View all posts filed under Finalbuilder">Finalbuilder</a> (1)
+</li>
+	<li class="cat-item cat-item-86"><a href="http://peterkellner.net/category/firefox/" title="View all posts filed under Firefox">Firefox</a> (1)
+</li>
+	<li class="cat-item cat-item-201"><a href="http://peterkellner.net/category/forums/" title="View all posts filed under forums">forums</a> (1)
+</li>
+	<li class="cat-item cat-item-133"><a href="http://peterkellner.net/category/forums-software/" title="View all posts filed under Forums Software">Forums Software</a> (1)
+</li>
+	<li class="cat-item cat-item-17"><a href="http://peterkellner.net/category/gadgets/" title="View all posts filed under Gadgets">Gadgets</a> (1)
+</li>
+	<li class="cat-item cat-item-18"><a href="http://peterkellner.net/category/garmin/" title="View all posts filed under Garmin">Garmin</a> (1)
+</li>
+	<li class="cat-item cat-item-211"><a href="http://peterkellner.net/category/geekgive/" title="View all posts filed under GeekGive">GeekGive</a> (1)
+</li>
+	<li class="cat-item cat-item-197"><a href="http://peterkellner.net/category/gingerbread/" title="View all posts filed under Gingerbread">Gingerbread</a> (1)
+</li>
+	<li class="cat-item cat-item-79"><a href="http://peterkellner.net/category/google/" title="View all posts filed under google">google</a> (4)
+</li>
+	<li class="cat-item cat-item-194"><a href="http://peterkellner.net/category/google-analytics/" title="View all posts filed under Google Analytics">Google Analytics</a> (1)
+</li>
+	<li class="cat-item cat-item-19"><a href="http://peterkellner.net/category/gridview/" title="View all posts filed under GridView">GridView</a> (6)
+</li>
+	<li class="cat-item cat-item-158"><a href="http://peterkellner.net/category/gzip/" title="View all posts filed under gzip">gzip</a> (1)
+</li>
+	<li class="cat-item cat-item-127"><a href="http://peterkellner.net/category/habitat-for-humanity/" title="View all posts filed under Habitat-For-Humanity">Habitat-For-Humanity</a> (1)
+</li>
+	<li class="cat-item cat-item-188"><a href="http://peterkellner.net/category/handler/" title="View all posts filed under Handler">Handler</a> (1)
+</li>
+	<li class="cat-item cat-item-62"><a href="http://peterkellner.net/category/hardware/" title="View all posts filed under Hardware">Hardware</a> (4)
+</li>
+	<li class="cat-item cat-item-85"><a href="http://peterkellner.net/category/hosting/" title="View all posts filed under hosting">hosting</a> (4)
+</li>
+	<li class="cat-item cat-item-20"><a href="http://peterkellner.net/category/how-things-work/" title="View all posts filed under How Things Work">How Things Work</a> (8)
+</li>
+	<li class="cat-item cat-item-195"><a href="http://peterkellner.net/category/html/" title="View all posts filed under HTML">HTML</a> (2)
+</li>
+	<li class="cat-item cat-item-199"><a href="http://peterkellner.net/category/html5/" title="View all posts filed under HTML5">HTML5</a> (3)
+</li>
+	<li class="cat-item cat-item-208"><a href="http://peterkellner.net/category/html5-media-query/" title="View all posts filed under HTML5 Media Query">HTML5 Media Query</a> (1)
+</li>
+	<li class="cat-item cat-item-87"><a href="http://peterkellner.net/category/ie8/" title="View all posts filed under IE8">IE8</a> (2)
+</li>
+	<li class="cat-item cat-item-177"><a href="http://peterkellner.net/category/ie9/" title="View all posts filed under IE9">IE9</a> (1)
+</li>
+	<li class="cat-item cat-item-54"><a href="http://peterkellner.net/category/iis7/" title="View all posts filed under IIS7">IIS7</a> (6)
+</li>
+	<li class="cat-item cat-item-75"><a href="http://peterkellner.net/category/imap/" title="View all posts filed under imap">imap</a> (2)
+</li>
+	<li class="cat-item cat-item-178"><a href="http://peterkellner.net/category/it-sure-would-be-nice-if/" title="View all posts filed under IT SURE WOULD BE NICE IF">IT SURE WOULD BE NICE IF</a> (1)
+</li>
+	<li class="cat-item cat-item-21"><a href="http://peterkellner.net/category/javascript/" title="View all posts filed under JavaScript">JavaScript</a> (22)
+</li>
+	<li class="cat-item cat-item-96"><a href="http://peterkellner.net/category/json/" title="View all posts filed under JSON">JSON</a> (4)
+</li>
+	<li class="cat-item cat-item-170"><a href="http://peterkellner.net/category/laptops/" title="View all posts filed under Laptops">Laptops</a> (1)
+</li>
+	<li class="cat-item cat-item-169"><a href="http://peterkellner.net/category/lenovo/" title="View all posts filed under Lenovo">Lenovo</a> (4)
+</li>
+	<li class="cat-item cat-item-148"><a href="http://peterkellner.net/category/lightswitch/" title="View all posts filed under LightSwitch">LightSwitch</a> (1)
+</li>
+	<li class="cat-item cat-item-22"><a href="http://peterkellner.net/category/linq/" title="View all posts filed under LINQ">LINQ</a> (28)
+</li>
+	<li class="cat-item cat-item-78"><a href="http://peterkellner.net/category/linq-to-sql/" title="View all posts filed under LINQ to SQL">LINQ to SQL</a> (12)
+</li>
+	<li class="cat-item cat-item-165"><a href="http://peterkellner.net/category/linux/" title="View all posts filed under Linux">Linux</a> (1)
+</li>
+	<li class="cat-item cat-item-196"><a href="http://peterkellner.net/category/live-writer/" title="View all posts filed under Live Writer">Live Writer</a> (1)
+</li>
+	<li class="cat-item cat-item-135"><a href="http://peterkellner.net/category/lock/" title="View all posts filed under Lock">Lock</a> (1)
+</li>
+	<li class="cat-item cat-item-215"><a href="http://peterkellner.net/category/mail-server/" title="View all posts filed under Mail Server">Mail Server</a> (1)
+</li>
+	<li class="cat-item cat-item-67"><a href="http://peterkellner.net/category/masterpages/" title="View all posts filed under MasterPages">MasterPages</a> (1)
+</li>
+	<li class="cat-item cat-item-164"><a href="http://peterkellner.net/category/meetup/" title="View all posts filed under Meetup">Meetup</a> (1)
+</li>
+	<li class="cat-item cat-item-23"><a href="http://peterkellner.net/category/membership/" title="View all posts filed under Membership">Membership</a> (12)
+</li>
+	<li class="cat-item cat-item-142"><a href="http://peterkellner.net/category/mercurial/" title="View all posts filed under Mercurial">Mercurial</a> (1)
+</li>
+	<li class="cat-item cat-item-151"><a href="http://peterkellner.net/category/microsoft/" title="View all posts filed under Microsoft">Microsoft</a> (6)
+</li>
+	<li class="cat-item cat-item-212"><a href="http://peterkellner.net/category/microsoft-mvp-program/" title="View all posts filed under Microsoft MVP Program">Microsoft MVP Program</a> (1)
+</li>
+	<li class="cat-item cat-item-146"><a href="http://peterkellner.net/category/microsoft-office/" title="View all posts filed under Microsoft Office">Microsoft Office</a> (1)
+</li>
+	<li class="cat-item cat-item-213"><a href="http://peterkellner.net/category/microsoft-store/" title="View all posts filed under Microsoft Store">Microsoft Store</a> (1)
+</li>
+	<li class="cat-item cat-item-113"><a href="http://peterkellner.net/category/mix10/" title="View all posts filed under MIX10">MIX10</a> (1)
+</li>
+	<li class="cat-item cat-item-173"><a href="http://peterkellner.net/category/mix11/" title="View all posts filed under MIX11">MIX11</a> (2)
+</li>
+	<li class="cat-item cat-item-80"><a href="http://peterkellner.net/category/mobile/" title="View all posts filed under mobile">mobile</a> (2)
+</li>
+	<li class="cat-item cat-item-63"><a href="http://peterkellner.net/category/msbuild/" title="View all posts filed under MSBuild">MSBuild</a> (1)
+</li>
+	<li class="cat-item cat-item-24"><a href="http://peterkellner.net/category/msdn-articles/" title="View all posts filed under MSDN Articles">MSDN Articles</a> (5)
+</li>
+	<li class="cat-item cat-item-56"><a href="http://peterkellner.net/category/aspnet-35/mvc/" title="View all posts filed under MVC">MVC</a> (9)
+</li>
+	<li class="cat-item cat-item-171"><a href="http://peterkellner.net/category/mvc3/" title="View all posts filed under MVC3">MVC3</a> (3)
+</li>
+	<li class="cat-item cat-item-71"><a href="http://peterkellner.net/category/mysql/" title="View all posts filed under MySql">MySql</a> (1)
+</li>
+	<li class="cat-item cat-item-114"><a href="http://peterkellner.net/category/nas/" title="View all posts filed under NAS">NAS</a> (1)
+</li>
+	<li class="cat-item cat-item-25"><a href="http://peterkellner.net/category/news-reader/" title="View all posts filed under News Reader">News Reader</a> (1)
+</li>
+	<li class="cat-item cat-item-166"><a href="http://peterkellner.net/category/nuget/" title="View all posts filed under NuGet">NuGet</a> (1)
+</li>
+	<li class="cat-item cat-item-26"><a href="http://peterkellner.net/category/net-20/objectdatasource/" title="View all posts filed under ObjectDataSource">ObjectDataSource</a> (20)
+</li>
+	<li class="cat-item cat-item-111"><a href="http://peterkellner.net/category/odata/" title="View all posts filed under OData">OData</a> (2)
+</li>
+	<li class="cat-item cat-item-117"><a href="http://peterkellner.net/category/office-2010/" title="View all posts filed under Office 2010">Office 2010</a> (1)
+</li>
+	<li class="cat-item cat-item-81"><a href="http://peterkellner.net/category/operating-systems/" title="View all posts filed under Operating Systems">Operating Systems</a> (1)
+</li>
+	<li class="cat-item cat-item-74"><a href="http://peterkellner.net/category/outlook/" title="View all posts filed under outlook">outlook</a> (3)
+</li>
+	<li class="cat-item cat-item-27"><a href="http://peterkellner.net/category/page-handlers/" title="View all posts filed under Page Handlers">Page Handlers</a> (3)
+</li>
+	<li class="cat-item cat-item-149"><a href="http://peterkellner.net/category/pdc/" title="View all posts filed under PDC">PDC</a> (1)
+</li>
+	<li class="cat-item cat-item-28"><a href="http://peterkellner.net/category/performance/" title="View all posts filed under Performance">Performance</a> (4)
+</li>
+	<li class="cat-item cat-item-70"><a href="http://peterkellner.net/category/php/" title="View all posts filed under PHP">PHP</a> (1)
+</li>
+	<li class="cat-item cat-item-100"><a href="http://peterkellner.net/category/plinq/" title="View all posts filed under PLINQ">PLINQ</a> (1)
+</li>
+	<li class="cat-item cat-item-84"><a href="http://peterkellner.net/category/plug-and-play/" title="View all posts filed under Plug and Play">Plug and Play</a> (1)
+</li>
+	<li class="cat-item cat-item-216"><a href="http://peterkellner.net/category/pop3/" title="View all posts filed under POP3">POP3</a> (1)
+</li>
+	<li class="cat-item cat-item-29"><a href="http://peterkellner.net/category/presentations/" title="View all posts filed under Presentations">Presentations</a> (19)
+</li>
+	<li class="cat-item cat-item-183"><a href="http://peterkellner.net/category/query/" title="View all posts filed under Query">Query</a> (1)
+</li>
+	<li class="cat-item cat-item-92"><a href="http://peterkellner.net/category/refactor/" title="View all posts filed under Refactor">Refactor</a> (5)
+</li>
+	<li class="cat-item cat-item-72"><a href="http://peterkellner.net/category/reflection/" title="View all posts filed under Reflection">Reflection</a> (3)
+</li>
+	<li class="cat-item cat-item-147"><a href="http://peterkellner.net/category/repeater/" title="View all posts filed under Repeater">Repeater</a> (1)
+</li>
+	<li class="cat-item cat-item-93"><a href="http://peterkellner.net/category/resharper/" title="View all posts filed under ReSharper">ReSharper</a> (6)
+</li>
+	<li class="cat-item cat-item-65"><a href="http://peterkellner.net/category/review/" title="View all posts filed under Review">Review</a> (5)
+</li>
+	<li class="cat-item cat-item-99"><a href="http://peterkellner.net/category/ria-services/" title="View all posts filed under RIA Services">RIA Services</a> (9)
+</li>
+	<li class="cat-item cat-item-30"><a href="http://peterkellner.net/category/rss/" title="View all posts filed under RSS">RSS</a> (3)
+</li>
+	<li class="cat-item cat-item-115"><a href="http://peterkellner.net/category/rsync/" title="View all posts filed under rsync">rsync</a> (1)
+</li>
+	<li class="cat-item cat-item-137"><a href="http://peterkellner.net/category/samsung/" title="View all posts filed under Samsung">Samsung</a> (1)
+</li>
+	<li class="cat-item cat-item-31"><a href="http://peterkellner.net/category/scalability/" title="View all posts filed under Scalability">Scalability</a> (1)
+</li>
+	<li class="cat-item cat-item-90"><a href="http://peterkellner.net/category/scrum/" title="View all posts filed under Scrum">Scrum</a> (1)
+</li>
+	<li class="cat-item cat-item-69"><a href="http://peterkellner.net/category/security/" title="View all posts filed under Security">Security</a> (1)
+</li>
+	<li class="cat-item cat-item-172"><a href="http://peterkellner.net/category/sencha/" title="View all posts filed under Sencha">Sencha</a> (12)
+</li>
+	<li class="cat-item cat-item-219"><a href="http://peterkellner.net/category/sencha-architect-2/" title="View all posts filed under Sencha Architect 2">Sencha Architect 2</a> (3)
+</li>
+	<li class="cat-item cat-item-190"><a href="http://peterkellner.net/category/senchamvc/" title="View all posts filed under SenchaMVC">SenchaMVC</a> (4)
+</li>
+	<li class="cat-item cat-item-206"><a href="http://peterkellner.net/category/senchatouch/" title="View all posts filed under SenchaTouch">SenchaTouch</a> (2)
+</li>
+	<li class="cat-item cat-item-156"><a href="http://peterkellner.net/category/sha256/" title="View all posts filed under SHA256">SHA256</a> (2)
+</li>
+	<li class="cat-item cat-item-186"><a href="http://peterkellner.net/category/silicon-valley-code-camp/" title="View all posts filed under Silicon Valley Code Camp">Silicon Valley Code Camp</a> (1)
+</li>
+	<li class="cat-item cat-item-32"><a href="http://peterkellner.net/category/silverlight/" title="View all posts filed under Silverlight">Silverlight</a> (20)
+</li>
+	<li class="cat-item cat-item-83"><a href="http://peterkellner.net/category/social-networks/" title="View all posts filed under social networks">social networks</a> (1)
+</li>
+	<li class="cat-item cat-item-73"><a href="http://peterkellner.net/category/speaking/" title="View all posts filed under Speaking">Speaking</a> (4)
+</li>
+	<li class="cat-item cat-item-144"><a href="http://peterkellner.net/category/spreadsheetgear/" title="View all posts filed under SpreadSheetGear">SpreadSheetGear</a> (1)
+</li>
+	<li class="cat-item cat-item-139"><a href="http://peterkellner.net/category/sprint/" title="View all posts filed under Sprint">Sprint</a> (1)
+</li>
+	<li class="cat-item cat-item-119"><a href="http://peterkellner.net/category/sql/" title="View all posts filed under SQL">SQL</a> (2)
+</li>
+	<li class="cat-item cat-item-58"><a href="http://peterkellner.net/category/sql-server/" title="View all posts filed under Sql Server">Sql Server</a> (13)
+</li>
+	<li class="cat-item cat-item-77"><a href="http://peterkellner.net/category/sql-server-2008/" title="View all posts filed under Sql Server 2008">Sql Server 2008</a> (10)
+</li>
+	<li class="cat-item cat-item-181"><a href="http://peterkellner.net/category/sql-server-ce/" title="View all posts filed under Sql Server CE">Sql Server CE</a> (3)
+</li>
+	<li class="cat-item cat-item-161"><a href="http://peterkellner.net/category/sqlazure/" title="View all posts filed under SqlAzure">SqlAzure</a> (1)
+</li>
+	<li class="cat-item cat-item-61"><a href="http://peterkellner.net/category/ssd/" title="View all posts filed under SSD">SSD</a> (3)
+</li>
+	<li class="cat-item cat-item-200"><a href="http://peterkellner.net/category/stackoverflow/" title="View all posts filed under stackoverflow">stackoverflow</a> (1)
+</li>
+	<li class="cat-item cat-item-153"><a href="http://peterkellner.net/category/storageclient/" title="View all posts filed under StorageClient">StorageClient</a> (1)
+</li>
+	<li class="cat-item cat-item-68"><a href="http://peterkellner.net/category/telerik/" title="View all posts filed under Telerik">Telerik</a> (1)
+</li>
+	<li class="cat-item cat-item-157"><a href="http://peterkellner.net/category/threading/" title="View all posts filed under threading">threading</a> (1)
+</li>
+	<li class="cat-item cat-item-123"><a href="http://peterkellner.net/category/tips/" title="View all posts filed under Tips">Tips</a> (3)
+</li>
+	<li class="cat-item cat-item-33"><a href="http://peterkellner.net/category/tivo/" title="View all posts filed under TiVo">TiVo</a> (2)
+</li>
+	<li class="cat-item cat-item-34"><a href="http://peterkellner.net/category/tools/" title="View all posts filed under Tools">Tools</a> (7)
+</li>
+	<li class="cat-item cat-item-35"><a href="http://peterkellner.net/category/training/" title="View all posts filed under Training">Training</a> (3)
+</li>
+	<li class="cat-item cat-item-118"><a href="http://peterkellner.net/category/transaction/" title="View all posts filed under Transaction">Transaction</a> (1)
+</li>
+	<li class="cat-item cat-item-189"><a href="http://peterkellner.net/category/tricks/" title="View all posts filed under tricks">tricks</a> (1)
+</li>
+	<li class="cat-item cat-item-89"><a href="http://peterkellner.net/category/tsql/" title="View all posts filed under TSQL">TSQL</a> (4)
+</li>
+	<li class="cat-item cat-item-36"><a href="http://peterkellner.net/category/twitter/" title="View all posts filed under Twitter">Twitter</a> (3)
+</li>
+	<li class="cat-item cat-item-131"><a href="http://peterkellner.net/category/umbraco/" title="View all posts filed under Umbraco">Umbraco</a> (2)
+</li>
+	<li class="cat-item cat-item-1"><a href="http://peterkellner.net/category/uncategorized/" title="View all posts filed under Uncategorized">Uncategorized</a> (8)
+</li>
+	<li class="cat-item cat-item-217"><a href="http://peterkellner.net/category/unit-testing/" title="View all posts filed under Unit Testing">Unit Testing</a> (1)
+</li>
+	<li class="cat-item cat-item-198"><a href="http://peterkellner.net/category/verizon/" title="View all posts filed under Verizon">Verizon</a> (1)
+</li>
+	<li class="cat-item cat-item-94"><a href="http://peterkellner.net/category/version-control/" title="View all posts filed under Version Control">Version Control</a> (2)
+</li>
+	<li class="cat-item cat-item-38"><a href="http://peterkellner.net/category/vista/" title="View all posts filed under Vista">Vista</a> (7)
+</li>
+	<li class="cat-item cat-item-39"><a href="http://peterkellner.net/category/vista-upgrade/" title="View all posts filed under Vista-Upgrade">Vista-Upgrade</a> (2)
+</li>
+	<li class="cat-item cat-item-205"><a href="http://peterkellner.net/category/visu/" title="View all posts filed under visu">visu</a> (1)
+</li>
+	<li class="cat-item cat-item-40"><a href="http://peterkellner.net/category/visual-studio/" title="View all posts filed under Visual Studio">Visual Studio</a> (32)
+</li>
+	<li class="cat-item cat-item-98"><a href="http://peterkellner.net/category/visual-studio-2010/" title="View all posts filed under Visual Studio 2010">Visual Studio 2010</a> (29)
+</li>
+	<li class="cat-item cat-item-202"><a href="http://peterkellner.net/category/visual-studio-2011-developer-preview/" title="View all posts filed under Visual Studio 2011 Developer Preview">Visual Studio 2011 Developer Preview</a> (4)
+</li>
+	<li class="cat-item cat-item-204"><a href="http://peterkellner.net/category/vps/" title="View all posts filed under VPS">VPS</a> (1)
+</li>
+	<li class="cat-item cat-item-101"><a href="http://peterkellner.net/category/vs2010/" title="View all posts filed under VS2010">VS2010</a> (13)
+</li>
+	<li class="cat-item cat-item-214"><a href="http://peterkellner.net/category/vs2011/" title="View all posts filed under VS2011">VS2011</a> (1)
+</li>
+	<li class="cat-item cat-item-218"><a href="http://peterkellner.net/category/vsts/" title="View all posts filed under VSTS">VSTS</a> (1)
+</li>
+	<li class="cat-item cat-item-57"><a href="http://peterkellner.net/category/wcf/" title="View all posts filed under WCF">WCF</a> (4)
+</li>
+	<li class="cat-item cat-item-112"><a href="http://peterkellner.net/category/wcf-data-services/" title="View all posts filed under WCF Data Services">WCF Data Services</a> (1)
+</li>
+	<li class="cat-item cat-item-42"><a href="http://peterkellner.net/category/web/" title="View all posts filed under web">web</a> (8)
+</li>
+	<li class="cat-item cat-item-163"><a href="http://peterkellner.net/category/web-config/" title="View all posts filed under Web.Config">Web.Config</a> (2)
+</li>
+	<li class="cat-item cat-item-55"><a href="http://peterkellner.net/category/webfarm/" title="View all posts filed under WebFarm">WebFarm</a> (4)
+</li>
+	<li class="cat-item cat-item-179"><a href="http://peterkellner.net/category/webforms/" title="View all posts filed under WebForms">WebForms</a> (2)
+</li>
+	<li class="cat-item cat-item-134"><a href="http://peterkellner.net/category/webpi/" title="View all posts filed under WebPI">WebPI</a> (1)
+</li>
+	<li class="cat-item cat-item-43"><a href="http://peterkellner.net/category/wiki/" title="View all posts filed under Wiki">Wiki</a> (1)
+</li>
+	<li class="cat-item cat-item-64"><a href="http://peterkellner.net/category/windows-7/" title="View all posts filed under Windows 7">Windows 7</a> (15)
+</li>
+	<li class="cat-item cat-item-191"><a href="http://peterkellner.net/category/windows-8/" title="View all posts filed under Windows 8">Windows 8</a> (10)
+</li>
+	<li class="cat-item cat-item-192"><a href="http://peterkellner.net/category/windows-8-metro/" title="View all posts filed under Windows 8 Metro">Windows 8 Metro</a> (12)
+</li>
+	<li class="cat-item cat-item-129"><a href="http://peterkellner.net/category/windows-service/" title="View all posts filed under Windows Service">Windows Service</a> (1)
+</li>
+	<li class="cat-item cat-item-203"><a href="http://peterkellner.net/category/winrt/" title="View all posts filed under WinRT">WinRT</a> (1)
+</li>
+	<li class="cat-item cat-item-44"><a href="http://peterkellner.net/category/wpf/" title="View all posts filed under WPF">WPF</a> (5)
+</li>
+	<li class="cat-item cat-item-45"><a href="http://peterkellner.net/category/xml/" title="View all posts filed under XML">XML</a> (2)
+</li>
+        </div>
+        <span><a href="#categories" id="sideCatLink">Show all Categories [+]</a></span>
+        </div>
+      </ul>
+    </li>
+  
+ </ul>
+</div>
+<!--/sidebar -->
+  
+  <hr class="clear">
+</div><!--/page -->
+</div><!--/wrapper -->
+
+<div id="footerbg">
+  <div id="footer">
+	
+  <hr class="clear">
+  </div>
+<!--/footer -->
+
+<div id="credits">
+	<div class="alignleft">© 2012 PeterKellner.net. All Rights Reserved </div>
+
+	<div class="alignright"><a href="http://validator.w3.org/check?uri=referer" class="valid">XHTML</a> <a href="http://jigsaw.w3.org/css-validator/check?uri=referer" class="valid">CSS</a> <a href="http://peterkellner.net/feed/" class="rss">RSS</a></div> 
+</div>
+  
+</div>
+<style type="text/css" media="screen">
+  #bit, #bit * {}
+  #bit {
+      bottom: -300px;
+      font: 13px "Helvetica Neue",sans-serif;
+      position: fixed;
+      right: 10px;
+      z-index: 999999;
+      width: 230px;
+  }
+  
+  .loggedout-follow-typekit {
+      margin-right: 4.5em;
+  }
+  
+  #bit a.bsub {
+      background-color: #464646;
+      background-image: -moz-linear-gradient(center bottom , #3F3F3F, #464646 5px);
+      background: -webkit-gradient(linear, left top, left bottom, from(#3F3F3F), to(#464646));
+      filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#3F3F3F', endColorstr='#464646');    
+
+      border: 0 none;
+      box-shadow: 0 -1px 5px rgba(0, 0, 0, 0.2);
+      color: #CCCCCC;
+      display: block;
+      float: right;
+      font: 13px/28px "Helvetica Neue",sans-serif;
+      letter-spacing: normal;
+      outline-style: none;
+      outline-width: 0;
+      overflow: hidden;
+      padding: 0 10px 0 8px;
+      text-decoration: none !important;
+      text-shadow: 0 -1px 0 #444444;
+  }
+  
+  #bit a.bsub {
+      border-radius: 2px 2px 0 0;
+  }
+  
+  #bit a.bsub span {
+      background-attachment: scroll;
+      background-clip: border-box;
+      background-color: transparent;
+      background-image: url(http://peterkellner.net/wp-content/plugins/follow-button-for-jetpack/plus.png);
+      background-origin: padding-box;
+      background-position: 2px 3px;
+      background-repeat: no-repeat;
+      background-size: 20% auto;
+      padding-left: 18px;
+  }
+  
+  #bit a:hover span, #bit a.bsub.open span {
+      /*background-position: 0 -117px;*/
+      color: #FFFFFF !important;
+  }
+  
+  #bit a.bsub.open {
+      background: none repeat scroll 0 0 #333333;
+  }
+  
+  #bitsubscribe {
+      background: none repeat scroll 0 0 #464646;
+      border-radius: 2px 0 0 0;
+      color: #FFFFFF;
+      margin-top: 27px;
+      padding: 15px;
+      width: 200px;
+      float: right;
+      margin-top: 0;
+  }
+  
+  div#bitsubscribe.open {
+      box-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
+  }
+  
+  #bitsubscribe div {
+      overflow: hidden;
+  }
+  
+  #bit h3, #bit #bitsubscribe h3 {
+      color: #FFFFFF;
+      font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+      font-size: 20px;
+      font-weight: 300;
+      margin: 0 0 0.5em !important;
+      text-align: left;
+      text-shadow: 0 1px 0 #333333;
+  }
+  
+  #bit #bitsubscribe p {
+      color: #FFFFFF;
+      font: 300 15px/1.3em "Helvetica Neue",Helvetica,Arial,sans-serif;
+      margin: 0 0 1em;
+      text-shadow: 0 1px 0 #333333;
+  }
+  
+  #bitsubscribe p a {
+      margin: 20px 0 0;
+  }
+  
+  #bit #bitsubscribe p.bit-follow-count {
+      font-size: 13px;
+  }
+  
+  #bitsubscribe input[type="submit"] {
+      -moz-transition: all 0.25s ease-in-out 0s;
+      -webkit-transition: all 0.25s ease-in-out 0s;
+      -o-transition: all 0.25s ease-in-out 0s;
+      -ms-transition: all 0.25s ease-in-out 0s;
+      transition: all 0.25s ease-in-out 0s;   
+      background: -moz-linear-gradient(center top , #333333 0%, #111111 100%) repeat scroll 0 0 transparent;
+      background: -webkit-gradient(linear, left top, left bottom, from(#333333), to(#111111));
+      filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#333333', endColorstr='#111111');    
+
+      border: 1px solid #282828;
+      border-radius: 11px 11px 11px 11px;
+      box-shadow: 0 1px 0 #444444 inset;
+      color: #CCCCCC;
+      padding: 2px 20px;
+      text-decoration: none;
+      text-shadow: 0 1px 0 #000000;
+  }
+  
+  #bitsubscribe input[type="submit"]:hover {
+      background: -moz-linear-gradient(center top , #333333 0%, #222222 100%) repeat scroll 0 0 transparent;
+      box-shadow: 0 1px 0 #4F4F4F inset;
+      color: #FFFFFF;
+      text-decoration: none;
+  }
+  
+  #bitsubscribe input[type="submit"]:active {
+      background: -moz-linear-gradient(center top , #111111 0%, #222222 100%) repeat scroll 0 0 transparent;
+      box-shadow: 0 -1px 0 #333333 inset;
+      color: #AAAAAA;
+      text-decoration: none;
+  }
+  
+  #bitsubscribe input[type="text"] {
+      border-radius: 3px 3px 3px 3px;
+      font: 300 15px "Helvetica Neue",Helvetica,Arial,sans-serif;
+  }
+  
+  #bitsubscribe input[type="text"]:focus {
+      border: 1px solid #000000;
+  }
+  
+  #bitsubscribe.open {
+      display: block;
+  }
+  
+  #bsub-subscribe-button {
+      margin: 0 auto;
+      text-align: center;
+  }
+  
+  #bitsubscribe #bsub-credit {
+      border-top: 1px solid #3C3C3C;
+      font: 11px "Helvetica Neue",sans-serif;
+      margin: 0 0 -15px;
+      padding: 7px 0;
+      text-align: center;
+  }
+  
+  #bitsubscribe #bsub-credit a {
+      background: none repeat scroll 0 0 transparent;
+      color: #AAAAAA;
+      text-decoration: none;
+      text-shadow: 0 1px 0 #262626;
+  }
+  
+  #bitsubscribe #bsub-credit a:hover {
+      background: none repeat scroll 0 0 transparent;
+      color: #FFFFFF;
+  }
+</style>    
+
+<script type="text/javascript" charset="utf-8">
+  jQuery.extend(jQuery.easing, {
+      easeOutCubic: function (x, t, b, c, d) {
+          return c * ((t = t / d - 1) * t * t + 1) + b;
+      }
+  });
+  jQuery(document).ready(function () {
+      var isopen = false,
+          bitHeight = jQuery('#bitsubscribe').height();
+      setTimeout(function () {
+          jQuery('#bit').animate({
+              bottom: '-' + bitHeight - 30 + 'px'
+          }, 200);
+      }, 300);
+      jQuery('#bit a.bsub').click(function () {
+          if (!isopen) {
+              isopen = true;
+              jQuery('#bit a.bsub').addClass('open');
+              jQuery('#bit #bitsubscribe').addClass('open')
+              jQuery('#bit').stop();
+              jQuery('#bit').animate({
+                  bottom: '0px'
+              }, {
+                  duration: 400,
+                  easing: "easeOutCubic"
+              });
+          } else {
+              isopen = false;
+              jQuery('#bit').stop();
+              jQuery('#bit').animate({
+                  bottom: '-' + bitHeight - 30 + 'px'
+              }, 200, function () {
+                  jQuery('#bit a.bsub').removeClass('open');
+                  jQuery('#bit #bitsubscribe').removeClass('open');
+              });
+          }
+      });
+  });
+</script>
+
+<div style="bottom: -288px;" id="bit" class="">
+  <a class="bsub" href="javascript:void(0)"><span id="bsub-text">Follow</span></a>
+  
+  <div id="bitsubscribe">
+    <h3><label for="loggedout-follow-field">Follow PeterKellner.net</label></h3>
+<a name="subscribe-blog"></a>
+		<form action="" method="post" accept-charset="utf-8" id="subscribe-blog">
+			<p>Get every new post delivered to your Inbox</p>
+              <p>Join other followers:</p>
+			<p><input name="email" style="width: 95%; padding: 1px 2px;" value="Email Address" id="subscribe-field" onclick="if ( this.value == 'Email Address' ) { this.value = ''; }" onblur="if ( this.value == '' ) { this.value = 'Email Address'; }" type="text"></p>
+			<p>
+				<input name="action" value="subscribe" type="hidden">
+				<input name="source" value="" type="hidden">
+				<input name="sub-type" value="" type="hidden">
+				<input name="redirect_fragment" value="" type="hidden">
+				<input id="_wpnonce" name="_wpnonce" value="aae9df24d6" type="hidden">				<input value="Sign me up!" name="jetpack_subscriptions_widget" type="submit">
+                       </p>
+		</form>
+        </div>
+</div>
+<script type="text/javascript" src="Getting%20ExtJS%204%20Date%20Format%20To%20Behave%20Properly%20in%20Grid%20Panel%20with%20ASP.NET%20MVC3%20_%20_%20PeterKellner.netPeterKellner.net_files/gprofiles.js"></script>
+<script type="text/javascript">
+/* <![CDATA[ */
+var WPGroHo = {"my_hash":""};
+/* ]]> */
+</script>
+<script type="text/javascript" src="Getting%20ExtJS%204%20Date%20Format%20To%20Behave%20Properly%20in%20Grid%20Panel%20with%20ASP.NET%20MVC3%20_%20_%20PeterKellner.netPeterKellner.net_files/wpgroho.js"></script>
+	<div style="display:none">
+	</div>
+<script type="text/javascript" src="Getting%20ExtJS%204%20Date%20Format%20To%20Behave%20Properly%20in%20Grid%20Panel%20with%20ASP.NET%20MVC3%20_%20_%20PeterKellner.netPeterKellner.net_files/jquery.js"></script>
+<script type="text/javascript">
+/* <![CDATA[ */
+var _wpcf7 = {"loaderUrl":"http:\/\/peterkellner.net\/wp\/wp-content\/plugins\/contact-form-7\/images\/ajax-loader.gif","sending":"Sending ...","cached":"1"};
+/* ]]> */
+</script>
+<script type="text/javascript" src="Getting%20ExtJS%204%20Date%20Format%20To%20Behave%20Properly%20in%20Grid%20Panel%20with%20ASP.NET%20MVC3%20_%20_%20PeterKellner.netPeterKellner.net_files/scripts.js"></script>
+
+	<script src="Getting%20ExtJS%204%20Date%20Format%20To%20Behave%20Properly%20in%20Grid%20Panel%20with%20ASP.NET%20MVC3%20_%20_%20PeterKellner.netPeterKellner.net_files/e-201222.js" type="text/javascript"></script>
+	<script type="text/javascript">
+	st_go({v:'ext',j:'1:1.3',blog:'35196393',post:'1556'});
+	var load_cmc = function(){linktracker_init(35196393,1556,2);};
+	if ( typeof addLoadEvent != 'undefined' ) addLoadEvent(load_cmc);
+	else load_cmc();
+	</script><img id="wpstats" src="Getting%20ExtJS%204%20Date%20Format%20To%20Behave%20Properly%20in%20Grid%20Panel%20with%20ASP.NET%20MVC3%20_%20_%20PeterKellner.netPeterKellner.net_files/g.gif" alt="">
+
+
+</body></html>
+<!-- Performance optimized by W3 Total Cache. Learn more: http://www.w3-edge.com/wordpress-plugins/
+
+Minified using disk: basic
+Page Caching using disk: enhanced
+Database Caching 8/41 queries in 0.017 seconds using disk: basic
+Content Delivery Network via Amazon Web Services: S3: PetersBlogCDN.s3.amazonaws.com
+
+Served from: peterkellner.net @ 2012-05-28 01:59:23 -->
