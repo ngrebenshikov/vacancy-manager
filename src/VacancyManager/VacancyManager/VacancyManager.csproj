@@ -1639,7 +1639,7 @@
     <Content Include="Scripts\VM\Admin\controller\ApplicantController.js" />
     <Content Include="Scripts\VM\Admin\model\ApplicantConsiderations.js" />
     <Content Include="Scripts\VM\Admin\model\ApplicantMessage.js" />
-    <Content Include="Scripts\VM\Admin\model\ApplicantResumeGr.js" />
+    <Content Include="Scripts\VM\Admin\model\ApplicantResumeGrid.js" />
     <Content Include="Scripts\VM\Admin\model\MailMessage.js" />
     <Content Include="Scripts\VM\Admin\model\ResumeApplicant.js" />
     <Content Include="Scripts\VM\Admin\model\SearchApplicants.js" />
@@ -1657,7 +1657,7 @@
     <Content Include="Scripts\VM\Admin\model\ApplicantModel.js" />
     <Content Include="Scripts\VM\Admin\model\Attachment.js" />
     <Content Include="Scripts\VM\Admin\store\ApplicantRequirements.js" />
-    <Content Include="Scripts\VM\Admin\store\ApplicantResumeGr.js" />
+    <Content Include="Scripts\VM\Admin\store\ApplicantResumeGrid.js" />
     <Content Include="Scripts\VM\Admin\store\BaseStore.js" />
     <Content Include="Scripts\VM\Admin\store\Comments.js" />
     <Content Include="Scripts\VM\Admin\store\Consideration.js" />
@@ -1667,7 +1667,6 @@
     <Content Include="Scripts\VM\Admin\store\MailMessage.js" />
     <Content Include="Scripts\VM\Admin\store\RequirementListInStack.js" />
     <Content Include="Scripts\VM\Admin\store\RequirementStack.js" />
-    <Content Include="Scripts\VM\Admin\store\ResumeApplicant.js" />
     <Content Include="Scripts\VM\Admin\store\SearchApplicants.js" />
     <Content Include="Scripts\VM\Admin\store\SysConfig.js" />
     <Content Include="Scripts\VM\Admin\store\User.js" />
