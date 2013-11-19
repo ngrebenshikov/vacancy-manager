@@ -16,32 +16,25 @@ namespace VacancyManager.Controllers
   public class ResumeController : BaseController
   {
       [HttpGet]
-      public ActionResult LoadResume (Nullable<int> appId)
-      {
-          if (appId.HasValue)
-          {
-              var Resume = ResumeManager.GetResumes(appId.Value);
+      public ActionResult LoadResume (int appId)
+      { 
+              var Resume = ResumeManager.GetResumes(appId);
               var ResumeList = (from res in Resume
                                 select new
                                 {
                                     ResumeId = res.ResumeId,
                                     Date = res.Date.ToShortDateString(),
-                                    //   Applicant = res.Applicant
-                                }).ToList();
+                                    Training = res.Training,
+                                    StartDate = (from exp in res.Experiences
+                                                 //   where (exp.StartDate == )
+                                                    select exp.StartDate.Year.ToString() + '-' + exp.FinishDate.ToString().Substring(6,4)),
+                                    }).ToList();
+              
               return Json(new
               {
                   success = true,
                   data = ResumeList
               }, JsonRequestBehavior.AllowGet);
-          }
-          else
-          {
-              return Json(new
-              {
-                  success = true,
-                  data = new List<Resume>()
-              }, JsonRequestBehavior.AllowGet);
-          }
       }
 
       [HttpPost]

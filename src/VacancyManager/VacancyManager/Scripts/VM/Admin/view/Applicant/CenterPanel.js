@@ -163,6 +163,13 @@ Ext.define('VM.view.Applicant.CenterPanel', {
                      sortable: false,
                      menuDisabled: true,
                      flex: 1
+                 },
+                 {
+                     header: 'Интервал резюме',
+                     dataIndex: 'StartDate',
+                     sortable: false,
+                     menuDisabled: true,
+                     flex: 1
                  }],
 
                 tbar: [{
