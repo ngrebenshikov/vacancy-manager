@@ -33,11 +33,15 @@ namespace VacancyManager.Models
                 {
                     if (exp.FinishDate == null)
                     {
-                       if (exp.StartDate < BeforeDate)
+                        foreach (var expp in Experiences)
+                        {
+                            if (expp.StartDate < BeforeDate)
                             {
-                                BeforeDate = exp.StartDate;
+                                BeforeDate = expp.StartDate;
                             }
+                        }
                         s = BeforeDate.Year.ToString() + ' ' + "...";
+                        break;
                     }
                     else
                     {
