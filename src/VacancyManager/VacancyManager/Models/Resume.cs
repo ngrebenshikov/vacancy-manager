@@ -22,5 +22,42 @@ namespace VacancyManager.Models
 
         public string Training { get; set; }
         public string AdditionalInformation { get; set; }
+
+        private string s;
+        public string GetExp {
+            get
+            {
+                DateTime? LateDate = new DateTime ();
+                DateTime BeforeDate = new DateTime (2200, 11, 12);
+                foreach (var exp in Experiences)
+                {
+                    if (exp.FinishDate == null)
+                    {
+                       if (exp.StartDate < BeforeDate)
+                            {
+                                BeforeDate = exp.StartDate;
+                            }
+                        s = BeforeDate.Year.ToString() + ' ' + "...";
+                    }
+                    else
+                    {
+                        if (exp.StartDate.Year  < BeforeDate.Year )
+                            {
+                                BeforeDate = exp.StartDate;
+                            }
+                            if (exp.FinishDate > LateDate)
+                            {
+                                LateDate = exp.FinishDate;
+                            }
+                        }
+                        s = BeforeDate.Year + "-" + LateDate.ToString().Substring(6,4);
+                }
+
+                return s;   
+            }
+           
+            
+        }
+  
     }
 }

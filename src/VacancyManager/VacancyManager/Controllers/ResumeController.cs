@@ -25,9 +25,7 @@ namespace VacancyManager.Controllers
                                     ResumeId = res.ResumeId,
                                     Date = res.Date.ToShortDateString(),
                                     Training = res.Training,
-                                    StartDate = (from exp in res.Experiences
-                                                 //   where (exp.StartDate == )
-                                                    select exp.StartDate.Year.ToString() + '-' + exp.FinishDate.ToString().Substring(6,4)),
+                                    StartDate = res.GetExp,
                                     }).ToList();
               
               return Json(new
