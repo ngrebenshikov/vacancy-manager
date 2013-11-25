@@ -63,6 +63,7 @@ namespace VacancyManager.Controllers
                                 UserRoles = (from userRoles in comms.User.Roles.Where(r => r.Name == "Admin").DefaultIfEmpty(new Role())
                                              select userRoles.Name).Single().ToString(),
                                 CommentatorName = comms.CommenterName,
+                                VacancyName = comms.Consideration.Vacancy.Title,
                                 ConsiderationID = comms.Consideration.ConsiderationID
                             }
 

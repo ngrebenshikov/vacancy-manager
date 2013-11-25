@@ -25,7 +25,7 @@
                 tdCls: 'wrap-text',
                 tpl:
                     new Ext.XTemplate(
-                       '<b>{[Ext.Date.format(values.CreationDate, "d.m.Y")]} <br> от {CommentatorName}</b>'
+                       '<b>{[Ext.Date.format(values.CreationDate, "d.m.Y")]} <br> от {CommentatorName} <br><br> Вакансия: {VacancyName} </b>'
 
                 )
            }
