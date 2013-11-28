@@ -150,8 +150,6 @@ Ext.define('VM.view.Applicant.CenterPanel', {
                  [{
                      header: 'Дата',
                      dataIndex: 'Date',
-                     xtype: 'datecolumn',
-                     format: 'd/m/Y',
                      sortable: false,
                      menuDisabled: true,
                      flex: 1

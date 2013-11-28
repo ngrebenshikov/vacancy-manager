@@ -25,7 +25,7 @@ namespace VacancyManager.Controllers
                                     ResumeId = res.ResumeId,
                                     Date = res.Date.ToShortDateString(),
                                     Training = res.Training,
-                                    StartDate = res.GetExp,
+                                    StartDate = res.Period,
                                     }).ToList();
               
               return Json(new
