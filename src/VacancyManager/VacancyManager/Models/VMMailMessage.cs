@@ -17,7 +17,7 @@ namespace VacancyManager.Models
         public string To { get; set; }
         public string Subject { get; set; }
         public string Text { get; set; }
-        public int ApplicantId { get; set; }
+        public Nullable<int> ApplicantId { get; set; }
         // Категория сообщения: 1 Входящее сообщение  
         //                      2 Исходящее сообщение 
         //                      3 Черновик

@@ -21,6 +21,5 @@ namespace VacancyManager.Models
         public virtual ICollection<Resume> Resumes { get; set; }
         public virtual ICollection<Consideration> Considerations { get; set; }
         public virtual ICollection<File> Files { get; set; }
-        public virtual ICollection<VMMailMessage> VMMailMessages { get; set; } 
     }
 }
