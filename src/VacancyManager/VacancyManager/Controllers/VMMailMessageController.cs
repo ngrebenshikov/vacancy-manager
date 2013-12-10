@@ -53,12 +53,13 @@ namespace VacancyManager.Controllers
         public ActionResult SendVMMailMessage(string[] Emails, string Message, string subject)
         {
 
-
+            string s;
             bool isBodyHtml = SysConfigManager.GetBoolParameter("IsBodyHtml", false);
 
             System.Web.HttpFileCollectionBase con = Request.Files;
 
-            string s = MailSender.SendTo(Emails, subject, Message, isBodyHtml, con);
+            foreach (var Email in Emails)
+             s = MailSender.SendTo(Email, subject, Message, isBodyHtml, con);
 
             return Json(new
                 {

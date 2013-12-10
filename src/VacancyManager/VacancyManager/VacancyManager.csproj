@@ -257,6 +257,14 @@
     <Compile Include="Migrations\201310310408049_Resume-Renew.Designer.cs">
       <DependentUpon>201310310408049_Resume-Renew.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201312101703326_ApplicantIdNullableMail.cs" />
+    <Compile Include="Migrations\201312101703326_ApplicantIdNullableMail.Designer.cs">
+      <DependentUpon>201312101703326_ApplicantIdNullableMail.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201312101718088_ApplicantMailsRemoved.cs" />
+    <Compile Include="Migrations\201312101718088_ApplicantMailsRemoved.Designer.cs">
+      <DependentUpon>201312101718088_ApplicantMailsRemoved.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\Applicant.cs" />

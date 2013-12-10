@@ -20,17 +20,15 @@ namespace VacancyManager.Services
     internal static string UserName = "vacmana@gmail.com";
     internal static string Password = "nextdaynewlive";
     internal static List<string> Bcc = new List<string>();
+    const int outputMessage = 2;
 
-    internal static string SendTo(string[] To, string Subject, string Body, bool IsBodyHtml, System.Web.HttpFileCollectionBase wfiles)
+    internal static string SendTo(string To, string Subject, string Body, bool IsBodyHtml, System.Web.HttpFileCollectionBase wfiles)
     {
+        string From = "vacmana@gmail.com";
         try
         {
-            MailMessage mail = new MailMessage(UserName, To[0], Subject, Body);
-         
-            for (int i = 0; i <= To.Length - 2; i++)
-                mail.To.Add(To[i+1]);
-
-
+            MailMessage mail = new MailMessage(UserName, To, Subject, Body);
+ 
             for (int j = 0; j <= wfiles.Count - 1; j++)
             {
                 var attfile = wfiles[j];
@@ -39,16 +37,21 @@ namespace VacancyManager.Services
                 mail.Attachments.Add(mailattach);
             }
 
-            mail.IsBodyHtml = IsBodyHtml;
-            if (Bcc != null && Bcc.Count > 0)
-                foreach (string address in Bcc)
-                    mail.Bcc.Add(address);
             SmtpClient client = new SmtpClient(SmtpServer);
             client.Port = null != Services.Managers.SysConfigManager.Get(PortConfigName) ? int.Parse(Services.Managers.SysConfigManager.Get(PortConfigName)) : Port;
             client.Credentials = new System.Net.NetworkCredential(UserName, Password);
             client.EnableSsl = true;
             client.Send(mail);
+
+            int ApplicantId = 0;
+            Applicant fromapp = new Applicant();
+            fromapp = ApplicantManager.GetApplicantByEMail(To);  
+
+            int messageId = VMMailMessageManager.Create(From, To, Subject, Body, DateTime.Now, DateTime.Now, outputMessage, ApplicantId).Id;
+
             return "Сообщение отправленно";
+
+
         }
         catch (Exception ex)
         {
