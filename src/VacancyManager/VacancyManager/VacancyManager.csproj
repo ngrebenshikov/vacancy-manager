@@ -265,6 +265,10 @@
     <Compile Include="Migrations\201312101718088_ApplicantMailsRemoved.Designer.cs">
       <DependentUpon>201312101718088_ApplicantMailsRemoved.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201312211006039_MailMessageConsiderationId_Added.cs" />
+    <Compile Include="Migrations\201312211006039_MailMessageConsiderationId_Added.Designer.cs">
+      <DependentUpon>201312211006039_MailMessageConsiderationId_Added.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\Applicant.cs" />
@@ -1648,8 +1652,8 @@
     <Content Include="Scripts\VM\Admin\model\ApplicantConsiderations.js" />
     <Content Include="Scripts\VM\Admin\model\ApplicantMessage.js" />
     <Content Include="Scripts\VM\Admin\model\ApplicantResumeGrid.js" />
+    <Content Include="Scripts\VM\Admin\model\ConsiderationAssign.js" />
     <Content Include="Scripts\VM\Admin\model\MailMessage.js" />
-    <Content Include="Scripts\VM\Admin\model\ResumeApplicant.js" />
     <Content Include="Scripts\VM\Admin\model\SearchApplicants.js" />
     <Content Include="Scripts\VM\Admin\searchApplicantGrid.js" />
     <Content Include="Scripts\VM\Admin\model\Comment.js" />
@@ -1672,6 +1676,7 @@
     <Content Include="Scripts\VM\Admin\store\ApplicantConsiderations.js" />
     <Content Include="Scripts\VM\Admin\store\ApplicantComments.js" />
     <Content Include="Scripts\VM\Admin\store\ApplicantMessages.js" />
+    <Content Include="Scripts\VM\Admin\store\ConsiderationAssign.js" />
     <Content Include="Scripts\VM\Admin\store\MailMessage.js" />
     <Content Include="Scripts\VM\Admin\store\RequirementListInStack.js" />
     <Content Include="Scripts\VM\Admin\store\RequirementStack.js" />
@@ -1687,6 +1692,7 @@
     <Content Include="Scripts\VM\Admin\view\Applicant\ApplicantComments.js" />
     <Content Include="Scripts\VM\Admin\view\Applicant\ApplicantConsiderations.js" />
     <Content Include="Scripts\VM\Admin\view\Applicant\ApplicantMessages.js" />
+    <Content Include="Scripts\VM\Admin\view\Applicant\ApplicantMessagesList.js" />
     <Content Include="Scripts\VM\Admin\view\Applicant\CenterPanel.js" />
     <Content Include="Scripts\VM\Admin\view\Applicant\Edit.js" />
     <Content Include="Scripts\VM\Admin\view\Applicant\Create.js" />
@@ -1699,6 +1705,8 @@
     <Content Include="Scripts\VM\Admin\view\consideration\Edit.js" />
     <Content Include="Scripts\VM\Admin\view\consideration\List.js" />
     <Content Include="Scripts\VM\Admin\view\MailMessage\AttachmentList.js" />
+    <Content Include="Scripts\VM\Admin\view\MailMessage\ConsiderationAssign.js" />
+    <Content Include="Scripts\VM\Admin\view\MailMessage\ConsiderationAssignList.js" />
     <Content Include="Scripts\VM\Admin\view\MailMessage\Create.js" />
     <Content Include="Scripts\VM\Admin\view\MailMessage\MailMessageApplicants.js" />
     <Content Include="Scripts\VM\Admin\view\MailMessage\List.js" />

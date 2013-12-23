@@ -13,6 +13,7 @@ Ext.define('VM.view.vacancy.Add', {
         this.items = [
             {
                 xtype: 'form',
+                id: 'VacancyInfoForm',
                 padding: '5 5 5 5',
                 border: false,
                 style: 'background-color: #fff;',

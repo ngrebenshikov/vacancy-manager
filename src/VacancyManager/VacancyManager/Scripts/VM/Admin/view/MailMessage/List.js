@@ -40,6 +40,12 @@
                 sortable: true,
                 menuDisabled: true
             }, {
+                dataIndex: 'Vacancy_C',
+                text: Strings.Vacancy,
+                width: 50,
+                sortable: true,
+                menuDisabled: true
+            }, {
                 xtype: 'datecolumn',
                 format: 'd.m.Y H:i',
                 dataIndex: 'SendDate',
@@ -55,6 +61,29 @@
                 width: 50,
                 sortable: true,
                 menuDisabled: true
+            }, {
+                xtype: 'actioncolumn',
+                width: 20,
+                align: 'center',
+                sortable: false,
+                menuDisabled: true,
+                items: [{
+                    icon: 'Content/icons/UserMail.png',
+                    tooltip: 'Прикрепить к соискателю',
+                    handler: function (view, rowIndex, colIndex, item, e) {
+                        var mailsStore = Ext.StoreManager.lookup('MailMessage'),
+                            consAssignStore = Ext.StoreManager.lookup('ConsiderationAssign');
+                        var rec = mailsStore.getAt(rowIndex);
+                        if (mailsStore.currentMessageType == 1) {
+                            consAssignStore.load({ params: { "Email": rec.get('From')} });
+                        }
+                        else {
+                            consAssignStore.load({ params: { "Email": rec.get('To')} });
+                        }
+
+                        Ext.create('VM.view.MailMessage.ConsiderationAssign').show();
+                    }
+                }]
             }],
 
         tbar: [
@@ -93,33 +122,33 @@
                       Ext.StoreManager.lookup('MailMessage').clearFilter();
                   }
               }],
-        bbar: [ {
-                 text: 'Просмотр сообщения',
-                 name: 'btnBrowseMessage',
-                 id: 'messageOper3',
-                 action: 'browseMessage'
-                }, '-', {
-                 text: Strings.SendMessage,
-                 name: 'btnewMailMessage',
-                 id: 'messageOper2',
-                 action: 'newMailMessage'
-                }, '-', {
-                 text: 'Удалить сообщение',
-                 action: 'deleteMessage',
-                 id: 'messageOper4'
-               }, '->', {
-                 text: 'Обновить',
-                 name: 'btnUpdateinbox',
-                 id: 'messageOper1',
-                 action: 'updateMessages'
-                }
+        bbar: [{
+            text: 'Просмотр сообщения',
+            name: 'btnBrowseMessage',
+            id: 'messageOper3',
+            action: 'browseMessage'
+        }, '-', {
+            text: Strings.SendMessage,
+            name: 'btnewMailMessage',
+            id: 'messageOper2',
+            action: 'newMailMessage'
+        }, '-', {
+            text: 'Удалить сообщение',
+            action: 'deleteMessage',
+            id: 'messageOper4'
+        }, '->', {
+            text: 'Обновить',
+            name: 'btnUpdateinbox',
+            id: 'messageOper1',
+            action: 'updateMessages'
+        }
              ],
         dockedItems: [{
-                 xtype: 'pagingtoolbar',
-                 store: 'MailMessage',
-                 dock: 'bottom',
-                 displayInfo: true
-             }],
+            xtype: 'pagingtoolbar',
+            store: 'MailMessage',
+            dock: 'bottom',
+            displayInfo: true
+        }],
         viewConfig: {
             getRowClass: function (record, index, rowParams, store) {
                 var isRead = record.get('IsRead');

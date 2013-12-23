@@ -64,7 +64,12 @@
         text: 'Удалить вакансию',
         action: 'deleteVacancy'
     }
-   ]
+   ],
+ 
+   viewConfig: {
+       autoScroll: true,
+       loadingText : 'Загрузка вакансий...'
+    }
 });
 
 

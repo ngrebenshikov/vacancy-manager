@@ -13,6 +13,7 @@
         id: 'MessageCreateForm',
         padding: '5 5 5 5',
         border: false,
+        createWCons: false,
         style: 'background-color: #fff;',
         items: //Элементы формы
         [
@@ -32,6 +33,7 @@
           },
           {
               xtype: 'button',
+              id: 'selectMApps',
               text: '...',
               margin: 1,
               handler: function (button) {
@@ -41,7 +43,7 @@
             ]
         }, {
             xtype: 'textfield',
-            id: 'txtNewMsailMessageSb',
+            id: 'txtNewMailMessageSb',
             name: 'Subject',
             width: 430,
             fieldLabel: Strings.Subject

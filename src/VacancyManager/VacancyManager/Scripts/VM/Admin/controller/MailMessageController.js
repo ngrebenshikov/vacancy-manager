@@ -2,9 +2,9 @@
     {
         extend: 'Ext.app.Controller',
 
-        stores: ['MailMessage', 'Attachment'],
+        stores: ['MailMessage', 'Attachment', 'Consideration', 'ConsiderationAssign'],
         views: ['MailMessage.Create', 'MailMessage.MailMessageApplicants', 'MailMessage.List', 'MailMessage.ViewMessage',
-                'MailMessage.AttachmentList'],
+                'MailMessage.AttachmentList', 'Applicant.ApplicantMessages', 'Applicant.ApplicantMessagesList', 'MailMessage.ConsiderationAssignList'],
 
         init: function () {
             var defaultmessagetype = 1;
@@ -24,18 +24,31 @@
 
                 'button[action = updateMessages]':
                     { click: this.UpdateMessages },
- 
+
                 'button[action = getIncomingMessages]':
                     { click: this.GetIncomingMessages },
 
                 'button[action = deleteMessage]':
                     { click: this.DeleteMessage },
-               
+
                 'button[action = getSendedMessages]':
                     { click: this.GetSendedMessages },
 
+                'button[action = assignToConsideration]':
+                    { click: this.AssignToConsideration },
+
                 'button[action = getDirtyMessages]':
                     { click: this.GetDirtyMessages },
+
+                'button[action = ReadMessage]':
+                    { click: this.readAppMessage },
+
+                'button[action = SendNewMessage]':
+                    { click: this.NewMailMessageApp },
+
+                'ApplicantMessagesList dataview': {
+                    itemdblclick: this.readAppMessage
+                },
 
                 'MailMessageList dataview': {
                     itemdblclick: this.callEdit
@@ -53,26 +66,74 @@
             });
         },
 
+        AssignToConsideration: function (button) {
+            var mailMessage = Ext.getCmp('MailMessageGrid').getSelectionModel().getSelection()[0],
+               cons = Ext.getCmp('considerationAssignGrid').getSelectionModel().getSelection()[0],
+               consId = 0;
+            if (mailMessage != undefined) {
+                if (cons != undefined) {
+                    consId = cons.getId();
+                    mailMessage.set({
+                        ConsiderationId: consId,
+                        Vacancy_C: cons.get('Vacancy')
+                    });
+                  }
+                else
+                    alert('Выберите вакансию!!!');
+            }
+            button.up('window').close();
+        },
+
         NewMailMessage: function (button) {
             var searchApplicantsStore = Ext.StoreManager.lookup("SearchApplicants");
             searchApplicantsStore.load({ params: { "vacancyId": 0} });
             var view = Ext.create('VM.view.MailMessage.Create').show();
+            createWCons = false;
+        },
+
+        NewMailMessageApp: function (button) {
+            var consStore = this.getConsiderationStore(),
+                appGrid = Ext.getCmp('ApplicantGrid'),
+                selectedApp = appGrid.getView().getSelectionModel().getSelection()[0];
+
+            var view = Ext.create('VM.view.MailMessage.Create').show();
+            var MailMessageSb = Ext.getCmp('txtNewMailMessageSb');
+            var mailMessageAppsField = Ext.getCmp('mailMessageApps'),
+                fName = "";
+            if (fromCons == true) {
+                createWCons = true;
+                MailMessageSb.setValue(consStore.curConsideration.get('Vacancy'));
+                mailMessageAppsField.selectedAppsMails = [];
+                mailMessageAppsField.selectedAppsMails.push(consStore.curConsideration.get('Email'));
+                fName = consStore.curConsideration.get('FullName') + ' (' + mailMessageAppsField.selectedAppsMails + ')';
+            }
+            else {
+                mailMessageAppsField.selectedAppsMails = [];
+                mailMessageAppsField.selectedAppsMails.push(selectedApp.get('Email'));
+                fName = selectedApp.get('FullName') + ' (' + mailMessageAppsField.selectedAppsMails + ')';
+
+            }
+
+            mailMessageAppsField.setValue(fName);
+            var btnselectAppsField = Ext.getCmp('selectMApps');
+            btnselectAppsField.hide();
+            mailMessageAppsField.setReadOnly(true);
         },
 
         UpdateMessages: function (button) {
-        var mailMessageStore = this.getMailMessageStore();
-          if (mailMessageStore.currentMessageType == 1) {
-          Ext.Ajax.request(
+            var mailMessageStore = this.getMailMessageStore();
+            if (mailMessageStore.currentMessageType == 1) {
+                Ext.Ajax.request(
            { url: '../../VMMailMessage/UpdateMailsListFromIMAP',
-             success: function (result, request) {
-                 var mailsStore = Ext.StoreManager.lookup('MailMessage');
-                 mailsStore.load({ params: { "messagetype": mailMessageStore.currentMessageType} });
-              }
-            });
-          }
-          else {   
-           mailMessageStore.load({ params: { "messagetype": mailMessageStore.currentMessageType} });
-          }
+               success: function (result, request) {
+                   var mailsStore = Ext.StoreManager.lookup('MailMessage');
+                   mailsStore.load({ params: { "messagetype": mailMessageStore.currentMessageType} });
+               }
+           });
+            }
+            else {
+                mailMessageStore.load({ params: { "messagetype": mailMessageStore.currentMessageType} });
+            }
         },
 
         GetIncomingMessages: function (button) {
@@ -95,13 +156,23 @@
             mailsStore.load({ params: { "messagetype": 3} });
         },
 
+        readAppMessage: function (button) {
+            attachmentsStore = this.getAttachmentStore();
+            var view = Ext.create('VM.view.MailMessage.ViewMessage').show();
+            var mailMessage = Ext.getCmp('ApplicantMessagesGrid').getSelectionModel().getSelection()[0];
+            var mailMessageText = Ext.getCmp('tafMessagetext');
+            mailMessage.set('IsRead', 'true');
+            mailMessageText.setValue(mailMessage.get('Text'));
+            attachmentsStore.load({ params: { "id": mailMessage.get('Id')} });
+        },
+
         callEdit: function (button) {
             var view = Ext.create('VM.view.MailMessage.ViewMessage').show();
             attachmentsStore = this.getAttachmentStore();
             var mailMessage = Ext.getCmp('MailMessageGrid').getSelectionModel().getSelection()[0];
             var mailMessageText = Ext.getCmp('tafMessagetext');
-            mailMessage.set('IsRead', 'true');
             mailMessageText.setValue(mailMessage.get('Text'));
+            mailMessage.set('IsRead', 'true');
             attachmentsStore.load({ params: { "id": mailMessage.get('Id')} });
         },
 
@@ -131,7 +202,15 @@
             var fileForm = Ext.getCmp('UploadFileForm').getForm(),
                 Message = Ext.getCmp('txtNewMailMessage').getValue(),
                 selectedApps = Ext.getCmp('mailMessageApps').selectedAppsMails,
-                MessageSb = Ext.getCmp('txtNewMsailMessageSb').getValue();
+                MessageSb = Ext.getCmp('txtNewMailMessageSb').getValue(),
+                curConsideration = this.getConsiderationStore().curConsideration;
+
+            if (createWCons == true) { consID = curConsideration.getId(); }
+            else consID = 0;
+
+            var mailsStore = this.getMailMessageStore();
+
+            mailsStore.currentMessageType = 2;
 
             if (fileForm.isValid()) {
                 fileForm.submit({
@@ -141,10 +220,13 @@
                               {
                                   Emails: selectedApps,
                                   message: Message,
-                                  subject: MessageSb
+                                  subject: MessageSb,
+                                  consId: consID
                               },
+
                     success: function (form, action) {
                         button.up('window').close();
+                        mailsStore.load({ params: { "messagetype": mailsStore.currentMessageType} });
                     }
                 });
             }
@@ -176,12 +258,12 @@
                 }
             }
         },
-        
+
         DeleteMessage: function (button) {
             var grid = button.up('grid'),
                 store = Ext.StoreManager.lookup('MailMessage'),
                 selection = grid.getView().getSelectionModel().getSelection();
-            
+
             if (selection != null) {
                 if (selection.length == 1) {
                     Ext.Msg.show({
@@ -204,7 +286,7 @@
                         fn: function (btn) {
                             if (btn == 'yes') {
                                 store.remove(selection);
-                                }
+                            }
                         }
                     });
                 } else if (selection.length >= 5) {
@@ -221,6 +303,6 @@
                     });
                 }
             }
-        },
+        }
 
     })

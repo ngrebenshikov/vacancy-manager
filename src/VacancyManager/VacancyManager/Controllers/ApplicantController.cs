@@ -17,12 +17,15 @@ namespace VacancyManager.Controllers
     {
 
         [HttpGet]
-        public ActionResult LoadAppMessages(int AppId)
+        public ActionResult LoadAppMessages(int AppId, int ConsId)
         {
-           
+
             var list = VMMailMessageManager.GetList();
+            var conslist = ConsiderationsManager.GetAppConsiderations(AppId);
+
             var res = (from apps in list
                        where (apps.ApplicantId == AppId)
+                       orderby apps.SendDate descending
                        select new
                        {
                            Id = apps.Id,
@@ -30,11 +33,18 @@ namespace VacancyManager.Controllers
                            From = apps.From,
                            Text = apps.Text,
                            IsRead = apps.IsRead,
+                        //   Vacancy = (from cons in conslist
+                         //             where apps.ConsiderationId == cons.ConsiderationID
+                         //             select cons.Vacancy.Title).Single(),
+                           ConsiderationId = apps.ConsiderationId,
                            SendDate = apps.SendDate,
                            DeliveryDate = apps.DeliveryDate.Date.ToShortDateString(),
                            Sender = String.Format("{0} ({1})", " ", apps.From)
 
                        }).ToList();
+
+            if (ConsId != 0)
+            { res = res.Where(cons => cons.ConsiderationId == ConsId).ToList(); }
 
             return Json(new
             {
@@ -50,9 +60,9 @@ namespace VacancyManager.Controllers
             var AppConsList = (from appcons in AppCons
                                select new
                                {
-                                  ApplicantID = appcons.ApplicantID,
-                                  ConsiderationID = appcons.ConsiderationID,
-                                  VacancyTitle = appcons.Vacancy.Title
+                                   ApplicantID = appcons.ApplicantID,
+                                   ConsiderationID = appcons.ConsiderationID,
+                                   VacancyTitle = appcons.Vacancy.Title
                                }).ToList();
             return Json(new
             {
@@ -60,7 +70,7 @@ namespace VacancyManager.Controllers
                 data = AppConsList
             }, JsonRequestBehavior.AllowGet);
         }
-        
+
         [HttpGet]
         public ActionResult Load()
         {
@@ -124,7 +134,7 @@ namespace VacancyManager.Controllers
                                          Vacancies = (from cons in applicants.Considerations
                                                       select cons.Vacancy.Title),
                                          Email = applicants.Email
-                                        
+
                                      }).ToList();
             return Json(new
             {
@@ -205,5 +215,5 @@ namespace VacancyManager.Controllers
             });
         }
 
-     }
+    }
 }

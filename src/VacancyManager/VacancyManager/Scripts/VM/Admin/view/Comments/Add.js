@@ -14,6 +14,7 @@
         this.items = [
             {
                 xtype: 'form',
+                id: 'CommentsInfoForm',
                 padding: '5 5 5 5',
                 border: false,
                 style: 'background-color: #fff;',

@@ -4,6 +4,9 @@
     enabled: true
   }
 );
+var
+  createWCons = false;
+  fromCons = false;
 
 Ext.Loader.setPath('Ext.ux', 'ExtLib/ux');
 

@@ -26,20 +26,27 @@ namespace VacancyManager.Services.Managers
             return obj;
         }
 
-        internal static VMMailMessage Create(string from, string to, string subject, string text, DateTime sendDate, DateTime deliveryDate, int MessageCat, int appId)
+        internal static IEnumerable<VMMailMessage> GetMessageById(int messageId)
         {
             VacancyContext _db = new VacancyContext();
-            var Body = Microsoft.Security.Application.Sanitizer.GetSafeHtml(text);
-            var obj = new VMMailMessage
+            var obj = _db.VMMailMessages.Where(x => x.Id == messageId).ToList();
+            return obj;
+        }
+
+        internal static VMMailMessage Create(string from, string to, string subject, string text, DateTime sendDate, DateTime deliveryDate, int MessageCat, int appId, int considerationId)
+        {
+            VacancyContext _db = new VacancyContext();
+             var obj = new VMMailMessage
             {
                 From = from,
                 To = to,
                 Subject = subject,
                 MessageCategory = MessageCat,
-                Text = Body,
+                Text = text,
                 SendDate = sendDate,          
                 ApplicantId = appId,
-                DeliveryDate = deliveryDate
+                DeliveryDate = deliveryDate,
+                ConsiderationId = considerationId
             };
 
             _db.VMMailMessages.Add(obj);
@@ -48,13 +55,14 @@ namespace VacancyManager.Services.Managers
             return obj;
         }
 
-        internal static void Update(int id, bool isRead)
+        internal static void Update(int id, bool isRead, int consId)
         {
             VacancyContext _db = new VacancyContext();
             var obj = _db.VMMailMessages.FirstOrDefault(message => message.Id == id);
 
             if (obj != null)
             {
+                obj.ConsiderationId = consId;
                 obj.IsRead = isRead;
             }
 
@@ -76,7 +84,6 @@ namespace VacancyManager.Services.Managers
         {
             //Можно засунуть получение прямо в параметры getImapClient
             //Но тогда код загромождён будет
-            const int InputMessage = 1;
             string mailAdress = SysConfigManager.GetStringParameter(MailAdressConfigName, MailAdressDefault);
             string mailAdressPass = SysConfigManager.GetStringParameter(MailAdressPassConfigName, MailAdressPassDefault);
             string mailImapHost = SysConfigManager.GetStringParameter(MailImapHostConfigName, MailImapHostDefault);
@@ -89,7 +96,7 @@ namespace VacancyManager.Services.Managers
 
                 foreach (ImapMessage msg in messages)
                 {
-                    msg.SaveVMMailMessage(InputMessage);
+                    msg.SaveVMMailMessage();
                 }
                 //TODO:Записать в базу дату последнего получения писем
             }

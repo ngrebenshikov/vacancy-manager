@@ -2,8 +2,8 @@
     {
         extend: 'Ext.app.Controller',
         models: ['ApplicantModel', 'ApplicantRequirements', 'ApplicantConsiderations'],
-        stores: ['Applicant', 'ApplicantRequirements', 'ApplicantConsiderations', 'Comments', 'ApplicantComments', 'ApplicantResumeGrid'],
-        views: ['Applicant.List', 'Applicant.Create', 'Applicant.Edit', 'Applicant.ApplicantConsiderations', 'Comments.List', 'Applicant.ApplicantComments'],
+        stores: ['Applicant', 'ApplicantRequirements', 'ApplicantConsiderations', 'Comments', 'ApplicantComments', 'ApplicantResumeGrid', 'ApplicantMessages'],
+        views: ['Applicant.List', 'Applicant.Create', 'Applicant.Edit', 'Applicant.ApplicantConsiderations', 'Comments.List', 'Applicant.ApplicantComments', 'Applicant.ApplicantMessagesList'],
 
         init: function () {
             this.control({
@@ -100,7 +100,7 @@
             appReqStore.load({ params: { "id": obj.get("ApplicantID")} });
 
             view.down('form').loadRecord(record);
-
+            fromCons = false;
             // Для фильтрации //            
             Ext.getCmp('ShowHideSkills').disable();
             appReqStore.each(function (appReq) {
@@ -110,12 +110,17 @@
                 }
             });
             // *** //
+
             appReqStore.load({ params: { "id": obj.get("ApplicantID")} });
             appConsStore.load({ params: { "AppId": obj.get("ApplicantID")} });
             commentsStore = this.getCommentsStore();
             commentsStore.load({ params: { "considerationId": -1} });
             var appCommsStore = this.getApplicantCommentsStore();
             appCommsStore.load({ params: { "appId": obj.get("ApplicantID")} });
+            createWCons = false;
+            var appId = obj.getId(),
+                applicantMessagesStore = this.getApplicantMessagesStore();
+            applicantMessagesStore.load({ params: { "AppId": appId, "ConsId": 0} });
 
             var appResumeStore = Ext.StoreManager.lookup('ApplicantResumeGrid');
             appResumeStore.load({ params: { "appId": obj.get("ApplicantID")} });

@@ -96,23 +96,6 @@ namespace VacancyManager.Controllers
         Comment CreatedComment = (CommentsManager.CreateComment(ConsiderationID, CurrentUserKey, Body, CurrentUser.UserName)).SingleOrDefault();
         CreateSuccess = true;
 
-        bool isSent = MailSender.SendMessageToApplicant(CreatedComment.CommentID);
-        //bool isSent = MailSender.SendMessageToAdmins(CreatedComment.CommentID);
-
-        CreateMessage = isSent ? "Комментарий успешно добавлен. Письмо отправлено" : "Комментарий успешно добавлен. Письмо не отправлено";
-
-        //var NewComment = (from comms in CreatedComment
-        //                  select new
-        //                  {
-        //                      CommentID = comms.CommentID,
-        //                      CreationDate = comms.CreationDate.ToShortDateString(),
-        //                      Body = comms.Body,
-        //                      UserID = comms.UserID,
-        //                      User = "",
-        //                      ConsiderationID = comms.ConsiderationID
-        //                  }
-        //            ).ToList();
-
         NewComment = new
         {
           CommentID = CreatedComment.CommentID,
