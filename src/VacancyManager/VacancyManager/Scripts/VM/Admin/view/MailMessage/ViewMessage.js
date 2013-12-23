@@ -17,9 +17,17 @@
         items: //Элементы формы
         [
         {
-            xtype: 'textareafield',
+            xtype: 'htmleditor',
             id: 'tafMessagetext',
             height: 200,
+            enableAlignments: true,
+            enableColors: true,
+            enableFont: true,
+            enableFontSize: true,
+            enableFormat: true,
+            enableLinks: true,
+            enableLists: true,
+            enableSourceEdit: false,
             readonly: true,
             width: 430
         }, {

@@ -30,7 +30,7 @@ Ext.define('VM.controller.ConsiderationController', {
                     },
                     'button[action = loadMessages]': {
                         click: this.loadMessages
-                    } 
+                    }
                 });
 
     },
@@ -55,28 +55,33 @@ Ext.define('VM.controller.ConsiderationController', {
     },
 
     loadMessages: function (button) {
+        fromCons = true;
         var grid = button.up('grid'),
-        selectedConsideration = grid.getSelectionModel().getSelection()[0];
-            if (selectedConsideration != undefined) {
-                var appId = selectedConsideration.get('ApplicantID')
-                applicantMessagesStore = this.getApplicantMessagesStore();
-                applicantMessagesStore.load({ params: { "AppId": appId} });
-                var wndapplicantMessagesManage = Ext.create('VM.view.Applicant.ApplicantMessages').show();
-            }
-            else
-                Ext.Msg.show({
-                    title: 'Выберите соискателя',
-                    msg: 'Не выбран соискатель',
-                    width: 300,
-                    buttons: Ext.Msg.OK
-                });
+            selectedConsideration = grid.getSelectionModel().getSelection()[0];
+        if (selectedConsideration != undefined) {
+            var appId = selectedConsideration.get('ApplicantID'),
+                    consId = selectedConsideration.get('ConsiderationID'),
+                    applicantMessagesStore = this.getApplicantMessagesStore();
+            applicantMessagesStore.load({ params: { "AppId": appId, "ConsId": consId} });
+            var wndapplicantMessagesManage = Ext.create('VM.view.Applicant.ApplicantMessages').show();
+        }
+        else
+            Ext.Msg.show({
+                title: 'Выберите соискателя',
+                msg: 'Не выбран соискатель',
+                width: 300,
+                buttons: Ext.Msg.OK
+            });
     },
 
     itemClick: function (view, record) {
-        vacancyId = record.get('VacancyID');
-        vacancyGrid = Ext.getCmp('vacancyGrid');
-        var index = vacancyGrid.getStore().find('VacancyID', vacancyId);
+        var vacancyId = record.get('VacancyID'),
+            vacancyGrid = Ext.getCmp('vacancyGrid'),
+            index = vacancyGrid.getStore().find('VacancyID', vacancyId),
+            considerationStore = this.getConsiderationStore();
         vacancyGrid.getSelectionModel().select(index);
+        considerationStore.curConsideration = record;
+        console.log(considerationStore.curConsideration);
     },
 
     AddConsideration: function (button) {
@@ -90,7 +95,7 @@ Ext.define('VM.controller.ConsiderationController', {
 
             selectedApplicant = applicantGrid.getSelectionModel().getSelection()[0];
 
-            applicantGrid.getStore().each(function (applicant) {
+        applicantGrid.getStore().each(function (applicant) {
             if (applicant.get('Selected') == true) {
                 newConsideration = Ext.create('VM.model.Consideration', {
                     VacancyID: selectedVacancyId,
@@ -102,10 +107,10 @@ Ext.define('VM.controller.ConsiderationController', {
             }
 
         });
-  
+
         considerationStore.sync();
         wndconsiderationAdd.close();
-        considerationStore.load({ params: { "id": selectedVacancyId} });
+        //   considerationStore.load({ params: { "id": selectedVacancyId} });
     },
 
     loadBlankConsideration: function (button) {

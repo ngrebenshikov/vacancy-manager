@@ -132,8 +132,23 @@ Ext.define('VM.view.Applicant.CenterPanel', {
       ]
     },
     { title: 'Комментарии',
+      layout: 'fit',
       items: [
         { xtype: 'appCommentsList' }
+      ]
+
+  },
+
+    { title: 'Cообщения',
+        layout: 'fit',
+        margin: '0 0 0 0',
+        items: [
+        { xtype: 'ApplicantMessagesList',
+          forceFit: true,
+          layout: 'fit',
+          height: 350,
+          margin: '0 0 0 0'
+     }
       ]
 
     },

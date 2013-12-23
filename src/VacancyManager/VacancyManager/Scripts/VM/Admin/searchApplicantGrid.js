@@ -43,7 +43,17 @@ Ext.define('VM.searchApplicantGrid', {
         text: 'Трудоустроен',
         width: 130,
         sortable: false,
-        menuDisabled: true
+        align: 'center',
+        menuDisabled: true,
+        renderer: function (value) {
+            var cssPrefix = Ext.baseCSSPrefix,
+                        cls = [cssPrefix + 'grid-checkheader'];
+
+            if (value) {
+                cls.push(cssPrefix + 'grid-checkheader-checked');
+            }
+            return '<div class="' + cls.join(' ') + '">&#160;</div>';
+        }
     }],
 
     initComponent: function () {
@@ -339,6 +349,7 @@ Ext.define('VM.searchApplicantGrid', {
             title: 'Выберите вакансии',
             width: 400,
             height: 400,
+            closeAction: 'hide',
             minHeight: 400,
             layout: 'fit',
             resizable: true,
@@ -426,7 +437,6 @@ Ext.define('VM.searchApplicantGrid', {
 
         var sm = Ext.create('Ext.selection.CheckboxModel');
 
-
         var reqGrid = Ext.create('Ext.grid.Panel', {
             height: 310,
             id: 'requirementsGrid',
@@ -434,7 +444,6 @@ Ext.define('VM.searchApplicantGrid', {
             forceFit: true,
             frame: false,
             selModel: sm,
-            split: true,
             store: reqStore,
             features: [Ext.create('Ext.grid.feature.Grouping', {
                 groupHeaderTpl: '{name}: ' + Strings.Skills + ' ({rows.length})'
@@ -484,7 +493,7 @@ Ext.define('VM.searchApplicantGrid', {
                     var searchAppGrid = Ext.getCmp('searchApplicantGrid');
                     searchAppGrid.appSearchReqs = selectedReqs;
                     searchAppGrid.filterApplicants();
-                    reqWin.hide();
+                    reqWin.close();
                 }
             },
 

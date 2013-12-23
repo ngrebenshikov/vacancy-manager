@@ -2,6 +2,7 @@
   extend: 'VM.store.BaseStore',
   model: 'VM.model.Consideration',
   id: 'ConsiderationStore',
+  curConsideration: null,
   autoLoad: false,
   autoSync: false,
   autoSave: false,

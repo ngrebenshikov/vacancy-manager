@@ -17,30 +17,29 @@ namespace VacancyManager.Controllers
         // GET: /VMMailMessage/
         [HttpGet]
         public ActionResult Index(int messagetype)
-        {   
-
-         //   if (messagetype == null)
-         //       messagetype = defaultmessagetype;
+        {
 
             var list = VMMailMessageManager.GetList();
-
-
-
-           var     res = (from apps in list
-                           where (apps.MessageCategory == messagetype)
-                           select new
-                           {
-                               Id = apps.Id,
-                               Subject = apps.Subject,
-                               From = apps.From,
-                               To = apps.To,
-                               Text = apps.Text,
-                               IsRead = apps.IsRead,
-                               SendDate = apps.SendDate,
-                               DeliveryDate = apps.DeliveryDate,
-                               Sender = String.Format("{0} ({1})", " ", apps.From)
-
-                           }).ToList();
+            var cons = ConsiderationsManager.GetConsiderations();
+ 
+            var res = (from apps in list
+                       where (apps.MessageCategory == messagetype)
+                       select new
+                       {
+                           Id = apps.Id,
+                           Subject = apps.Subject,
+                           From = apps.From,
+                           To = apps.To,
+                           Text = apps.Text,
+                           IsRead = apps.IsRead,
+                           SendDate = apps.SendDate,
+                           DeliveryDate = apps.DeliveryDate,
+                           ConsiderationId = apps.ConsiderationId,
+                           Vacancy_C = (from con in cons
+                                        where con.ConsiderationID == apps.ConsiderationId
+                                        select con.Vacancy.Title
+                                        )
+                       }).ToList();
 
             return Json(new
             {
@@ -50,16 +49,15 @@ namespace VacancyManager.Controllers
         }
 
         [HttpPost]
-        public ActionResult SendVMMailMessage(string[] Emails, string Message, string subject)
+        public ActionResult SendVMMailMessage(string[] Emails, string Message, string subject, int consId)
         {
-
             string s;
             bool isBodyHtml = SysConfigManager.GetBoolParameter("IsBodyHtml", false);
 
             System.Web.HttpFileCollectionBase con = Request.Files;
 
             foreach (var Email in Emails)
-             s = MailSender.SendTo(Email, subject, Message, isBodyHtml, con);
+                s = MailSender.SendTo(Email, subject, Message, isBodyHtml, con, consId);
 
             return Json(new
                 {
@@ -85,7 +83,7 @@ namespace VacancyManager.Controllers
                 DateTime deliveryDate = new DateTime();
                 DateTime sendDate = new DateTime();
 
-   
+
                 // Временная подстановка времени, потом удалить
                 if (obj["SendDate"] == "" || obj["DeliveryDate"] == "")
                 {
@@ -99,7 +97,7 @@ namespace VacancyManager.Controllers
                 }
 
 
-                created = VMMailMessageManager.Create(obj["Sender"], "vacmana@gmail.com", obj["Subject"], obj["Text"], sendDate, deliveryDate, SendedMessage, 0);
+                created = VMMailMessageManager.Create(obj["Sender"], "vacmana@gmail.com", obj["Subject"], obj["Text"], sendDate, deliveryDate, SendedMessage, 0, 0);
                 resultMessage = "Сообщение успешно добавлено";
                 success = true;
             }
@@ -118,10 +116,12 @@ namespace VacancyManager.Controllers
             bool success = false;
             string resultMessage = "Ошибка при изменении сообщения";
             JavaScriptSerializer jss = new JavaScriptSerializer();
+            List<VMMailMessage> CreatedMessage = new List<VMMailMessage>();
+
             if (data != null)
             {
                 var obj = jss.Deserialize<dynamic>(data);
-                VMMailMessageManager.Update(obj["Id"], obj["IsRead"]);
+                VMMailMessageManager.Update(obj["Id"], obj["IsRead"], obj["ConsiderationId"]);
                 resultMessage = "Сообщение успешно изменено";
                 success = true;
             }
@@ -131,6 +131,7 @@ namespace VacancyManager.Controllers
                 success = success,
                 message = resultMessage
             });
+
         }
 
         [HttpPost]

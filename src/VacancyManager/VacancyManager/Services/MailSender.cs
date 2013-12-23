@@ -22,7 +22,7 @@ namespace VacancyManager.Services
     internal static List<string> Bcc = new List<string>();
     const int outputMessage = 2;
 
-    internal static string SendTo(string To, string Subject, string Body, bool IsBodyHtml, System.Web.HttpFileCollectionBase wfiles)
+    internal static string SendTo(string To, string Subject, string Body, bool IsBodyHtml, System.Web.HttpFileCollectionBase wfiles, int consId)
     {
         string From = "vacmana@gmail.com";
         try
@@ -45,12 +45,12 @@ namespace VacancyManager.Services
 
             int ApplicantId = 0;
             Applicant fromapp = new Applicant();
-            fromapp = ApplicantManager.GetApplicantByEMail(To);  
+            fromapp = ApplicantManager.GetApplicantByEMail(To);
+            ApplicantId = fromapp.ApplicantID;
 
-            int messageId = VMMailMessageManager.Create(From, To, Subject, Body, DateTime.Now, DateTime.Now, outputMessage, ApplicantId).Id;
+            int messageId = VMMailMessageManager.Create(From, To, Subject, Body, DateTime.Now, DateTime.Now, outputMessage, ApplicantId, consId).Id;
 
             return "Сообщение отправленно";
-
 
         }
         catch (Exception ex)

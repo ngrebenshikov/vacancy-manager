@@ -8,6 +8,7 @@
             { name: 'From', type: 'string' },
             { name: 'Subject', type: 'string' },
             { name: 'Text', type: 'string' },
+            { name: 'Vacancy', type: 'string' },
             'AttachmentFile'
         ],
 

@@ -21,11 +21,21 @@ namespace VacancyManager.Services.Managers
       VacancyContext _db = new VacancyContext();
       return _db.Considerations.ToList();
     }
-
+    internal static IEnumerable<Consideration> GetConsiderationsByIds(int[] ConsIds)
+    {
+        VacancyContext _db = new VacancyContext();
+        return _db.Considerations.Where(x => ConsIds.Contains(x.ConsiderationID));
+    }
     internal static IEnumerable<Consideration> GetConsiderations(int vacancyId)
     {
       VacancyContext _db = new VacancyContext();
       return _db.Considerations.Where(v => v.VacancyID == vacancyId).ToList();
+    }
+
+    internal static IEnumerable<Consideration> GetApplicantConsiderations(int ApplicantId)
+    {
+        VacancyContext _db = new VacancyContext();
+        return _db.Considerations.Where(v => v.ApplicantID == ApplicantId).ToList();
     }
 
     internal static IEnumerable<Consideration> GetAppConsiderations(int AppId)

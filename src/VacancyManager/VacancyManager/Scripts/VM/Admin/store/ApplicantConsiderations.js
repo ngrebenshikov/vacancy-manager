@@ -9,7 +9,9 @@
         'datachanged': function () {
             var me = this;
             appVacs = Ext.getCmp('tabAppVac');
-            appVacs.setTitle(Strings.Vacancies + ' (' + me.getCount() + ')');
+            if (appVacs != undefined) {
+                appVacs.setTitle(Strings.Vacancies + ' (' + me.getCount() + ')'); 
+            }
         }
     },
     proxy: {

@@ -26,6 +26,12 @@ Ext.define('VM.model.Consideration', {
                  }, {
                      name: 'CommentsCount',
                      type: 'int'
+                 }, {
+                     name: 'Email',
+                     type: 'string'
+                 }, {
+                     name: 'Vacancy',
+                     type: 'string'
                  }
 
         ]

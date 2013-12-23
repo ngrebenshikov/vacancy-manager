@@ -14,7 +14,46 @@ namespace VacancyManager.Controllers
     {
         //
         // GET: /Considerations/
- 
+
+        public JsonResult GetConsiderationAssign(string Email)
+        {
+            Applicant App = ApplicantManager.GetApplicantByEMail(Email);
+            int AppId = 0;
+            string succesMessage = "Нет вакансий для соискателя";
+            bool success = false;
+            if (App != null)
+            {
+                AppId = App.ApplicantID;
+                succesMessage = "Вакансии успешно загружены";
+                var Considerations = ConsiderationsManager.GetApplicantConsiderations(AppId);
+                success = true;
+                var ConsiderationList = (from Cons in Considerations
+                                         select new
+                                         {
+                                             Cons.ApplicantID,
+                                             Cons.ConsiderationID,
+                                             Cons.VacancyID,
+                                             Vacancy = Cons.Vacancy.Title
+                                         }).ToList();
+                return Json(new
+                {
+                    considerationsAssign = ConsiderationList,
+                    total = ConsiderationList.Count,
+                    message = succesMessage,
+                    success = true
+                },
+           JsonRequestBehavior.AllowGet);
+            }
+            else
+                return Json(new
+                {
+                    message = succesMessage,
+                    success = true
+                },
+          JsonRequestBehavior.AllowGet);
+
+        }
+
 
         public JsonResult Load(int id)
         {
@@ -27,9 +66,10 @@ namespace VacancyManager.Controllers
                                          Cons.VacancyID,
                                          FullName = Cons.Applicant.FullName,
                                          LastCommentDate = (Cons.Comments.Count == 0 ? "" : Cons.Comments.DefaultIfEmpty(new Comment()).Last().CreationDate.ToShortDateString()),
-                                         LastCommentBody =  Cons.Comments.DefaultIfEmpty(new Comment()).Last().Body,
-                                         CommentsCount = Cons.Comments.Count
-
+                                         LastCommentBody = Cons.Comments.DefaultIfEmpty(new Comment()).Last().Body,
+                                         CommentsCount = Cons.Comments.Count,
+                                         Cons.Applicant.Email,
+                                         Vacancy = Cons.Vacancy.Title
                                      }).ToList();
 
 
@@ -50,7 +90,7 @@ namespace VacancyManager.Controllers
             string CreationMessage = "Во время добавления соискателя произошла ошибка";
             JavaScriptSerializer jss = new JavaScriptSerializer();
             Consideration CreatedConsideration = null;
-
+            int[] CreatedConsId = new int[data.Length];
             for (int i = 0; i <= data.Length - 1; i++)
             {
                 if (data != null)
@@ -61,14 +101,14 @@ namespace VacancyManager.Controllers
                     CreatedConsideration = ConsiderationsManager.CreateConsideration(Convert.ToInt32(NewConsideration["VacancyID"]),
                                                                                       Convert.ToInt32(NewConsideration["ApplicantID"])
                                                                                      );
+                    CreatedConsId[i] = CreatedConsideration.ConsiderationID;
                     CreationMessage = "Соискатель успешно добавлен";
                     CreationSuccess = true;
                 }
             }
-            var ConsiderationsList = ConsiderationsManager.GetConsideration(CreatedConsideration.ConsiderationID);
-
+            var ConsiderationsList = ConsiderationsManager.GetConsiderationsByIds(CreatedConsId);
             var NewConsiderations = (from cons in ConsiderationsList
-                                    select new
+                                     select new
                                     {
                                         cons.ApplicantID,
                                         cons.ConsiderationID,
@@ -76,11 +116,14 @@ namespace VacancyManager.Controllers
                                         FullName = cons.Applicant.FullName,
                                         LastCommentDate = (cons.Comments.Count == 0 ? "" : cons.Comments.DefaultIfEmpty(new Comment()).Last().CreationDate.ToShortDateString()),
                                         LastCommentBody = cons.Comments.DefaultIfEmpty(new Comment()).Last().Body,
-                                        CommentsCount = cons.Comments.Count
+                                        CommentsCount = cons.Comments.Count,
+                                        cons.Applicant.Email,
+                                        Vacancy = cons.Vacancy.Title
                                     }).ToList();
 
             return Json(new
             {
+                considerations = NewConsiderations,
                 success = CreationMessage,
                 message = CreationSuccess
             });
