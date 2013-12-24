@@ -3,7 +3,7 @@
         extend: 'Ext.app.Controller',
         models: ['ApplicantModel', 'ApplicantRequirements', 'ApplicantConsiderations'],
         stores: ['Applicant', 'ApplicantRequirements', 'ApplicantConsiderations', 'Comments', 'ApplicantComments', 'ApplicantResumeGrid', 'ApplicantMessages'],
-        views: ['Applicant.List', 'Applicant.Create', 'Applicant.Edit', 'Applicant.ApplicantConsiderations', 'Comments.List', 'Applicant.ApplicantComments', 'Applicant.ApplicantMessagesList'],
+        views: ['Applicant.List', 'Applicant.Create', 'Applicant.Edit', 'Applicant.ApplicantConsiderations','Resume.Create', 'Comments.List', 'Applicant.ApplicantComments', 'Applicant.ApplicantMessagesList'],
 
         init: function () {
             this.control({
@@ -20,6 +20,12 @@
                 // Удалить резюме
                 'button[action=RemoveResume]':
                     { click: this.RemoveResume },
+                //Создать Резюме
+                'button[action=CreateResume]':
+                    { click: this.CreateResume },
+                //Сохранить Резюме
+                'button[action=SaveResume]':
+                    { click: this.SaveResume },
                 // Создать
                 'button[action=CreateApplicant]':
                     { click: this.CreateApplicant },
@@ -187,7 +193,7 @@
             var grid = Ext.getCmp('ApplicantRes');
             var store = this.getApplicantResumeGridStore();
             var selection = grid.getView().getSelectionModel().getSelection()[0];
-            var id = grid.getView().getSelectionModel().getSelection()[0].get("ResumeId");
+           // var id = grid.getView().getSelectionModel().getSelection()[0].get("ResumeId");
 
             if (selection != null) {
                 store.remove(selection);
@@ -195,6 +201,28 @@
             }
         },
 
+        CreateResume: function () {
+            var AddResume = Ext.widget('resumeCreate');
+            var date = new Date();
+            newResume = Ext.create('VM.model.ApplicantResumeGrid', {
+                    Position: 'Должность..',
+                    Summary: 'Кратко..',
+                    Training: 'Обучение..',
+                    Date: date
+                });
+                
+            AddResume.down('form').loadRecord(newResume);
+        },
+
+        SaveResume: function (button) {
+            var win = button.up('window'),
+                form = win.down('form'),
+                values = form.getValues();
+            var store = this.getApplicantResumeGridStore();
+            store.add(values);
+            win.close();
+        },
+        
 
         ShowHideSkills: function (button) {
             var store = Ext.StoreManager.lookup('ApplicantRequirements');

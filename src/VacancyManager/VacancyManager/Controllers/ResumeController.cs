@@ -8,6 +8,7 @@ using VacancyManager.Services;
 using System.Web.Security;
 using System.IO;
 using System.Collections.Generic;
+using System.Globalization;
 
 namespace VacancyManager.Controllers
 {
@@ -26,6 +27,8 @@ namespace VacancyManager.Controllers
                                     Date = res.Date.ToShortDateString(),
                                     Training = res.Training,
                                     StartDate = res.Period,
+                                    Position = res.Position,
+                                    Summary = res.Summary
                                     }).ToList();
               
               return Json(new
@@ -54,6 +57,35 @@ namespace VacancyManager.Controllers
               success = success,
               message = resultMessage
           });
+      }
+
+      [HttpPost]
+      public ActionResult CreateResume(string data)
+      {
+          bool success = false;
+          string resultMessage = "Ошибка при добавлении резюме";
+          JavaScriptSerializer jss = new JavaScriptSerializer();
+          List<Resume> created = new List<Resume>();
+
+          if (data != null)
+          {
+              var obj = jss.Deserialize<dynamic>(data);
+              CultureInfo culture = new CultureInfo("hu");
+              created = ResumeManager.CreateResume(obj["Position"].ToString(), obj["Summary"].ToString(), obj["Training"].ToString(), Convert.ToDateTime(obj["Date"], culture));
+                
+              resultMessage = "Резюме добавлено";
+              success = true;
+          }
+          else
+              created = null;
+
+          return Json(new
+          {
+              success = success,
+              data = created,
+              message = resultMessage
+          });
+      
       }
    
 

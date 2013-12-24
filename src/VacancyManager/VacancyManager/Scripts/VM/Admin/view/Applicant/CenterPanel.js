@@ -190,7 +190,7 @@ Ext.define('VM.view.Applicant.CenterPanel', {
                     icon: '/Content/icons/add.gif',
                     name: 'btnAdd',
                     id: 'Add',
-                    action: 'AddResume'
+                    action: 'CreateResume'
                 }, {
                     text: Strings.btnRemove,
                     icon: '/Content/icons/delete.gif',
