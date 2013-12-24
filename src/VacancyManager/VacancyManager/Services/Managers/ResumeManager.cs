@@ -35,6 +35,23 @@ namespace VacancyManager.Services.Managers
         _db.Resumes.Remove(obj);
         _db.SaveChanges();
     }
+
+    internal static List<Resume> CreateResume(string Position, string Summary, string Training, DateTime Date)
+    {
+        VacancyContext _db = new VacancyContext();
+        var obj = new List<Resume>();
+        obj.Add(new Resume
+        {
+            Position = Position,
+            Summary = Summary,
+            Training = Training,
+            Date = Date
+        });
+        _db.Resumes.Add(obj[0]);
+        _db.SaveChanges();
+
+        return obj;
+    }
   
   }
 }

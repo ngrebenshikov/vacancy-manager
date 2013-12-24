@@ -2,12 +2,13 @@
     {
         extend: 'Ext.data.Model',
         idProperty: 'ResumeId',
-        fields: ['ResumeId', 'Date', 'StartDate'],
+        fields: ['ResumeId', 'Date', 'StartDate', 'Position', 'Summary', 'Training', 'Date'],
         proxy: {
             type: 'ajax',
             api: {
                 read: '/Resume/LoadResume',
-                destroy: '/Resume/DeleteResume'
+                destroy: '/Resume/DeleteResume',
+                create: 'Resume/CreateResume'
             },
 
             reader: {
