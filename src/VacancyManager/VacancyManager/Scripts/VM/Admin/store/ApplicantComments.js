@@ -1,4 +1,4 @@
-﻿Ext.define('VM.store.ApplicantComments', { 
+﻿Ext.define('VM.store.ApplicantComments', {
     extend: 'VM.store.BaseStore',
     model: 'VM.model.Comment',
     autoLoad: false,
@@ -18,7 +18,17 @@
           successProperty: 'success'
       }
     },
-        headers: { 'Content-Type': 'application/json; charset=UTF-8' }
-   }
-);
+
+    headers: { 'Content-Type': 'application/json; charset=UTF-8' },
+
+    listeners: {
+        'datachanged': function () {
+            me = this;
+            appComsTab = Ext.getCmp('ApplicantCommentsTab');
+            if (appComsTab != undefined) {
+                appComsTab.setTitle(Strings.btnCommentsView + ' (' + me.getCount() + ')');
+            }
+        }
+    }
+});
 
