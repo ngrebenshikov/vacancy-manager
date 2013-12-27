@@ -132,6 +132,7 @@ Ext.define('VM.view.Applicant.CenterPanel', {
       ]
     },
     { title: 'Комментарии',
+      id: 'ApplicantCommentsTab',
       layout: 'fit',
       items: [
         { xtype: 'appCommentsList' }
@@ -139,8 +140,9 @@ Ext.define('VM.view.Applicant.CenterPanel', {
 
   },
 
-    { title: 'Cообщения',
+    {   title: 'Cообщения',
         layout: 'fit',
+        id: 'ApplicantMessagesTab',
         margin: '0 0 0 0',
         items: [
         { xtype: 'ApplicantMessagesList',
