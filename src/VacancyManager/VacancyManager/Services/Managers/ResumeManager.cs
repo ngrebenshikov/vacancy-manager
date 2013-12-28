@@ -21,6 +21,12 @@ namespace VacancyManager.Services.Managers
         return _db.Resumes.Where(v => v.Applicant.ApplicantID == appId).ToList(); 
     }
 
+    internal static Resume GetResume(int? resId)
+    {
+        VacancyContext _db = new VacancyContext();
+        return _db.Resumes.Where(v => v.ResumeId == resId).Single();
+    }
+
     internal static IEnumerable<Experience> GetExperience(int ResId)
     {
         VacancyContext _db = new VacancyContext();

@@ -96,15 +96,15 @@ Ext.define('VM.view.Applicant.CenterPanel', {
         items:
        [
        { xtype: 'applicantConsiderationsList',
-         region: 'west',
-         split: true
+           region: 'west',
+           split: true
        },
        { xtype: 'commentsList',
-          region: 'center',
-          autoSizeColumns: true,
-          autoHeight: true,
-          title: 'Комментарии',
-            columns: [
+           region: 'center',
+           autoSizeColumns: true,
+           autoHeight: true,
+           title: 'Комментарии',
+           columns: [
   	        {
   	            width: 100,
   	            flex: 1,
@@ -132,25 +132,25 @@ Ext.define('VM.view.Applicant.CenterPanel', {
       ]
     },
     { title: 'Комментарии',
-      id: 'ApplicantCommentsTab',
-      layout: 'fit',
-      items: [
+        id: 'ApplicantCommentsTab',
+        layout: 'fit',
+        items: [
         { xtype: 'appCommentsList' }
       ]
 
-  },
+    },
 
-    {   title: 'Cообщения',
+    { title: 'Cообщения',
         layout: 'fit',
         id: 'ApplicantMessagesTab',
         margin: '0 0 0 0',
         items: [
         { xtype: 'ApplicantMessagesList',
-          forceFit: true,
-          layout: 'fit',
-          height: 350,
-          margin: '0 0 0 0'
-     }
+            forceFit: true,
+            layout: 'fit',
+            height: 350,
+            margin: '0 0 0 0'
+        }
       ]
 
     },
@@ -170,7 +170,7 @@ Ext.define('VM.view.Applicant.CenterPanel', {
                      sortable: false,
                      menuDisabled: true,
                      flex: 1
-                     
+
                  },
                  {
                      header: 'Резюме',
@@ -185,32 +185,48 @@ Ext.define('VM.view.Applicant.CenterPanel', {
                      sortable: false,
                      menuDisabled: true,
                      flex: 1
+                 }, {
+                     xtype: 'actioncolumn',
+                     width: 30,
+                     align: 'center',
+                     sortable: false,
+                     menuDisabled: true,
+                     items:
+                     [{
+                         icon: '/Content/icons/pdfico.png',
+                         tooltip: 'Создать pdf',
+                         handler: function (grid, rowIndex, colIndex) {
+                             var resumeStore = grid.getStore();
+                             var record = resumeStore.getAt(rowIndex);
+                             window.open('/Resume/CreatePdfCopy/' + record.getId());
+                         }
+                     }]
                  }],
 
-                tbar: [{
-                    text: Strings.btnAdd,
-                    icon: '/Content/icons/add.gif',
-                    name: 'btnAdd',
-                    id: 'Add',
-                    action: 'CreateResume'
-                }, {
-                    text: Strings.btnRemove,
-                    icon: '/Content/icons/delete.gif',
-                    name: 'btnRemove',
-                    id: 'RemoveResume',
-                    action: 'RemoveResume',
-                    disabled: true
-                }],
-                listeners: {
-                    selectionchange: function (view, selections, options) {
-                        var button = Ext.getCmp('RemoveResume');
-                        if (selections != null)
-                            button.enable();
-                    }
-                }
+                 tbar: [{
+                     text: Strings.btnAdd,
+                     icon: '/Content/icons/add.gif',
+                     name: 'btnAdd',
+                     id: 'Add',
+                     action: 'CreateResume'
+                 }, {
+                     text: Strings.btnRemove,
+                     icon: '/Content/icons/delete.gif',
+                     name: 'btnRemove',
+                     id: 'RemoveResume',
+                     action: 'RemoveResume',
+                     disabled: true
+                 }],
+                 listeners: {
+                     selectionchange: function (view, selections, options) {
+                         var button = Ext.getCmp('RemoveResume');
+                         if (selections != null)
+                             button.enable();
+                     }
+                 }
              }
            ]
-           
+
 
        }
   ]

@@ -48,6 +48,9 @@
     <Reference Include="HtmlSanitizationLibrary">
       <HintPath>..\packages\AntiXSS.4.2.1\lib\net40\HtmlSanitizationLibrary.dll</HintPath>
     </Reference>
+    <Reference Include="itextsharp">
+      <HintPath>..\packages\itextsharp\itextsharp.dll</HintPath>
+    </Reference>
     <Reference Include="System.Data.Entity" />
     <Reference Include="System.Transactions" />
     <Reference Include="System.Web.Mvc, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
@@ -317,6 +320,7 @@
     <Compile Include="Services\Managers\AttachmentManager.cs" />
     <Compile Include="Services\Managers\CommentsManager.cs" />
     <Compile Include="Services\Managers\ConsiderationsManager.cs" />
+    <Compile Include="Services\Managers\ExperienceManager.cs" />
     <Compile Include="Services\Managers\RequirementsManager.cs" />
     <Compile Include="Services\Managers\ResumeManager.cs" />
     <Compile Include="Services\Managers\SharedManager.cs" />
@@ -1629,6 +1633,7 @@
     <Content Include="ExtLib\ux\TransformGrid.js" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <None Include="Resources\Image1.bmp" />
     <Content Include="Scripts\jquery-1.7.2-vsdoc.js" />
     <Content Include="Scripts\jquery-1.7.2.js" />
     <Content Include="Scripts\jquery-1.7.2.min.js" />
