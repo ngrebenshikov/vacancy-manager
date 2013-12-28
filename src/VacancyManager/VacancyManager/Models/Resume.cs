@@ -26,28 +26,32 @@ namespace VacancyManager.Models
         public string Period {
             get
             {
-                if (Experiences.Count <= 0) return null;
-                DateTime? FinishDate = new DateTime ();
-                DateTime StartDate = new DateTime (2200, 11, 12);
-                foreach (var exp in Experiences)
+                if (Experiences != null)
                 {
-                    if (exp.StartDate.Year < StartDate.Year )
+                    if (Experiences.Count <= 0) return null;
+                    DateTime? FinishDate = new DateTime();
+                    DateTime StartDate = new DateTime(2200, 11, 12);
+                    foreach (var exp in Experiences)
                     {
-                        StartDate = exp.StartDate;
+                        if (exp.StartDate.Year < StartDate.Year)
+                        {
+                            StartDate = exp.StartDate;
+                        }
+                        if (FinishDate != null && (exp.FinishDate == null || exp.FinishDate > FinishDate))
+                        {
+                            FinishDate = exp.FinishDate;
+                        }
                     }
-                    if (FinishDate != null && (exp.FinishDate == null || exp.FinishDate > FinishDate))
-                    {
-                        FinishDate = exp.FinishDate;
-                    }
+
+                    return StartDate.Year +
+                            ((FinishDate == null)
+                                ? " ..."
+                                : "-" + FinishDate.Value.Year);
                 }
 
-                return StartDate.Year +
-                        ((FinishDate == null)
-                            ? " ..."
-                            : "-" + FinishDate.Value.Year);
+                else
+                    return null;
             }
-           
-            
         }
   
     }
