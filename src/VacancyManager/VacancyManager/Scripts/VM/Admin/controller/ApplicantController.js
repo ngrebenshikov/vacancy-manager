@@ -1,16 +1,20 @@
 ﻿Ext.define('VM.controller.ApplicantController',
     {
         extend: 'Ext.app.Controller',
-        models: ['ApplicantModel', 'ApplicantRequirements', 'ApplicantConsiderations'],
+        models: ['ApplicantModel', 'ApplicantRequirements', 'ApplicantConsiderations', 'Comment'],
         stores: ['Applicant', 'ApplicantRequirements', 'ApplicantConsiderations', 'Comments', 'ApplicantComments', 'ApplicantResumeGrid', 'ApplicantMessages'],
-        views: ['Applicant.List', 'Applicant.Create', 'Applicant.Edit', 'Applicant.ApplicantConsiderations','Resume.Create', 'Comments.List', 'Applicant.ApplicantComments', 'Applicant.ApplicantMessagesList'],
+        views: ['Applicant.List', 'Applicant.Create', 'Applicant.Edit', 'Applicant.ApplicantConsiderations', 'Resume.Create',
+        'Comments.List', 'Applicant.ApplicantComments', 'Applicant.ApplicantMessagesList', 'Comments.Add'],
 
         init: function () {
             this.control({
+
                 'ApplicantList':
                     { itemdblclick: this.EditApplicantShowForm },
                 'applicantConsiderationsList':
                     { itemclick: this.GetComments },
+                'button[action=addAppComments]':
+                    { click: this.addAppComment },
                 // Открыть форму "Создать"
                 'button[action=CreateApplicantShowForm]':
                     { click: this.CreateApplicantShowForm },
@@ -37,10 +41,55 @@
                     { click: this.EditApplicant },
                 // Скрыть/показать
                 'button[action=ShowHideSkills]':
-                    { click: this.ShowHideSkills }
+                    { click: this.ShowHideSkills },
+
+                'button[action=addConsComment]':
+                    { click: this.addConsComment },
+                    
             });
         },
 
+        addConsComment:  function (button) {
+
+         var consGrid = Ext.getCmp('applicantConsiderationsGrid');
+
+         if (consGrid != undefined)
+         {  
+            var commentsStore = this.getCommentsStore(),
+                newCommentBody = Ext.getCmp('consCommentBody').getValue();
+
+            var grid = Ext.getCmp('ApplicantGrid'),
+                appId = grid.getView().getSelectionModel().getSelection()[0].getId(),
+                consId = consGrid.getView().getSelectionModel().getSelection()[0].getId();
+   
+            newComment = Ext.create('VM.model.Comment', {
+                Body: newCommentBody,
+                CreationDate: (Ext.Date.format(new Date(), 'd.m.Y')),
+                ConsiderationID: consId,
+                ApplicantId: appId
+            });
+            button.up('window').close();
+            commentsStore.insert(0, newComment);
+
+           }
+        },
+
+        addAppComment: function (button) {
+            var appCommentsStore = this.getApplicantCommentsStore(),
+                newCommentBody = Ext.getCmp('newAppCommnent').getValue();
+
+            var grid = Ext.getCmp('ApplicantGrid'),
+                appId = grid.getView().getSelectionModel().getSelection()[0].getId();
+
+            newComment = Ext.create('VM.model.Comment', {
+                Body: newCommentBody,
+                CreationDate: (Ext.Date.format(new Date(), 'd.m.Y')),
+                ConsiderationID: null,
+                ApplicantId: appId
+            });
+
+            appCommentsStore.insert(0, newComment);
+        },
 
         GetComments: function (grid, row) {
             commentsStore = this.getCommentsStore();
@@ -193,7 +242,7 @@
             var grid = Ext.getCmp('ApplicantRes');
             var store = this.getApplicantResumeGridStore();
             var selection = grid.getView().getSelectionModel().getSelection()[0];
-           // var id = grid.getView().getSelectionModel().getSelection()[0].get("ResumeId");
+            // var id = grid.getView().getSelectionModel().getSelection()[0].get("ResumeId");
 
             if (selection != null) {
                 store.remove(selection);
@@ -205,12 +254,12 @@
             var AddResume = Ext.widget('resumeCreate');
             var date = new Date();
             newResume = Ext.create('VM.model.ApplicantResumeGrid', {
-                    Position: 'Должность..',
-                    Summary: 'Кратко..',
-                    Training: 'Обучение..',
-                    Date: date
-                });
-                
+                Position: 'Должность..',
+                Summary: 'Кратко..',
+                Training: 'Обучение..',
+                Date: date
+            });
+
             AddResume.down('form').loadRecord(newResume);
         },
 
@@ -222,7 +271,7 @@
             store.add(values);
             win.close();
         },
-        
+
 
         ShowHideSkills: function (button) {
             var store = Ext.StoreManager.lookup('ApplicantRequirements');

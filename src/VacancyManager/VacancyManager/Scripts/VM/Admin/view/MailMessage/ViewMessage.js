@@ -18,8 +18,6 @@
         [
         {
             xtype: 'htmleditor',
-            id: 'tafMessagetext',
-            height: 200,
             enableAlignments: true,
             enableColors: true,
             enableFont: true,
@@ -29,7 +27,9 @@
             enableLists: true,
             enableSourceEdit: false,
             readonly: true,
-            width: 430
+            width: 430,
+            height: 200,
+            id: 'tafMessagetext'
         }, {
             xtype: 'form',
             id: 'FileForm',

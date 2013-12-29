@@ -64,7 +64,7 @@ namespace VacancyManager.Services
                 Comment CreatedComment = null;
                 if ((possibleAdmin != null) && Roles.IsUserInRole("Admin"))
                 {
-                    CreatedComment = CommentsManager.CreateComment(condsiderId.Value, (int?)possibleAdmin.ProviderUserKey, Text, possibleAdmin.UserName).SingleOrDefault();
+                      CreatedComment = CommentsManager.CreateComment(condsiderId.Value, (int?)possibleAdmin.ProviderUserKey, null, Text, possibleAdmin.UserName);
                 }
 
                 //Если не от админа, то проверим не от пользователя ли
@@ -72,7 +72,7 @@ namespace VacancyManager.Services
                 {
                     Applicant possibleApplicant = ApplicantManager.GetList().SingleOrDefault(x => x.Email.Equals(From, StringComparison.OrdinalIgnoreCase));
                     if (possibleApplicant != null)
-                        CreatedComment = CommentsManager.CreateComment(condsiderId.Value, null, Text, possibleApplicant.FullName).SingleOrDefault();
+                        CreatedComment = CommentsManager.CreateComment(condsiderId.Value, null, possibleApplicant.ApplicantID, Text, possibleApplicant.FullName);
                 }
 
                 //Посылаем сообщение всем админам

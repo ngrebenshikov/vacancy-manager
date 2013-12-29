@@ -101,7 +101,6 @@ Ext.define('VM.view.Applicant.CenterPanel', {
        },
        { xtype: 'commentsList',
            region: 'center',
-           autoSizeColumns: true,
            autoHeight: true,
            title: 'Комментарии',
            columns: [
@@ -125,6 +124,18 @@ Ext.define('VM.view.Applicant.CenterPanel', {
             },
 
          ],
+           bbar: [
+            {
+                text: 'Новый комментарий',
+                name: 'btnewConsComments',
+                id: 'newConsComments',
+                handler: function () {
+                    var cons = Ext.getCmp('applicantConsiderationsGrid').getView().getSelectionModel().getSelection()[0];
+                    if (cons != undefined)
+                    { var consCreate = Ext.create('VM.view.Comments.Add').show(); }
+                }
+            }
+           ],
            width: 300,
            height: 375
        }
@@ -133,9 +144,55 @@ Ext.define('VM.view.Applicant.CenterPanel', {
     },
     { title: 'Комментарии',
         id: 'ApplicantCommentsTab',
-        layout: 'fit',
+        layout: 'anchor',
         items: [
-        { xtype: 'appCommentsList' }
+        { xtype: 'appCommentsList',
+            anchor: '100% 70%'
+        },
+        {
+            xtype: 'panel',
+            anchor: '98% 30%',
+            padding: '5 5 5 5',
+            border: false,
+            layout: {
+                type: 'hbox',
+                align: 'stretch'
+            },
+            style: 'background-color: #fff;',
+            items: [{
+                xtype: 'htmleditor',
+                enableAlignments: true,
+                enableColors: true,
+                enableFont: true,
+                enableFontSize: true,
+                enableFormat: true,
+                enableLinks: true,
+                enableLists: true,
+                enableSourceEdit: true,
+                fieldLabel: 'Комментарий',
+                flex: 1,
+                id: 'txtareaConsiderationComment',
+                name: 'ConsiderationComment',
+                allowBlank: true
+            }, {
+                xtype: 'panel',
+                width: 100,
+                border: false,
+                items: [
+                          {
+                              xtype: 'button',
+                              text: 'Добавить',
+                              margin: '5',
+                              action: 'addComment'
+                          },
+                          {
+                              xtype: 'button',
+                              text: 'Очистить',
+                              action: 'clearCommentArea',
+                              margin: '5'
+                          }]
+            }]
+        }
       ]
 
     },

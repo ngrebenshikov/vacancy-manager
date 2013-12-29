@@ -20,6 +20,7 @@
                     }, {
                         sortable: false,
                         width: 130,
+                        align: 'center',
                         menuDisabled: true,
                         xtype: 'templatecolumn',
                         tdCls: 'wrap-text',
@@ -30,8 +31,7 @@
                     }],
             viewConfig: {
               loadingText: 'Загрузка сообщений...',
-              layout: 'fit',
-              autoSizeColumns: true
+              layout: 'fit'
           },
 
           bbar: [{

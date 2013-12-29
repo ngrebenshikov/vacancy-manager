@@ -32,19 +32,27 @@
                     style: 'background-color: #fff;',
                     items: [
                  {
-                     xtype: 'textareafield',
-                     fieldLabel: 'Описание',
+                     xtype: 'htmleditor',
+                     enableAlignments: true,
+                     enableColors: true,
+                     enableFont: true,
+                     enableFontSize: true,
+                     enableFormat: true,
+                     enableLinks: true,
+                     enableLists: true,
+                     enableSourceEdit: true,
+                     fieldLabel: 'Комментарий',
                      flex: 1,
-                     id: 'txtareacommentBody',
+                     id: 'consCommentBody',
                      name: 'Body',
-                     allowBlank: false
+                     allowBlank: true
                  }]
                 }
            ]
             },
              this.buttons = [{
                  text: 'Сохранить',
-                 action: 'addComment'
+                 action: 'addConsComment'
              }, {
                  text: 'Отмена',
                  scope: this,
