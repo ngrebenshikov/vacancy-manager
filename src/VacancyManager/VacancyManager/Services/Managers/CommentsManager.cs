@@ -18,7 +18,7 @@ namespace VacancyManager.Services.Managers
     internal static IEnumerable<Comment> GetAppComments(int AppId)
     {
         VacancyContext _db = new VacancyContext();
-        return _db.Commentaries.Where(v => v.Consideration.ApplicantID == AppId).ToList();
+        return _db.Commentaries.Where(v => v.Consideration.ApplicantID == AppId || v.ApplicantID == AppId).ToList();
     }
 
     internal static Comment GetComment(int Id)
@@ -27,24 +27,28 @@ namespace VacancyManager.Services.Managers
       return _db.Commentaries.Where(v => v.CommentID == Id).SingleOrDefault();
     }
 
-    internal static IEnumerable<Comment> CreateComment(int considerationId, int? userId, string body, string commenterName)
+    internal static Comment CreateComment(int? considerationId, int? userId, int? appId,  string body, string commenterName)
     {
       VacancyContext _db = new VacancyContext();
 
-      var NewComment = new List<Comment> {
+      if (considerationId == 0)
+          considerationId = null;
+
+      var NewComment =
                 new Comment
             {
                 ConsiderationID = considerationId,
+                ApplicantID = appId,
                 Body = body,
                 CreationDate = DateTime.Now,
                 UserID = userId,
                 CommenterName = commenterName
-            }};
+            };
 
-      _db.Commentaries.Add(NewComment.First());
+      _db.Commentaries.Add(NewComment);
       _db.SaveChanges();
 
-      return NewComment.ToList();
+      return NewComment;
     }
 
     internal static void UpdateComment(int commentId, string body)

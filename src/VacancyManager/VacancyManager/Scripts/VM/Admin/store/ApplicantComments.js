@@ -9,13 +9,23 @@
         type: 'ajax',
         api:
       {
-          read: '/Comments/LoadAppComments'
+          read: '/Comments/LoadAppComments',
+          create: '/Comments/Create'
       },
         reader:
       {
           type: 'json',
-          root: 'applicantcomments',
+          root: 'comments',
           successProperty: 'success'
+      },
+      writer: {
+          type: 'json',
+          encode: false,
+          listful: true,
+          writeAllFields: true,
+          getRecordData: function (record) {
+              return { 'comments': Ext.JSON.encode(record.data) };
+          }
       }
     },
 

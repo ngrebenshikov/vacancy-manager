@@ -48,9 +48,18 @@
             width: 430,
             fieldLabel: Strings.Subject
         }, {
+            xtype: 'htmleditor',
+            id: 'txtNewMailMessage',
+            enableAlignments: true,
+            enableColors: true,
+            enableFont: true,
+            enableFontSize: true,
+            enableFormat: true,
+            enableLinks: true,
+            enableLists: true,
+            enableSourceEdit: true,
             xtype: 'textareafield',
             fieldLabel: 'Сообщение',
-            id: 'txtNewMailMessage',
             height: 100,
             width: 430
         }, {

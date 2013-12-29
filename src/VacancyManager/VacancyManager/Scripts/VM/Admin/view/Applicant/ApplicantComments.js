@@ -4,7 +4,6 @@
     hideHeaders: true,
     store: 'ApplicantComments',
     id: 'appsCommentsList',
-    autoSizeColumns: true,
     region: 'center',
     layout: 'fit',
     forceFit: true,
@@ -14,7 +13,7 @@
   	            flex: 2,
   	            sortable: false,
   	            menuDisabled: true,
-   	            dataIndex: 'Body',
+  	            dataIndex: 'Body',
   	            tdCls: 'wrap-text'
   	        },
             {
@@ -25,10 +24,10 @@
                 tdCls: 'wrap-text',
                 tpl:
                     new Ext.XTemplate(
-                       '<b>{[Ext.Date.format(values.CreationDate, "d.m.Y")]} <br> от {CommentatorName} <br><br> Вакансия: {VacancyName} </b>'
+                       '<b>{[Ext.Date.format(values.CreationDate, "d.m.Y")]} <br> от {CommentatorName} <br> Вакансия: {VacancyName} </b>'
 
                 )
-           }
+            }
     ]
 });
 

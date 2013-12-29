@@ -74,8 +74,10 @@ namespace VacancyManager.Controllers
             var curResumeReqsStacks = (from w in curResumeReqs
                                        join v in ReqsWStacks on w.RequirementId equals v.ReqId
                                        where w.IsChecked == true
-                                       group new { v.ReqName, w.Comment } by v.ReqStackName into newGroup
+                                       orderby v.ReqStackName descending
+                                       group new { v.ReqName, w.Comment } by v.ReqStackName into newGroup                                                                           
                                        select newGroup
+
             );
 
             foreach (var nameGroup in curResumeReqsStacks)

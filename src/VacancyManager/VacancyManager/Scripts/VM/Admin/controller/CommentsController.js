@@ -6,9 +6,6 @@
 
         init: function () {
             this.control({
-                'button[action = addComment]': {
-                    click: this.addComment
-                },
 
                 'button[action = updateCommentsList]': {
                     click: this.updateCommentsList
@@ -16,13 +13,17 @@
 
                 'button[action = clearCommentArea]': {
                     click: this.clearCommentArea
+                },
+
+                'button[action = addComment]': {
+                    click: this.addComment
                 }
             });
         },
 
+        
         clearCommentArea: function (button) {
             Ext.getCmp('txtareaConsiderationComment').setValue('');
-            console.log(Ext.getCmp('gridcomments'));
         },
 
         addComment: function (button) {
@@ -31,12 +32,13 @@
                 considerationId = commentsStore.consideration.getId(),
             newComment = Ext.create('VM.model.Comment', {
                 Body: newComment.getValue(),
+                ApplicantId : commentsStore.consideration.get('ApplicantID'),
                 CreationDate: (Ext.Date.format(new Date(), 'd.m.Y')),
-                ConsiderationID: commentsStore.consideration.getId()
+                ConsiderationID: considerationId
+               
             });
 
             commentsStore.insert(0, newComment);
-            commentsStore.load({ params: { "considerationId": considerationId} });
         },
 
         updateCommentsList: function (button) {

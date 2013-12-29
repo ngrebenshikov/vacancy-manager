@@ -60,10 +60,10 @@ Ext.define('VM.searchApplicantGrid', {
 
         var searchAppGrid = this;
 
-        searchAppGrid.bbar = [{
+        searchAppGrid.fbar = [{
             xtype: 'panel',
             width: 550,
-            border: true,
+            border: false,
             items: [
                           { xtype: 'panel',
                               width: 500,
@@ -77,8 +77,6 @@ Ext.define('VM.searchApplicantGrid', {
                                         width: 485,
                                         id: 'searchFullName',
                                         fieldLabel: 'ФИО',
-                                        margin: 2,
-
                                         onChange: function () {
                                             searchAppGrid.filterApplicants();
                                         },
@@ -103,7 +101,6 @@ Ext.define('VM.searchApplicantGrid', {
                                         id: 'searchReqs',
                                         width: 420,
                                         emptyText: 'Выберите требования...',
-                                        margin: 2,
                                         onTriggerClick: function (e) {
                                             me = this;
                                             searchAppGrid.appSearchReqs = [];
@@ -132,7 +129,6 @@ Ext.define('VM.searchApplicantGrid', {
                                         emptyText: 'Выберите вакансии...',
                                         triggerCls: 'x-form-clear-trigger',
                                         id: 'searchVacs',
-                                        margin: 2,
                                         onTriggerClick: function (e) {
                                             me = this;
                                             searchAppGrid.appSearchVacs = [];
@@ -153,7 +149,6 @@ Ext.define('VM.searchApplicantGrid', {
                               border: false,
                               id: 'searchEmployed',
                               enableKeyEvents: true,
-                              padding: '10 0 15 2',
                               items: [{
                                   xtype: 'combobox',
                                   fieldLabel: 'Трудоустройство',

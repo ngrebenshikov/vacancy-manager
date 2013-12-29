@@ -276,6 +276,10 @@
     <Compile Include="Migrations\201312260317246_Comment_ConsideratioID_Nullable.Designer.cs">
       <DependentUpon>201312260317246_Comment_ConsideratioID_Nullable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201312290915321_ApplicantID_Added.cs" />
+    <Compile Include="Migrations\201312290915321_ApplicantID_Added.Designer.cs">
+      <DependentUpon>201312290915321_ApplicantID_Added.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\Applicant.cs" />

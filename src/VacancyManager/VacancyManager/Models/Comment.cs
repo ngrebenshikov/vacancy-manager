@@ -8,7 +8,7 @@ namespace VacancyManager.Models
     public int? UserID { get; set; }
     public int? ConsiderationID { get; set; }
     public DateTime CreationDate { get; set; }
-
+    public int? ApplicantID { get; set; }
     public string Body { get; set; }
     public string CommenterName { get; set; }
 
