@@ -15,12 +15,12 @@
 
     title: Strings.ApplicantEdit,
     height: 450,
-    width: 650,
+    width: 700,
     autoShow: true,
     maximizable: true,
     modal: true,
     layout: 'border',
-    resizable: false,
+    resizable: true,
     initComponent: function () {
         this.items =
         [{

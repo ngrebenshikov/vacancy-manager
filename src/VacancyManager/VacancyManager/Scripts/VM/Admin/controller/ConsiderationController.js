@@ -81,7 +81,6 @@ Ext.define('VM.controller.ConsiderationController', {
             considerationStore = this.getConsiderationStore();
         vacancyGrid.getSelectionModel().select(index);
         considerationStore.curConsideration = record;
-        console.log(considerationStore.curConsideration);
     },
 
     AddConsideration: function (button) {

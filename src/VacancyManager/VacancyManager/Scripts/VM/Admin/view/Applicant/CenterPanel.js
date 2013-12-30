@@ -171,8 +171,8 @@ Ext.define('VM.view.Applicant.CenterPanel', {
                 enableSourceEdit: true,
                 fieldLabel: 'Комментарий',
                 flex: 1,
-                id: 'txtareaConsiderationComment',
-                name: 'ConsiderationComment',
+                id: 'newAppCommnent',
+                name: 'newAppCommnent',
                 allowBlank: true
             }, {
                 xtype: 'panel',
@@ -183,7 +183,7 @@ Ext.define('VM.view.Applicant.CenterPanel', {
                               xtype: 'button',
                               text: 'Добавить',
                               margin: '5',
-                              action: 'addComment'
+                              action: 'addAppComment'
                           },
                           {
                               xtype: 'button',
