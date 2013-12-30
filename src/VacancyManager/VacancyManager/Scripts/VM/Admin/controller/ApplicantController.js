@@ -13,7 +13,7 @@
                     { itemdblclick: this.EditApplicantShowForm },
                 'applicantConsiderationsList':
                     { itemclick: this.GetComments },
-                'button[action=addAppComments]':
+                'button[action=addAppComment]':
                     { click: this.addAppComment },
                 // Открыть форму "Создать"
                 'button[action=CreateApplicantShowForm]':

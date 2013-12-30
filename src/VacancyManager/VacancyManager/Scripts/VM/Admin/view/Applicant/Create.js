@@ -19,7 +19,7 @@
     autoShow: true,
     modal: true,
     layout: 'border',
-    resizable: false,
+    resizable: true,
     initComponent: function () {
         this.items =
         [{
