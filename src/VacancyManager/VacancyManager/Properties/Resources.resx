@@ -360,4 +360,10 @@
   <data name="MailMessages" xml:space="preserve">
     <value>Сообщения</value>
   </data>
+  <data name="Position_en" xml:space="preserve">
+    <value>Position</value>
+  </data>
+  <data name="Position_ru" xml:space="preserve">
+    <value>Должность</value>
+  </data>
 </root>

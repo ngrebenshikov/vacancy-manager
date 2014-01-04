@@ -62,12 +62,12 @@ namespace VacancyManager.Controllers
                                {
                                    ApplicantID = appcons.ApplicantID,
                                    ConsiderationID = appcons.ConsiderationID,
-                                   VacancyTitle = appcons.Vacancy.Title
+                                   Vacancy = appcons.Vacancy.Title
                                }).ToList();
             return Json(new
             {
                 success = true,
-                data = AppConsList
+                considerations = AppConsList
             }, JsonRequestBehavior.AllowGet);
         }
 

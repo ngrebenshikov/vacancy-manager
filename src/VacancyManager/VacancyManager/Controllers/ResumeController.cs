@@ -51,6 +51,7 @@ namespace VacancyManager.Controllers
             document.Open();
             document.Add(imgLogo);
             document.Add(new Paragraph("\n\n\n"));
+
             BaseFont fnt = BaseFont.CreateFont(@"C:\Windows\Fonts\Arial.ttf", Encoding.GetEncoding(1251).BodyName, true);
             var titleFont = new Font(fnt, 18, Font.BOLD);
             var FioFont = new Font(fnt, 16, Font.BOLD);

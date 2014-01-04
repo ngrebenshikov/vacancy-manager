@@ -1744,6 +1744,7 @@
     <Content Include="Scripts\VM\Admin\view\vacancy\List.js" />
     <Content Include="Scripts\VM\Admin\view\Roles\Create.js" />
     <Content Include="Scripts\VM\Admin\view\Roles\List.js" />
+    <Content Include="Scripts\VM\Admin\view\vacancy\ListMin.js" />
     <Content Include="Scripts\VM\Admin\view\vacancy\VacancyRequirementsList.js" />
     <Content Include="Views\Home\Index.cshtml">
       <SubType>Code</SubType>

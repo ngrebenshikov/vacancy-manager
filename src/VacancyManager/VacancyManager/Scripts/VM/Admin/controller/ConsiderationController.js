@@ -11,27 +11,27 @@ Ext.define('VM.controller.ConsiderationController', {
 
     init: function () {
         this.control({
-                    'considerationList dataview': {
-                        itemclick: this.itemClick,
-                        itemdblclick: this.loadComments
-                    },
+            'considerationList dataview': {
+                itemclick: this.itemClick,
+                itemdblclick: this.loadComments
+            },
 
-                    'button[action = deleteConsideration]': {
-                        click: this.deleteConsideration
-                    },
-                    'button[action = loadBlankConsideration]': {
-                        click: this.loadBlankConsideration
-                    },
-                    'button[action = AddConsideration]': {
-                        click: this.AddConsideration
-                    },
-                    'button[action = loadComments]': {
-                        click: this.loadComments
-                    },
-                    'button[action = loadMessages]': {
-                        click: this.loadMessages
-                    }
-                });
+            'button[action = deleteConsideration]': {
+                click: this.deleteConsideration
+            },
+            'button[action = loadBlankConsideration]': {
+                click: this.loadBlankConsideration
+            },
+            'button[action = AddConsideration]': {
+                click: this.AddConsideration
+            },
+            'button[action = loadComments]': {
+                click: this.loadComments
+            },
+            'button[action = loadMessages]': {
+                click: this.loadMessages
+            }
+        });
 
     },
 

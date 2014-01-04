@@ -97,7 +97,6 @@ namespace VacancyManager.Controllers
                 {
                     var NewConsideration = jss.Deserialize<dynamic>(data[i]);
 
-
                     CreatedConsideration = ConsiderationsManager.CreateConsideration(Convert.ToInt32(NewConsideration["VacancyID"]),
                                                                                       Convert.ToInt32(NewConsideration["ApplicantID"])
                                                                                      );
@@ -106,6 +105,7 @@ namespace VacancyManager.Controllers
                     CreationSuccess = true;
                 }
             }
+
             var ConsiderationsList = ConsiderationsManager.GetConsiderationsByIds(CreatedConsId);
             var NewConsiderations = (from cons in ConsiderationsList
                                      select new
