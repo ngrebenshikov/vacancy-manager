@@ -4,7 +4,7 @@
         models: ['ApplicantModel', 'ApplicantRequirements', 'ApplicantConsiderations', 'Comment'],
         stores: ['Applicant', 'ApplicantRequirements', 'ApplicantConsiderations', 'Comments', 'ApplicantComments', 'ApplicantResumeGrid', 'ApplicantMessages'],
         views: ['Applicant.List', 'Applicant.Create', 'Applicant.Edit', 'Applicant.ApplicantConsiderations', 'Resume.Create',
-        'Comments.List', 'Applicant.ApplicantComments', 'Applicant.ApplicantMessagesList', 'Comments.Add'],
+        'Comments.List', 'Applicant.ApplicantComments', 'Applicant.ApplicantMessagesList', 'Comments.Add', 'vacancy.ListMin'],
 
         init: function () {
             this.control({
@@ -45,33 +45,81 @@
 
                 'button[action=addConsComment]':
                     { click: this.addConsComment },
-                    
+
+                'button[action=addAppCons]':
+                    { click: this.addAppCons }
             });
         },
 
-        addConsComment:  function (button) {
+        addAppCons: function (button) {
+            var appConsStore = this.getApplicantConsiderationsStore();
+            searchVacancyWin = Ext.widget('window', {
+                title: 'Выберите вакансии',
+                width: 400,
+                height: 400,
+                minHeight: 400,
+                layout: 'fit',
+                resizable: true,
+                modal: true,
+                buttonAlign: 'center',
+                items: [
+                 { xtype: 'vacancyListMin' }
+                ],
+                buttons:
+                [
+                    { text: 'Выбрать',
+                        handler: function (button) {
 
-         var consGrid = Ext.getCmp('applicantConsiderationsGrid');
+                            var vacancyGrid = button.up('window').down('grid');
+                            var grid = Ext.getCmp('ApplicantGrid'),
+                                appId = grid.getView().getSelectionModel().getSelection()[0].getId(),
+                                selectedVacancy = vacancyGrid.getSelectionModel().getSelection()[0],
+                                selectedVacancyId = selectedVacancy.getId();
 
-         if (consGrid != undefined)
-         {  
-            var commentsStore = this.getCommentsStore(),
+                            newAppConsideration = Ext.create('VM.model.ApplicantConsiderations', {
+                                VacancyID: selectedVacancyId,
+                                ApplicantID: appId
+                            });
+
+                            appConsStore.insert(0, newAppConsideration);
+                            button.up('window').close();
+                        }
+
+                    }, { text: 'Отмена',
+                         handler: function (button) {
+                            button.up('window').close();
+                        }
+                    }
+                ]
+            });
+
+            searchVacancyWin.show();
+
+        },
+
+        addConsComment: function (button) {
+
+            var consGrid = Ext.getCmp('applicantConsiderationsGrid');
+
+            if (consGrid != undefined) {
+                var commentsStore = this.getCommentsStore(),
                 newCommentBody = Ext.getCmp('consCommentBody').getValue();
 
-            var grid = Ext.getCmp('ApplicantGrid'),
+                var grid = Ext.getCmp('ApplicantGrid'),
                 appId = grid.getView().getSelectionModel().getSelection()[0].getId(),
                 consId = consGrid.getView().getSelectionModel().getSelection()[0].getId();
-   
-            newComment = Ext.create('VM.model.Comment', {
-                Body: newCommentBody,
-                CreationDate: (Ext.Date.format(new Date(), 'd.m.Y')),
-                ConsiderationID: consId,
-                ApplicantId: appId
-            });
-            button.up('window').close();
-            commentsStore.insert(0, newComment);
 
-           }
+                newComment = Ext.create('VM.model.Comment', {
+                    Body: newCommentBody,
+                    CreationDate: (Ext.Date.format(new Date(), 'd.m.Y')),
+                    ConsiderationID: consId,
+                    ApplicantId: appId
+                });
+
+                button.up('window').close();
+                commentsStore.insert(0, newComment);
+
+            }
         },
 
         addAppComment: function (button) {

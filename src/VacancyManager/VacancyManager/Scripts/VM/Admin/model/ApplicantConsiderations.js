@@ -11,7 +11,7 @@ Ext.define('VM.model.ApplicantConsiderations', {
                      name: 'ApplicantID',
                      type: 'int'
                  }, {
-                     name: 'VacancyTitle',
+                     name: 'Vacancy',
                      type: 'string'
                  }
 

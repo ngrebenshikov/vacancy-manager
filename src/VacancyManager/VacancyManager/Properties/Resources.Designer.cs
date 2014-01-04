@@ -321,13 +321,6 @@ namespace VacancyManager.Properties {
             }
         }
         
-        public static System.Drawing.Bitmap Image1 {
-            get {
-                object obj = ResourceManager.GetObject("Image1", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
         /// <summary>
         ///   Looks up a localized string similar to Входящие сообщения.
         /// </summary>
@@ -370,6 +363,24 @@ namespace VacancyManager.Properties {
         public static string msgRequirementStackNotSelected {
             get {
                 return ResourceManager.GetString("msgRequirementStackNotSelected", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Position.
+        /// </summary>
+        public static string Position_en {
+            get {
+                return ResourceManager.GetString("Position_en", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Должность.
+        /// </summary>
+        public static string Position_ru {
+            get {
+                return ResourceManager.GetString("Position_ru", resourceCulture);
             }
         }
         

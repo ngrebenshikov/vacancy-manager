@@ -176,7 +176,7 @@ Ext.define('VM.searchApplicantGrid', {
 
                                       }
                                   }
-                                  
+
                               }]
 
 
@@ -230,7 +230,9 @@ Ext.define('VM.searchApplicantGrid', {
             autoSave: false
         });
 
-        var smSearchVacancy = Ext.create('Ext.selection.CheckboxModel');
+        var smSearchVacancy = Ext.create('Ext.selection.CheckboxModel', {
+            checkOnly: true
+        });
 
         var searchVacancyGrid = Ext.create('Ext.grid.Panel', {
             height: 310,
@@ -256,7 +258,7 @@ Ext.define('VM.searchApplicantGrid', {
                 xtype: 'datecolumn',
                 format: 'd.m.Y',
                 menuDisabled: true
-            },
+            }
          ],
 
             bbar: ['Поиск: ',
@@ -344,7 +346,6 @@ Ext.define('VM.searchApplicantGrid', {
             title: 'Выберите вакансии',
             width: 400,
             height: 400,
-            closeAction: 'hide',
             minHeight: 400,
             layout: 'fit',
             resizable: true,
@@ -430,7 +431,10 @@ Ext.define('VM.searchApplicantGrid', {
 
         reqStore.load();
 
-        var sm = Ext.create('Ext.selection.CheckboxModel');
+
+        var sm = Ext.create('Ext.selection.CheckboxModel', {
+            checkOnly: true
+        });
 
         var reqGrid = Ext.create('Ext.grid.Panel', {
             height: 310,
@@ -501,7 +505,6 @@ Ext.define('VM.searchApplicantGrid', {
 
         reqWin = Ext.widget('window', {
             title: 'Выберите навыки',
-            closeAction: 'hide',
             width: 400,
             height: 400,
             minHeight: 400,

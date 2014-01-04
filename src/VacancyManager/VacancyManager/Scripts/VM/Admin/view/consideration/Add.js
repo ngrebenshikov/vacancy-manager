@@ -6,6 +6,7 @@ Ext.define('VM.view.consideration.Add', {
     height: 430,
     width: 575,
     modal: true,
+    layout: 'fit',
     buttonAlign: 'center',
     initComponent: function () {
      this.items =
@@ -14,14 +15,11 @@ Ext.define('VM.view.consideration.Add', {
             xtype: 'form',
             padding: '5 5 5 5',
             border: false,
+            layout: 'fit',
             style: 'background-color: #fff;',
             items:
             [
-             { xtype: 'searchApplicantGrid',
-                 viewconfig: {
-                     width: 550
-                 }
-             }
+             { xtype: 'searchApplicantGrid'}
             ]
         }
        ];
