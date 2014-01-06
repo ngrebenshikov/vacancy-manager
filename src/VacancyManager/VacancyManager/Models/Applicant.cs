@@ -12,6 +12,7 @@ namespace VacancyManager.Models
         public int ApplicantID { get; set; }
 
         public string FullName { get; set; }
+        public string FullNameEn { get; set; }
         public string ContactPhone { get; set; }
         public bool Employed { get; set; }
         [DataType(DataType.EmailAddress)]

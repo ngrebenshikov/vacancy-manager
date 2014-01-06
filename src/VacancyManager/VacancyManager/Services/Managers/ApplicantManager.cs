@@ -16,16 +16,17 @@ namespace VacancyManager.Services.Managers
       return obj;
     }
 
-    internal static List<Applicant> Create(string FullName, string contactPhone, string email, bool employed)
+    internal static List<Applicant> Create(string FullName, string FullNameEn, string contactPhone, string email, bool employed)
     {
       VacancyContext _db = new VacancyContext();
       var obj = new List<Applicant>();
       obj.Add(new Applicant
       {
         FullName = FullName,
+        FullNameEn = FullNameEn,
         ContactPhone = contactPhone,
         Email = email,
-        Employed = employed,
+        Employed = employed
       });
 
       _db.Applicants.Add(obj[0]);

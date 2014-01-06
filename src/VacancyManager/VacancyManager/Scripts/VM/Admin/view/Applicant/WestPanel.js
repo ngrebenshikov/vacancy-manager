@@ -72,7 +72,7 @@
             id: 'ApplicantEmployed',
             name: 'Employed',
             boxLabel: 'Трудоустроен',
-            checked: 'true',
+            checked: 'true'
 		}]
 	}]
 })          

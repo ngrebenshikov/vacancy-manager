@@ -5,8 +5,6 @@ using VacancyManager.Services.Managers;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Security;
-using System.Collections.Generic;
-
 
 
 namespace VacancyManager.Services

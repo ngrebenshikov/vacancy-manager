@@ -8,6 +8,7 @@ using System.Web.Script.Serialization;
 using VacancyManager.Services;
 using System.Web.Security;
 using System.IO;
+using VacancyManager.Properties;
 using System.Collections.Generic;
 using System.Globalization;
 using iTextSharp.text;
@@ -22,9 +23,9 @@ namespace VacancyManager.Controllers
     {
 
         [HttpGet]
-
         public ActionResult CreatePdfCopy(int? id)
         {
+            string resumeLanq = "";
 
             var curResume = ResumeManager.GetResume(id);
             Applicant appl = curResume.Applicant;
@@ -33,6 +34,9 @@ namespace VacancyManager.Controllers
             var writer = PdfWriter.GetInstance(document, output);
             var ReqStacks = RequirementsManager.GetAllRequirementStacks();
             var Reqs = RequirementsManager.GetRequirements();
+            resumeLanq = Helper.CheckLanq(curResume.Position);
+
+            Helper.PdfResumeHeaders curResumeHeaders = new Helper.PdfResumeHeaders(resumeLanq);
 
             var ReqsWStacks = (from req in Reqs
                                join v in ReqStacks on req.RequirementStackID equals v.RequirementStackID
@@ -63,20 +67,22 @@ namespace VacancyManager.Controllers
             var bodyFont = new Font(fnt, 11, Font.NORMAL);
             var bodyFontBold = new Font(fnt, 11, Font.BOLD);
             var bodyFontSmall = new Font(fnt, 10, Font.NORMAL);
-
-            document.Add(new Paragraph(appl.FullName, FioFont) { SpacingAfter = 5 });
-            document.Add(new Paragraph("Должность\n", subTitleFont) { SpacingAfter = 5 });
+            if (resumeLanq == "ru")
+                document.Add(new Paragraph(appl.FullName, FioFont) { SpacingAfter = 5 });
+            else
+                document.Add(new Paragraph(appl.FullNameEn, FioFont) { SpacingAfter = 5 });
+            document.Add(new Paragraph(curResumeHeaders.Position + "\n", subTitleFont) { SpacingAfter = 5 });
             document.Add(new Paragraph(curResume.Position + "\n", baseFont) { SpacingAfter = 5 });
-            document.Add(new Paragraph("Краткая информация\n", subTitleFont) { SpacingAfter = 5 });
+            document.Add(new Paragraph(curResumeHeaders.Summary + "\n", subTitleFont) { SpacingAfter = 5 });
             document.Add(new Paragraph(curResume.Summary + "\n", baseFont) { SpacingAfter = 5 });
-            document.Add(new Paragraph("Компетенция\n", subTitleFont) { SpacingAfter = 5 });
-            document.Add(new Paragraph("Языки программирования, технологии ,стандарты, среды,  библиотеки\n", subTitleFont) { SpacingAfter = 5 });
+            document.Add(new Paragraph(curResumeHeaders.Competency + "\n", subTitleFont) { SpacingAfter = 5 });
+            document.Add(new Paragraph(curResumeHeaders.Technologies + "\n", subTitleFont) { SpacingAfter = 5 });
 
             var curResumeReqsStacks = (from w in curResumeReqs
                                        join v in ReqsWStacks on w.RequirementId equals v.ReqId
                                        where w.IsChecked == true
                                        orderby v.ReqStackName descending
-                                       group new { v.ReqName, w.Comment } by v.ReqStackName into newGroup                                                                           
+                                       group new { v.ReqName, w.Comment } by v.ReqStackName into newGroup
                                        select newGroup
 
             );
@@ -138,7 +144,7 @@ namespace VacancyManager.Controllers
 
             if (resumeProfExps.Count() != 0)
             {
-                document.Add(new Paragraph("Профессиональный опыт\n", subTitleFont) { SpacingAfter = 5 });
+                document.Add(new Paragraph(curResumeHeaders.ProfExp + "\n", subTitleFont) { SpacingAfter = 5 });
                 var profexpTable = new PdfPTable(2);
                 profexpTable.WidthPercentage = 100;
                 profexpTable.HorizontalAlignment = 0;
@@ -156,8 +162,7 @@ namespace VacancyManager.Controllers
                         string JPeriod = "";
                         string ExpreqAll = "";
                         int expreqC = 0;
-                        CultureInfo ci = new CultureInfo("ru-ru");
-                        DateTimeFormatInfo dtfi = ci.DateTimeFormat;
+                        DateTimeFormatInfo dtfi = curResumeHeaders.ResumeCi.DateTimeFormat;
                         var ExpReqs = resumeProfExp.ExpReqs.ToArray<string>();
                         StartJob = dtfi.GetMonthName(resumeProfExp.StartDate.Month) + " " + resumeProfExp.StartDate.Year;
                         expreqC = ExpReqs.Count();
@@ -174,7 +179,7 @@ namespace VacancyManager.Controllers
                         }
 
                         if (resumeProfExp.FinishDate == null)
-                            EndJob = "настоящее время";
+                            EndJob = curResumeHeaders.ToNow;
                         else
                         {
                             string strMonthName = dtfi.GetMonthName(resumeProfExp.FinishDate.Value.Month);
@@ -184,13 +189,13 @@ namespace VacancyManager.Controllers
                         JPeriod = StartJob + " - " + EndJob;
                         profexpTable.AddCell(new Phrase(JPeriod, boldTableFont));
                         profexpTable.AddCell(new Phrase(resumeProfExp.Job, bodyFontBold));
-                        profexpTable.AddCell(new Phrase("Проект:", bodyFontSmall));
+                        profexpTable.AddCell(new Phrase(curResumeHeaders.ProfExpProject + ":", bodyFontSmall));
                         profexpTable.AddCell(new Phrase(resumeProfExp.Project, bodyFontSmall));
-                        profexpTable.AddCell(new Phrase("Должность:", bodyFontSmall));
+                        profexpTable.AddCell(new Phrase(curResumeHeaders.Position + ":", bodyFontSmall));
                         profexpTable.AddCell(new Phrase(resumeProfExp.Position, bodyFontSmall));
-                        profexpTable.AddCell(new Phrase("Исполняемые обязанности:", bodyFontSmall));
+                        profexpTable.AddCell(new Phrase(curResumeHeaders.Duties + ":", bodyFontSmall));
                         profexpTable.AddCell(new Phrase(resumeProfExp.Duties, bodyFontSmall));
-                        profexpTable.AddCell(new Phrase("Используемые технологии :", bodyFontSmall));
+                        profexpTable.AddCell(new Phrase(curResumeHeaders.ExperienceRequirements + ":", bodyFontSmall));
                         profexpTable.AddCell(new Phrase(ExpreqAll, bodyFontSmall));
                         profexpTable.AddCell(new Phrase(" "));
                         profexpTable.AddCell(new Phrase(" "));
@@ -206,7 +211,7 @@ namespace VacancyManager.Controllers
 
             if (resumeEduExps != null)
             {
-                document.Add(new Paragraph("Образование\n", subTitleFont) { SpacingAfter = 5 });
+                document.Add(new Paragraph(curResumeHeaders.Education + "\n", subTitleFont) { SpacingAfter = 5 });
                 foreach (var resumeEduExp in resumeEduExps)
                 {
                     string EduPeriod = "";
@@ -214,9 +219,9 @@ namespace VacancyManager.Controllers
                     string Edu = "";
 
                     if (resumeEduExp.FinishDate == null)
-                       EduEndDate = "настоящее время";
-                    else 
-                       EduEndDate = resumeEduExp.FinishDate.Value.Year.ToString();
+                        EduEndDate = curResumeHeaders.ToNow;
+                    else
+                        EduEndDate = resumeEduExp.FinishDate.Value.Year.ToString();
                     EduPeriod = resumeEduExp.StartDate.Year + " - " + EduEndDate + ".";
 
                     Edu = EduPeriod + resumeEduExp.Job + "." + resumeEduExp.Project + "." + resumeEduExp.Position + ".";
@@ -228,13 +233,13 @@ namespace VacancyManager.Controllers
 
             if ((curResume.Training != "") && (curResume.Training != null))
             {
-                document.Add(new Paragraph("Сертификаты и тренинги\n", subTitleFont) { SpacingAfter = 5 });
+                document.Add(new Paragraph(curResumeHeaders.CertsTraining + "\n", subTitleFont) { SpacingAfter = 5 });
                 document.Add(new Paragraph(curResume.Training, bodyFont) { SpacingAfter = 5 });
             }
 
             if ((curResume.AdditionalInformation != "") && (curResume.AdditionalInformation != null))
             {
-                document.Add(new Paragraph("Дополнительное образование\n", subTitleFont) { SpacingAfter = 5 });
+                document.Add(new Paragraph(curResumeHeaders.AdditionalInformation + "\n", subTitleFont) { SpacingAfter = 5 });
                 document.Add(new Paragraph(curResume.AdditionalInformation, bodyFont) { SpacingAfter = 5 });
             }
 

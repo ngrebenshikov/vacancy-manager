@@ -280,6 +280,10 @@
     <Compile Include="Migrations\201312290915321_ApplicantID_Added.Designer.cs">
       <DependentUpon>201312290915321_ApplicantID_Added.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201401061123300_Appllicant_FullnameEnAdded.cs" />
+    <Compile Include="Migrations\201401061123300_Appllicant_FullnameEnAdded.Designer.cs">
+      <DependentUpon>201401061123300_Appllicant_FullnameEnAdded.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\Applicant.cs" />
@@ -309,6 +313,11 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\ResourceEn.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ResourceEn.resx</DependentUpon>
     </Compile>
     <Compile Include="Services\AuthorizeErrorAttribute.cs" />
     <Compile Include="Services\EMailSender.cs" />
@@ -1876,6 +1885,10 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\ResourceEn.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ResourceEn.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Templates.resx">
       <Generator>ResXFileCodeGenerator</Generator>
