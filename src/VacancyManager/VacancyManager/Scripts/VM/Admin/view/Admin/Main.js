@@ -107,11 +107,10 @@
             {
                 tabConfig: {
                     title: Strings.MailMessages,
-                    id: 'MessageTab',
-                    icon: '/Content/icons/email.png'
+                    icon: '/Content/icons/email.png',
+                    id: 'messagesTab'
                 },
                 xtype: 'panel',
-                //autoScroll: true,
                 layout: 'fit',
                 items:
                 [

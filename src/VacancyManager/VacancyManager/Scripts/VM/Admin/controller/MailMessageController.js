@@ -7,9 +7,38 @@
                 'MailMessage.AttachmentList', 'Applicant.ApplicantMessages', 'Applicant.ApplicantMessagesList', 'MailMessage.ConsiderationAssignList'],
 
         init: function () {
-            var defaultmessagetype = 1;
             var mailsStore = Ext.StoreManager.lookup('MailMessage');
-            mailsStore.load({ params: { "messagetype": defaultmessagetype} });
+            mailsStore.load({ params: { "messagetype": mailsStore.currentMessageType} });
+            var task = {
+                run: function () {
+                    Ext.Ajax.request
+                ({
+                    url: '../../VMMailMessage/GetIncomingMessages',
+                    success: function (result, request) {
+                        var JsonResult = Ext.JSON.decode(result.responseText),
+                            appComsTab = Ext.getCmp('messagesTab');
+                        if (appComsTab != undefined) {
+                            if (JsonResult.total != 0) {
+                                appComsTab.setText(Strings.MailMessages + ' (' + JsonResult.total + ')');
+                                if (mailsStore.nonReadCount != JsonResult.total) {
+                                    if ((mailsStore.currentMessageType == 1) && (mailsStore.nonReadCount < JsonResult.total))
+                                        mailsStore.load({ params: { "messagetype": mailsStore.currentMessageType} });
+                                    mailsStore.nonReadCount = JsonResult.total;
+                                }
+                            }
+                            else {
+                                appComsTab.setText(Strings.MailMessages);
+                            }
+                        }
+                    }
+                });
+
+                },
+                interval: 200000 //1 second
+            }
+
+            var runner = new Ext.util.TaskRunner();
+            runner.start(task);
 
             this.control({
                 // Создать
@@ -77,7 +106,7 @@
                         ConsiderationId: consId,
                         Vacancy_C: cons.get('Vacancy')
                     });
-                  }
+                }
                 else
                     alert('Выберите вакансию!!!');
             }

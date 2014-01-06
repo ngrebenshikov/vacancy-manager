@@ -334,6 +334,7 @@
     <Compile Include="Services\Managers\VMMailMessageManager.cs" />
     <Compile Include="Services\MultipartParser.cs" />
     <Compile Include="Services\ResourceSerialiser.cs" />
+    <Compile Include="Services\Scheduler.cs" />
     <Compile Include="Services\SharedCode.cs" />
     <Compile Include="Services\VacancyManagerMembershipProvider.cs" />
     <Compile Include="Services\VacancyManagerRoleProvider.cs" />

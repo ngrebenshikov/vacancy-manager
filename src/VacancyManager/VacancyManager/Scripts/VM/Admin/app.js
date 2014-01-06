@@ -144,6 +144,8 @@ function onLoginButtonClick(login_form, login_window)
   );
 }
 
+
+
 function CreateLoginWindow()
 {
   Login_window_Created = true;
@@ -171,7 +173,7 @@ function CreateLoginWindow()
                 {
                   if (e.getKey() == e.ENTER)
                   {
-                    onLoginButtonClick(login_form, login_window);
+                      onLoginButtonClick(login_form, login_window);
                   }
                 }
               }
