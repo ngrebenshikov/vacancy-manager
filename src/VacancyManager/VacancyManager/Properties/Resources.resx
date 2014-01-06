@@ -366,4 +366,35 @@
   <data name="Position_ru" xml:space="preserve">
     <value>Должность</value>
   </data>
+  <data name="Competency" xml:space="preserve">
+    <value>Компетенция</value>
+  </data>
+  <data name="Education" xml:space="preserve">
+    <value>Образование</value>
+  </data>
+  <data name="ProfExp" xml:space="preserve">
+    <value>Профессиональный опыт</value>
+  </data>
+  <data name="ProfExpProject" xml:space="preserve">
+    <value>Проект</value>
+  </data>
+  <data name="Summary" xml:space="preserve">
+    <value>Краткая информация</value>
+    <comment>Резюме</comment>
+  </data>
+  <data name="Technologies" xml:space="preserve">
+    <value>Языки программирования, технологии ,стандарты, среды,  библиотеки</value>
+  </data>
+  <data name="AdditionalInformation" xml:space="preserve">
+    <value>Дополнительное образование</value>
+  </data>
+  <data name="CertsTraining" xml:space="preserve">
+    <value>Сертификаты и тренинги</value>
+  </data>
+  <data name="Duties" xml:space="preserve">
+    <value>Исполняемые обязанности</value>
+  </data>
+  <data name="ExperienceRequirements" xml:space="preserve">
+    <value>Используемые технологии</value>
+  </data>
 </root>

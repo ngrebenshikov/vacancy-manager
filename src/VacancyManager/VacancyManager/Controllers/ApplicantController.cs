@@ -97,6 +97,7 @@ namespace VacancyManager.Controllers
                 {
                     ApplicantID = applicant.ApplicantID,
                     FullName = applicant.FullName,
+                    FullNameEn = applicant.FullName,
                     ContactPhone = applicant.ContactPhone,
                     Employed = applicant.Employed,
                     Email = applicant.Email,
@@ -157,7 +158,7 @@ namespace VacancyManager.Controllers
             if (data != null)
             {
                 var obj = jss.Deserialize<dynamic>(data);
-                created = ApplicantManager.Create(obj["FullName"].ToString(), obj["ContactPhone"].ToString(), obj["Email"].ToString(), obj["Employed"]);
+                created = ApplicantManager.Create(obj["FullName"].ToString(), obj["FullNameEn"].ToString(), obj["ContactPhone"].ToString(), obj["Email"].ToString(), obj["Employed"]);
                 resultMessage = "Соискатель успешно добавлен";
                 success = true;
             }

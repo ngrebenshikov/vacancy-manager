@@ -70,6 +70,15 @@ namespace VacancyManager.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Дополнительное образование.
+        /// </summary>
+        public static string AdditionalInformation {
+            get {
+                return ResourceManager.GetString("AdditionalInformation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Добавить требование.
         /// </summary>
         public static string AddRequirementToStack {
@@ -232,6 +241,24 @@ namespace VacancyManager.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Сертификаты и тренинги.
+        /// </summary>
+        public static string CertsTraining {
+            get {
+                return ResourceManager.GetString("CertsTraining", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Компетенция.
+        /// </summary>
+        public static string Competency {
+            get {
+                return ResourceManager.GetString("Competency", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Конфигурация.
         /// </summary>
         public static string Conf {
@@ -304,11 +331,38 @@ namespace VacancyManager.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Исполняемые обязанности.
+        /// </summary>
+        public static string Duties {
+            get {
+                return ResourceManager.GetString("Duties", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Изменение категории.
         /// </summary>
         public static string EditRequirementStackList {
             get {
                 return ResourceManager.GetString("EditRequirementStackList", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Образование.
+        /// </summary>
+        public static string Education {
+            get {
+                return ResourceManager.GetString("Education", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Используемые технологии.
+        /// </summary>
+        public static string ExperienceRequirements {
+            get {
+                return ResourceManager.GetString("ExperienceRequirements", resourceCulture);
             }
         }
         
@@ -381,6 +435,24 @@ namespace VacancyManager.Properties {
         public static string Position_ru {
             get {
                 return ResourceManager.GetString("Position_ru", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Профессиональный опыт.
+        /// </summary>
+        public static string ProfExp {
+            get {
+                return ResourceManager.GetString("ProfExp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Проект.
+        /// </summary>
+        public static string ProfExpProject {
+            get {
+                return ResourceManager.GetString("ProfExpProject", resourceCulture);
             }
         }
         
@@ -471,6 +543,24 @@ namespace VacancyManager.Properties {
         public static string Subject {
             get {
                 return ResourceManager.GetString("Subject", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Краткая информация.
+        /// </summary>
+        public static string Summary {
+            get {
+                return ResourceManager.GetString("Summary", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Языки программирования, технологии ,стандарты, среды,  библиотеки.
+        /// </summary>
+        public static string Technologies {
+            get {
+                return ResourceManager.GetString("Technologies", resourceCulture);
             }
         }
         

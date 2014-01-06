@@ -48,7 +48,7 @@ namespace VacancyManager.Controllers
                 return Json(new
                 {
                     message = succesMessage,
-                    success = true
+                    success = success
                 },
           JsonRequestBehavior.AllowGet);
 

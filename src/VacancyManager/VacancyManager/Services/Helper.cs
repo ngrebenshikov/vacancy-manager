@@ -3,11 +3,85 @@ using System.Collections.Generic;
 using System.Linq;
 using System.ComponentModel;
 using System.Text.RegularExpressions;
+using VacancyManager.Properties;
+using System.Globalization;
 
 namespace VacancyManager.Services
 {
     internal static class Helper
     {
+        public class PdfResumeHeaders
+        {
+            public string Position { get; set; }
+            public string Summary { get; set; }
+            public string Competency { get; set; }
+            public string Technologies { get; set; }
+            public string ProfExp { get; set; }
+            public string ProfExpProject { get; set; }
+            public string Duties { get; set; }
+            public string ExperienceRequirements { get; set; }
+            public string Education { get; set; }
+            public string CertsTraining { get; set; }
+            public string ToNow { get; set; }
+            public string AppFIO { get; set; }
+            public string AdditionalInformation { get; set; }
+            public CultureInfo ResumeCi { get; set; }
+            public PdfResumeHeaders(string lanq)
+            {
+                if (lanq == "ru")
+                {
+                    Position = Resources.Position_ru;
+                    Summary = Resources.Summary;
+                    Competency = Resources.Competency;
+                    Technologies = Resources.Technologies;
+                    ProfExp = Resources.ProfExp;
+                    ProfExpProject = Resources.ProfExpProject;
+                    Duties = Resources.Duties;
+                    ExperienceRequirements = Resources.ExperienceRequirements;
+                    Education = Resources.Education;
+                    CertsTraining = Resources.CertsTraining;
+                    AdditionalInformation = Resources.AdditionalInformation;
+                    ResumeCi = new CultureInfo("ru-ru");
+                    ToNow = "настоящее время";
+                }
+                else if (lanq == "en")
+                {
+                    Position = ResourceEn.Position;
+                    Summary = ResourceEn.Summary;
+                    Competency = ResourceEn.Competency;
+                    Technologies = ResourceEn.Technologies;
+                    ProfExp = ResourceEn.ProfExp;
+                    ProfExpProject = ResourceEn.ProfExpProject;
+                    Duties = ResourceEn.Duties;
+                    ExperienceRequirements = ResourceEn.ExperienceRequirements;
+                    Education = ResourceEn.Education;
+                    CertsTraining = ResourceEn.CertsTraining;
+                    AdditionalInformation = ResourceEn.AdditionalInformation;
+                    ResumeCi = new CultureInfo("en-us");
+                    ToNow = "now";
+                }
+            }
+        }
+
+
+        public static string CheckLanq(string incText)
+        {
+            int Ru = 0, En = 0;
+            string line = incText;
+            for (int i = 0; i < line.Length; i++)
+            {
+                char c = line[i];
+                if ((c >= 'А') && (c <= 'Я'))
+                    Ru++;
+                else if ((c >= 'A') && (c <= 'Z')) En++;
+            }
+
+            if (Ru > En)
+                return "ru";
+            else
+                return "en";
+        }
+
         /// <summary>
         /// Возвращает имя картинки для иконки файла. Деление пока очень условное.
         /// </summary>
