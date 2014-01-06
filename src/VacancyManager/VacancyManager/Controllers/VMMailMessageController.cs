@@ -48,6 +48,22 @@ namespace VacancyManager.Controllers
             }, JsonRequestBehavior.AllowGet);
         }
 
+        [HttpGet]
+        public ActionResult GetIncomingMessages()
+        {
+            var list = VMMailMessageManager.GetList();
+            var res = (from apps in list
+                       where (apps.MessageCategory == 1) && (apps.IsRead == false)
+                       select apps
+                       );
+
+            return Json(new
+            {
+                success = true,
+                total = res.Count()
+            }, JsonRequestBehavior.AllowGet);         
+        }
+
         [HttpPost]
         public ActionResult SendVMMailMessage(string[] Emails, string Message, string subject, int consId)
         {
