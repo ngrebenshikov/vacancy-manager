@@ -2,11 +2,11 @@
     extend: 'Ext.grid.Panel',
     alias: 'widget.vacancyListMin',
     id: 'vacancyGridMin',
-    store: 'Vacancy',
+    store: 'VacancyAssign',
     forceFit: true,
     columns: [
               {
-                  dataIndex: 'Title',
+                  dataIndex: 'Vacancy',
                   text: 'Вакансия',
                   width: 180,
                   sortable: true,
@@ -24,8 +24,8 @@
 
              ],
     initComponent: function () {
-        var searchAppGrid = this;
-        searchAppGrid.fbar = ['Поиск: ',
+        var searchVacGrid = this;
+        searchVacGrid.fbar = ['Поиск: ',
             {
                 xtype: 'triggerfield',
                 width: 315,
@@ -34,10 +34,10 @@
 
                 onChange: function () {
                     me = this;
-                    var store = searchAppGrid.getStore();
+                    var store = searchVacGrid.getStore();
                     store.clearFilter();
                     var searchStore = store,
-                        fieldName = 'Title';
+                        fieldName = 'Vacancy';
 
                     var fieldValue = me.getValue();
 
@@ -50,13 +50,13 @@
                 },
 
                 onTriggerClick: function (e) {
-                    var store = searchAppGrid.getStore();
+                    var store = searchVacGrid.getStore();
                     store.clearFilter();
                     me.value = '';
 
                 }
             }],
-         searchAppGrid.callParent(arguments);
+         searchVacGrid.callParent(arguments);
     }
 
 

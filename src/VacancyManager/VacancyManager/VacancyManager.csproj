@@ -1676,6 +1676,8 @@
     <Content Include="Scripts\VM\Admin\model\ApplicantMessage.js" />
     <Content Include="Scripts\VM\Admin\model\ApplicantResumeGrid.js" />
     <Content Include="Scripts\VM\Admin\model\ConsiderationAssign.js" />
+    <Content Include="Scripts\VM\Admin\model\VacancyAssign.js" />
+    <Content Include="Scripts\VM\Admin\store\VacancyAssign.js" />
     <Content Include="Scripts\VM\Admin\model\MailMessage.js" />
     <Content Include="Scripts\VM\Admin\model\SearchApplicants.js" />
     <Content Include="Scripts\VM\Admin\searchApplicantGrid.js" />

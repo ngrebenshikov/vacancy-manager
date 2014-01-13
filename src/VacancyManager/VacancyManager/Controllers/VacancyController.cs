@@ -14,7 +14,32 @@ namespace VacancyManager.Controllers
     public class VacancyController : BaseController
     {
 
-        //
+        public JsonResult GetVacancyAssign(int appId)
+        {
+            var Considerations = ConsiderationsManager.GetApplicantConsiderations(appId);
+            var Vacancies = VacancyDbManager.AllVisibleVacancies();
+
+            var vacIds = (from cons in Considerations
+                       select cons.VacancyID).ToArray();
+
+            var VacanciesList = (from vacs in Vacancies
+                                 where !vacIds.Contains(vacs.VacancyID)
+                                 select new
+                                 {
+                                     VacancyID = vacs.VacancyID,
+                                     OpeningDate = vacs.OpeningDate.Value.Date.ToShortDateString(),
+                                     Vacancy = vacs.Title
+                                 }).ToList();
+            return Json(new
+            {
+                vacancyAssign = VacanciesList,
+                total = VacanciesList.Count,
+                success = true
+            },
+       JsonRequestBehavior.AllowGet);
+
+        }
+
         // GET: /Vacancy/Load
 
         [HttpGet]

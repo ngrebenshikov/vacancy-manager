@@ -2,7 +2,7 @@
     {
         extend: 'Ext.app.Controller',
         models: ['ApplicantModel', 'ApplicantRequirements', 'ApplicantConsiderations', 'Comment'],
-        stores: ['Applicant', 'ApplicantRequirements', 'ApplicantConsiderations', 'Comments', 'ApplicantComments', 'ApplicantResumeGrid', 'ApplicantMessages'],
+        stores: ['Applicant', 'ApplicantRequirements', 'VacancyAssign', 'ApplicantConsiderations', 'Comments', 'ApplicantComments', 'ApplicantResumeGrid', 'ApplicantMessages'],
         views: ['Applicant.List', 'Applicant.Create', 'Applicant.Edit', 'Applicant.ApplicantConsiderations', 'Resume.Create',
         'Comments.List', 'Applicant.ApplicantComments', 'Applicant.ApplicantMessagesList', 'Comments.Add', 'vacancy.ListMin'],
 
@@ -52,7 +52,14 @@
         },
 
         addAppCons: function (button) {
-            var appConsStore = this.getApplicantConsiderationsStore();
+            var appConsStore = this.getApplicantConsiderationsStore(),
+                vacStore = this.getVacancyAssignStore();
+
+            var grid = Ext.getCmp('ApplicantGrid'),
+                appId = grid.getView().getSelectionModel().getSelection()[0].getId();
+
+            vacStore.load({ params: { "appId": appId} });
+
             searchVacancyWin = Ext.widget('window', {
                 title: 'Выберите вакансии',
                 width: 400,
@@ -70,9 +77,7 @@
                     { text: 'Выбрать',
                         handler: function (button) {
 
-                            var vacancyGrid = button.up('window').down('grid');
-                            var grid = Ext.getCmp('ApplicantGrid'),
-                                appId = grid.getView().getSelectionModel().getSelection()[0].getId(),
+                            var vacancyGrid = button.up('window').down('grid'),
                                 selectedVacancy = vacancyGrid.getSelectionModel().getSelection()[0],
                                 selectedVacancyId = selectedVacancy.getId();
 
