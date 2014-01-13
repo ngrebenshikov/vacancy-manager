@@ -44,7 +44,7 @@ namespace VacancyManager.Services.Managers
       _db.SaveChanges();
     }
 
-    internal static void Update(int id, string FullName, string contactPhone, string email, bool employed)
+    internal static void Update(int id, string FullName, string FullNameEn, string contactPhone, string email, bool employed)
     {
       VacancyContext _db = new VacancyContext();
       var obj = _db.Applicants.Where(app => app.ApplicantID == id).FirstOrDefault();
@@ -52,6 +52,7 @@ namespace VacancyManager.Services.Managers
       if (obj != null)
       {
         obj.FullName = FullName;
+        obj.FullName = FullNameEn;
         obj.ContactPhone = contactPhone;
         obj.Email = email;
         obj.Employed = employed;
