@@ -97,7 +97,7 @@ namespace VacancyManager.Controllers
                 {
                     ApplicantID = applicant.ApplicantID,
                     FullName = applicant.FullName,
-                    FullNameEn = applicant.FullName,
+                    FullNameEn = applicant.FullNameEn,
                     ContactPhone = applicant.ContactPhone,
                     Employed = applicant.Employed,
                     Email = applicant.Email,
@@ -204,7 +204,7 @@ namespace VacancyManager.Controllers
             if (data != null)
             {
                 var obj = jss.Deserialize<dynamic>(data);
-                ApplicantManager.Update(obj["ApplicantID"], obj["FullName"], obj["ContactPhone"], obj["Email"], obj["Employed"]);
+                ApplicantManager.Update(obj["ApplicantID"], obj["FullName"], obj["FullNameEn"], obj["ContactPhone"], obj["Email"], obj["Employed"]);
                 resultMessage = "Соискатель успешно изменен";
                 success = true;
             }

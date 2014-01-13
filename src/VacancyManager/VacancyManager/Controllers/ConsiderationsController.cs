@@ -40,7 +40,7 @@ namespace VacancyManager.Controllers
                     considerationsAssign = ConsiderationList,
                     total = ConsiderationList.Count,
                     message = succesMessage,
-                    success = true
+                    success = success
                 },
            JsonRequestBehavior.AllowGet);
             }

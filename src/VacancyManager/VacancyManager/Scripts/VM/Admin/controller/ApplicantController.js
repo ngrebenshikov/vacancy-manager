@@ -86,7 +86,7 @@
                         }
 
                     }, { text: 'Отмена',
-                         handler: function (button) {
+                        handler: function (button) {
                             button.up('window').close();
                         }
                     }
@@ -201,7 +201,6 @@
             var appConsStore = this.getApplicantConsiderationsStore();
             var appReqStore = Ext.StoreManager.lookup('ApplicantRequirements');
             appReqStore.load({ params: { "id": obj.get("ApplicantID")} });
-
             view.down('form').loadRecord(record);
             fromCons = false;
             // Для фильтрации //            

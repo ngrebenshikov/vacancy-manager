@@ -22,9 +22,21 @@
         items:
         [{
             xtype: 'textfield',
+            fieldLabel: 'На русском языке',
             id: 'ApplicantFullName',
+            labelAlign: 'top',
             name: 'FullName',
             allowBlank: false,
+            anchor: '100%',
+            blankText: 'Поле не может быть пустым.'
+        },
+        {
+            xtype: 'textfield',
+            id: 'ApplicantFullNameEn',
+            labelAlign: 'top',
+            fieldLabel: 'На английском языке',
+            name: 'FullNameEn',
+            allowBlank: true,
             anchor: '100%',
             blankText: 'Поле не может быть пустым.'
         }]
