@@ -52,7 +52,7 @@ namespace VacancyManager.Services.Managers
       if (obj != null)
       {
         obj.FullName = FullName;
-        obj.FullName = FullNameEn;
+        obj.FullNameEn = FullNameEn;
         obj.ContactPhone = contactPhone;
         obj.Email = email;
         obj.Employed = employed;
