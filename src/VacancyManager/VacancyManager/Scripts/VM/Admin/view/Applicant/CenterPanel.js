@@ -258,6 +258,39 @@ Ext.define('VM.view.Applicant.CenterPanel', {
                              window.open('/Resume/CreatePdfCopy/' + record.getId());
                          }
                      }]
+                 },
+                 {
+                     xtype: 'actioncolumn',
+                     width: 30,
+                     align: 'center',
+                     sortable: false,
+                     menuDisabled: true,
+                     items:
+                     [{
+                         icon: '/Content/icons/CopyIco.png',
+                         tooltip: 'Клонировать резюме',
+                         handler: function (grid, rowIndex, colIndex) {
+                             var resumeStore = grid.getStore();
+                             var record = resumeStore.getAt(rowIndex);
+                             Ext.Ajax.request
+                              ({
+                                  url: '../../Resume/CreateResumeCopy/' + record.getId(),
+                                  success: function (result, request) {
+                                      var JsonResult = Ext.JSON.decode(result.responseText);
+
+                                      var newResume = Ext.create('VM.model.ApplicantResumeGrid', {
+                                          ResumeId: JsonResult.resume.ResumeId,
+                                          Position: JsonResult.resume.Position,
+                                          Summary: JsonResult.resume.Summary,
+                                          Training: JsonResult.resume.Training,
+                                          Date: JsonResult.resume.Date
+                                      });
+
+                                      resumeStore.insert(0, newResume);
+                                  }
+                              });
+                         }
+                     }]
                  }],
 
                  tbar: [{

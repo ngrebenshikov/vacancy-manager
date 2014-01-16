@@ -11,7 +11,7 @@ namespace VacancyManager.Models
         public string Job { get; set; }
         public string Project { get; set; }
         public string Position { get; set; }
-
+        public int ResumeId { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime? FinishDate { get; set; }
 

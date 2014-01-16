@@ -10,7 +10,7 @@ namespace VacancyManager.Models
     public class Resume
     {
         public int ResumeId { get; set; }
-
+        public int ApplicantID { get; set; }
         public string Position { get; set; }
         public string Summary { get; set; }
 
