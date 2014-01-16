@@ -319,6 +319,8 @@
             var win = button.up('window'),
                 form = win.down('form'),
                 values = form.getValues();
+            var applicantGrid = Ext.getCmp('ApplicantGrid');
+            values.ApplicantId = applicantGrid.getView().getSelectionModel().getSelection()[0].getId();
             var store = this.getApplicantResumeGridStore();
             store.add(values);
             win.close();

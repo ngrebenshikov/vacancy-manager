@@ -2,7 +2,7 @@
     {
         extend: 'Ext.data.Model',
         idProperty: 'ResumeId',
-        fields: ['ResumeId', 'Date', 'StartDate', 'Position', 'Summary', 'Training', 'Date'],
+        fields: ['ResumeId', 'ApplicantId', 'StartDate', 'Position', 'Summary', 'Training', 'Date'],
         proxy: {
             type: 'ajax',
             api: {

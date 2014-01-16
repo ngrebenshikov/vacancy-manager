@@ -22,7 +22,8 @@ namespace VacancyManager.Models
     public DbSet<ApplicantRequirement> ApplicantRequirements { get; set; }
     public DbSet<VMMailMessage> VMMailMessages { get; set; }  
     public DbSet<Attachment> Attachments { get; set; }
-
+    public DbSet<ResumeRequirement> ResumeRequirements { get; set; }
+    public DbSet<ExperienceRequirement> ExperienceRequirements { get; set; }
     protected override void OnModelCreating(DbModelBuilder modelBuilder)
     {
       /*

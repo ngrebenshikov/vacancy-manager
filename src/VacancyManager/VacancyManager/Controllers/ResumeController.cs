@@ -22,6 +22,49 @@ namespace VacancyManager.Controllers
     public class ResumeController : BaseController
     {
 
+
+        [HttpGet]
+        public ActionResult CreateResumeCopy(int? id)
+        {
+            bool success = true;
+            int createdResumeId = 0;
+            Resume CreatedResume = new Resume();
+            var origResume = ResumeManager.GetResume(id);
+            ICollection<ResumeRequirement> origResumeReqs = origResume.ResumeRequirements;
+            ICollection<Experience> origResumeExps = origResume.Experiences;
+
+            if (origResume != null)
+            {
+                CreatedResume = ResumeManager.CreateResume(origResume.ApplicantID, origResume.Position, origResume.Summary, origResume.Training, origResume.Date).ElementAt(0);
+                createdResumeId = CreatedResume.ResumeId;
+                foreach (var origResumeReq in origResumeReqs)
+                {
+                    ResumeManager.CreateResumeRequirement(createdResumeId, origResumeReq.RequirementId, origResumeReq.Comment, origResumeReq.IsChecked);
+                }
+
+                foreach (var origResumeExp in origResumeExps)
+                {
+                    int ResumeExperienceId = 0;
+                    ICollection<ExperienceRequirement> origResumeExpReqs = origResumeExp.ExperienceRequirements;
+                    DateTime? finishdate = null;
+                    if (origResumeExp.FinishDate.HasValue)
+                        finishdate = origResumeExp.FinishDate;
+                    ResumeExperienceId = ResumeManager.CreateResumeExperience(createdResumeId, origResumeExp.Duties, finishdate, origResumeExp.IsEducation, origResumeExp.Job, origResumeExp.Position, origResumeExp.Project, origResumeExp.StartDate).ExperienceId;
+                    foreach (var origResumeExpReq in origResumeExpReqs)
+                    {
+                        ResumeManager.CreateExperienceRequirement(ResumeExperienceId, origResumeExpReq.RequirementId, origResumeExpReq.Comment, origResumeExpReq.IsChecked);
+                    }
+                }
+
+            }
+
+            return Json(new
+            {
+                success = success,
+                resume = CreatedResume
+            }, JsonRequestBehavior.AllowGet);
+        }
+
         [HttpGet]
         public ActionResult CreatePdfCopy(int? id)
         {
@@ -257,6 +300,7 @@ namespace VacancyManager.Controllers
                               select new
                               {
                                   ResumeId = res.ResumeId,
+                                  ApplicantId = res.ApplicantID,
                                   Date = res.Date.ToShortDateString(),
                                   Training = res.Training,
                                   StartDate = res.Period,
@@ -303,8 +347,7 @@ namespace VacancyManager.Controllers
             if (data != null)
             {
                 var obj = jss.Deserialize<dynamic>(data);
-                CultureInfo culture = new CultureInfo("hu");
-                created = ResumeManager.CreateResume(obj["Position"].ToString(), obj["Summary"].ToString(), obj["Training"].ToString(), Convert.ToDateTime(obj["Date"], culture));
+                created = ResumeManager.CreateResume(Convert.ToInt32(obj["ApplicantId"]), obj["Position"].ToString(), obj["Summary"].ToString(), obj["Training"].ToString(), DateTime.Now);
 
                 resultMessage = "Резюме добавлено";
                 success = true;

@@ -284,6 +284,14 @@
     <Compile Include="Migrations\201401061123300_Appllicant_FullnameEnAdded.Designer.cs">
       <DependentUpon>201401061123300_Appllicant_FullnameEnAdded.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201401161729198_Experience_ResumeIdAdded.cs" />
+    <Compile Include="Migrations\201401161729198_Experience_ResumeIdAdded.Designer.cs">
+      <DependentUpon>201401161729198_Experience_ResumeIdAdded.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201401161744399_Resume_ApplicantIDAdded.cs" />
+    <Compile Include="Migrations\201401161744399_Resume_ApplicantIDAdded.Designer.cs">
+      <DependentUpon>201401161744399_Resume_ApplicantIDAdded.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\Applicant.cs" />
