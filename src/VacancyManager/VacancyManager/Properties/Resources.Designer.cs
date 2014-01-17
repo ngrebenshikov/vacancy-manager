@@ -574,11 +574,29 @@ namespace VacancyManager.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Требование (На английском языке).
+        /// </summary>
+        public static string TitleRequirementNameEn {
+            get {
+                return ResourceManager.GetString("TitleRequirementNameEn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Категория.
         /// </summary>
         public static string TitleRequirementStackName {
             get {
                 return ResourceManager.GetString("TitleRequirementStackName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Категория (На английском языке).
+        /// </summary>
+        public static string TitleRequirementStackNameEn {
+            get {
+                return ResourceManager.GetString("TitleRequirementStackNameEn", resourceCulture);
             }
         }
         

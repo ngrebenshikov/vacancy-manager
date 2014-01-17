@@ -292,6 +292,10 @@
     <Compile Include="Migrations\201401161744399_Resume_ApplicantIDAdded.Designer.cs">
       <DependentUpon>201401161744399_Resume_ApplicantIDAdded.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201401170815493_Requirements_NameEnAdded.cs" />
+    <Compile Include="Migrations\201401170815493_Requirements_NameEnAdded.Designer.cs">
+      <DependentUpon>201401170815493_Requirements_NameEnAdded.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\Applicant.cs" />
@@ -1766,6 +1770,7 @@
     <Content Include="Scripts\VM\Admin\view\Roles\List.js" />
     <Content Include="Scripts\VM\Admin\view\vacancy\ListMin.js" />
     <Content Include="Scripts\VM\Admin\view\vacancy\VacancyRequirementsList.js" />
+    <Content Include="Scripts\VM\FrontEnd\frontEndApp.js" />
     <Content Include="Views\Home\Index.cshtml">
       <SubType>Code</SubType>
     </Content>
@@ -1797,6 +1802,10 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Scripts\VM\FrontEnd\controller\" />
+    <Folder Include="Scripts\VM\FrontEnd\model\" />
+    <Folder Include="Scripts\VM\FrontEnd\store\" />
+    <Folder Include="Scripts\VM\FrontEnd\view\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

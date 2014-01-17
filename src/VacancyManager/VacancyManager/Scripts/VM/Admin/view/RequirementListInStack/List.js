@@ -9,7 +9,8 @@ Ext.define
     //margins: '5 0 0 0',
     columns:
     [
-      { header: Strings.TitleRequirementName, menuDisabled: true, dataIndex: 'Name', flex: 1 },
+      { text: Strings.TitleRequirementName, menuDisabled: true, dataIndex: 'Name', flex: 1 },
+      { text: Strings.TitleRequirementNameEn, menuDisabled: true, dataIndex: 'NameEn', flex: 1 },
       {
         xtype: 'actioncolumn',
         width: 50,
@@ -18,7 +19,7 @@ Ext.define
         items:
         [{
           icon: '/ExtLib/resources/themes/images/default/form/exclamation.gif',
-          tooltip: 'Delete Requirement',
+          tooltip: 'Удалить',
           handler: function (grid, rowIndex, colIndex)
           {
             grid.store.removeAt(rowIndex);
@@ -32,7 +33,7 @@ Ext.define
       items:
       [
         {
-            text: Strings.AddRequirementToStack,
+          text: Strings.AddRequirementToStack,
           id: 'AddRequirementToStack',
           hidden: false,
           action: 'AddRequirement'

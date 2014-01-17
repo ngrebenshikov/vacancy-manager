@@ -84,9 +84,11 @@ namespace VacancyManager.Controllers
             var ReqsWStacks = (from req in Reqs
                                join v in ReqStacks on req.RequirementStackID equals v.RequirementStackID
                                select new
-                               {
+                               {   ReqStackId = v.RequirementStackID,
                                    ReqStackName = v.Name,
+                                   ReqStackNameEn = v.NameEn,
                                    ReqName = req.Name,
+                                   ReqNameEn = req.NameEn,
                                    ReqId = req.RequirementID
                                });
 
@@ -110,10 +112,12 @@ namespace VacancyManager.Controllers
             var bodyFont = new Font(fnt, 11, Font.NORMAL);
             var bodyFontBold = new Font(fnt, 11, Font.BOLD);
             var bodyFontSmall = new Font(fnt, 10, Font.NORMAL);
+
             if (resumeLanq == "ru")
                 document.Add(new Paragraph(appl.FullName, FioFont) { SpacingAfter = 5 });
             else
                 document.Add(new Paragraph(appl.FullNameEn, FioFont) { SpacingAfter = 5 });
+
             document.Add(new Paragraph(curResumeHeaders.Position + "\n", subTitleFont) { SpacingAfter = 5 });
             document.Add(new Paragraph(curResume.Position + "\n", baseFont) { SpacingAfter = 5 });
             document.Add(new Paragraph(curResumeHeaders.Summary + "\n", subTitleFont) { SpacingAfter = 5 });
@@ -125,7 +129,7 @@ namespace VacancyManager.Controllers
                                        join v in ReqsWStacks on w.RequirementId equals v.ReqId
                                        where w.IsChecked == true
                                        orderby v.ReqStackName descending
-                                       group new { v.ReqName, w.Comment } by v.ReqStackName into newGroup
+                                       group new { v.ReqName, v.ReqNameEn, w.Comment } by new { ReqStackName = (resumeLanq =="ru"? v.ReqStackName: v.ReqStackNameEn)}.ReqStackName into newGroup
                                        select newGroup
 
             );
@@ -138,9 +142,7 @@ namespace VacancyManager.Controllers
                 Paragraph parh = new Paragraph();
                 parh.SpacingAfter = 5;
                 Phrase p2 = new Phrase();
-                Chunk key = new Chunk(nameGroup.Key + ": ", baseFontUndl);
-                p2.Add(key);
-
+                Chunk key = new Chunk(nameGroup.Key + ": ", baseFontUndl); 
                 foreach (var stack in nameGroup)
                 {
                     if (i != stcount)
@@ -152,9 +154,19 @@ namespace VacancyManager.Controllers
                     ch.Font = baseFont;
 
                     if ((stack.Comment != "") && (stack.Comment != null))
-                        ch.Append(stack.ReqName + " - " + stack.Comment + s);
+                    {
+                        if (resumeLanq == "ru")
+                        { ch.Append(stack.ReqName + " - " + stack.Comment + s); }
+                        else
+                        { ch.Append(stack.ReqNameEn + " - " + stack.Comment + s); }
+                    }
                     else
-                        ch.Append(stack.ReqName + s);
+                    {
+                        if (resumeLanq == "ru") 
+                            ch.Append(stack.ReqName + s);
+                        else
+                            ch.Append(stack.ReqNameEn + s);
+                    }
 
                     p2.Add(ch);
 
@@ -181,7 +193,11 @@ namespace VacancyManager.Controllers
                                       ExpReqs = (from p in profexp.ExperienceRequirements
                                                  join v in ReqsWStacks on p.RequirementId equals v.ReqId
                                                  where p.IsChecked == true
-                                                 select v.ReqName)
+                                                 select new
+                                                 {
+                                                     ReqName = (resumeLanq == "ru" ? v.ReqName : v.ReqNameEn)
+                                                 }.ReqName
+                                                 )
                                   }
             );
 
