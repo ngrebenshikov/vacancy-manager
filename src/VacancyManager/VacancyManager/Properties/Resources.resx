@@ -397,4 +397,10 @@
   <data name="ExperienceRequirements" xml:space="preserve">
     <value>Используемые технологии</value>
   </data>
+  <data name="TitleRequirementNameEn" xml:space="preserve">
+    <value>Требование (На английском языке)</value>
+  </data>
+  <data name="TitleRequirementStackNameEn" xml:space="preserve">
+    <value>Категория (На английском языке)</value>
+  </data>
 </root>

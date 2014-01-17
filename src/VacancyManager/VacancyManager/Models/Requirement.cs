@@ -11,7 +11,7 @@ namespace VacancyManager.Models
 
         [Required(ErrorMessage = "Ќазвание требовани€ €вл€етс€ об€зательным.")]
         public string Name { get; set; }
-
+        public string NameEn { get; set; }
         public virtual ICollection<ApplicantRequirement> ApplicantRequirements { get; set; }
     }
 }
