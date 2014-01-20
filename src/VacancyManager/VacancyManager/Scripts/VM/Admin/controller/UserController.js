@@ -14,25 +14,25 @@
                   'UserList dataview': {
                     itemdblclick: this.callEdit
                   },
-                  'button[action = CreateUser]': {
+                  'button[action=CreateUser]': {
                     click: this.CreateUser
                   },
-                  'button[action = addUser]': {
+                  'button[action=addUser]': {
                     click: this.addUser
                   },
-                  'button[action = BanUser]': {
+                  'button[action=BanUser]': {
                     click: this.BanUser
                   },
-                  'button[action = callEdit]': {
+                  'button[action=callEdit]': {
                     click: this.callEdit
                   },
-                  'button[action = ChangeUser]': {
+                  'button[action=ChangeUser]': {
                     click: this.ChangeUser
                   },
-                  'button[action = deleteUser]': {
+                  'button[action=deleteUser]': {
                     click: this.deleteUser
                   },
-                  'button[action = banManager]': {
+                  'button[action=banManager]': {
                     click: this.banManager
                   }
                 });

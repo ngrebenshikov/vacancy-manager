@@ -16,19 +16,19 @@ Ext.define('VM.controller.VacancyController', {
                         collapsebody: this.destroyConsiderationsGrid
                     },
 
-                    'button[action = loadBlankVacancy]': {
+                    'button[action=loadBlankVacancy]': {
                         click: this.loadBlankVacancy
                     },
-                    'button[action = editVacancy]': {
+                    'button[action=editVacancy]': {
                         click: this.editVacancy
                     },
-                    'button[action = updateVacancy]': {
+                    'button[action=updateVacancy]': {
                         click: this.updateVacancy
                     },
-                    'button[action = deleteVacancy]': {
+                    'button[action=deleteVacancy]': {
                         click: this.deleteVacancy
                     },
-                    'button[action = addVacancy]': {
+                    'button[action=addVacancy]': {
                         click: this.addVacancy
                     }
                 });
