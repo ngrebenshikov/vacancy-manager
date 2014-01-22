@@ -1,0 +1,13 @@
+﻿@model IEnumerable<VacancyManager.Models.Vacancy>
+
+@{
+    ViewBag.Title = "Список вакансий";
+}
+
+<h2>Список вакансий</h2>
+
+@foreach (var vacancy in Model)
+{
+    @vacancy.Title
+    @vacancy.Description
+}

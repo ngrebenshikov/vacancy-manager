@@ -1,0 +1,107 @@
+.DataView-list
+{
+    padding: 0 3px 0 3px;
+}
+.DataView-list-item
+{
+    margin-top: 3px;
+    padding-left: 20px;
+    font-size: 11px;
+    line-height: 20px;
+    cursor: pointer;
+    border: 1px solid #fff;
+}
+.DataView-list .x-item-selected
+{
+    font-weight: bold;
+    color: #15428B;
+    background-color: #DFE8F6;
+    border: 1px dotted #A3BAE9;
+}
+.DataView-list-item-hover
+{
+    background-color: #eee;
+}
+
+.x-grid-row-selected .x-grid-table .x-grid-cell
+{
+    background-color: transparent !important;
+}
+
+td.wrap-text div
+{
+    margin: 5px !important;
+    white-space: pre-wrap !important;
+    word-wrap: break-word;
+}
+
+.x-grid-row-selected .x-grid-table .x-grid-row-selected .x-grid-cell
+{
+    background-color: #DFE8F6 !important;
+    border-bottom: 1px dotted #A3BAE9;
+    border-top: 1px dotted #A3BAE9;
+}
+
+.new-message td
+{
+    font-weight: bold !important;
+}
+
+.user-row .x-grid-cell
+{
+    background-color: white;
+    color: black;
+}
+
+.admin-row .x-grid-cell
+{
+    background-color: white;
+    color: green;
+}
+
+/*#gridcomments .x-grid-cell-inner
+{
+    white-space: pre-line; 
+}*/
+
+#InputMessageText .x-form-field
+{
+    border: 0px;
+}
+
+#imTextPanel .x-panel-header-default
+{
+    background-color: #D3E1F1;
+    background-image: none;
+}
+
+#imTextPanel .x-panel-header-text-default
+{
+    font-weight: normal;
+    color: Black;
+}
+
+.allow-lists * ul, .allow-lists * ol
+{
+    display: block;
+    margin-left: 40px;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+.allow-lists * ul
+{
+    list-style-image: none;
+    list-style-position: outside;
+    list-style-type: disc;
+}
+.allow-lists * ol
+{
+    list-style-image: none;
+    list-style-position: outside;
+    list-style-type: decimal;
+}
+.allow-lists * li
+{
+    display: list-item;
+    word-wrap: break-word;
+}
