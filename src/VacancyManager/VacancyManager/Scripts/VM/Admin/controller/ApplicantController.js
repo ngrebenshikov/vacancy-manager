@@ -2,9 +2,9 @@
     {
         extend: 'Ext.app.Controller',
         models: ['ApplicantModel', 'ApplicantRequirements', 'ApplicantConsiderations', 'Comment'],
-        stores: ['Applicant', 'ApplicantRequirements', 'VacancyAssign', 'ApplicantConsiderations', 'Comments', 'ApplicantComments', 'ApplicantResumeGrid', 'ApplicantMessages'],
+        stores: ['Applicant', 'ApplicantRequirements', 'VacancyAssign', 'ApplicantConsiderations', 'Comments', 'ApplicantComments', 'ApplicantResumeGrid', 'ResumeExperience', 'ApplicantMessages'],
         views: ['Applicant.List', 'Applicant.Create', 'Applicant.Edit', 'Applicant.ApplicantConsiderations', 'Resume.Create',
-        'Comments.List', 'Applicant.ApplicantComments', 'Applicant.ApplicantMessagesList', 'Comments.Add', 'vacancy.ListMin'],
+        'Comments.List', 'Applicant.ApplicantComments', 'Applicant.ApplicantMessagesList', 'Comments.Add', 'vacancy.ListMin', 'Resume.CreateExperience'],
 
         init: function () {
             this.control({
@@ -27,9 +27,16 @@
                 //Создать Резюме
                 'button[action=CreateResume]':
                     { click: this.CreateResume },
-                //Сохранить Резюме
                 'button[action=SaveResume]':
                     { click: this.SaveResume },
+                //Добавить опыт
+                'button[action=CreateExperience]':
+                    { click: this.CreateExperience },
+                //Удалить опыт
+                'button[action=RemoveExperience]':
+                   { click: this.RemoveExperience },
+                'button[action=SaveExperience]':
+                    { click: this.SaveExperience },
                 // Создать
                 'button[action=CreateApplicant]':
                     { click: this.CreateApplicant },
@@ -50,6 +57,8 @@
                     { click: this.addAppCons }
             });
         },
+
+        ReumeControl: 0,
 
         addAppCons: function (button) {
             var appConsStore = this.getApplicantConsiderationsStore(),
@@ -294,8 +303,7 @@
             var grid = Ext.getCmp('ApplicantRes');
             var store = this.getApplicantResumeGridStore();
             var selection = grid.getView().getSelectionModel().getSelection()[0];
-            // var id = grid.getView().getSelectionModel().getSelection()[0].get("ResumeId");
-
+          
             if (selection != null) {
                 store.remove(selection);
                 button.disable();
@@ -305,23 +313,94 @@
         CreateResume: function () {
             var AddResume = Ext.widget('resumeCreate');
             var date = new Date();
+            var grid = Ext.getCmp('ApplicantGrid'),
+                appID = grid.getView().getSelectionModel().getSelection()[0];
+            
+          //  var ResGrid = Ext.getCmp('ApplicantRes');
+          //  values.ResumeId = ResGrid.getView().getSelectionModel().getSelection()[0].getId();
+
             newResume = Ext.create('VM.model.ApplicantResumeGrid', {
                 Position: 'Должность..',
                 Summary: 'Кратко..',
                 Training: 'Обучение..',
-                Date: date
+                Date: date,
+                ApplicantId: appID
             });
-
-            AddResume.down('form').loadRecord(newResume);
+            
+            if (this.ReumeControl != 0) {
+                var ExpStore = Ext.StoreManager.lookup('ResumeExperience');
+                ExpStore.load({ params: { "ResId": 5 } });  //нужно получить последнюю запись в гриде резюме и поставить сюда
+            }
+                                 
+            AddResume.down('tabpanel').down('form').loadRecord(newResume);
+            alert(this.ReumeControl);
         },
 
         SaveResume: function (button) {
+            if (this.ReumeControl != 1) {
+                var win = button.up('window'),
+                   tab = win.down('tabpanel'),
+                   form = tab.down('form'),
+                   values = form.getValues();
+                var applicantGrid = Ext.getCmp('ApplicantGrid');
+                values.ApplicantId = applicantGrid.getView().getSelectionModel().getSelection()[0].getId();
+                var store = this.getApplicantResumeGridStore();
+                store.add(values);
+                win.close();
+            }
+            else {
+                var win = button.up('window');
+                win.close();
+                this.ReumeControl = 0;
+            }
+           
+        },
+
+        CreateExperience: function (button) {
+            var AddExp = Ext.widget('createExperience');
+             
+            newExp = Ext.create('VM.model.ResumeExperience', {
+                Job: 'Работа..',
+                Project: 'Проект..',
+                Position: 'Должность..',
+                Duties: 'Обязанности..',
+                ResumeId: '',
+            });
+
+            AddExp.down('form').loadRecord(newExp);
+            if (this.ReumeControl != 1) {
+                var grid = button.up('grid'),
+                    tab = grid.up('tabpanel'),
+                    form = tab.down('form'),
+                    values = form.getValues();
+                var applicantGrid = Ext.getCmp('ApplicantGrid');
+                values.ApplicantId = applicantGrid.getView().getSelectionModel().getSelection()[0].getId();
+                var store = this.getApplicantResumeGridStore();
+                store.add(values);
+                this.ReumeControl = 1;
+            }
+        },
+
+        RemoveExperience: function (button) {
+            var grid = Ext.getCmp('ResumeExp');
+            var store = this.getResumeExperienceStore();
+            var selection = grid.getView().getSelectionModel().getSelection()[0];
+           
+            if (selection != null) {
+                store.remove(selection);
+                button.disable();
+            }
+        
+        },
+
+        SaveExperience: function (button) {
             var win = button.up('window'),
                 form = win.down('form'),
                 values = form.getValues();
-            var applicantGrid = Ext.getCmp('ApplicantGrid');
-            values.ApplicantId = applicantGrid.getView().getSelectionModel().getSelection()[0].getId();
-            var store = this.getApplicantResumeGridStore();
+            var ResGrid = Ext.getCmp('ApplicantRes');
+            //if ()
+           // values.ResumeId = ResGrid.getView().getSelectionModel().getSelection()[0].getId();
+            var store = this.getResumeExperienceStore();
             store.add(values);
             win.close();
         },
