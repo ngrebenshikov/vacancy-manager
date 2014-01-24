@@ -9,8 +9,8 @@
     title: Strings.CreateRequirementStackList,
     layout: 'fit',
     autoShow: true,
-    height: 60,
-    width: 280,
+    height: 180,
+    width: 360,
     modal: true,
 
     initComponent: function ()
@@ -21,6 +21,10 @@
           xtype: 'form',
           padding: '5 5 0 5',
           border: false,
+          layout: {
+              type: 'vbox',
+              align: 'stretch'
+          },
           style: 'background-color: #fff;',
           items:
           [
@@ -30,6 +34,13 @@
               name: 'Name',
               fieldLabel: Strings.TitleRequirementStackName,
               allowBlank: false
+            },
+            {
+                xtype: 'textfield',
+                id: 'RequirementStackNameEn',
+                name: 'NameEn',
+                fieldLabel: Strings.TitleRequirementStackNameEn,
+                allowBlank: true
             }
           ]
         }

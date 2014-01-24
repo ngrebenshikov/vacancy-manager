@@ -7,15 +7,15 @@
         init: function () {
             this.control({
 
-                'button[action = updateCommentsList]': {
+                'button[action=updateCommentsList]': {
                     click: this.updateCommentsList
                 },
 
-                'button[action = clearCommentArea]': {
+                'button[action=clearCommentArea]': {
                     click: this.clearCommentArea
                 },
 
-                'button[action = addComment]': {
+                'button[action=addComment]': {
                     click: this.addComment
                 }
             });

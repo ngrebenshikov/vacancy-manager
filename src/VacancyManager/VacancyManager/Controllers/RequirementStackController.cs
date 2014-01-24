@@ -47,6 +47,7 @@ namespace VacancyManager.Controllers
                          {
                            elem.RequirementStackID,
                            elem.Name,
+                           elem.NameEn
                          }
                       ).ToList();
       return Json(new
@@ -67,12 +68,15 @@ namespace VacancyManager.Controllers
       {
         var requirementStack = jss.Deserialize<dynamic>(data);
 
-        int id = RequirementsManager.CreateRequirementStack(requirementStack["Name"].ToString());
+        int id = RequirementsManager.CreateRequirementStack(requirementStack["Name"].ToString(),
+                                                            requirementStack["NameEn"].ToString()
+            );
         requirementStackList[0] =
           new
           {
             RequirementStackID = id,
-            Name = requirementStack["Name"].ToString()
+            Name = requirementStack["Name"].ToString(),
+            NameEn = requirementStack["NameEn"].ToString()
           };
         message = "Стек требований успешно добавлен";
         success = true;
@@ -108,7 +112,7 @@ namespace VacancyManager.Controllers
       {
         var record = jss.Deserialize<dynamic>(data);
 
-        RequirementsManager.UpdateRequirementStack(Convert.ToInt32(record["RequirementStackID"]), record["Name"].ToString());
+        RequirementsManager.UpdateRequirementStack(Convert.ToInt32(record["RequirementStackID"]), record["Name"].ToString(), record["NameEn"].ToString());
 
         message = "Запись о стеке требований успешно обновлена";
         success = true;
@@ -134,6 +138,7 @@ namespace VacancyManager.Controllers
                                elem.RequirementID,
                                elem.RequirementStackID,
                                elem.Name,
+                               elem.NameEn
                              }
                         ).ToList();
       return Json(new
@@ -155,12 +160,13 @@ namespace VacancyManager.Controllers
       {
         var record = jss.Deserialize<dynamic>(data);
 
-        int id = RequirementsManager.CreateRequirement(Convert.ToInt32(record["RequirementStackID"]), record["Name"].ToString());
+        int id = RequirementsManager.CreateRequirement(Convert.ToInt32(record["RequirementStackID"]), record["Name"].ToString(), record["NameEn"].ToString());
         requirement[0] =
           new
           {
             RequirementID = id,
             Name = record["Name"].ToString(),
+            NameEn = record["NameEn"].ToString(),
             RequirementStackID = Convert.ToInt32(record["RequirementStackID"])
           };
         message = "Требование успешно добавлено в стек";
@@ -198,7 +204,7 @@ namespace VacancyManager.Controllers
       {
         var record = jss.Deserialize<dynamic>(data);
 
-        RequirementsManager.UpdateRequirement(Convert.ToInt32(record["RequirementID"]), record["Name"].ToString());
+        RequirementsManager.UpdateRequirement(Convert.ToInt32(record["RequirementID"]), record["Name"].ToString(), record["NameEn"].ToString());
 
         message = "Запись о требовании успешно обновлена";
         success = true;

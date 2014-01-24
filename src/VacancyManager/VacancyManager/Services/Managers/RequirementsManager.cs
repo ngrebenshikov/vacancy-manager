@@ -23,12 +23,13 @@ namespace VacancyManager.Services.Managers
     /// </summary>
     /// <param name="name">The name.</param>
     /// <returns>Returns ID of created requirement stack</returns>
-    internal static int CreateRequirementStack(string name)
+    internal static int CreateRequirementStack(string name, string nameEn)
     {
       VacancyContext _db = new VacancyContext();
       var requirementStack = new RequirementStack
       {
         Name = name,
+        NameEn = nameEn,
         RequirementStackID = -1,
       };
       _db.RequirementStacks.Add(requirementStack);
@@ -54,13 +55,14 @@ namespace VacancyManager.Services.Managers
     /// </summary>
     /// <param name="id">The id.</param>
     /// <param name="name">The name.</param>
-    internal static void UpdateRequirementStack(int id, string name)
+    internal static void UpdateRequirementStack(int id, string name, string nameEn)
     {
       VacancyContext _db = new VacancyContext();
       var update_rec = _db.RequirementStacks.SingleOrDefault(a => a.RequirementStackID == id);
       if (update_rec != null)
       {
         update_rec.Name = name;
+        update_rec.NameEn = nameEn;
         _db.SaveChanges();
       }
     }
@@ -95,12 +97,13 @@ namespace VacancyManager.Services.Managers
     /// <param name="id">The id of RequirementStack.</param>
     /// <param name="name">The name of requirement.</param>
     /// <returns>ID of created Requirement</returns>
-    internal static int CreateRequirement(int id, string name)
+    internal static int CreateRequirement(int id, string name, string nameEn)
     {
       VacancyContext _db = new VacancyContext();
       var requirement = new Requirement
       {
         Name = name,
+        NameEn = nameEn,
         RequirementStackID = id,
         RequirementID = -1,
       };
@@ -127,12 +130,13 @@ namespace VacancyManager.Services.Managers
     /// </summary>
     /// <param name="id">The id of updating requirement.</param>
     /// <param name="name">New name of requirement.</param>
-    internal static void UpdateRequirement(int id, string name)
+    internal static void UpdateRequirement(int id, string name, string nameEn)
     {
       VacancyContext _db = new VacancyContext();
       var update_rec = _db.Requirements.SingleOrDefault(a => a.RequirementID == id);
       if (update_rec == null) return;
       update_rec.Name = name;
+      update_rec.NameEn = nameEn;
       _db.SaveChanges();
     }
     #endregion

@@ -3,6 +3,6 @@ Ext.define
   {
     extend: 'Ext.data.Model',
     idProperty: 'RequirementStackID',
-    fields: ['RequirementStackID', 'Name']
+    fields: ['RequirementStackID', 'Name', 'NameEn']
   }
 );
