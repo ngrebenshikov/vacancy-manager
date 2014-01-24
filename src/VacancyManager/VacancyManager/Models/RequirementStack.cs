@@ -9,7 +9,7 @@ namespace VacancyManager.Models
 
     [Required(ErrorMessage = "Ќазвание стека требований €вл€етс€ об€зательным.")]
     public string Name { get; set; }
-
+    public string NameEn { get; set; }
     public virtual ICollection<Requirement> Requirements { get; set; }
   }
 }

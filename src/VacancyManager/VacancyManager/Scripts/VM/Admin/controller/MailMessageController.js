@@ -42,37 +42,37 @@
 
             this.control({
                 // Создать
-                'button[action = SendMailMessage]':
+                'button[action=SendMailMessage]':
                     { click: this.SendMailMessage },
 
-                'button[action = browseMessage]':
+                'button[action=browseMessage]':
                     { click: this.callEdit },
 
-                'button[action = newMailMessage]':
+                'button[action=newMailMessage]':
                     { click: this.NewMailMessage },
 
-                'button[action = updateMessages]':
+                'button[action=updateMessages]':
                     { click: this.UpdateMessages },
 
-                'button[action = getIncomingMessages]':
+                'button[action=getIncomingMessages]':
                     { click: this.GetIncomingMessages },
 
-                'button[action = deleteMessage]':
+                'button[action=deleteMessage]':
                     { click: this.DeleteMessage },
 
-                'button[action = getSendedMessages]':
+                'button[action=getSendedMessages]':
                     { click: this.GetSendedMessages },
 
-                'button[action = assignToConsideration]':
+                'button[action=assignToConsideration]':
                     { click: this.AssignToConsideration },
 
-                'button[action = getDirtyMessages]':
+                'button[action=getDirtyMessages]':
                     { click: this.GetDirtyMessages },
 
-                'button[action = ReadMessage]':
+                'button[action=ReadMessage]':
                     { click: this.readAppMessage },
 
-                'button[action = SendNewMessage]':
+                'button[action=SendNewMessage]':
                     { click: this.NewMailMessageApp },
 
                 'ApplicantMessagesList dataview': {
@@ -90,7 +90,7 @@
                     itemdblclick: this.Download
                 },
 
-                'button[action = selectMailMessageApps]':
+                'button[action=selectMailMessageApps]':
                     { click: this.SelectMailMessageApps }
             });
         },
