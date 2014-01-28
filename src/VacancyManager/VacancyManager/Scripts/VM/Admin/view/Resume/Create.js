@@ -106,4 +106,4 @@
       
         this.callParent(arguments);
     }
-})
+});

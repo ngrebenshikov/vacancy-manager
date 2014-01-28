@@ -5,7 +5,7 @@ Ext.define('VM.view.Comments.List', {
     hideHeaders: true,
     store: 'Comments',
     region: 'center',
-    layout: 'fit',
+    layout: 'anchor',
     id: 'gridcomments',
     columns: [
   	        {

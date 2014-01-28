@@ -68,7 +68,7 @@
         this.buttons = [{
             text: 'Cохранить',
             icon: '/ExtLib/resources/icons/accept.gif',
-            action: 'SaveExperience',
+            action: 'SaveExperience'
         }],
 
         this.callParent(arguments);
