@@ -88,6 +88,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\RequirementStackController.cs" />
     <Compile Include="Controllers\ResumeController.cs" />
+    <Compile Include="Controllers\ResumeRequirementController.cs" />
     <Compile Include="Controllers\RolesController.cs" />
     <Compile Include="Controllers\SysConfigController.cs" />
     <Compile Include="Controllers\UserController.cs" />
@@ -1755,6 +1756,8 @@
     <Content Include="Scripts\VM\Admin\view\RequirementStack\Create.js" />
     <Content Include="Scripts\VM\Admin\view\RequirementStack\Edit.js" />
     <Content Include="Scripts\VM\Admin\view\RequirementStack\List.js" />
+    <Content Include="Scripts\VM\Admin\view\Resume\Create.js" />
+    <Content Include="Scripts\VM\Admin\view\Resume\CreateExperience.js" />
     <Content Include="Scripts\VM\Admin\view\SysConfig\Create.js" />
     <Content Include="Scripts\VM\Admin\view\Applicant\List.js" />
     <Content Include="Scripts\VM\Admin\view\SysConfig\Edit.js" />
@@ -1771,7 +1774,23 @@
     <Content Include="Scripts\VM\Admin\view\Roles\List.js" />
     <Content Include="Scripts\VM\Admin\view\vacancy\ListMin.js" />
     <Content Include="Scripts\VM\Admin\view\vacancy\VacancyRequirementsList.js" />
+    <Content Include="Scripts\VM\FrontEnd\controller\FrontEnd.js" />
     <Content Include="Scripts\VM\FrontEnd\frontEndApp.js" />
+    <Content Include="Scripts\VM\FrontEnd\model\Resume.js" />
+    <Content Include="Scripts\VM\FrontEnd\model\ResumeRequirement.js" />
+    <Content Include="Scripts\VM\FrontEnd\store\Resume.js" />
+    <Content Include="Scripts\VM\FrontEnd\store\ResumeRequirement.js" />
+    <Content Include="Scripts\VM\FrontEnd\view\frontend\Main.js" />
+    <Content Include="Scripts\VM\Shared\EduList.js" />
+    <Content Include="Scripts\VM\Shared\ExpList.js" />
+    <Content Include="Scripts\VM\Shared\FirstStep.js" />
+    <Content Include="Scripts\VM\Shared\FouthStep.js" />
+    <Content Include="Scripts\VM\Shared\LastStep.js" />
+    <Content Include="Scripts\VM\Shared\ReqsList.js" />
+    <Content Include="Scripts\VM\Shared\SecondStep.js" />
+    <Content Include="Scripts\VM\Shared\ThirdStep.js" />
+    <Content Include="Scripts\VM\Shared\Wizard.js" />
+    <Content Include="Scripts\VM\Shared\WizardMenu.js" />
     <Content Include="Views\Home\Index.cshtml">
       <SubType>Code</SubType>
     </Content>
@@ -1804,10 +1823,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Scripts\VM\FrontEnd\controller\" />
-    <Folder Include="Scripts\VM\FrontEnd\model\" />
-    <Folder Include="Scripts\VM\FrontEnd\store\" />
-    <Folder Include="Scripts\VM\FrontEnd\view\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

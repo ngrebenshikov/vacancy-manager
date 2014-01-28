@@ -150,28 +150,27 @@ namespace VacancyManager.Controllers
                     else
                         s = "";
 
-                    Chunk ch = new Chunk();
-                    ch.Font = baseFont;
+                  //  Chunk ch = new Chunk();
+
+                    key.Font = baseFont;
 
                     if ((stack.Comment != "") && (stack.Comment != null))
                     {
                         if (resumeLanq == "ru")
-                        { ch.Append(stack.ReqName + " - " + stack.Comment + s); }
+                        { key.Append(stack.ReqName + " - " + stack.Comment + s); }
                         else
-                        { ch.Append(stack.ReqNameEn + " - " + stack.Comment + s); }
+                        { key.Append(stack.ReqNameEn + " - " + stack.Comment + s); }
                     }
                     else
                     {
-                        if (resumeLanq == "ru") 
-                            ch.Append(stack.ReqName + s);
+                        if (resumeLanq == "ru")
+                            key.Append(stack.ReqName + s);
                         else
-                            ch.Append(stack.ReqNameEn + s);
+                            key.Append(stack.ReqNameEn + s);
                     }
-
-                    p2.Add(ch);
-
                     i++;
                 }
+                p2.Add(key);
                 parh.Add(p2);
                 document.Add(parh);
             }
@@ -332,6 +331,30 @@ namespace VacancyManager.Controllers
         }
 
         [HttpPost]
+        public ActionResult UpdateResume(string data)
+        {
+            bool success = false;
+            string resultMessage = "Ошибка при обновлении резюме";
+            JavaScriptSerializer jss = new JavaScriptSerializer();
+            List<Resume> created = new List<Resume>();
+            Resume updateResume = new Resume();
+            if (data != null)
+            {
+                var obj = jss.Deserialize<dynamic>(data); //
+                updateResume = ResumeManager.UpdateResume(obj["ResumeId"], obj["Position"].ToString(), obj["Summary"].ToString(),  obj["Training"].ToString());
+  
+            }
+            created.Add(updateResume);
+            return Json(new
+            {
+                success = success,
+                data = created,
+                message = resultMessage
+            });
+        }
+
+
+        [HttpPost]
         public ActionResult DeleteResume(string data) //(int id)
         {
             bool success = false;
@@ -360,10 +383,20 @@ namespace VacancyManager.Controllers
             JavaScriptSerializer jss = new JavaScriptSerializer();
             List<Resume> created = new List<Resume>();
 
+     
             if (data != null)
-            {
+            {   
                 var obj = jss.Deserialize<dynamic>(data);
-                created = ResumeManager.CreateResume(Convert.ToInt32(obj["ApplicantId"]), obj["Position"].ToString(), obj["Summary"].ToString(), obj["Training"].ToString(), DateTime.Now);
+                int AppId = Convert.ToInt32(obj["ApplicantId"]);
+                if (AppId == 0)
+                {   
+                    Applicant app = ApplicantManager.GetApplicantByEMail("ResumeTest@yandex.ru");
+                    if (app == null)
+                        app = ApplicantManager.Create("Мастер резюме", "Resume Wizard", "+79239999999", "ResumeTest@yandex.ru", false).ElementAt(0);
+                    AppId = app.ApplicantID;
+                }
+
+                created = ResumeManager.CreateResume(AppId, obj["Position"].ToString(), obj["Summary"].ToString(), obj["Training"].ToString(), DateTime.Now);
 
                 resultMessage = "Резюме добавлено";
                 success = true;

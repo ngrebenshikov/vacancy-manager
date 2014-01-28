@@ -43,6 +43,20 @@ namespace VacancyManager.Services.Managers
             _db.SaveChanges();
         }
 
+        internal static Resume UpdateResume(int resId, string position, string summary, string training)
+        {
+            VacancyContext _db = new VacancyContext();
+            Resume upRes = _db.Resumes.Where(res => res.ResumeId == resId).FirstOrDefault();
+            if (upRes != null)
+            {
+                upRes.Position = position;
+                upRes.Summary = summary;
+                upRes.Training = training;
+                _db.SaveChanges();
+            }
+            return upRes;
+        }
+
         internal static List<Resume> CreateResume(int applicantId, string Position, string Summary, string Training, DateTime Date)
         {
             VacancyContext _db = new VacancyContext();
@@ -77,6 +91,24 @@ namespace VacancyManager.Services.Managers
             _db.ResumeRequirements.Add(ResumeRequirement);
             _db.SaveChanges();
             return ResumeRequirement;
+        }
+
+        internal static ResumeRequirement UpdateResumeRequirement(int Id, string comment, bool isChecked)
+        {
+            VacancyContext _db = new VacancyContext();
+
+            ResumeRequirement updateRec = _db.ResumeRequirements.Where(v => v.Id == Id).Single();
+
+            updateRec.Comment = comment;
+            updateRec.IsChecked = isChecked;
+            _db.SaveChanges();
+            return updateRec;
+        }
+
+        internal static IEnumerable<ResumeRequirement> GetResumeRequirements(int resumeId)
+        {
+            VacancyContext _db = new VacancyContext();
+            return _db.ResumeRequirements.Where(v => v.ResumeId == resumeId).ToList();
         }
 
         #endregion
