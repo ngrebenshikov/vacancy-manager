@@ -9,7 +9,7 @@
                 read: '/Resume/LoadResume',
                 destroy: '/Resume/DeleteResume',
                 update: '/Resume/UpdateResume',
-                create: 'Resume/CreateResume'
+                create: '/Resume/CreateResume'
             },
 
             reader: {
