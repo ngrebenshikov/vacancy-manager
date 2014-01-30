@@ -28,12 +28,29 @@
         menuDisabled: true,
         flex: 1
     },
-       {
-           text: 'Проект',
-           dataIndex: 'Project',
-           sortable: false,
-           menuDisabled: true,
-           flex: 1
-       }]
+    {
+        text: 'Проект',
+        dataIndex: 'Project',
+        sortable: false,
+        menuDisabled: true,
+        flex: 1
+    }],
+
+    bbar: [{
+        text: 'Добавить',
+        name: 'AddExp',
+        id: 'btnAddExp',
+        action: 'AddExpirience'
+    }, {
+        text: 'Редактировать',
+        name: 'EditExpirience',
+        id: 'btnEditExpirience',
+        action: 'EditExpirience'
+    }, '->',
+    {
+        text: 'Удалить',
+        action: 'DeleteExpirience'
+    }
+   ]
 
 });

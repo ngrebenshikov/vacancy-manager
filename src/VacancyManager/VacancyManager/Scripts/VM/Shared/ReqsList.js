@@ -11,12 +11,9 @@
 Ext.define('VM.ReqsList', {
     extend: 'Ext.grid.Panel',
     alias: 'widget.ReqsList',
-    region: 'center',
     height: 500,
     id: 'resReqsGrid',
-    autoSizeColumns: true,
     frame: false,
-    split: true,
     plugins: [cellEditing],
     features: [Ext.create('Ext.grid.feature.Grouping', {
         groupHeaderTpl: '{name}: ' + Strings.Skills + ' ({rows.length})'
@@ -43,8 +40,12 @@ Ext.define('VM.ReqsList', {
                  text: Strings.UserCommentary,
                  width: 120,
                  flex: 1,
+                 field: { xtype: 'textfield' },
                  sortable: false,
                  menuDisabled: true
              }
           ]
-});
+         });
+
+
+

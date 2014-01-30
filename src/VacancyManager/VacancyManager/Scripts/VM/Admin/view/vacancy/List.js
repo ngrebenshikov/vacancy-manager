@@ -58,8 +58,8 @@
         text: 'Редактировать',
         name: 'btnEditVacancy',
         id: 'EditVacancy',
-        action: 'editVacancy' 
-    },
+        action: 'editVacancy'
+    }, '->',
     {  
         text: 'Удалить вакансию',
         action: 'deleteVacancy'
