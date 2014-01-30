@@ -35,9 +35,66 @@
               { click: this.GoToFouthStep },
 
               'button[action=FinishStep]':
-              { click: this.FinishFouthStep }
+              { click: this.FinishFouthStep },
+
+              'button[action=ResumePdfCopy]':
+              { click: this.ResumePdfCopy },
+
+              'button[action=AddExpirience]':
+              { click: this.AddExpirience }
+
           }
       );
+      },
+
+      AddExpirience: function (button) {
+          ExpWin = Ext.widget('window', {
+              title: 'Информация о профессиональном опыте',
+              width: 650,
+              height: 400,
+              minHeight: 400,
+              layout: 'fit',
+              modal: true,
+              buttonAlign: 'center',
+              items: [
+                 {   xtype: 'form',
+                     border: false,
+                     layout: 'border',
+                     style: 'background-color: #fff;',
+                     items: [
+                        { xtype: 'ManageExperience',
+                          region: 'center'
+                        },
+                        { xtype: 'ReqsList',
+                          region: 'east',
+                          width: 300
+                        }
+                     ]
+                 }
+              ],
+              buttons: [
+                { text: 'Сохранить',
+                    action: 'SaveResume'
+                },
+                { text: 'Отмена',
+                    handler: function () {
+                        ExpWin.close();
+                    }
+                }
+              ]
+          });
+
+          ExpWin.show();
+
+      },
+
+      ResumePdfCopy: function (button) {
+          var wizard = Ext.getCmp('wizard');
+          var form = button.up('form');
+          var resumeStore = this.getResumeStore();
+          var record = resumeStore.getAt(0);
+          window.open('/Resume/CreatePdfCopy/' + record.getId());
+
       },
 
       SelectStep: function (view, record) {
@@ -58,6 +115,7 @@
       FinishStep: function (button) {
           var wizard = Ext.getCmp('wizard');
           var form = button.up('form');
+
       },
 
       GoToFirstStep: function (button) {
@@ -112,7 +170,7 @@
 
 
           wizard.getLayout().setActiveItem('step-2');
-
+          console.log(Ext.getCmp('resReqsGrid'));
       },
 
       FinishSecondStep: function (button) {
@@ -132,8 +190,8 @@
               wmenu.getAt(1).set('ischeck', true);
           }
 
-              wizard.getLayout().setActiveItem('step-3');
-       },
+          wizard.getLayout().setActiveItem('step-3');
+      },
 
       FinishThirdStep: function (button) {
           var wizard = Ext.getCmp('wizard');

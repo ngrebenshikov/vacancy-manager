@@ -1786,6 +1786,7 @@
     <Content Include="Scripts\VM\Shared\FirstStep.js" />
     <Content Include="Scripts\VM\Shared\FouthStep.js" />
     <Content Include="Scripts\VM\Shared\LastStep.js" />
+    <Content Include="Scripts\VM\Shared\ManageExperience.js" />
     <Content Include="Scripts\VM\Shared\ReqsList.js" />
     <Content Include="Scripts\VM\Shared\SecondStep.js" />
     <Content Include="Scripts\VM\Shared\ThirdStep.js" />

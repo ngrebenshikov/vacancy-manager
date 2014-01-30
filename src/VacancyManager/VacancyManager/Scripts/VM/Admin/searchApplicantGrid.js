@@ -5,6 +5,7 @@ Ext.define('VM.searchApplicantGrid', {
     alias: 'widget.searchApplicantGrid',
     appSearchReqs: [],
     appSearchVacs: [],
+   // selType: 'checkboxmodel',
     appSearchEmp: 1,
     appSearchEmpC: 0,
     store: 'SearchApplicants',
@@ -238,21 +239,20 @@ Ext.define('VM.searchApplicantGrid', {
             height: 310,
             id: 'searchVacancyGrid',
             autoSizeColumns: true,
-            forceFit: true,
             frame: false,
-            selModel: smSearchVacancy,
-            split: true,
+            multiSelect: true,
+            selType: 'checkboxmodel',
             store: searchVacancyStore,
             columns: [{
                 dataIndex: 'Title',
                 text: 'Вакансия',
-                width: 120,
+                flex: 1,
                 sortable: false,
                 menuDisabled: true
             }, {
                 dataIndex: 'OpeningDate',
                 text: 'Дата открытия',
-                width: 150,
+                width: 100,
                 align: 'center',
                 sortable: true,
                 xtype: 'datecolumn',
@@ -261,7 +261,7 @@ Ext.define('VM.searchApplicantGrid', {
             }
          ],
 
-            bbar: ['Поиск: ',
+            fbar: ['Поиск: ',
             {
                 xtype: 'triggerfield',
                 width: 315,

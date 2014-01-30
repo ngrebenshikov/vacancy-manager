@@ -34,6 +34,16 @@
           [
             {
                 tabConfig: {
+                    title: Strings.Vacancies
+                },
+                layout: 'fit',
+                items:
+              [
+                { xtype: 'vacancyList' }
+              ]
+            },
+            {
+                tabConfig: {
                     title: Strings.Users
                 },
                 xtype: 'panel',
@@ -43,16 +53,6 @@
                 items:
               [
                 { xtype: 'UserList' }
-              ]
-            },
-            {
-                tabConfig: {
-                    title: Strings.Vacancies
-                },
-                layout: 'fit',
-                items:
-              [
-                { xtype: 'vacancyList' }
               ]
             },
             {

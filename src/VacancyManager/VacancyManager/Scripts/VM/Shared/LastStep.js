@@ -3,6 +3,7 @@
     alias: 'widget.LastStep',
     border: false,
     height: 250,
+    autoScroll: true,
     width: 350,
     layout: {
         type: 'fit'
@@ -35,11 +36,18 @@
                 text: 'Prev',
                 margin: 5,
                 action: 'GoToFouthStep'
-            }, {
+            }, '->', {
                 text: 'Finish',
                 margin: 5,
                 action: 'FinishStep'
+            }, {
+                text: 'Print',
+                margin: 5,
+                action: 'ResumePdfCopy',
+                icon: '/Content/icons/pdfico.png',
+                tooltip: 'Создать pdf'
             }
+
             ]
         }],
 
