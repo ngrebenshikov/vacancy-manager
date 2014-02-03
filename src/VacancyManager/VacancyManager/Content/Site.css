@@ -105,3 +105,8 @@ td.wrap-text div
     display: list-item;
     word-wrap: break-word;
 }
+
+.disabled-row .x-grid-cell {
+    background-color: transparent !important;
+    border: 0px;
+}

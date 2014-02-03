@@ -9,7 +9,7 @@ namespace VacancyManager.Migrations
             DropForeignKey("Comment", "ConsiderationID", "Consideration");
             DropIndex("Comment", new[] { "ConsiderationID" });
             AlterColumn("Comment", "ConsiderationID", c => c.Int());
-            AddForeignKey("Comment", "ConsiderationID", "Consideration", "ConsiderationID");
+            AddForeignKey("Comment", "ConsiderationID", "Consideration", "ConsiderationID", cascadeDelete: true);
             CreateIndex("Comment", "ConsiderationID");
         }
         

@@ -38,9 +38,9 @@
                 },
                 layout: 'fit',
                 items:
-              [
-                { xtype: 'vacancyList' }
-              ]
+                [
+                  { xtype: 'vacancyList' }
+                ]
             },
             {
                 tabConfig: {

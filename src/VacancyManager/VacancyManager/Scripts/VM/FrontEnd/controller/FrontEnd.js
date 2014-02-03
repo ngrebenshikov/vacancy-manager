@@ -1,6 +1,6 @@
 ﻿Ext.define('VM.controller.FrontEnd',
   { extend: 'Ext.app.Controller',
-      stores: ['Resume', 'ResumeRequirement'],
+      stores: ['Resume', 'ResumeRequirement', 'ResumeExperience'],
       views: ['frontend.Main'],
       refs: [],
 
@@ -19,73 +19,17 @@
               'button[action=GoToFirstStep]':
               { click: this.GoToFirstStep },
 
-              'button[action=GoToSecondStep]':
-              { click: this.GoToSecondStep },
-
-              'button[action=FinishThirdStep]':
-              { click: this.FinishThirdStep },
-
-              'button[action=GoToThirdStep]':
-              { click: this.GoToThirdStep },
-
-              'button[action=FinishFouthStep]':
-              { click: this.FinishFouthStep },
-
               'button[action=GoToFouthStep]':
               { click: this.GoToFouthStep },
 
               'button[action=FinishStep]':
-              { click: this.FinishFouthStep },
+              { click: this.FinishStep },
 
               'button[action=ResumePdfCopy]':
-              { click: this.ResumePdfCopy },
-
-              'button[action=AddExpirience]':
-              { click: this.AddExpirience }
+              { click: this.ResumePdfCopy }
 
           }
       );
-      },
-
-      AddExpirience: function (button) {
-          ExpWin = Ext.widget('window', {
-              title: 'Информация о профессиональном опыте',
-              width: 650,
-              height: 400,
-              minHeight: 400,
-              layout: 'fit',
-              modal: true,
-              buttonAlign: 'center',
-              items: [
-                 {   xtype: 'form',
-                     border: false,
-                     layout: 'border',
-                     style: 'background-color: #fff;',
-                     items: [
-                        { xtype: 'ManageExperience',
-                          region: 'center'
-                        },
-                        { xtype: 'ReqsList',
-                          region: 'east',
-                          width: 300
-                        }
-                     ]
-                 }
-              ],
-              buttons: [
-                { text: 'Сохранить',
-                    action: 'SaveResume'
-                },
-                { text: 'Отмена',
-                    handler: function () {
-                        ExpWin.close();
-                    }
-                }
-              ]
-          });
-
-          ExpWin.show();
-
       },
 
       ResumePdfCopy: function (button) {
@@ -100,22 +44,43 @@
       SelectStep: function (view, record) {
           var wizard = Ext.getCmp('wizard'),
               stageindex = record.get('stageindex');
-          wizard.getLayout().setActiveItem(stageindex);
-      },
+          enabled = record.get('enabled');
+          var isEdu = false;
+          if (enabled) {
+              var searchStore = this.getResumeExperienceStore(),
+                            fieldName = 'IsEducation';
 
-      FinishFouthStep: function (button) {
-          var wizard = Ext.getCmp('wizard');
-          var form = button.up('form');
+              if (stageindex == 'step-4')
+                  isEdu = true;
+              if (stageindex == 'step-3')
+                  isEdu = false;
 
-          if (form.getForm().isValid()) {
-              wizard.getLayout().setActiveItem('step-5');
+              searchStore.clearFilter();
+              searchStore.filter({
+                  property: fieldName,
+                  value: isEdu,
+                  exactMatch: false,
+                  caseSensitive: false
+              });
+
+              wizard.getLayout().setActiveItem(stageindex);
           }
+
       },
 
       FinishStep: function (button) {
           var wizard = Ext.getCmp('wizard');
-          var form = button.up('form');
+          var form = button.up('form'),
+              values = form.getValues();
+          var updateResume = this.getResumeStore().getAt(0);
+          updateResume.set(values);
 
+          console.log(updateResume);
+          var wmenu = Ext.getCmp('wizardMenuGrid').getStore();
+          if (wmenu != undefined) {
+              wmenu.getAt(4).set('ischeck', true);
+              wmenu.getAt(5).set('enabled', true);
+          }
       },
 
       GoToFirstStep: function (button) {
@@ -130,11 +95,6 @@
 
       },
 
-      GoToThirdStep: function (button) {
-          var wizard = Ext.getCmp('wizard');
-          wizard.getLayout().setActiveItem('step-3');
-
-      },
 
       FinishFirtStep: function (button) {
           var wizard = Ext.getCmp('wizard');
@@ -143,6 +103,7 @@
           var wmenu = Ext.getCmp('wizardMenuGrid').getStore();
           if (wmenu != undefined) {
               wmenu.getAt(0).set('ischeck', true);
+              wmenu.getAt(1).set('enabled', true);
           }
 
           var resumeRequirementStore = this.getResumeRequirementStore();
@@ -170,7 +131,6 @@
 
 
           wizard.getLayout().setActiveItem('step-2');
-          console.log(Ext.getCmp('resReqsGrid'));
       },
 
       FinishSecondStep: function (button) {
@@ -188,18 +148,10 @@
           var wmenu = Ext.getCmp('wizardMenuGrid').getStore();
           if (wmenu != undefined) {
               wmenu.getAt(1).set('ischeck', true);
+              wmenu.getAt(2).set('enabled', true);
           }
 
           wizard.getLayout().setActiveItem('step-3');
-      },
-
-      FinishThirdStep: function (button) {
-          var wizard = Ext.getCmp('wizard');
-          var form = button.up('form');
-
-          if (form.getForm().isValid()) {
-              wizard.getLayout().setActiveItem('step-4');
-          }
       },
 
       GoToFirstStep: function (button) {
@@ -209,16 +161,8 @@
           if (form.getForm().isValid()) {
               wizard.getLayout().setActiveItem('step-1');
           }
-      },
-
-      GoToSecondStep: function (button) {
-          var wizard = Ext.getCmp('wizard');
-          var form = button.up('form');
-
-          if (form.getForm().isValid()) {
-              wizard.getLayout().setActiveItem('step-2');
-          }
       }
+
   }
 );
 

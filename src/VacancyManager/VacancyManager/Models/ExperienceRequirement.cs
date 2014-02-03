@@ -13,5 +13,11 @@ namespace VacancyManager.Models
         public int RequirementId { get; set; }
         public string Comment { get; set; }
         public bool IsChecked { get; set; }
+
+        public ExperienceRequirement()
+        {
+            Id = -1;  
+        }
+
     }
 }
