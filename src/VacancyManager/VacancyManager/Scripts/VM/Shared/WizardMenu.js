@@ -1,13 +1,14 @@
 ﻿
-var myData = [
-        ['step-1','Основная информация', false],
-        ['step-2', 'Компетенция', false],
-        ['step-3', 'Профессональный опыт', false],
-        ['step-4', 'Образование', false],
-        ['step-5', 'Дополниетельная информация', false]
-];
+/*var myData = { 'items': [
+        {'step-1', 'Основная информация', false},
+        {'step-2', 'Компетенция', false},
+        {'step-3', 'Профессональный опыт', false},
+        {'step-4', 'Образование', false},
+        {'step-5', 'Дополнительная информация', false}
+]
+};*/
 
-var store = Ext.create('Ext.data.ArrayStore', {
+var store = Ext.create('Ext.data.Store', {
     id: 'stageindex',
     autoLoad: true,
     autoSync: true,
@@ -15,9 +16,23 @@ var store = Ext.create('Ext.data.ArrayStore', {
     fields: [
            { name: 'stageindex' },
            { name: 'stage' },
-           { name: 'ischeck', type: 'boolean' }
+           { name: 'ischeck', type: 'boolean' },
+           { name: 'enabled', type: 'boolean' },
         ],
-    data: myData
+    proxy: {
+        type: 'memory',
+        reader: {
+            type: 'json',
+            root: 'items'
+        }
+    },
+    data:{'items':[
+        { 'stageindex': 'step-1', 'stage': 'Основная информация', 'ischeck': 'false', 'enabled': 'true' },
+        { 'stageindex': 'step-2', 'stage': 'Компетенция', 'ischeck': 'false', 'enabled': 'false' },
+        { 'stageindex': 'step-3', 'stage': 'Профессональный опыт', 'ischeck': 'false', 'enabled': 'false' },
+        { 'stageindex': 'step-4', 'stage': 'Образование', 'ischeck': 'false', 'enabled': 'false' },
+        { 'stageindex': 'step-5', 'stage': 'Дополнительная информация', 'ischeck': 'false', 'enabled': 'false' }
+    ]}
 });
 
 Ext.define('VM.WizardMenu', {
@@ -44,7 +59,7 @@ Ext.define('VM.WizardMenu', {
                     width: 40,
                     sortable: false,
                     menuDisabled: true,
-                    renderer: function(value, metaData, record, rowIndex, colIndex, store, view) {
+                    renderer: function (value, metaData, record, rowIndex, colIndex, store, view) {
                         var f = value;
                         var cssPrefix = Ext.baseCSSPrefix,
                         cls = [cssPrefix + 'grid-checkheader'];
@@ -62,8 +77,13 @@ Ext.define('VM.WizardMenu', {
                 }
             ],
             viewConfig: {
+                getRowClass: function (record, index) {
+                    // disabled-row - custom css class for disabled (you must declare it)
+                    if (record.get('enabled') == false) return 'disabled-row';
+                }
 
             }
+
         });
 
         me.callParent(arguments);

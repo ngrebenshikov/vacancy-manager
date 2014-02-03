@@ -23,7 +23,7 @@
                 fieldLabel: 'Сертификаты и тренинги',
                 allowBlank: true,
                 flex: 1,
-                name: 'traning'
+                name: 'Training'
             }, {
                 xtype: 'textareafield',
                 fieldLabel: 'Дополнительная информация',

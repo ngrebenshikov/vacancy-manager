@@ -40,12 +40,12 @@
         text: 'Добавить',
         name: 'AddExp',
         id: 'btnAddExp',
-        action: 'AddExpirience'
+        action: 'AddExperience'
     }, {
         text: 'Редактировать',
-        name: 'EditExpirience',
-        id: 'btnEditExpirience',
-        action: 'EditExpirience'
+        name: 'EditExperience',
+        id: 'btnEditExperience',
+        action: 'EditExperience'
     }, '->',
     {
         text: 'Удалить',

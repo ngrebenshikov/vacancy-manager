@@ -67,7 +67,7 @@
    ],
  
    viewConfig: {
-       autoScroll: true,
+      // autoScroll: true,
        loadingText : 'Загрузка вакансий...'
     }
 });

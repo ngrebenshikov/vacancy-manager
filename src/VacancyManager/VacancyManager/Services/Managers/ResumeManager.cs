@@ -18,7 +18,7 @@ namespace VacancyManager.Services.Managers
         internal static IEnumerable<Resume> GetResumes(int appId)
         {
             VacancyContext _db = new VacancyContext();
-            return _db.Resumes.Where(v => v.Applicant.ApplicantID == appId).ToList();
+            return _db.Resumes.Where(v => v.ApplicantID == appId).ToList();
         }
 
         internal static Resume GetResume(int? resId)
@@ -26,13 +26,6 @@ namespace VacancyManager.Services.Managers
             VacancyContext _db = new VacancyContext();
             return _db.Resumes.Where(v => v.ResumeId == resId).Single();
         }
-
-        internal static IEnumerable<Experience> GetExperience(int ResId)
-        {
-            VacancyContext _db = new VacancyContext();
-            return _db.PreviousExperiences.Where(Exp => Exp.Resume.ResumeId == ResId).ToList();
-        }
-
 
         internal static void DeleteResume(int id)
         {
@@ -43,7 +36,7 @@ namespace VacancyManager.Services.Managers
             _db.SaveChanges();
         }
 
-        internal static Resume UpdateResume(int resId, string position, string summary, string training)
+        internal static Resume UpdateResume(int resId, string position, string summary, string training, string addInfo)
         {
             VacancyContext _db = new VacancyContext();
             Resume upRes = _db.Resumes.Where(res => res.ResumeId == resId).FirstOrDefault();
@@ -52,20 +45,23 @@ namespace VacancyManager.Services.Managers
                 upRes.Position = position;
                 upRes.Summary = summary;
                 upRes.Training = training;
+                upRes.AdditionalInformation = addInfo;
                 _db.SaveChanges();
             }
             return upRes;
         }
 
-        internal static List<Resume> CreateResume(int applicantId, string Position, string Summary, string Training, DateTime Date)
+        internal static List<Resume> CreateResume(int applicantId, string Position, string Summary, string Training, DateTime Date, string addInfo)
         {
             VacancyContext _db = new VacancyContext();
             var obj = new List<Resume>();
             obj.Add(new Resume
-            {   ApplicantID = applicantId,
+            {
+                ApplicantID = applicantId,
                 Position = Position,
                 Summary = Summary,
                 Training = Training,
+                AdditionalInformation = addInfo,
                 Date = Date
             });
             _db.Resumes.Add(obj[0]);
@@ -114,29 +110,67 @@ namespace VacancyManager.Services.Managers
         #endregion
 
         #region Experience
+
+        internal static IEnumerable<Experience> GetResumeExperience(int resumeId)
+        {
+            VacancyContext _db = new VacancyContext();
+            return _db.PreviousExperiences.Where(v => v.ResumeId == resumeId).ToList();
+        }
+
         internal static Experience CreateResumeExperience(int resumeId, string duties, DateTime? finishDate, bool isEdu, string job, string position, string project, DateTime startDate)
         {
             VacancyContext _db = new VacancyContext();
             var ResumeExperience =
                       new Experience
                       {
-                        ResumeId = resumeId,
-                        Duties = duties,
-                        FinishDate = finishDate,
-                        IsEducation = isEdu,
-                        Job = job,
-                        Position = position,
-                        Project = project,
-                        StartDate = startDate
-                     };
+                          ResumeId = resumeId,
+                          Duties = duties,
+                          FinishDate = finishDate,
+                          IsEducation = isEdu,
+                          Job = job,
+                          Position = position,
+                          Project = project,
+                          StartDate = startDate
+                      };
 
             _db.PreviousExperiences.Add(ResumeExperience);
             _db.SaveChanges();
             return ResumeExperience;
         }
+
+        internal static Experience UpdateResumeExperience(int experienceId, string duties, DateTime? finishDate, bool isEdu, string job, string position, string project, DateTime startDate)
+        {
+            VacancyContext _db = new VacancyContext();
+            Experience updateRec = _db.PreviousExperiences.Where(x => x.ExperienceId == experienceId).Single();
+          
+            if (updateRec != null)
+            {
+                updateRec.Duties = duties;
+                updateRec.FinishDate = finishDate;
+                updateRec.IsEducation = isEdu;
+                updateRec.Job = job;
+                updateRec.Position = position;
+                updateRec.Project = project;
+                updateRec.StartDate = startDate;
+
+
+                _db.SaveChanges();
+            }
+
+            return updateRec;
+        }
+
         #endregion
 
         #region  ExperienceRequirements
+
+
+        internal static IEnumerable<ExperienceRequirement> GetExperienceRequirements(int experienceId)
+        {
+            VacancyContext _db = new VacancyContext();
+            return _db.ExperienceRequirements.Where(v => v.ExperienceId == experienceId).ToList();
+        }
+
         internal static ExperienceRequirement CreateExperienceRequirement(int experienceId, int reqId, string comment, bool isChecked)
         {
             VacancyContext _db = new VacancyContext();
@@ -146,12 +180,25 @@ namespace VacancyManager.Services.Managers
                           ExperienceId = experienceId,
                           RequirementId = reqId,
                           Comment = comment,
-                          IsChecked = isChecked                      
+                          IsChecked = isChecked
                       };
 
             _db.ExperienceRequirements.Add(ExperienceRequirement);
             _db.SaveChanges();
             return ExperienceRequirement;
+        }
+
+
+        internal static ExperienceRequirement UpdateExperienceRequirement(int Id, string comment, bool isChecked)
+        {
+            VacancyContext _db = new VacancyContext();
+
+            ExperienceRequirement updateRec = _db.ExperienceRequirements.Where(v => v.Id == Id).Single();
+
+            updateRec.Comment = comment;
+            updateRec.IsChecked = isChecked;
+            _db.SaveChanges();
+            return updateRec;
         }
         #endregion
     }

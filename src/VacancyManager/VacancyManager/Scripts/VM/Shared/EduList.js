@@ -7,6 +7,7 @@
     frame: false,
     split: true,
     title: 'Образование',
+    store: 'ResumeExperience',
     columns:
     [{
         text: 'Период',
@@ -34,6 +35,22 @@
            sortable: false,
            menuDisabled: true,
            flex: 1
-       }]
+       }],
+    bbar: [{
+        text: 'Добавить',
+        name: 'AddEdu',
+        id: 'btnAddEducation',
+        action: 'AddEducation'
+    }, {
+        text: 'Редактировать',
+        name: 'EditEducation',
+        id: 'btnEditEducation',
+        action: 'EditEducation'
+    }, '->',
+    {
+        text: 'Удалить',
+        action: 'DeleteEducation'
+    }
+   ]
 
 });

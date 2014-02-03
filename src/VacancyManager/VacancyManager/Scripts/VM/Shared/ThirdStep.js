@@ -16,7 +16,9 @@
                 type: 'fit'
             },
             items: [
-               { xtype: 'ExpList' }
+               { xtype: 'ExpList',
+                 store: 'ResumeExperience'
+               }
             ],
             buttons: [{
                 text: 'Prev',

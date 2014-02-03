@@ -16,18 +16,20 @@ Ext.application
     appFolder: '/Scripts/VM/FrontEnd',
     stores: [
      'Resume',
-     'ResumeRequirement'
-    ],
+     'ResumeRequirement'],
     controllers: [
-     'FrontEnd'
-    ],
+     'FrontEnd',
+     'ResumeExperience',
+     'ResumeEducation'],
     launch: function ()
     {
       Ext.create('Ext.container.Viewport',
       {
         layout: 'fit',
         items:
-        [{ xtype: 'FrontEndMain'}]
+        [ 
+          { xtype: 'FrontEndMain' }
+        ]
       }
       );
     }

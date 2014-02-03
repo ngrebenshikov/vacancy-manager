@@ -88,6 +88,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\RequirementStackController.cs" />
     <Compile Include="Controllers\ResumeController.cs" />
+    <Compile Include="Controllers\ResumeExperienceController.cs" />
     <Compile Include="Controllers\ResumeRequirementController.cs" />
     <Compile Include="Controllers\RolesController.cs" />
     <Compile Include="Controllers\SysConfigController.cs" />
@@ -1775,10 +1776,16 @@
     <Content Include="Scripts\VM\Admin\view\vacancy\ListMin.js" />
     <Content Include="Scripts\VM\Admin\view\vacancy\VacancyRequirementsList.js" />
     <Content Include="Scripts\VM\FrontEnd\controller\FrontEnd.js" />
+    <Content Include="Scripts\VM\FrontEnd\controller\ResumeEducation.js" />
+    <Content Include="Scripts\VM\FrontEnd\controller\ResumeExperience.js" />
     <Content Include="Scripts\VM\FrontEnd\frontEndApp.js" />
+    <Content Include="Scripts\VM\FrontEnd\model\ExperienceRequirement.js" />
     <Content Include="Scripts\VM\FrontEnd\model\Resume.js" />
+    <Content Include="Scripts\VM\FrontEnd\model\ResumeExperience.js" />
     <Content Include="Scripts\VM\FrontEnd\model\ResumeRequirement.js" />
+    <Content Include="Scripts\VM\FrontEnd\store\ExperienceRequirement.js" />
     <Content Include="Scripts\VM\FrontEnd\store\Resume.js" />
+    <Content Include="Scripts\VM\FrontEnd\store\ResumeExperience.js" />
     <Content Include="Scripts\VM\FrontEnd\store\ResumeRequirement.js" />
     <Content Include="Scripts\VM\FrontEnd\view\frontend\Main.js" />
     <Content Include="Scripts\VM\Shared\EduList.js" />

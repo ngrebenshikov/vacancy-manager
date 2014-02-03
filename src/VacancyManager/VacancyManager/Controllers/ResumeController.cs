@@ -35,7 +35,7 @@ namespace VacancyManager.Controllers
 
             if (origResume != null)
             {
-                CreatedResume = ResumeManager.CreateResume(origResume.ApplicantID, origResume.Position, origResume.Summary, origResume.Training, origResume.Date).ElementAt(0);
+                CreatedResume = ResumeManager.CreateResume(origResume.ApplicantID, origResume.Position, origResume.Summary, origResume.Training, origResume.Date, origResume.AdditionalInformation).ElementAt(0);
                 createdResumeId = CreatedResume.ResumeId;
                 foreach (var origResumeReq in origResumeReqs)
                 {
@@ -318,6 +318,7 @@ namespace VacancyManager.Controllers
                                   ApplicantId = res.ApplicantID,
                                   Date = res.Date.ToShortDateString(),
                                   Training = res.Training,
+                                  AdditionalInformation = res.AdditionalInformation,
                                   StartDate = res.Period,
                                   Position = res.Position,
                                   Summary = res.Summary
@@ -341,7 +342,7 @@ namespace VacancyManager.Controllers
             if (data != null)
             {
                 var obj = jss.Deserialize<dynamic>(data); //
-                updateResume = ResumeManager.UpdateResume(obj["ResumeId"], obj["Position"].ToString(), obj["Summary"].ToString(),  obj["Training"].ToString());
+                updateResume = ResumeManager.UpdateResume(obj["ResumeId"], obj["Position"].ToString(), obj["Summary"].ToString(), obj["Training"].ToString(), obj["AdditionalInformation"].ToString());
   
             }
             created.Add(updateResume);
@@ -396,7 +397,7 @@ namespace VacancyManager.Controllers
                     AppId = app.ApplicantID;
                 }
 
-                created = ResumeManager.CreateResume(AppId, obj["Position"].ToString(), obj["Summary"].ToString(), obj["Training"].ToString(), DateTime.Now);
+                created = ResumeManager.CreateResume(AppId, obj["Position"].ToString(), obj["Summary"].ToString(), obj["Training"].ToString(), DateTime.Now, obj["AdditionalInformation"].ToString());
 
                 resultMessage = "Резюме добавлено";
                 success = true;
