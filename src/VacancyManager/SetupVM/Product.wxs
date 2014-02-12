@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi"
+     xmlns:iis="http://schemas.microsoft.com/wix/IIsExtension">
+  
+<Product Id="{EEDDAC23-850B-43F4-968E-A54178C3B384}" 
+         Name="VM" 
+         Language="1049"
+         Version="1.0.0.0"
+         Manufacturer="LanitTercom" 
+         UpgradeCode="c0301653-373f-4b56-947d-7304e2c6592f" 
+         Codepage="1251">
+  
+    <Package InstallerVersion="200" 
+             Compressed="yes" 
+             InstallScope="perMachine"
+             SummaryCodepage="1251" 
+             Description="Утсановка приложения версии 1.0.0.0" />
+
+    <Media Id="1" Cabinet="VMApp.cab" EmbedCab="yes" />
+  
+    <WixVariable Id="WixUILicenseRtf" Value="License.rtf" /> 
+  
+    <Directory Id="TARGETDIR" Name="SourceDir">
+       <Directory Id ="ProgramFilesfolder">
+          <Directory Id ="INSTALLLOCATION" Name="VM">
+              <!--<Directory Id ="ContentVM" Name="Content">
+                <Directory Id ="ContenticonsVM" Name="icons"/>
+              </Directory>            
+              <Directory Id="ControllersVM" Name="Controllers"/>
+              <Directory Id="ExtLibVM" Name="ExtLib" />
+              <Directory Id ="MigrationsVM" Name="Migrations" />
+              <Directory Id="ModelsVM" Name="Models" />
+              <Directory Id="PropertiesVM" Name="Properties" />
+              <Directory Id="ResourcesVM" Name="Resources" />
+              <Directory Id ="ScriptsVM" Name="Scripts" />
+              <Directory Id="ServicesVM" Name="Services" />
+              <Directory Id="ViewsVM" Name="Views" />
+              -->
+              <Directory Id ="BinVM" Name="bin"/>
+              <Directory Id="objVM" Name="obj">
+                <Directory Id ="DebugVM" Name="Debug">
+                  <Directory Id="TempPEVM" Name="TempPE"/>
+                </Directory>
+              </Directory>
+          </Directory>   
+       </Directory>    
+    </Directory>
+    
+    <DirectoryRef Id="INSTALLLOCATION">
+        <Component Id="Main" Guid="{E15508AA-FD6D-40CE-A061-9F28E48E601A}" KeyPath="yes" DiskId="1">
+          <File Id="WebConfigVM" Name="Web.config" Source="D:\code\vacancy-manager\src\VacancyManager\VacancyManager\Web.config" />
+          <File Id="GlobalVM" Name="Global.asax" Source="D:\code\vacancy-manager\src\VacancyManager\VacancyManager\Global.asax" />
+          <File Id="Global.asaxVM" Name="Global.asax.cs" Source="D:\code\vacancy-manager\src\VacancyManager\VacancyManager\Global.asax.cs" />
+          <File Id="PackagesVM" Name="packages.config" Source="D:\code\vacancy-manager\src\VacancyManager\VacancyManager\packages.config" />
+          <File Id="Templates.DesignerVM" Name="Templates.Designer.cs" Source="D:\code\vacancy-manager\src\VacancyManager\VacancyManager\Templates.Designer.cs" />
+          <File Id="TemplatesVM" Name="Templates.resx" Source="D:\code\vacancy-manager\src\VacancyManager\VacancyManager\Templates.resx" />
+          <File Id="VacancyManagerVM" Name="VacancyManager.csproj" Source="D:\code\vacancy-manager\src\VacancyManager\VacancyManager\VacancyManager.csproj" />
+        </Component>         
+    </DirectoryRef>
+  
+    <!--
+    <DirectoryRef Id="ContentVM">
+      <Component Id ="ContentApp" Guid="{2E3EBBD1-163A-4552-8776-8AF75C3FEBA6}" KeyPath="yes" DiskId="1">
+        <File Id="lanitLogoVM" Name="lanitLogo.gif" Source="D:\code\vacancy-manager\src\VacancyManager\VacancyManager\Content\lanitLogo.gif" />
+        <File Id="lanitLogopVM" Name="lanitLogo.png" Source="D:\code\vacancy-manager\src\VacancyManager\VacancyManager\Content\lanitLogo.png" />
+        <File Id="SiteVM" Name="Site.css" Source="D:\code\vacancy-manager\src\VacancyManager\VacancyManager\Content\Site.css" />        
+      </Component>
+    </DirectoryRef>
+  
+    <DirectoryRef Id="ContenticonsVM">
+      <Component Id="ContenticonsApp" Guid="{50CCD793-80A8-47F5-B662-ADD1933FC7AE}" KeyPath="yes" DiskId="1">
+        <File Id="acceptVM" Name="accept.gif" Source="D:\code\vacancy-manager\src\VacancyManager\VacancyManager\Content\icons\accept.gif"/>
+        <File Id="addVM" Name="add.gif" Source="D:\code\vacancy-manager\src\VacancyManager\VacancyManager\Content\icons\add.gif"/>
+        <File Id="configVM" Name="config.png" Source="D:\code\vacancy-manager\src\VacancyManager\VacancyManager\Content\icons\config.png"/>
+        <File Id="CopyIcoVM" Name="CopyIco.png" Source="D:\code\vacancy-manager\src\VacancyManager\VacancyManager\Content\icons\CopyIco.png"/>
+        <File Id="emailVM" Name="email.png" Source="D:\code\vacancy-manager\src\VacancyManager\VacancyManager\Content\icons\email.png"/>
+        <File Id="group16VM" Name="group16.gif" Source="D:\code\vacancy-manager\src\VacancyManager\VacancyManager\Content\icons\group16.gif"/>
+        <File Id="prikrepitVM" Name="prikrepit.png" Source="D:\code\vacancy-manager\src\VacancyManager\VacancyManager\Content\icons\prikrepit.png"/>
+        <File Id="userVM" Name="user.gif" Source="D:\code\vacancy-manager\src\VacancyManager\VacancyManager\Content\icons\user.gif"/>
+        <File Id="user_addVM" Name="user_add.gif" Source="D:\code\vacancy-manager\src\VacancyManager\VacancyManager\Content\icons\user_add.gif"/>
+        <File Id="user_deleteVM" Name="user_delete.gif" Source="D:\code\vacancy-manager\src\VacancyManager\VacancyManager\Content\icons\user_delete.gif"/>
+        <File Id="UserMailVM" Name="UserMail.png" Source="D:\code\vacancy-manager\src\VacancyManager\VacancyManager\Content\icons\UserMail.png"/>
+      </Component>  
+    </DirectoryRef>
+  
+    <DirectoryRef Id="ControllersVM">
+      <Component Id="ControllersApp" Guid="{1981A903-52BE-449E-85FF-EF97BBAA2A2F}" KeyPath="yes" DiskId="1">
+        <File Id="AccountControllerVM" Name="AccountController.cs" Source="D:\code\vacancy-manager\src\VacancyManager\VacancyManager\Controllers\AccountController.cs" />
+        <File Id="ApplicantControllerVM" Name="ApplicantController.cs" Source="D:\code\vacancy-manager\src\VacancyManager\VacancyManager\Controllers\ApplicantController.cs" />
+        <File Id="ApplicantRequirementControllerVM" Name="ApplicantRequirementController.cs" Source="D:\code\vacancy-manager\src\VacancyManager\VacancyManager\Controllers\ApplicantRequirementController.cs" />
+        <File Id="AttachmentControllerVM" Name="AttachmentController.cs" Source="D:\code\vacancy-manager\src\VacancyManager\VacancyManager\Controllers\AttachmentController.cs" />
+        <File Id="BaseControllerVM" Name="BaseController.cs" Source="D:\code\vacancy-manager\src\VacancyManager\VacancyManager\Controllers\BaseController.cs" />
+        <File Id="CommentsControllerVM" Name="CommentsController.cs" Source="D:\code\vacancy-manager\src\VacancyManager\VacancyManager\Controllers\CommentsController.cs" />
+        <File Id="ConsiderationsControllerVM" Name="ConsiderationsController.cs" Source="D:\code\vacancy-manager\src\VacancyManager\VacancyManager\Controllers\ConsiderationsController.cs" />
+        <File Id="FrontEndControllerVM" Name="FrontEndController.cs" Source="D:\code\vacancy-manager\src\VacancyManager\VacancyManager\Controllers\FrontEndController.cs" />
+        <File Id="HomeControllerVM" Name="HomeController.cs" Source="D:\code\vacancy-manager\src\VacancyManager\VacancyManager\Controllers\HomeController.cs" />
+        <File Id="RequirementStackControllerVM" Name="RequirementStackController.cs" Source="D:\code\vacancy-manager\src\VacancyManager\VacancyManager\Controllers\RequirementStackController.cs" />
+        <File Id="AccountControllerVM" Name="AccountController.cs" Source="D:\code\vacancy-manager\src\VacancyManager\VacancyManager\Controllers\AccountController.cs" />
+        <File Id="AccountControllerVM" Name="AccountController.cs" Source="D:\code\vacancy-manager\src\VacancyManager\VacancyManager\Controllers\AccountController.cs" />
+        <File Id="AccountControllerVM" Name="AccountController.cs" Source="D:\code\vacancy-manager\src\VacancyManager\VacancyManager\Controllers\AccountController.cs" />
+        <File Id="AccountControllerVM" Name="AccountController.cs" Source="D:\code\vacancy-manager\src\VacancyManager\VacancyManager\Controllers\AccountController.cs" />
+        <File Id="AccountControllerVM" Name="AccountController.cs" Source="D:\code\vacancy-manager\src\VacancyManager\VacancyManager\Controllers\AccountController.cs" />
+        <File Id="AccountControllerVM" Name="AccountController.cs" Source="D:\code\vacancy-manager\src\VacancyManager\VacancyManager\Controllers\AccountController.cs" />     
+      </Component>
+    </DirectoryRef>
+     -->
+      
+     <DirectoryRef Id="BinVM">
+       <Component Id ="BinApp" Guid="{59CA5591-34C2-4AB4-8CF6-B67AB44A1463}" KeyPath="yes" DiskId="1">
+         <File Id="AE.Net.MailVM" Name="AE.Net.Mail.dll" Source="D:\code\vacancy-manager\src\VacancyManager\VacancyManager\bin\AE.Net.Mail.dll"/>
+         <File Id="AntiXssLibraryVM" Name="AntiXssLibrary.dll" Source="D:\code\vacancy-manager\src\VacancyManager\VacancyManager\bin\AntiXssLibrary.dll"/>
+         <File Id="AntiXssLibraryxmlVM" Name="AntiXssLibrary.xml" Source="D:\code\vacancy-manager\src\VacancyManager\VacancyManager\bin\AntiXssLibrary.xml"/>
+         <File Id="EntityFramework" Name="EntityFramework.dll" Source="D:\code\vacancy-manager\src\VacancyManager\VacancyManager\bin\EntityFramework.dll"/>
+         <File Id="EntityFrameworkxmlVM" Name="EntityFramework.xml" Source="D:\code\vacancy-manager\src\VacancyManager\VacancyManager\bin\EntityFramework.xml"/>
+         <File Id="HtmlSanitizationLibraryVM" Name="HtmlSanitizationLibrary.dll" Source="D:\code\vacancy-manager\src\VacancyManager\VacancyManager\bin\HtmlSanitizationLibrary.dll"/>
+         <File Id="HtmlSanitizationLibraryxmlVM" Name="HtmlSanitizationLibrary.xml" Source="D:\code\vacancy-manager\src\VacancyManager\VacancyManager\bin\HtmlSanitizationLibrary.xml"/>
+         <File Id="itextsharpVM" Name="itextsharp.dll" Source="D:\code\vacancy-manager\src\VacancyManager\VacancyManager\bin\itextsharp.dll"/>
+         <File Id="itextsharpxmlVM" Name="itextsharp.xml" Source="D:\code\vacancy-manager\src\VacancyManager\VacancyManager\bin\itextsharp.xml"/>
+         <File Id="VacancyManagerVMbin" Name="VacancyManager.dll" Source="D:\code\vacancy-manager\src\VacancyManager\VacancyManager\bin\VacancyManager.dll"/>
+         <File Id="VacancyManagerpdbVM" Name="VacancyManager.pdb" Source="D:\code\vacancy-manager\src\VacancyManager\VacancyManager\bin\VacancyManager.pdb"/>
+       </Component>
+     </DirectoryRef>
+  
+    <DirectoryRef Id="DebugVM">
+      <Component Id="DebugApp" Guid="{54F53C7D-4E6C-4AB3-AC23-D8337A79E844}" KeyPath="yes" DiskId="1">
+        <File Id="DesignTimeResolveAssemblyReferences" Name="DesignTimeResolveAssemblyReferences.cache" Source="D:\code\vacancy-manager\src\VacancyManager\VacancyManager\obj\Debug\DesignTimeResolveAssemblyReferences.cache"/>
+        <File Id="DesignTimeResolveAssemblyReferencesInput" Name="DesignTimeResolveAssemblyReferencesInput.cache" Source="D:\code\vacancy-manager\src\VacancyManager\VacancyManager\obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache"/>
+        <File Id="VacancyManager.csproj.FileListAbsolutetxt" Name="VacancyManager.csproj.FileListAbsolute.txt" Source="D:\code\vacancy-manager\src\VacancyManager\VacancyManager\obj\Debug\VacancyManager.csproj.FileListAbsolute.txt"/>
+        <File Id="VacancyManager.csproj.GenerateResource" Name="VacancyManager.csproj.GenerateResource.cache" Source="D:\code\vacancy-manager\src\VacancyManager\VacancyManager\obj\Debug\VacancyManager.csproj.GenerateResource.cache"/>
+        <File Id="VacancyManager.csprojResolveAssemblyReference" Name="VacancyManager.csprojResolveAssemblyReference.cache" Source="D:\code\vacancy-manager\src\VacancyManager\VacancyManager\obj\Debug\VacancyManager.csprojResolveAssemblyReference.cache"/>
+        <File Id="VacancyManager.dll" Name="VacancyManager.dll" Source="D:\code\vacancy-manager\src\VacancyManager\VacancyManager\obj\Debug\VacancyManager.dll"/>
+        <File Id="VacancyManager.pdb" Name="VacancyManager.pdb" Source="D:\code\vacancy-manager\src\VacancyManager\VacancyManager\obj\Debug\VacancyManager.pdb"/>
+        <File Id="VacancyManager.Properties.ResourceEn" Name="VacancyManager.Properties.ResourceEn.resources" Source="D:\code\vacancy-manager\src\VacancyManager\VacancyManager\obj\Debug\VacancyManager.Properties.ResourceEn.resources"/>
+        <File Id="VacancyManager.Properties.Resources" Name="VacancyManager.Properties.Resources.resources" Source="D:\code\vacancy-manager\src\VacancyManager\VacancyManager\obj\Debug\VacancyManager.Properties.Resources.resources"/>
+        <File Id="VacancyManager.Templates" Name="VacancyManager.Templates.resources" Source="D:\code\vacancy-manager\src\VacancyManager\VacancyManager\obj\Debug\VacancyManager.Templates.resources"/>
+      </Component>
+    </DirectoryRef>
+  
+    <DirectoryRef Id="TempPEVM">
+      <Component Id="TempPEApp" Guid="{BA0E3F3E-8EC0-457C-95A1-17AE4E346790}" KeyPath="yes" DiskId="1">
+        <File Id="Properties.ResourceEn.Designer.csdll" Name="Properties.ResourceEn.Designer.cs.dll" Source="D:\code\vacancy-manager\src\VacancyManager\VacancyManager\obj\Debug\TempPE\Properties.ResourceEn.Designer.cs.dll"/>
+        <File Id="Properties.Resources.Designer.csdll" Name="Properties.Resources.Designer.cs.dll" Source="D:\code\vacancy-manager\src\VacancyManager\VacancyManager\obj\Debug\TempPE\Properties.Resources.Designer.cs.dll"/>
+        <File Id="Templates.Designer.csdll" Name="Templates.Designer.cs.dll" Source="D:\code\vacancy-manager\src\VacancyManager\VacancyManager\obj\Debug\TempPE\Templates.Designer.cs.dll"/>
+      </Component>
+    </DirectoryRef>
+  
+     
+      
+     
+     <Feature Id ="Complete" Title="Vacancy Manager" Description="Устнановка" Level="1" ConfigurableDirectory="INSTALLLOCATION">
+      <ComponentRef Id="Main"/>
+     <!--<ComponentRef Id="ContentApp"/>
+      <ComponentRef Id="ContenticonsApp"/>
+      -->
+      <ComponentRef Id="BinApp"/>
+      <ComponentRef Id="DebugApp"/>
+      <ComponentRef Id="TempPEApp"/>
+    </Feature>
+   <iis:WebSite Id="VacancyManagerApp" Description="Vacnacy-Manger">
+        <iis:WebAddress Id="_vm56694" Port ="53662" IP ="*"/>
+    </iis:WebSite>
+
+   <Component Id="WebAppConfig" Guid ="{D9534B4B-D9F8-4D49-B3A7-457BCE856D88}">
+       <CreateFolder Directory="INSTALLLOCATION" />
+       <iis:WebVirtualDir Id="RootVirtualDir" Alias="webAdmin" Directory="INSTALLLOCATION" WebSite="VacancyManagerApp">
+         <iis:WebDirProperties Id ="WebDefaultDir" DefaultDocuments="Default.aspx" AnonymousAccess="yes" Read="yes" Write="no" Script="yes" Index="no"/>
+         <iis:WebApplication Id="WebApplication" AllowSessions="yes" ClientDebugging="no" DefaultScript="JScript" Name="VMApp" ServerDebugging="no" />
+       </iis:WebVirtualDir>
+     </Component>     
+   
+      
+    <UI Id="WixUiVM">
+      <UIRef Id="WixUI_FeatureTree"/>      
+    </UI>
+
+</Product>
+</Wix>
