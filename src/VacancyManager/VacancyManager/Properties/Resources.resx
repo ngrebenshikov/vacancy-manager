@@ -444,4 +444,7 @@ Example:&lt;br&gt;Project1- Passenger Information System for trains.</value>
   <data name="QT_Training" xml:space="preserve">
     <value>Пример: &lt;br&gt;Прошел тренинги компании ScrumTrek:&lt;br&gt; «Agile Development with Scrum», «Test Driven Developement»&lt;br&gt; &lt;br&gt; Example: &lt;br&gt; If there are no options, erase the item.</value>
   </data>
+  <data name="Test" xml:space="preserve">
+    <value>df</value>
+  </data>
 </root>

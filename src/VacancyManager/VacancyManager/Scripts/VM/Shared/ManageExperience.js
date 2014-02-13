@@ -116,7 +116,7 @@
                        {
                            xtype: 'datefield',
                            name: 'FinishDate',
-                           allowBlank: false,
+                           allowBlank: true,
                            fieldLabel: 'Дата увольнения',
                            format: 'd.m.Y',
                            flex: 1,
