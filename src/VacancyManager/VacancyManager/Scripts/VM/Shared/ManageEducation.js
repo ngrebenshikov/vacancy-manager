@@ -115,7 +115,7 @@ Ext.define('VM.Shared.ManageEducation', {
                        {
                            xtype: 'datefield',
                            name: 'FinishDate',
-                           allowBlank: false,
+                           allowBlank: true,
                            fieldLabel: 'Дата окончания',
                            format: 'd.m.Y',
                            flex: 1,
