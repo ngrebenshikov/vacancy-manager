@@ -45,6 +45,8 @@ Ext.define('VM.Shared.WizardMenu', {
     hideHeaders: true,
     store: this.store,
     width: 240,
+    border: true,
+    frame: true,
     title: 'Этапы',
     minSize: 100,
     maxSize: 100,

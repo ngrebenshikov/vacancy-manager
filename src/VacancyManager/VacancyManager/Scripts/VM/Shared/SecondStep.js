@@ -16,26 +16,9 @@
             id: 'resReqs'
         });
 
-        this.items = [{
-            xtype: 'form',
-            border: false,
-            layout: {
-                type: 'fit'
-            },
-            items: [
-              ReqsList
-            ],
-            buttons: [{
-                text: 'Prev',
-                margin: 5,
-                action: 'GoToFirstStep'
-            }, {
-                text: 'Next',
-                margin: 5,
-                action: 'FinishSecondStep'
-            }
-            ]
-        }],
+        this.items = [
+              ReqsList          
+        ],
 
         this.callParent(arguments);
     }

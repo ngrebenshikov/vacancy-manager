@@ -19,16 +19,6 @@
             },
             items: [
                { xtype: 'EduList' }
-            ],
-            buttons: [{
-                text: 'Prev',
-                margin: 5,
-                action: 'GoToThirdStep'
-            }, {
-                text: 'Next',
-                margin: 5,
-                action: 'FinishFouthStep'
-            }
             ]
         }],
 

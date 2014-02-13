@@ -1672,7 +1672,6 @@
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <None Include="Resources\Image1.bmp" />
-    <Content Include="LT.ico" />
     <Content Include="Scripts\jquery-1.7.2-vsdoc.js" />
     <Content Include="Scripts\jquery-1.7.2.js" />
     <Content Include="Scripts\jquery-1.7.2.min.js" />
@@ -1707,6 +1706,7 @@
     <Content Include="Scripts\VM\Admin\model\ResumeExperience.js" />
     <Content Include="Scripts\VM\Admin\model\ResumeRequirement.js" />
     <Content Include="Scripts\VM\Admin\model\VacancyAssign.js" />
+    <Content Include="Scripts\VM\Admin\store\ResumeEducation.js" />
     <Content Include="Scripts\VM\Admin\store\ExperienceRequirement.js" />
     <Content Include="Scripts\VM\Admin\store\Resume.js" />
     <Content Include="Scripts\VM\Admin\store\ResumeExperience.js" />
@@ -1776,6 +1776,8 @@
     <Content Include="Scripts\VM\Admin\view\RequirementStack\Edit.js" />
     <Content Include="Scripts\VM\Admin\view\RequirementStack\List.js" />
     <Content Include="Scripts\VM\Admin\view\Resume\Create.js" />
+    <Content Include="Scripts\VM\Admin\view\Resume\Edit.js" />
+    <Content Include="Scripts\VM\Admin\view\Resume\List.js" />
     <Content Include="Scripts\VM\Admin\view\SysConfig\Create.js" />
     <Content Include="Scripts\VM\Admin\view\Applicant\List.js" />
     <Content Include="Scripts\VM\Admin\view\SysConfig\Edit.js" />
@@ -1805,6 +1807,7 @@
     <Content Include="Scripts\VM\FrontEnd\store\ApplicantRequirement.js" />
     <Content Include="Scripts\VM\FrontEnd\store\ExperienceRequirement.js" />
     <Content Include="Scripts\VM\FrontEnd\store\Resume.js" />
+    <Content Include="Scripts\VM\FrontEnd\store\ResumeEducation.js" />
     <Content Include="Scripts\VM\FrontEnd\store\ResumeExperience.js" />
     <Content Include="Scripts\VM\FrontEnd\store\ResumeRequirement.js" />
     <Content Include="Scripts\VM\FrontEnd\view\applicant\ApplicantRequirments.js" />

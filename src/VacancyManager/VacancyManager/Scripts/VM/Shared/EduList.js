@@ -7,9 +7,9 @@
     frame: false,
     split: true,
     title: 'Образование',
-    store: 'ResumeExperience',
+    store: 'ResumeEducation',
     columns:
-    [ {
+    [{
         text: 'Учебное заведение',
         dataIndex: 'Job',
         sortable: false,
@@ -43,7 +43,9 @@
     }, '->',
     {
         text: 'Удалить',
-        action: 'DeleteEducation'
+        action: 'DeleteEducation',
+        id: 'btnDeleteEducation',
+        name: 'DeleteEdu'
     }
    ]
 

@@ -25,10 +25,29 @@
               { click: this.UpdateResumeExperience },
 
               'button[action=CreateResumeExperience]':
-              { click: this.CreateResumeExperience }
+              { click: this.CreateResumeExperience },
 
+              'button[action=DeleteExpirience]':
+              { click: this.DeleteExpirience },
           }
       );
+      },
+
+      DeleteExpirience: function (button) {
+          var grid = button.up('grid'),
+                record = grid.getSelectionModel().getSelection()[0],
+                store = grid.getStore();
+          Ext.Msg.show({
+              title: 'Удаление информации об опыте',
+              msg: 'Уладить "' + record.get('Job') + '"',
+              width: 300,
+              buttons: Ext.Msg.YESNO,
+              fn: function (btn) {
+                  if (btn == 'yes') {
+                      store.remove(record);
+                  }
+              }
+          });
       },
 
       click: function (view, record) {
@@ -196,17 +215,9 @@
       FinishThirdStep: function (button) {
           var wizard = Ext.getCmp('wizard');
           var form = button.up('form');
-          var searchStore = this.getResumeExperienceStore(),
-                            fieldName = 'IsEducation';
+          var searchStore = this.getResumeExperienceStore();
 
           if (searchStore.getCount() != 0) {
-              searchStore.clearFilter();
-              searchStore.filter({
-                  property: fieldName,
-                  value: true,
-                  exactMatch: false,
-                  caseSensitive: false
-              });
 
               wizard.getLayout().setActiveItem('step-4');
               var wmenu = Ext.getCmp('wizardMenuGrid').getStore();

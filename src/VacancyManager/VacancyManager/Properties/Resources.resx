@@ -447,4 +447,7 @@ Example:&lt;br&gt;Project1- Passenger Information System for trains.</value>
   <data name="Test" xml:space="preserve">
     <value>df</value>
   </data>
+  <data name="RequiredMessage" xml:space="preserve">
+    <value>Реквизит резюме является обязателеным для заполнения</value>
+  </data>
 </root>

@@ -32,6 +32,7 @@
                         flex: 1,
                         fieldLabel: 'Место работы',
                         allowBlank: false,
+                        blankText: Strings.RequiredMessage
                     }, {
                         xtype: 'component',
                         html: '<div data-qtip="' + Strings.QT_Job + '" class="qtip-target">?</div>'
@@ -49,7 +50,8 @@
                           name: 'Project',
                           flex: 1,
                           allowBlank: false,
-                          fieldLabel: 'Проект'
+                          fieldLabel: 'Проект',
+                          blankText: Strings.RequiredMessage
                       }, {
                           xtype: 'component',
                           html: '<div data-qtip="' + Strings.QT_Project + '" class="qtip-target">?</div>'
@@ -65,7 +67,8 @@
                            name: 'Position',
                            allowBlank: false,
                            flex: 1,
-                           fieldLabel: 'Должность'
+                           fieldLabel: 'Должность',
+                           blankText: Strings.RequiredMessage
                        }, {
                            xtype: 'component',
                            html: '<div data-qtip="' + Strings.QT_Position + '" class="qtip-target">?</div>'
@@ -84,7 +87,8 @@
                         name: 'Duties',
                         fieldLabel: 'Обязанности',
                         allowBlank: false,
-                        flex: 1
+                        flex: 1,
+                        blankText: Strings.RequiredMessage
                     }, {
                         xtype: 'component',
                         html: '<div data-qtip="' + Strings.QT_Duties + '" class="qtip-target">?</div>'
@@ -102,7 +106,8 @@
                            flex: 1,
                            allowBlank: false,
                            fieldLabel: 'Дата трудоустройства',
-                           altFormats: '|d.m.Y'
+                           altFormats: '|d.m.Y',
+                           blankText: Strings.RequiredMessage
                        }, {
                            xtype: 'component',
                            html: '<div data-qtip="' + Strings.QT_BeginExp + '" class="qtip-target">?</div>'

@@ -1,11 +1,14 @@
 ﻿Ext.define('VM.controller.ResumeController', {
     extend: 'Ext.app.Controller',
-    stores: ['ResumeRequirement',  'Resume', 'ResumeExperience'],
-    views: ['Applicant.Edit', 'Resume.Create'],
+    stores: ['ResumeRequirement', 'Resume', 'ResumeExperience', 'ResumeEducation'],
+    views: ['Applicant.Edit', 'Resume.Create', 'Resume.Edit'],
 
     init: function () {
 
         this.control({
+
+            'resumeList dataview':
+              { itemclick: this.setActiveRecord },
 
             'WizardMenu dataview':
               { itemclick: this.SelectStep },
@@ -32,30 +35,54 @@
             'button[action=ResumePdfCopy]':
               { click: this.ResumePdfCopy },
 
-              // Удалить резюме
-              'button[action=RemoveResume]':
+            // Удалить резюме
+            'button[action=RemoveResume]':
               { click: this.RemoveResume },
+
+            // Редактировать резюме
+            'button[action=EditResume]':
+              { click: this.EditResume }
         })
 
     },
-        /* ===== */
+    /* ===== */
+    setActiveRecord: function (view, record) {
+        var resumeStore = this.getResumeStore();
+        resumeStore.activeRecord = record;
+    },
 
+    EditResume: function (button) {
+        var winEditResume = Ext.widget('resumeEdit');
+        var resumeStore = this.getResumeStore(),
+            editResume = resumeStore.activeRecord;
+        var form = winEditResume.down('form');
+        form.loadRecord(editResume);
+        var resumeRequirementStore = this.getResumeRequirementStore();
+        resumeRequirementStore.load({ params: { "id": editResume.getId()} });
+        var resumeExpStore = this.getResumeExperienceStore();
+        resumeExpStore.load({ params: { "ResId": editResume.getId(), "isEdu": false} });
+        var resumeEduStore = this.getResumeEducationStore();
+        resumeEduStore.load({ params: { "ResId": editResume.getId(), "isEdu": true} });
+    },
 
     RemoveResume: function (button) {
-            var grid = Ext.getCmp('ApplicantRes');
-            var store = this.getResumeStore();
-            var selection = grid.getView().getSelectionModel().getSelection()[0];
-            if (selection != null) {
-                store.remove(selection);
-                button.disable();
-            }
+        var grid = Ext.getCmp('ApplicantRes');
+        var store = this.getResumeStore();
+        var selection = grid.getView().getSelectionModel().getSelection()[0];
+        if (selection != null) {
+            store.remove(selection);
+            button.disable();
+        }
     },
 
     CreateResume: function () {
         var AddResume = Ext.widget('resumeCreate');
         var resumeStore = this.getResumeStore();
         resumeStore.activeRecord = undefined;
-
+        var resumeExpStore = this.getResumeExperienceStore();
+        var resumeEduStore = this.getResumeEducationStore();
+        resumeExpStore.removeAll(true);
+        resumeEduStore.removeAll(true);
     },
 
     ResumePdfCopy: function (button) {
@@ -74,22 +101,6 @@
         enabled = record.get('enabled');
         var isEdu = false;
         if (enabled) {
-            var searchStore = this.getResumeExperienceStore(),
-                            fieldName = 'IsEducation';
-
-            if (stageindex == 'step-4')
-                isEdu = true;
-            if (stageindex == 'step-3')
-                isEdu = false;
-
-            searchStore.clearFilter();
-            searchStore.filter({
-                property: fieldName,
-                value: isEdu,
-                exactMatch: false,
-                caseSensitive: false
-            });
-
             wizard.getLayout().setActiveItem(stageindex);
         }
 
@@ -97,18 +108,33 @@
 
     FinishStep: function (button) {
         var wizard = Ext.getCmp('wizard');
-        var form = button.up('form'),
-            values = form.getValues(),
-            win = wizard.up('window');
+        var form = undefined,
+            win = undefined;
 
-        var resumeStore = this.getResumeStore();
+        if (wizard != undefined) {
+            win = wizard.up('window');
+            form = button.up('form');
+        }
+        else {
+            win = button.up('window');
+            form = win.down('form');
+        };
+
+        var values = form.getValues();
+        var resumeRequirementStore = this.getResumeRequirementStore(),
+            resumeStore = this.getResumeStore();
+
         updateResume = resumeStore.activeRecord;
         updateResume.set(values);
-        updateResume.save();
+        updateResume.save({
+            success: function (record, operation) {
+                resumeRequirementStore.sync();
+            }
+        });
 
-        var wmenu = Ext.getCmp('wizardMenuGrid').getStore();
+        var wmenu = Ext.getCmp('wizardMenuGrid');
         if (wmenu != undefined) {
-            wmenu.getAt(4).set('ischeck', true);
+            wmenu.getStore().getAt(4).set('ischeck', true);
         }
 
         win.close();
@@ -147,10 +173,11 @@
                     Summary: values.Summary,
                     ApplicantID: appId
                 });
-                resumeStore.activeRecord = newResume;
+
                 newResume.save({
                     success: function (record, operation) {
                         resumeStore.insert(0, record);
+                        resumeStore.activeRecord = record;
                         resumeRequirementStore.load({ params: { "id": record.getId()} });
                     }
                 });

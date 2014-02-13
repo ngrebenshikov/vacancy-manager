@@ -3,7 +3,6 @@
     alias: 'widget.LastStep',
     border: false,
     height: 250,
-    autoScroll: true,
     width: 350,
     layout: {
         type: 'fit'
@@ -53,16 +52,6 @@
                       html: '<div data-qtip="Дополнительная информация <br> Additional Information" class="qtip-target">?</div>'
                   }]
 
-            }],
-
-            buttons: [{
-                text: 'Prev',
-                margin: 5,
-                action: 'GoToFouthStep'
-            }, '->', {
-                text: 'Finish',
-                margin: 5,
-                action: 'FinishStep'
             }]
         }],
 

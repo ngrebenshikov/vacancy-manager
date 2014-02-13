@@ -27,8 +27,9 @@ Ext.define('VM.Shared.FirstStep', {
                     xtype: 'textfield',
                     fieldLabel: 'Должность',
                     allowBlank: false,
+                    name: 'Position',
                     flex: 1,
-                    name: 'Position'
+                    blankText: Strings.RequiredMessage
                 }, {
                     xtype: 'component',
                     html: '<div data-qtip="' + Strings.QT_Position + '" class="qtip-target">?</div>'
@@ -38,7 +39,7 @@ Ext.define('VM.Shared.FirstStep', {
                 flex: 1,
                 layout: {
                     type: 'hbox',
-                    align: 'stretch'
+                    align: 'stretch',
                 },
                 items: [
                 {
@@ -46,15 +47,12 @@ Ext.define('VM.Shared.FirstStep', {
                     fieldLabel: 'Кратко',
                     allowBlank: false,
                     flex: 1,
-                    name: 'Summary'
-                }, { xtype: 'component',
+                    name: 'Summary',
+                    blankText: Strings.RequiredMessage
+                }, { 
+                    xtype: 'component',
                     html: '<div data-qtip="' + Strings.QT_Summary + '" class="qtip-target">?</div>'
                 }]
-            }],
-            buttons: [{
-                text: 'Next',
-                margin: 5,
-                action: 'FinishFirstStep'
             }]
         }],
 
