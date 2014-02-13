@@ -22,16 +22,6 @@
                { xtype: 'ExpList',
                  store: 'ResumeExperience'
                }
-            ],
-            buttons: [{
-                text: 'Prev',
-                margin: 5,
-                action: 'GoToSecondStep'
-            }, {
-                text: 'Next',
-                margin: 5,
-                action: 'FinishThirdStep'
-            }
             ]
         }],
 

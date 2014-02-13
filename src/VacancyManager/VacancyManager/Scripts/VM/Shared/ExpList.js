@@ -43,7 +43,9 @@
     }, '->',
     {
         text: 'Удалить',
-        action: 'DeleteExpirience'
+        action: 'DeleteExpirience',
+        id: 'btnDeleteExpirience',
+        name: 'DeleteExp'
     }
    ]
 

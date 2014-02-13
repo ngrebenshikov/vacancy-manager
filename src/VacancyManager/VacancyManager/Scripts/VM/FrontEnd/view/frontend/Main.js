@@ -5,6 +5,7 @@
         type: 'border'
     },
     height: 250,
+    autoScroll: true,
     width: 400,
     alias: 'widget.FrontEndMain',
     bodyPadding: 10,

@@ -13,7 +13,8 @@ Ext.application({
     appFolder: '/Scripts/VM/FrontEnd',
     stores: [
      'Resume',
-     'ResumeRequirement'],
+     'ResumeRequirement',
+     'ResumeEducation'],
     controllers: [
      'FrontEnd',
      'ResumeExperience',
@@ -25,6 +26,7 @@ Ext.application({
                 { xtype: 'FrontEndMain' }
             ]
         });
+
         Ext.QuickTips.init();
     }
 });

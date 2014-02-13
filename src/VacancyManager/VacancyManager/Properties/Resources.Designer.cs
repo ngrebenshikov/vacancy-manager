@@ -576,6 +576,15 @@ namespace VacancyManager.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Реквизит резюме является обязателеным для заполнения.
+        /// </summary>
+        public static string RequiredMessage {
+            get {
+                return ResourceManager.GetString("RequiredMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Список требований.
         /// </summary>
         public static string RequirementListinStack {

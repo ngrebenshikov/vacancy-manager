@@ -4,7 +4,7 @@
       views: ['frontend.Main', 'applicant.ManageApplicant', 'applicant.ApplicantRequirments'],
       refs: [],
 
-      init: function () {
+      init: function (application) {
           
           this.control({
               
@@ -48,22 +48,6 @@
           enabled = record.get('enabled');
           var isEdu = false;
           if (enabled) {
-              var searchStore = this.getResumeExperienceStore(),
-                            fieldName = 'IsEducation';
-
-              if (stageindex == 'step-4')
-                  isEdu = true;
-              if (stageindex == 'step-3')
-                  isEdu = false;
-
-              searchStore.clearFilter();
-              searchStore.filter({
-                  property: fieldName,
-                  value: isEdu,
-                  exactMatch: false,
-                  caseSensitive: false
-              });
-
               wizard.getLayout().setActiveItem(stageindex);
           }
 

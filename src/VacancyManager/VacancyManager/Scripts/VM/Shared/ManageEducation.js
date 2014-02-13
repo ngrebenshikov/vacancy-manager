@@ -33,6 +33,7 @@ Ext.define('VM.Shared.ManageEducation', {
                         flex: 1,
                         fieldLabel: 'Место учебы',
                         allowBlank: false,
+                        blankText: Strings.RequiredMessage
                     }, {
                         xtype: 'component',
                         html: '<div data-qtip="' + Strings.QT_EduPlace + '" class="qtip-target">?</div>'
@@ -50,7 +51,8 @@ Ext.define('VM.Shared.ManageEducation', {
                           name: 'Project',
                           flex: 1,
                           allowBlank: false,
-                          fieldLabel: 'Факультет'
+                          fieldLabel: 'Факультет',
+                          blankText: Strings.RequiredMessage
                       }, {
                           xtype: 'component',
                           html: '<div data-qtip="' + Strings.QT_Department + '" class="qtip-target">?</div>'
@@ -101,7 +103,8 @@ Ext.define('VM.Shared.ManageEducation', {
                            flex: 1,
                            allowBlank: false,
                            fieldLabel: 'Дата поступления',
-                           altFormats: '|d.m.Y'
+                           altFormats: '|d.m.Y',
+                           blankText: Strings.RequiredMessage
                        }, {
                            xtype: 'component',
                            html: '<div data-qtip="' + Strings.QT_BeginExp + '" class="qtip-target">?</div>'

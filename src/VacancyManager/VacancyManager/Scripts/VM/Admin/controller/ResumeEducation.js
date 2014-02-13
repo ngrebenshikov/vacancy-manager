@@ -1,6 +1,6 @@
 ﻿Ext.define('VM.controller.ResumeEducation',
   { extend: 'Ext.app.Controller',
-      stores: ['Resume', 'ResumeExperience'],
+      stores: ['Resume', 'ResumeEducation'],
       views: [],
       refs: [],
 
@@ -18,6 +18,9 @@
               'button[action=AddEducation]':
               { click: this.AddEducation },
 
+              'button[action=DeleteEducation]':
+              { click: this.DeleteEducation },
+
               'button[action=EditEducation]':
               { click: this.EditEducation },
 
@@ -31,6 +34,23 @@
       );
       },
 
+      DeleteEducation: function (button) {
+          var grid = button.up('grid'),
+                record = grid.getSelectionModel().getSelection()[0],
+                store = grid.getStore();
+          Ext.Msg.show({
+              title: 'Удаление информации об опыте',
+              msg: 'Уладить "' + record.get('Job') + '"',
+              width: 300,
+              buttons: Ext.Msg.YESNO,
+              fn: function (btn) {
+                  if (btn == 'yes') {
+                      store.remove(record);
+                  }
+              }
+          });
+      },
+
       click: function (view, record) {
 
           console.log(record);
@@ -41,8 +61,8 @@
           var win = button.up('window'),
               form = win.down('form'),
               values = form.getValues();
-          var resumeEduStore = this.getResumeExperienceStore();
-          ResumeEdu = form.getRecord();
+          var resumeEduStore = this.getResumeEducationStore(),
+              ResumeEdu = form.getRecord();
           if (form.getForm().isValid()) {
               ResumeEdu.set(values);
               ResumeEdu.save();
@@ -69,7 +89,7 @@
                   ResumeId: Resume.getId()
               });
 
-              var store = this.getResumeExperienceStore();
+              var store = this.getResumeEducationStore();
               newEdu.save({
                   success: function (record, operation) {
                       store.insert(0, record);
@@ -165,23 +185,13 @@
       GoToThirdStep: function (button) {
           var wizard = Ext.getCmp('wizard');
 
-          var searchStore = this.getResumeExperienceStore(),
-                            fieldName = 'IsEducation';
-          searchStore.clearFilter();
-          searchStore.filter({
-              property: fieldName,
-              value: false,
-              exactMatch: false,
-              caseSensitive: false
-          });
-
           wizard.getLayout().setActiveItem('step-3');
       },
 
       FinishFouthStep: function (button) {
           var wizard = Ext.getCmp('wizard');
           var form = button.up('form');
-          var searchStore = this.getResumeExperienceStore();
+          var searchStore = this.getResumeEducationStore();
           if (searchStore.getCount() != 0) {
               var wmenu = Ext.getCmp('wizardMenuGrid').getStore();
               if (wmenu != undefined) {

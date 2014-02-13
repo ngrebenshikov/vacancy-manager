@@ -29,13 +29,14 @@ namespace VacancyManager.Controllers
             bool success = true;
             int createdResumeId = 0;
             Resume CreatedResume = new Resume();
+            object created = null;
             var origResume = ResumeManager.GetResume(id);
             ICollection<ResumeRequirement> origResumeReqs = origResume.ResumeRequirements;
             ICollection<Experience> origResumeExps = origResume.Experiences;
 
             if (origResume != null)
             {
-                CreatedResume = ResumeManager.CreateResume(origResume.ApplicantID, origResume.Position, origResume.Summary, origResume.Training, origResume.Date, origResume.AdditionalInformation).ElementAt(0);
+                CreatedResume = ResumeManager.CreateResume(origResume.ApplicantID, origResume.Position, origResume.Summary, origResume.Training, origResume.Date, origResume.AdditionalInformation);
                 createdResumeId = CreatedResume.ResumeId;
                 foreach (var origResumeReq in origResumeReqs)
                 {
@@ -58,10 +59,22 @@ namespace VacancyManager.Controllers
 
             }
 
+            created = new
+            {
+                ResumeId = CreatedResume.ResumeId,
+                ApplicantID = CreatedResume.ApplicantID,
+                Date = CreatedResume.Date.ToShortDateString(),
+                Training = CreatedResume.Training,
+                AdditionalInformation = CreatedResume.AdditionalInformation,
+                StartDate = CreatedResume.Period,
+                Position = CreatedResume.Position,
+                Summary = CreatedResume.Summary
+            };
+
             return Json(new
             {
                 success = success,
-                resume = CreatedResume
+                resume = created
             }, JsonRequestBehavior.AllowGet);
         }
 
@@ -394,7 +407,8 @@ namespace VacancyManager.Controllers
             bool success = false;
             string resultMessage = "Ошибка при добавлении резюме";
             JavaScriptSerializer jss = new JavaScriptSerializer();
-            List<Resume> created = new List<Resume>();
+            object created = null;
+            Resume createResume = new Resume();
 
      
             if (data != null)
@@ -409,13 +423,23 @@ namespace VacancyManager.Controllers
                     AppId = app.ApplicantID;
                 }
 
-                created = ResumeManager.CreateResume(AppId, obj["Position"].ToString(), obj["Summary"].ToString(), obj["Training"].ToString(), DateTime.Now, obj["AdditionalInformation"].ToString());
-
+                createResume = ResumeManager.CreateResume(AppId, obj["Position"].ToString(), obj["Summary"].ToString(), obj["Training"].ToString(), DateTime.Now, obj["AdditionalInformation"].ToString());
+                
                 resultMessage = "Резюме добавлено";
                 success = true;
             }
-            else
-                created = null;
+
+            created = new
+            {
+                ResumeId = createResume.ResumeId,
+                ApplicantID = createResume.ApplicantID,
+                Date = createResume.Date.ToShortDateString(),
+                Training = createResume.Training,
+                AdditionalInformation = createResume.AdditionalInformation,
+                StartDate = createResume.Period,
+                Position = createResume.Position,
+                Summary = createResume.Summary
+            };
 
             return Json(new
             {

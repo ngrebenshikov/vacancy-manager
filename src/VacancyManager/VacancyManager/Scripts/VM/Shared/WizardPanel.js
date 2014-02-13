@@ -17,19 +17,60 @@
     items: [
             {
                 itemId: 'step-1',
-                xtype: 'FirstStep'
+                xtype: 'FirstStep',
+                buttons: [{
+                    text: 'Next',
+                    margin: 5,
+                    action: 'FinishFirstStep'
+                }]
             }, {
                 itemId: 'step-2',
-                xtype: 'SecondStep'
+                xtype: 'SecondStep',
+                buttons: [{
+                    text: 'Prev',
+                    margin: 5,
+                    action: 'GoToFirstStep'
+                }, {
+                    text: 'Next',
+                    margin: 5,
+                    action: 'FinishSecondStep'
+                }]
             }, {
                 itemId: 'step-3',
-                xtype: 'ThirdStep'
+                xtype: 'ThirdStep',
+                buttons: [{
+                    text: 'Prev',
+                    margin: 5,
+                    action: 'GoToSecondStep'
+                }, {
+                    text: 'Next',
+                    margin: 5,
+                    action: 'FinishThirdStep'
+                }]
             }, {
                 itemId: 'step-4',
-                xtype: 'FouthStep'
+                xtype: 'FouthStep',
+                buttons: [{
+                    text: 'Prev',
+                    margin: 5,
+                    action: 'GoToThirdStep'
+                }, {
+                    text: 'Next',
+                    margin: 5,
+                    action: 'FinishFouthStep'
+                }]
             }, {
                 itemId: 'step-5',
-                xtype: 'LastStep'
+                xtype: 'LastStep',
+                buttons: [{
+                    text: 'Prev',
+                    margin: 5,
+                    action: 'GoToFouthStep'
+                }, '->', {
+                    text: 'Finish',
+                    margin: 5,
+                    action: 'FinishStep'
+                }]
             }
 
         ]

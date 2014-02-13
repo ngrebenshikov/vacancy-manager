@@ -19,7 +19,8 @@ Ext.application({
 
     stores: [
     'ResumeRequirement',
-    'ResumeExperience'
+    'ResumeExperience',
+    'ResumeEducation'
     ],
 
     controllers: [
@@ -45,6 +46,8 @@ Ext.application({
              { xtype: 'AdminMain' }
           ]
         });
+
+        Ext.QuickTips.init();
     }
 });
 

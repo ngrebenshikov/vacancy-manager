@@ -11,7 +11,6 @@
 Ext.define('VM.Shared.ReqsList', {
     extend: 'Ext.grid.Panel',
     alias: 'widget.ReqsList',
-    height: 500,
     id: 'resReqsGrid',
     frame: false,
     plugins: [cellEditing],
@@ -22,7 +21,7 @@ Ext.define('VM.Shared.ReqsList', {
     title: Strings.Skills,
 
     columns: [
-             { xtype: 'checkcolumn',
+             {   xtype: 'checkcolumn',
                  dataIndex: 'IsRequire',
                  width: 40,
                  align: 'center',
