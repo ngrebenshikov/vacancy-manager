@@ -1,17 +1,18 @@
 ﻿Ext.define('VM.controller.FrontEnd',
   { extend: 'Ext.app.Controller',
-      stores: ['Resume', 'ResumeRequirement', 'ResumeExperience'],
-      views: ['frontend.Main'],
+      stores: ['Resume', 'ResumeRequirement', 'ResumeExperience', 'ApplicantRequirement'],
+      views: ['frontend.Main', 'applicant.ManageApplicant', 'applicant.ApplicantRequirments'],
       refs: [],
 
       init: function () {
+          
           this.control({
-
+              
               'WizardMenu dataview':
               { itemclick: this.SelectStep },
 
-              'button[action=FinishFirtStep]':
-              { click: this.FinishFirtStep },
+              'button[action=FinishFirstStep]':
+              { click: this.FinishFirstStep },
 
               'button[action=FinishSecondStep]':
               { click: this.FinishSecondStep },
@@ -72,14 +73,15 @@
           var wizard = Ext.getCmp('wizard');
           var form = button.up('form'),
               values = form.getValues();
-          var updateResume = this.getResumeStore().getAt(0);
-          updateResume.set(values);
 
-          console.log(updateResume);
+          var resumeStore = this.getResumeStore();
+          updateResume = resumeStore.activeRecord;
+          updateResume.set(values);
+          updateResume.save();
+
           var wmenu = Ext.getCmp('wizardMenuGrid').getStore();
           if (wmenu != undefined) {
               wmenu.getAt(4).set('ischeck', true);
-              wmenu.getAt(5).set('enabled', true);
           }
       },
 
@@ -96,25 +98,24 @@
       },
 
 
-      FinishFirtStep: function (button) {
+      FinishFirstStep: function (button) {
           var wizard = Ext.getCmp('wizard');
           var form = button.up('form'),
-              values = form.getForm().getValues();
-          var wmenu = Ext.getCmp('wizardMenuGrid').getStore();
-          if (wmenu != undefined) {
-              wmenu.getAt(0).set('ischeck', true);
-              wmenu.getAt(1).set('enabled', true);
-          }
+            values = form.getForm().getValues(),
+            resumeStore = this.getResumeStore();
+
+          var updateResume = resumeStore.activeRecord;
 
           var resumeRequirementStore = this.getResumeRequirementStore();
+
           if (form.getForm().isValid()) {
-              var resumeStore = this.getResumeStore();
-              if (resumeCreated == false) {
+              if (updateResume == undefined) {
                   var newResume = Ext.create('VM.model.Resume', {
                       Position: values.Position,
                       Summary: values.Summary,
-                      ApplicantId: 0
+                      ApplicantID: 0
                   });
+                  resumeStore.activeRecord = newResume;
                   newResume.save({
                       success: function (record, operation) {
                           resumeCreated = true;
@@ -124,34 +125,52 @@
                   });
               }
               else {
-                  updateResume = resumeStore.getAt(0);
+                  updateResume = resumeStore.activeRecord;
                   updateResume.set(values);
+                  updateResume.save();
               }
+
+              var wmenu = Ext.getCmp('wizardMenuGrid').getStore();
+              if (wmenu != undefined) {
+                  wmenu.getAt(0).set('ischeck', true);
+                  wmenu.getAt(1).set('enabled', true);
+              }
+              wizard.getLayout().setActiveItem('step-2');
           }
 
-
-          wizard.getLayout().setActiveItem('step-2');
       },
 
       FinishSecondStep: function (button) {
-          var wizard = Ext.getCmp('wizard');
-          var form = button.up('form');
-          var resumeRequirementStore = this.getResumeRequirementStore();
-          var resumeStore = this.getResumeStore();
+          var wizard = Ext.getCmp('wizard'),
+              form = button.up('form'),
+              resumeRequirementStore = this.getResumeRequirementStore(),
+              resumeStore = this.getResumeStore();
+
+          var appReqsCount = 0,
+              curResume = resumeStore.activeRecord;
+
+          console.log(curResume);
 
           resumeRequirementStore.each(function (resumeRequirement) {
-              resumeRequirement.set('ResumeId', resumeStore.getAt(0).getId());
+              var IsRequire = resumeRequirement.get('IsRequire');
+              if (IsRequire) {
+                  appReqsCount++;
+              }
+              resumeRequirement.set('ResumeId', curResume.getId());
           });
 
           resumeRequirementStore.sync();
 
-          var wmenu = Ext.getCmp('wizardMenuGrid').getStore();
-          if (wmenu != undefined) {
-              wmenu.getAt(1).set('ischeck', true);
-              wmenu.getAt(2).set('enabled', true);
+          if (appReqsCount != 0) {
+              var wmenu = Ext.getCmp('wizardMenuGrid').getStore();
+              if (wmenu != undefined) {
+                  wmenu.getAt(1).set('ischeck', true);
+                  wmenu.getAt(2).set('enabled', true);
+              }
+
+              wizard.getLayout().setActiveItem('step-3');
           }
 
-          wizard.getLayout().setActiveItem('step-3');
       },
 
       GoToFirstStep: function (button) {

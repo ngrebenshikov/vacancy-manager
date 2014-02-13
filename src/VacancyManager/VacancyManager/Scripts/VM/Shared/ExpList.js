@@ -1,4 +1,4 @@
-﻿Ext.define('VM.ExpList', {
+﻿Ext.define('VM.Shared.ExpList', {
     extend: 'Ext.grid.Panel',
     alias: 'widget.ExpList',
     height: 500,
@@ -9,12 +9,6 @@
     title: 'Профессиональный опыт',
     columns:
     [{
-        text: 'Период',
-        dataIndex: 'Period',
-        sortable: false,
-        menuDisabled: true,
-        flex: 1
-    }, {
         text: 'Место работы',
         dataIndex: 'Job',
         sortable: false,

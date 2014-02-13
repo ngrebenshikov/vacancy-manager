@@ -1,14 +1,15 @@
-﻿Ext.define('VM.model.ApplicantResumeGrid',
+﻿Ext.define('VM.model.Resume',
     {
         extend: 'Ext.data.Model',
         idProperty: 'ResumeId',
-        fields: ['ResumeId', 'ApplicantId', 'StartDate', 'Position', 'Summary', 'Training', 'Date'],
+        fields: ['ResumeId', 'ApplicantID', 'StartDate', 'AdditionalInformation', 'Position', 'Summary', 'Training', 'Date'],
         proxy: {
             type: 'ajax',
             api: {
                 read: '/Resume/LoadResume',
                 destroy: '/Resume/DeleteResume',
-                create: 'Resume/CreateResume'
+                update: '/Resume/UpdateResume',
+                create: '/Resume/CreateResume'
             },
 
             reader: {
@@ -22,13 +23,13 @@
                     type: 'json',
                     encode: false,
                     listful: true,
+                    root: 'data',
                     writeAllFields: true,
                     getRecordData: function (record) {
-                        return {
-                            'data': Ext.JSON.encode(record.data)
-                        };
+                        return Ext.JSON.encode(record.data)
                     }
                 },
-                headers: { 'Content-Type': 'application/json; charset=UTF-8' }
+            headers: { 'Content-Type': 'application/json; charset=UTF-8' }
 
-        }    });
+        }
+    });

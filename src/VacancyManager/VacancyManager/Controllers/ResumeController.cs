@@ -315,7 +315,7 @@ namespace VacancyManager.Controllers
                               select new
                               {
                                   ResumeId = res.ResumeId,
-                                  ApplicantId = res.ApplicantID,
+                                  ApplicantID = res.ApplicantID,
                                   Date = res.Date.ToShortDateString(),
                                   Training = res.Training,
                                   AdditionalInformation = res.AdditionalInformation,
@@ -337,15 +337,27 @@ namespace VacancyManager.Controllers
             bool success = false;
             string resultMessage = "Ошибка при обновлении резюме";
             JavaScriptSerializer jss = new JavaScriptSerializer();
-            List<Resume> created = new List<Resume>();
+            object created = null;
             Resume updateResume = new Resume();
             if (data != null)
             {
                 var obj = jss.Deserialize<dynamic>(data); //
                 updateResume = ResumeManager.UpdateResume(obj["ResumeId"], obj["Position"].ToString(), obj["Summary"].ToString(), obj["Training"].ToString(), obj["AdditionalInformation"].ToString());
-  
+                success = true;
+                resultMessage =  "Резюме успешно обновлено";
             }
-            created.Add(updateResume);
+
+            created = new {
+                ResumeId = updateResume.ResumeId,
+                ApplicantID = updateResume.ApplicantID,
+                Date = updateResume.Date.ToShortDateString(),
+                Training = updateResume.Training,
+                AdditionalInformation = updateResume.AdditionalInformation,
+                StartDate = updateResume.Period,
+                Position = updateResume.Position,
+                Summary = updateResume.Summary
+            };
+
             return Json(new
             {
                 success = success,
@@ -388,7 +400,7 @@ namespace VacancyManager.Controllers
             if (data != null)
             {   
                 var obj = jss.Deserialize<dynamic>(data);
-                int AppId = Convert.ToInt32(obj["ApplicantId"]);
+                int AppId = Convert.ToInt32(obj["ApplicantID"]);
                 if (AppId == 0)
                 {   
                     Applicant app = ApplicantManager.GetApplicantByEMail("ResumeTest@yandex.ru");

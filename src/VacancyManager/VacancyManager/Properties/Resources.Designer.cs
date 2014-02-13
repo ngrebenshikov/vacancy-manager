@@ -457,6 +457,125 @@ namespace VacancyManager.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Пример: &lt;br&gt;Август 2007&lt;br&gt;&lt;br&gt;Example: August 2007 .
+        /// </summary>
+        public static string QT_BeginExp {
+            get {
+                return ResourceManager.GetString("QT_BeginExp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Пример: &lt;br&gt;Кафедра системного программирования..
+        /// </summary>
+        public static string QT_Cafedra {
+            get {
+                return ResourceManager.GetString("QT_Cafedra", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Пример: &lt;br&gt; Математико-механический факультет.&lt;br&gt;&lt;br&gt;Example: &lt;br&gt;Department of software engineering..
+        /// </summary>
+        public static string QT_Department {
+            get {
+                return ResourceManager.GetString("QT_Department", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Пример: &lt;br&gt;- распределение обязанностей в команде из 10 человек&lt;br&gt;- проектирование архитектуры создаваемых приложений&lt;br&gt;- написание бизнес-логики приложений&lt;br&gt;- рефакторинг существующего кода&lt;br&gt;- написание запросов к БД и хранимых процедур (pl/pgSQL)&lt;br&gt;- работа с БД: Hibernate(SQL, HQL), JDBC.&lt;br&gt;&lt;br&gt;Example:&lt;br&gt;Project coordination (1 team of 10 persons).&lt;br&gt;Direct customer interactions. &lt;br&gt;Development process organization, tracking and maintenance. &lt;br&gt;Project planning. Modules design and Developme [rest of string was truncated]&quot;;.
+        /// </summary>
+        public static string QT_Duties {
+            get {
+                return ResourceManager.GetString("QT_Duties", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Пример: &lt;br&gt; Санкт -Петербургский&lt;br&gt;Государственный &lt;br&gt;Университет&lt;br&gt;&lt;br&gt;Example: &lt;br&gt;Saint-Petersburg State University..
+        /// </summary>
+        public static string QT_EduPlace {
+            get {
+                return ResourceManager.GetString("QT_EduPlace", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Пример: &lt;br&gt;Май 2008&lt;br&gt;&lt;br&gt;Example: May 2008.
+        /// </summary>
+        public static string QT_EndExp {
+            get {
+                return ResourceManager.GetString("QT_EndExp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Пример: &lt;br&gt;Ланит-Терком&lt;br&gt;&lt;br&gt;Example: &lt;br&gt;Lanit-Tercom.
+        /// </summary>
+        public static string QT_Job {
+            get {
+                return ResourceManager.GetString("QT_Job", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Пример: &lt;br&gt;Август 2007 – Май 2008&lt;br&gt;&lt;br&gt;Example August 2007 – May 2008.
+        /// </summary>
+        public static string QT_Period {
+            get {
+                return ResourceManager.GetString("QT_Period", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Пример &lt;br&gt; Руководитель группы разработчиков&lt;br&gt;&lt;br&gt; Example &lt;br&gt; Team lead.
+        /// </summary>
+        public static string QT_Position {
+            get {
+                return ResourceManager.GetString("QT_Position", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Пример: &lt;br&gt;Проект1- Информационная система обеспечения &lt;br&gt;социальной поддержки населения области&lt;br&gt;
+        ///Назначение: автоматизация процессов предоставления &lt;br&gt;социальной помощи населению&lt;br&gt;&lt;br&gt;
+        ///Example:&lt;br&gt;Project1- Passenger Information System for trains..
+        /// </summary>
+        public static string QT_Project {
+            get {
+                return ResourceManager.GetString("QT_Project", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Пример: &lt;br&gt;Аспирантура.&lt;br&gt;&lt;br&gt;Example: &lt;br&gt;As post-graduate student..
+        /// </summary>
+        public static string QT_Status {
+            get {
+                return ResourceManager.GetString("QT_Status", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Пример&lt;br&gt;1 год опыта работы руководителем группы разработчиков.&lt;br&gt;5 лет опыта работы разработчиком ПО. &lt;br&gt;Опыт использования гибких методологий разработки (Scrum, XP) &lt;br&gt;Опыт управления неоднородными командами из 10 человек&lt;br&gt;Опыт управления удаленными командами&lt;br&gt;Опыт тесного контакта с заказчиком, включая участие в выработке и анализе требований, &lt;br&gt;анализе рисков, управлении продуктов и работу с партнерами заказчика от его имени&lt;br&gt;Системное администрирование Windows и Linux&lt;br&gt;Математическое обра [rest of string was truncated]&quot;;.
+        /// </summary>
+        public static string QT_Summary {
+            get {
+                return ResourceManager.GetString("QT_Summary", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Пример: &lt;br&gt;Прошел тренинги компании ScrumTrek:&lt;br&gt; «Agile Development with Scrum», «Test Driven Developement»&lt;br&gt; &lt;br&gt; Example: &lt;br&gt; If there are no options, erase the item..
+        /// </summary>
+        public static string QT_Training {
+            get {
+                return ResourceManager.GetString("QT_Training", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Список требований.
         /// </summary>
         public static string RequirementListinStack {

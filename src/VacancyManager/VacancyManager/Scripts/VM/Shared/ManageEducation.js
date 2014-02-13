@@ -1,6 +1,7 @@
-﻿Ext.define('VM.Shared.ManageExperience', {
+﻿
+Ext.define('VM.Shared.ManageEducation', {
     extend: 'Ext.panel.Panel',
-    alias: 'widget.ManageExperience',
+    alias: 'widget.ManageEducation',
     defaults: {
         border: false,
         bodyPadding: 5
@@ -15,7 +16,7 @@
             border: false,
             padding: '5 5 5 5',
             style: 'background-color: #fff;',
-            id: 'frmResumeExperience',
+            id: 'frmResumeEducation',
             layout: {
                 type: 'vbox',
                 align: 'stretch'
@@ -30,11 +31,11 @@
                         xtype: 'textfield',
                         name: 'Job',
                         flex: 1,
-                        fieldLabel: 'Место работы',
+                        fieldLabel: 'Место учебы',
                         allowBlank: false,
                     }, {
                         xtype: 'component',
-                        html: '<div data-qtip="' + Strings.QT_Job + '" class="qtip-target">?</div>'
+                        html: '<div data-qtip="' + Strings.QT_EduPlace + '" class="qtip-target">?</div>'
                     }]
                 }, {
                     xtype: 'fieldcontainer',
@@ -49,10 +50,10 @@
                           name: 'Project',
                           flex: 1,
                           allowBlank: false,
-                          fieldLabel: 'Проект'
+                          fieldLabel: 'Факультет'
                       }, {
                           xtype: 'component',
-                          html: '<div data-qtip="' + Strings.QT_Project + '" class="qtip-target">?</div>'
+                          html: '<div data-qtip="' + Strings.QT_Department + '" class="qtip-target">?</div>'
                       }]
                 }, {
                     xtype: 'fieldcontainer',
@@ -63,12 +64,11 @@
                        {
                            xtype: 'textfield',
                            name: 'Position',
-                           allowBlank: false,
                            flex: 1,
-                           fieldLabel: 'Должность'
+                           fieldLabel: 'Кафедра'
                        }, {
                            xtype: 'component',
-                           html: '<div data-qtip="' + Strings.QT_Position + '" class="qtip-target">?</div>'
+                           html: '<div data-qtip="' + Strings.QT_Cafedra + '" class="qtip-target">?</div>'
                        }]
 
                 }, {
@@ -82,12 +82,11 @@
                     {
                         xtype: 'textareafield',
                         name: 'Duties',
-                        fieldLabel: 'Обязанности',
-                        allowBlank: false,
+                        fieldLabel: 'Специальность',
                         flex: 1
                     }, {
                         xtype: 'component',
-                        html: '<div data-qtip="' + Strings.QT_Duties + '" class="qtip-target">?</div>'
+                        html: '<div data-qtip="' + Strings.QT_Status + '" class="qtip-target">?</div>'
                     }]
                 }, {
                     xtype: 'fieldcontainer',
@@ -101,7 +100,7 @@
                            format: 'd.m.Y',
                            flex: 1,
                            allowBlank: false,
-                           fieldLabel: 'Дата трудоустройства',
+                           fieldLabel: 'Дата поступления',
                            altFormats: '|d.m.Y'
                        }, {
                            xtype: 'component',
@@ -117,7 +116,7 @@
                            xtype: 'datefield',
                            name: 'FinishDate',
                            allowBlank: false,
-                           fieldLabel: 'Дата увольнения',
+                           fieldLabel: 'Дата окончания',
                            format: 'd.m.Y',
                            flex: 1,
                            altFormats: '|d.m.Y'

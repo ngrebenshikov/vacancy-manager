@@ -8,11 +8,11 @@
     }
 });
 
-Ext.define('VM.Shared.ReqsList', {
+Ext.define('VM.Shared.ExpReqsList', {
     extend: 'Ext.grid.Panel',
-    alias: 'widget.ReqsList',
+    alias: 'widget.ExpReqsList',
     height: 500,
-    id: 'resReqsGrid',
+    id: 'resExpReqsGrid',
     frame: false,
     plugins: [cellEditing],
     features: [Ext.create('Ext.grid.feature.Grouping', {

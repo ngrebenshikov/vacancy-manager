@@ -1,48 +1,52 @@
-﻿Ext.Loader.setConfig
-(
-  {
-    enabled: true
-  }
-);
-var
-  createWCons = false;
-  fromCons = false;
+﻿Ext.Loader.setConfig({
+    enabled: true,
+    paths: {
+        'VM.Shared': '/Scripts/VM/Shared'
+    }
+});
+
+var 
+  createWCons = false,
+  fromCons = false,
+  resumeCreated = false;
 
 Ext.Loader.setPath('Ext.ux', 'ExtLib/ux');
+Ext.require('Ext.ux.CheckColumn');
 
-Ext.application
-(
-  {
+Ext.application({
     name: 'VM',
     appFolder: '/Scripts/VM/Admin',
-    controllers:
-    [
+
+    stores: [
+    'ResumeRequirement',
+    'ResumeExperience'
+    ],
+
+    controllers: [
       'Admin',
       'RequirementStack',
       'ConsiderationController',
       'RequirementListInStack',
       'VacancyController',
+      'ResumeController',
       'CommentsController',
       'UserController',
       'Roles',
       'SysConfigController',
       'ApplicantController',
-      'MailMessageController'
+      'MailMessageController',
+      'ResumeExperience',
+      'ResumeEducation'
     ],
-    launch: function ()
-    {
-      Ext.create('Ext.container.Viewport',
-      {
-        layout: 'fit',
-        items:
-        [
-          { xtype: 'AdminMain' }
-        ]
-      }
-      );
+    launch: function () {
+        Ext.create('Ext.container.Viewport', {
+            layout: 'fit',
+            items: [
+             { xtype: 'AdminMain' }
+          ]
+        });
     }
-  }
-);
+});
 
 var PreviousRequest = new Array();
 var Login_window_Created = false;
@@ -65,42 +69,36 @@ Ext.Ajax.on('requestexception', function (conn, response, options)
   }
 });
 
-Ext.Ajax.on('requestcomplete', function (connection, response)
-{
-  try
-  {
-    if (response.responseText)
-    {
-      var result = Ext.JSON.decode(response.responseText);
-      /*var title;
-      if (result.success)
-      title = 'Запрос успешно завершён';
-      else
-      title = 'Ошибка при выполении запроса';
-      Ext.MessageBox.show(
-      {
-      title: title,
-      msg: result.message,
-      minWidth: 200,
-      buttons: Ext.MessageBox.OK,
-      icon: Ext.MessageBox.INFO
-      }
-      );*/
-      if (!result.success)
-      {
-        Ext.MessageBox.show(
-          {
-            title: 'Ошибка при выполении запроса',
+Ext.Ajax.on('requestcomplete', function (connection, response) {
+    try {
+        if (response.responseText) {
+            var result = Ext.JSON.decode(response.responseText);
+            /*var title;
+            if (result.success)
+            title = 'Запрос успешно завершён';
+            else
+            title = 'Ошибка при выполении запроса';
+            Ext.MessageBox.show(
+            {
+            title: title,
             msg: result.message,
             minWidth: 200,
             buttons: Ext.MessageBox.OK,
             icon: Ext.MessageBox.INFO
-          });
-      }
+            }
+            );*/
+            if (!result.success) {
+                Ext.MessageBox.show({
+                    title: 'Ошибка при выполении запроса',
+                    msg: result.message,
+                    minWidth: 200,
+                    buttons: Ext.MessageBox.OK,
+                    icon: Ext.MessageBox.INFO
+                });
+            }
+        }
+    } catch (err) {
     }
-  } catch (err)
-  {
-  }
 });
 
 function onLoginButtonClick(login_form, login_window)
@@ -146,8 +144,7 @@ function onLoginButtonClick(login_form, login_window)
 
 
 
-function CreateLoginWindow()
-{
+function CreateLoginWindow() {
   Login_window_Created = true;
   var login_form =
     new Ext.form.FormPanel(

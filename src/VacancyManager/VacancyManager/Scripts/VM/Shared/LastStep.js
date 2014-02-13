@@ -1,4 +1,4 @@
-﻿Ext.define('VM.LastStep', {
+﻿Ext.define('VM.Shared.LastStep', {
     extend: 'Ext.panel.Panel',
     alias: 'widget.LastStep',
     border: false,
@@ -15,21 +15,44 @@
             border: false,
             layout: {
                 align: 'stretch',
-
                 type: 'vbox'
             },
-            items: [
-            {   xtype: 'textareafield',
-                fieldLabel: 'Сертификаты и тренинги',
-                allowBlank: true,
+            items: [{
+                xtype: 'fieldcontainer',
                 flex: 1,
-                name: 'Training'
+                layout: {
+                    type: 'hbox',
+                    align: 'stretch'
+                },
+                items: [
+                 { xtype: 'textareafield',
+                     fieldLabel: 'Сертификаты и тренинги',
+                     allowBlank: true,
+                     flex: 1,
+                     name: 'Training'
+                 }, {
+                     xtype: 'component',
+                     html: '<div data-qtip="' + Strings.QT_Training + '" class="qtip-target">?</div>'
+                 }]
             }, {
-                xtype: 'textareafield',
-                fieldLabel: 'Дополнительная информация',
-                allowBlank: true,
+                xtype: 'fieldcontainer',
                 flex: 1,
-                name: 'AdditionalInformation'
+                layout: {
+                    type: 'hbox',
+                    align: 'stretch'
+                },
+                items: [
+                  {
+                      xtype: 'textareafield',
+                      fieldLabel: 'Дополнительная информация',
+                      allowBlank: true,
+                      flex: 1,
+                      name: 'AdditionalInformation'
+                  }, {
+                      xtype: 'component',
+                      html: '<div data-qtip="Дополнительная информация <br> Additional Information" class="qtip-target">?</div>'
+                  }]
+
             }],
 
             buttons: [{
@@ -40,15 +63,7 @@
                 text: 'Finish',
                 margin: 5,
                 action: 'FinishStep'
-            }, {
-                text: 'Print',
-                margin: 5,
-                action: 'ResumePdfCopy',
-                icon: '/Content/icons/pdfico.png',
-                tooltip: 'Создать pdf'
-            }
-
-            ]
+            }]
         }],
 
         this.callParent(arguments);

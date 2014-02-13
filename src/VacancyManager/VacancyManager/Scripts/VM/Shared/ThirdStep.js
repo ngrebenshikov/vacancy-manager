@@ -1,6 +1,9 @@
-﻿Ext.define('VM.ThirdStep', {
+﻿Ext.define('VM.Shared.ThirdStep', {
     extend: 'Ext.panel.Panel',
     alias: 'widget.ThirdStep',
+    requires: ['VM.Shared.ManageExperience',
+               'VM.Shared.ExpList',
+               'VM.Shared.ExpReqsList'],
     border: false,
     height: 250,
     width: 350,
