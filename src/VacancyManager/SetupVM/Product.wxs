@@ -4,38 +4,105 @@
   
 <Product Id="{EEDDAC23-850B-43F4-968E-A54178C3B384}" 
          Name="VM" 
-         Language="1049"
+         Language="1033"
          Version="1.0.0.0"
          Manufacturer="LanitTercom" 
          UpgradeCode="c0301653-373f-4b56-947d-7304e2c6592f" 
-         Codepage="1251">
+        >
   
     <Package InstallerVersion="200" 
              Compressed="yes" 
-             InstallScope="perMachine"
-             SummaryCodepage="1251" 
-             Description="Утсановка приложения версии 1.0.0.0" />
+             InstallScope="perMachine"        
+             Description="Install" />
 
     <Media Id="1" Cabinet="VMApp.cab" EmbedCab="yes" />
   
-    <WixVariable Id="WixUILicenseRtf" Value="License.rtf" /> 
+    <WixVariable Id="WixUILicenseRtf" Value="License.rtf" />
+    <WixVariable Id ="WixUIDialogBmp" Value="LanitTercomDialog.bmp"/> 
+    <WixVariable Id ="WixUIBannerBmp" Value="LanitTercoьBanner.bmp"/> 
   
     <Directory Id="TARGETDIR" Name="SourceDir">
        <Directory Id ="ProgramFilesfolder">
           <Directory Id ="INSTALLLOCATION" Name="VM">
-              <!--<Directory Id ="ContentVM" Name="Content">
+              <Directory Id ="ContentVM" Name="Content">
                 <Directory Id ="ContenticonsVM" Name="icons"/>
+                <Directory Id="MIMEiconsVM" Name="MIME-icons" />
+                <Directory Id="themesVM" Name="themes">
+                  <Directory Id="BaseVM" Name="Base">
+                    <Directory Id="minifiedVM" Name="minified" />
+                  </Directory>
+                </Directory>
               </Directory>            
-              <Directory Id="ControllersVM" Name="Controllers"/>
-              <Directory Id="ExtLibVM" Name="ExtLib" />
+              <Directory Id="ExtLibVM" Name="ExtLib">
+                <Directory Id="uxVM" Name="ux">
+                  <Directory Id="cssuxVM" Name="css">
+                    <Directory Id="ImagecssVM" Name="images" />
+                  </Directory>
+                  <Directory Id="statusbarVM" Name="statusbar">
+                    <Directory Id="cssStatusVM" Name="css" />
+                    <Directory Id="ImagesStatusVM" Name="images" />
+                  </Directory>
+                </Directory>
+                <Directory Id="resourcesVM" Name="resources">
+                  <Directory Id="cssResourcesVM" Name="css" />
+                  <Directory Id="iconsResourcesVM" Name="icons" />
+                  <Directory Id="themesResourcesVM" Name="themes">
+                    <Directory Id="LibThemesVM" Name="lib" />
+                    <Directory Id ="stylesheetsVM" Name="stylesheets">
+                      <Directory Id="ext4VM" Name="ext4">
+                        <Directory Id="defaultExt4VM" Name="default">
+                          <Directory Id="coreDefaultVM" Name="core" />
+                          <Directory Id="layoutDefaultVM" Name="layout" />
+                          <Directory Id ="mixinsDefaultVM" Name="mixins" />
+                          <Directory Id ="utilDefaultVM" Name="util" />
+                          <Directory Id="variablesDefaultVM" Name="variables" />
+                          <Directory Id="widgetsDefaultVM" Name="widgets">
+                            <Directory Id="formWidgetsVM" Name="form" />
+                          </Directory>
+                        </Directory>
+                      </Directory>
+                    </Directory>
+                    <Directory Id="templatesResourceVM" Name="templates">
+                      <Directory Id ="resourcesTemplateVM" Name="resources">
+                        <Directory Id ="sassVM" Name="sass" />
+                      </Directory>
+                    </Directory>
+                  </Directory>
+                </Directory>
+              </Directory>
               <Directory Id ="MigrationsVM" Name="Migrations" />
-              <Directory Id="ModelsVM" Name="Models" />
-              <Directory Id="PropertiesVM" Name="Properties" />
-              <Directory Id="ResourcesVM" Name="Resources" />
-              <Directory Id ="ScriptsVM" Name="Scripts" />
-              <Directory Id="ServicesVM" Name="Services" />
-              <Directory Id="ViewsVM" Name="Views" />
-              -->
+              <Directory Id ="ScriptsVM" Name="Scripts">
+                <Directory Id="VacancyManagerVM" Name="VM">
+                  <Directory Id="adminVM" Name="Admin">
+                    <Directory Id="controllerVM" Name="controller" />
+                    <Directory Id="modelVM" Name="model" />
+                    <Directory Id="storeVM" Name="store" /> 
+                    <Directory Id="viewVM" Name="view">
+                      <Directory Id="AdminviewVM" Name="Admin" />
+                      <Directory Id ="ApplicantVM" Name="Applicant" />
+                      <Directory Id="CommentsVM" Name="Comments" />
+                      <Directory Id="considerationVM" Name="consideration" />
+                      <Directory Id ="MailMessageVM" Name="MailMessage" />
+                      <Directory Id ="RequirementListInStackVM" Name="RequirementListInStack" />
+                      <Directory Id="RequirementStackVM" Name="RequirementStack" />
+                      <Directory Id ="ResumeVM" Name="Resume" />
+                      <Directory Id="RolesVM" Name="Roles" />
+                      <Directory Id ="SysConfigVM" Name="SysConfig" />
+                      <Directory Id ="UserVM" Name="User" />
+                      <Directory Id ="vacancyVM" Name="vacancy" />
+                    </Directory>
+                  </Directory>
+                  <Directory Id="FrontEndVM" Name="FrontEnd">
+                    <Directory Id ="FEcontrollerVM" Name="controller" />
+                    <Directory Id ="FEmodelVM" Name="model" />
+                    <Directory Id ="FEstoreVM" Name="store" />
+                    <Directory Id ="FEviewVM" Name="view" >
+                      <Directory Id ="FRfrontendVM" Name="frontend" />
+                    </Directory>
+                  </Directory>
+                  <Directory Id="SharedVM" Name="Shared" />
+                </Directory>
+              </Directory>
               <Directory Id ="BinVM" Name="bin"/>
               <Directory Id="objVM" Name="obj">
                 <Directory Id ="DebugVM" Name="Debug">
@@ -46,132 +113,651 @@
        </Directory>    
     </Directory>
     
-    <DirectoryRef Id="INSTALLLOCATION">
-        <Component Id="Main" Guid="{E15508AA-FD6D-40CE-A061-9F28E48E601A}" KeyPath="yes" DiskId="1">
-          <File Id="WebConfigVM" Name="Web.config" Source="D:\code\vacancy-manager\src\VacancyManager\VacancyManager\Web.config" />
-          <File Id="GlobalVM" Name="Global.asax" Source="D:\code\vacancy-manager\src\VacancyManager\VacancyManager\Global.asax" />
-          <File Id="Global.asaxVM" Name="Global.asax.cs" Source="D:\code\vacancy-manager\src\VacancyManager\VacancyManager\Global.asax.cs" />
-          <File Id="PackagesVM" Name="packages.config" Source="D:\code\vacancy-manager\src\VacancyManager\VacancyManager\packages.config" />
-          <File Id="Templates.DesignerVM" Name="Templates.Designer.cs" Source="D:\code\vacancy-manager\src\VacancyManager\VacancyManager\Templates.Designer.cs" />
-          <File Id="TemplatesVM" Name="Templates.resx" Source="D:\code\vacancy-manager\src\VacancyManager\VacancyManager\Templates.resx" />
-          <File Id="VacancyManagerVM" Name="VacancyManager.csproj" Source="D:\code\vacancy-manager\src\VacancyManager\VacancyManager\VacancyManager.csproj" />
-        </Component>         
-    </DirectoryRef>
+      <DirectoryRef Id="INSTALLLOCATION">
+          <Component Id="Main" Guid="{E15508AA-FD6D-40CE-A061-9F28E48E601A}" KeyPath="yes" DiskId="1">
+            <File Id="WebConfigVM" Name="Web.config" Source="$(var.SolutionDir)VacancyManager\Web.config" />
+            <File Id="GlobalVM" Name="Global.asax" Source="$(var.SolutionDir)VacancyManager\Global.asax" />
+            <File Id="Global.asaxVM" Name="Global.asax.cs" Source="$(var.SolutionDir)VacancyManager\Global.asax.cs" />
+            <File Id="PackagesVM" Name="packages.config" Source="$(var.SolutionDir)VacancyManager\packages.config" />
+            <File Id="Templates.DesignerVM" Name="Templates.Designer.cs" Source="$(var.SolutionDir)VacancyManager\Templates.Designer.cs" />
+            <File Id="TemplatesVM" Name="Templates.resx" Source="$(var.SolutionDir)VacancyManager\Templates.resx" />
+            <File Id="VacancyManagerVM" Name="VacancyManager.csproj" Source="$(var.SolutionDir)VacancyManager\VacancyManager.csproj" />
+          </Component>         
+      </DirectoryRef>
   
-    <!--
-    <DirectoryRef Id="ContentVM">
-      <Component Id ="ContentApp" Guid="{2E3EBBD1-163A-4552-8776-8AF75C3FEBA6}" KeyPath="yes" DiskId="1">
-        <File Id="lanitLogoVM" Name="lanitLogo.gif" Source="D:\code\vacancy-manager\src\VacancyManager\VacancyManager\Content\lanitLogo.gif" />
-        <File Id="lanitLogopVM" Name="lanitLogo.png" Source="D:\code\vacancy-manager\src\VacancyManager\VacancyManager\Content\lanitLogo.png" />
-        <File Id="SiteVM" Name="Site.css" Source="D:\code\vacancy-manager\src\VacancyManager\VacancyManager\Content\Site.css" />        
-      </Component>
-    </DirectoryRef>
   
-    <DirectoryRef Id="ContenticonsVM">
-      <Component Id="ContenticonsApp" Guid="{50CCD793-80A8-47F5-B662-ADD1933FC7AE}" KeyPath="yes" DiskId="1">
-        <File Id="acceptVM" Name="accept.gif" Source="D:\code\vacancy-manager\src\VacancyManager\VacancyManager\Content\icons\accept.gif"/>
-        <File Id="addVM" Name="add.gif" Source="D:\code\vacancy-manager\src\VacancyManager\VacancyManager\Content\icons\add.gif"/>
-        <File Id="configVM" Name="config.png" Source="D:\code\vacancy-manager\src\VacancyManager\VacancyManager\Content\icons\config.png"/>
-        <File Id="CopyIcoVM" Name="CopyIco.png" Source="D:\code\vacancy-manager\src\VacancyManager\VacancyManager\Content\icons\CopyIco.png"/>
-        <File Id="emailVM" Name="email.png" Source="D:\code\vacancy-manager\src\VacancyManager\VacancyManager\Content\icons\email.png"/>
-        <File Id="group16VM" Name="group16.gif" Source="D:\code\vacancy-manager\src\VacancyManager\VacancyManager\Content\icons\group16.gif"/>
-        <File Id="prikrepitVM" Name="prikrepit.png" Source="D:\code\vacancy-manager\src\VacancyManager\VacancyManager\Content\icons\prikrepit.png"/>
-        <File Id="userVM" Name="user.gif" Source="D:\code\vacancy-manager\src\VacancyManager\VacancyManager\Content\icons\user.gif"/>
-        <File Id="user_addVM" Name="user_add.gif" Source="D:\code\vacancy-manager\src\VacancyManager\VacancyManager\Content\icons\user_add.gif"/>
-        <File Id="user_deleteVM" Name="user_delete.gif" Source="D:\code\vacancy-manager\src\VacancyManager\VacancyManager\Content\icons\user_delete.gif"/>
-        <File Id="UserMailVM" Name="UserMail.png" Source="D:\code\vacancy-manager\src\VacancyManager\VacancyManager\Content\icons\UserMail.png"/>
-      </Component>  
-    </DirectoryRef>
+      <DirectoryRef Id="ContentVM">
+        <Component Id ="ContentApp" Guid="{2E3EBBD1-163A-4552-8776-8AF75C3FEBA6}" KeyPath="yes" DiskId="1">
+          <File Id="lanitLogoVM" Name="lanitLogo.gif" Source="$(var.SolutionDir)VacancyManager\Content\lanitLogo.gif" />
+          <File Id="lanitLogopVM" Name="lanitLogo.png" Source="$(var.SolutionDir)VacancyManager\Content\lanitLogo.png" />
+          <File Id="SiteVM" Name="Site.css" Source="$(var.SolutionDir)VacancyManager\Content\Site.css" />        
+        </Component>
+      </DirectoryRef>
   
-    <DirectoryRef Id="ControllersVM">
-      <Component Id="ControllersApp" Guid="{1981A903-52BE-449E-85FF-EF97BBAA2A2F}" KeyPath="yes" DiskId="1">
-        <File Id="AccountControllerVM" Name="AccountController.cs" Source="D:\code\vacancy-manager\src\VacancyManager\VacancyManager\Controllers\AccountController.cs" />
-        <File Id="ApplicantControllerVM" Name="ApplicantController.cs" Source="D:\code\vacancy-manager\src\VacancyManager\VacancyManager\Controllers\ApplicantController.cs" />
-        <File Id="ApplicantRequirementControllerVM" Name="ApplicantRequirementController.cs" Source="D:\code\vacancy-manager\src\VacancyManager\VacancyManager\Controllers\ApplicantRequirementController.cs" />
-        <File Id="AttachmentControllerVM" Name="AttachmentController.cs" Source="D:\code\vacancy-manager\src\VacancyManager\VacancyManager\Controllers\AttachmentController.cs" />
-        <File Id="BaseControllerVM" Name="BaseController.cs" Source="D:\code\vacancy-manager\src\VacancyManager\VacancyManager\Controllers\BaseController.cs" />
-        <File Id="CommentsControllerVM" Name="CommentsController.cs" Source="D:\code\vacancy-manager\src\VacancyManager\VacancyManager\Controllers\CommentsController.cs" />
-        <File Id="ConsiderationsControllerVM" Name="ConsiderationsController.cs" Source="D:\code\vacancy-manager\src\VacancyManager\VacancyManager\Controllers\ConsiderationsController.cs" />
-        <File Id="FrontEndControllerVM" Name="FrontEndController.cs" Source="D:\code\vacancy-manager\src\VacancyManager\VacancyManager\Controllers\FrontEndController.cs" />
-        <File Id="HomeControllerVM" Name="HomeController.cs" Source="D:\code\vacancy-manager\src\VacancyManager\VacancyManager\Controllers\HomeController.cs" />
-        <File Id="RequirementStackControllerVM" Name="RequirementStackController.cs" Source="D:\code\vacancy-manager\src\VacancyManager\VacancyManager\Controllers\RequirementStackController.cs" />
-        <File Id="AccountControllerVM" Name="AccountController.cs" Source="D:\code\vacancy-manager\src\VacancyManager\VacancyManager\Controllers\AccountController.cs" />
-        <File Id="AccountControllerVM" Name="AccountController.cs" Source="D:\code\vacancy-manager\src\VacancyManager\VacancyManager\Controllers\AccountController.cs" />
-        <File Id="AccountControllerVM" Name="AccountController.cs" Source="D:\code\vacancy-manager\src\VacancyManager\VacancyManager\Controllers\AccountController.cs" />
-        <File Id="AccountControllerVM" Name="AccountController.cs" Source="D:\code\vacancy-manager\src\VacancyManager\VacancyManager\Controllers\AccountController.cs" />
-        <File Id="AccountControllerVM" Name="AccountController.cs" Source="D:\code\vacancy-manager\src\VacancyManager\VacancyManager\Controllers\AccountController.cs" />
-        <File Id="AccountControllerVM" Name="AccountController.cs" Source="D:\code\vacancy-manager\src\VacancyManager\VacancyManager\Controllers\AccountController.cs" />     
-      </Component>
-    </DirectoryRef>
-     -->
+      <DirectoryRef Id="ContenticonsVM">
+        <Component Id="ContenticonsApp" Guid="{50CCD793-80A8-47F5-B662-ADD1933FC7AE}" KeyPath="yes" DiskId="1">
+          <File Id="acceptVM" Name="accept.gif" Source="$(var.SolutionDir)VacancyManager\Content\icons\accept.gif"/>
+          <File Id="addVM" Name="add.gif" Source="$(var.SolutionDir)VacancyManager\Content\icons\add.gif"/>
+          <File Id="configVM" Name="config.png" Source="$(var.SolutionDir)VacancyManager\Content\icons\config.png"/>
+          <File Id="CopyIcoVM" Name="CopyIco.png" Source="$(var.SolutionDir)VacancyManager\Content\icons\CopyIco.png"/>
+          <File Id="emailVM" Name="email.png" Source="$(var.SolutionDir)VacancyManager\Content\icons\email.png"/>
+          <File Id="group16VM" Name="group16.gif" Source="$(var.SolutionDir)VacancyManager\Content\icons\group16.gif"/>
+          <File Id="prikrepitVM" Name="prikrepit.png" Source="$(var.SolutionDir)VacancyManager\Content\icons\prikrepit.png"/>
+          <File Id="userVM" Name="user.gif" Source="$(var.SolutionDir)VacancyManager\Content\icons\user.gif"/>
+          <File Id="user_addVM" Name="user_add.gif" Source="$(var.SolutionDir)VacancyManager\Content\icons\user_add.gif"/>
+          <File Id="user_deleteVM" Name="user_delete.gif" Source="$(var.SolutionDir)VacancyManager\Content\icons\user_delete.gif"/>
+          <File Id="UserMailVM" Name="UserMail.png" Source="$(var.SolutionDir)VacancyManager\Content\icons\UserMail.png"/>
+        </Component>  
+      </DirectoryRef>
+  
+      <DirectoryRef Id="MIMEiconsVM">
+        <Component Id="MIMEiconsApp" Guid="{ABDBF7BB-69B6-4E74-B153-8E635D25F6EF}" KeyPath="yes" DiskId="1">
+          <File Id="defaultpngVM" Name="default.png" Source="$(var.SolutionDir)VacancyManager\Content\MIME-icons\default.png" />
+          <File Id="mime_docpngVM" Name="mime_doc.png" Source="$(var.SolutionDir)VacancyManager\Content\MIME-icons\mime_doc.png" />
+          <File Id="mime_jpgpngVM" Name="mime_jpg.png" Source="$(var.SolutionDir)VacancyManager\Content\MIME-icons\mime_jpg.png" />
+          <File Id="mime_mp3pngVM" Name="mime_mp3.png" Source="$(var.SolutionDir)VacancyManager\Content\MIME-icons\mime_mp3.png" />
+          <File Id="mime_pdfpngVM" Name="mime_pdf.png" Source="$(var.SolutionDir)VacancyManager\Content\MIME-icons\mime_pdf.png" />
+          <File Id="mime_rarpngVM" Name="mime_rar.png" Source="$(var.SolutionDir)VacancyManager\Content\MIME-icons\mime_rar.png" />
+          <File Id="mime_txtpngVM" Name="mime_txt.png" Source="$(var.SolutionDir)VacancyManager\Content\MIME-icons\mime_txt.png" />
+          <File Id="mime_zippngVM" Name="mime_zip.png" Source="$(var.SolutionDir)VacancyManager\Content\MIME-icons\mime_zip.png" />
+        </Component>
+      </DirectoryRef>
       
-     <DirectoryRef Id="BinVM">
-       <Component Id ="BinApp" Guid="{59CA5591-34C2-4AB4-8CF6-B67AB44A1463}" KeyPath="yes" DiskId="1">
-         <File Id="AE.Net.MailVM" Name="AE.Net.Mail.dll" Source="D:\code\vacancy-manager\src\VacancyManager\VacancyManager\bin\AE.Net.Mail.dll"/>
-         <File Id="AntiXssLibraryVM" Name="AntiXssLibrary.dll" Source="D:\code\vacancy-manager\src\VacancyManager\VacancyManager\bin\AntiXssLibrary.dll"/>
-         <File Id="AntiXssLibraryxmlVM" Name="AntiXssLibrary.xml" Source="D:\code\vacancy-manager\src\VacancyManager\VacancyManager\bin\AntiXssLibrary.xml"/>
-         <File Id="EntityFramework" Name="EntityFramework.dll" Source="D:\code\vacancy-manager\src\VacancyManager\VacancyManager\bin\EntityFramework.dll"/>
-         <File Id="EntityFrameworkxmlVM" Name="EntityFramework.xml" Source="D:\code\vacancy-manager\src\VacancyManager\VacancyManager\bin\EntityFramework.xml"/>
-         <File Id="HtmlSanitizationLibraryVM" Name="HtmlSanitizationLibrary.dll" Source="D:\code\vacancy-manager\src\VacancyManager\VacancyManager\bin\HtmlSanitizationLibrary.dll"/>
-         <File Id="HtmlSanitizationLibraryxmlVM" Name="HtmlSanitizationLibrary.xml" Source="D:\code\vacancy-manager\src\VacancyManager\VacancyManager\bin\HtmlSanitizationLibrary.xml"/>
-         <File Id="itextsharpVM" Name="itextsharp.dll" Source="D:\code\vacancy-manager\src\VacancyManager\VacancyManager\bin\itextsharp.dll"/>
-         <File Id="itextsharpxmlVM" Name="itextsharp.xml" Source="D:\code\vacancy-manager\src\VacancyManager\VacancyManager\bin\itextsharp.xml"/>
-         <File Id="VacancyManagerVMbin" Name="VacancyManager.dll" Source="D:\code\vacancy-manager\src\VacancyManager\VacancyManager\bin\VacancyManager.dll"/>
-         <File Id="VacancyManagerpdbVM" Name="VacancyManager.pdb" Source="D:\code\vacancy-manager\src\VacancyManager\VacancyManager\bin\VacancyManager.pdb"/>
-       </Component>
-     </DirectoryRef>
+      
+      <DirectoryRef Id="BinVM">
+        <Component Id ="BinApp" Guid="{59CA5591-34C2-4AB4-8CF6-B67AB44A1463}" KeyPath="yes" DiskId="1">
+          <File Id="AE.Net.MailVM" Name="AE.Net.Mail.dll" Source="$(var.SolutionDir)VacancyManager\bin\AE.Net.Mail.dll"/>
+          <File Id="AntiXssLibraryVM" Name="AntiXssLibrary.dll" Source="$(var.SolutionDir)VacancyManager\bin\AntiXssLibrary.dll"/>
+          <File Id="AntiXssLibraryxmlVM" Name="AntiXssLibrary.xml" Source="$(var.SolutionDir)VacancyManager\bin\AntiXssLibrary.xml"/>
+          <File Id="EntityFramework" Name="EntityFramework.dll" Source="$(var.SolutionDir)VacancyManager\bin\EntityFramework.dll"/>
+          <File Id="EntityFrameworkxmlVM" Name="EntityFramework.xml" Source="$(var.SolutionDir)VacancyManager\bin\EntityFramework.xml"/>
+          <File Id="HtmlSanitizationLibraryVM" Name="HtmlSanitizationLibrary.dll" Source="$(var.SolutionDir)VacancyManager\bin\HtmlSanitizationLibrary.dll"/>
+          <File Id="HtmlSanitizationLibraryxmlVM" Name="HtmlSanitizationLibrary.xml" Source="$(var.SolutionDir)VacancyManager\bin\HtmlSanitizationLibrary.xml"/>
+          <File Id="itextsharpVM" Name="itextsharp.dll" Source="$(var.SolutionDir)VacancyManager\bin\itextsharp.dll"/>
+          <File Id="itextsharpxmlVM" Name="itextsharp.xml" Source="$(var.SolutionDir)VacancyManager\bin\itextsharp.xml"/>
+          <File Id="VacancyManagerVMbin" Name="VacancyManager.dll" Source="$(var.SolutionDir)VacancyManager\bin\VacancyManager.dll"/>
+          <File Id="VacancyManagerpdbVM" Name="VacancyManager.pdb" Source="$(var.SolutionDir)VacancyManager\bin\VacancyManager.pdb"/>
+        </Component>
+      </DirectoryRef>
   
     <DirectoryRef Id="DebugVM">
       <Component Id="DebugApp" Guid="{54F53C7D-4E6C-4AB3-AC23-D8337A79E844}" KeyPath="yes" DiskId="1">
-        <File Id="DesignTimeResolveAssemblyReferences" Name="DesignTimeResolveAssemblyReferences.cache" Source="D:\code\vacancy-manager\src\VacancyManager\VacancyManager\obj\Debug\DesignTimeResolveAssemblyReferences.cache"/>
-        <File Id="DesignTimeResolveAssemblyReferencesInput" Name="DesignTimeResolveAssemblyReferencesInput.cache" Source="D:\code\vacancy-manager\src\VacancyManager\VacancyManager\obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache"/>
-        <File Id="VacancyManager.csproj.FileListAbsolutetxt" Name="VacancyManager.csproj.FileListAbsolute.txt" Source="D:\code\vacancy-manager\src\VacancyManager\VacancyManager\obj\Debug\VacancyManager.csproj.FileListAbsolute.txt"/>
-        <File Id="VacancyManager.csproj.GenerateResource" Name="VacancyManager.csproj.GenerateResource.cache" Source="D:\code\vacancy-manager\src\VacancyManager\VacancyManager\obj\Debug\VacancyManager.csproj.GenerateResource.cache"/>
-        <File Id="VacancyManager.csprojResolveAssemblyReference" Name="VacancyManager.csprojResolveAssemblyReference.cache" Source="D:\code\vacancy-manager\src\VacancyManager\VacancyManager\obj\Debug\VacancyManager.csprojResolveAssemblyReference.cache"/>
-        <File Id="VacancyManager.dll" Name="VacancyManager.dll" Source="D:\code\vacancy-manager\src\VacancyManager\VacancyManager\obj\Debug\VacancyManager.dll"/>
-        <File Id="VacancyManager.pdb" Name="VacancyManager.pdb" Source="D:\code\vacancy-manager\src\VacancyManager\VacancyManager\obj\Debug\VacancyManager.pdb"/>
-        <File Id="VacancyManager.Properties.ResourceEn" Name="VacancyManager.Properties.ResourceEn.resources" Source="D:\code\vacancy-manager\src\VacancyManager\VacancyManager\obj\Debug\VacancyManager.Properties.ResourceEn.resources"/>
-        <File Id="VacancyManager.Properties.Resources" Name="VacancyManager.Properties.Resources.resources" Source="D:\code\vacancy-manager\src\VacancyManager\VacancyManager\obj\Debug\VacancyManager.Properties.Resources.resources"/>
-        <File Id="VacancyManager.Templates" Name="VacancyManager.Templates.resources" Source="D:\code\vacancy-manager\src\VacancyManager\VacancyManager\obj\Debug\VacancyManager.Templates.resources"/>
+        <File Id="DesignTimeResolveAssemblyReferences" Name="DesignTimeResolveAssemblyReferences.cache" Source="$(var.SolutionDir)VacancyManager\obj\Debug\DesignTimeResolveAssemblyReferences.cache"/>
+        <File Id="DesignTimeResolveAssemblyReferencesInput" Name="DesignTimeResolveAssemblyReferencesInput.cache" Source="$(var.SolutionDir)VacancyManager\obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache"/>
+        <File Id="VacancyManager.csproj.FileListAbsolutetxt" Name="VacancyManager.csproj.FileListAbsolute.txt" Source="$(var.SolutionDir)VacancyManager\obj\Debug\VacancyManager.csproj.FileListAbsolute.txt"/>
+        <File Id="VacancyManager.csproj.GenerateResource" Name="VacancyManager.csproj.GenerateResource.cache" Source="$(var.SolutionDir)VacancyManager\obj\Debug\VacancyManager.csproj.GenerateResource.cache"/>
+        <File Id="VacancyManager.csprojResolveAssemblyReference" Name="VacancyManager.csprojResolveAssemblyReference.cache" Source="$(var.SolutionDir)VacancyManager\obj\Debug\VacancyManager.csprojResolveAssemblyReference.cache"/>
+        <File Id="VacancyManager.dll" Name="VacancyManager.dll" Source="$(var.SolutionDir)VacancyManager\obj\Debug\VacancyManager.dll"/>
+        <File Id="VacancyManager.pdb" Name="VacancyManager.pdb" Source="$(var.SolutionDir)VacancyManager\obj\Debug\VacancyManager.pdb"/>
+        <File Id="VacancyManager.Properties.ResourceEn" Name="VacancyManager.Properties.ResourceEn.resources" Source="$(var.SolutionDir)VacancyManager\obj\Debug\VacancyManager.Properties.ResourceEn.resources"/>
+        <File Id="VacancyManager.Properties.Resources" Name="VacancyManager.Properties.Resources.resources" Source="$(var.SolutionDir)VacancyManager\obj\Debug\VacancyManager.Properties.Resources.resources"/>
+        <File Id="VacancyManager.Templates" Name="VacancyManager.Templates.resources" Source="$(var.SolutionDir)VacancyManager\obj\Debug\VacancyManager.Templates.resources"/>
       </Component>
     </DirectoryRef>
   
     <DirectoryRef Id="TempPEVM">
       <Component Id="TempPEApp" Guid="{BA0E3F3E-8EC0-457C-95A1-17AE4E346790}" KeyPath="yes" DiskId="1">
-        <File Id="Properties.ResourceEn.Designer.csdll" Name="Properties.ResourceEn.Designer.cs.dll" Source="D:\code\vacancy-manager\src\VacancyManager\VacancyManager\obj\Debug\TempPE\Properties.ResourceEn.Designer.cs.dll"/>
-        <File Id="Properties.Resources.Designer.csdll" Name="Properties.Resources.Designer.cs.dll" Source="D:\code\vacancy-manager\src\VacancyManager\VacancyManager\obj\Debug\TempPE\Properties.Resources.Designer.cs.dll"/>
-        <File Id="Templates.Designer.csdll" Name="Templates.Designer.cs.dll" Source="D:\code\vacancy-manager\src\VacancyManager\VacancyManager\obj\Debug\TempPE\Templates.Designer.cs.dll"/>
+        <File Id="Properties.ResourceEn.Designer.csdll" Name="Properties.ResourceEn.Designer.cs.dll" Source="$(var.SolutionDir)VacancyManager\obj\Debug\TempPE\Properties.ResourceEn.Designer.cs.dll"/>
+        <File Id="Properties.Resources.Designer.csdll" Name="Properties.Resources.Designer.cs.dll" Source="$(var.SolutionDir)VacancyManager\obj\Debug\TempPE\Properties.Resources.Designer.cs.dll"/>
+        <File Id="Templates.Designer.csdll" Name="Templates.Designer.cs.dll" Source="$(var.SolutionDir)VacancyManager\obj\Debug\TempPE\Templates.Designer.cs.dll"/>
       </Component>
     </DirectoryRef>
   
+  
+    <DirectoryRef Id="BaseVM">
+      <Component Id="BaseThemesApp" Guid="{FE5ACE69-90DB-4572-B641-2C962E834489}" KeyPath ="yes" DiskId="1">
+        <File Id="jquery.ui.accordioncss" Name="jquery.ui.accordion.css" Source="$(var.SolutionDir)VacancyManager\Content\themes\base\jquery.ui.accordion.css" />
+        <File Id="jquery.ui.allcss" Name="jquery.ui.all.css" Source="$(var.SolutionDir)VacancyManager\Content\themes\base\jquery.ui.all.css" />
+        <File Id="jquery.ui.autocompletecss" Name="jquery.ui.autocomplete.css" Source="$(var.SolutionDir)VacancyManager\Content\themes\base\jquery.ui.autocomplete.css" />
+        <File Id="jquery.ui.basecss" Name="jquery.ui.base.css" Source="$(var.SolutionDir)VacancyManager\Content\themes\base\jquery.ui.base.css" />
+        <File Id="jquery.ui.buttoncss" Name="jquery.ui.button.css" Source="$(var.SolutionDir)VacancyManager\Content\themes\base\jquery.ui.button.css" />
+        <File Id="jquery.ui.corecss" Name="jquery.ui.core.css" Source="$(var.SolutionDir)VacancyManager\Content\themes\base\jquery.ui.core.css" />
+        <File Id="jquery.ui.dialogcss" Name="jquery.ui.dialog.css" Source="$(var.SolutionDir)VacancyManager\Content\themes\base\jquery.ui.dialog.css" />
+        <File Id="jquery.ui.slidercss" Name="jquery.ui.slider.css" Source="$(var.SolutionDir)VacancyManager\Content\themes\base\jquery.ui.slider.css" />
+        <File Id="jquery.ui.tabscss" Name="jquery.ui.tabs.css" Source="$(var.SolutionDir)VacancyManager\Content\themes\base\jquery.ui.tabs.css" />
+        <File Id="jquery.ui.themecss" Name="jquery.ui.theme.css" Source="$(var.SolutionDir)VacancyManager\Content\themes\base\jquery.ui.theme.css" />
+        <File Id="jqueryuicss" Name="jquery-ui.css" Source="$(var.SolutionDir)VacancyManager\Content\themes\base\jquery-ui.css" />     
+      </Component>
+    </DirectoryRef>
+    
+    <DirectoryRef Id="minifiedVM">
+      <Component Id="minifiedApp" Guid="{0CD32F60-8A51-4DD0-A501-E72F8081AE4A}" KeyPath="yes" DiskId="1">
+        <File Id="jquery.ui.accordion.mincss" Name="jquery.ui.accordion.min.css" Source="$(var.SolutionDir)VacancyManager\Content\themes\base\minified\jquery.ui.accordion.min.css" />
+        <File Id="jquery.ui.autocomplete.mincss" Name="jquery.ui.autocomplete.min.css" Source="$(var.SolutionDir)VacancyManager\Content\themes\base\minified\jquery.ui.autocomplete.min.css" />
+        <File Id="jquery.ui.button.mincss" Name="jquery.ui.button.min.css" Source="$(var.SolutionDir)VacancyManager\Content\themes\base\minified\jquery.ui.button.min.css" />
+        <File Id="jquery.ui.core.mincss" Name="jquery.ui.core.min.css" Source="$(var.SolutionDir)VacancyManager\Content\themes\base\minified\jquery.ui.core.min.css" />
+        <File Id="jquery.ui.dialog.mincss" Name="jquery.ui.dialog.min.css" Source="$(var.SolutionDir)VacancyManager\Content\themes\base\minified\jquery.ui.dialog.min.css" />
+        <File Id="jquery.ui.progressbar.mincss" Name="jquery.ui.progressbar.min.css" Source="$(var.SolutionDir)VacancyManager\Content\themes\base\minified\jquery.ui.progressbar.min.css" />
+        <File Id="jquery.ui.resizable.mincss" Name="jquery.ui.resizable.min.css" Source="$(var.SolutionDir)VacancyManager\Content\themes\base\minified\jquery.ui.resizable.min.css" />
+        <File Id="jquery.ui.selectable.mincss" Name="jquery.ui.selectable.min.css" Source="$(var.SolutionDir)VacancyManager\Content\themes\base\minified\jquery.ui.selectable.min.css" />
+        <File Id="jquery.ui.slider.mincss" Name="jquery.ui.slider.min.css" Source="$(var.SolutionDir)VacancyManager\Content\themes\base\minified\jquery.ui.slider.min.css" />
+        <File Id="jquery.ui.tabs.mincss" Name="jquery.ui.tabs.min.css" Source="$(var.SolutionDir)VacancyManager\Content\themes\base\minified\jquery.ui.tabs.min.css" />
+        <File Id="jquery.ui.theme.mincss" Name="jquery.ui.theme.min.css" Source="$(var.SolutionDir)VacancyManager\Content\themes\base\minified\jquery.ui.theme.min.css" />
+        <File Id="jqueryui.mincss" Name="jquery-ui.min.css" Source="$(var.SolutionDir)VacancyManager\Content\themes\base\minified\jquery-ui.min.css" />
+      </Component>
+    </DirectoryRef>
+    
+     <DirectoryRef Id="ExtLibVM">
+       <Component Id="ExtLibApp" Guid="{9D42A5BC-AF7A-467C-8D69-B24B028218B3}" KeyPath="yes" DiskId="1">
+          <File Id="bootstrapjs" Name="bootstrap.js" Source="$(var.SolutionDir)VacancyManager\ExtLib\bootstrap.js" />
+          <File Id="extalljs" Name="ext-all.js" Source="$(var.SolutionDir)VacancyManager\ExtLib\ext-all.js" />
+          <File Id="extalldebugwcommentsjs" Name="ext-all-debug-w-comments.js" Source="$(var.SolutionDir)VacancyManager\ExtLib\ext-all-debug-w-comments.js" />
+       </Component>
+     </DirectoryRef>
+  
+      <DirectoryRef Id="uxVM">
+        <Component Id ="uxApp" Guid="{9263AB89-0040-49F7-9240-CD48818EF3D4}" KeyPath="yes" DiskId="1">
+          <File Id="CheckColumnjs" Name="CheckColumn.js" Source="$(var.SolutionDir)VacancyManager\ExtLib\ux\CheckColumn.js" />
+          <File Id="FieldReplicatorjs" Name="FieldReplicator.js" Source="$(var.SolutionDir)VacancyManager\ExtLib\ux\FieldReplicator.js" />
+          <File Id="LiveSearchGridPaneljs" Name="LiveSearchGridPanel.js" Source="$(var.SolutionDir)VacancyManager\ExtLib\ux\LiveSearchGridPanel.js" />
+          <File Id="RowExpanderjs" Name="RowExpander.js" Source="$(var.SolutionDir)VacancyManager\ExtLib\ux\RowExpander.js" />  
+          <File Id="TransformGridjs" Name="TransformGrid.js" Source="$(var.SolutionDir)VacancyManager\ExtLib\ux\TransformGrid.js" />
+        </Component>
+      </DirectoryRef>
+  
+      <DirectoryRef Id="cssuxVM">
+        <Component Id ="cssuxApp" Guid="{B3E9D71C-824A-48FF-BBF7-229BEDCA4012}" KeyPath="yes" DiskId="1">
+          <File Id ="CenterLayoutcss" Name="CenterLayout.css" Source="$(var.SolutionDir)VacancyManager\ExtLib\ux\css\CenterLayout.css" />
+          <File Id ="CheckHeadercss" Name="CheckHeader.css" Source="$(var.SolutionDir)VacancyManager\ExtLib\ux\css\CheckHeader.css" />
+          <File Id ="GroupTabPanelcss" Name="GroupTabPanel.css" Source="$(var.SolutionDir)VacancyManager\ExtLib\ux\css\GroupTabPanel.css" />
+          <File Id ="ItemSelectorcss" Name="ItemSelector.css" Source="$(var.SolutionDir)VacancyManager\ExtLib\ux\css\ItemSelector.css" />
+          <File Id ="LiveSearchGridPanelcss" Name="LiveSearchGridPanel.css" Source="$(var.SolutionDir)VacancyManager\ExtLib\ux\css\LiveSearchGridPanel.css" /> 
+          <File Id ="TabScrollerMenucss" Name="TabScrollerMenu.css" Source="$(var.SolutionDir)VacancyManager\ExtLib\ux\css\TabScrollerMenu.css" />
+        </Component>
+      </DirectoryRef>
      
+      <DirectoryRef Id="statusbarVM">
+        <Component Id ="statusbarApp" Guid="{84561211-A2E3-4D32-9EF9-AB785F91E1FE}" KeyPath="yes" DiskId="1">
+          <File Id="StatusBarjs" Name="StatusBar.js" Source="$(var.SolutionDir)VacancyManager\ExtLib\ux\statusbar\StatusBar.js" />
+          <File Id="ValidationStatusjs" Name="ValidationStatus.js" Source="$(var.SolutionDir)VacancyManager\ExtLib\ux\statusbar\ValidationStatus.js" />
+        </Component>
+      </DirectoryRef>
+    
+      <DirectoryRef Id="cssStatusVM">
+        <Component Id="cssStatusApp" Guid="{A6B78CB2-80E3-45B5-B106-9FAE113D5C69}" KeyPath="yes" DiskId="1">
+          <File Id="statusbarcss" Name="statusbar.css" Source="$(var.SolutionDir)VacancyManager\ExtLib\ux\statusbar\css\statusbar.css" />
+        </Component>
+      </DirectoryRef>
+     
+      <DirectoryRef Id="ImagesStatusVM">
+        <Component Id="ImagesStatusApp" Guid="{B8357400-F68F-4549-93A8-73CD5CA1D42B}" KeyPath="yes" DiskId ="1">
+          <File Id="acceptpng" Name="accept.png" Source="$(var.SolutionDir)VacancyManager\ExtLib\ux\statusbar\images\accept.png" />
+          <File Id="exclamationgif" Name="exclamation.gif" Source="$(var.SolutionDir)VacancyManager\ExtLib\ux\statusbar\images\exclamation.gif" />
+          <File Id="loadinggif" Name="loading.gif" Source="$(var.SolutionDir)VacancyManager\ExtLib\ux\statusbar\images\loading.gif" />
+          <File Id="savedpng" Name="saved.png" Source="$(var.SolutionDir)VacancyManager\ExtLib\ux\statusbar\images\saved.png" />
+          <File Id="savinggif" Name="saving.gif" Source="$(var.SolutionDir)VacancyManager\ExtLib\ux\statusbar\images\saving.gif" />
+        </Component>
+      </DirectoryRef>
+    
+      <DirectoryRef Id="cssResourcesVM">
+        <Component Id="cssResourcesApp" Guid="{D999F957-5190-46DD-BA9D-0389B93C17C1}" KeyPath="yes" DiskId="1">
+          <File Id="extallcss" Name="ext-all.css" Source="$(var.SolutionDir)VacancyManager\ExtLib\resources\css\ext-all.css" />
+          <File Id="extallorigcss" Name="ext-all_orig.css" Source="$(var.SolutionDir)VacancyManager\ExtLib\resources\css\ext-all_orig.css" />
+          <File Id="extallaccesscss" Name="ext-all-access.css" Source="$(var.SolutionDir)VacancyManager\ExtLib\resources\css\ext-all-access.css" />
+          <File Id="extallgraycss" Name="ext-all-gray.css" Source="$(var.SolutionDir)VacancyManager\ExtLib\resources\css\ext-all-gray.css" />
+          <File Id="extallscopedcss" Name="ext-all-scoped.css" Source="$(var.SolutionDir)VacancyManager\ExtLib\resources\css\ext-all-scoped.css" />
+          <File Id="extiecss" Name="ext-ie.css" Source="$(var.SolutionDir)VacancyManager\ExtLib\resources\css\ext-ie.css" />
+          <File Id="extiescopedcss" Name="ext-ie-scoped.css" Source="$(var.SolutionDir)VacancyManager\ExtLib\resources\css\ext-ie-scoped.css" />
+          <File Id="extsandboxcss" Name="ext-sandbox.css" Source="$(var.SolutionDir)VacancyManager\ExtLib\resources\css\ext-sandbox.css" />
+          <File Id="extstandardcss" Name="ext-standard.css" Source="$(var.SolutionDir)VacancyManager\ExtLib\resources\css\ext-standard.css" />
+          <File Id="extstandardscopedcss" Name="ext-standard-scoped.css" Source="$(var.SolutionDir)VacancyManager\ExtLib\resources\css\ext-standard-scoped.css" />
+        </Component>
+      </DirectoryRef>
+    
+      <DirectoryRef Id="iconsResourcesVM">
+        <Component Id="iconsResourcesApp" Guid="{245A67E4-5B85-4CED-956D-FF708B6D0FE9}" KeyPath="yes" DiskId="1">
+          <File Id="acceptgif" Name="accept.gif" Source="$(var.SolutionDir)VacancyManager\ExtLib\resources\icons\accept.gif" />
+          <File Id="addgif" Name="add.gif" Source="$(var.SolutionDir)VacancyManager\ExtLib\resources\icons\add.gif" />
+          <File Id="add16gif" Name="add16.gif" Source="$(var.SolutionDir)VacancyManager\ExtLib\resources\icons\add16.gif" />
+          <File Id="deletegif" Name="delete.gif" Source="$(var.SolutionDir)VacancyManager\ExtLib\resources\icons\delete.gif" />
+          <File Id="group16gif" Name="group16.gif" Source="$(var.SolutionDir)VacancyManager\ExtLib\resources\icons\group16.gif" />
+          <File Id="usergif" Name="user.gif" Source="$(var.SolutionDir)VacancyManager\ExtLib\resources\icons\user.gif" />
+          <File Id="useraddgif" Name="user_add.gif" Source="$(var.SolutionDir)VacancyManager\ExtLib\resources\icons\user_add.gif" />
+          <File Id="userdeletegif" Name="user_delete.gif" Source="$(var.SolutionDir)VacancyManager\ExtLib\resources\icons\user_delete.gif" />
+        </Component>
+      </DirectoryRef>
+   
+      <DirectoryRef Id="themesResourcesVM">
+        <Component Id="themesResourcesApp" Guid="{EEAB1746-05AB-44AA-98BE-54E1D176E1A8}" KeyPath="yes" DiskId="1">
+          <File Id="compassinitrb" Name="compass_init.rb" Source="$(var.SolutionDir)VacancyManager\ExtLib\resources\themes\compass_init.rb" />
+        </Component>
+      </DirectoryRef>
+  
+      <DirectoryRef Id="LibThemesVM">
+        <Component Id="LibThemesApp" Guid="{22317F5E-5B68-45CE-9D09-C7D8C6A11FFC}" KeyPath ="yes" DiskId="1">
+          <File Id="utilsrb" Name="utils.rb" Source="$(var.SolutionDir)VacancyManager\ExtLib\resources\themes\lib\utils.rb" />
+        </Component>
+      </DirectoryRef>
+  
+      <DirectoryRef Id="defaultExt4VM">
+        <Component Id="defaultExt4App" Guid="{63784DD0-B09E-4A91-92DF-18A56BE9DECD}" KeyPath="yes" DiskId="1">
+          <File Id="allscss" Name="_all.scss" Source="$(var.SolutionDir)VacancyManager\ExtLib\resources\themes\stylesheets\ext4\default\_all.scss" />
+          <File Id="corescss" Name="_core.scss" Source="$(var.SolutionDir)VacancyManager\ExtLib\resources\themes\stylesheets\ext4\default\_core.scss" />
+          <File Id="functionsscss" Name="_functions.scss" Source="$(var.SolutionDir)VacancyManager\ExtLib\resources\themes\stylesheets\ext4\default\_functions.scss" />
+          <File Id="mixinsscss" Name="_mixins.scss" Source="$(var.SolutionDir)VacancyManager\ExtLib\resources\themes\stylesheets\ext4\default\_mixins.scss" />
+          <File Id="variablesscss" Name="_variables.scss" Source="$(var.SolutionDir)VacancyManager\ExtLib\resources\themes\stylesheets\ext4\default\_variables.scss" />
+          <File Id="widgetsscss" Name="_widgets.scss" Source="$(var.SolutionDir)VacancyManager\ExtLib\resources\themes\stylesheets\ext4\default\_widgets.scss" />          
+        </Component>
+      </DirectoryRef>
+  
+      <DirectoryRef Id="coreDefaultVM">
+        <Component Id="coreDefaultApp" Guid="{DA31AAEB-03D7-43B2-AC6D-0DD4D3C005D2}" KeyPath="yes" DiskId="1">
+          <File Id="defcorescss" Name="_core.scss" Source="$(var.SolutionDir)VacancyManager\ExtLib\resources\themes\stylesheets\ext4\default\core\_core.scss" />
+          <File Id="defresetscss" Name="_reset.scss" Source="$(var.SolutionDir)VacancyManager\ExtLib\resources\themes\stylesheets\ext4\default\core\_reset.scss" />
+        </Component>
+      </DirectoryRef>
+  
+      <DirectoryRef Id="layoutDefaultVM">
+        <Component Id="layoutDefaultApp" Guid="{B8B3DC41-526F-4CC3-A0B7-91C6EF34E91B}" KeyPath ="yes" DiskId="1">
+          <File Id="layoutscss" Name="_layout.scss" Source="$(var.SolutionDir)VacancyManager\ExtLib\resources\themes\stylesheets\ext4\default\layout\_layout.scss" />
+        </Component>
+      </DirectoryRef>
+  
+      <DirectoryRef Id="mixinsDefaultVM" >
+        <Component Id ="mixinsDefaultApp" Guid ="{0FFE6B3F-D188-49BF-B146-EAE0B392741C}" KeyPath="yes" DiskId="1">
+          <File Id="backgroundgradientscss" Name="_background-gradient.scss" Source ="$(var.SolutionDir)VacancyManager\ExtLib\resources\themes\stylesheets\ext4\default\mixins\_background-gradient.scss" />
+          <File Id="colobybackgroundscss" Name="_color-by-background.scss" Source ="$(var.SolutionDir)VacancyManager\ExtLib\resources\themes\stylesheets\ext4\default\mixins\_color-by-background.scss" />
+          <File Id="framescss" Name="_frame.scss" Source ="$(var.SolutionDir)VacancyManager\ExtLib\resources\themes\stylesheets\ext4\default\mixins\_frame.scss" />
+          <File Id="inneborderscss" Name="_inner-border.scss" Source ="$(var.SolutionDir)VacancyManager\ExtLib\resources\themes\stylesheets\ext4\default\mixins\_inner-border.scss" />
+          <File Id="resetextrasscss" Name="_reset-extras.scss" Source ="$(var.SolutionDir)VacancyManager\ExtLib\resources\themes\stylesheets\ext4\default\mixins\_reset-extras.scss" />
+          <File Id="themebackgroundimagescss" Name="_theme-background-image.scss" Source ="$(var.SolutionDir)VacancyManager\ExtLib\resources\themes\stylesheets\ext4\default\mixins\_theme-background-image.scss" />
+        </Component>
+      </DirectoryRef>
+  
+     <DirectoryRef Id="utilDefaultVM">
+       <Component Id="utilDefaultApp" Guid="{EF02A0C9-A5AB-4BD4-8AAC-0CE6416C2978}" KeyPath ="yes" DiskId="1">
+         <File Id="dragdropscss" Name="_dragdrop.scss" Source="$(var.SolutionDir)VacancyManager\ExtLib\resources\themes\stylesheets\ext4\default\util\_dragdrop.scss" />
+         <File Id="focusscss" Name="_focus.scss" Source="$(var.SolutionDir)VacancyManager\ExtLib\resources\themes\stylesheets\ext4\default\util\_focus.scss" />
+         <File Id="messageboxscss" Name="_messagebox.scss" Source="$(var.SolutionDir)VacancyManager\ExtLib\resources\themes\stylesheets\ext4\default\util\_messagebox.scss" />
+         <File Id="resizablescss" Name="_resizable.scss" Source="$(var.SolutionDir)VacancyManager\ExtLib\resources\themes\stylesheets\ext4\default\util\_resizable.scss" />
+         <File Id="scrollerscss" Name="_scroller.scss" Source="$(var.SolutionDir)VacancyManager\ExtLib\resources\themes\stylesheets\ext4\default\util\_scroller.scss" />
+         <File Id="splitterscss" Name="_splitter.scss" Source="$(var.SolutionDir)VacancyManager\ExtLib\resources\themes\stylesheets\ext4\default\util\_splitter.scss" />
+         <File Id="toolscss" Name="_tool.scss" Source="$(var.SolutionDir)VacancyManager\ExtLib\resources\themes\stylesheets\ext4\default\util\_tool.scss" />
+       </Component>
+     </DirectoryRef>
+  
+     <DirectoryRef Id ="variablesDefaultVM">
+       <Component Id="variablesDefaultApp" Guid="{33C45F40-ED23-47E3-990E-C252C9B8D70A}" KeyPath="yes" DiskId="1">
+         <File Id ="Variablesboundlistscss" Name="_boundlist.scss" Source="$(var.SolutionDir)VacancyManager\ExtLib\resources\themes\stylesheets\ext4\default\variables\_boundlist.scss" />
+         <File Id ="Variablesbtgroupscss" Name="_btn-group.scss" Source="$(var.SolutionDir)VacancyManager\ExtLib\resources\themes\stylesheets\ext4\default\variables\_btn-group.scss" />
+         <File Id ="Variablesbuttonscss" Name="_button.scss" Source="$(var.SolutionDir)VacancyManager\ExtLib\resources\themes\stylesheets\ext4\default\variables\_button.scss" />
+         <File Id ="Variablescorescss" Name="_core.scss" Source="$(var.SolutionDir)VacancyManager\ExtLib\resources\themes\stylesheets\ext4\default\variables\_core.scss" />
+         <File Id ="Variablesfocusscss" Name="_focus.scss" Source="$(var.SolutionDir)VacancyManager\ExtLib\resources\themes\stylesheets\ext4\default\variables\_focus.scss" />
+         <File Id ="Variablesformscss" Name="_form.scss" Source="$(var.SolutionDir)VacancyManager\ExtLib\resources\themes\stylesheets\ext4\default\variables\_form.scss" />
+         <File Id ="Variablesgridscss" Name="_grid.scss" Source="$(var.SolutionDir)VacancyManager\ExtLib\resources\themes\stylesheets\ext4\default\variables\_grid.scss" />
+         <File Id ="Variableshtmleditorscss" Name="_htmleditor.scss" Source="$(var.SolutionDir)VacancyManager\ExtLib\resources\themes\stylesheets\ext4\default\variables\_htmleditor.scss" />
+         <File Id ="Variableslayoutscss" Name="_layout.scss" Source="$(var.SolutionDir)VacancyManager\ExtLib\resources\themes\stylesheets\ext4\default\variables\_layout.scss" />
+         <File Id ="Variablesloadmaskscss" Name="_loadmask.scss" Source="$(var.SolutionDir)VacancyManager\ExtLib\resources\themes\stylesheets\ext4\default\variables\_loadmask.scss" />
+         <File Id ="Variablesmenuscss" Name="_menu.scss" Source="$(var.SolutionDir)VacancyManager\ExtLib\resources\themes\stylesheets\ext4\default\variables\_menu.scss" />
+         <File Id ="Variablespanelscss" Name="_panel.scss" Source="$(var.SolutionDir)VacancyManager\ExtLib\resources\themes\stylesheets\ext4\default\variables\_panel.scss" />
+         <File Id ="Variablespickersscss" Name="_pickers.scss" Source="$(var.SolutionDir)VacancyManager\ExtLib\resources\themes\stylesheets\ext4\default\variables\_pickers.scss" />
+         <File Id ="Variablesprogressbarscss" Name="_progress-bar.scss" Source="$(var.SolutionDir)VacancyManager\ExtLib\resources\themes\stylesheets\ext4\default\variables\_progress-bar.scss" />  
+         <File Id ="Variablesqtipscss" Name="_qtip.scss" Source="$(var.SolutionDir)VacancyManager\ExtLib\resources\themes\stylesheets\ext4\default\variables\_qtip.scss" />      
+         <File Id ="Variablestabsscss" Name="_tabs.scss" Source="$(var.SolutionDir)VacancyManager\ExtLib\resources\themes\stylesheets\ext4\default\variables\_tabs.scss" />          
+         <File Id ="Variablestoolbarscss" Name="_toolbar.scss" Source="$(var.SolutionDir)VacancyManager\ExtLib\resources\themes\stylesheets\ext4\default\variables\_toolbar.scss" />          
+         <File Id ="Variablestreescss" Name="_tree.scss" Source="$(var.SolutionDir)VacancyManager\ExtLib\resources\themes\stylesheets\ext4\default\variables\_tree.scss" />
+         <File Id ="Variableswindowscss" Name="_window.scss" Source="$(var.SolutionDir)VacancyManager\ExtLib\resources\themes\stylesheets\ext4\default\variables\_window.scss" />
+       </Component>
+     </DirectoryRef>
+  
+     <DirectoryRef Id="widgetsDefaultVM">
+       <Component Id="widgetsDefaultApp" Guid="{DD7BD05B-815A-46F9-BE84-0277DBDC83E9}" KeyPath="yes" DiskId="1">
+          <File Id ="Widgestboundlistscss" Name="_boundlist.scss" Source="$(var.SolutionDir)VacancyManager\ExtLib\resources\themes\stylesheets\ext4\default\widgets\_boundlist.scss" />
+          <File Id ="Widgestbtngroupscss" Name="_btn-group.scss" Source="$(var.SolutionDir)VacancyManager\ExtLib\resources\themes\stylesheets\ext4\default\widgets\_btn-group.scss" />
+          <File Id ="Widgestbuttonscss" Name="_button.scss" Source="$(var.SolutionDir)VacancyManager\ExtLib\resources\themes\stylesheets\ext4\default\widgets\_button.scss" />
+          <File Id ="Widgestcolorpickerscss" Name="_colorpicker.scss" Source="$(var.SolutionDir)VacancyManager\ExtLib\resources\themes\stylesheets\ext4\default\widgets\_colorpicker.scss" />
+          <File Id ="Widgestdatepickerscss" Name="_datepicker.scss" Source="$(var.SolutionDir)VacancyManager\ExtLib\resources\themes\stylesheets\ext4\default\widgets\_datepicker.scss" />
+          <File Id ="Widgestdrawcomponentscss" Name="_drawcomponent.scss" Source="$(var.SolutionDir)VacancyManager\ExtLib\resources\themes\stylesheets\ext4\default\widgets\_drawcomponent.scss" />
+          <File Id ="Widgestformscss" Name="_form.scss" Source="$(var.SolutionDir)VacancyManager\ExtLib\resources\themes\stylesheets\ext4\default\widgets\_form.scss" />
+          <File Id ="Widgestgridscss" Name="_grid.scss" Source="$(var.SolutionDir)VacancyManager\ExtLib\resources\themes\stylesheets\ext4\default\widgets\_grid.scss" />
+          <File Id ="Widgesthtmlscss" Name="_html.scss" Source="$(var.SolutionDir)VacancyManager\ExtLib\resources\themes\stylesheets\ext4\default\widgets\_html.scss" />
+          <File Id ="Widgestloadmaskscss" Name="_loadmask.scss" Source="$(var.SolutionDir)VacancyManager\ExtLib\resources\themes\stylesheets\ext4\default\widgets\_loadmask.scss" />
+          <File Id ="Widgestmenuscss" Name="_menu.scss" Source="$(var.SolutionDir)VacancyManager\ExtLib\resources\themes\stylesheets\ext4\default\widgets\_menu.scss" />
+          <File Id ="Widgestpanelscss" Name="_panel.scss" Source="$(var.SolutionDir)VacancyManager\ExtLib\resources\themes\stylesheets\ext4\default\widgets\_panel.scss" />
+          <File Id ="Widgestprogresbarscss" Name="_progress-bar.scss" Source="$(var.SolutionDir)VacancyManager\ExtLib\resources\themes\stylesheets\ext4\default\widgets\_progress-bar.scss" />
+          <File Id ="Widgestqtipscs" Name="_qtip.scss" Source="$(var.SolutionDir)VacancyManager\ExtLib\resources\themes\stylesheets\ext4\default\widgets\_qtip.scss" />
+          <File Id ="Widgestsliderscss" Name="_slider.scss" Source="$(var.SolutionDir)VacancyManager\ExtLib\resources\themes\stylesheets\ext4\default\widgets\_slider.scss" />
+          <File Id ="Widgesttabscss" Name="_tab.scss" Source="$(var.SolutionDir)VacancyManager\ExtLib\resources\themes\stylesheets\ext4\default\widgets\_tab.scss" />
+          <File Id ="Widgesttabbarscss" Name="_tabbar.scss" Source="$(var.SolutionDir)VacancyManager\ExtLib\resources\themes\stylesheets\ext4\default\widgets\_tabbar.scss" />
+          <File Id ="Widgesttoolbarscss" Name="_toolbar.scss" Source="$(var.SolutionDir)VacancyManager\ExtLib\resources\themes\stylesheets\ext4\default\widgets\_toolbar.scss" />
+          <File Id ="Widgesttreescss" Name="_tree.scss" Source="$(var.SolutionDir)VacancyManager\ExtLib\resources\themes\stylesheets\ext4\default\widgets\_tree.scss" />
+          <File Id ="Widgestviewportscss" Name="_viewport.scss" Source="$(var.SolutionDir)VacancyManager\ExtLib\resources\themes\stylesheets\ext4\default\widgets\_viewport.scss" />
+          <File Id ="Widgestwindowscss" Name="_window.scss" Source="$(var.SolutionDir)VacancyManager\ExtLib\resources\themes\stylesheets\ext4\default\widgets\_window.scss" />
+       </Component>
+     </DirectoryRef>
+  
+     <DirectoryRef Id="formWidgetsVM">
+       <Component Id="formWidgetsApp" Guid="{BBA7B794-6433-4ADF-BD68-E4295D1C9641}" KeyPath="yes" DiskId="1">
+         <File Id="formallscss" Name="_all.scss" Source="$(var.SolutionDir)VacancyManager\ExtLib\resources\themes\stylesheets\ext4\default\widgets\form\_all.scss" />
+         <File Id="formcheckboxscss" Name="_checkbox.scss" Source="$(var.SolutionDir)VacancyManager\ExtLib\resources\themes\stylesheets\ext4\default\widgets\form\_checkbox.scss" />
+         <File Id="formcheckboxgroupscss" Name="_checkboxgroup.scss" Source="$(var.SolutionDir)VacancyManager\ExtLib\resources\themes\stylesheets\ext4\default\widgets\form\_checkboxgroup.scss" />
+         <File Id="forfieldscss" Name="_field.scss" Source="$(var.SolutionDir)VacancyManager\ExtLib\resources\themes\stylesheets\ext4\default\widgets\form\_field.scss" />
+         <File Id="formfieldsetscss" Name="_fieldset.scss" Source="$(var.SolutionDir)VacancyManager\ExtLib\resources\themes\stylesheets\ext4\default\widgets\form\_fieldset.scss" />
+         <File Id="formfilescss" Name="_file.scss" Source="$(var.SolutionDir)VacancyManager\ExtLib\resources\themes\stylesheets\ext4\default\widgets\form\_file.scss" />
+         <File Id="formhtmleditorscss" Name="_htmleditor.scss" Source="$(var.SolutionDir)VacancyManager\ExtLib\resources\themes\stylesheets\ext4\default\widgets\form\_htmleditor.scss" />
+         <File Id="formtriggerfieldscss" Name="_triggerfield.scss" Source="$(var.SolutionDir)VacancyManager\ExtLib\resources\themes\stylesheets\ext4\default\widgets\form\_triggerfield.scss" />
+       </Component>
+     </DirectoryRef>
+  
+     <DirectoryRef Id="sassVM">
+       <Component Id="sassApp" Guid="{4C640433-49CD-4B75-AFDF-ED95403CED33}" KeyPath="yes" DiskId="1">
+         <File Id="Sassconfigrb" Name="config.rb" Source="$(var.SolutionDir)VacancyManager\ExtLib\resources\themes\templates\resources\sass\config.rb" />
+         <File Id="Sassmyextthemescss" Name="my-ext-theme.scss" Source="$(var.SolutionDir)VacancyManager\ExtLib\resources\themes\templates\resources\sass\my-ext-theme.scss" />
+       </Component>
+     </DirectoryRef>
+  
+     <DirectoryRef Id ="ScriptsVM">
+       <Component Id ="ScriptsApp" Guid="{2714ACE8-D886-42D0-BF15-F7045D975E61}" KeyPath="yes" DiskId="1">
+         <File Id ="jqueryunobtrusiveajaxjs" Name="jquery.unobtrusive-ajax.js" Source="$(var.SolutionDir)VacancyManager\Scripts\jquery.unobtrusive-ajax.js"/>
+         <File Id ="jquerunobtrusiveajaminjs" Name="jquery.unobtrusive-ajax.min.js" Source="$(var.SolutionDir)VacancyManager\Scripts\jquery.unobtrusive-ajax.min.js"/>
+         <File Id ="jqueryvalidatejs" Name="jquery.validate.js" Source="$(var.SolutionDir)VacancyManager\Scripts\jquery.validate.js"/>
+         <File Id ="jqueryvalidatminjs" Name="jquery.validate.min.js" Source="$(var.SolutionDir)VacancyManager\Scripts\jquery.validate.min.js"/>
+         <File Id ="jqueryvalidateunobtrusivejs" Name="jquery.validate.unobtrusive.js" Source="$(var.SolutionDir)VacancyManager\Scripts\jquery.validate.unobtrusive.js"/>
+         <File Id ="jqueryvalidateunobtrusivemins" Name="jquery.validate.unobtrusive.min.js" Source="$(var.SolutionDir)VacancyManager\Scripts\jquery.validate.unobtrusive.min.js"/>  
+         <File Id ="jqueryvalidatevsdocjs" Name="jquery.validate-vsdoc.js" Source="$(var.SolutionDir)VacancyManager\Scripts\jquery.validate-vsdoc.js"/>
+         <File Id ="jquery172js" Name="jquery-1.7.2.js" Source="$(var.SolutionDir)VacancyManager\Scripts\jquery-1.7.2.js"/>
+         <File Id ="jquery172minjs" Name="jquery-1.7.2.min.js" Source="$(var.SolutionDir)VacancyManager\Scripts\jquery-1.7.2.min.js"/>
+         <File Id ="jquery172vsdojs" Name="jquery-1.7.2-vsdoc.js" Source="$(var.SolutionDir)VacancyManager\Scripts\jquery-1.7.2-vsdoc.js"/>
+         <File Id ="jqueryui1819js" Name="jquery-ui-1.8.19.js" Source="$(var.SolutionDir)VacancyManager\Scripts\jquery-ui-1.8.19.js"/>
+         <File Id ="jqueryui1819minjs" Name="jquery-ui-1.8.19.min.js" Source="$(var.SolutionDir)VacancyManager\Scripts\jquery-ui-1.8.19.min.js"/>
+         <File Id ="MicrosoftAjaxdebugs" Name="MicrosoftAjax.debug.js" Source="$(var.SolutionDir)VacancyManager\Scripts\MicrosoftAjax.debug.js"/>
+         <File Id ="MicrosoftAjaxjs" Name="MicrosoftAjax.js" Source="$(var.SolutionDir)VacancyManager\Scripts\MicrosoftAjax.js"/>
+         <File Id ="MicrosoftMvcAjax" Name="MicrosoftMvcAjax.js" Source="$(var.SolutionDir)VacancyManager\Scripts\MicrosoftMvcAjax.js"/>
+         <File Id ="MicrosoftMvcValidationdebugjs" Name="MicrosoftMvcValidation.debug.js" Source="$(var.SolutionDir)VacancyManager\Scripts\MicrosoftMvcValidation.debug.js"/>
+         <File Id ="MicrosoftMvcValidationjs" Name="MicrosoftMvcValidation.js" Source="$(var.SolutionDir)VacancyManager\Scripts\MicrosoftMvcValidation.js"/>
+         <File Id ="modernizr17js" Name="modernizr-1.7.js" Source="$(var.SolutionDir)VacancyManager\Scripts\modernizr-1.7.js"/>
+         <File Id ="modernizr17minjs" Name="modernizr-1.7.min.js" Source="$(var.SolutionDir)VacancyManager\Scripts\modernizr-1.7.min.js"/>
+       </Component>
+     </DirectoryRef>
+    
+     <DirectoryRef Id ="adminVM">
+       <Component Id ="adminApp" Guid="{BDBD0BAD-E795-49D4-B30B-CDCD24EA25A5}" KeyPath="yes" DiskId="1">
+         <File Id ="ADappjs" Name="app.js" Source="$(var.SolutionDir)VacancyManager\Scripts\VM\Admin\app.js" />
+         <File Id ="ADbootstrapjs" Name="bootstrap.js" Source="$(var.SolutionDir)VacancyManager\Scripts\VM\Admin\bootstrap.js" />
+         <File Id ="ADsearchApplicantGridjs" Name="searchApplicantGrid.js" Source="$(var.SolutionDir)VacancyManager\Scripts\VM\Admin\searchApplicantGrid.js" />
+       </Component>
+     </DirectoryRef>
+  
+     <DirectoryRef Id="controllerVM">
+       <Component Id="controllerApp" Guid="{49BBBC04-5239-4987-86DB-8DA3CA05B439}" KeyPath ="yes" DiskId="1">
+         <File Id="CntrlAdminjs" Name="Admin.js" Source="$(var.SolutionDir)VacancyManager\Scripts\VM\Admin\controller\Admin.js" />
+         <File Id="CntrlApplicantControllerjs" Name="ApplicantController.js" Source="$(var.SolutionDir)VacancyManager\Scripts\VM\Admin\controller\ApplicantController.js" />
+         <File Id="CntrlCommentsControllerjs" Name="CommentsController.js" Source="$(var.SolutionDir)VacancyManager\Scripts\VM\Admin\controller\CommentsController.js" />
+         <File Id="CntrlConsiderationControllerjs" Name="ConsiderationController.js" Source="$(var.SolutionDir)VacancyManager\Scripts\VM\Admin\controller\ConsiderationController.js" />
+         <File Id="CntrlMailMessageControllerjs" Name="MailMessageController.js" Source="$(var.SolutionDir)VacancyManager\Scripts\VM\Admin\controller\MailMessageController.js" />
+         <File Id="CntrlRequirementListInStackjs" Name="RequirementListInStack.js" Source="$(var.SolutionDir)VacancyManager\Scripts\VM\Admin\controller\RequirementListInStack.js" />
+         <File Id="CntrlRequirementStackjs" Name="RequirementStack.js" Source="$(var.SolutionDir)VacancyManager\Scripts\VM\Admin\controller\RequirementStack.js" />
+         <File Id="CntrlResumeControllerjs" Name="ResumeController.js" Source="$(var.SolutionDir)VacancyManager\Scripts\VM\Admin\controller\ResumeController.js" />
+         <File Id="CntrlRolesjs" Name="Roles.js" Source="$(var.SolutionDir)VacancyManager\Scripts\VM\Admin\controller\Roles.js" />
+         <File Id="CntrlSysConfigControllerjs" Name="SysConfigController.js" Source="$(var.SolutionDir)VacancyManager\Scripts\VM\Admin\controller\SysConfigController.js" />
+         <File Id="CntrlUserControllerjs" Name="UserController.js" Source="$(var.SolutionDir)VacancyManager\Scripts\VM\Admin\controller\UserController.js" />
+         <File Id="CntrlVacancyControllerjs" Name="VacancyController.js" Source="$(var.SolutionDir)VacancyManager\Scripts\VM\Admin\controller\VacancyController.js" />
+       </Component>
+     </DirectoryRef>
+    
+     
+     <DirectoryRef Id="modelVM" >
+       <Component Id ="modelApp" Guid="{1FC8D158-E268-4DEF-AE93-60B332282CEE}" KeyPath="yes" DiskId="1">
+         <File Id ="MDLApplicantConsiderationsjs" Name="ApplicantConsiderations.js" Source="$(var.SolutionDir)VacancyManager\Scripts\VM\Admin\model\ApplicantConsiderations.js" />
+         <File Id ="MDLApplicantMessagejs" Name="ApplicantMessage.js" Source="$(var.SolutionDir)VacancyManager\Scripts\VM\Admin\model\ApplicantMessage.js" />
+         <File Id ="MDLApplicantModeljs" Name="ApplicantModel.js" Source="$(var.SolutionDir)VacancyManager\Scripts\VM\Admin\model\ApplicantModel.js" />
+         <File Id ="MDLApplicantRequirementjs" Name="ApplicantRequirements.js" Source="$(var.SolutionDir)VacancyManager\Scripts\VM\Admin\model\ApplicantRequirements.js" />
+         <File Id ="MDLApplicantResumeGridjs" Name="ApplicantResumeGrid.js" Source="$(var.SolutionDir)VacancyManager\Scripts\VM\Admin\model\ApplicantResumeGrid.js" />
+         <File Id ="MDLAttachmentjs" Name="Attachment.js" Source="$(var.SolutionDir)VacancyManager\Scripts\VM\Admin\model\Attachment.js" />
+         <File Id ="MDLCommentjs" Name="Comment.js" Source="$(var.SolutionDir)VacancyManager\Scripts\VM\Admin\model\Comment.js" />
+         <File Id ="MDLConsiderationjs" Name="Consideration.js" Source="$(var.SolutionDir)VacancyManager\Scripts\VM\Admin\model\Consideration.js" />
+         <File Id ="MDLConsiderationAssignjs" Name="ConsiderationAssign.js" Source="$(var.SolutionDir)VacancyManager\Scripts\VM\Admin\model\ConsiderationAssign.js" />
+         <File Id ="MDLMailMessagejs" Name="MailMessage.js" Source="$(var.SolutionDir)VacancyManager\Scripts\VM\Admin\model\MailMessage.js" />
+         <File Id ="MDLRequirementListInStackjs" Name="RequirementListInStack.js" Source="$(var.SolutionDir)VacancyManager\Scripts\VM\Admin\model\RequirementListInStack.js" />
+         <File Id ="MDLRequirementStackjs" Name="RequirementStack.js" Source="$(var.SolutionDir)VacancyManager\Scripts\VM\Admin\model\RequirementStack.js" />
+         <File Id ="MDLRolesjs" Name="Roles.js" Source="$(var.SolutionDir)VacancyManager\Scripts\VM\Admin\model\Roles.js" />
+         <File Id ="MDLSearchApplicantsjs" Name="SearchApplicants.js" Source="$(var.SolutionDir)VacancyManager\Scripts\VM\Admin\model\SearchApplicants.js" />
+         <File Id ="MDLSysConfigModeljs" Name="SysConfigModel.js" Source="$(var.SolutionDir)VacancyManager\Scripts\VM\Admin\model\SysConfigModel.js" />
+         <File Id ="MDLUserjs" Name="User.js" Source="$(var.SolutionDir)VacancyManager\Scripts\VM\Admin\model\User.js" />
+         <File Id ="MDLVacancyjs" Name="Vacancy.js" Source="$(var.SolutionDir)VacancyManager\Scripts\VM\Admin\model\Vacancy.js" />
+         <File Id ="MDLVacancyAssignjs" Name="VacancyAssign.js" Source="$(var.SolutionDir)VacancyManager\Scripts\VM\Admin\model\VacancyAssign.js" />
+         <File Id ="MDLVacancyRequirementsjs" Name="VacancyRequirements.js" Source="$(var.SolutionDir)VacancyManager\Scripts\VM\Admin\model\VacancyRequirements.js" />
+       </Component>
+     </DirectoryRef>
+       
+     <DirectoryRef Id ="storeVM">
+       <Component Id ="storeApp" Guid="{2CA8E278-1455-4938-8808-FC55CD411CA7}" KeyPath="yes" DiskId="1">
+         <File Id ="StoreApplicantjs" Name="Applicant.js" Source="$(var.SolutionDir)VacancyManager\Scripts\VM\Admin\store\Applicant.js" />
+         <File Id ="StoreApplicantCommentsjs" Name="ApplicantComments.js" Source="$(var.SolutionDir)VacancyManager\Scripts\VM\Admin\store\ApplicantComments.js" />
+         <File Id ="StoreApplicantConsiderationsjs" Name="ApplicantConsiderations.js" Source="$(var.SolutionDir)VacancyManager\Scripts\VM\Admin\store\ApplicantConsiderations.js" />
+         <File Id ="StoreApplicantMessagesjs" Name="ApplicantMessages.js" Source="$(var.SolutionDir)VacancyManager\Scripts\VM\Admin\store\ApplicantMessages.js" />
+         <File Id ="StoreApplicantRequirementsjs" Name="ApplicantRequirements.js" Source="$(var.SolutionDir)VacancyManager\Scripts\VM\Admin\store\ApplicantRequirements.js" />
+         <File Id ="StoreApplicantResumeGrid.js" Name="ApplicantResumeGrid.js" Source="$(var.SolutionDir)VacancyManager\Scripts\VM\Admin\store\ApplicantResumeGrid.js" />
+         <File Id ="StoreBaseStorejs" Name="BaseStore.js" Source="$(var.SolutionDir)VacancyManager\Scripts\VM\Admin\store\BaseStore.js" />
+         <File Id ="StoreCommentsjs" Name="Comments.js" Source="$(var.SolutionDir)VacancyManager\Scripts\VM\Admin\store\Comments.js" />
+         <File Id ="StoreConsiderationjs" Name="Consideration.js" Source="$(var.SolutionDir)VacancyManager\Scripts\VM\Admin\store\Consideration.js" />
+         <File Id ="StoreConsiderationAssignjs" Name="ConsiderationAssign.js" Source="$(var.SolutionDir)VacancyManager\Scripts\VM\Admin\store\ConsiderationAssign.js" />
+         <File Id ="StoreMailMessagejs" Name="MailMessage.js" Source="$(var.SolutionDir)VacancyManager\Scripts\VM\Admin\store\MailMessage.js" />
+         <File Id ="StoreRequirementListInStackjs" Name="RequirementListInStack.js" Source="$(var.SolutionDir)VacancyManager\Scripts\VM\Admin\store\RequirementListInStack.js" />
+         <File Id ="StoreRequirementStackjs" Name="RequirementStack.js" Source="$(var.SolutionDir)VacancyManager\Scripts\VM\Admin\store\RequirementStack.js" />
+         <File Id ="StoreRolesjs" Name="Roles.js" Source="$(var.SolutionDir)VacancyManager\Scripts\VM\Admin\store\Roles.js" />
+         <File Id ="StoreSearchApplicantsjs" Name="SearchApplicants.js" Source="$(var.SolutionDir)VacancyManager\Scripts\VM\Admin\store\SearchApplicants.js" />
+         <File Id ="StoreSysConfigjs" Name="SysConfig.js" Source="$(var.SolutionDir)VacancyManager\Scripts\VM\Admin\store\SysConfig.js" />
+         <File Id ="StoreUserjs" Name="User.js" Source="$(var.SolutionDir)VacancyManager\Scripts\VM\Admin\store\User.js" />
+         <File Id ="StoreVacancyjs" Name="Vacancy.js" Source="$(var.SolutionDir)VacancyManager\Scripts\VM\Admin\store\Vacancy.js" />
+         <File Id ="StoreVacancyAssignjs" Name="VacancyAssign.js" Source="$(var.SolutionDir)VacancyManager\Scripts\VM\Admin\store\VacancyAssign.js" />
+         <File Id ="StoreVacancyRequirementsjs" Name="VacancyRequirements.js" Source="$(var.SolutionDir)VacancyManager\Scripts\VM\Admin\store\VacancyRequirements.js" />
+       </Component>
+     </DirectoryRef>
+  
+     <DirectoryRef Id ="AdminviewVM">
+       <Component Id ="AdminviewApp" Guid="{D67300A9-2D03-41A1-BE26-9D29E3F4A0F7}" KeyPath="yes" DiskId="1">
+         <File Id ="AdminViewMainjs" Name="Main.js" Source="$(var.SolutionDir)VacancyManager\Scripts\VM\Admin\view\Admin\Main.js" />
+       </Component>
+     </DirectoryRef>
       
+     <DirectoryRef Id ="ApplicantVM">
+       <Component Id ="ApplicantApp" Guid="{8DB14098-1D98-4FF5-A2B8-D1A4015086FE}" KeyPath="yes" DiskId="1">
+         <File Id ="ViewApplicantCommentsjs" Name="ApplicantComments.js" Source="$(var.SolutionDir)VacancyManager\Scripts\VM\Admin\view\Applicant\ApplicantComments.js" />
+         <File Id ="ViewApplicantConsiderationsjs" Name="ApplicantConsiderations.js" Source="$(var.SolutionDir)VacancyManager\Scripts\VM\Admin\view\Applicant\ApplicantConsiderations.js" />
+         <File Id ="ViewApplicantMessagesss" Name="ApplicantMessages.js" Source="$(var.SolutionDir)VacancyManager\Scripts\VM\Admin\view\Applicant\ApplicantMessages.js" />
+         <File Id ="ViewApplicantMessagesListjs" Name="ApplicantMessagesList.js" Source="$(var.SolutionDir)VacancyManager\Scripts\VM\Admin\view\Applicant\ApplicantMessagesList.js" />
+         <File Id ="ViewCenterPaneljs" Name="CenterPanel.js" Source="$(var.SolutionDir)VacancyManager\Scripts\VM\Admin\view\Applicant\CenterPanel.js" />
+         <File Id ="ViewAppCreatejs" Name="Create.js" Source="$(var.SolutionDir)VacancyManager\Scripts\VM\Admin\view\Applicant\Create.js" />
+         <File Id ="ViewEditjs" Name="Edit.js" Source="$(var.SolutionDir)VacancyManager\Scripts\VM\Admin\view\Applicant\Edit.js" />
+         <File Id ="ViewListjs" Name="List.js" Source="$(var.SolutionDir)VacancyManager\Scripts\VM\Admin\view\Applicant\List.js" />
+         <File Id ="ViewWestPaneljs" Name="WestPanel.js" Source="$(var.SolutionDir)VacancyManager\Scripts\VM\Admin\view\Applicant\WestPanel.js" />
+       </Component>
+     </DirectoryRef>
+      
+     <DirectoryRef Id ="CommentsVM">
+       <Component Id ="CommentsApp" Guid="{26E77ADE-C404-473B-9ACC-D1569E0FDCC9}" KeyPath="yes" DiskId="1">
+         <File Id ="CommViewAddjs" Name="Add.js" Source="$(var.SolutionDir)VacancyManager\Scripts\VM\Admin\view\Comments\Add.js" />
+         <File Id ="CommViewEditjs" Name="Edit.js" Source="$(var.SolutionDir)VacancyManager\Scripts\VM\Admin\view\Comments\Edit.js" />
+         <File Id ="CommViewListjs" Name="List.js" Source="$(var.SolutionDir)VacancyManager\Scripts\VM\Admin\view\Comments\List.js" />
+         <File Id ="CommViewManagejs" Name="Manage.js" Source="$(var.SolutionDir)VacancyManager\Scripts\VM\Admin\view\Comments\Manage.js" />
+       </Component>
+     </DirectoryRef>
+  
+     <DirectoryRef Id ="considerationVM">
+       <Component Id ="considerationApp" Guid="{851D3FF1-20DF-45E2-947E-E84772D63D69}" KeyPath="yes" DiskId="1">
+         <File Id ="ConsViewAddjs" Name="Add.js" Source="$(var.SolutionDir)VacancyManager\Scripts\VM\Admin\view\consideration\Add.js" />
+         <File Id ="ConsViewEditjs" Name="Edit.js" Source="$(var.SolutionDir)VacancyManager\Scripts\VM\Admin\view\consideration\Edit.js" />
+         <File Id ="ConsViewListjs" Name="List.js" Source="$(var.SolutionDir)VacancyManager\Scripts\VM\Admin\view\consideration\List.js" />
+       </Component>
+     </DirectoryRef>
+  
+     <DirectoryRef Id="MailMessageVM">
+       <Component Id ="MailMessageApp" Guid ="{98AF30EF-DECB-499D-9F2C-9EED0E1F7B20}" KeyPath ="yes" DiskId="1">
+         <File Id ="MailViewAttachmentListjs" Name ="AttachmentList.js" Source="$(var.SolutionDir)VacancyManager\Scripts\VM\Admin\view\MailMessage\AttachmentList.js" />
+         <File Id ="MailViewAConsiderationAssignjs" Name ="ConsiderationAssign.js" Source="$(var.SolutionDir)VacancyManager\Scripts\VM\Admin\view\MailMessage\ConsiderationAssign.js" />
+         <File Id ="MailViewConsiderationAssignListjs" Name ="ConsiderationAssignList.js" Source="$(var.SolutionDir)VacancyManager\Scripts\VM\Admin\view\MailMessage\ConsiderationAssignList.js" />
+         <File Id ="MailViewCreatejs" Name ="Create.js" Source="$(var.SolutionDir)VacancyManager\Scripts\VM\Admin\view\MailMessage\Create.js" />
+         <File Id ="MailViewListjs" Name ="List.js" Source="$(var.SolutionDir)VacancyManager\Scripts\VM\Admin\view\MailMessage\List.js" />
+         <File Id ="MailViewMailMessageApplicantsjs" Name ="MailMessageApplicants.js" Source="$(var.SolutionDir)VacancyManager\Scripts\VM\Admin\view\MailMessage\MailMessageApplicants.js" />
+         <File Id ="MailViewViewMessagejs" Name ="ViewMessage.js" Source="$(var.SolutionDir)VacancyManager\Scripts\VM\Admin\view\MailMessage\ViewMessage.js" />
+       </Component>
+     </DirectoryRef>
+  
+     <DirectoryRef Id ="RequirementListInStackVM">
+       <Component Id ="RequirementListInStackApp" Guid="{556D34C3-4437-45CB-8E1F-FD7D1939EE8A}" KeyPath="yes" DiskId="1">
+         <File Id ="ReqtListCreatejs" Name="Create.js" Source="$(var.SolutionDir)VacancyManager\Scripts\VM\Admin\view\RequirementListInStack\Create.js" />
+         <File Id ="ReqtListEditjs" Name="Edit.js" Source="$(var.SolutionDir)VacancyManager\Scripts\VM\Admin\view\RequirementListInStack\Edit.js" />
+         <File Id ="ReqtListLisjs" Name="List.js" Source="$(var.SolutionDir)VacancyManager\Scripts\VM\Admin\view\RequirementListInStack\List.js" />
+       </Component>
+     </DirectoryRef>
+  
+     <DirectoryRef Id ="ResumeVM"> 
+       <Component Id ="ResumeApp" Guid="{3FA372AC-2C5B-4AA8-B378-375B41542E87}" KeyPath="yes" DiskId="1" >
+         <File Id ="ResumeViewCreatejs" Name="Create.js" Source="$(var.SolutionDir)VacancyManager\Scripts\VM\Admin\view\Resume\Create.js" />
+       </Component>
+     </DirectoryRef>
+  
+     <DirectoryRef Id ="RequirementStackVM">
+       <Component Id ="RequirementStackApp" Guid ="{FED2DFDC-642D-4112-B3E8-6589A61A0F05}" KeyPath="yes" DiskId="1">
+         <File Id ="ReqtStackCreatejs" Name="Create.js" Source="$(var.SolutionDir)VacancyManager\Scripts\VM\Admin\view\RequirementStack\Create.js" />
+         <File Id ="ReqtStackEditjs" Name="Edit.js" Source="$(var.SolutionDir)VacancyManager\Scripts\VM\Admin\view\RequirementStack\Edit.js" />
+         <File Id ="ReqtStackListjs" Name="List.js" Source="$(var.SolutionDir)VacancyManager\Scripts\VM\Admin\view\RequirementStack\List.js" />
+       </Component>
+     </DirectoryRef>
+   
+     <DirectoryRef Id ="RolesVM">
+       <Component Id ="RolesApp" Guid="{B727932B-76CC-4749-9E49-865DECD8154B}" KeyPath ="yes" DiskId="1">
+         <File Id ="RolesCreatejs" Name="Create.js" Source="$(var.SolutionDir)VacancyManager\Scripts\VM\Admin\view\Roles\Create.js" />
+         <File Id ="RolesListjs" Name="List.js" Source="$(var.SolutionDir)VacancyManager\Scripts\VM\Admin\view\Roles\List.js" />
+       </Component>
+     </DirectoryRef>
+  
+     <DirectoryRef Id ="SysConfigVM">
+       <Component Id ="SysConfigApp" Guid="{14A0A8C6-C2A1-457E-9C11-8D73C2334F4A}" KeyPath="yes" DiskId="1">
+         <File Id ="SysConfigCreatejs" Name="Create.js" Source="$(var.SolutionDir)VacancyManager\Scripts\VM\Admin\view\SysConfig\Create.js" />
+         <File Id ="SysConfigEditjs" Name="Edit.js" Source="$(var.SolutionDir)VacancyManager\Scripts\VM\Admin\view\SysConfig\Edit.js" />
+         <File Id ="SysConfigFormjs" Name="Form.js" Source="$(var.SolutionDir)VacancyManager\Scripts\VM\Admin\view\SysConfig\Form.js" />
+         <File Id ="SysConfigListjs" Name="List.js" Source="$(var.SolutionDir)VacancyManager\Scripts\VM\Admin\view\SysConfig\List.js" />
+       </Component>
+     </DirectoryRef>
+  
+     <DirectoryRef Id ="UserVM">
+       <Component Id ="UserApp" Guid="{EDB23894-5C31-4BF6-9E75-3332AA8384F0}" KeyPath ="yes" DiskId="1">
+         <File Id ="UserAddjs" Name="Add.js" Source="$(var.SolutionDir)VacancyManager\Scripts\VM\Admin\view\User\Add.js" />
+         <File Id ="UserBanReasonjs" Name="BanReason.js" Source="$(var.SolutionDir)VacancyManager\Scripts\VM\Admin\view\User\BanReason.js" />
+         <File Id ="UserEditjs" Name="Edit.js" Source="$(var.SolutionDir)VacancyManager\Scripts\VM\Admin\view\User\Edit.js" />
+         <File Id ="UserListjs" Name="List.js" Source="$(var.SolutionDir)VacancyManager\Scripts\VM\Admin\view\User\List.js" />
+       </Component>
+     </DirectoryRef>
+  
+     <DirectoryRef Id ="vacancyVM">
+       <Component Id ="vacancyApp" Guid="{93CE5E4A-1642-48D2-ABCD-1E9C54B6330B}" KeyPath="yes" DiskId="1">
+         <File Id ="VacancyAddjs" Name="Add.js" Source="$(var.SolutionDir)VacancyManager\Scripts\VM\Admin\view\vacancy\Add.js" />
+         <File Id ="VacancyEditjs" Name="Edit.js" Source="$(var.SolutionDir)VacancyManager\Scripts\VM\Admin\view\vacancy\Edit.js" />
+         <File Id ="VacancyListjs" Name="List.js" Source="$(var.SolutionDir)VacancyManager\Scripts\VM\Admin\view\vacancy\List.js" />
+         <File Id ="VacancyListMinjs" Name="ListMin.js" Source="$(var.SolutionDir)VacancyManager\Scripts\VM\Admin\view\vacancy\ListMin.js" />
+         <File Id ="VacancyVacancyRequirementsListjs" Name="VacancyRequirementsList.js" Source="$(var.SolutionDir)VacancyManager\Scripts\VM\Admin\view\vacancy\VacancyRequirementsList.js" />
+       </Component>
+     </DirectoryRef>
+    
+    <DirectoryRef Id ="FrontEndVM">
+      <Component Id ="FrontEndApp" Guid="{D0E5706B-AC23-4B30-A80F-A10E73441A2F}" KeyPath="yes" DiskId="1">
+        <File Id ="frontEndAppjs" Name="frontEndApp.js" Source="$(var.SolutionDir)VacancyManager\Scripts\VM\FrontEnd\frontEndApp.js" />
+      </Component>
+    </DirectoryRef>
      
-     <Feature Id ="Complete" Title="Vacancy Manager" Description="Устнановка" Level="1" ConfigurableDirectory="INSTALLLOCATION">
+    <DirectoryRef Id ="FEcontrollerVM">
+      <Component Id ="FEcontrollerApp" Guid="{CC7B5036-88BE-4D08-84A5-0532E8CCB7A3}" KeyPath="yes" DiskId="1">
+        <File Id ="FEFrontEndjs" Name="FrontEndjs" Source="$(var.SolutionDir)VacancyManager\Scripts\VM\FrontEnd\controller\FrontEnd.js" />
+        <File Id ="FEFResumeEducationjs" Name="ResumeEducation.js" Source="$(var.SolutionDir)VacancyManager\Scripts\VM\FrontEnd\controller\ResumeEducation.js" />
+        <File Id ="FEResumeExperiencejs" Name="ResumeExperience.js" Source="$(var.SolutionDir)VacancyManager\Scripts\VM\FrontEnd\controller\ResumeExperience.js" />
+      </Component>
+    </DirectoryRef>
+  
+    <DirectoryRef Id ="FEmodelVM">
+      <Component Id ="FEmodelApp" Guid="{B65E54D7-3F7C-4F5D-B413-3CA8EACF547F}" KeyPath="yes" DiskId="1">
+        <File Id ="FEmodelExperienceRequirementjs" Name="ExperienceRequirement.js" Source="$(var.SolutionDir)VacancyManager\Scripts\VM\FrontEnd\model\ExperienceRequirement.js" />
+        <File Id ="FEmodelResumejs" Name="Resume.js" Source="$(var.SolutionDir)VacancyManager\Scripts\VM\FrontEnd\model\Resume.js" />
+        <File Id ="FEmodelResumeExperiencejs" Name="ResumeExperience.js" Source="$(var.SolutionDir)VacancyManager\Scripts\VM\FrontEnd\model\ResumeExperience.js" />
+        <File Id ="FEmodelResumeRequirementjs" Name="ResumeRequirement.js" Source="$(var.SolutionDir)VacancyManager\Scripts\VM\FrontEnd\model\ResumeRequirement.js" />
+      </Component>
+    </DirectoryRef>
+    
+    <DirectoryRef Id ="FEstoreVM">
+      <Component Id ="FEstoreApp" Guid ="{4E010CDF-BF56-45A2-AFDF-B0238F7E9B50}" KeyPath="yes" DiskId="1">
+        <File Id ="FEstoreExperienceRequirementjs" Name="ExperienceRequirement.js" Source="$(var.SolutionDir)VacancyManager\Scripts\VM\FrontEnd\store\ExperienceRequirement.js" />
+        <File Id ="FEstoreResumejs" Name="Resume.js" Source="$(var.SolutionDir)VacancyManager\Scripts\VM\FrontEnd\store\Resume.js" />
+        <File Id ="FEstoreResumeExperiencejs" Name="ResumeExperience.js" Source="$(var.SolutionDir)VacancyManager\Scripts\VM\FrontEnd\store\ResumeExperience.js" />
+        <File Id ="FEstoreResumeRequirementjs" Name="ResumeRequirement.js" Source="$(var.SolutionDir)VacancyManager\Scripts\VM\FrontEnd\store\ResumeRequirement.js" />
+      </Component>
+    </DirectoryRef>
+  
+    <DirectoryRef Id ="FRfrontendVM">
+      <Component Id ="FRfrontendApp" Guid="{9790A9CD-CBCF-448A-94C1-C8406B81836C}" KeyPath="yes" DiskId="1">
+        <File Id ="FEviewMainjs" Name="Main.js" Source="$(var.SolutionDir)VacancyManager\Scripts\VM\FrontEnd\view\frontend\Main.js" />
+      </Component>
+    </DirectoryRef>
+    
+     <Feature Id ="Complete" Title="Vacancy Manager" Description="asd" Level="1" ConfigurableDirectory="INSTALLLOCATION">
       <ComponentRef Id="Main"/>
-     <!--<ComponentRef Id="ContentApp"/>
-      <ComponentRef Id="ContenticonsApp"/>
-      -->
       <ComponentRef Id="BinApp"/>
       <ComponentRef Id="DebugApp"/>
       <ComponentRef Id="TempPEApp"/>
+      <ComponentRef Id="WebSite"/>
+      <ComponentRef Id="ContentApp" />
+      <ComponentRef Id="ContenticonsApp" />
+      <ComponentRef Id="MIMEiconsApp" />
+      <ComponentRef Id="BaseThemesApp"/>
+      <ComponentRef Id="minifiedApp"/>
+      <ComponentRef Id="ExtLibApp"/>
+      <ComponentRef Id="uxApp"/>
+      <ComponentRef Id="cssuxApp"/>
+      <ComponentRef Id="statusbarApp"/>
+      <ComponentRef Id="cssStatusApp"/>
+      <ComponentRef Id="ImagesStatusApp"/>
+      <ComponentRef Id="cssResourcesApp"/>
+      <ComponentRef Id="iconsResourcesApp"/>
+      <ComponentRef Id="themesResourcesApp"/>
+      <ComponentRef Id="LibThemesApp"/>
+      <ComponentRef Id="defaultExt4App"/>
+      <ComponentRef Id="coreDefaultApp" />
+      <ComponentRef Id="layoutDefaultApp" />
+      <ComponentRef Id="mixinsDefaultApp"/>
+      <ComponentRef Id="utilDefaultApp"/>
+      <ComponentRef Id="variablesDefaultApp"/>
+      <ComponentRef Id="widgetsDefaultApp"/>
+      <ComponentRef Id="formWidgetsApp"/>
+      <ComponentRef Id="sassApp"/>
+      <ComponentRef Id="ScriptsApp"/>
+      <ComponentRef Id="adminApp"/>
+      <ComponentRef Id="controllerApp"/>
+      <ComponentRef Id="modelApp"/>
+      <ComponentRef Id="storeApp"/>
+      <ComponentRef Id="AdminviewApp"/>
+      <ComponentRef Id="ApplicantApp"/>
+      <ComponentRef Id="CommentsApp"/>
+      <ComponentRef Id="considerationApp"/>
+      <ComponentRef Id="MailMessageApp"/>
+      <ComponentRef Id="RequirementListInStackApp"/>
+      <ComponentRef Id="ResumeApp"/>
+      <ComponentRef Id="RequirementStackApp"/>
+      <ComponentRef Id="RolesApp"/>
+      <ComponentRef Id="SysConfigApp"/>
+      <ComponentRef Id="UserApp"/>
+      <ComponentRef Id ="vacancyApp"/>
+      <ComponentRef Id ="FrontEndApp"/>
+      <ComponentRef Id ="FEcontrollerApp"/>
+      <ComponentRef Id ="FEmodelApp"/>
+      <ComponentRef Id ="FEstoreApp"/>
+      <ComponentRef Id ="FRfrontendApp"/>
     </Feature>
-   <iis:WebSite Id="VacancyManagerApp" Description="Vacnacy-Manger">
-        <iis:WebAddress Id="_vm56694" Port ="53662" IP ="*"/>
-    </iis:WebSite>
-
-   <Component Id="WebAppConfig" Guid ="{D9534B4B-D9F8-4D49-B3A7-457BCE856D88}">
-       <CreateFolder Directory="INSTALLLOCATION" />
-       <iis:WebVirtualDir Id="RootVirtualDir" Alias="webAdmin" Directory="INSTALLLOCATION" WebSite="VacancyManagerApp">
-         <iis:WebDirProperties Id ="WebDefaultDir" DefaultDocuments="Default.aspx" AnonymousAccess="yes" Read="yes" Write="no" Script="yes" Index="no"/>
-         <iis:WebApplication Id="WebApplication" AllowSessions="yes" ClientDebugging="no" DefaultScript="JScript" Name="VMApp" ServerDebugging="no" />
-       </iis:WebVirtualDir>
-     </Component>     
-   
+  
+      
       
     <UI Id="WixUiVM">
       <UIRef Id="WixUI_FeatureTree"/>      
     </UI>
 
 </Product>
+      <Fragment>
+         <Component Id="WebSite" Guid="{D9534B4B-D9F8-4D49-B3A7-457BCE856D88}" Directory="INSTALLLOCATION">
+          <CreateFolder/>
+          <iis:WebSite Id="WebSite" Directory="INSTALLLOCATION" Description="VacancyManager" >
+               <iis:WebAddress Id="_vm53662" Port ="53662" IP ="*"/>
+              <iis:WebApplication Id="WebSiteApplication" Name="VmApp" WebAppPool="MyAppPool" />
+          </iis:WebSite>
+          <iis:WebAppPool Id="MyAppPool" Name="PoolVM" />
+          </Component>
+        </Fragment>
 </Wix>

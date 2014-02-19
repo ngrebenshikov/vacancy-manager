@@ -15,7 +15,7 @@
     <OutputPath>bin\$(Configuration)\</OutputPath>
     <IntermediateOutputPath>obj\$(Configuration)\</IntermediateOutputPath>
     <DefineConstants>Debug</DefineConstants>
-    <Cultures>ru-Ru</Cultures>
+    <Cultures>en-us</Cultures>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
     <OutputPath>bin\$(Configuration)\</OutputPath>
@@ -45,6 +45,8 @@
     </WixExtension>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="LanitTercomDialog.bmp" />
+    <Content Include="LanitTercoьBanner.bmp" />
     <Content Include="License.rtf" />
   </ItemGroup>
   <Import Project="$(WixTargetsPath)" />
