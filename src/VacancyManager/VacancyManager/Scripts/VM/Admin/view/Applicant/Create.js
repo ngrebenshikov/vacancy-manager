@@ -18,6 +18,7 @@
     width: 650,
     autoShow: true,
     modal: true,
+    buttonAlign: 'center',
     layout: 'border',
     resizable: true,
     initComponent: function () {

@@ -10,7 +10,7 @@
 
 var store = Ext.create('Ext.data.Store', {
     id: 'stageindex',
-    autoLoad: true,
+    autoLoad: false,
     autoSync: true,
     autoSave: true,
     fields: [
@@ -35,7 +35,7 @@ var store = Ext.create('Ext.data.Store', {
     ]}
 });
 
-Ext.define('VM.WizardMenu', {
+Ext.define('VM.Shared.WizardMenu', {
     extend: 'Ext.grid.Panel',
     alias: 'widget.WizardMenu',
     collapsible: true,
@@ -45,30 +45,25 @@ Ext.define('VM.WizardMenu', {
     hideHeaders: true,
     store: this.store,
     width: 240,
+    border: true,
+    frame: true,
     title: 'Этапы',
     minSize: 100,
     maxSize: 100,
     initComponent: function () {
         var me = this;
+        var wmenu = me.getStore();
+        wmenu.load();
 
         Ext.applyIf(me, {
             columns: [
-                {
+                { xtype: 'checkcolumn',
                     dataIndex: 'ischeck',
                     align: 'center',
                     width: 40,
                     sortable: false,
                     menuDisabled: true,
-                    renderer: function (value, metaData, record, rowIndex, colIndex, store, view) {
-                        var f = value;
-                        var cssPrefix = Ext.baseCSSPrefix,
-                        cls = [cssPrefix + 'grid-checkheader'];
-
-                        if (f) {
-                            cls.push(cssPrefix + 'grid-checkheader-checked');
-                        }
-                        return '<div class="' + cls.join(' ') + '">&#160;</div>';
-                    }
+                    processEvent: function () { return false; }
                 },
                 {
                     xtype: 'gridcolumn',

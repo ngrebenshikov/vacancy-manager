@@ -1,22 +1,21 @@
 ﻿Ext.define('VM.view.Applicant.ApplicantComments', {
     extend: 'Ext.grid.Panel',
     alias: 'widget.appCommentsList',
-    hideHeaders: true,
+    hideHeaders: false,
     store: 'ApplicantComments',
     id: 'appsCommentsList',
     region: 'center',
     layout: 'fit',
-    forceFit: true,
     columns: [
-  	        {
+  	        {   header: 'Комментарий',
   	            width: 100,
-  	            flex: 2,
+  	            flex: 1,
   	            sortable: false,
   	            menuDisabled: true,
   	            dataIndex: 'Body',
   	            tdCls: 'wrap-text'
   	        },
-            {
+            {   header: 'Дата',
                 sortable: false,
                 align: 'center',
                 menuDisabled: true,

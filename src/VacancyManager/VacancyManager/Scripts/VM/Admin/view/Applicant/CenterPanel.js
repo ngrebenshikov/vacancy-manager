@@ -148,8 +148,7 @@ Ext.define('VM.view.Applicant.CenterPanel', {
         items: [
         { xtype: 'appCommentsList',
             anchor: '100% 70%'
-        },
-        {
+        }, {
             xtype: 'panel',
             anchor: '98% 30%',
             padding: '5 5 5 5',
@@ -203,7 +202,6 @@ Ext.define('VM.view.Applicant.CenterPanel', {
         margin: '0 0 0 0',
         items: [
         { xtype: 'ApplicantMessagesList',
-            forceFit: true,
             layout: 'fit',
             height: 350,
             margin: '0 0 0 0'
@@ -213,108 +211,10 @@ Ext.define('VM.view.Applicant.CenterPanel', {
     },
        {
            title: Strings.Resumes,
+           layout: 'fit',
            id: 'ApplicantResumeTab',
            items: [
-             {
-                 xtype: 'grid',
-                 autoSizeColumns: true,
-                 id: 'ApplicantRes',
-                 store: 'ApplicantResumeGrid',
-                 columns:
-                 [{
-                     header: 'Дата',
-                     dataIndex: 'Date',
-                     sortable: false,
-                     menuDisabled: true,
-                     flex: 1
-
-                 },
-                 {
-                     header: 'Резюме',
-                     dataIndex: 'ResumeId',
-                     sortable: false,
-                     menuDisabled: true,
-                     flex: 1
-                 },
-                 {
-                     header: 'Интервал резюме',
-                     dataIndex: 'StartDate',
-                     sortable: false,
-                     menuDisabled: true,
-                     flex: 1
-                 }, {
-                     xtype: 'actioncolumn',
-                     width: 30,
-                     align: 'center',
-                     sortable: false,
-                     menuDisabled: true,
-                     items:
-                     [{
-                         icon: '/Content/icons/pdfico.png',
-                         tooltip: 'Создать pdf',
-                         handler: function (grid, rowIndex, colIndex) {
-                             var resumeStore = grid.getStore();
-                             var record = resumeStore.getAt(rowIndex);
-                             window.open('/Resume/CreatePdfCopy/' + record.getId());
-                         }
-                     }]
-                 },
-                 {
-                     xtype: 'actioncolumn',
-                     width: 30,
-                     align: 'center',
-                     sortable: false,
-                     menuDisabled: true,
-                     items:
-                     [{
-                         icon: '/Content/icons/CopyIco.png',
-                         tooltip: 'Клонировать резюме',
-                         handler: function (grid, rowIndex, colIndex) {
-                             var resumeStore = grid.getStore();
-                             var record = resumeStore.getAt(rowIndex);
-                             Ext.Ajax.request
-                              ({
-                                  url: '../../Resume/CreateResumeCopy/' + record.getId(),
-                                  success: function (result, request) {
-                                      var JsonResult = Ext.JSON.decode(result.responseText);
-
-                                      var newResume = Ext.create('VM.model.ApplicantResumeGrid', {
-                                          ResumeId: JsonResult.resume.ResumeId,
-                                          Position: JsonResult.resume.Position,
-                                          Summary: JsonResult.resume.Summary,
-                                          Training: JsonResult.resume.Training,
-                                          Date: JsonResult.resume.Date
-                                      });
-
-                                      resumeStore.insert(0, newResume);
-                                  }
-                              });
-                         }
-                     }]
-                 }],
-
-                 tbar: [{
-                     text: Strings.btnAdd,
-                     icon: '/Content/icons/add.gif',
-                     name: 'btnAdd',
-                     id: 'Add',
-                     action: 'CreateResume'
-                 }, {
-                     text: Strings.btnRemove,
-                     icon: '/Content/icons/delete.gif',
-                     name: 'btnRemove',
-                     id: 'RemoveResume',
-                     action: 'RemoveResume',
-                     disabled: true
-                 }],
-                 listeners: {
-                     selectionchange: function (view, selections, options) {
-                         var button = Ext.getCmp('RemoveResume');
-                         if (selections != null)
-                             button.enable();
-                     }
-                 }
-             }
+             { xtype: 'resumeList' }
            ]
 
 

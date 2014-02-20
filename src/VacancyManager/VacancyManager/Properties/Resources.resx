@@ -403,4 +403,51 @@
   <data name="TitleRequirementStackNameEn" xml:space="preserve">
     <value>Категория (На английском языке)</value>
   </data>
+  <data name="QT_Position" xml:space="preserve">
+    <value>Пример &lt;br&gt; Руководитель группы разработчиков&lt;br&gt;&lt;br&gt; Example &lt;br&gt; Team lead</value>
+  </data>
+  <data name="QT_Summary" xml:space="preserve">
+    <value>Пример&lt;br&gt;1 год опыта работы руководителем группы разработчиков.&lt;br&gt;5 лет опыта работы разработчиком ПО. &lt;br&gt;Опыт использования гибких методологий разработки (Scrum, XP) &lt;br&gt;Опыт управления неоднородными командами из 10 человек&lt;br&gt;Опыт управления удаленными командами&lt;br&gt;Опыт тесного контакта с заказчиком, включая участие в выработке и анализе требований, &lt;br&gt;анализе рисков, управлении продуктов и работу с партнерами заказчика от его имени&lt;br&gt;Системное администрирование Windows и Linux&lt;br&gt;Математическое образование. &lt;br&gt;&lt;br&gt;&lt;br&gt;Example: &lt;br&gt;9 months of experience in team leading&lt;br&gt;5 years of experience in professional software development&lt;br&gt;Extensive experience in agile methods (Scrum, XP) &lt;br&gt;Managing heterogeneous teams of up to 10 people&lt;br&gt;Managing remote teams&lt;br&gt;Working closely with customer including requirement analysis, risk management, product management &lt;br&gt;and working on behalf of customer with its partners&lt;br&gt;Linux &amp; Windows system administration&lt;br&gt;Mathematical background&lt;br&gt;</value>
+  </data>
+  <data name="QT_Job" xml:space="preserve">
+    <value>Пример: &lt;br&gt;Ланит-Терком&lt;br&gt;&lt;br&gt;Example: &lt;br&gt;Lanit-Tercom</value>
+  </data>
+  <data name="QT_Project" xml:space="preserve">
+    <value>Пример: &lt;br&gt;Проект1- Информационная система обеспечения &lt;br&gt;социальной поддержки населения области&lt;br&gt;
+Назначение: автоматизация процессов предоставления &lt;br&gt;социальной помощи населению&lt;br&gt;&lt;br&gt;
+Example:&lt;br&gt;Project1- Passenger Information System for trains.</value>
+  </data>
+  <data name="QT_BeginExp" xml:space="preserve">
+    <value>Пример: &lt;br&gt;Август 2007&lt;br&gt;&lt;br&gt;Example: August 2007 </value>
+  </data>
+  <data name="QT_Duties" xml:space="preserve">
+    <value>Пример: &lt;br&gt;- распределение обязанностей в команде из 10 человек&lt;br&gt;- проектирование архитектуры создаваемых приложений&lt;br&gt;- написание бизнес-логики приложений&lt;br&gt;- рефакторинг существующего кода&lt;br&gt;- написание запросов к БД и хранимых процедур (pl/pgSQL)&lt;br&gt;- работа с БД: Hibernate(SQL, HQL), JDBC.&lt;br&gt;&lt;br&gt;Example:&lt;br&gt;Project coordination (1 team of 10 persons).&lt;br&gt;Direct customer interactions. &lt;br&gt;Development process organization, tracking and maintenance. &lt;br&gt;Project planning. Modules design and Development.</value>
+  </data>
+  <data name="QT_EndExp" xml:space="preserve">
+    <value>Пример: &lt;br&gt;Май 2008&lt;br&gt;&lt;br&gt;Example: May 2008</value>
+  </data>
+  <data name="QT_Period" xml:space="preserve">
+    <value>Пример: &lt;br&gt;Август 2007 – Май 2008&lt;br&gt;&lt;br&gt;Example August 2007 – May 2008</value>
+  </data>
+  <data name="QT_Cafedra" xml:space="preserve">
+    <value>Пример: &lt;br&gt;Кафедра системного программирования.</value>
+  </data>
+  <data name="QT_Department" xml:space="preserve">
+    <value>Пример: &lt;br&gt; Математико-механический факультет.&lt;br&gt;&lt;br&gt;Example: &lt;br&gt;Department of software engineering.</value>
+  </data>
+  <data name="QT_EduPlace" xml:space="preserve">
+    <value>Пример: &lt;br&gt; Санкт -Петербургский&lt;br&gt;Государственный &lt;br&gt;Университет&lt;br&gt;&lt;br&gt;Example: &lt;br&gt;Saint-Petersburg State University.</value>
+  </data>
+  <data name="QT_Status" xml:space="preserve">
+    <value>Пример: &lt;br&gt;Аспирантура.&lt;br&gt;&lt;br&gt;Example: &lt;br&gt;As post-graduate student.</value>
+  </data>
+  <data name="QT_Training" xml:space="preserve">
+    <value>Пример: &lt;br&gt;Прошел тренинги компании ScrumTrek:&lt;br&gt; «Agile Development with Scrum», «Test Driven Developement»&lt;br&gt; &lt;br&gt; Example: &lt;br&gt; If there are no options, erase the item.</value>
+  </data>
+  <data name="Test" xml:space="preserve">
+    <value>df</value>
+  </data>
+  <data name="RequiredMessage" xml:space="preserve">
+    <value>Реквизит резюме является обязателеным для заполнения</value>
+  </data>
 </root>

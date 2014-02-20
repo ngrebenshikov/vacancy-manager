@@ -1,4 +1,6 @@
-﻿Ext.define('VM.FirstStep', {
+﻿
+
+Ext.define('VM.Shared.FirstStep', {
     extend: 'Ext.panel.Panel',
     alias: 'widget.FirstStep',
     border: false,
@@ -13,27 +15,44 @@
             xtype: 'form',
             border: false,
             layout: {
-                type: 'anchor'
+                type: 'vbox',
+                align: 'stretch'
             },
             items: [
-            {   xtype: 'textfield',
-                fieldLabel: 'Должность',
-                allowBlank: true,
-                anchor: '100%',
-                flex: 1,
-                name: 'Position'
+            {
+                xtype: 'fieldcontainer',
+                layout: 'hbox',
+                items: [
+                {
+                    xtype: 'textfield',
+                    fieldLabel: 'Должность',
+                    allowBlank: false,
+                    name: 'Position',
+                    flex: 1,
+                    blankText: Strings.RequiredMessage
+                }, {
+                    xtype: 'component',
+                    html: '<div data-qtip="' + Strings.QT_Position + '" class="qtip-target">?</div>'
+                }]
             }, {
-                xtype: 'textareafield',
-                fieldLabel: 'Кратко',
-                allowBlank: true,
-                anchor: '100% 95%',
+                xtype: 'fieldcontainer',
                 flex: 1,
-                name: 'Summary'
-            }],
-            buttons: [{
-                text: 'Next',
-                margin: 5,
-                action: 'FinishFirtStep'
+                layout: {
+                    type: 'hbox',
+                    align: 'stretch',
+                },
+                items: [
+                {
+                    xtype: 'textareafield',
+                    fieldLabel: 'Кратко',
+                    allowBlank: false,
+                    flex: 1,
+                    name: 'Summary',
+                    blankText: Strings.RequiredMessage
+                }, { 
+                    xtype: 'component',
+                    html: '<div data-qtip="' + Strings.QT_Summary + '" class="qtip-target">?</div>'
+                }]
             }]
         }],
 
