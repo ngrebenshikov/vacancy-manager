@@ -1,9 +1,11 @@
 ﻿Ext.define('VM.view.frontend.Main', {
     extend: 'Ext.form.Panel',
+    requires: ['VM.Shared.WizardPanel'],
     layout: {
         type: 'border'
     },
     height: 250,
+    autoScroll: true,
     width: 400,
     alias: 'widget.FrontEndMain',
     bodyPadding: 10,
@@ -13,7 +15,7 @@
         var me = this;
         me.items = [
           { xtype: 'WizardMenu' },
-          { xtype: 'WizardPanel'}
+          { xtype: 'WizardPanel' }
         ],
         me.callParent(arguments);
     }

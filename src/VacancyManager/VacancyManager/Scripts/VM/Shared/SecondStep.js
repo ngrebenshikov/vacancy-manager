@@ -1,6 +1,8 @@
-﻿Ext.define('VM.SecondStep', {
+﻿Ext.define('VM.Shared.SecondStep', {
     extend: 'Ext.panel.Panel',
     alias: 'widget.SecondStep',
+    requires: ['VM.Shared.ReqsList',
+               'VM.store.ResumeRequirement'],
     border: false,
     height: 250,
     width: 350,
@@ -9,28 +11,14 @@
     },
     initComponent: function () {
 
-        this.items = [{
-            xtype: 'form',
-            border: false,
-            layout: {
-                type: 'fit'
-            },
-            items: [
-               { xtype: 'ReqsList',
-                 store: 'ResumeRequirement'
-               }
-            ],
-            buttons: [{
-                text: 'Prev',
-                margin: 5,
-                action: 'GoToFirstStep'
-             }, {
-                text: 'Next',
-                margin: 5,
-                action: 'FinishSecondStep'
-             }
-            ]
-        }],
+        var ReqsList = Ext.create('VM.Shared.ReqsList', {
+            store: 'ResumeRequirement',
+            id: 'resReqs'
+        });
+
+        this.items = [
+              ReqsList          
+        ],
 
         this.callParent(arguments);
     }
