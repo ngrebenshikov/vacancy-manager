@@ -694,7 +694,6 @@
       <ComponentRef Id="BinApp"/>
       <ComponentRef Id="DebugApp"/>
       <ComponentRef Id="TempPEApp"/>
-      <ComponentRef Id="WebSite"/>
       <ComponentRef Id="ContentApp" />
       <ComponentRef Id="ContenticonsApp" />
       <ComponentRef Id="MIMEiconsApp" />
@@ -741,6 +740,8 @@
       <ComponentRef Id ="FEmodelApp"/>
       <ComponentRef Id ="FEstoreApp"/>
       <ComponentRef Id ="FRfrontendApp"/>
+      <ComponentRef Id ="WebAppConfiguration"/>
+      <ComponentRef Id ="WebSiteVMm"/>
     </Feature>
   
       
@@ -749,15 +750,26 @@
       <UIRef Id="WixUI_FeatureTree"/>      
     </UI>
 
+        <Component Id="WebSiteVMm" Guid="{D9534B4B-D9F8-4D49-B3A7-457BCE856D88}" Directory="INSTALLLOCATION">
+            <CreateFolder/>
+            <iis:WebSite Id="Default_Web_Site" Directory="INSTALLLOCATION"  Description="Default Web Site" >
+              <iis:WebAddress Id="_vm53662" Port ="80" IP ="*"/>
+           </iis:WebSite> 
+           <iis:WebAppPool Id="APP_POOL" Name="VMAppPool" ManagedPipelineMode="Classic" ManagedRuntimeVersion="v4.0"/>
+        </Component>  
+           
+          
+
+       <Component Id="WebAppConfiguration" Guid="{1007EF54-0BD6-4D22-9232-6934E2F9A8B2}" Directory="INSTALLLOCATION"> 
+       <CreateFolder /> 
+        <iis:WebVirtualDir Id="RootVirtualDir" Alias="Vacancy Manager" Directory="INSTALLLOCATION" WebSite="Default_Web_Site" > 
+          <iis:WebDirProperties Id="WebDefaultDir"  AnonymousAccess="yes" Read="yes" Write="no" Script="yes" Index="no"  /> 
+          <iis:WebApplication Id="WebApplication" WebAppPool="APP_POOL" AllowSessions="yes" ClientDebugging="no" Name="MyApp" ServerDebugging="no" /> 
+        </iis:WebVirtualDir> 
+       </Component> 
+
+
+
 </Product>
-      <Fragment>
-         <Component Id="WebSite" Guid="{D9534B4B-D9F8-4D49-B3A7-457BCE856D88}" Directory="INSTALLLOCATION">
-          <CreateFolder/>
-          <iis:WebSite Id="WebSite" Directory="INSTALLLOCATION" Description="VacancyManager" >
-               <iis:WebAddress Id="_vm53662" Port ="53662" IP ="*"/>
-              <iis:WebApplication Id="WebSiteApplication" Name="VmApp" WebAppPool="MyAppPool" />
-          </iis:WebSite>
-          <iis:WebAppPool Id="MyAppPool" Name="PoolVM" />
-          </Component>
-        </Fragment>
+      
 </Wix>
