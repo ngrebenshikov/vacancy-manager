@@ -1,0 +1,894 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html style="height: 100%;" class="js" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" dir="ltr" lang="en"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>Serializing DateTime for client-side Coolite/ExtJs consumption | rahulsingla.com</title>
+  
+  <meta http-equiv="Content-Style-Type" content="text/css">
+    
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="shortcut icon" href="http://www.rahulsingla.com/sites/default/files/favicon.png" type="image/x-icon">
+ 
+
+  <link type="text/css" rel="stylesheet" media="all" href="serializing-datetime-client-side-cooliteextjs-consumption_files/css_40fc5644de87ee3965cb8af5a327548e.css">
+  
+  <!--[if IE 6]>
+    <link rel="stylesheet" type="text/css" href="/sites/all/themes/marinelli/iestyles/ie6.css" />
+<![endif]-->
+
+  <!--[if IE 7]>
+    <link rel="stylesheet" type="text/css" href="/sites/all/themes/marinelli/iestyles/ie7.css" />
+<![endif]-->
+  
+  
+  <script async="" src="serializing-datetime-client-side-cooliteextjs-consumption_files/cbgapi.loaded_0"></script><script src="serializing-datetime-client-side-cooliteextjs-consumption_files/page.js" async="" type="text/javascript"></script><script type="text/javascript" src="serializing-datetime-client-side-cooliteextjs-consumption_files/js_33ba4571fe7411c5ca4a92b0ef018de4.js"></script>
+<script type="text/javascript" src="serializing-datetime-client-side-cooliteextjs-consumption_files/tiny_mce.js"></script>
+<script type="text/javascript">
+<!--//--><![CDATA[//><!--
+jQuery.extend(Drupal.settings, { "basePath": "/", "googleanalytics": { "trackOutgoing": 1, "trackMailto": 1, "trackDownload": 1, "trackDownloadExtensions": "7z|aac|arc|arj|asf|asx|avi|bin|csv|doc|exe|flv|gif|gz|gzip|hqx|jar|jpe?g|js|mp(2|3|4|e?g)|mov(ie)?|msi|msp|pdf|phps|png|ppt|qtm?|ra(m|r)?|sea|sit|tar|tgz|torrent|txt|wav|wma|wmv|wpd|xls|xml|z|zip" }, "syntaxhighlighter": { "clipboard": "/sites/all/libraries/syntaxhighlighter/scripts/clipboard.swf" }, "ahah": { "edit-attach": { "url": "/comment-upload/js", "event": "mousedown", "keypress": true, "wrapper": "attach-wrapper", "selector": "#edit-attach", "effect": "none", "method": "replace", "progress": { "type": "bar", "message": "Please wait..." }, "button": { "attach": "Attach" } } }, "wysiwyg": { "configs": { "tinymce": { "global": { "editorBasePath": "/sites/all/libraries/tinymce/jscripts/tiny_mce", "execMode": "" }, "format4": { "button_tile_map": true, "document_base_url": "/", "mode": "none", "plugins": "contextmenu,emotions,inlinepopups,safari,-break", "theme": "advanced", "width": "100%", "strict_loading_mode": true, "convert_urls": false, "entities": "160,nbsp,173,shy,8194,ensp,8195,emsp,8201,thinsp,8204,zwnj,8205,zwj,8206,lrm,8207,rlm", "apply_source_formatting": 0, "convert_fonts_to_spans": 1, "language": "en", "paste_auto_cleanup_on_paste": 0, "preformatted": 1, "remove_linebreaks": 1, "verify_html": 1, "extended_valid_elements": "font[face|size|color|style],span[class|align|style]", "dialog_type": [ "modal" ], "theme_advanced_resize_horizontal": false, "theme_advanced_resizing_use_cookie": false, "theme_advanced_path_location": "bottom", "theme_advanced_resizing": 1, "theme_advanced_toolbar_location": "top", "theme_advanced_toolbar_align": "left", "theme_advanced_blockformats": "p,address,pre,h2,h3,h4,h5,h6,div", "theme_advanced_buttons1": "bold,italic,underline,strikethrough,justifyleft,justifycenter,justifyright,justifyfull,bullist,numlist,outdent,indent,undo,redo,link,unlink,anchor,image,cleanup,forecolor,backcolor,sup,sub,blockquote,hr,cut,copy,paste,removeformat,charmap,emotions,fontselect,fontsizeselect,styleselect,break", "theme_advanced_buttons2": "", "theme_advanced_buttons3": "" } } }, "plugins": { "drupal": { "break": { "path": "/sites/all/modules/wysiwyg/plugins/break" } }, "format4": { "drupal": { "break": { "title": "Teaser break", "icon": "/sites/all/modules/wysiwyg/plugins/break/images/break.gif", "iconTitle": "Separate the teaser and body of this content", "css": "/sites/all/modules/wysiwyg/plugins/break/break.css" } } } }, "disable": "Disable rich-text", "enable": "Enable rich-text" }, "wysiwyg_syntaxhl": { "languages": [ { "value": "as3", "text": "AS3" }, { "value": "csharp", "text": "CSharp" }, { "value": "cpp", "text": "Cpp" }, { "value": "css", "text": "Css" }, { "value": "jscript", "text": "JScript" }, { "value": "java", "text": "Java" }, { "value": "php", "text": "Php" }, { "value": "plain", "text": "Plain" }, { "value": "powershell", "text": "PowerShell" }, { "value": "sql", "text": "Sql" }, { "value": "vb", "text": "Vb" }, { "value": "xml", "text": "Xml" } ] }, "tableDrag": { "comment-upload-attachments": { "comment-upload-weight": [ { "target": "comment-upload-weight", "source": "comment-upload-weight", "relationship": "sibling", "action": "order", "hidden": true, "limit": 0 } ] } } });
+//--><!]]>
+</script>
+<script type="text/javascript">
+<!--//--><![CDATA[//><!--
+var a2a_config=a2a_config||{},da2a={done:false,html_done:false,script_ready:false,script_load:function(){var a=document.createElement('script'),s=document.getElementsByTagName('script')[0];a.type='text/javascript';a.async=true;a.src='http://static.addtoany.com/menu/page.js';s.parentNode.insertBefore(a,s);da2a.script_load=function(){};},script_onready:function(){da2a.script_ready=true;if(da2a.html_done)da2a.init();},init:function(){for(var i=0,el,target,targets=da2a.targets,length=targets.length;i<length;i++){el=document.getElementById('da2a_'+(i+1));target=targets[i];a2a_config.linkname=target.title;a2a_config.linkurl=target.url;if(el)a2a.init('page',{target:el});da2a.done=true;}}};a2a_config.tracking_callback=['ready',da2a.script_onready];
+//--><!]]>
+</script>
+<style type="text/css">.fb_hidden{position:absolute;top:-10000px;z-index:10001}
+.fb_invisible{display:none}
+.fb_reset{background:none;border-spacing:0;border:0;color:#000;cursor:auto;direction:ltr;font-family:"lucida grande", tahoma, verdana, arial, sans-serif;font-size:11px;font-style:normal;font-variant:normal;font-weight:normal;letter-spacing:normal;line-height:1;margin:0;overflow:visible;padding:0;text-align:left;text-decoration:none;text-indent:0;text-shadow:none;text-transform:none;visibility:visible;white-space:normal;word-spacing:normal}
+.fb_link img{border:none}
+.fb_dialog{background:rgba(82, 82, 82, .7);position:absolute;top:-10000px;z-index:10001}
+.fb_dialog_advanced{padding:10px;-moz-border-radius:8px;-webkit-border-radius:8px}
+.fb_dialog_content{background:#fff;color:#333}
+.fb_dialog_close_icon{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/yq/r/IE9JII6Z1Ys.png) no-repeat scroll 0 0 transparent;_background-image:url(http://static.ak.fbcdn.net/rsrc.php/v2/yL/r/s816eWC-2sl.gif);cursor:pointer;display:block;height:15px;position:absolute;right:18px;top:17px;width:15px;top:8px\9;right:7px\9}
+.fb_dialog_mobile .fb_dialog_close_icon{top:5px;left:5px;right:auto}
+.fb_dialog_padding{background-color:transparent;position:absolute;width:1px;z-index:-1}
+.fb_dialog_close_icon:hover{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/yq/r/IE9JII6Z1Ys.png) no-repeat scroll 0 -15px transparent;_background-image:url(http://static.ak.fbcdn.net/rsrc.php/v2/yL/r/s816eWC-2sl.gif)}
+.fb_dialog_close_icon:active{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/yq/r/IE9JII6Z1Ys.png) no-repeat scroll 0 -30px transparent;_background-image:url(http://static.ak.fbcdn.net/rsrc.php/v2/yL/r/s816eWC-2sl.gif)}
+.fb_dialog_loader{background-color:#f2f2f2;border:1px solid #606060;font-size:24px;padding:20px}
+.fb_dialog_top_left,
+.fb_dialog_top_right,
+.fb_dialog_bottom_left,
+.fb_dialog_bottom_right{height:10px;width:10px;overflow:hidden;position:absolute}
+.fb_dialog_top_left{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/ye/r/8YeTNIlTZjm.png) no-repeat 0 0;left:-10px;top:-10px}
+.fb_dialog_top_right{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/ye/r/8YeTNIlTZjm.png) no-repeat 0 -10px;right:-10px;top:-10px}
+.fb_dialog_bottom_left{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/ye/r/8YeTNIlTZjm.png) no-repeat 0 -20px;bottom:-10px;left:-10px}
+.fb_dialog_bottom_right{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/ye/r/8YeTNIlTZjm.png) no-repeat 0 -30px;right:-10px;bottom:-10px}
+.fb_dialog_vert_left,
+.fb_dialog_vert_right,
+.fb_dialog_horiz_top,
+.fb_dialog_horiz_bottom{position:absolute;background:#525252;filter:alpha(opacity=70);opacity:.7}
+.fb_dialog_vert_left,
+.fb_dialog_vert_right{width:10px;height:100%}
+.fb_dialog_vert_left{margin-left:-10px}
+.fb_dialog_vert_right{right:0;margin-right:-10px}
+.fb_dialog_horiz_top,
+.fb_dialog_horiz_bottom{width:100%;height:10px}
+.fb_dialog_horiz_top{margin-top:-10px}
+.fb_dialog_horiz_bottom{bottom:0;margin-bottom:-10px}
+.fb_dialog_iframe{line-height:0}
+.fb_dialog_content .dialog_title{background:#6d84b4;border:1px solid #3b5998;color:#fff;font-size:14px;font-weight:bold;margin:0}
+.fb_dialog_content .dialog_title > span{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/yd/r/Cou7n-nqK52.gif)
+no-repeat 5px 50%;float:left;padding:5px 0 7px 26px}
+body.fb_hidden{-webkit-transform:none;height:100%;margin:0;left:-10000px;overflow:visible;position:absolute;top:-10000px;width:100%
+}
+.fb_dialog.fb_dialog_mobile.loading{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/yO/r/_j03izEX40U.gif)
+white no-repeat 50% 50%;min-height:100%;min-width:100%;overflow:hidden;position:absolute;top:0;z-index:10001}
+.fb_dialog.fb_dialog_mobile.loading.centered{max-height:590px;min-height:590px;max-width:500px;min-width:500px}
+#fb-root #fb_dialog_ipad_overlay{background:rgba(0, 0, 0, .45);position:absolute;left:0;top:0;width:100%;min-height:100%;z-index:10000}
+#fb-root #fb_dialog_ipad_overlay.hidden{display:none}
+.fb_dialog.fb_dialog_mobile.loading iframe{visibility:hidden}
+.fb_dialog_content .dialog_header{-webkit-box-shadow:white 0 1px 1px -1px inset;background:-webkit-gradient(linear, 0 0, 0 100%, from(#738ABA), to(#2C4987));border-bottom:1px solid;border-color:#1d4088;color:#fff;font:14px Helvetica, sans-serif;font-weight:bold;text-overflow:ellipsis;text-shadow:rgba(0, 30, 84, .296875) 0 -1px 0;vertical-align:middle;white-space:nowrap}
+.fb_dialog_content .dialog_header table{-webkit-font-smoothing:subpixel-antialiased;height:43px;width:100%
+}
+.fb_dialog_content .dialog_header td.header_left{font-size:12px;padding-left:5px;vertical-align:middle;width:60px
+}
+.fb_dialog_content .dialog_header td.header_right{font-size:12px;padding-right:5px;vertical-align:middle;width:60px
+}
+.fb_dialog_content .touchable_button{background:-webkit-gradient(linear, 0 0, 0 100%, from(#4966A6),
+color-stop(0.5, #355492), to(#2A4887));border:1px solid #29447e;-webkit-background-clip:padding-box;-webkit-border-radius:3px;-webkit-box-shadow:rgba(0, 0, 0, .117188) 0 1px 1px inset,
+rgba(255, 255, 255, .167969) 0 1px 0;display:inline-block;margin-top:3px;max-width:85px;line-height:18px;padding:4px 12px;position:relative}
+.fb_dialog_content .dialog_header .touchable_button input{border:none;background:none;color:#fff;font:12px Helvetica, sans-serif;font-weight:bold;margin:2px -12px;padding:2px 6px 3px 6px;text-shadow:rgba(0, 30, 84, .296875) 0 -1px 0}
+.fb_dialog_content .dialog_header .header_center{color:#fff;font-size:16px;font-weight:bold;line-height:18px;text-align:center;vertical-align:middle}
+.fb_dialog_content .dialog_content{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/y9/r/jKEcVPZFk-2.gif) no-repeat 50% 50%;border:1px solid #555;border-bottom:0;border-top:0;height:150px}
+.fb_dialog_content .dialog_footer{background:#f2f2f2;border:1px solid #555;border-top-color:#ccc;height:40px}
+#fb_dialog_loader_close{float:left}
+.fb_dialog.fb_dialog_mobile .fb_dialog_close_button{text-shadow:rgba(0, 30, 84, .296875) 0 -1px 0}
+.fb_dialog.fb_dialog_mobile .fb_dialog_close_icon{visibility:hidden}
+.fb_iframe_widget{position:relative;display:-moz-inline-block;display:inline-block}
+.fb_iframe_widget iframe{position:absolute}
+.fb_iframe_widget_lift{z-index:1}
+.fb_iframe_widget span{position:relative;display:inline-block;vertical-align:text-bottom;text-align:justify}
+.fb_hide_iframes iframe{position:relative;left:-10000px}
+.fb_iframe_widget_loader{position:relative;display:inline-block}
+.fb_iframe_widget_fluid{display:inline}
+.fb_iframe_widget_loader iframe{min-height:32px;z-index:2;zoom:1}
+.fb_iframe_widget_loader .FB_Loader{background:url(http://static.ak.fbcdn.net/rsrc.php/v1/y9/r/jKEcVPZFk-2.gif) no-repeat;height:32px;width:32px;margin-left:-16px;position:absolute;left:50%;z-index:4}
+.fb_button_simple,
+.fb_button_simple_rtl{background-image:url(http://static.ak.fbcdn.net/rsrc.php/v2/yH/r/eIpbnVKI9lR.png);background-repeat:no-repeat;cursor:pointer;outline:none;text-decoration:none}
+.fb_button_simple_rtl{background-position:right 0}
+.fb_button_simple .fb_button_text{margin:0 0 0 20px;padding-bottom:1px}
+.fb_button_simple_rtl .fb_button_text{margin:0 10px 0 0}
+a.fb_button_simple:hover .fb_button_text,
+a.fb_button_simple_rtl:hover .fb_button_text,
+.fb_button_simple:hover .fb_button_text,
+.fb_button_simple_rtl:hover .fb_button_text{text-decoration:underline}
+.fb_button,
+.fb_button_rtl{background:#29447e url(http://static.ak.fbcdn.net/rsrc.php/v2/yL/r/FGFbc80dUKj.png);background-repeat:no-repeat;cursor:pointer;display:inline-block;padding:0 0 0 1px;text-decoration:none;outline:none}
+.fb_button .fb_button_text,
+.fb_button_rtl .fb_button_text{background:#5f78ab url(http://static.ak.fbcdn.net/rsrc.php/v2/yL/r/FGFbc80dUKj.png);border-top:solid 1px #879ac0;border-bottom:solid 1px #1a356e;color:#fff;display:block;font-family:"lucida grande",tahoma,verdana,arial,sans-serif;font-weight:bold;padding:2px 6px 3px 6px;margin:1px 1px 0 21px;text-shadow:none}
+a.fb_button,
+a.fb_button_rtl,
+.fb_button,
+.fb_button_rtl{text-decoration:none}
+a.fb_button:active .fb_button_text,
+a.fb_button_rtl:active .fb_button_text,
+.fb_button:active .fb_button_text,
+.fb_button_rtl:active .fb_button_text{border-bottom:solid 1px #29447e;border-top:solid 1px #45619d;background:#4f6aa3;text-shadow:none}
+.fb_button_xlarge,
+.fb_button_xlarge_rtl{background-position:left -60px;font-size:24px;line-height:30px}
+.fb_button_xlarge .fb_button_text{padding:3px 8px 3px 12px;margin-left:38px}
+a.fb_button_xlarge:active{background-position:left -99px}
+.fb_button_xlarge_rtl{background-position:right -268px}
+.fb_button_xlarge_rtl .fb_button_text{padding:3px 8px 3px 12px;margin-right:39px}
+a.fb_button_xlarge_rtl:active{background-position:right -307px}
+.fb_button_large,
+.fb_button_large_rtl{background-position:left -138px;font-size:13px;line-height:16px}
+.fb_button_large .fb_button_text{margin-left:24px;padding:2px 6px 4px 6px}
+a.fb_button_large:active{background-position:left -163px}
+.fb_button_large_rtl{background-position:right -346px}
+.fb_button_large_rtl .fb_button_text{margin-right:25px}
+a.fb_button_large_rtl:active{background-position:right -371px}
+.fb_button_medium,
+.fb_button_medium_rtl{background-position:left -188px;font-size:11px;line-height:14px}
+a.fb_button_medium:active{background-position:left -210px}
+.fb_button_medium_rtl{background-position:right -396px}
+.fb_button_text_rtl,
+.fb_button_medium_rtl .fb_button_text{padding:2px 6px 3px 6px;margin-right:22px}
+a.fb_button_medium_rtl:active{background-position:right -418px}
+.fb_button_small,
+.fb_button_small_rtl{background-position:left -232px;font-size:10px;line-height:10px}
+.fb_button_small .fb_button_text{padding:2px 6px 3px;margin-left:17px}
+a.fb_button_small:active,
+.fb_button_small:active{background-position:left -250px}
+.fb_button_small_rtl{background-position:right -440px}
+.fb_button_small_rtl .fb_button_text{padding:2px 6px;margin-right:18px}
+a.fb_button_small_rtl:active{background-position:right -458px}
+.fb_share_count_wrapper{position:relative;float:left}
+.fb_share_count{background:#b0b9ec none repeat scroll 0 0;color:#333;font-family:"lucida grande", tahoma, verdana, arial, sans-serif;text-align:center}
+.fb_share_count_inner{background:#e8ebf2;display:block}
+.fb_share_count_right{margin-left:-1px;display:inline-block}
+.fb_share_count_right .fb_share_count_inner{border-top:solid 1px #e8ebf2;border-bottom:solid 1px #b0b9ec;margin:1px 1px 0 1px;font-size:10px;line-height:10px;padding:2px 6px 3px;font-weight:bold}
+.fb_share_count_top{display:block;letter-spacing:-1px;line-height:34px;margin-bottom:7px;font-size:22px;border:solid 1px #b0b9ec}
+.fb_share_count_nub_top{border:none;display:block;position:absolute;left:7px;top:35px;margin:0;padding:0;width:6px;height:7px;background-repeat:no-repeat;background-image:url(http://static.ak.fbcdn.net/rsrc.php/v1/yU/r/bSOHtKbCGYI.png)}
+.fb_share_count_nub_right{border:none;display:inline-block;padding:0;width:5px;height:10px;background-repeat:no-repeat;background-image:url(http://static.ak.fbcdn.net/rsrc.php/v1/yX/r/i_oIVTKMYsL.png);vertical-align:top;background-position:right 5px;z-index:10;left:2px;margin:0 2px 0 0;position:relative}
+.fb_share_no_count{display:none}
+.fb_share_size_Small .fb_share_count_right .fb_share_count_inner{font-size:10px}
+.fb_share_size_Medium .fb_share_count_right .fb_share_count_inner{font-size:11px;padding:2px 6px 3px;letter-spacing:-1px;line-height:14px}
+.fb_share_size_Large .fb_share_count_right .fb_share_count_inner{font-size:13px;line-height:16px;padding:2px 6px 4px;font-weight:normal;letter-spacing:-1px}
+.fb_share_count_hidden .fb_share_count_nub_top,
+.fb_share_count_hidden .fb_share_count_top,
+.fb_share_count_hidden .fb_share_count_nub_right,
+.fb_share_count_hidden .fb_share_count_right{visibility:hidden}
+.fb_connect_bar_container div,
+.fb_connect_bar_container span,
+.fb_connect_bar_container a,
+.fb_connect_bar_container img,
+.fb_connect_bar_container strong{background:none;border-spacing:0;border:0;direction:ltr;font-style:normal;font-variant:normal;letter-spacing:normal;line-height:1;margin:0;overflow:visible;padding:0;text-align:left;text-decoration:none;text-indent:0;text-shadow:none;text-transform:none;visibility:visible;white-space:normal;word-spacing:normal;vertical-align:baseline}
+.fb_connect_bar_container{position:fixed;left:0 !important;right:0 !important;height:42px !important;padding:0 25px !important;margin:0 !important;vertical-align:middle !important;border-bottom:1px solid #333 !important;background:#3b5998 !important;z-index:99999999 !important;overflow:hidden !important}
+.fb_connect_bar_container_ie6{position:absolute;top:expression(document.compatMode=="CSS1Compat"? document.documentElement.scrollTop+"px":body.scrollTop+"px")}
+.fb_connect_bar{position:relative;margin:auto;height:100%;width:100%;padding:6px 0 0 0 !important;background:none;color:#fff !important;font-family:"lucida grande", tahoma, verdana, arial, sans-serif !important;font-size:13px !important;font-style:normal !important;font-variant:normal !important;font-weight:normal !important;letter-spacing:normal !important;line-height:1 !important;text-decoration:none !important;text-indent:0 !important;text-shadow:none !important;text-transform:none !important;white-space:normal !important;word-spacing:normal !important}
+.fb_connect_bar a:hover{color:#fff}
+.fb_connect_bar .fb_profile img{height:30px;width:30px;vertical-align:middle;margin:0 6px 5px 0}
+.fb_connect_bar div a,
+.fb_connect_bar span,
+.fb_connect_bar span a{color:#bac6da;font-size:11px;text-decoration:none}
+.fb_connect_bar .fb_buttons{float:right;margin-top:7px}
+.fb_edge_widget_with_comment{position:relative;*z-index:1000}
+.fb_edge_widget_with_comment span.fb_edge_comment_widget{position:absolute}
+.fb_edge_widget_with_comment span.fb_send_button_form_widget{z-index:1}
+.fb_edge_widget_with_comment span.fb_send_button_form_widget .FB_Loader{left:0;top:1px;margin-top:6px;margin-left:0;background-position:50% 50%;background-color:#fff;height:150px;width:394px;border:1px #666 solid;border-bottom:2px solid #283e6c;z-index:1}
+.fb_edge_widget_with_comment span.fb_send_button_form_widget.dark .FB_Loader{background-color:#000;border-bottom:2px solid #ccc}
+.fb_edge_widget_with_comment span.fb_send_button_form_widget.siderender
+.FB_Loader{margin-top:0}
+.fbpluginrecommendationsbarleft,
+.fbpluginrecommendationsbarright{position:fixed !important;bottom:0;z-index:999}
+/* @noflip */
+.fbpluginrecommendationsbarleft{left:10px}
+/* @noflip */
+.fbpluginrecommendationsbarright{right:10px}
+</style><link href="serializing-datetime-client-side-cooliteextjs-consumption_files/translateelement.css" charset="UTF-8" rel="stylesheet" type="text/css"><script src="serializing-datetime-client-side-cooliteextjs-consumption_files/main.js" charset="UTF-8" type="text/javascript"></script><script src="serializing-datetime-client-side-cooliteextjs-consumption_files/element_main.js" charset="UTF-8" type="text/javascript"></script><script src="serializing-datetime-client-side-cooliteextjs-consumption_files/ru.js" charset="UTF-8"></script><link href="serializing-datetime-client-side-cooliteextjs-consumption_files/ui.css" rel="stylesheet"><link href="serializing-datetime-client-side-cooliteextjs-consumption_files/window.css" rel="stylesheet"><style type="text/css">.a2a_menu, .a2a_menu *{float:none;margin:0;padding:0;height:auto;width:auto;}.a2a_menu{width: 300px;}.a2a_menu table{border-collapse:collapse;border-spacing:0;width:auto}.a2a_menu table,.a2a_menu tbody,.a2a_menu td,.a2a_menu tr{border:0;margin:0;padding:0;background-color:#FFF} .a2a_menu td{vertical-align:top}.a2a_menu,.a2a_menu_inside{border-radius:16px;-webkit-border-radius:16px;-moz-border-radius:16px}.a2a_menu{display:none;z-index:9999999;position:absolute;direction:ltr;min-width:200px;background:#EEE;background:rgba(238,238,238,.6);font:12px Arial,Helvetica,sans-serif;color:#000;line-height:12px;border:1px solid transparent;_border:1px solid #EEE;padding:7px;vertical-align:baseline;overflow:hidden}.a2a_menu_inside{background-color:#FFF;border: 1px solid #CCC;padding:8px}.a2a_menu a span, 	.a2a_tabs .a2a_tab_selected span{color:#00F}.a2a_menu a:hover span, 	.a2a_tabs div span,	.a2a_tabs a span{color:#000}.a2a_menu a,#a2a_hist_list a,.a2a_tabs div{color:#00F;text-decoration:none;font:12px Arial,Helvetica,sans-serif;line-height:12px;height:auto;width:auto;outline:none;-moz-outline:none;border-radius:8px;-webkit-border-radius:8px;-moz-border-radius:8px}.a2a_menu a:visited,#a2a_hist_list a:visited{color:#00F}.a2a_menu a:hover,.a2a_menu a:active,.a2a_menu a.a2a_i:focus,.a2a_tabs div:hover{color:#000;border:1px solid #CCC;background-color:#EEE;text-decoration:none}.a2a_menu span,.a2a_img{background:url(http://static.addtoany.com/menu/icons_22.png) no-repeat;border:0;display:block;line-height:16px}.a2a_menu span.a2a_i_find{height:16px;left:5px;position:absolute;top:2px;width:16px}#a2a_menu_container{display:inline-block} #a2a_menu_container{_display:inline} .a2a_menu_title_container{margin-bottom:2px;padding:6px}.a2a_menu_find_container{position:relative;text-align:left;margin:4px 1px;padding:1px 24px 1px 0;border:1px solid #CCC;border-radius:8px;-webkit-border-radius:8px;-moz-border-radius:8px}.a2a_cols_container{border-bottom-right-radius:8px;border-top-right-radius:8px}.a2a_cols_container .a2a_col1{overflow-x:hidden;overflow-y:auto;}.a2a_menu input, .a2a_menu input[type="text"]{display:block;background-image:none;box-shadow:none;line-height:100%;margin:0;overflow:hidden;padding:0;-moz-box-shadow:none;-webkit-box-shadow:none;-webkit-appearance:none} .a2a_menu_title_container input.a2a_menu_title{color:#000;background-color:#FFF;border:0;margin:0;padding:0;width:99%}.a2a_menu_find_container input.a2a_menu_find{position:relative;left:24px;color:#000;font-size:12px;padding:2px 0;outline:0;border:0;background-color:transparent;_background-color:#FFF;width:99%} .a2a_clear{clear:both} .a2a_default_style a{float:left;line-height:16px;padding:0 2px}.a2a_default_style .a2a_img{display:block;height:16px;line-height:16px;overflow:hidden;width:16px}.a2a_default_style .a2a_img, .a2a_default_style .a2a_dd{float:left}.a2a_default_style .a2a_img_text{margin-right:4px}.a2a_default_style .a2a_divider{border-left:1px solid #000;display:inline;float:left;height:16px;line-height:16px;margin:0 5px}.a2a_kit a{cursor:pointer}.a2a_nowrap{white-space:nowrap}.a2a_note{margin:0 auto;padding:9px;font-size:12px;text-align:center}.a2a_note .a2a_note_note{margin:0;color:#000}.a2a_wide a{display:block;margin-top:3px;border:1px solid #EEE;padding:3px;text-align:center}.a2a_tabs{float:left;margin:0 0 3px} .a2a_tabs a,.a2a_tabs div{margin:1px;background-color:#EEE; border:1px solid #EEE; font-size:11px; padding:6px 12px ; white-space:nowrap} .a2a_tabs a span, .a2a_tabs div span{display:inline-block;padding-left:20px;height:auto;width:auto} .a2a_tabs_default a span, .a2a_tabs_default div span{height:auto;max-width:99px;overflow:hidden;padding-left:20px;width:auto;_width:expression(this.clientWidth > 99? "97px" : "auto");}.a2a_tabs a, .a2a_tabs a:visited, .a2a_tabs a:hover, .a2a_tabs div, .a2a_tabs div:hover{cursor:pointer;border-bottom:1px solid #EEE;color:#000;border-bottom-left-radius:0;-webkit-border-bottom-left-radius:0;-moz-border-radius-bottomleft:0;border-bottom-right-radius:0;-webkit-border-bottom-right-radius:0;-moz-border-radius-bottomright:0}a.a2a_tab_selected, a.a2a_tab_selected:visited,a.a2a_tab_selected:hover,a.a2a_tab_selected:active,a.a2a_tab_selected:focus, div.a2a_tab_selected,div.a2a_tab_selected:hover{color:#00F;background-color:#FFF;border:1px solid #CCC;border-bottom:1px solid #FFF}a.a2a_i{display:block;float:left;border:1px solid #FFF;padding:4px 6px;text-align:left;white-space:nowrap;width:126px;}a.a2a_i span{padding-left:20px}.a2a_x_shorten a.a2a_i{width:116px}a.a2a_sss{font-weight:700}a.a2a_ind{display:inline;margin:0;padding:0} a.a2a_email_client span{display:inline-block;height:16px;line-height:16px;margin:0 2px;padding-left:0;width:16px;}a.a2a_menu_show_more_less{margin:4px 0 8px;padding:0}a.a2a_menu_show_more_less span{display:inline-block;height:14px;margin:0 auto;vertical-align:baseline;width:16px} div.a2a_menu_powered_by{background-color:#EEE;font-size:9px;color:#999;text-align:center;margin-top:4px;padding:3px;border-radius:8px;-webkit-border-radius:8px;-moz-border-radius:8px}div.a2a_menu_powered_by a,div.a2a_menu_powered_by a:visited{display:inline;font-size:9px;color:#999}div.a2a_menu_powered_by a:hover{border:0;text-decoration:underline}iframe.a2a_shim{border:0;position:absolute;z-index:999999;}.a2a_dd img{border:0;}.a2a_ptz_notes a, .a2a_ptz_notes a:hover { background: none; border: 0; }.a2a_ptz_notes .a2a_ptz_stats { font-size: 13px; }.a2a_ptz_notes .a2a_ptz_stats span { background: none; display: inline; font-weight: bold; }.a2a_ptz_notes .a2a_ptz_desc { line-height: 14px; margin: 14px 0 21px; }.a2a_ptz_notes .a2a_ptz_claim a { background-color: #EEE; border: 1px solid #EEE; color: #00F; font-size: 13px; font-weight: bold; padding: 7px 21px; border-radius: 8px; }.a2a_ptz_notes .a2a_ptz_claim a:hover { background-color: #EEE; border: 1px solid #CCC; color: #000; }.a2a_ptz_notes .a2a_ptz_login { line-height: 14px; margin: 21px 0 0; }.a2a_ptz_notes .a2a_ptz_login a:hover { text-decoration: underline; }.a2a_ptz_notes .a2a_i_lockerz { display: inline-block; margin: 20px 0 0; padding-left: 20px; height: auto; width:auto; }.a2a_i_a2a{background-position:0 0!important}.a2a_i_a2a_bw{background-position:0 -17px!important}.a2a_i_agregator{background-position:0 -34px!important}.a2a_i_aiderss{background-position:0 -51px!important}.a2a_i_aim{background-position:0 -68px!important}.a2a_i_allvoices{background-position:0 -85px!important}.a2a_i_amazon{background-position:0 -102px!important}.a2a_i_aol{background-position:0 -119px!important}.a2a_i_apple_mail{background-position:0 -136px!important}.a2a_i_arto{background-position:0 -153px!important}.a2a_i_ask{background-position:0 -170px!important}.a2a_i_backflip{background-position:0 -187px!important}.a2a_i_bebo{background-position:0 -204px!important}.a2a_i_bibsonomy{background-position:0 -221px!important}.a2a_i_bitty{background-position:0 -238px!important}.a2a_i_blinklist{background-position:0 -255px!important}.a2a_i_blogger{background-position:0 -272px!important}.a2a_i_bloglines{background-position:0 -289px!important}.a2a_i_blogmarks{background-position:0 -306px!important}.a2a_i_bookmark{background-position:0 -323px!important}.a2a_i_bookmarks_fr{background-position:0 -340px!important}.a2a_i_box{background-position:0 -357px!important}.a2a_i_buddymarks{background-position:0 -374px!important}.a2a_i_business_exchange{background-position:0 -391px!important}.a2a_i_care2{background-position:0 -408px!important}.a2a_i_chrome{background-position:0 -425px!important}.a2a_i_citeulike{background-position:0 -442px!important}.a2a_i_clear{background-position:0 -459px!important}.a2a_i_connotea{background-position:0 -476px!important}.a2a_i_current{background-position:0 -493px!important}.a2a_i_dailyme{background-position:0 -510px!important}.a2a_i_dailyrotation{background-position:0 -527px!important}.a2a_i_darr{background-position:0 -544px!important}.a2a_i_darr_wt{background-position:0 -561px!important}.a2a_i_default{background-position:0 -578px!important}.a2a_i_delicious{background-position:0 -595px!important}.a2a_i_designfloat{background-position:0 -612px!important}.a2a_i_digg{background-position:0 -629px!important}.a2a_i_diglog{background-position:0 -646px!important}.a2a_i_diigo{background-position:0 -663px!important}.a2a_i_dzone{background-position:0 -680px!important}.a2a_i_email{background-position:0 -697px!important}.a2a_i_email_bw{background-position:0 -714px!important}.a2a_i_evernote{background-position:0 -731px!important}.a2a_i_expression{background-position:0 -748px!important}.a2a_i_facebook{background-position:0 -765px!important}.a2a_i_fark{background-position:0 -782px!important}.a2a_i_faves{background-position:0 -799px!important}.a2a_i_feed{background-position:0 -816px!important}.a2a_i_feedblitz{background-position:0 -833px!important}.a2a_i_feedbucket{background-position:0 -850px!important}.a2a_i_feedmailer{background-position:0 -867px!important}.a2a_i_feedshow{background-position:0 -884px!important}.a2a_i_find{background-position:0 -901px!important}.a2a_i_fireant{background-position:0 -918px!important}.a2a_i_firefox{background-position:0 -935px!important}.a2a_i_folkd{background-position:0 -952px!important}.a2a_i_formspring{background-position:0 -969px!important}.a2a_i_friendfeed{background-position:0 -986px!important}.a2a_i_funp{background-position:0 -1003px!important}.a2a_i_furl{background-position:0 -1020px!important}.a2a_i_fwicki{background-position:0 -1036px!important}.a2a_i_gabbr{background-position:0 -1053px!important}.a2a_i_global_grind{background-position:0 -1070px!important}.a2a_i_gmail{background-position:0 -1087px!important}.a2a_i_google{background-position:0 -1104px!important}.a2a_i_google_plus{background-position:0 -1121px!important}.a2a_i_healthranker{background-position:0 -1138px!important}.a2a_i_hellotxt{background-position:0 -1155px!important}.a2a_i_hemidemi{background-position:0 -1172px!important}.a2a_i_hubdog{background-position:0 -1189px!important}.a2a_i_hugg{background-position:0 -1206px!important}.a2a_i_hyves{background-position:0 -1223px!important}.a2a_i_identica{background-position:0 -1240px!important}.a2a_i_imera{background-position:0 -1257px!important}.a2a_i_instapaper{background-position:0 -1274px!important}.a2a_i_itunes{background-position:0 -1291px!important}.a2a_i_jamespot{background-position:0 -1308px!important}.a2a_i_jots{background-position:0 -1325px!important}.a2a_i_jumptags{background-position:0 -1342px!important}.a2a_i_khabbr{background-position:0 -1359px!important}.a2a_i_kledy{background-position:0 -1376px!important}.a2a_i_klipfolio{background-position:0 -1393px!important}.a2a_i_linkagogo{background-position:0 -1410px!important}.a2a_i_linkatopia{background-position:0 -1427px!important}.a2a_i_linkedin{background-position:0 -1444px!important}.a2a_i_live{background-position:0 -1461px!important}.a2a_i_livejournal{background-position:0 -1478px!important}.a2a_i_lockerz{background-position:0 -1495px!important}.a2a_i_ma_gnolia{background-position:0 -1512px!important}.a2a_i_maple{background-position:0 -1529px!important}.a2a_i_meneame{background-position:0 -1546px!important}.a2a_i_messenger{background-position:0 -1563px!important}.a2a_i_mindbodygreen{background-position:0 -1580px!important}.a2a_i_miro{background-position:0 -1597px!important}.a2a_i_mister-wong{background-position:0 -1614px!important}.a2a_i_mixx{background-position:0 -1631px!important}.a2a_i_mobile{background-position:0 -1648px!important}.a2a_i_mozillaca{background-position:0 -1665px!important}.a2a_i_msdn{background-position:0 -1682px!important}.a2a_i_multiply{background-position:0 -1699px!important}.a2a_i_my_msn{background-position:0 -1716px!important}.a2a_i_mylinkvault{background-position:0 -1733px!important}.a2a_i_myspace{background-position:0 -1750px!important}.a2a_i_netimechannel{background-position:0 -1767px!important}.a2a_i_netlog{background-position:0 -1784px!important}.a2a_i_netvibes{background-position:0 -1801px!important}.a2a_i_netvouz{background-position:0 -1818px!important}.a2a_i_newsalloy{background-position:0 -1835px!important}.a2a_i_newscabby{background-position:0 -1852px!important}.a2a_i_newsgator{background-position:0 -1869px!important}.a2a_i_newshutch{background-position:0 -1886px!important}.a2a_i_newsisfree{background-position:0 -1903px!important}.a2a_i_newstrust{background-position:0 -1920px!important}.a2a_i_newsvine{background-position:0 -1937px!important}.a2a_i_nowpublic{background-position:0 -1954px!important}.a2a_i_oneview{background-position:0 -1971px!important}.a2a_i_openbm{background-position:0 -1988px!important}.a2a_i_orkut{background-position:0 -2005px!important}.a2a_i_outlook{background-position:0 -2022px!important}.a2a_i_pageflakes{background-position:0 -2039px!important}.a2a_i_pdf{background-position:0 -2056px!important}.a2a_i_phonefavs{background-position:0 -2073px!important}.a2a_i_ping{background-position:0 -2090px!important}.a2a_i_pinterest{background-position:0 -2107px!important}.a2a_i_plaxo{background-position:0 -2124px!important}.a2a_i_plurk{background-position:0 -2141px!important}.a2a_i_podnova{background-position:0 -2158px!important}.a2a_i_posterous{background-position:0 -2175px!important}.a2a_i_print{background-position:0 -2192px!important}.a2a_i_printfriendly{background-position:0 -2209px!important}.a2a_i_protopage{background-position:0 -2226px!important}.a2a_i_ptz{background-position:0 -2243px!important}.a2a_i_ptz_bw{background-position:0 -2260px!important}.a2a_i_pusha{background-position:0 -2277px!important}.a2a_i_rapidfeeds{background-position:0 -2294px!important}.a2a_i_read_it_later{background-position:0 -2311px!important}.a2a_i_reader{background-position:0 -2328px!important}.a2a_i_reddit{background-position:0 -2345px!important}.a2a_i_rediff{background-position:0 -2362px!important}.a2a_i_rssfwd{background-position:0 -2379px!important}.a2a_i_segnalo{background-position:0 -2396px!important}.a2a_i_share{background-position:0 -2413px!important}.a2a_i_shoutwire{background-position:0 -2430px!important}.a2a_i_simpy{background-position:0 -2447px!important}.a2a_i_sina_weibo{background-position:0 -2464px!important}.a2a_i_sitejot{background-position:0 -2481px!important}.a2a_i_skimbit{background-position:0 -2498px!important}.a2a_i_slashdot{background-position:0 -2515px!important}.a2a_i_smaknews{background-position:0 -2532px!important}.a2a_i_sodahead{background-position:0 -2549px!important}.a2a_i_sofomo{background-position:0 -2566px!important}.a2a_i_spaces{background-position:0 -2583px!important}.a2a_i_sphere{background-position:0 -2600px!important}.a2a_i_sphinn{background-position:0 -2616px!important}.a2a_i_spurl{background-position:0 -2633px!important}.a2a_i_squidoo{background-position:0 -2650px!important}.a2a_i_startaid{background-position:0 -2667px!important}.a2a_i_strands{background-position:0 -2684px!important}.a2a_i_stumbleupon{background-position:0 -2701px!important}.a2a_i_stumpedia{background-position:0 -2718px!important}.a2a_i_symbaloo{background-position:0 -2735px!important}.a2a_i_taggly{background-position:0 -2752px!important}.a2a_i_tagza{background-position:0 -2769px!important}.a2a_i_tailrank{background-position:0 -2786px!important}.a2a_i_technet{background-position:0 -2803px!important}.a2a_i_technorati{background-position:0 -2820px!important}.a2a_i_technotizie{background-position:0 -2837px!important}.a2a_i_thefreedictionary{background-position:0 -2854px!important}.a2a_i_thefreelibrary{background-position:0 -2871px!important}.a2a_i_thunderbird{background-position:0 -2888px!important}.a2a_i_tipd{background-position:0 -2905px!important}.a2a_i_toolbar_google{background-position:0 -2922px!important}.a2a_i_tuenti{background-position:0 -2939px!important}.a2a_i_tumblr{background-position:0 -2956px!important}.a2a_i_twiddla{background-position:0 -2973px!important}.a2a_i_twine{background-position:0 -2990px!important}.a2a_i_twitter{background-position:0 -3007px!important}.a2a_i_txtvox{background-position:0 -3024px!important}.a2a_i_typepad{background-position:0 -3041px!important}.a2a_i_uarr{background-position:0 -3058px!important}.a2a_i_uarr_wt{background-position:0 -3075px!important}.a2a_i_unalog{background-position:0 -3092px!important}.a2a_i_viadeo{background-position:0 -3109px!important}.a2a_i_vk{background-position:0 -3126px!important}.a2a_i_vodpod{background-position:0 -3143px!important}.a2a_i_webnews{background-position:0 -3160px!important}.a2a_i_webwag{background-position:0 -3178px!important}.a2a_i_wikio{background-position:0 -3195px!important}.a2a_i_windows_mail{background-position:0 -3212px!important}.a2a_i_wink{background-position:0 -3229px!important}.a2a_i_winksite{background-position:0 -3246px!important}.a2a_i_wists{background-position:0 -3263px!important}.a2a_i_wordpress{background-position:0 -3280px!important}.a2a_i_xerpi{background-position:0 -3297px!important}.a2a_i_xianguo{background-position:0 -3314px!important}.a2a_i_xing{background-position:0 -3331px!important}.a2a_i_yahoo{background-position:0 -3348px!important}.a2a_i_yample{background-position:0 -3365px!important}.a2a_i_yigg{background-position:0 -3382px!important}.a2a_i_yim{background-position:0 -3399px!important}.a2a_i_yoolink{background-position:0 -3416px!important}.a2a_i_youmob{background-position:0 -3433px!important}.a2a_i_zhuaxia{background-position:0 -3450px!important}.a2a_i_zune{background-position:0 -3467px!important}</style><style>.goog-te-ftab-float {z-index:9999999; overflow:visible; position:fixed; _position:absolute;top:0px; _top:expression((0+(hack1=document.documentElement.scrollTop||document.body.scrollTop))+'px');left:auto;bottom:auto;right:20px; _left:expression((-20-document.getElementById(':0.floatContainer').offsetWidth+(hack5=document.documentElement.clientWidth||document.body.clientWidth)+(hack6=document.documentElement.scrollLeft||document.body.scrollLeft))+'px');}</style></head>
+
+
+<body style="position: relative; min-height: 100%; top: 0px;" data-twttr-rendered="true"><iframe src="serializing-datetime-client-side-cooliteextjs-consumption_files/sm9.htm" allowtransparency="true" transparency="true" style="border: 0pt none; left: 0pt; top: 0pt; position: absolute; z-index: 100000; display: none;" id="a2apage_sm_ifr" frameborder="0" height="1" width="1"></iframe><div style="position: static;"><div id="a2apage_dropdown" class="a2a_menu" onmouseover="a2a.onMouseOver_stay()" onmouseout="a2a.onMouseOut_delay()"><div class="a2a_menu_inside"><div id="a2apage_title_container" class="a2a_menu_title_container" style="display:none"><input id="a2apage_title" class="a2a_menu_title"></div><div class="a2apage_wide a2a_wide"><div class="a2a_tabs a2a_tabs_default"><div id="a2apage_DEFAULT" class="a2a_tab_selected" style="margin-right:1px" onclick="return a2a.tabs.open('DEFAULT')"><span class="a2a_i_a2a">Ресурс</span></div></div><div class="a2a_tabs"><div title="Ресурс на e-mail" id="a2apage_EMAIL" style="margin-right:1px" onclick="return a2a.tabs.open('EMAIL')"><span class="a2a_i_email_bw">E-mail</span></div></div><div class="a2a_tabs"><div onclick="a2a.ptz()" title="Earn PTZ for sharing" id="a2apage_PTZ" style="margin-left:1px;display:none"><span class="a2a_i_ptz_bw">Earn</span></div></div></div><div class="a2a_clear"></div><div id="a2apage_find_container" class="a2a_menu_find_container"><input id="a2apage_find" class="a2a_menu_find" onclick="a2a.focus_find()" onkeyup="a2a.do_find()" autocomplete="off" onfocus="a2a['page'].find_focused=true;a2a.onMouseOver_stay()" title="Найти сервис для добавления" type="text"><span id="a2apage_find_icon" class="a2a_i_find" onclick="a2a.focus_find()"></span></div><div id="a2apage_cols_container" class="a2a_cols_container"><div class="a2a_col1" id="a2apage_col1"><a target="_blank" href="http://www.rahulsingla.com/" class="a2a_i" rel="nofollow" id="a2apage_diary_ru"><span style="background-image: url(&quot;http://www.diary.ru/favicon.ico&quot;);">Diary.Ru</span></a><a target="_blank" href="http://www.rahulsingla.com/" class="a2a_i" rel="nofollow" id="a2apage_vk"><span style="background-image: url(&quot;http://vkontakte.ru/images/favicon.ico&quot;);">VK</span></a><a target="_blank" href="http://www.rahulsingla.com/" class="a2a_i" rel="nofollow" id="a2apage_facebook"><span class="a2a_i_facebook">Facebook</span></a><a target="_blank" href="http://www.rahulsingla.com/" class="a2a_i" rel="nofollow" id="a2apage_twitter"><span class="a2a_i_twitter">Twitter</span></a><a target="_blank" href="http://www.rahulsingla.com/" class="a2a_i" rel="nofollow" id="a2apage_google_plus"><span class="a2a_i_google_plus">Google+</span></a><a target="_blank" href="http://www.rahulsingla.com/" class="a2a_i" rel="nofollow" id="a2apage_lockerz_grab"><span class="a2a_i_lockerz">Lockerz Grab</span></a><a target="_blank" href="http://www.rahulsingla.com/" class="a2a_i" rel="nofollow" id="a2apage_delicious"><span class="a2a_i_delicious">Delicious</span></a><a target="_blank" href="http://www.rahulsingla.com/" class="a2a_i" rel="nofollow" id="a2apage_digg"><span class="a2a_i_digg">Digg</span></a><a target="_blank" href="http://www.rahulsingla.com/" class="a2a_i" rel="nofollow" id="a2apage_google_bookmarks"><span class="a2a_i_google">Google Bookmarks</span></a><a target="_blank" href="http://www.rahulsingla.com/" class="a2a_i" rel="nofollow" id="a2apage_myspace"><span class="a2a_i_myspace">MySpace</span></a><a style="display: none;" target="_blank" href="http://www.rahulsingla.com/" class="a2a_i" rel="nofollow" id="a2apage_stumbleupon"><span class="a2a_i_stumbleupon">StumbleUpon</span></a><a style="display: none;" target="_blank" href="http://www.rahulsingla.com/" class="a2a_i" rel="nofollow" id="a2apage_reddit"><span class="a2a_i_reddit">Reddit</span></a><a style="display: none;" target="_blank" href="http://www.rahulsingla.com/" class="a2a_i" rel="nofollow" id="a2apage_live"><span class="a2a_i_messenger">Messenger</span></a><a style="display: none;" target="_blank" href="http://www.rahulsingla.com/" class="a2a_i" rel="nofollow" id="a2apage_vodpod"><span class="a2a_i_vodpod">Vodpod</span></a><a style="display: none;" target="_blank" href="http://www.rahulsingla.com/" class="a2a_i" rel="nofollow" id="a2apage_yahoo_bookmarks"><span class="a2a_i_yahoo">Yahoo Bookmarks</span></a><a style="display: none;" target="_blank" href="http://www.rahulsingla.com/" class="a2a_i" rel="nofollow" id="a2apage_bebo"><span class="a2a_i_bebo">Bebo</span></a><a style="display: none;" target="_blank" href="http://www.rahulsingla.com/" class="a2a_i" rel="nofollow" id="a2apage_mister_wong"><span class="a2a_i_mister-wong">Mister-Wong</span></a><a style="display: none;" target="_blank" href="http://www.rahulsingla.com/" class="a2a_i" rel="nofollow" id="a2apage_wordpress"><span class="a2a_i_wordpress">WordPress</span></a><a style="display: none;" target="_blank" href="http://www.rahulsingla.com/" class="a2a_i" rel="nofollow" id="a2apage_google_reader"><span class="a2a_i_reader">Google Reader</span></a><a style="display: none;" target="_blank" href="http://www.rahulsingla.com/" class="a2a_i" rel="nofollow" id="a2apage_orkut"><span class="a2a_i_orkut">Orkut</span></a><a style="display: none;" target="_blank" href="http://www.rahulsingla.com/" class="a2a_i" rel="nofollow" id="a2apage_xing"><span class="a2a_i_xing">XING</span></a><a style="display: none;" target="_blank" href="http://www.rahulsingla.com/" class="a2a_i" rel="nofollow" id="a2apage_evernote"><span class="a2a_i_evernote">Evernote</span></a><a style="display: none;" target="_blank" href="http://www.rahulsingla.com/" class="a2a_i" rel="nofollow" id="a2apage_netvibes_share"><span class="a2a_i_netvibes">Netvibes Share</span></a><a style="display: none;" target="_blank" href="http://www.rahulsingla.com/" class="a2a_i" rel="nofollow" id="a2apage_strands"><span class="a2a_i_strands">Strands</span></a><a style="display: none;" target="_blank" href="http://www.rahulsingla.com/" class="a2a_i" rel="nofollow" id="a2apage_posterous"><span class="a2a_i_posterous">Posterous</span></a><a style="display: none;" target="_blank" href="http://www.rahulsingla.com/" class="a2a_i" rel="nofollow" id="a2apage_business_exchange"><span class="a2a_i_business_exchange">Business Exchange</span></a><a style="display: none;" target="_blank" href="http://www.rahulsingla.com/" class="a2a_i" rel="nofollow" id="a2apage_arto"><span class="a2a_i_arto">Arto</span></a><a style="display: none;" target="_blank" href="http://www.rahulsingla.com/" class="a2a_i" rel="nofollow" id="a2apage_tipd"><span class="a2a_i_tipd">Tipd</span></a><a style="display: none;" target="_blank" href="http://www.rahulsingla.com/" class="a2a_i" rel="nofollow" id="a2apage_smaknews"><span class="a2a_i_smaknews">SmakNews</span></a><a style="display: none;" target="_blank" href="http://www.rahulsingla.com/" class="a2a_i" rel="nofollow" id="a2apage_plurk"><span class="a2a_i_plurk">Plurk</span></a><a style="display: none;" target="_blank" href="http://www.rahulsingla.com/" class="a2a_i" rel="nofollow" id="a2apage_aim"><span class="a2a_i_aim">AIM</span></a><a style="display: none;" target="_blank" href="http://www.rahulsingla.com/" class="a2a_i" rel="nofollow" id="a2apage_yahoo_messenger"><span class="a2a_i_yim">Yahoo Messenger</span></a><a style="display: none;" target="_blank" href="http://www.rahulsingla.com/" class="a2a_i" rel="nofollow" id="a2apage_identi_ca"><span class="a2a_i_identica">Identi.ca</span></a><a style="display: none;" target="_blank" href="http://www.rahulsingla.com/" class="a2a_i" rel="nofollow" id="a2apage_mozillaca"><span class="a2a_i_mozillaca">Mozillaca</span></a><a style="display: none;" target="_blank" href="http://www.rahulsingla.com/" class="a2a_i" rel="nofollow" id="a2apage_blogger_post"><span class="a2a_i_blogger">Blogger Post</span></a><a style="display: none;" target="_blank" href="http://www.rahulsingla.com/" class="a2a_i" rel="nofollow" id="a2apage_typepad_post"><span class="a2a_i_typepad">TypePad Post</span></a><a style="display: none;" target="_blank" href="http://www.rahulsingla.com/" class="a2a_i" rel="nofollow" id="a2apage_box_net"><span class="a2a_i_box">Box.net</span></a><a style="display: none;" target="_blank" href="http://www.rahulsingla.com/" class="a2a_i" rel="nofollow" id="a2apage_pinterest"><span class="a2a_i_pinterest">Pinterest</span></a><a style="display: none;" target="_blank" href="http://www.rahulsingla.com/" class="a2a_i" rel="nofollow" id="a2apage_netlog"><span class="a2a_i_netlog">Netlog</span></a><a style="display: none;" target="_blank" href="http://www.rahulsingla.com/" class="a2a_i" rel="nofollow" id="a2apage_technorati_favorites"><span class="a2a_i_technorati">Technorati Favorites</span></a><a style="display: none;" target="_blank" href="http://www.rahulsingla.com/" class="a2a_i" rel="nofollow" id="a2apage_citeulike"><span class="a2a_i_citeulike">CiteULike</span></a><a style="display: none;" target="_blank" href="http://www.rahulsingla.com/" class="a2a_i" rel="nofollow" id="a2apage_jumptags"><span class="a2a_i_jumptags">Jumptags</span></a><a style="display: none;" target="_blank" href="http://www.rahulsingla.com/" class="a2a_i" rel="nofollow" id="a2apage_hemidemi"><span class="a2a_i_hemidemi">Hemidemi</span></a><a style="display: none;" target="_blank" href="http://www.rahulsingla.com/" class="a2a_i" rel="nofollow" id="a2apage_funp"><span class="a2a_i_funp">FunP</span></a><a style="display: none;" target="_blank" href="http://www.rahulsingla.com/" class="a2a_i" rel="nofollow" id="a2apage_instapaper"><span class="a2a_i_instapaper">Instapaper</span></a><a style="display: none;" target="_blank" href="http://www.rahulsingla.com/" class="a2a_i" rel="nofollow" id="a2apage_phonefavs"><span class="a2a_i_phonefavs">PhoneFavs</span></a><a style="display: none;" target="_blank" href="http://www.rahulsingla.com/" class="a2a_i" rel="nofollow" id="a2apage_xerpi"><span class="a2a_i_xerpi">Xerpi</span></a><a style="display: none;" target="_blank" href="http://www.rahulsingla.com/" class="a2a_i" rel="nofollow" id="a2apage_netvouz"><span class="a2a_i_netvouz">Netvouz</span></a><a style="display: none;" target="_blank" href="http://www.rahulsingla.com/" class="a2a_i" rel="nofollow" id="a2apage_wink"><span class="a2a_i_wink">Wink</span></a><a style="display: none;" target="_blank" href="http://www.rahulsingla.com/" class="a2a_i" rel="nofollow" id="a2apage_diigo"><span class="a2a_i_diigo">Diigo</span></a><a style="display: none;" target="_blank" href="http://www.rahulsingla.com/" class="a2a_i" rel="nofollow" id="a2apage_bibsonomy"><span class="a2a_i_bibsonomy">BibSonomy</span></a><a style="display: none;" target="_blank" href="http://www.rahulsingla.com/" class="a2a_i" rel="nofollow" id="a2apage_blogmarks"><span class="a2a_i_blogmarks">BlogMarks</span></a><a style="display: none;" target="_blank" href="http://www.rahulsingla.com/" class="a2a_i" rel="nofollow" id="a2apage_tailrank"><span class="a2a_i_tailrank">Tailrank</span></a><a style="display: none;" target="_blank" href="http://www.rahulsingla.com/" class="a2a_i" rel="nofollow" id="a2apage_startaid"><span class="a2a_i_startaid">StartAid</span></a><a style="display: none;" target="_blank" href="http://www.rahulsingla.com/" class="a2a_i" rel="nofollow" id="a2apage_kledy"><span class="a2a_i_kledy">Kledy</span></a><a style="display: none;" target="_blank" href="http://www.rahulsingla.com/" class="a2a_i" rel="nofollow" id="a2apage_khabbr"><span class="a2a_i_khabbr">Khabbr</span></a><a style="display: none;" target="_blank" href="http://www.rahulsingla.com/" class="a2a_i" rel="nofollow" id="a2apage_meneame"><span class="a2a_i_meneame">Meneame</span></a><a style="display: none;" target="_blank" href="http://www.rahulsingla.com/" class="a2a_i" rel="nofollow" id="a2apage_yoolink"><span class="a2a_i_yoolink">Yoolink</span></a><a style="display: none;" target="_blank" href="http://www.rahulsingla.com/" class="a2a_i" rel="nofollow" id="a2apage_bookmarks_fr"><span class="a2a_i_bookmarks_fr">Bookmarks.fr</span></a><a style="display: none;" target="_blank" href="http://www.rahulsingla.com/" class="a2a_i" rel="nofollow" id="a2apage_technotizie"><span class="a2a_i_technotizie">Technotizie</span></a><a style="display: none;" target="_blank" href="http://www.rahulsingla.com/" class="a2a_i" rel="nofollow" id="a2apage_newsvine"><span class="a2a_i_newsvine">NewsVine</span></a><a style="display: none;" target="_blank" href="http://www.rahulsingla.com/" class="a2a_i" rel="nofollow" id="a2apage_multiply"><span class="a2a_i_multiply">Multiply</span></a><a style="display: none;" target="_blank" href="http://www.rahulsingla.com/" class="a2a_i" rel="nofollow" id="a2apage_friendfeed"><span class="a2a_i_friendfeed">FriendFeed</span></a><a style="display: none;" target="_blank" href="http://www.rahulsingla.com/" class="a2a_i" rel="nofollow" id="a2apage_plaxo_pulse"><span class="a2a_i_plaxo">Plaxo Pulse</span></a><a style="display: none;" target="_blank" href="http://www.rahulsingla.com/" class="a2a_i" rel="nofollow" id="a2apage_ping"><span class="a2a_i_ping">Ping</span></a><a style="display: none;" target="_blank" href="http://www.rahulsingla.com/" class="a2a_i" rel="nofollow" id="a2apage_squidoo"><span class="a2a_i_squidoo">Squidoo</span></a><a style="display: none;" target="_blank" href="http://www.rahulsingla.com/" class="a2a_i" rel="nofollow" id="a2apage_protopage_bookmarks"><span class="a2a_i_protopage">Protopage Bookmarks</span></a><a style="display: none;" target="_blank" href="http://www.rahulsingla.com/" class="a2a_i" rel="nofollow" id="a2apage_blinklist"><span class="a2a_i_blinklist">Blinklist</span></a><a style="display: none;" target="_blank" href="http://www.rahulsingla.com/" class="a2a_i" rel="nofollow" id="a2apage_faves"><span class="a2a_i_faves">Faves</span></a><a style="display: none;" target="_blank" href="http://www.rahulsingla.com/" class="a2a_i" rel="nofollow" id="a2apage_yigg"><span class="a2a_i_yigg">YiGG</span></a><a style="display: none;" target="_blank" href="http://www.rahulsingla.com/" class="a2a_i" rel="nofollow" id="a2apage_webnews"><span class="a2a_i_webnews">Webnews</span></a><a style="display: none;" target="_blank" href="http://www.rahulsingla.com/" class="a2a_i" rel="nofollow" id="a2apage_segnalo"><span class="a2a_i_segnalo">Segnalo</span></a><a style="display: none;" target="_blank" href="http://www.rahulsingla.com/" class="a2a_i" rel="nofollow" id="a2apage_pusha"><span class="a2a_i_pusha">Pusha</span></a><a style="display: none;" target="_blank" href="http://www.rahulsingla.com/" class="a2a_i" rel="nofollow" id="a2apage_youmob"><span class="a2a_i_youmob">YouMob</span></a><a style="display: none;" target="_blank" href="http://www.rahulsingla.com/" class="a2a_i" rel="nofollow" id="a2apage_slashdot"><span class="a2a_i_slashdot">Slashdot</span></a><a style="display: none;" target="_blank" href="http://www.rahulsingla.com/" class="a2a_i" rel="nofollow" id="a2apage_fark"><span class="a2a_i_fark">Fark</span></a><a style="display: none;" target="_blank" href="http://www.rahulsingla.com/" class="a2a_i" rel="nofollow" id="a2apage_allvoices"><span class="a2a_i_allvoices">Allvoices</span></a><a style="display: none;" target="_blank" href="http://www.rahulsingla.com/" class="a2a_i" rel="nofollow" id="a2apage_jamespot"><span class="a2a_i_jamespot">Jamespot</span></a><a style="display: none;" target="_blank" href="http://www.rahulsingla.com/" class="a2a_i" rel="nofollow" id="a2apage_imera_brazil"><span class="a2a_i_imera">Imera Brazil</span></a><a style="display: none;" target="_blank" href="http://www.rahulsingla.com/" class="a2a_i" rel="nofollow" id="a2apage_twiddla"><span class="a2a_i_twiddla">Twiddla</span></a><a style="display: none;" target="_blank" href="http://www.rahulsingla.com/" class="a2a_i" rel="nofollow" id="a2apage_linkagogo"><span class="a2a_i_linkagogo">LinkaGoGo</span></a><a style="display: none;" target="_blank" href="http://www.rahulsingla.com/" class="a2a_i" rel="nofollow" id="a2apage_unalog"><span class="a2a_i_unalog">unalog</span></a><a style="display: none;" target="_blank" href="http://www.rahulsingla.com/" class="a2a_i" rel="nofollow" id="a2apage_hugg"><span class="a2a_i_hugg">Hugg</span></a><a style="display: none;" target="_blank" href="http://www.rahulsingla.com/" class="a2a_i" rel="nofollow" id="a2apage_diglog"><span class="a2a_i_diglog">Diglog</span></a><a style="display: none;" target="_blank" href="http://www.rahulsingla.com/" class="a2a_i" rel="nofollow" id="a2apage_nowpublic"><span class="a2a_i_nowpublic">NowPublic</span></a><a style="display: none;" target="_blank" href="http://www.rahulsingla.com/" class="a2a_i" rel="nofollow" id="a2apage_tumblr"><span class="a2a_i_tumblr">Tumblr</span></a><a style="display: none;" target="_blank" href="http://www.rahulsingla.com/" class="a2a_i" rel="nofollow" id="a2apage_livejournal"><span class="a2a_i_livejournal">LiveJournal</span></a><a style="display: none;" target="_blank" href="http://www.rahulsingla.com/" class="a2a_i" rel="nofollow" id="a2apage_current"><span class="a2a_i_current">Current</span></a><a style="display: none;" target="_blank" href="http://www.rahulsingla.com/" class="a2a_i" rel="nofollow" id="a2apage_hellotxt"><span class="a2a_i_hellotxt">HelloTxt</span></a><a style="display: none;" target="_blank" href="http://www.rahulsingla.com/" class="a2a_i" rel="nofollow" id="a2apage_spurl"><span class="a2a_i_spurl">Spurl</span></a><a style="display: none;" target="_blank" href="http://www.rahulsingla.com/" class="a2a_i" rel="nofollow" id="a2apage_yample"><span class="a2a_i_yample">Yample</span></a><a style="display: none;" target="_blank" href="http://www.rahulsingla.com/" class="a2a_i" rel="nofollow" id="a2apage_oneview"><span class="a2a_i_oneview">Oneview</span></a><a style="display: none;" target="_blank" href="http://www.rahulsingla.com/" class="a2a_i" rel="nofollow" id="a2apage_linkatopia"><span class="a2a_i_linkatopia">Linkatopia</span></a><a style="display: none;" target="_blank" href="http://www.rahulsingla.com/" class="a2a_i" rel="nofollow" id="a2apage_simpy"><span class="a2a_i_simpy">Simpy</span></a><a style="display: none;" target="_blank" href="http://www.rahulsingla.com/" class="a2a_i" rel="nofollow" id="a2apage_linkedin"><span class="a2a_i_linkedin">LinkedIn</span></a><a style="display: none;" target="_blank" href="http://www.rahulsingla.com/" class="a2a_i" rel="nofollow" id="a2apage_buddymarks"><span class="a2a_i_buddymarks">BuddyMarks</span></a><a style="display: none;" target="_blank" href="http://www.rahulsingla.com/" class="a2a_i" rel="nofollow" id="a2apage_ask_com_mystuff"><span class="a2a_i_ask">Ask.com MyStuff</span></a><a style="display: none;" target="_blank" href="http://www.rahulsingla.com/" class="a2a_i" rel="nofollow" id="a2apage_viadeo"><span class="a2a_i_viadeo">Viadeo</span></a><a style="display: none;" target="_blank" href="http://www.rahulsingla.com/" class="a2a_i" rel="nofollow" id="a2apage_maple"><span class="a2a_i_maple">Maple</span></a><a style="display: none;" target="_blank" href="http://www.rahulsingla.com/" class="a2a_i" rel="nofollow" id="a2apage_wists"><span class="a2a_i_wists">Wists</span></a><a style="display: none;" target="_blank" href="http://www.rahulsingla.com/" class="a2a_i" rel="nofollow" id="a2apage_connotea"><span class="a2a_i_connotea">Connotea</span></a><a style="display: none;" target="_blank" href="http://www.rahulsingla.com/" class="a2a_i" rel="nofollow" id="a2apage_backflip"><span class="a2a_i_backflip">Backflip</span></a><a style="display: none;" target="_blank" href="http://www.rahulsingla.com/" class="a2a_i" rel="nofollow" id="a2apage_mylinkvault"><span class="a2a_i_mylinkvault">MyLinkVault</span></a><a style="display: none;" target="_blank" href="http://www.rahulsingla.com/" class="a2a_i" rel="nofollow" id="a2apage_sitejot"><span class="a2a_i_sitejot">SiteJot</span></a><a style="display: none;" target="_blank" href="http://www.rahulsingla.com/" class="a2a_i" rel="nofollow" id="a2apage_sphinn"><span class="a2a_i_sphinn">Sphinn</span></a><a style="display: none;" target="_blank" href="http://www.rahulsingla.com/" class="a2a_i" rel="nofollow" id="a2apage_dzone"><span class="a2a_i_dzone">DZone</span></a><a style="display: none;" target="_blank" href="http://www.rahulsingla.com/" class="a2a_i" rel="nofollow" id="a2apage_care2_news"><span class="a2a_i_care2">Care2 News</span></a><a style="display: none;" target="_blank" href="http://www.rahulsingla.com/" class="a2a_i" rel="nofollow" id="a2apage_hyves"><span class="a2a_i_hyves">Hyves</span></a><a style="display: none;" target="_blank" href="http://www.rahulsingla.com/" class="a2a_i" rel="nofollow" id="a2apage_sphere"><span class="a2a_i_sphere">Sphere</span></a><a style="display: none;" target="_blank" href="http://www.rahulsingla.com/" class="a2a_i" rel="nofollow" id="a2apage_bitty_browser"><span class="a2a_i_bitty">Bitty Browser</span></a><a style="display: none;" target="_blank" href="http://www.rahulsingla.com/" class="a2a_i" rel="nofollow" id="a2apage_gabbr"><span class="a2a_i_gabbr">Gabbr</span></a><a style="display: none;" target="_blank" href="http://www.rahulsingla.com/" class="a2a_i" rel="nofollow" id="a2apage_symbaloo_feeds"><span class="a2a_i_symbaloo">Symbaloo Feeds</span></a><a style="display: none;" target="_blank" href="http://www.rahulsingla.com/" class="a2a_i" rel="nofollow" id="a2apage_tagza"><span class="a2a_i_tagza">Tagza</span></a><a style="display: none;" target="_blank" href="http://www.rahulsingla.com/" class="a2a_i" rel="nofollow" id="a2apage_folkd"><span class="a2a_i_folkd">Folkd</span></a><a style="display: none;" target="_blank" href="http://www.rahulsingla.com/" class="a2a_i" rel="nofollow" id="a2apage_newstrust"><span class="a2a_i_newstrust">NewsTrust</span></a><a style="display: none;" target="_blank" href="http://www.rahulsingla.com/" class="a2a_i" rel="nofollow" id="a2apage_amazon_wish_list"><span class="a2a_i_amazon">Amazon Wish List</span></a><a style="display: none;" target="_blank" href="http://www.rahulsingla.com/" class="a2a_i" rel="nofollow" id="a2apage_printfriendly"><span class="a2a_i_printfriendly">PrintFriendly</span></a><a style="display: none;" target="_blank" href="http://www.rahulsingla.com/" class="a2a_i" rel="nofollow" id="a2apage_read_it_later"><span class="a2a_i_read_it_later">Read It Later</span></a><a style="display: none;" target="_blank" href="http://www.rahulsingla.com/" class="a2a_i" rel="nofollow" id="a2apage_tuenti"><span class="a2a_i_tuenti">Tuenti</span></a><a style="display: none;" target="_blank" href="http://www.rahulsingla.com/" class="a2a_i" rel="nofollow" id="a2apage_email"><span class="a2a_i_email">Email</span></a><a style="display: none;" target="_blank" href="http://www.rahulsingla.com/" class="a2a_i" rel="nofollow" id="a2apage_rediff"><span class="a2a_i_rediff">Rediff MyPage</span></a></div><div id="a2apage_2_col1" style="display:none"><a target="_blank" href="http://www.rahulsingla.com/" class="a2a_i" rel="nofollow" id="a2apage_google_gmail"><span class="a2a_i_gmail">Google Gmail</span></a><a target="_blank" href="http://www.rahulsingla.com/" class="a2a_i" rel="nofollow" id="a2apage_yahoo_mail"><span class="a2a_i_yahoo">Yahoo Mail</span></a><a target="_blank" href="http://www.rahulsingla.com/" class="a2a_i" rel="nofollow" id="a2apage_hotmail"><span class="a2a_i_live">Hotmail</span></a><a target="_blank" href="http://www.rahulsingla.com/" class="a2a_i" rel="nofollow" id="a2apage_aol_mail"><span class="a2a_i_aol">AOL Mail</span></a><a target="_blank" href="http://www.rahulsingla.com/" class="a2a_i a2a_emailer" rel="nofollow" id="a2apage_any_email"><span class="a2a_i_email">Any email</span></a><a target="" href="http://www.rahulsingla.com/" class="a2a_i a2a_emailer a2a_email_client" rel="nofollow" id="a2apage_email_client"><span class="a2a_i_outlook">&nbsp;</span><span class="a2a_i_windows_mail">&nbsp;</span><span class="a2a_i_apple_mail">&nbsp;</span><span class="a2a_i_thunderbird">&nbsp;</span></a></div><div class="a2a_clear"></div></div><div id="a2apage_note_PTZ" class="a2a_note" style="display:none"></div><div class="a2apage_wide a2a_wide"><a href="javascript:void(0)" id="a2apage_show_more_less" class="a2a_menu_show_more_less" onclick="return a2a.show_more_less(0)" onmouseover="img=this.firstChild;if(a2a.c.color_arrow_hover=='fff'){if(img.className.indexOf('_wt')==-1)img.className+='_wt'}else img.className=img.className.replace(/_wt/,'')" onmouseout="img=this.firstChild;if(a2a.c.color_arrow=='fff'){if(img.className.indexOf('_wt')==-1)img.className+='_wt'}else img.className=img.className.replace(/_wt/,'')" title="Показать все"><span class="a2a_i_darr"></span></a></div><div class="a2a_menu_powered_by" id="a2apage_powered_by" onmouseover="if(this.innerHTML!=this.orig&amp;&amp;!window.opera)this.innerHTML=this.orig;this.style.textAlign='center'">By <a href="http://share.lockerz.com/" target="_blank" title="Share Buttons">Lockerz</a></div></div></div></div>
+
+  <div id="utilities">
+  <form action="/blog/serializing-datetime-client-side-cooliteextjs-consumption" accept-charset="UTF-8" method="post" id="search-theme-form">
+<div><div id="search" class="container-inline">
+  <div class="form-item" id="edit-search-theme-form-1-wrapper">
+ <label for="edit-search-theme-form-1">Search this site: </label>
+ <input maxlength="128" name="search_theme_form" id="edit-search-theme-form-1" size="15" title="Enter the terms you wish to search for." class="form-text" type="text">
+</div>
+<input name="op" id="edit-submit-2" value="Search" class="form-submit" type="submit">
+<input name="form_build_id" id="form-310e665cefc2374c68ccd4295b2a5679" value="form-310e665cefc2374c68ccd4295b2a5679" type="hidden">
+<input name="form_id" id="edit-search-theme-form" value="search_theme_form" type="hidden">
+</div>
+
+</div></form>
+  
+    <div id="plinks">     
+             <ul class="menu"><li class="leaf first"><a href="http://www.rahulsingla.com/" title="Home">Home</a></li>
+<li class="leaf"><a href="http://www.rahulsingla.com/profile" title="Profile">Profile</a></li>
+<li class="leaf"><a href="http://www.rahulsingla.com/blog" title="">Blog</a></li>
+<li class="expanded"><a class="primoespanso" href="http://www.rahulsingla.com/projects/all" title="Projects">Projects</a><ul class="menu primosottolivello"><li class="expanded first"><a class="primoespanso espanso" href="http://www.rahulsingla.com/projects/5" title="">C/C++</a><ul class="menu sottolivello"><li class="leaf first"><a class="" href="http://www.rahulsingla.com/projects/kbc-%28kaun-banega-crorepati%29" title="KBC (Kaun Banega Crorepati)">KBC</a></li>
+<li class="leaf last"><a class="" href="http://www.rahulsingla.com/projects/textpad" title="TextPad">TextPad</a></li>
+</ul></li>
+<li class="expanded"><a class="primoespanso espanso" href="http://www.rahulsingla.com/projects/3" title="">.NET</a><ul class="menu sottolivello"><li class="leaf first"><a class="" href="http://www.rahulsingla.com/projects/chess" title="Chess">Chess</a></li>
+<li class="leaf last"><a class="" href="http://www.rahulsingla.com/projects/online-exam" title="Online Exam">Online Exam</a></li>
+</ul></li>
+<li class="expanded"><a class="primoespanso espanso" href="http://www.rahulsingla.com/projects/4" title="">Java</a><ul class="menu sottolivello"><li class="leaf first"><a class="" href="http://www.rahulsingla.com/projects/billing-system" title="Billing System">Billing System</a></li>
+<li class="leaf"><a class="" href="http://www.rahulsingla.com/projects/blogs" title="Blogs">Blogs</a></li>
+<li class="leaf"><a class="" href="http://www.rahulsingla.com/projects/clinical-lab" title="Clinical Lab">Clinical Lab</a></li>
+<li class="leaf"><a class="" href="http://www.rahulsingla.com/projects/desktop-chat" title="Desktop Chat">Desktop Chat</a></li>
+<li class="leaf"><a class="" href="http://www.rahulsingla.com/projects/face-recognition" title="Face Recognition">Face Recognition</a></li>
+<li class="leaf"><a class="" href="http://www.rahulsingla.com/projects/forums" title="Forums">Forums</a></li>
+<li class="leaf"><a class="" href="http://www.rahulsingla.com/projects/library-management" title="Library Management">Lib Manage</a></li>
+<li class="leaf"><a class="" href="http://www.rahulsingla.com/projects/orkut" title="Orkut">Orkut</a></li>
+<li class="leaf last"><a class="" href="http://www.rahulsingla.com/projects/rent-coder" title="Rent - A - Coder">Rent-A-Coder</a></li>
+</ul></li>
+<li class="expanded"><a class="primoespanso espanso" href="http://www.rahulsingla.com/projects/7/15" title="">Drupal</a><ul class="menu sottolivello"><li class="expanded first"><a class="primoespanso espanso" href="http://www.rahulsingla.com/projects/drupal-take-control-module" title="Drupal - Take Control module">Take Control</a><ul class="menu sottolivello"><li class="leaf first"><a class="" href="http://www.rahulsingla.com/projects/drupal-take-control-module/installation" title="Drupal - Take Control module Installation">Installation</a></li>
+<li class="leaf last"><a class="" href="http://www.rahulsingla.com/projects/drupal-take-control-module/icon-sets" title="File Browser Icon Sets for the Drupal Take Control module">Icon-Sets</a></li>
+</ul></li>
+<li class="leaf"><a class="" href="http://www.rahulsingla.com/projects/drupal-document-module" title="Drupal Document module">Document</a></li>
+<li class="leaf last"><a class="" href="http://www.rahulsingla.com/projects/drupal-reference-links-module" title="Drupal - Reference Links Module">Reference Links</a></li>
+</ul></li>
+<li class="leaf last"><a class="" href="http://www.rahulsingla.com/projects/all/list-all" title="">Project List</a></li>
+</ul></li>
+<li class="expanded"><a class="primoespanso" href="http://www.rahulsingla.com/downloads">Downloads</a><ul class="menu primosottolivello"><li class="leaf first"><a class="" href="http://www.rahulsingla.com/downloads/running-dos-based-programs-vista" title="Running DOS-based Programs in Vista">DOS Programs in Vista</a></li>
+<li class="leaf last"><a class="" href="http://www.rahulsingla.com/downloads/turbo-c" title="Turbo C">Turbo C</a></li>
+</ul></li>
+<li class="leaf"><a href="http://www.rahulsingla.com/rs-web" title="rs@web">rs@web</a></li>
+<li class="leaf"><a href="http://www.rahulsingla.com/guestbook" title="">Guestbook</a></li>
+<li class="leaf last"><a href="http://www.rahulsingla.com/contact" title="Contact Me">Contact Me</a></li>
+</ul>     
+               </div>          </div>
+
+
+<div id="page">
+
+  <div id="header">
+
+ 
+   <p class="sitetitle">
+	      <a href="http://www.rahulsingla.com/" title="Home">
+	        rahulsingla.com	      </a>
+	    </p>	
+ 
+ 	  	  
+ <p class="slogan">Online Home of Rahul Singla</p>
+
+  </div>
+
+ 
+               <div id="submenu">          <ul class="links secondary-links"><li class="menu-290 first"><a href="http://www.rahulsingla.com/chit-chat/2010/04/announcing-publishing-of-my-first-book-project" title="">My first book published</a></li>
+<li class="menu-292"><a href="http://www.rahulsingla.com/chit-chat/2010/04/privileged-to-be-associated-to-iit-bombay" title="">Consultant to IITB</a></li>
+<li class="menu-260"><a href="http://www.rahulsingla.com/chit-chat/save-our-tigers" title="Save Our Tigers">Save Our Tigers <img src="serializing-datetime-client-side-cooliteextjs-consumption_files/tiger.png"></a></li>
+<li class="menu-261"><a href="http://www.rahulsingla.com/chit-chat/matrix-is-it-reality" title="Matrix - Is it a reality">Are we in a Matrix</a></li>
+<li class="menu-398"><a href="http://www.rahulsingla.com/chit-chat/2011/04/hosting-blues" title="Hosting Blues">Hosting Blues</a></li>
+<li class="menu-399"><a href="http://www.rahulsingla.com/chit-chat/2010/07/general-help-and-support" title="General Help and support">General Help and support</a></li>
+<li class="menu-303"><a href="http://www.rahulsingla.com/chit-chat/2011/01/images-from-greece" title="Images from Greece">Images from Greece</a></li>
+<li class="menu-403 last"><a href="http://www.rahulsingla.com/chit-chat/2011/05/drupal-association-individual-member" title="Drupal Association Individual Member">Drupal Association Individual Member</a></li>
+</ul>          </div><div class="stopfloat"></div>        
+       
+   
+
+  <div class="wrapper"><!--wrapper:defines whole content margins-->
+  
+  
+   <div id="primary" class="short">               <div class="singlepage">
+	  <div class="path"><p><span>You are here</span><a href="http://www.rahulsingla.com/blog">Blogs</a> / <a href="http://www.rahulsingla.com/blogs/rahul">rahul's blog</a> / Serializing DateTime for client-side Coolite/ExtJs consumption</p></div> 
+	  
+            
+		 <h1>Serializing DateTime for client-side Coolite/ExtJs consumption</h1>		 
+                            <div class="drdot">
+<hr>
+</div>
+         
+          
+ 
+ 
+ 
+ 
+  <div class="node">
+ 	       <div class="picture">
+  <a href="http://www.rahulsingla.com/users/rahul" title="View user profile."><img src="serializing-datetime-client-side-cooliteextjs-consumption_files/picture-1.jpg" alt="rahul's picture" title="rahul's picture"></a></div>
+    
+
+        
+		      <div class="metanode"><p>By <span class="author"><a href="http://www.rahulsingla.com/users/rahul" title="View user profile.">rahul</a></span> - Posted on <span class="date">17 December 2009</span></p>
+	  
+
+	  
+	  </div> 
+            
+    <div class="content">
+	
+	
+	<!-- google_ad_section_start --><p>If you are trying to figure out why 
+Coolite/ExtJs is giving an error while loading DateTime you serialized 
+to Json manually (including serialization to json of records which 
+contain Datetime fields), here is the answer.</p><p>Well, as far as I 
+have seen, Coolite/ExtJs components (including the store) only accept 
+one serialization format for DateTime fields, that is the <strong>sortable date/time pattern</strong> that conforms to <strong>ISO 8601</strong> pattern.</p><p>The custom format string for this pattern in .NET that can be passed to the DateTime ToString() method is:<br><strong>yyyy-MM-ddTHH:mm:ss</strong></p><p>Alternatively, you can also use the standard DateTime format specifier for this format, which is "<strong>s</strong>" in for the DateTime's ToString() method.</p><div id="_mcePaste" style="overflow: hidden; position: absolute; left: -10000px; top: 0px; width: 1px; height: 1px;"><p>Sortable date/time pattern; conforms to ISO 8601</p></div><!-- google_ad_section_end --></div>
+    
+    
+        <div class="links"><ul class="links inline"><li class="blog_usernames_blog first"><a href="http://www.rahulsingla.com/blogs/rahul" title="Read rahul's latest blog entries.">rahul's blog</a></li>
+<li class="addtoany"><span>
+		<a class="da2a_button" href="http://www.addtoany.com/share_save#url=http%3A%2F%2Fwww.rahulsingla.com%2Fblog%2Fserializing-datetime-client-side-cooliteextjs-consumption&amp;title=Serializing%20DateTime%20for%20client-side%20Coolite%2FExtJs%20consumption&amp;description=" id="da2a_1"><img src="serializing-datetime-client-side-cooliteextjs-consumption_files/share_save_171_16.png" alt="Share this" height="16" width="171"></a>
+		<script type="text/javascript">
+<!--//--><![CDATA[//><!--
+da2a.script_load();
+//--><!]]>
+</script>
+		</span></li>
+<li class="forward_links last"><a href="http://www.rahulsingla.com/forward?path=node%2F33" title="Forward this page" class="forward-page"><img src="serializing-datetime-client-side-cooliteextjs-consumption_files/forward.gif" alt="Email this page" title="" class="forward-icon" height="16" width="16"></a></li>
+</ul></div>        
+        
+    
+        <div class="taxonomy"><span>Tags</span> <ul class="links inline"><li class="taxonomy_term_6 first"><a href="http://www.rahulsingla.com/category/net/asp-net" rel="tag" title="">ASP.NET</a></li>
+<li class="taxonomy_term_19"><a href="http://www.rahulsingla.com/category/frameworks/coolite" rel="tag" title="">Coolite</a></li>
+<li class="taxonomy_term_20 last"><a href="http://www.rahulsingla.com/category/web-2-0/extjs" rel="tag" title="">ExtJs</a></li>
+</ul></div>    
+    
+  </div>
+<div id="comments">
+  <a id="comment-101"></a>
+
+<div class="comment  comment-published odd">
+
+ 
+    <div class="picture">
+  </div>
+
+  
+    <div class="commentTitle"><a href="http://www.rahulsingla.com/blog/serializing-datetime-client-side-cooliteextjs-consumption#comment-101" class="active">Thanks</a></div>
+    <div class="submitted">Submitted by Leather (not verified) on May 7, 2010 - 12:00pm.</div>
+    <div class="content"><p></p><p>Great - this is a really simple solution that saved me a fair bit of time. Thanks for posting it.</p>
+</div>
+    <div class="firma">
+        </div>
+    <div class="links"><ul class="links"><li class="comment_reply first"><a href="http://www.rahulsingla.com/comment/reply/33/101">reply</a></li>
+<li class="forward_links last"><a href="http://www.rahulsingla.com/forward?path=node%2F33&amp;cid=101" title="Forward this page" class="forward-page"><img src="serializing-datetime-client-side-cooliteextjs-consumption_files/forward.gif" alt="Email this comment" title="" class="forward-icon" height="16" width="16"></a></li>
+</ul></div>
+  </div>
+<div class="box">
+
+  <h2>Post new comment</h2>
+
+  <div class="content"><form action="/comment/reply/33" accept-charset="UTF-8" method="post" id="comment-form" enctype="multipart/form-data">
+<div><div class="form-item" id="edit-name-wrapper">
+ <label for="edit-name">Your name: <span class="form-required" title="This field is required.">*</span></label>
+ <input maxlength="60" name="name" id="edit-name" size="30" class="form-text required" type="text">
+</div>
+<div class="form-item" id="edit-mail-wrapper">
+ <label for="edit-mail">E-mail: <span class="form-required" title="This field is required.">*</span></label>
+ <input maxlength="64" name="mail" id="edit-mail" size="30" class="form-text required" type="text">
+ <div class="description">The content of this field is kept private and will not be shown publicly.</div>
+</div>
+<div class="form-item" id="edit-homepage-wrapper">
+ <label for="edit-homepage">Homepage: </label>
+ <input maxlength="255" name="homepage" id="edit-homepage" size="30" class="form-text" type="text">
+</div>
+<div class="form-item" id="edit-subject-wrapper">
+ <label for="edit-subject">Subject: </label>
+ <input maxlength="64" name="subject" id="edit-subject" size="60" class="form-text" type="text">
+</div>
+<div class="form-item" id="edit-comment-wrapper">
+ <label for="edit-comment">Comment: <span class="form-required" title="This field is required.">*</span></label>
+ <textarea style="display: none;" cols="60" rows="15" name="comment" id="edit-comment" class="form-textarea required"></textarea><span class="mceEditor defaultSkin" id="edit-comment_parent"><table style="width: 100%; height: 304px;" class="mceLayout" id="edit-comment_tbl" cellpadding="0" cellspacing="0"><tbody><tr class="mceFirst"><td class="mceToolbar mceLeft mceFirst mceLast"><a href="#" accesskey="q" title="Jump to tool buttons - Alt+Q, Jump to editor - Alt-Z, Jump to element path - Alt-X"><!-- IE --></a><a href="#" accesskey="z" title="Jump to tool buttons - Alt+Q, Jump to editor - Alt-Z, Jump to element path - Alt-X" onfocus="tinyMCE.getInstanceById('edit-comment').focus();"><!-- IE --></a><div class="wysiwygToolbar"><div class="mceToolbarStart mceToolbarStartButton mceFirst"><span><!-- IE --></span></div><div><a id="edit-comment_bold" href="javascript:;" class="mceButton mceButtonEnabled mce_bold" onmousedown="return false;" onclick="return false;" title="Bold (Ctrl+B)"><span class="mceIcon mce_bold"></span></a></div><div><a id="edit-comment_italic" href="javascript:;" class="mceButton mceButtonEnabled mce_italic" onmousedown="return false;" onclick="return false;" title="Italic (Ctrl+I)"><span class="mceIcon mce_italic"></span></a></div><div><a id="edit-comment_underline" href="javascript:;" class="mceButton mceButtonEnabled mce_underline" onmousedown="return false;" onclick="return false;" title="Underline (Ctrl+U)"><span class="mceIcon mce_underline"></span></a></div><div><a id="edit-comment_strikethrough" href="javascript:;" class="mceButton mceButtonEnabled mce_strikethrough" onmousedown="return false;" onclick="return false;" title="Strikethrough"><span class="mceIcon mce_strikethrough"></span></a></div><div><a id="edit-comment_justifyleft" href="javascript:;" class="mceButton mceButtonEnabled mce_justifyleft" onmousedown="return false;" onclick="return false;" title="Align left"><span class="mceIcon mce_justifyleft"></span></a></div><div><a id="edit-comment_justifycenter" href="javascript:;" class="mceButton mceButtonEnabled mce_justifycenter" onmousedown="return false;" onclick="return false;" title="Align center"><span class="mceIcon mce_justifycenter"></span></a></div><div><a id="edit-comment_justifyright" href="javascript:;" class="mceButton mceButtonEnabled mce_justifyright" onmousedown="return false;" onclick="return false;" title="Align right"><span class="mceIcon mce_justifyright"></span></a></div><div><a id="edit-comment_justifyfull" href="javascript:;" class="mceButton mceButtonEnabled mce_justifyfull" onmousedown="return false;" onclick="return false;" title="Align full"><span class="mceIcon mce_justifyfull"></span></a></div><div><a id="edit-comment_bullist" href="javascript:;" class="mceButton mceButtonEnabled mce_bullist" onmousedown="return false;" onclick="return false;" title="Unordered list"><span class="mceIcon mce_bullist"></span></a></div><div><a id="edit-comment_numlist" href="javascript:;" class="mceButton mceButtonEnabled mce_numlist" onmousedown="return false;" onclick="return false;" title="Ordered list"><span class="mceIcon mce_numlist"></span></a></div><div><a id="edit-comment_outdent" href="javascript:;" class="mceButton mce_outdent mceButtonDisabled" onmousedown="return false;" onclick="return false;" title="Outdent"><span class="mceIcon mce_outdent"></span></a></div><div><a id="edit-comment_indent" href="javascript:;" class="mceButton mceButtonEnabled mce_indent" onmousedown="return false;" onclick="return false;" title="Indent"><span class="mceIcon mce_indent"></span></a></div><div><a id="edit-comment_undo" href="javascript:;" class="mceButton mce_undo mceButtonDisabled" onmousedown="return false;" onclick="return false;" title="Undo (Ctrl+Z)"><span class="mceIcon mce_undo"></span></a></div><div><a id="edit-comment_redo" href="javascript:;" class="mceButton mce_redo mceButtonDisabled" onmousedown="return false;" onclick="return false;" title="Redo (Ctrl+Y)"><span class="mceIcon mce_redo"></span></a></div><div><a id="edit-comment_link" href="javascript:;" class="mceButton mce_link mceButtonDisabled" onmousedown="return false;" onclick="return false;" title="Insert/edit link"><span class="mceIcon mce_link"></span></a></div><div><a id="edit-comment_unlink" href="javascript:;" class="mceButton mce_unlink mceButtonDisabled" onmousedown="return false;" onclick="return false;" title="Unlink"><span class="mceIcon mce_unlink"></span></a></div><div><a id="edit-comment_anchor" href="javascript:;" class="mceButton mceButtonEnabled mce_anchor" onmousedown="return false;" onclick="return false;" title="Insert/edit anchor"><span class="mceIcon mce_anchor"></span></a></div><div><a id="edit-comment_image" href="javascript:;" class="mceButton mceButtonEnabled mce_image" onmousedown="return false;" onclick="return false;" title="Insert/edit image"><span class="mceIcon mce_image"></span></a></div><div><a id="edit-comment_cleanup" href="javascript:;" class="mceButton mceButtonEnabled mce_cleanup" onmousedown="return false;" onclick="return false;" title="Cleanup messy code"><span class="mceIcon mce_cleanup"></span></a></div><div><table id="edit-comment_forecolor" class="mceSplitButton mceSplitButtonEnabled mce_forecolor" onmousedown="return false;" title="Select text color" cellpadding="0" cellspacing="0"><tbody><tr><td class="mceFirst"><a id="edit-comment_forecolor_action" href="javascript:;" class="mceAction mce_forecolor" onclick="return false;" onmousedown="return false;" title="Select text color"><span class="mceAction mce_forecolor"></span><div style="background-color: rgb(136, 136, 136);" class="mceColorPreview" id="edit-comment_forecolor_preview"></div></a></td><td class="mceLast"><a id="edit-comment_forecolor_open" href="javascript:;" class="mceOpen mce_forecolor" onclick="return false;" onmousedown="return false;" title="Select text color"><span class="mceOpen mce_forecolor"></span></a></td></tr></tbody></table></div><div><table id="edit-comment_backcolor" class="mceSplitButton mceSplitButtonEnabled mce_backcolor" onmousedown="return false;" title="Select background color" cellpadding="0" cellspacing="0"><tbody><tr><td class="mceFirst"><a id="edit-comment_backcolor_action" href="javascript:;" class="mceAction mce_backcolor" onclick="return false;" onmousedown="return false;" title="Select background color"><span class="mceAction mce_backcolor"></span><div style="background-color: rgb(136, 136, 136);" class="mceColorPreview" id="edit-comment_backcolor_preview"></div></a></td><td class="mceLast"><a id="edit-comment_backcolor_open" href="javascript:;" class="mceOpen mce_backcolor" onclick="return false;" onmousedown="return false;" title="Select background color"><span class="mceOpen mce_backcolor"></span></a></td></tr></tbody></table></div><div><a id="edit-comment_sup" href="javascript:;" class="mceButton mceButtonEnabled mce_sup" onmousedown="return false;" onclick="return false;" title="Superscript"><span class="mceIcon mce_sup"></span></a></div><div><a id="edit-comment_sub" href="javascript:;" class="mceButton mceButtonEnabled mce_sub" onmousedown="return false;" onclick="return false;" title="Subscript"><span class="mceIcon mce_sub"></span></a></div><div><a id="edit-comment_blockquote" href="javascript:;" class="mceButton mceButtonEnabled mce_blockquote" onmousedown="return false;" onclick="return false;" title="Blockquote"><span class="mceIcon mce_blockquote"></span></a></div><div><a id="edit-comment_hr" href="javascript:;" class="mceButton mceButtonEnabled mce_hr" onmousedown="return false;" onclick="return false;" title="Insert horizontal ruler"><span class="mceIcon mce_hr"></span></a></div><div><a id="edit-comment_cut" href="javascript:;" class="mceButton mceButtonEnabled mce_cut" onmousedown="return false;" onclick="return false;" title="Cut"><span class="mceIcon mce_cut"></span></a></div><div><a id="edit-comment_copy" href="javascript:;" class="mceButton mceButtonEnabled mce_copy" onmousedown="return false;" onclick="return false;" title="Copy"><span class="mceIcon mce_copy"></span></a></div><div><a id="edit-comment_paste" href="javascript:;" class="mceButton mceButtonEnabled mce_paste" onmousedown="return false;" onclick="return false;" title="Paste"><span class="mceIcon mce_paste"></span></a></div><div><a id="edit-comment_removeformat" href="javascript:;" class="mceButton mceButtonEnabled mce_removeformat" onmousedown="return false;" onclick="return false;" title="Remove formatting"><span class="mceIcon mce_removeformat"></span></a></div><div><a id="edit-comment_charmap" href="javascript:;" class="mceButton mceButtonEnabled mce_charmap" onmousedown="return false;" onclick="return false;" title="Insert custom character"><span class="mceIcon mce_charmap"></span></a></div><div><a id="edit-comment_emotions" href="javascript:;" class="mceButton mceButtonEnabled mce_emotions" onmousedown="return false;" onclick="return false;" title="Emotions"><span class="mceIcon mce_emotions"></span></a></div><div class="mceToolbarEnd"><span><!-- IE --></span></div><div><table id="edit-comment_fontselect" class="mceListBox mceListBoxEnabled mce_fontselect" cellpadding="0" cellspacing="0"><tbody><tr><td class="mceFirst"><a id="edit-comment_fontselect_text" href="javascript:;" class="mceText mceTitle" onclick="return false;" onmousedown="return false;">Font family</a></td><td class="mceLast"><a id="edit-comment_fontselect_open" tabindex="-1" href="javascript:;" class="mceOpen" onclick="return false;" onmousedown="return false;"><span></span></a></td></tr></tbody></table></div><div><table id="edit-comment_fontsizeselect" class="mceListBox mceListBoxEnabled mce_fontsizeselect" cellpadding="0" cellspacing="0"><tbody><tr><td class="mceFirst"><a id="edit-comment_fontsizeselect_text" href="javascript:;" class="mceText mceTitle" onclick="return false;" onmousedown="return false;">Font size</a></td><td class="mceLast"><a id="edit-comment_fontsizeselect_open" tabindex="-1" href="javascript:;" class="mceOpen" onclick="return false;" onmousedown="return false;"><span></span></a></td></tr></tbody></table></div><div><table id="edit-comment_styleselect" class="mceListBox mceListBoxEnabled mce_styleselect" cellpadding="0" cellspacing="0"><tbody><tr><td class="mceFirst"><a id="edit-comment_styleselect_text" href="javascript:;" class="mceText mceTitle" onclick="return false;" onmousedown="return false;">Styles</a></td><td class="mceLast"><a id="edit-comment_styleselect_open" tabindex="-1" href="javascript:;" class="mceOpen" onclick="return false;" onmousedown="return false;"><span></span></a></td></tr></tbody></table></div><div class="mceToolbarStart"><span><!-- IE --></span></div><div><a id="edit-comment_break" href="javascript:;" class="mceButton mceButtonEnabled mce_break" onmousedown="return false;" onclick="return false;" title="Separate the teaser and body of this content"><img class="mceIcon" src="serializing-datetime-client-side-cooliteextjs-consumption_files/break.gif"></a></div><div class="mceToolbarEnd mceToolbarEndButton mceLast"><span><!-- IE --></span></div></div></td></tr><tr><td class="mceIframeContainer mceFirst mceLast"><iframe style="width: 100%; height: 260px;" src='javascript:""' id="edit-comment_ifr" frameborder="0"></iframe></td></tr><tr class="mceLast"><td class="mceStatusbar mceFirst mceLast"><div id="edit-comment_path_row">Path: <a accesskey="x" href="#"></a><span id="edit-comment_path"><a class="mcePath_0" onmousedown="return false;" href="javascript:;">p</a></span></div><a class="mceResize" onclick="return false;" href="javascript:;" id="edit-comment_resize"></a></td></tr></tbody></table></span><div class="wysiwyg-toggle-wrapper"><a href="javascript:void(0);" id="wysiwyg-toggle-edit-comment">Disable rich-text</a></div>
+</div>
+<div class="wysiwyg wysiwyg-format-4 wysiwyg-editor-tinymce wysiwyg-field-edit-comment wysiwyg-status-1 wysiwyg-toggle-1 wysiwyg-resizable-1 wysiwyg-processed"> </div><input name="form_build_id" id="form-29c822e650215ddc85e01edc54fd167f" value="form-29c822e650215ddc85e01edc54fd167f" type="hidden">
+<input name="form_id" id="edit-comment-form" value="comment_form" type="hidden">
+<div class="attachments"><fieldset class=" collapsible collapsed"><legend class="collapse-processed"><a href="#">File attachments</a></legend><div class="fieldset-wrapper"><div class="description">Changes made to the attachments are not permanent until you save this post.</div><div id="attach-wrapper"><div class="form-item" id="edit-upload-wrapper">
+ <label for="edit-upload">Attach new file: </label>
+ <input name="files[upload]" class="form-file" id="edit-upload" size="60" type="file">
+
+ <div class="description">The maximum upload size is <em>1 MB</em>. Only files with the following extensions may be uploaded: <em>zip jpg jpeg gif png txt doc xls pdf ppt pps odt ods odp</em>. </div>
+</div>
+<input name="attach" id="edit-attach" value="Attach" class="form-submit ahah-processed" type="submit">
+</div></div></fieldset>
+</div><div class="clear-block"><div class="form-item" id="edit-notify-wrapper">
+ <label class="option" for="edit-notify"><input name="notify" id="edit-notify" value="1" checked="checked" class="form-checkbox" type="checkbox"> Notify me when new comments are posted</label>
+</div>
+<div class="form-radios"><div class="form-item" id="edit-notify-type-1-wrapper">
+ <label class="option" for="edit-notify-type-1"><input id="edit-notify-type-1" name="notify_type" value="1" checked="checked" class="form-radio" type="radio"> All comments</label>
+</div>
+<div class="form-item" id="edit-notify-type-2-wrapper">
+ <label class="option" for="edit-notify-type-2"><input id="edit-notify-type-2" name="notify_type" value="2" class="form-radio" type="radio"> Replies to my comment</label>
+</div>
+</div></div><input name="mollom[session_id]" id="edit-mollom-session-id" value="1338195968-120528a3f2d689d834" class="mollom-session-id" type="hidden">
+<div class="form-item" id="edit-mollom-captcha-wrapper">
+ <label for="edit-mollom-captcha">Word verification: <span class="form-required" title="This field is required.">*</span></label>
+ <span class="field-prefix"><span class="mollom-captcha-content mollom-image-captcha"><img src="serializing-datetime-client-side-cooliteextjs-consumption_files/120528a3f2d689d834.png" alt="Type the characters you see in this picture." title=""></span> (<a href="#" class="mollom-switch-captcha mollom-audio-captcha">verify using audio</a>)</span> <input maxlength="128" name="mollom[captcha]" id="edit-mollom-captcha" size="10" class="form-text required" type="text">
+ <div class="description">Type the characters you see in the picture 
+above; if you can't read them, submit the form and a new image will be 
+generated. Not case sensitive.</div>
+</div>
+<div style="display: none;"><div class="form-item" id="edit-mollom-homepage-wrapper">
+ <input maxlength="128" name="mollom[homepage]" id="edit-mollom-homepage" size="60" class="form-text" type="text">
+</div>
+</div><input name="op" id="edit-submit" value="Save" class="form-submit" type="submit">
+<input name="op" id="edit-preview" value="Preview" class="form-submit" type="submit">
+
+</div></form>
+</div>
+</div>
+</div>
+      </div>
+
+    </div>
+
+
+   
+   
+   
+        	<!-- left -->
+                  <div class="lsidebar">
+
+          
+            
+ <div class="defaultblock">
+    <h2></h2><!--block title-->
+   <div class="blockcontent"><p style="text-align: center;"><img class="mceItem" src="serializing-datetime-client-side-cooliteextjs-consumption_files/rs_small.jpg" alt="My Image" height="150" width="150"></p>
+<p>Click <a title="My Profile" href="http://www.rahulsingla.com/profile">here</a> to view my <a title="My Profile" href="http://www.rahulsingla.com/profile">Profile</a>.</p>
+</div>
+</div>
+ <div class="defaultblock">
+    <h2></h2><!--block title-->
+   <div style="padding: 0px;" class="blockcontent"><div id="custom-social-bookmarks">
+
+    <div style="text-align: center">
+        <a href="http://twitter.com/rahuls_log" target="_blank"><img src="serializing-datetime-client-side-cooliteextjs-consumption_files/twitter.png"></a>
+        <a href="http://www.facebook.com/singla.rahul" target="_blank"><img src="serializing-datetime-client-side-cooliteextjs-consumption_files/facebook.png"></a>
+        <a href="http://in.linkedin.com/in/rahulsingla" target="_blank"><img src="serializing-datetime-client-side-cooliteextjs-consumption_files/linkedin.png"></a>
+        <a href="http://www.rahulsingla.com/blogs/rahul/feed" target="_blank"><img src="serializing-datetime-client-side-cooliteextjs-consumption_files/rss.png"></a>
+    </div>
+
+    <div style="height: 100px;">
+        <div id="custom-social-bookmarks-twitter" style="float: left; width: 60px"><iframe title="Twitter Tweet Button" style="width: 58px; height: 62px;" class="twitter-share-button twitter-count-vertical" src="serializing-datetime-client-side-cooliteextjs-consumption_files/tweet_button.htm" allowtransparency="true" frameborder="0" scrolling="no"></iframe></div>
+        <div id="custom-social-bookmarks-facebook" style="float: left; width: 60px">
+            <div class=" fb_reset" id="fb-root"><div style="position: absolute; top: -10000px; height: 0pt; width: 0pt;"><div></div><div><iframe src="serializing-datetime-client-side-cooliteextjs-consumption_files/xd_arbiter.htm" name="fb_xdm_frame_http" id="fb_xdm_frame_http"></iframe><iframe src="serializing-datetime-client-side-cooliteextjs-consumption_files/xd_arbiter_002.htm" name="fb_xdm_frame_https" id="fb_xdm_frame_https"></iframe></div><div><iframe src="serializing-datetime-client-side-cooliteextjs-consumption_files/oauth.htm" class="FB_UI_Hidden" style="border: medium none; overflow: hidden; height: 240px; width: 575px;" name="f2f8ca8a3e498ac" id="f1a340e101692ce" scrolling="no"></iframe></div></div></div>
+            <script src="serializing-datetime-client-side-cooliteextjs-consumption_files/all.js"></script>
+        <fb:like class=" fb_edge_widget_with_comment fb_iframe_widget" href="" send="true" layout="box_count" width="50" show_faces="false" font=""><span style="height: 92px; width: 55px;"><iframe src="serializing-datetime-client-side-cooliteextjs-consumption_files/like.htm" class="fb_ltr " title="Like this content on Facebook." style="border: medium none; overflow: hidden; height: 92px; width: 55px;" name="f306a6ac4123cc" id="f22185382245d86" scrolling="no"></iframe></span></fb:like></div>
+        <div id="custom-social-bookmarks-plusone" style="float: left; width: 60px;"><div style="height: 60px; width: 50px; display: inline-block; text-indent: 0pt; margin: 0pt; padding: 0pt; background: none repeat scroll 0% 0% transparent; border-style: none; float: none; line-height: normal; font-size: 1px; vertical-align: baseline;" id="___plusone_0"><iframe title="+1" src="serializing-datetime-client-side-cooliteextjs-consumption_files/fastbutton.htm" name="I0_1338195974987" id="I0_1338195974987" vspace="0" tabindex="0" style="position: static; top: 0pt; width: 50px; margin: 0px; border-style: none; height: 60px; left: 0pt; visibility: visible;" marginwidth="0" marginheight="0" hspace="0" allowtransparency="true" frameborder="0" scrolling="no" width="100%"></iframe></div></div>
+    </div>
+
+    <div class="custom-social-bookmarks-pinit">
+        <iframe style="border: medium none; width: 90px; height: 20px;" src="serializing-datetime-client-side-cooliteextjs-consumption_files/pinit.htm" frameborder="0" scrolling="no"></iframe>
+        <script type="text/javascript">
+            jQuery('#custom-social-bookmarks-pinit-link').attr('href', "http://pinterest.com/pin/create/button/?url=" + encodeURIComponent(document.location.href));
+        </script>
+        <script type="text/javascript" src="serializing-datetime-client-side-cooliteextjs-consumption_files/pinit.js"></script>
+    </div>
+</div>
+
+<script type="text/javascript">
+    jQuery(document).ready(function () {
+
+        jQuery('#custom-social-bookmarks-twitter').append(decodeURIComponent('%3Ca%20href%3D%22http%3A%2F%2Ftwitter.com%2Fshare%22%20class%3D%22twitter-share-button%22%20data-count%3D%22vertical%22%20data-via%3D%22rahuls_log%22%3ETweet%3C%2Fa%3E%3Cscript%20type%3D%22text%2Fjavascript%22%20src%3D%22http%3A%2F%2Fplatform.twitter.com%2Fwidgets.js%22%3E%3C%2Fscript%3E'));
+
+        jQuery('#custom-social-bookmarks-facebook').append(decodeURIComponent('%3Cfb%3Alike%20href%3D%22%22%20send%3D%22true%22%20layout%3D%22box_count%22%20width%3D%2250%22%20show_faces%3D%22false%22%20font%3D%22%22%3E%3C%2Ffb%3Alike%3E'));
+
+        jQuery('#custom-social-bookmarks-plusone').append(decodeURIComponent('%3Cscript%20type%3D%22text%2Fjavascript%22%20src%3D%22https%3A%2F%2Fapis.google.com%2Fjs%2Fplusone.js%22%3E%3C%2Fscript%3E%3Cg%3Aplusone%20size%3D%22tall%22%3E%3C%2Fg%3Aplusone%3E'));
+
+        jQuery('#custom-social-bookmarks').parent().css('padding', '0px');
+    });
+</script></div>
+</div>
+ <div class="defaultblock">
+    <h2></h2><!--block title-->
+   <div class="blockcontent"><div style="text-align:left"><div class="adsense adsense_managed">
+<script type="text/javascript"><!--
+google_ad_client = "pub-8094553649257718";
+/* 120x240 */
+google_ad_slot = "9740311060";
+google_ad_width = 120;
+google_ad_height = 240;
+//-->
+</script>
+<script type="text/javascript" src="serializing-datetime-client-side-cooliteextjs-consumption_files/show_ads.js">
+</script>
+</div></div></div>
+</div>
+ <div class="defaultblock">
+    <h2>Monthly archive</h2><!--block title-->
+   <div class="blockcontent"><div class="view view-blog-archive view-id-blog_archive view-display-id-block view-dom-id-1">
+    
+  
+  
+      <div class="view-content">
+      <div class="item-list">
+  <ul class="views-summary">
+      <li><a href="http://www.rahulsingla.com/blog/archive/201205">May 2012</a>
+              (8)
+          </li>
+      <li><a href="http://www.rahulsingla.com/blog/archive/201203">March 2012</a>
+              (5)
+          </li>
+      <li><a href="http://www.rahulsingla.com/blog/archive/201202">February 2012</a>
+              (3)
+          </li>
+      <li><a href="http://www.rahulsingla.com/blog/archive/201201">January 2012</a>
+              (5)
+          </li>
+      <li><a href="http://www.rahulsingla.com/blog/archive/201112">December 2011</a>
+              (8)
+          </li>
+      <li><a href="http://www.rahulsingla.com/blog/archive/201111">November 2011</a>
+              (7)
+          </li>
+      <li><a href="http://www.rahulsingla.com/blog/archive/201110">October 2011</a>
+              (1)
+          </li>
+      <li><a href="http://www.rahulsingla.com/blog/archive/201109">September 2011</a>
+              (2)
+          </li>
+      <li><a href="http://www.rahulsingla.com/blog/archive/201108">August 2011</a>
+              (7)
+          </li>
+      <li><a href="http://www.rahulsingla.com/blog/archive/201107">July 2011</a>
+              (2)
+          </li>
+      <li><a href="http://www.rahulsingla.com/blog/archive/201106">June 2011</a>
+              (9)
+          </li>
+      <li><a href="http://www.rahulsingla.com/blog/archive/201105">May 2011</a>
+              (4)
+          </li>
+      <li><a href="http://www.rahulsingla.com/blog/archive/201104">April 2011</a>
+              (9)
+          </li>
+      <li><a href="http://www.rahulsingla.com/blog/archive/201103">March 2011</a>
+              (2)
+          </li>
+      <li><a href="http://www.rahulsingla.com/blog/archive/201102">February 2011</a>
+              (7)
+          </li>
+      <li><a href="http://www.rahulsingla.com/blog/archive/201101">January 2011</a>
+              (4)
+          </li>
+      <li><a href="http://www.rahulsingla.com/blog/archive/201012">December 2010</a>
+              (15)
+          </li>
+      <li><a href="http://www.rahulsingla.com/blog/archive/201011">November 2010</a>
+              (1)
+          </li>
+      <li><a href="http://www.rahulsingla.com/blog/archive/201010">October 2010</a>
+              (6)
+          </li>
+      <li><a href="http://www.rahulsingla.com/blog/archive/201009">September 2010</a>
+              (4)
+          </li>
+      <li><a href="http://www.rahulsingla.com/blog/archive/201008">August 2010</a>
+              (3)
+          </li>
+      <li><a href="http://www.rahulsingla.com/blog/archive/201007">July 2010</a>
+              (5)
+          </li>
+      <li><a href="http://www.rahulsingla.com/blog/archive/201006">June 2010</a>
+              (3)
+          </li>
+      <li><a href="http://www.rahulsingla.com/blog/archive/201005">May 2010</a>
+              (8)
+          </li>
+    </ul>
+</div>
+    </div>
+  
+  
+  
+      
+<div class="more-link">
+  <a href="http://www.rahulsingla.com/blog/archive">
+    more  </a>
+</div>
+  
+  
+  
+</div> </div>
+</div>
+ <div class="defaultblock">
+    <h2>Featured Articles</h2><!--block title-->
+   <div class="blockcontent"><div class="view view-FeaturedArticle view-id-FeaturedArticle view-display-id-block_1 view-dom-id-2">
+    
+  
+  
+      <div class="view-content">
+      <div class="item-list">
+    <ul>
+          <li class="views-row views-row-1 views-row-odd views-row-first">  
+  <div class="views-field-title">
+                <span class="field-content"><a href="http://www.rahulsingla.com/blog/2011/05/extjsfilemanager-extjs-based-file-and-image-manager-plugin-for-tinymce">ExtJsFileManager - ExtJs based File and Image Manager plugin for TinyMCE</a></span>
+  </div>
+  
+  <div class="views-field-teaser">
+                <div class="field-content"><p>A couple of days ago, I 
+started implementing a rather interesting piece of code. It was late 
+into the night, and I was not feeling like doing my regular work and 
+neither was I sleepy. At that time</p></div>
+  </div>
+  
+  <div class="views-field-view-node">
+                <span class="field-content"><a href="http://www.rahulsingla.com/blog/2011/05/extjsfilemanager-extjs-based-file-and-image-manager-plugin-for-tinymce">Read More...</a></span>
+  </div>
+</li>
+          <li class="views-row views-row-2 views-row-even">  
+  <div class="views-field-title">
+                <span class="field-content"><a href="http://www.rahulsingla.com/blog/2011/02/asp-net-using-powershell-and-google-translate-to-provide-automatic-localization">ASP.NET - Using Powershell and Google Translate to provide automatic localization</a></span>
+  </div>
+  
+  <div class="views-field-teaser">
+                <div class="field-content"><p><span style="text-decoration: underline;">UPDATE</span> (June 11, 2011): A complete sample ASP.NET application demonstrating features in this blog post is available here:</p></div>
+  </div>
+  
+  <div class="views-field-view-node">
+                <span class="field-content"><a href="http://www.rahulsingla.com/blog/2011/02/asp-net-using-powershell-and-google-translate-to-provide-automatic-localization">Read More...</a></span>
+  </div>
+</li>
+          <li class="views-row views-row-3 views-row-odd views-row-last">  
+  <div class="views-field-title">
+                <span class="field-content"><a href="http://www.rahulsingla.com/blog/2010/12/phoop-the-object-oriented-php-framework">PHOOP - The Object Oriented PHP framework</a></span>
+  </div>
+  
+  <div class="views-field-teaser">
+                <div class="field-content"><p>After the <a href="http://www.rahulsingla.com/blog/2010/12/phoop-an-object-oriented-php-framework-design-goals" target="_blank">design goals for the PHOOP framework</a>, now its time to come face-</p></div>
+  </div>
+  
+  <div class="views-field-view-node">
+                <span class="field-content"><a href="http://www.rahulsingla.com/blog/2010/12/phoop-the-object-oriented-php-framework">Read More...</a></span>
+  </div>
+</li>
+      </ul>
+</div>    </div>
+  
+  
+  
+  
+  
+  
+</div> </div>
+</div>
+ <div class="defaultblock">
+    <h2>Featured Project</h2><!--block title-->
+   <div class="blockcontent"><div class="view view-FeaturedProject view-id-FeaturedProject view-display-id-block_1 view-dom-id-3">
+    
+  
+  
+      <div class="view-content">
+        <div class="views-row views-row-1 views-row-odd views-row-first views-row-last">
+      
+  <div class="views-field-title">
+          <label class="views-label-title">
+        Title:
+      </label>
+                <span class="field-content"><a href="http://www.rahulsingla.com/projects/face-recognition">Face Recognition</a></span>
+  </div>
+  
+  <div class="views-field-teaser">
+                <div class="field-content"><p>This project, which I call FRAMS(<a href="http://en.wikipedia.org/wiki/Facial_recognition_system" target="_blank">Face Recognition</a> based Attendance Management System) was built recently by me...</p></div>
+  </div>
+  
+  <div class="views-field-view-node">
+                <span class="field-content"><a href="http://www.rahulsingla.com/projects/face-recognition">Read More...</a></span>
+  </div>
+  </div>
+    </div>
+  
+  
+  
+  
+  
+  
+</div> </div>
+</div>
+ <div class="defaultblock">
+    <h2>Recent Chit-Chats</h2><!--block title-->
+   <div class="blockcontent"><div class="view view-Chit-Chats view-id-Chit_Chats view-display-id-block_1 view-dom-id-4">
+    
+  
+  
+      <div class="view-content">
+      <div class="item-list">
+    <ul>
+          <li class="views-row views-row-1 views-row-odd views-row-first">  
+  <div class="views-field-title">
+                <span class="field-content"><a href="http://www.rahulsingla.com/chit-chat/2011/11/support-wikipedia">Support Wikipedia</a></span>
+  </div>
+</li>
+          <li class="views-row views-row-2 views-row-even">  
+  <div class="views-field-title">
+                <span class="field-content"><a href="http://www.rahulsingla.com/chit-chat/2011/05/drupal-association-individual-member">Drupal Association Individual Member</a></span>
+  </div>
+</li>
+          <li class="views-row views-row-3 views-row-odd">  
+  <div class="views-field-title">
+                <span class="field-content"><a href="http://www.rahulsingla.com/chit-chat/2011/04/hosting-blues">Hosting Blues</a></span>
+  </div>
+</li>
+          <li class="views-row views-row-4 views-row-even">  
+  <div class="views-field-title">
+                <span class="field-content"><a href="http://www.rahulsingla.com/chit-chat/2011/01/proud-to-be-an-indian">Proud to be an Indian</a></span>
+  </div>
+</li>
+          <li class="views-row views-row-5 views-row-odd views-row-last">  
+  <div class="views-field-title">
+                <span class="field-content"><a href="http://www.rahulsingla.com/chit-chat/2011/01/images-from-greece">Images from Greece</a></span>
+  </div>
+</li>
+      </ul>
+</div>    </div>
+  
+  
+  
+      
+<div class="more-link">
+  <a href="http://www.rahulsingla.com/chit-chats">
+    more  </a>
+</div>
+  
+  
+  
+</div> </div>
+</div>            
+          </div><!-- end left -->
+        
+   	<!-- right -->
+                  <div class="rsidebar">
+ 
+            
+ <div class="defaultblock">
+    <h2></h2><!--block title-->
+   <div class="blockcontent"><style type="text/css">
+#fb-root iframe {
+  width: 0px !important;
+}
+
+.pph-block a:hover {
+  background-color: transparent !important;
+}
+</style>
+
+<div style="text-align: center">
+<a href="http://www.rahulsingla.com/chit-chat/2011/05/drupal-association-individual-member"><img src="serializing-datetime-client-side-cooliteextjs-consumption_files/da-individual-120.png" title="Rahul Singla is an individual member of Drupal Association"></a>
+</div>
+
+<div style="text-align: center; width: 100%" class="pph-block">
+<div style="background:url(http://www.peopleperhour.com/images/badges/users/80463_6.png) no-repeat top left;height:141px;width:98px; margin-left: 35px"> <a href="http://www.peopleperhour.com/freelancers//80463" style="display: block; height: 70%; width: 100%;"><img src="serializing-datetime-client-side-cooliteextjs-consumption_files/MembershipTypeStamp2.jpg" style="width: 120px; height: 120px; margin-left: -15px;"> <span style="visibility:hidden">peopleperhour.com</span> </a> <a href="http://www.peopleperhour.com/freelancers//80463" title="" style="display: block; height: 29%; width: 100%;"> <span style="visibility:hidden"></span> </a> </div> 
+</div>
+</div>
+</div>
+ <div class="loginblock">
+    <h2 class="login">User login</h2><!--block title-->
+   <div class="blockcontent"><form action="/blog/serializing-datetime-client-side-cooliteextjs-consumption?destination=node%2F33" accept-charset="UTF-8" method="post" id="user-login-form">
+<div><div class="form-item" id="edit-name-1-wrapper">
+ <label for="edit-name-1">Username: <span class="form-required" title="This field is required.">*</span></label>
+ <input maxlength="60" name="name" id="edit-name-1" size="15" class="form-text required" type="text">
+</div>
+<div class="form-item" id="edit-pass-wrapper">
+ <label for="edit-pass">Password: <span class="form-required" title="This field is required.">*</span></label>
+ <input name="pass" id="edit-pass" maxlength="60" size="15" class="form-text required" type="password">
+</div>
+<input name="op" id="edit-submit-1" value="Log in" class="form-submit" type="submit">
+<div class="item-list"><ul><li class="first"><a href="http://www.rahulsingla.com/user/register" title="Create a new user account.">Create new account</a></li>
+<li class="last"><a href="http://www.rahulsingla.com/user/password" title="Request new password via e-mail.">Request new password</a></li>
+</ul></div><input name="form_build_id" id="form-7d4423f0df6cd67c143ffd3e09000388" value="form-7d4423f0df6cd67c143ffd3e09000388" type="hidden">
+<input name="form_id" id="edit-user-login-block" value="user_login_block" type="hidden">
+
+</div></form>
+</div>
+</div>
+ <div class="defaultblock">
+    <h2></h2><!--block title-->
+   <div class="blockcontent"><script type="text/javascript"><!--
+drupal_adsense_cse_lang = 'en';
+//-->
+</script>
+<form action="http://www.rahulsingla.com/adsense/cse" id="cse-search-box">
+  <div>
+    <input name="cx" value="partner-pub-8094553649257718:kmws3z-6czj" type="hidden">
+    <input name="cof" value="FORID:9" type="hidden">
+    <input name="ie" value="ISO-8859-1" type="hidden">
+    <input name="as_q" size="15" type="text">
+    <input name="sa" value="Search" type="submit">
+  </div>
+</form>
+<script type="text/javascript" src="serializing-datetime-client-side-cooliteextjs-consumption_files/adsense_cse.js"></script></div>
+</div>
+ <div class="defaultblock">
+    <h2>Navigation</h2><!--block title-->
+   <div class="blockcontent"><ul class="menu"><li class="leaf first"><a href="http://www.rahulsingla.com/epostcard">Send an e-Postcard</a></li>
+<li class="leaf last"><a href="http://www.rahulsingla.com/sitemap" title="Display a site map with RSS feeds.">Site Map</a></li>
+</ul></div>
+</div>
+ <div class="defaultblock">
+    <h2>Most Emailed</h2><!--block title-->
+   <div class="blockcontent"><div class="item-list"><ul><li class="first"><a href="http://www.rahulsingla.com/home">Home</a></li>
+<li><a href="http://www.rahulsingla.com/blog/2010/01/dotnetnuke-optimization-tips-tricks">DotNetNuke Optimization - Tips &amp; Tricks</a></li>
+<li><a href="http://www.rahulsingla.com/blog/2011/04/html-using-buttons-for-selecting-files-to-be-uploaded">Html - Using Buttons for selecting files to be uploaded</a></li>
+<li><a href="http://www.rahulsingla.com/blog/2010/05/creating-drupal-style-tables">Creating Drupal style tables</a></li>
+<li class="last"><a href="http://www.rahulsingla.com/blog/2010/04/ext-net-extjs-gridpanel-columns-summary-plugin-%28without-grouping%29">Ext.Net/ExtJs - GridPanel columns summary plugin (without Grouping)</a></li>
+</ul></div></div>
+</div>
+ <div class="defaultblock">
+    <h2>Recent blog posts</h2><!--block title-->
+   <div class="blockcontent"><div class="item-list"><ul><li class="first"><a href="http://www.rahulsingla.com/blog/2012/05/wif-security-token-service-for-active-directory-lightweight-directory-services">WIF - Security Token Service for Active Directory Lightweight Directory Services</a></li>
+<li><a href="http://www.rahulsingla.com/blog/2012/05/dotnetnuke-rendering-paypal-button-using-a-simple-aspx-page-and-an-iframe">DotNetNuke - Rendering PayPal button using a simple aspx page and an iframe</a></li>
+<li><a href="http://www.rahulsingla.com/blog/2012/05/drupal-7-displaying-available-tokens-in-ui-and-replacing-tokens-in-code">Drupal 7 - Displaying available Tokens in UI and replacing Tokens in code</a></li>
+<li><a href="http://www.rahulsingla.com/blog/2012/05/windows-odbc-db-database-getdrivertype-data-source-does-not-exist-in-odbc-ini-file">Windows ODBC - DB: database - getDriverType - Data Source Does not Exist in ODBC.INI file</a></li>
+<li><a href="http://www.rahulsingla.com/blog/2012/05/visual-studio-builds-loaded-projects-only-when-building-solution-from-command-line">Visual Studio builds loaded projects only when building solution from command line</a></li>
+<li><a href="http://www.rahulsingla.com/blog/2012/05/drupal-customizing-view-filters-programatically">Drupal - Customizing View filters programatically</a></li>
+<li><a href="http://www.rahulsingla.com/blog/2012/05/extjs-slider-component-with-ability-to-add-items-dynamically">ExtJs - Slider component with ability to add items dynamically</a></li>
+<li><a href="http://www.rahulsingla.com/blog/2012/05/drupal-defining-plugins-for-views-wizards">Drupal - Defining plugins for Views Wizards</a></li>
+<li><a href="http://www.rahulsingla.com/blog/2012/03/extjs-3-enabling-multiple-file-uploads-using-textfield">ExtJs 3 - Enabling multiple file uploads using TextField</a></li>
+<li class="last"><a href="http://www.rahulsingla.com/blog/2012/03/dotnetnuke-6-creating-dotnetnuke-styled-forms">DotNetNuke 6 - Creating DotNetNuke styled forms</a></li>
+</ul></div><div class="more-link"><a href="http://www.rahulsingla.com/blog" title="Read the latest blog entries.">more</a></div></div>
+</div>
+ <div class="defaultblock">
+    <h2>Recent comments</h2><!--block title-->
+   <div class="blockcontent"><div class="item-list"><ul><li class="first"><a href="http://www.rahulsingla.com/blog/2010/07/ext-net-ajax-file-upload-using-web-service#comment-1724">Hi, you can easily use an</a><br>2 hours 57 min ago</li>
+<li><a href="http://www.rahulsingla.com/blog/2010/03/ext-net-creating-command-columns-for-gridpanel-on-client-side#comment-1723">Hi Rahul
+&nbsp; &nbsp; &nbsp;Thanks for</a><br>3 hours 17 min ago</li>
+<li><a href="http://www.rahulsingla.com/blog/2010/07/ext-net-ajax-file-upload-using-web-service#comment-1722">This would have led all</a><br>3 hours 36 min ago</li>
+<li><a href="http://www.rahulsingla.com/blog/2011/04/drupal-node-form-validation-methods-in-hook_form_alter-should-be-set-using-after_build-#comment-1721">How to set error message</a><br>15 hours 29 min ago</li>
+<li><a href="http://www.rahulsingla.com/blog/2010/03/ext-net-creating-command-columns-for-gridpanel-on-client-side#comment-1720">Hi Nagesh, I believe I have</a><br>15 hours 41 min ago</li>
+<li><a href="http://www.rahulsingla.com/blog/2012/03/extjs-3-enabling-multiple-file-uploads-using-textfield#comment-1719">Hi sam, please read</a><br>15 hours 43 min ago</li>
+<li><a href="http://www.rahulsingla.com/blog/2011/04/drupal-node-form-validation-methods-in-hook_form_alter-should-be-set-using-after_build-#comment-1718">Hi Manuel, any errors in form</a><br>15 hours 47 min ago</li>
+<li><a href="http://www.rahulsingla.com/blog/2011/04/drupal-node-form-validation-methods-in-hook_form_alter-should-be-set-using-after_build-#comment-1717">Thanks ..</a><br>16 hours 39 min ago</li>
+<li><a href="http://www.rahulsingla.com/blog/2012/03/extjs-3-enabling-multiple-file-uploads-using-textfield#comment-1716">Screen resolution problem</a><br>3 days 5 hours ago</li>
+<li class="last"><a href="http://www.rahulsingla.com/blog/2011/11/extjs-and-iscroll-scrolling-ext-containers-on-touch-devices-ipad-iphone-etc-using-iscro#comment-1715">Sorry Karim, I am too hooked</a><br>3 days 22 hours ago</li>
+</ul></div></div>
+</div>         
+          </div><!-- end right -->
+        
+
+
+ <div class="clear"></div>
+
+  </div>
+</div>
+<!-- Close Page -->
+<div id="footer">
+
+
+   <script>
+function googleTranslateElementInit() {
+  new google.translate.TranslateElement({
+    pageLanguage: 'en',
+    gaTrack: true,
+    gaId: 'UA-10554035-1',
+    floatPosition: google.translate.TranslateElement.FloatPosition.TOP_RIGHT
+  });
+}
+
+jQuery(document).ready(function() {
+jQuery(document.head).append(decodeURIComponent('%3Cscript%20src%3D%22http%3A%2F%2Ftranslate.google.com%2Ftranslate_a%2Felement.js%3Fcb%3DgoogleTranslateElementInit%22%3E%3C%2Fscript%3E'));
+});
+</script><a title="License Agreement" href="http://www.rahulsingla.com/">License Agreement</a> |
+<a title="Site Map" href="http://www.rahulsingla.com/sitemap">Site Map</a> |
+<a title="Report Bugs" href="http://www.rahulsingla.com/contact">Bugs</a> |
+<a title="r Book - Guest Book" href="http://www.rahulsingla.com/guestbook">Guest Book</a> |
+<a class="BottomLink" title="Privacy Policy" href="http://www.rahulsingla.com/">Privacy Policy</a> |
+<a class="BottomLink" href="http://www.rahulsingla.com/">Terms of Use</a>
+
+<br>
+All registered Trademarks and Copyrights are properties of their respective owners.<br>
+All rights reserved. © 2007-2010, Rahul Singla.</div>
+<script type="text/javascript" src="serializing-datetime-client-side-cooliteextjs-consumption_files/js_4b5b77d0af16107c56e0df7913962ff8.js"></script>
+<script type="text/javascript">
+<!--//--><![CDATA[//><!--
+da2a.targets=[
+{title:'Serializing DateTime for client-side Coolite/ExtJs consumption',url:'http://www.rahulsingla.com/blog/serializing-datetime-client-side-cooliteextjs-consumption'}];
+da2a.html_done=true;if(da2a.script_ready&&!da2a.done)da2a.init();da2a.script_load();
+//--><!]]>
+</script><div id="goog-gt-tt" class="skiptranslate"><div style="overflow:hidden"><div class="logo"><img src="serializing-datetime-client-side-cooliteextjs-consumption_files/mini_google.png"></div><a class="close-button" href="javascript:void(0)" title="Close"><img src="serializing-datetime-client-side-cooliteextjs-consumption_files/cleardot.gif" style="background-image: url(&quot;http://translate.googleapis.com/translate_static/img/te_ctrl3.gif&quot;); background-position: -28px 0px;" height="15" width="15"></a></div><div class="top"><hr style="color: #CCC; background-color: #CCC; height: 1px; border: none;"><div class="title left">Original Text:</div></div><div class="middle"><div class="original-text"></div></div><div class="bottom"><div class="activity-links"><span class="activity-link">Show alternative translations</span></div><div class="started-activity-container"><hr style="color: #CCC; background-color: #CCC; height: 1px; border: none;"><div class="activity-root"></div></div></div><div style="display: none;" class="status-message"></div></div>
+
+<div style="position: absolute; top: -1000px; height: 1px; width: 1px;"><object id="fI0h2rbc4im" name="fI0h2rbc4im" type="application/x-shockwave-flash" data="serializing-datetime-client-side-cooliteextjs-consumption_files/hrs.swf" height="500" width="400"><param name="allowScriptAccess" value="always"></object></div><div class=" goog-te-ftab-float" id=":0.floatContainer" style="-moz-box-sizing: content-box; width: 91px; height: 24px;"><iframe id=":0.container" src="javascript:''" class="goog-te-ftab-frame skiptranslate" style="visibility: visible; -moz-box-sizing: content-box; width: 91px; height: 24px;" frameborder="0"></iframe></div></body></html>

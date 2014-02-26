@@ -1,0 +1,63 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<title></title>
+<script language="javascript" type="text/javascript">
+    var ZDBB = getCookie("zdbb");
+    var TPID = getCookie("tpid");
+    var iTPID = parseInt(TPID);
+    var thirdParties = ["http://um.simpli.fi/pm_match?http://zdbb.net/l/qI109lRAEeGCiBIxORcFRw/?tp=FC4AwlRGEeGCiBIxORcFRw&tpc=$UID"
+                      , "http://sync.mathtag.com/sync/img?mt_exid=10015&redir=http%3A%2F%2Fzdbb.net%2Fl%2FqI109lRAEeGCiBIxORcFRw%2F%3Ftp%3DGye1vFnDEeGCiBIxORcFRw%26tpc%3D[MM_UUID]"];
+    var CurrentBitmask = 1;
+    var CookieDays = 7;
+    if (ZDBB != null) {
+        for (var i = 0; i < thirdParties.length; i++) {
+            CurrentBitmask = Math.pow(2, i + 1);
+            var endpoint = thirdParties[i];
+            if (TPID == null || !(iTPID & CurrentBitmask)) {
+                SendRequest(CurrentBitmask, endpoint);
+            }
+        }
+    }
+    function SendRequest(CurrentBitmask, URL) {
+        var img = document.createElement("img");
+        img.src = URL;
+        img.style.height = "1px";
+        img.style.width = "1px";
+        if (img.attachEvent) {
+            img.attachEvent('onload', function() {
+                incCookie("tpid", CurrentBitmask, CookieDays);
+            });
+        } else {
+            img.addEventListener('load', function() {
+                incCookie("tpid", CurrentBitmask, CookieDays);
+            });
+        }
+    }
+    function incCookie(c_name, value, exdays) {
+        var curval = parseInt(getCookie(c_name));
+        if (isNaN(curval)) {
+            curval = 0;
+        }
+        value = curval + value;
+        var exdate = new Date();
+        exdate.setDate(exdate.getDate() + exdays);
+        var c_value = escape(value) + ((exdays == null) ? "" : "; expires=" + exdate.toUTCString());
+        document.cookie = c_name + "=" + c_value + "; path=/" + "; domain=.zdbb.net";
+    }
+    function getCookie(c_name) {
+        var i, x, y, ARRcookies = document.cookie.split(";");
+        for (i = 0; i < ARRcookies.length; i++) {
+            x = ARRcookies[i].substr(0, ARRcookies[i].indexOf("="));
+            y = ARRcookies[i].substr(ARRcookies[i].indexOf("=") + 1);
+            x = x.replace( /^\s+|\s+$/g , "");
+            if (x == c_name) {
+                return unescape(y);
+            }
+        }
+        return null;
+    } </script>
+</head>
+<body>
+
+</body></html>

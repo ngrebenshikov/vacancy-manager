@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet type='text/xsl' href='_UpgradeReport_Files/UpgradeReport.xslt'?><UpgradeLog>
+<Properties><Property Name="Solution" Value="find_sum_fact">
+</Property><Property Name="Solution File" Value="C:\Users\Артур\Desktop\find_sum_fact\find_sum_fact\find_sum_fact.sln">
+</Property><Property Name="User Options File" Value="C:\Users\Артур\Desktop\find_sum_fact\find_sum_fact\find_sum_fact.suo">
+</Property><Property Name="Date" Value="16 февраля 2012 г.">
+</Property><Property Name="Time" Value="20:58">
+</Property></Properties><Event ErrorLevel="0" Project="" Source="find_sum_fact.sln" Description="File successfully backed up as C:\Users\Артур\Desktop\find_sum_fact\find_sum_fact\Backup\find_sum_fact.sln">
+</Event><Event ErrorLevel="0" Project="" Source="find_sum_fact.suo" Description="File successfully backed up as C:\Users\Артур\Desktop\find_sum_fact\find_sum_fact\Backup\find_sum_fact.suo">
+</Event><Event ErrorLevel="0" Project="find_sum_fact" Source="find_sum_fact.csproj" Description="Project file successfully backed up as C:\Users\Артур\Desktop\find_sum_fact\find_sum_fact\Backup\find_sum_fact.csproj">
+</Event><Event ErrorLevel="0" Project="find_sum_fact" Source="Form1.cs" Description="File successfully backed up as C:\Users\Артур\Desktop\find_sum_fact\find_sum_fact\Backup\Form1.cs">
+</Event><Event ErrorLevel="0" Project="find_sum_fact" Source="Form1.Designer.cs" Description="File successfully backed up as C:\Users\Артур\Desktop\find_sum_fact\find_sum_fact\Backup\Form1.Designer.cs">
+</Event><Event ErrorLevel="0" Project="find_sum_fact" Source="Program.cs" Description="File successfully backed up as C:\Users\Артур\Desktop\find_sum_fact\find_sum_fact\Backup\Program.cs">
+</Event><Event ErrorLevel="0" Project="find_sum_fact" Source="Properties\AssemblyInfo.cs" Description="File successfully backed up as C:\Users\Артур\Desktop\find_sum_fact\find_sum_fact\Backup\Properties\AssemblyInfo.cs">
+</Event><Event ErrorLevel="0" Project="find_sum_fact" Source="Properties\Resources.Designer.cs" Description="File successfully backed up as C:\Users\Артур\Desktop\find_sum_fact\find_sum_fact\Backup\Properties\Resources.Designer.cs">
+</Event><Event ErrorLevel="0" Project="find_sum_fact" Source="Properties\Settings.Designer.cs" Description="File successfully backed up as C:\Users\Артур\Desktop\find_sum_fact\find_sum_fact\Backup\Properties\Settings.Designer.cs">
+</Event><Event ErrorLevel="0" Project="find_sum_fact" Source="Properties\Settings.settings" Description="File successfully backed up as C:\Users\Артур\Desktop\find_sum_fact\find_sum_fact\Backup\Properties\Settings.settings">
+</Event><Event ErrorLevel="0" Project="find_sum_fact" Source="Form1.resx" Description="File successfully backed up as C:\Users\Артур\Desktop\find_sum_fact\find_sum_fact\Backup\Form1.resx">
+</Event><Event ErrorLevel="0" Project="find_sum_fact" Source="Properties\Resources.resx" Description="File successfully backed up as C:\Users\Артур\Desktop\find_sum_fact\find_sum_fact\Backup\Properties\Resources.resx">
+</Event><Event ErrorLevel="0" Project="find_sum_fact" Source="find_sum_fact.csproj" Description="Project converted successfully">
+</Event><Event ErrorLevel="3" Project="find_sum_fact" Source="find_sum_fact.csproj" Description="Converted">
+</Event><Event ErrorLevel="0" Project="" Source="find_sum_fact.sln" Description="Solution converted successfully">
+</Event><Event ErrorLevel="3" Project="" Source="find_sum_fact.sln" Description="Converted">
+</Event><Event ErrorLevel="0" Project="find_sum_fact" Source="find_sum_fact.csproj" Description="Scan complete: Upgrade not required for project files.">
+</Event></UpgradeLog>
