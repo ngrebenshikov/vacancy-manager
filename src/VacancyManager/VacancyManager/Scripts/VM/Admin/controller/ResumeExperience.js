@@ -24,11 +24,12 @@
               'button[action=UpdateResumeExperience]':
               { click: this.UpdateResumeExperience },
 
-              'button[action=CreateResumeExperience]':
-              { click: this.CreateResumeExperience },
-
               'button[action=DeleteExpirience]':
               { click: this.DeleteExpirience },
+
+              'button[action=CreateResumeExperience]':
+              { click: this.CreateResumeExperience }
+
           }
       );
       },
@@ -218,7 +219,6 @@
           var searchStore = this.getResumeExperienceStore();
 
           if (searchStore.getCount() != 0) {
-
               wizard.getLayout().setActiveItem('step-4');
               var wmenu = Ext.getCmp('wizardMenuGrid').getStore();
               if (wmenu != undefined) {

@@ -16,14 +16,15 @@ namespace VacancyManager.Controllers
         JavaScriptSerializer jss = new JavaScriptSerializer();
 
         [HttpGet]
-        public ActionResult GetResumeExperience(int ResId)
+        public ActionResult GetResumeExperience(int ResId, bool isEdu)
         {
             var Experience = ResumeManager.GetResumeExperience(ResId);
             var ExperienceList = (from exp in Experience
+                                  where exp.IsEducation == isEdu 
                                   select new
                                   {
                                       ExperienceId = exp.ExperienceId,
-                                      job = exp.Job,
+                                      Job = exp.Job,
                                       Project = exp.Project,
                                       Position = exp.Position,
                                       ResumeId = exp.ResumeId,
@@ -67,7 +68,7 @@ namespace VacancyManager.Controllers
 
      
                 CreateSuccess = true;
-                CreateMessage = "Требования успешно созданы";
+                CreateMessage = "Информация об опыте успешно добавлена"; ;
             }
 
             newExp = new
@@ -96,8 +97,8 @@ namespace VacancyManager.Controllers
         [HttpPost]
         public ActionResult UpdateExperience(string data)
         {
-            bool CreateSuccess = false;
-            string CreateMessage = "При изменении информации произошла ошибка";
+            bool UpdateSuccess = false;
+            string UpdateMessage = "При изменении информации произошла ошибка";
             DateTime? finishDate = null;
             Experience Exp = new Experience();
 
@@ -118,8 +119,8 @@ namespace VacancyManager.Controllers
                                                      Convert.ToDateTime(с_ResumeExp["StartDate"]));
 
 
-                CreateSuccess = true;
-                CreateMessage = "Требования успешно созданы";
+                UpdateSuccess = true;
+                UpdateMessage = "Информация об опыте успешно изменена";
             }
 
             newExp = new
@@ -137,9 +138,33 @@ namespace VacancyManager.Controllers
 
             return Json(new
             {
-                success = CreateSuccess,
+                success = UpdateSuccess,
                 experience = newExp,
-                message = CreateMessage
+                message = UpdateMessage
+            });
+
+        }
+
+
+        [HttpPost]
+        public ActionResult DeleteExperience(string data)
+        {
+            bool DeleteSuccess = false;
+            string DeleteMessage = "При удалении информации произошла ошибка";
+
+             if (data != null)
+             {
+                var d_ResumeExp = jss.Deserialize<dynamic>(data);
+                ResumeManager.DeleteResumeExperience(Convert.ToInt32(d_ResumeExp["ExperienceId"]));
+
+                DeleteSuccess = true;
+                DeleteMessage = "Информация об опыте успешно удалена";
+            }
+
+            return Json(new
+            {
+                success = DeleteSuccess,
+                message = DeleteMessage
             });
 
         }

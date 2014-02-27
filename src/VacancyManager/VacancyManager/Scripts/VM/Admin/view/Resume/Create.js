@@ -1,57 +1,26 @@
-﻿Ext.define('VM.view.Resume.Create',
-{
+﻿
+Ext.define('VM.view.Resume.Create', {
     extend: 'Ext.window.Window',
     alias: 'widget.resumeCreate',
-
-  
+    requires: ['VM.Shared.WizardPanel',
+               'VM.Shared.WizardMenu'],
     title: 'Создание резюме',
     border: false,
-    layout: 'fit',
-    height: 350,
-    width: 350,
+    layout: 'border',
+    height: 450,
+    width: 700,
     autoShow: true,
     modal: true,
     padding: '10 5 5 5',
 
 
     initComponent: function () {
-        this.items = [{
-            xtype: 'form',
-            store: 'ApplicantResumeGrid',
-            layout: {
-                type: 'vbox',
-                align: 'stretch'
-            },
-            items: [{
-                xtype: 'textareafield',
-                fieldLabel: 'Должность',
-                name: 'Position',
-                flex: 1
-            }, {
-                xtype: 'textareafield',
-                fieldLabel: 'Кратко',
-                name: 'Summary',
-                flex: 1
-            }, {
-                xtype: 'textareafield',
-                fieldLabel: 'Обучение',
-                name: 'Training',
-                flex: 1
-            }, {
-                xtype: 'datefield',
-                anchor: '100%',
-                name: 'Date',
-                fieldLabel: 'Выберите дату',
-            }]
-        }],
-        
-        this.buttons =
-        [{
-            text: 'Сохранить',
-            icon: '/ExtLib/resources/icons/accept.gif',
-            action: 'SaveResume',
-        }],
-      
+        this.items = [
+           { xtype: 'WizardMenu',
+             width: 200 },
+           { xtype: 'WizardPanel' }
+          ],
+
         this.callParent(arguments);
     }
 });

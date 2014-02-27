@@ -1,4 +1,4 @@
-﻿Ext.define('VM.EduList', {
+﻿Ext.define('VM.Shared.EduList', {
     extend: 'Ext.grid.Panel',
     alias: 'widget.EduList',
     height: 500,
@@ -7,15 +7,9 @@
     frame: false,
     split: true,
     title: 'Образование',
-    store: 'ResumeExperience',
+    store: 'ResumeEducation',
     columns:
     [{
-        text: 'Период',
-        dataIndex: 'Period',
-        sortable: false,
-        menuDisabled: true,
-        flex: 1
-    }, {
         text: 'Учебное заведение',
         dataIndex: 'Job',
         sortable: false,
@@ -49,7 +43,9 @@
     }, '->',
     {
         text: 'Удалить',
-        action: 'DeleteEducation'
+        action: 'DeleteEducation',
+        id: 'btnDeleteEducation',
+        name: 'DeleteEdu'
     }
    ]
 

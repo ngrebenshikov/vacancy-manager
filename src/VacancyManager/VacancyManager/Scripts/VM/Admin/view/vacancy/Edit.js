@@ -1,4 +1,4 @@
-﻿           
+﻿
 Ext.define('VM.view.vacancy.Edit', {
     extend: 'Ext.window.Window',
     alias: 'widget.vacancyEdit',
@@ -20,17 +20,17 @@ Ext.define('VM.view.vacancy.Edit', {
                 style: 'background-color: #fff;',
                 layout: 'border',
                 items: [{
-                        xtype: 'panel',
-                        region: 'center',
-                        width: 350,
-                        border: false,
-                        padding: '5 5 5 5',
-                        layout: {
-                            type: 'vbox',
-                            align: 'stretch'
-                        },
-                        style: 'background-color: #fff;',
-                        items: [
+                    xtype: 'panel',
+                    region: 'center',
+                    width: 350,
+                    border: false,
+                    padding: '5 5 5 5',
+                    layout: {
+                        type: 'vbox',
+                        align: 'stretch'
+                    },
+                    style: 'background-color: #fff;',
+                    items: [
                         {
                             xtype: 'textfield',
                             id: 'txtTitle',
@@ -62,10 +62,10 @@ Ext.define('VM.view.vacancy.Edit', {
                             fieldLabel: 'Актуально',
                             allowBlank: false
                         }]
-            }, { xtype: 'vacancyrequirementsList',
-                 region: 'east',
-                 width: 300
-            }
+                }, { xtype: 'vacancyrequirementsList',
+                    region: 'east',
+                    width: 300
+                }
            ]
             },
              this.buttons = [{
