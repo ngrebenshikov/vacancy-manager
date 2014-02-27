@@ -51,11 +51,11 @@ namespace VacancyManager.Services.Managers
             return upRes;
         }
 
-        internal static List<Resume> CreateResume(int applicantId, string Position, string Summary, string Training, DateTime Date, string addInfo)
+        internal static Resume CreateResume(int applicantId, string Position, string Summary, string Training, DateTime Date, string addInfo)
         {
             VacancyContext _db = new VacancyContext();
-            var obj = new List<Resume>();
-            obj.Add(new Resume
+            var obj = new Resume();
+            obj = new Resume
             {
                 ApplicantID = applicantId,
                 Position = Position,
@@ -63,8 +63,8 @@ namespace VacancyManager.Services.Managers
                 Training = Training,
                 AdditionalInformation = addInfo,
                 Date = Date
-            });
-            _db.Resumes.Add(obj[0]);
+            };
+            _db.Resumes.Add(obj);
             _db.SaveChanges();
 
             return obj;
@@ -158,6 +158,15 @@ namespace VacancyManager.Services.Managers
             }
 
             return updateRec;
+        }
+
+        internal static void DeleteResumeExperience(int id)
+        {
+            VacancyContext _db = new VacancyContext();
+            var obj = _db.PreviousExperiences.Where(res => res.ExperienceId== id).FirstOrDefault();
+
+            _db.PreviousExperiences.Remove(obj);
+            _db.SaveChanges();
         }
 
         #endregion
