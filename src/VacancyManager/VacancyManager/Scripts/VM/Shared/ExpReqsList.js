@@ -8,10 +8,11 @@
     }
 });
 
-Ext.define('VM.Shared.ReqsList', {
+Ext.define('VM.Shared.ExpReqsList', {
     extend: 'Ext.grid.Panel',
-    alias: 'widget.ReqsList',
-    id: 'resReqsGrid',
+    alias: 'widget.ExpReqsList',
+    height: 500,
+    id: 'resExpReqsGrid',
     frame: false,
     plugins: [cellEditing],
     features: [Ext.create('Ext.grid.feature.Grouping', {
@@ -21,7 +22,7 @@ Ext.define('VM.Shared.ReqsList', {
     title: Strings.Skills,
 
     columns: [
-             {   xtype: 'checkcolumn',
+             { xtype: 'checkcolumn',
                  dataIndex: 'IsRequire',
                  width: 40,
                  align: 'center',

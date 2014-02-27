@@ -51,7 +51,6 @@
           });
       },
 
-
       click: function (view, record) {
 
           console.log(record);
