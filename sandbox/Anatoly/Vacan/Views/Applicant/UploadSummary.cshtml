@@ -1,0 +1,14 @@
+﻿@model IEnumerable<Applican.Models.Applicant>
+@{
+  ViewBag.Title = "Загрузка резюме";
+}
+<h2>
+  Загрузка резюме</h2>
+<p>
+  @{Html.BeginForm("UploadSummary", "Applicant", FormMethod.Post, new { enctype = "multipart/form-data" });
+    <input type="file" runat="server" name="fileUpload" />
+    <input type="hidden" name="ID" value=@ViewBag.ID /><br />
+    <input type="submit" runat="server" value="Upload" />
+    Html.EndForm();
+  }
+</p>
