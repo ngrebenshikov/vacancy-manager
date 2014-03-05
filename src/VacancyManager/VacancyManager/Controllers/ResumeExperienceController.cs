@@ -79,7 +79,7 @@ namespace VacancyManager.Controllers
                 Position = Exp.Position,
                 ResumeId = Exp.ResumeId,
                 StartDate = Exp.StartDate.Date.ToShortDateString(),
-                FinishDate = Exp.FinishDate.Value.Date.ToShortDateString(),
+                FinishDate = (finishDate != null ? Exp.FinishDate.Value.Date.ToShortDateString() : ""),
                 Duties = Exp.Duties,
                 IsEducation = Exp.IsEducation
             };
@@ -131,7 +131,7 @@ namespace VacancyManager.Controllers
                 Position = Exp.Position,
                 ResumeId = Exp.ResumeId,
                 StartDate = Exp.StartDate.Date.ToShortDateString(),
-                FinishDate = Exp.FinishDate.Value.Date.ToShortDateString(),
+                FinishDate = (finishDate != null? Exp.FinishDate.Value.Date.ToShortDateString(): ""),
                 Duties = Exp.Duties,
                 IsEducation = Exp.IsEducation
             };
