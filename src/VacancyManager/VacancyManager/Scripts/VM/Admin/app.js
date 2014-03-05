@@ -148,7 +148,8 @@ function onLoginButtonClick(login_form, login_window)
 
 
 function CreateLoginWindow() {
-  Login_window_Created = true;
+    Login_window_Created = true;
+
   var login_form =
     new Ext.form.FormPanel(
       {
@@ -179,7 +180,8 @@ function CreateLoginWindow() {
               }
             }
           ]
-      });
+  });
+
   var login_window =
     new Ext.Window(
       {

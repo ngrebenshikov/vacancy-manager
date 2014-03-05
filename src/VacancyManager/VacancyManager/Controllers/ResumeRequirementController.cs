@@ -28,7 +28,7 @@ namespace VacancyManager.Controllers
                           {
                               Id = (b.Id > -1 ? Convert.ToString(b.Id) : ""),
                               StackName = o.Name,
-                              ResumeId = b.ResumeId,
+                              ResumeId = id,
                               RequirementStackID = v.RequirementStackID,
                               RequirementID = v.RequirementID,
                               RequirementName = v.Name,
