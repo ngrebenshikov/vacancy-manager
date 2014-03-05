@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi"
-     xmlns:iis="http://schemas.microsoft.com/wix/IIsExtension">
-  
+     xmlns:iis="http://schemas.microsoft.com/wix/IIsExtension"
+     xmlns:util ="http://schemas.microsoft.com/wix/UtilExtension"
+                                                                    >
+    
 <Product Id="{EEDDAC23-850B-43F4-968E-A54178C3B384}" 
          Name="VM" 
          Language="1033"
@@ -20,7 +23,7 @@
     <WixVariable Id="WixUILicenseRtf" Value="License.rtf" />
     <WixVariable Id ="WixUIDialogBmp" Value="LanitTercomDialog.bmp"/> 
     <WixVariable Id ="WixUIBannerBmp" Value="LanitTercoьBanner.bmp"/> 
-  
+ 
     <Directory Id="TARGETDIR" Name="SourceDir">
        <Directory Id ="ProgramFilesfolder">
           <Directory Id ="INSTALLLOCATION" Name="VM">
@@ -104,6 +107,12 @@
                 </Directory>
               </Directory>
               <Directory Id ="BinVM" Name="bin"/>
+              <Directory Id ="ViewsBaseVM" Name="Views">
+                <Directory Id ="AccountViewsCSHTMLVM" Name ="Account" />
+                <Directory Id ="FrontEndViewsVM" Name="FrontEnd" />
+                <Directory Id ="HomeViewsVM" Name="Home" />
+                <Directory Id ="SharedViewsVM" Name="Shared" />
+              </Directory>
               <Directory Id="objVM" Name="obj">
                 <Directory Id ="DebugVM" Name="Debug">
                   <Directory Id="TempPEVM" Name="TempPE"/>
@@ -115,6 +124,26 @@
     
       <DirectoryRef Id="INSTALLLOCATION">
           <Component Id="Main" Guid="{E15508AA-FD6D-40CE-A061-9F28E48E601A}" KeyPath="yes" DiskId="1">
+            
+            <util:XmlFile Id='XmlSettings1' File='[INSTALLLOCATION]Web.config'
+              Action='createElement' Name='add' ElementPath='//configuration/connectionStrings' Sequence='1' />
+            
+            <util:XmlFile Id='XmlSettings2' File='[INSTALLLOCATION]Web.config'
+              Action='setValue' Name="name" Value="VacancyContext"  ElementPath='//configuration/connectionStrings/add' Sequence='2' />
+                          
+            <util:XmlFile Id='XmlSettings3' File='[INSTALLLOCATION]Web.config'
+              Action='setValue' Name="connectionString" Value="Data Source=.\[EDITSQLSERVER]; database=[EDITDATABASE]; AttachDbFileName=|DataDirectory|Vacancy.mdf; Integrated Security=SSPI; User Instance=False; MultipleActiveResultSets=True;"  ElementPath='//configuration/connectionStrings/add' Sequence='3' />
+            
+            <util:XmlFile Id='XmlSettings4' File='[INSTALLLOCATION]Web.config'
+              Action='setValue' Name="providerName" Value="System.Data.SqlClient"  ElementPath='//configuration/connectionStrings/add' Sequence='4' />
+            
+            <util:XmlFile Id='XmlSettings5' File='[INSTALLLOCATION]Web.config'
+              Action='createElement' Name="parameter" ElementPath='//configuration/entityFramework/defaultConnectionFactory/parameters' Sequence='5' />
+            
+            <util:XmlFile Id='XmlSettings6' File='[INSTALLLOCATION]Web.config'
+              Action='setValue' Name="value" Value="Data Source=.\[EDITSQLSERVER]; Integrated Security=True; MultipleActiveResultSets=True"  ElementPath='//configuration/entityFramework/defaultConnectionFactory/parameters/parameter' Sequence='6' />
+           
+                        
             <File Id="WebConfigVM" Name="Web.config" Source="$(var.SolutionDir)VacancyManager\Web.config" />
             <File Id="GlobalVM" Name="Global.asax" Source="$(var.SolutionDir)VacancyManager\Global.asax" />
             <File Id="Global.asaxVM" Name="Global.asax.cs" Source="$(var.SolutionDir)VacancyManager\Global.asax.cs" />
@@ -502,7 +531,7 @@
          <File Id ="MDLApplicantMessagejs" Name="ApplicantMessage.js" Source="$(var.SolutionDir)VacancyManager\Scripts\VM\Admin\model\ApplicantMessage.js" />
          <File Id ="MDLApplicantModeljs" Name="ApplicantModel.js" Source="$(var.SolutionDir)VacancyManager\Scripts\VM\Admin\model\ApplicantModel.js" />
          <File Id ="MDLApplicantRequirementjs" Name="ApplicantRequirements.js" Source="$(var.SolutionDir)VacancyManager\Scripts\VM\Admin\model\ApplicantRequirements.js" />
-         <File Id ="MDLApplicantResumeGridjs" Name="ApplicantResumeGrid.js" Source="$(var.SolutionDir)VacancyManager\Scripts\VM\Admin\model\ApplicantResumeGrid.js" />
+<!--<File Id ="MDLApplicantResumeGridjs" Name="ApplicantResumeGrid.js" Source="$(var.SolutionDir)VacancyManager\Scripts\VM\Admin\model\ApplicantResumeGrid.js" />-->         
          <File Id ="MDLAttachmentjs" Name="Attachment.js" Source="$(var.SolutionDir)VacancyManager\Scripts\VM\Admin\model\Attachment.js" />
          <File Id ="MDLCommentjs" Name="Comment.js" Source="$(var.SolutionDir)VacancyManager\Scripts\VM\Admin\model\Comment.js" />
          <File Id ="MDLConsiderationjs" Name="Consideration.js" Source="$(var.SolutionDir)VacancyManager\Scripts\VM\Admin\model\Consideration.js" />
@@ -527,7 +556,7 @@
          <File Id ="StoreApplicantConsiderationsjs" Name="ApplicantConsiderations.js" Source="$(var.SolutionDir)VacancyManager\Scripts\VM\Admin\store\ApplicantConsiderations.js" />
          <File Id ="StoreApplicantMessagesjs" Name="ApplicantMessages.js" Source="$(var.SolutionDir)VacancyManager\Scripts\VM\Admin\store\ApplicantMessages.js" />
          <File Id ="StoreApplicantRequirementsjs" Name="ApplicantRequirements.js" Source="$(var.SolutionDir)VacancyManager\Scripts\VM\Admin\store\ApplicantRequirements.js" />
-         <File Id ="StoreApplicantResumeGrid.js" Name="ApplicantResumeGrid.js" Source="$(var.SolutionDir)VacancyManager\Scripts\VM\Admin\store\ApplicantResumeGrid.js" />
+<!--<File Id ="StoreApplicantResumeGrid.js" Name="ApplicantResumeGrid.js" Source="$(var.SolutionDir)VacancyManager\Scripts\VM\Admin\store\ApplicantResumeGrid.js" />-->         
          <File Id ="StoreBaseStorejs" Name="BaseStore.js" Source="$(var.SolutionDir)VacancyManager\Scripts\VM\Admin\store\BaseStore.js" />
          <File Id ="StoreCommentsjs" Name="Comments.js" Source="$(var.SolutionDir)VacancyManager\Scripts\VM\Admin\store\Comments.js" />
          <File Id ="StoreConsiderationjs" Name="Consideration.js" Source="$(var.SolutionDir)VacancyManager\Scripts\VM\Admin\store\Consideration.js" />
@@ -688,6 +717,46 @@
         <File Id ="FEviewMainjs" Name="Main.js" Source="$(var.SolutionDir)VacancyManager\Scripts\VM\FrontEnd\view\frontend\Main.js" />
       </Component>
     </DirectoryRef>
+  
+    <DirectoryRef Id ="ViewsBaseVM">
+      <Component Id ="ViewsBaseApp" Guid="{5F78082D-B8F0-4928-A2A9-265AB790B6B5}" DiskId="1" KeyPath="yes">
+        <File Id ="ViewStartViews" Name="_ViewStart.cshtml" Source="$(var.SolutionDir)VacancyManager\Views\_ViewStart.cshtml" />
+        <File Id ="WebconfigViews" Name="Web.config" Source="$(var.SolutionDir)VacancyManager\Views\Web.config" />
+      </Component>
+    </DirectoryRef>
+  
+    <DirectoryRef Id ="AccountViewsCSHTMLVM">
+      <Component Id ="AccountViewsCSHTMLApp" Guid ="{13416C6E-5B66-41EA-8483-600D972F0039}" DiskId ="1" KeyPath="yes">
+        <File Id ="ChangePasswordcshtml" Name="ChangePassword.cshtml" Source="$(var.SolutionDir)VacancyManager\Views\Account\ChangePassword.cshtml" />
+        <File Id ="ChangePasswordSuccesscshtml" Name="ChangePasswordSuccess.cshtml" Source="$(var.SolutionDir)VacancyManager\Views\Account\ChangePasswordSuccess.cshtml" />
+        <File Id ="ConfirmRegcshtml" Name="ConfirmReg.cshtml" Source="$(var.SolutionDir)VacancyManager\Views\Account\ConfirmReg.cshtml" />
+        <File Id ="LogOncshtml" Name="LogOn.cshtml" Source="$(var.SolutionDir)VacancyManager\Views\Account\LogOn.cshtml" />
+        <File Id ="Registercshtml" Name="Register.cshtml" Source="$(var.SolutionDir)VacancyManager\Views\Account\Register.cshtml" />
+      </Component>
+    </DirectoryRef>
+  
+    <DirectoryRef Id ="FrontEndViewsVM">
+      <Component Id ="FrontEndViewsBCSHTMLVM" Guid="{736FC14E-303C-4B30-A5A2-564FDAE06799}" KeyPath="yes" DiskId="1">
+        <File Id ="IndexcshtmlViews" Name="Index.cshtml" Source="$(var.SolutionDir)VacancyManager\Views\FrontEnd\Index.cshtml" />
+      </Component>
+    </DirectoryRef>
+  
+    <DirectoryRef Id ="HomeViewsVM">
+      <Component Id ="HomeViewsApp" Guid="{6C9E640F-1315-4D43-AC98-6545258782A4}" KeyPath="yes" DiskId="1">
+        <File Id ="IndexViewscshtml" Name="Index.cshtml" Source="$(var.SolutionDir)VacancyManager\Views\Home\Index.cshtml" />
+        <File Id ="IndexOldcshtml" Name="IndexOld.cshtml" Source="$(var.SolutionDir)VacancyManager\Views\Home\IndexOld.cshtml" />
+      </Component>
+    </DirectoryRef>
+  
+    <DirectoryRef Id ="SharedViewsVM">
+      <Component Id ="SharedViewsApp" Guid="{64AEC29B-5159-4A1B-AB6D-C89514D6392A}" KeyPath="yes" DiskId="1">
+        <File Id ="AdminLayoutcshtml" Name="_AdminLayout.cshtml" Source="$(var.SolutionDir)VacancyManager\Views\Shared\_AdminLayout.cshtml" />
+        <File Id ="Layoutcshtml" Name="_Layout.cshtml" Source="$(var.SolutionDir)VacancyManager\Views\Shared\_Layout.cshtml" />
+        <File Id ="LogOnPartialcshtml" Name="_LogOnPartial.cshtml" Source="$(var.SolutionDir)VacancyManager\Views\Shared\_LogOnPartial.cshtml" />
+        <File Id ="AccessDeniedcshtml" Name="Access Denied.cshtml" Source="$(var.SolutionDir)VacancyManager\Views\Shared\Access Denied.cshtml" />
+        <File Id ="Errorcshtml" Name="Error.cshtml" Source="$(var.SolutionDir)VacancyManager\Views\Shared\Error.cshtml" />
+      </Component>
+    </DirectoryRef>
     
      <Feature Id ="Complete" Title="Vacancy Manager" Description="asd" Level="1" ConfigurableDirectory="INSTALLLOCATION">
       <ComponentRef Id="Main"/>
@@ -742,24 +811,90 @@
       <ComponentRef Id ="FRfrontendApp"/>
       <ComponentRef Id ="WebAppConfiguration"/>
       <ComponentRef Id ="WebSiteVMm"/>
+      <ComponentRef Id ="ViewsBaseApp"/>
+      <ComponentRef Id ="AccountViewsCSHTMLApp"/>
+      <ComponentRef Id ="FrontEndViewsBCSHTMLVM"/>
+      <ComponentRef Id ="HomeViewsApp"/>
+      <ComponentRef Id ="SharedViewsApp" />
     </Feature>
   
       
       
-    <UI Id="WixUiVM">
-      <UIRef Id="WixUI_FeatureTree"/>      
-    </UI>
+        <UI Id="WixUI_FeatureTree1">
+          <UIRef Id="WixUI_Common" />
+          <TextStyle Id="WixUI_Font_Normal" FaceName="Tahoma" Size="8" />
+          <TextStyle Id="WixUI_Font_Bigger" FaceName="Tahoma" Size="12" />
+          <TextStyle Id="WixUI_Font_Title" FaceName="Tahoma" Size="9" Bold="yes" />
 
-        <Component Id="WebSiteVMm" Guid="{D9534B4B-D9F8-4D49-B3A7-457BCE856D88}" Directory="INSTALLLOCATION">
-            <CreateFolder/>
-            <iis:WebSite Id="Default_Web_Site" Directory="INSTALLLOCATION"  Description="Default Web Site" >
-              <iis:WebAddress Id="_vm53662" Port ="80" IP ="*"/>
-           </iis:WebSite> 
-           <iis:WebAppPool Id="APP_POOL" Name="VMAppPool" ManagedPipelineMode="Classic" ManagedRuntimeVersion="v4.0"/>
-        </Component>  
+          <Property Id="DefaultUIFont" Value="WixUI_Font_Normal" />
+          <Property Id="WixUI_Mode" Value="FeatureTree" />
+
+          <DialogRef Id="ErrorDlg" />
+          <DialogRef Id="FatalError" />
+          <DialogRef Id="FilesInUse" />
+          <DialogRef Id="MsiRMFilesInUse" />
+          <DialogRef Id="PrepareDlg" />
+          <DialogRef Id="ProgressDlg" />
+          <DialogRef Id="ResumeDlg" />
+          <DialogRef Id="UserExit" />
+            
+            <Property Id="EDITSQLSERVER" Value="SqlServerName" />
+            <Property Id ="EDITDATABASE" Value="DataBaseName" />
+            <Dialog Id="DlgSqlServerAndDB" Width="370" Height="270" Title="Server And Database Name"> 
+            <Control Id="Title" Type="Text" X="15" Y="6" Width="200" Height="15" Transparent="yes" NoPrefix="yes" Text="You must write: SqlServer name and DB name" />
+            <Control Id ="Upline" Type="Line" X="0" Y="30" Width="450" Height="1" />
+              
+            <Control Id="TextSql" Type="Text" X="20" Y="40" Width="340" Height="15" Transparent="yes" NoPrefix="yes" Text="SqlServerName" />
+            <Control Id ="SimpleEditSQL" Type="Edit" X="20" Y="60" Width="250" Height="16" Property="EDITSQLSERVER" Sunken="no" />
+              
+            <Control Id="TextDB" Type="Text" X="20" Y="100" Width="340" Height="15" Transparent="yes" NoPrefix="yes" Text="SqlDataBaseName" />
+            <Control Id ="SimpleEditDB" Type="Edit" X="20" Y="120" Width="250" Height="16" Property="EDITDATABASE" Sunken="no" />
+               
+            <Control Id="Next" Type="PushButton" X="236" Y="243" Width="56" Height="17" Default="yes" Text="!(loc.WixUINext)"> 
+                  <Publish Event="NewDialog" Value="CustomizeDlg" Order="10" /> 
+              </Control> 
+              <Control Id="Back" Type="PushButton" X="180" Y="243" Width="56" Height="17" Text="!(loc.WixUIBack)"> 
+                  <Publish Event="NewDialog" Value="LicenseAgreementDlg" Order="10" /> 
+              </Control> 
+          </Dialog> 
+       
            
           
+          <Publish Dialog="ExitDialog" Control="Finish" Event="EndDialog" Value="Return" Order="999">1</Publish>
 
+          <Publish Dialog="WelcomeDlg" Control="Next" Event="NewDialog" Value="LicenseAgreementDlg">NOT Installed</Publish>
+          <Publish Dialog="WelcomeDlg" Control="Next" Event="NewDialog" Value="VerifyReadyDlg">Installed AND PATCH</Publish>
+
+          <Publish Dialog="LicenseAgreementDlg" Control="Back" Event="NewDialog" Value="WelcomeDlg">1</Publish>
+          <Publish Dialog="LicenseAgreementDlg" Control="Next" Event="NewDialog" Value="DlgSqlServerAndDB" Order="10">LicenseAccepted = "1"</Publish>
+
+          <Publish Dialog="CustomizeDlg" Control="Back" Event="NewDialog" Value="MaintenanceTypeDlg" Order="1">Installed</Publish>
+          <Publish Dialog="CustomizeDlg" Control="Back" Event="NewDialog" Value="DlgSqlServerAndDB" Order="10">NOT Installed</Publish>
+          <Publish Dialog="CustomizeDlg" Control="Next" Event="NewDialog" Value="VerifyReadyDlg">1</Publish>
+
+          <Publish Dialog="VerifyReadyDlg" Control="Back" Event="NewDialog" Value="CustomizeDlg" Order="1">NOT Installed OR WixUI_InstallMode = "Change"</Publish>
+          <Publish Dialog="VerifyReadyDlg" Control="Back" Event="NewDialog" Value="MaintenanceTypeDlg" Order="2">Installed AND NOT PATCH</Publish>
+          <Publish Dialog="VerifyReadyDlg" Control="Back" Event="NewDialog" Value="WelcomeDlg" Order="3">Installed AND PATCH</Publish>
+
+          <Publish Dialog="MaintenanceWelcomeDlg" Control="Next" Event="NewDialog" Value="MaintenanceTypeDlg">1</Publish>
+
+          <Publish Dialog="MaintenanceTypeDlg" Control="ChangeButton" Event="NewDialog" Value="CustomizeDlg">1</Publish>
+          <Publish Dialog="MaintenanceTypeDlg" Control="RepairButton" Event="NewDialog" Value="VerifyReadyDlg">1</Publish>
+          <Publish Dialog="MaintenanceTypeDlg" Control="RemoveButton" Event="NewDialog" Value="VerifyReadyDlg">1</Publish>
+          <Publish Dialog="MaintenanceTypeDlg" Control="Back" Event="NewDialog" Value="MaintenanceWelcomeDlg">1</Publish>
+      </UI>
+
+        
+    
+         
+      <Component Id="WebSiteVMm" Guid="{D9534B4B-D9F8-4D49-B3A7-457BCE856D88}" Directory="INSTALLLOCATION">
+          <CreateFolder/>
+          <iis:WebSite Id="Default_Web_Site" Directory="INSTALLLOCATION"  Description="Default Web Site" >
+            <iis:WebAddress Id="_vm53662" Port ="80" IP ="*"/>
+          </iis:WebSite> 
+          <iis:WebAppPool Id="APP_POOL" Name="VMAppPool" ManagedPipelineMode="Classic" ManagedRuntimeVersion="v4.0" Identity="localSystem"/>
+      </Component>  
+           
        <Component Id="WebAppConfiguration" Guid="{1007EF54-0BD6-4D22-9232-6934E2F9A8B2}" Directory="INSTALLLOCATION"> 
        <CreateFolder /> 
         <iis:WebVirtualDir Id="RootVirtualDir" Alias="Vacancy Manager" Directory="INSTALLLOCATION" WebSite="Default_Web_Site" > 
@@ -768,8 +903,6 @@
         </iis:WebVirtualDir> 
        </Component> 
 
-
-
 </Product>
-      
-</Wix>
+ 
+ </Wix>
