@@ -211,11 +211,8 @@
   
     <DirectoryRef Id="DebugVM">
       <Component Id="DebugApp" Guid="{54F53C7D-4E6C-4AB3-AC23-D8337A79E844}" KeyPath="yes" DiskId="1">
-        <File Id="DesignTimeResolveAssemblyReferences" Name="DesignTimeResolveAssemblyReferences.cache" Source="$(var.SolutionDir)VacancyManager\obj\Debug\DesignTimeResolveAssemblyReferences.cache"/>
         <File Id="DesignTimeResolveAssemblyReferencesInput" Name="DesignTimeResolveAssemblyReferencesInput.cache" Source="$(var.SolutionDir)VacancyManager\obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache"/>
         <File Id="VacancyManager.csproj.FileListAbsolutetxt" Name="VacancyManager.csproj.FileListAbsolute.txt" Source="$(var.SolutionDir)VacancyManager\obj\Debug\VacancyManager.csproj.FileListAbsolute.txt"/>
-        <File Id="VacancyManager.csproj.GenerateResource" Name="VacancyManager.csproj.GenerateResource.cache" Source="$(var.SolutionDir)VacancyManager\obj\Debug\VacancyManager.csproj.GenerateResource.cache"/>
-        <File Id="VacancyManager.csprojResolveAssemblyReference" Name="VacancyManager.csprojResolveAssemblyReference.cache" Source="$(var.SolutionDir)VacancyManager\obj\Debug\VacancyManager.csprojResolveAssemblyReference.cache"/>
         <File Id="VacancyManager.dll" Name="VacancyManager.dll" Source="$(var.SolutionDir)VacancyManager\obj\Debug\VacancyManager.dll"/>
         <File Id="VacancyManager.pdb" Name="VacancyManager.pdb" Source="$(var.SolutionDir)VacancyManager\obj\Debug\VacancyManager.pdb"/>
         <File Id="VacancyManager.Properties.ResourceEn" Name="VacancyManager.Properties.ResourceEn.resources" Source="$(var.SolutionDir)VacancyManager\obj\Debug\VacancyManager.Properties.ResourceEn.resources"/>
@@ -226,9 +223,7 @@
   
     <DirectoryRef Id="TempPEVM">
       <Component Id="TempPEApp" Guid="{BA0E3F3E-8EC0-457C-95A1-17AE4E346790}" KeyPath="yes" DiskId="1">
-        <File Id="Properties.ResourceEn.Designer.csdll" Name="Properties.ResourceEn.Designer.cs.dll" Source="$(var.SolutionDir)VacancyManager\obj\Debug\TempPE\Properties.ResourceEn.Designer.cs.dll"/>
-        <File Id="Properties.Resources.Designer.csdll" Name="Properties.Resources.Designer.cs.dll" Source="$(var.SolutionDir)VacancyManager\obj\Debug\TempPE\Properties.Resources.Designer.cs.dll"/>
-        <File Id="Templates.Designer.csdll" Name="Templates.Designer.cs.dll" Source="$(var.SolutionDir)VacancyManager\obj\Debug\TempPE\Templates.Designer.cs.dll"/>
+
       </Component>
     </DirectoryRef>
   
