@@ -71,7 +71,7 @@ namespace VacancyManager.Services
             for (int i = 0; i < line.Length; i++)
             {
                 char c = line[i];
-                if ((c >= 'А') && (c <= 'Я'))
+                if (((c >= 'А') && (c <= 'Я')) || ((c >= 'а') && (c <= 'я')))
                     Ru++;
                 else if ((c >= 'A') && (c <= 'Z')) En++;
             }

@@ -11,7 +11,7 @@ using System.IO;
 
 namespace VacancyManager.Controllers
 {
-    [AuthorizeError(Roles = "Admin")]
+    [AuthorizeError(Roles = "Admin, User")]
 
     public class ApplicantController : BaseController
     {
@@ -19,7 +19,6 @@ namespace VacancyManager.Controllers
         [HttpGet]
         public ActionResult LoadAppMessages(int AppId, int ConsId)
         {
-
             var list = VMMailMessageManager.GetList();
             var conslist = ConsiderationsManager.GetAppConsiderations(AppId);
 
@@ -153,7 +152,7 @@ namespace VacancyManager.Controllers
             bool success = false;
             string resultMessage = "Ошибка при добавлении соискателя";
             JavaScriptSerializer jss = new JavaScriptSerializer();
-            List<Applicant> created = new List<Applicant>();
+            Applicant created = new Applicant();
 
             if (data != null)
             {
@@ -200,18 +199,32 @@ namespace VacancyManager.Controllers
             bool success = false;
             string resultMessage = "Ошибка при изменении соискателя";
             JavaScriptSerializer jss = new JavaScriptSerializer();
+            Applicant App = new Applicant();
+            object updated = null;
 
             if (data != null)
             {
                 var obj = jss.Deserialize<dynamic>(data);
-                ApplicantManager.Update(obj["ApplicantID"], obj["FullName"], obj["FullNameEn"], obj["ContactPhone"], obj["Email"], obj["Employed"]);
+                App = ApplicantManager.Update(obj["ApplicantID"], obj["FullName"], obj["FullNameEn"], obj["ContactPhone"], obj["Email"], obj["Employed"]);
                 resultMessage = "Соискатель успешно изменен";
                 success = true;
             }
 
+            updated = new
+            {
+                ApplicantID = App.ApplicantID,
+                FullName = App.FullName,
+                FullNameEn = App.FullNameEn,
+                ContactPhone = App.ContactPhone,
+                Employed = App.Employed,
+                Email = App.Email,
+                Requirements = ""
+            };
+
             return Json(new
             {
                 success = success,
+                data = updated,
                 message = resultMessage
             });
         }

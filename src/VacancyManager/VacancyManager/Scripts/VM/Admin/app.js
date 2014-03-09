@@ -118,7 +118,7 @@ function onLoginButtonClick(login_form, login_window)
       success: function (result, request)
       {
         var JsonResult = Ext.JSON.decode(result.responseText);
-        if (JsonResult.LogOnResult != '')
+        if (!JsonResult.success)
         {
           Ext.MessageBox.show(
             {

@@ -23,9 +23,10 @@
             encode: false,
             listful: true,
             writeAllFields: true,
-//            getRecordData: function (record) {
-//                return { 'data': Ext.JSON.encode(record.data) }
-//            }
+            root: 'data',
+            getRecordData: function (record) {
+                return Ext.JSON.encode(record.data);
+            }
         },
         headers: { 'Content-Type': 'application/json; charset=UTF-8' }
     }

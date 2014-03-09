@@ -2,6 +2,7 @@
 using System.Web.Security;
 using VacancyManager.Models;
 using VacancyManager.Services;
+using System.Web.Mvc;
 
 namespace VacancyManager
 {
@@ -15,23 +16,27 @@ namespace VacancyManager
       if (createStatus == MembershipCreateStatus.Success)
       {
         var user = (VMMembershipUser)Membership.GetUser(name, false);
-        if (!activate)
-        {
-          string ActivationLink = "http://localhost:53662/Account/Activate/" +
-                                  user.UserName + "/" + user.EmailKey;
-          EMailSender.SendMail(ActivationLink, user.Email);
-        }
-        else
+        if (activate)          
         {
           ActivateUser(name);
         }
         if (setAsAdmin)
         {
-          if (!Roles.RoleExists("Admin"))
+         
+            if (!Roles.RoleExists("Admin"))
             Roles.CreateRole("Admin");
+
           Roles.AddUsersToRoles(new[] { user.UserName }, new[] { "Admin" });
         }
 
+        if (!setAsAdmin)
+        {
+
+            if (!Roles.RoleExists("User"))
+                Roles.CreateRole("User");
+
+            Roles.AddUsersToRoles(new[] { user.UserName }, new[] { "User" });
+        }
         return new Tuple<bool, string, VMMembershipUser>(true, "Пользователь создан", (VMMembershipUser)Membership.GetUser(name, false));
       }
       return new Tuple<bool, string, VMMembershipUser>(false, ErrorCodeToString(createStatus), null);

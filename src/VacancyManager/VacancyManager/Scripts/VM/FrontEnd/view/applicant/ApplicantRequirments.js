@@ -1,26 +1,21 @@
-﻿var cellEditing = Ext.create('Ext.grid.plugin.CellEditing', {
-    clicksToEdit: 2,
-    listeners: {
-        beforeedit: function (e, editor) {
-            if (e.colIdx == 1)
-                return false;
-        }
-    }
-});
-
-Ext.define('VM.view.applicant.ApplicantRequirments', {
+﻿Ext.define('VM.view.applicant.ApplicantRequirments', {
     extend: 'Ext.grid.Panel',
     alias: 'widget.AppReqsList',
     id: 'appReqsGrid',
     frame: false,
-    plugins: [cellEditing],
+
+    plugins: [Ext.create('Ext.grid.plugin.CellEditing', {
+        clicksToEdit: 2
+    })],
+
     features: [Ext.create('Ext.grid.feature.Grouping', {
         groupHeaderTpl: '{name}: ' + Strings.Skills + ' ({rows.length})'
     })],
+
     store: 'ApplicantRequirement',
     columns: [
              { xtype: 'checkcolumn',
-                 dataIndex: 'IsRequire',
+                 dataIndex: 'IsChecked',
                  width: 40,
                  align: 'center',
                  sortable: false,
@@ -33,7 +28,7 @@ Ext.define('VM.view.applicant.ApplicantRequirments', {
                  sortable: false,
                  menuDisabled: true
              }, {
-                 dataIndex: 'Comments',
+                 dataIndex: 'CommentText',
                  text: Strings.UserCommentary,
                  width: 120,
                  flex: 1,
@@ -41,13 +36,6 @@ Ext.define('VM.view.applicant.ApplicantRequirments', {
                  sortable: false,
                  menuDisabled: true
              }
-          ],
-
-    listeners: {
-        'viewready': function (grid, fn) {
-            me = grid;
-            store = me.getStore();
-            store.load({ params: { "id": -1} });
-        }
-    }
+          ]
+ 
 });
