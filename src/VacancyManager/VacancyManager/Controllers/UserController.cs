@@ -16,14 +16,47 @@ namespace VacancyManager.Controllers
     [HttpPost]
     public ActionResult ExtJSLogOn(string login, string password)
     {
-      string jsonResult = "";
-      if (Membership.ValidateUser(login, password))
+      bool logSuccess = false;
+      string jsonResult = "Invalid login or password";
+      Applicant App = new Applicant();
+      object appModel = null;
+
+      VMMembershipUser vmuser = (VMMembershipUser)Membership.GetUser(login, false);
+      if ((vmuser.IsLockedOut) && (vmuser.IsApproved == false))
       {
-        FormsAuthentication.SetAuthCookie(login, createPersistentCookie: true);
+          jsonResult = "Ваш аккаун заблокирован!!!";
+      }
+      else if ((vmuser.IsLockedOut) && (vmuser.IsApproved == true))
+      { jsonResult = "Ваш аккаун не активирован!!!"; }
+
+      else if (Membership.ValidateUser(login, password))
+      {
+          logSuccess = true;
+ 
+ 
+          FormsAuthentication.SetAuthCookie(login, createPersistentCookie: true);
+           App = ApplicantManager.GetApplicantByEMail(vmuser.Email);
+          if (App == null) { App = new Applicant(); }
+          appModel = new
+          {
+              ApplicantID = App.ApplicantID,
+              FullName = App.FullName,
+              FullNameEn = App.FullNameEn,
+              ContactPhone = App.ContactPhone,
+              Employed = App.Employed,
+              Email = App.Email,
+              Requirements = ""
+          };
       }
       else
-        jsonResult = "Invalid login or password";
-      return Json(new { success = true, LogOnResult = jsonResult }, JsonRequestBehavior.AllowGet);
+      {
+          jsonResult = "Неправильный логин или пароль";
+          logSuccess = false;
+          appModel = null;
+      }
+      return Json(new  { success = logSuccess, 
+                         applicant = appModel,
+                         LogOnResult = jsonResult}, JsonRequestBehavior.AllowGet);
     }
 
     [HttpGet]
@@ -61,9 +94,6 @@ namespace VacancyManager.Controllers
         string UserName = json_User["UserName"].ToString();
         string Email = json_User["Email"].ToString();
         string Password = json_User["Password"].ToString();
-
-
-
 
         Tuple<bool, string, VMMembershipUser> result = SharedCode.CreateNewUser(UserName, Email, Password, activate: true, setAsAdmin: true);
         if (result.Item1)

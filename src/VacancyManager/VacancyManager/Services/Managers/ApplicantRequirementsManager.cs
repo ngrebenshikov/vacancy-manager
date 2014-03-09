@@ -17,17 +17,21 @@ namespace VacancyManager.Services.Managers
             return obj;
         }
 
-        internal static void Create(int appId, int reqId, string comment, bool isChecked)
+        internal static ApplicantRequirement Create(int appId, int reqId, string comment, bool isChecked)
         {
             VacancyContext _db = new VacancyContext();
-            _db.ApplicantRequirements.Add(new ApplicantRequirement{
+
+            ApplicantRequirement obj = new ApplicantRequirement{
                 ApplicantId = appId,
                 RequirementId = reqId,
                 Comment = comment,
                 IsChecked = isChecked
-            });
+            };
+
+            _db.ApplicantRequirements.Add(obj);
 
             _db.SaveChanges();
+            return obj;
         }
 
         internal static void Update(int id, string comment, bool isChecked)

@@ -1,10 +1,11 @@
 ﻿
 Ext.define('VM.view.applicant.ManageApplicant', {
-    extend: 'Ext.panel.Panel',
+    extend: 'Ext.form.Panel',
     alias: 'widget.ManageApplicant',
     border: true,
+    id: 'frmManageApplicant',
     region: 'west',
-    title: 'Appp',
+    title: 'Информация о соискателе',
     layout: {
         type: 'anchor'
     },

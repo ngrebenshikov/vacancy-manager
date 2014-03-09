@@ -1815,6 +1815,7 @@
     <Content Include="Scripts\VM\FrontEnd\view\applicant\ApplicantRequirments.js" />
     <Content Include="Scripts\VM\FrontEnd\view\applicant\ManageApplicant.js" />
     <Content Include="Scripts\VM\FrontEnd\view\frontend\Main.js" />
+    <Content Include="Scripts\VM\FrontEnd\view\frontend\RegisterForm.js" />
     <Content Include="Scripts\VM\FrontEnd\view\resume\Create.js" />
     <Content Include="Scripts\VM\FrontEnd\view\resume\Edit.js" />
     <Content Include="Scripts\VM\FrontEnd\view\resume\List.js" />

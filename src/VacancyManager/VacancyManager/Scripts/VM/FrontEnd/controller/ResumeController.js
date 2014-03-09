@@ -76,13 +76,22 @@
     },
 
     CreateResume: function () {
-        var AddResume = Ext.widget('resumeCreate');
-        var resumeStore = this.getResumeStore();
-        resumeStore.activeRecord = undefined;
-        var resumeExpStore = this.getResumeExperienceStore();
-        var resumeEduStore = this.getResumeEducationStore();
-        resumeExpStore.removeAll(true);
-        resumeEduStore.removeAll(true);
+        var appForm = Ext.getCmp('frmManageApplicant').getForm(),
+            applicant = appForm.getRecord(),
+            appId = applicant.getId();
+
+        if (appId != 0) {
+            var AddResume = Ext.widget('resumeCreate');
+            var resumeStore = this.getResumeStore();
+            resumeStore.activeRecord = undefined;
+            var resumeExpStore = this.getResumeExperienceStore();
+            var resumeEduStore = this.getResumeEducationStore();
+            resumeExpStore.removeAll(true);
+            resumeEduStore.removeAll(true);
+        }
+        else {
+            Ext.MessageBox.alert('Ошибка', 'Вы не зарегистированы как соискатель?');
+        }
     },
 
     ResumePdfCopy: function (button) {
@@ -159,8 +168,11 @@
         var form = button.up('form'),
             values = form.getForm().getValues(),
             resumeStore = this.getResumeStore();
-       // var appGrid = Ext.getCmp('ApplicantGrid'),
-        //    appId = appGrid.getView().getSelectionModel().getSelection()[0].getId();
+
+        var appForm = Ext.getCmp('frmManageApplicant').getForm();
+
+        applicant = appForm.getRecord();
+        appId = applicant.getId();
 
         var updateResume = resumeStore.activeRecord;
 
@@ -171,7 +183,7 @@
                 var newResume = Ext.create('VM.model.Resume', {
                     Position: values.Position,
                     Summary: values.Summary,
-                    ApplicantID: 0
+                    ApplicantID: appId
                 });
 
                 newResume.save({

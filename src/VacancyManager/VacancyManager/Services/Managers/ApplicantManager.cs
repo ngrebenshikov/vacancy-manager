@@ -16,20 +16,20 @@ namespace VacancyManager.Services.Managers
       return obj;
     }
 
-    internal static List<Applicant> Create(string FullName, string FullNameEn, string contactPhone, string email, bool employed)
+    internal static Applicant Create(string FullName, string FullNameEn, string contactPhone, string email, bool employed)
     {
       VacancyContext _db = new VacancyContext();
-      var obj = new List<Applicant>();
-      obj.Add(new Applicant
+
+      Applicant obj = new Applicant
       {
         FullName = FullName,
         FullNameEn = FullNameEn,
         ContactPhone = contactPhone,
         Email = email,
         Employed = employed
-      });
+      };
 
-      _db.Applicants.Add(obj[0]);
+      _db.Applicants.Add(obj);
       _db.SaveChanges();
 
       return obj;
@@ -44,7 +44,7 @@ namespace VacancyManager.Services.Managers
       _db.SaveChanges();
     }
 
-    internal static void Update(int id, string FullName, string FullNameEn, string contactPhone, string email, bool employed)
+    internal static Applicant Update(int id, string FullName, string FullNameEn, string contactPhone, string email, bool employed)
     {
       VacancyContext _db = new VacancyContext();
       var obj = _db.Applicants.Where(app => app.ApplicantID == id).FirstOrDefault();
@@ -59,6 +59,8 @@ namespace VacancyManager.Services.Managers
       }
 
       _db.SaveChanges();
+
+      return obj;
     }
 
     internal static bool IsApplicantExists(string email)

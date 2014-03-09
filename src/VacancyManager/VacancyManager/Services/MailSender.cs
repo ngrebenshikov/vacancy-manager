@@ -26,14 +26,18 @@ namespace VacancyManager.Services
         try
         {
             MailMessage mail = new MailMessage(UserName, To, Subject, Body);
- 
-            for (int j = 0; j <= wfiles.Count - 1; j++)
+            if (wfiles != null)
             {
-                var attfile = wfiles[j];
-                System.Net.Mail.Attachment mailattach = new System.Net.Mail.Attachment(attfile.InputStream, attfile.ContentType);
-                mailattach.Name = attfile.FileName;
-                mail.Attachments.Add(mailattach);
+                for (int j = 0; j <= wfiles.Count - 1; j++)
+                {
+                    var attfile = wfiles[j];
+                    System.Net.Mail.Attachment mailattach = new System.Net.Mail.Attachment(attfile.InputStream, attfile.ContentType);
+                    mailattach.Name = attfile.FileName;
+                    mail.Attachments.Add(mailattach);
+                }
             }
+
+            mail.IsBodyHtml = true;
 
             SmtpClient client = new SmtpClient(SmtpServer);
             client.Port = null != Services.Managers.SysConfigManager.Get(PortConfigName) ? int.Parse(Services.Managers.SysConfigManager.Get(PortConfigName)) : Port;

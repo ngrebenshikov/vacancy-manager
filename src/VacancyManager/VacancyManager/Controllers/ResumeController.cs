@@ -17,12 +17,12 @@ using iTextSharp.text.pdf;
 
 namespace VacancyManager.Controllers
 {
-    [AuthorizeError(Roles = "Admin")]
+    [AuthorizeError(Roles = "Admin, User")]
 
     public class ResumeController : BaseController
     {
 
-
+        #region CreateResumeCopy
         [HttpGet]
         public ActionResult CreateResumeCopy(int? id)
         {
@@ -77,7 +77,7 @@ namespace VacancyManager.Controllers
                 resume = created
             }, JsonRequestBehavior.AllowGet);
         }
-
+     
         [HttpGet]
         public ActionResult CreatePdfCopy(int? id)
         {
@@ -319,6 +319,7 @@ namespace VacancyManager.Controllers
 
             return File(newResume, "application/pdf");
         }
+        #endregion
 
         [HttpGet]
         public ActionResult LoadResume(int appId)
@@ -419,7 +420,7 @@ namespace VacancyManager.Controllers
                 {   
                     Applicant app = ApplicantManager.GetApplicantByEMail("ResumeTest@yandex.ru");
                     if (app == null)
-                        app = ApplicantManager.Create("Мастер резюме", "Resume Wizard", "+79239999999", "ResumeTest@yandex.ru", false).ElementAt(0);
+                        app = ApplicantManager.Create("Мастер резюме", "Resume Wizard", "+79239999999", "ResumeTest@yandex.ru", false);
                     AppId = app.ApplicantID;
                 }
 

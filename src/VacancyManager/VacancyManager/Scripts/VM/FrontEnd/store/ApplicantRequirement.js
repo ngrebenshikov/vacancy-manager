@@ -22,19 +22,15 @@
             type: 'json',
             encode: false,
             listful: true,
-            writeAllFields: true
-            //            getRecordData: function (record) {
-            //                return { 'data': Ext.JSON.encode(record.data) }
-            //            }
+            root: 'data',
+            writeAllFields: true,
+            getRecordData: function (record) {
+                return Ext.JSON.encode(record.data);
+            }
         },
 
-
         headers: { 'Content-Type': 'application/json; charset=UTF-8' }
-    },
 
-    listeners: {
-        'load': function (store, records, successful, eOpts ) {
-        }
     }
 });
 
