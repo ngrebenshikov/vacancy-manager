@@ -10,6 +10,18 @@ namespace VacancyManager.Services.Managers
   {
     #region Consideration
 
+      internal static bool IsApplicantConsiderationExist(int AppId, int VacId)
+      {
+          VacancyContext _db = new VacancyContext();
+          bool ConsExist = false;
+          List<Consideration> Cons =_db.Considerations.Where(v => v.ApplicantID == AppId && v.VacancyID == VacId).ToList();
+          if (Cons.Count > 0)
+          {
+              ConsExist = true;
+          }
+          return ConsExist;
+      }
+
     internal static IEnumerable<Consideration> GetConsideration(int considerationId)
     {
       VacancyContext _db = new VacancyContext();

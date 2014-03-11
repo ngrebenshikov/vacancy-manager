@@ -14,18 +14,19 @@ namespace VacancyManager.Controllers
     {
         // GET: /FrontEnd/
 
-        public ActionResult Index()
-        {   
+        public ActionResult Index(string id)
+        {
             object model = null;
             object appModel = null;
             Applicant App = null;
+            int VacID = 0;
 
-            VMMembershipUser vmuser = (VMMembershipUser)Membership.GetUser(User.Identity.Name, false);          
+            VMMembershipUser vmuser = (VMMembershipUser)Membership.GetUser(User.Identity.Name);
 
             if (vmuser != null)
             {
-               
-                model = new 
+
+                model = new
                     {
                         Email = vmuser.Email,
                         UserName = vmuser.UserName,
@@ -33,8 +34,24 @@ namespace VacancyManager.Controllers
                     };
 
                 App = ApplicantManager.GetApplicantByEMail(vmuser.Email);
+
+                if (id != null)
+                {
+                    Vacancy Vac = VacancyDbManager.GetVacancy(id);
+                    if (Vac != null) { VacID = Vac.VacancyID; }
+                }
+
                 if (App == null) { App = new Applicant(); }
+                else if (VacID != 0)
+                {
+                    if (!ConsiderationsManager.IsApplicantConsiderationExist(App.ApplicantID, VacID))
+                    { 
+                        ConsiderationsManager.CreateConsideration(VacID, App.ApplicantID); 
+                    }
+                    else { VacID = 0; }
+                }
             }
+
             else
             {
                 model = new
@@ -44,7 +61,7 @@ namespace VacancyManager.Controllers
                     UserID = 0
                 };
 
-              App = new Applicant();
+                App = new Applicant();
             }
 
             appModel = new
@@ -58,8 +75,12 @@ namespace VacancyManager.Controllers
                 Requirements = ""
             };
 
-            return View(new { User = model, 
-                              Applicant = appModel});
+            return View(new
+            {
+                User = model,
+                VacId = VacID,
+                Applicant = appModel
+            });
         }
 
     }

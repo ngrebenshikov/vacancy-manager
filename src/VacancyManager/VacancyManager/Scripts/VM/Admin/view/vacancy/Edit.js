@@ -65,9 +65,26 @@ Ext.define('VM.view.vacancy.Edit', {
                 }, { xtype: 'vacancyrequirementsList',
                     region: 'east',
                     width: 300
-                }
-           ]
+                }, {
+                    xtype: 'panel',
+                    border: false,
+                    region: 'south',
+                    height: 40,
+                    layout: {
+                        type: 'vbox',
+                        align: 'stretch'
+                    },
+                    items: [{
+                        xtype: 'textfield',
+                        name: 'Link',
+                        anchor: '100%',
+                        margins: '5',
+                        fieldLabel: 'Спецссылка',
+                        id: 'txtLink'
+                    }]
+                }]
             },
+
              this.buttons = [{
                  text: 'Сохранить',
                  action: 'updateVacancy'

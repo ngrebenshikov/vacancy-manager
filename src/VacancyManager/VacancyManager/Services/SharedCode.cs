@@ -3,11 +3,46 @@ using System.Web.Security;
 using VacancyManager.Models;
 using VacancyManager.Services;
 using System.Web.Mvc;
+using System.Security.Cryptography;
+using System.Text;
 
 namespace VacancyManager
 {
   internal static class SharedCode
   {
+
+      internal static string GetMd5Hash(MD5 md5Hash, string input)
+      {
+
+          byte[] data = md5Hash.ComputeHash(Encoding.UTF8.GetBytes(input));
+
+          StringBuilder sBuilder = new StringBuilder();
+
+          for (int i = 0; i < data.Length; i++)
+          {
+              sBuilder.Append(data[i].ToString("x2"));
+          }
+
+          return sBuilder.ToString();
+      }
+
+      internal static bool VerifyMd5Hash(MD5 md5Hash, string input, string hash)
+      {
+
+          string hashOfInput = GetMd5Hash(md5Hash, input);
+
+          StringComparer comparer = StringComparer.OrdinalIgnoreCase;
+
+          if (0 == comparer.Compare(hashOfInput, hash))
+          {
+              return true;
+          }
+          else
+          {
+              return false;
+          }
+      }
+
 
     internal static Tuple<bool, string, VMMembershipUser> CreateNewUser(string name, string email, string password, bool activate, bool setAsAdmin)
     {

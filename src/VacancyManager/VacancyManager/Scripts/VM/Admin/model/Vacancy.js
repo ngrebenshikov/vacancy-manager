@@ -3,33 +3,14 @@ Ext.define('VM.model.Vacancy', {
     extend: 'Ext.data.Model',
     idProperty: 'VacancyID',
     fields: [
-                 {
-                     name: 'VacancyID',
-                     type: 'int',
-                     usenull: true
-                 },
-                 {
-                     name: 'Title'
-                 },
-                 {
-                     name: 'Description'
-                 },
-                 {
-                     name: 'OpeningDate',
-                     type: 'date',
-                     dateFormat: 'd.m.Y'
-
-                 },
-                 {
-                     name: 'Requirements'
-                 },
-                 {
-                     name: 'IsVisible'
-                 },
-                 {
-                     name: 'Considerations',
-                     type: 'int'
-                 }
+                 { name: 'VacancyID',  type: 'int',  usenull: true },
+                 { name: 'Title' },
+                 { name: 'Description' },
+                 { name: 'OpeningDate',  type: 'date', dateFormat: 'd.m.Y' },
+                 { name: 'Requirements' },
+                 { name: 'IsVisible' },
+                 { name: 'Link' },
+                 { name: 'Considerations', type: 'int' }
         ]
         ,
     proxy: {
