@@ -12,16 +12,21 @@
         items: [
           {
               xtype: 'AppReqsList'
-          }
-      ]
-    },
-    {
+          }]
+    }, {
         title: 'Резюме',
         layout: 'fit',
         items: [
            {
-            xtype: 'resumeList'
-           }
-        ]
+               xtype: 'resumeList'
+           }]
+       }, {
+           title: 'Вакансии',
+           layout: 'fit',
+           items: [
+           {
+               xtype: 'applicantConsiderationsList'
+           }]
+
     }]
 });

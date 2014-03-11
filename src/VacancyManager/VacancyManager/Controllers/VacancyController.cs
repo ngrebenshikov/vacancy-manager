@@ -7,13 +7,12 @@ using VacancyManager.Services;
 using VacancyManager.Services.Managers;
 using System.Web.Script.Serialization;
 
-
 namespace VacancyManager.Controllers
 {
     [AuthorizeError(Roles = "Admin")]
     public class VacancyController : BaseController
     {
-
+        
         public JsonResult GetVacancyAssign(int appId)
         {
             var Considerations = ConsiderationsManager.GetApplicantConsiderations(appId);
@@ -47,7 +46,7 @@ namespace VacancyManager.Controllers
         {
             var VisibleVacancies = VacancyDbManager.AllVisibleVacancies();
             var Requirments = RequirementsManager.GetRequirements().ToList();
-
+            var BaseAdress = "http://" + Request.Url.Authority + "/FrontEnd/Index?id=";
             var VacanciesList = (from Vacancies in VisibleVacancies
                                  select new
                                  {
@@ -60,6 +59,7 @@ namespace VacancyManager.Controllers
                                                      where vac.IsRequire == true
                                                      select req.Name
                                                     ),
+                                     Link = BaseAdress + Vacancies.SpecialKey,
                                      IsVisible = Vacancies.IsVisible,
                                      Considerations = Vacancies.Considerations.Count
                                  }
@@ -82,7 +82,8 @@ namespace VacancyManager.Controllers
         {
             bool c_success = false;
             string c_message = "При создания вакансии произошла ошибка";
-            List<Vacancy> CreatedVacancy = null;
+            Vacancy CreatedVacancy = null;
+            var BaseAdress = "http://" + Request.Url.Authority + "/FrontEnd/Index?id=";
 
             JavaScriptSerializer jss = new JavaScriptSerializer();
             if (data != null)
@@ -94,27 +95,27 @@ namespace VacancyManager.Controllers
                 DateTime OpeningDate = Convert.ToDateTime(c_Vacancy["OpeningDate"]);
                 String Requirements = c_Vacancy["Requirements"].ToString();
                 Boolean IsVisible = Convert.ToBoolean(c_Vacancy["IsVisible"]);
-                CreatedVacancy = (VacancyDbManager.CreateVacancy(Title,
+                CreatedVacancy = VacancyDbManager.CreateVacancy(Title,
                                                    Description,
                                                    OpeningDate,
                                                    Requirements,
                                                    IsVisible
-                 )).ToList();
+                 );
                 c_message = "Вакансия успешно создана";
                 c_success = true;
             }
 
-            var newVacancy = (from vac in CreatedVacancy.ToList()
-                              select new
+            var newVacancy = new
                               {
-                                  VacancyID = vac.VacancyID,
-                                  Title = vac.Title,
-                                  Description = vac.Description,
-                                  OpeningDate = vac.OpeningDate.Value.Date.ToShortDateString(),
+                                  VacancyID = CreatedVacancy.VacancyID,
+                                  Title = CreatedVacancy.Title,
+                                  Description = CreatedVacancy.Description,
+                                  OpeningDate = CreatedVacancy.OpeningDate.Value.Date.ToShortDateString(),
                                   Requirements = "",
-                                  IsVisible = vac.IsVisible,
+                                  Link = BaseAdress + CreatedVacancy.SpecialKey,
+                                  IsVisible = CreatedVacancy.IsVisible,
                                   Considerations = 0
-                              }).ToList();
+                              };
 
             return Json(new
             {

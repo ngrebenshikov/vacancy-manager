@@ -308,6 +308,10 @@
     <Compile Include="Migrations\201401170815493_Requirements_NameEnAdded.Designer.cs">
       <DependentUpon>201401170815493_Requirements_NameEnAdded.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201403101434539_Vacancy_SpecialKeyAdded.cs" />
+    <Compile Include="Migrations\201403101434539_Vacancy_SpecialKeyAdded.Designer.cs">
+      <DependentUpon>201403101434539_Vacancy_SpecialKeyAdded.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\Applicant.cs" />
@@ -1800,17 +1804,20 @@
     <Content Include="Scripts\VM\FrontEnd\controller\ResumeExperience.js" />
     <Content Include="Scripts\VM\FrontEnd\frontEndApp.js" />
     <Content Include="Scripts\VM\FrontEnd\model\Applicant.js" />
+    <Content Include="Scripts\VM\FrontEnd\model\ApplicantConsideration.js" />
     <Content Include="Scripts\VM\FrontEnd\model\ApplicantRequirement.js" />
     <Content Include="Scripts\VM\FrontEnd\model\ExperienceRequirement.js" />
     <Content Include="Scripts\VM\FrontEnd\model\Resume.js" />
     <Content Include="Scripts\VM\FrontEnd\model\ResumeExperience.js" />
     <Content Include="Scripts\VM\FrontEnd\model\ResumeRequirement.js" />
+    <Content Include="Scripts\VM\FrontEnd\store\ApplicantConsideration.js" />
     <Content Include="Scripts\VM\FrontEnd\store\ApplicantRequirement.js" />
     <Content Include="Scripts\VM\FrontEnd\store\ExperienceRequirement.js" />
     <Content Include="Scripts\VM\FrontEnd\store\Resume.js" />
     <Content Include="Scripts\VM\FrontEnd\store\ResumeEducation.js" />
     <Content Include="Scripts\VM\FrontEnd\store\ResumeExperience.js" />
     <Content Include="Scripts\VM\FrontEnd\store\ResumeRequirement.js" />
+    <Content Include="Scripts\VM\FrontEnd\view\applicant\ApplicantConsiderations.js" />
     <Content Include="Scripts\VM\FrontEnd\view\applicant\ApplicantDopInfo.js" />
     <Content Include="Scripts\VM\FrontEnd\view\applicant\ApplicantRequirments.js" />
     <Content Include="Scripts\VM\FrontEnd\view\applicant\ManageApplicant.js" />
