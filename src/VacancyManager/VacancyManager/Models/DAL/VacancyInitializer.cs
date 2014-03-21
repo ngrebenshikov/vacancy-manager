@@ -12,7 +12,7 @@ namespace VacancyManager.Models.DAL
     {
         protected override void Seed(VacancyContext context)
         {
-            var vacancies = new List<Vacancy>
+             var vacancies = new List<Vacancy>
                             {
                                 new Vacancy
                                 {

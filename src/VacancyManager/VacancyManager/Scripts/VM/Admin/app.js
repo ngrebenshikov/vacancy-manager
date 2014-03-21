@@ -12,7 +12,7 @@ var
 
 Ext.Loader.setPath('Ext.ux', 'ExtLib/ux');
 Ext.require('Ext.ux.CheckColumn');
-
+Ext.state.Manager.setProvider(Ext.create('Ext.state.CookieProvider'));
 Ext.application({
     name: 'VM',
     appFolder: '/Scripts/VM/Admin',
@@ -109,7 +109,7 @@ function onLoginButtonClick(login_form, login_window)
   Ext.Ajax.request
   (
     {
-      url: '../../User/ExtJSLogOn',
+      url: '../../VMUser/ExtJSLogOn',
       params:
       {
         login: login_form.getForm().getValues().login,

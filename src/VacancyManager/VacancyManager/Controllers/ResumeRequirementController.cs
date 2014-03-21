@@ -9,7 +9,7 @@ using System.Collections.Generic;
 
 namespace VacancyManager.Controllers
 {
-    public class ResumeRequirementController: BaseController
+    public class ResumeRequirementController : UserController
     {
         JavaScriptSerializer jss = new JavaScriptSerializer();
 
@@ -18,9 +18,21 @@ namespace VacancyManager.Controllers
         {
             var RequirementsStackList = RequirementsManager.GetAllRequirementStacks().ToList();
             var RequirementsList = RequirementsManager.GetRequirements().ToList();
-            var ResumeRequirementsList = ResumeManager.GetResumeRequirements(id).ToList();
+            Resume ViewResume = ResumeManager.GetResumeByID(id);
+            IEnumerable<ResumeRequirement> ResumeRequirementsList = null;
+            IEnumerable<object> Complex = new List<object>();
 
-            var Complex = from o in RequirementsStackList
+            bool CanChangeOrViewData = UserCanExecuteAction;
+            if (!CanChangeOrViewData)
+            {
+                CanChangeOrViewData = ApplicantManager.IsValidApplicant(ViewResume.ApplicantID, User.Identity.Name);
+            }
+
+            if (CanChangeOrViewData)
+            {
+                ResumeRequirementsList = ResumeManager.GetResumeRequirements(id).ToList();
+
+                Complex = from o in RequirementsStackList
                           join v in RequirementsList on o.RequirementStackID equals v.RequirementStackID
                           join y in ResumeRequirementsList on v.RequirementID equals y.RequirementId into a
                           from b in a.DefaultIfEmpty(new ResumeRequirement())
@@ -35,12 +47,14 @@ namespace VacancyManager.Controllers
                               Comments = b.Comment,
                               IsRequire = b.IsChecked
                           };
+            }
 
             return Json(new
             {
                 ResumeRequirements = Complex.ToList(),
                 total = Complex.ToList().Count,
-                success = true }, JsonRequestBehavior.AllowGet
+                success = true
+            }, JsonRequestBehavior.AllowGet
             );
         }
 
@@ -48,7 +62,8 @@ namespace VacancyManager.Controllers
         [HttpPost]
         public ActionResult Create(string[] data)
         {
-            bool CreateSuccess = false;
+            bool CreateSuccess = false,
+                 CanChangeOrViewData = UserCanExecuteAction;
             string CreateMessage = "При изменении требований произошла ошибка";
             List<object> CreatedReqs = new List<object>();
             ResumeRequirement CreatedResumeReq = new ResumeRequirement();
@@ -62,36 +77,40 @@ namespace VacancyManager.Controllers
                     Int32 ResumeID = Convert.ToInt32(u_resumerequirement["ResumeId"]);
                     Int32 RequirementID = Convert.ToInt32(u_resumerequirement["RequirementID"]);
                     Boolean IsRequire = Convert.ToBoolean(u_resumerequirement["IsRequire"]);
+                    Resume editingResume = ResumeManager.GetResumeByID(ResumeID);
 
-                    if (IsRequire)
+                    if (IsRequire) { Comments = u_resumerequirement["Comments"].ToString(); }
+                    if (!CanChangeOrViewData)
                     {
-                        Comments = u_resumerequirement["Comments"].ToString();
+                        CanChangeOrViewData = ApplicantManager.IsValidApplicant(editingResume.ApplicantID, User.Identity.Name);
                     }
 
-                    CreatedResumeReq = ResumeManager.CreateResumeRequirement(ResumeID, RequirementID, Comments, IsRequire);
-
-                    CreatedReqs.Add(new
+                    if (CanChangeOrViewData)
                     {
-                        Id = CreatedResumeReq.Id,
-                        StackName = u_resumerequirement["StackName"],
-                        ResumeId = u_resumerequirement["ResumeId"],
-                        RequirementStackID = u_resumerequirement["RequirementStackID"],
-                        RequirementID = u_resumerequirement["RequirementID"],
-                        RequirementName = u_resumerequirement["RequirementName"],
-                        Comments = u_resumerequirement["Comments"],
-                        IsRequire = u_resumerequirement["IsRequire"],
-                    });
+                        CreatedResumeReq = ResumeManager.CreateResumeRequirement(ResumeID, RequirementID, Comments, IsRequire);
 
+                        CreatedReqs.Add(new
+                        {
+                            Id = CreatedResumeReq.Id,
+                            StackName = u_resumerequirement["StackName"],
+                            ResumeId = u_resumerequirement["ResumeId"],
+                            RequirementStackID = u_resumerequirement["RequirementStackID"],
+                            RequirementID = u_resumerequirement["RequirementID"],
+                            RequirementName = u_resumerequirement["RequirementName"],
+                            Comments = u_resumerequirement["Comments"],
+                            IsRequire = u_resumerequirement["IsRequire"],
+                        });
+
+                        CreateSuccess = true;
+                        CreateMessage = "Требования успешно созданы";
+                    }
                 }
-
-                CreateSuccess = true;
-                CreateMessage = "Требования успешно созданы";
             }
 
             return Json(new
             {
                 success = CreateSuccess,
-                ResumeRequirements = CreatedReqs, 
+                ResumeRequirements = CreatedReqs,
                 message = CreateMessage
             });
 
@@ -100,7 +119,8 @@ namespace VacancyManager.Controllers
         [HttpPost]
         public ActionResult Update(string[] data)
         {
-            bool UpdateSuccess = false;
+            bool UpdateSuccess = false,
+                 CanChangeOrViewData = UserCanExecuteAction;
             string UpdateMessage = "При изменении требований произошла ошибка";
 
 
@@ -110,18 +130,28 @@ namespace VacancyManager.Controllers
                 {
                     String Comments = "";
                     var u_resumerequirement = jss.Deserialize<dynamic>(data[i]);
-                    Int32 Id = Convert.ToInt32(u_resumerequirement["Id"]);
-                    Int32 ResumeID = Convert.ToInt32(u_resumerequirement["ResumeId"]);
-                    Int32 RequirementID = Convert.ToInt32(u_resumerequirement["RequirementID"]);
+                    Int32 Id = Convert.ToInt32(u_resumerequirement["Id"]),
+                          ResumeID = Convert.ToInt32(u_resumerequirement["ResumeId"]),
+                          RequirementID = Convert.ToInt32(u_resumerequirement["RequirementID"]);
                     Boolean IsRequire = Convert.ToBoolean(u_resumerequirement["IsRequire"]);
-
+                    Resume editingResume = ResumeManager.GetResumeByID(ResumeID);
                     if (IsRequire)
                     {
                         Comments = u_resumerequirement["Comments"].ToString();
                     }
-                    ResumeManager.UpdateResumeRequirement(Id,Comments, IsRequire);
-                    UpdateSuccess = true;
-                    UpdateMessage = "Требования успешно изменены";
+                    if (!CanChangeOrViewData)
+                    {
+                        CanChangeOrViewData = ApplicantManager.IsValidApplicant(editingResume.ApplicantID, User.Identity.Name);
+                    }
+
+                    if (CanChangeOrViewData)
+                    {
+
+                        ResumeManager.UpdateResumeRequirement(Id, Comments, IsRequire);
+                        UpdateSuccess = true;
+                        UpdateMessage = "Требования успешно изменены";
+                    }
+
                 }
 
             }

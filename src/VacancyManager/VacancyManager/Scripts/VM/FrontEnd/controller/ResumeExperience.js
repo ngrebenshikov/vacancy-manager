@@ -28,7 +28,7 @@
               { click: this.CreateResumeExperience },
 
               'button[action=DeleteExpirience]':
-              { click: this.DeleteExpirience },
+              { click: this.DeleteExpirience }
           }
       );
       },

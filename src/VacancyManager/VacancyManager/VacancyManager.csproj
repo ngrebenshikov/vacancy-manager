@@ -87,6 +87,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\ApplicantController.cs" />
     <Compile Include="Controllers\ApplicantRequirementController.cs" />
     <Compile Include="Controllers\AttachmentController.cs" />
@@ -102,6 +103,7 @@
     <Compile Include="Controllers\RolesController.cs" />
     <Compile Include="Controllers\SysConfigController.cs" />
     <Compile Include="Controllers\UserController.cs" />
+    <Compile Include="Controllers\VMUserController.cs" />
     <Compile Include="Controllers\VacancyController.cs" />
     <Compile Include="Controllers\VacancyRequirementController.cs" />
     <Compile Include="Controllers\VMMailMessageController.cs" />

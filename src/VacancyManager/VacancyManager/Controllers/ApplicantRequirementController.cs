@@ -10,8 +10,8 @@ using VacancyManager.Services;
 
 namespace VacancyManager.Controllers
 {
-    [AuthorizeError(Roles = "Admin,  User")]
-    public class ApplicantRequirementController : BaseController
+
+    public class ApplicantRequirementController : UserController
     {
         [HttpGet]
         public JsonResult Load(int id)

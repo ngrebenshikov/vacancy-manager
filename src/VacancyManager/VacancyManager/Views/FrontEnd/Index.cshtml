@@ -13,7 +13,6 @@
     var Strings = @Html.Raw(ResourceSerialiser.ToJson(typeof(VacancyManager.Properties.Resources)));
     var UserIsAuthenticated = @Html.Raw(Json.Encode(Request.IsAuthenticated));
     var model = @Html.Raw(Json.Encode(Model));
-    var User = model.User;
     var VacID = model.VacId;
   </script>
   

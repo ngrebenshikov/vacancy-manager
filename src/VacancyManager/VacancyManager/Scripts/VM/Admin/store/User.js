@@ -1,17 +1,15 @@
 ﻿Ext.define('VM.store.User', {
   extend: 'VM.store.BaseStore',
   model: 'VM.model.User',
-  id: 'VacancyStore',
+  id: 'UsersStore',
   autoLoad: true,
-  //autoSync: true,
-  //autoSave: true,
   proxy: {
     type: 'ajax',
     api: {
-      read: '../../User/ExtJSUserListLoad',
-      create: '../../User/ExtJSCreateUser',
-      update: '../../User/ExtJSUpdateUser',
-      destroy: '../../User/ExtJSDeleteUser'
+      read: '../../VMUser/ExtJSUserListLoad',
+      create: '../../VMUser/ExtJSCreateUser',
+      update: '../../VMUser/ExtJSUpdateUser',
+      destroy: '../../VMUser/ExtJSDeleteUser'
     },
     reader: {
       type: 'json',

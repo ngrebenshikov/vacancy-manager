@@ -3,8 +3,9 @@
 function LogIn(login_form, login_window) {
     var form = login_form.getForm(),
         values = form.getValues();
+
     Ext.Ajax.request({
-        url: '../../User/ExtJSLogOn',
+        url: '../../VMUser/ExtJSLogOn',
         params:
         {
             login: values.login,
@@ -14,16 +15,29 @@ function LogIn(login_form, login_window) {
             var JsonResult = Ext.JSON.decode(result.responseText);
 
             if (JsonResult.success) {
+
                 var appReqStore = Ext.StoreManager.lookup('ApplicantRequirement'),
                     applicant = Ext.create('VM.model.Applicant', JsonResult.applicant),
                     resumeStore = Ext.StoreManager.lookup('Resume'),
-                    appConsStore = Ext.StoreManager.lookup('ApplicantConsideration'); 
+                    appConsStore = Ext.StoreManager.lookup('ApplicantConsideration');
 
                 var appForm = Ext.getCmp('frmManageApplicant').getForm();
+               
+                if (model.VacancyKey !== null) {
+                    var consideration = Ext.create('VM.model.ApplicantConsideration', {
+                        Vacancy: model.VacancyKey,
+                        ApplicantID: applicant.getId()
+                    });
+
+                    consideration.save();
+                }
+
                 appForm.loadRecord(applicant);
+
                 appReqStore.load({ params: { "id": applicant.getId()} });
                 resumeStore.load({ params: { "appId": applicant.getId()} });
                 appConsStore.load({ params: { "AppId": applicant.getId()} });
+
                 login_window.close();
             }
             else {
@@ -144,8 +158,10 @@ Ext.Loader.setPath('Ext.ux.StatusBar', '/ExtLib/ux/statusbar/StatusBar.js');
                     applicant = Ext.create('VM.model.Applicant', model.Applicant),
                     resumeStore = this.getResumeStore(),
                     AppID = model.Applicant.ApplicantID;
+               
                 var appConsStore = this.getApplicantConsiderationStore();
                 var appForm = Ext.getCmp('frmManageApplicant').getForm();
+
                 appForm.loadRecord(applicant);
                 appReqStore.load({ params: { "id": AppID} });
                 resumeStore.load({ params: { "appId": AppID} });
