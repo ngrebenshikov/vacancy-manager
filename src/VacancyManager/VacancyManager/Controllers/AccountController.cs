@@ -3,7 +3,10 @@ using System.Web.Mvc;
 using System.Web.Security;
 using VacancyManager.Models;
 using VacancyManager.Services;
+using VacancyManager.Services.Managers;
 using VacancyManager;
+using System.Web.Script.Serialization;
+using System.Collections.Generic;
 
 namespace VacancyManager.Controllers
 {
@@ -66,27 +69,40 @@ namespace VacancyManager.Controllers
     // POST: /Account/Register
 
     [HttpPost]
-    public ActionResult Register(RegisterModel model)
+    public ActionResult Register(string regForm)
     {
-      if (ModelState.IsValid)
-      {
+        Tuple<bool, string, VMMembershipUser>  Info;
+        JavaScriptSerializer jss = new JavaScriptSerializer();
+        Applicant app = null;
+        var obj = jss.Deserialize<dynamic>(regForm);
+
         // Попытка зарегистрировать пользователя
-        MembershipCreateStatus createStatus;
-        Membership.CreateUser(model.UserName, model.Password, model.Email, null, null, true, null, out createStatus);
+ 
+        Info = SharedCode.CreateNewUser(obj["UserName"].ToString(), obj["Email"].ToString(), obj["UserPassword"].ToString(), false, false);
 
-        if (createStatus == MembershipCreateStatus.Success)
+        if (Info.Item1)
         {
-          //FormsAuthentication.SetAuthCookie(model.UserName, false /* createPersistentCookie */);
-          var user = (VMMembershipUser)Membership.GetUser(model.UserName, false);
-          string ActivationLink = "http://localhost:53662/Account/Activate/" +
-                                    model.UserName + "/" + user.EmailKey;
-          return RedirectToAction(EMailSender.SendMail(ActivationLink, model.Email) ? "ConfirmReg/1" : "ConfirmReg/0", "Account");
-        }
-        ModelState.AddModelError("", SharedCode.ErrorCodeToString(createStatus));
-      }
+            VMMembershipUser newUser = Info.Item3;
+                string ActivationLink = "Activate/" + newUser.UserName + "/" + newUser.EmailKey;
 
-      // Появление этого сообщения означает наличие ошибки; повторное отображение формы
-      return View(model);
+                string body = "Hello " + obj["UserName"].ToString() + ",";
+                body += "<br/><br />Please click the following link to activate your account";
+                body += "<br/><a href = '" + Request.Url.AbsoluteUri.Replace("Register", ActivationLink) + "'>Click here to activate your account.</a>";
+                body += "<br/><br/>Thanks";
+
+                string msgStatus = MailSender.SendTo(newUser.Email, "Активация аккаунта", body, false, null, 0);
+
+           app = ApplicantManager.Create(obj["FullName"].ToString(), obj["FullNameEn"].ToString(), obj["ContactPhone"].ToString(), obj["Email"].ToString(), false);
+
+        }
+
+      return Json(new
+      {
+          success = true,
+          info = Info
+
+      }, JsonRequestBehavior.AllowGet);
+
     }
 
     [HttpGet]
@@ -100,15 +116,15 @@ namespace VacancyManager.Controllers
     public ActionResult Activate(string username, string key)
     {
       VMMembershipUser user = (VMMembershipUser)Membership.GetUser(username, false);
-      if (user == null)
-        return Redirect("Error");
-      if (user.EmailKey != key)
-        return RedirectToAction("IndexOld", "Home");
-      user.UnlockUser();
-      //user.IsApproved = true; //Активировали
-      user.EmailKey = null; //Чтобы нельзя было больше активировать user
-      Membership.UpdateUser(user);
-      return RedirectToAction("LogOn");
+      if (user != null)
+      {
+          user.UnlockUser();
+          //user.IsApproved = true; //Активировали
+          user.EmailKey = null; //Чтобы нельзя было больше активировать user
+          Membership.UpdateUser(user);
+      }
+      return RedirectToAction("Index", "FrontEnd");
+         
     }
 
 

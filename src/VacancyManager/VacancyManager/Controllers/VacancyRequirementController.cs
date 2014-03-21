@@ -8,8 +8,8 @@ using VacancyManager.Services.Managers;
 
 namespace VacancyManager.Controllers
 {
-    [AuthorizeError(Roles = "Admin")]
-    public class VacancyRequirementController : BaseController
+
+    public class VacancyRequirementController : AdminController
     {
         JavaScriptSerializer jss = new JavaScriptSerializer();
         // GET: /VacancyRequirement/

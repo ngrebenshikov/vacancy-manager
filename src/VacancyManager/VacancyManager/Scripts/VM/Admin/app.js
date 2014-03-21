@@ -12,7 +12,7 @@ var
 
 Ext.Loader.setPath('Ext.ux', 'ExtLib/ux');
 Ext.require('Ext.ux.CheckColumn');
-
+Ext.state.Manager.setProvider(Ext.create('Ext.state.CookieProvider'));
 Ext.application({
     name: 'VM',
     appFolder: '/Scripts/VM/Admin',
@@ -109,7 +109,7 @@ function onLoginButtonClick(login_form, login_window)
   Ext.Ajax.request
   (
     {
-      url: '../../User/ExtJSLogOn',
+      url: '../../VMUser/ExtJSLogOn',
       params:
       {
         login: login_form.getForm().getValues().login,
@@ -118,7 +118,7 @@ function onLoginButtonClick(login_form, login_window)
       success: function (result, request)
       {
         var JsonResult = Ext.JSON.decode(result.responseText);
-        if (JsonResult.LogOnResult != '')
+        if (!JsonResult.success)
         {
           Ext.MessageBox.show(
             {
@@ -148,7 +148,8 @@ function onLoginButtonClick(login_form, login_window)
 
 
 function CreateLoginWindow() {
-  Login_window_Created = true;
+    Login_window_Created = true;
+
   var login_form =
     new Ext.form.FormPanel(
       {
@@ -179,7 +180,8 @@ function CreateLoginWindow() {
               }
             }
           ]
-      });
+  });
+
   var login_window =
     new Ext.Window(
       {

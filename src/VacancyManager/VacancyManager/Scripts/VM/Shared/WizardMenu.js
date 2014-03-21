@@ -1,13 +1,4 @@
 ﻿
-/*var myData = { 'items': [
-        {'step-1', 'Основная информация', false},
-        {'step-2', 'Компетенция', false},
-        {'step-3', 'Профессональный опыт', false},
-        {'step-4', 'Образование', false},
-        {'step-5', 'Дополнительная информация', false}
-]
-};*/
-
 var store = Ext.create('Ext.data.Store', {
     id: 'stageindex',
     autoLoad: false,
@@ -46,7 +37,7 @@ Ext.define('VM.Shared.WizardMenu', {
     store: this.store,
     width: 240,
     border: true,
-    frame: true,
+    markDirty: false,
     title: 'Этапы',
     minSize: 100,
     maxSize: 100,
@@ -75,7 +66,8 @@ Ext.define('VM.Shared.WizardMenu', {
                 getRowClass: function (record, index) {
                     // disabled-row - custom css class for disabled (you must declare it)
                     if (record.get('enabled') == false) return 'disabled-row';
-                }
+                },
+                markDirty: false
 
             }
 

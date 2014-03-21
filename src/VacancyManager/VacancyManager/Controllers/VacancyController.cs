@@ -7,20 +7,18 @@ using VacancyManager.Services;
 using VacancyManager.Services.Managers;
 using System.Web.Script.Serialization;
 
-
 namespace VacancyManager.Controllers
 {
-    [AuthorizeError(Roles = "Admin")]
-    public class VacancyController : BaseController
+    public class VacancyController : AdminController
     {
-
+        
         public JsonResult GetVacancyAssign(int appId)
         {
             var Considerations = ConsiderationsManager.GetApplicantConsiderations(appId);
             var Vacancies = VacancyDbManager.AllVisibleVacancies();
 
             var vacIds = (from cons in Considerations
-                       select cons.VacancyID).ToArray();
+                          select cons.VacancyID).ToArray();
 
             var VacanciesList = (from vacs in Vacancies
                                  where !vacIds.Contains(vacs.VacancyID)
@@ -39,7 +37,38 @@ namespace VacancyManager.Controllers
        JsonRequestBehavior.AllowGet);
 
         }
+        // GET: /Vacancy/Load/id
+        [HttpGet]
+        public JsonResult LoadSingle(int id)
+        {
+            var mVacancy = VacancyDbManager.GetVacancyByID(id);
+            var Requirments = RequirementsManager.GetRequirements().ToList();
+            var BaseAdress = "http://" + Request.Url.Authority + "/FrontEnd/Index?id=";
+         
+            var newVacancy = new
+            {
+                VacancyID = mVacancy.VacancyID,
+                Title = mVacancy.Title,
+                Description = mVacancy.Description,
+                OpeningDate = mVacancy.OpeningDate.Value.Date.ToShortDateString(),
+                Requirements = (from vac in mVacancy.VacancyRequirements
+                                               join req in Requirments on vac.RequirementID equals req.RequirementID
+                                               where vac.IsRequire == true
+                                               select req.Name
+                                                    ),
+                Link = BaseAdress + mVacancy.SpecialKey,
+                IsVisible = mVacancy.IsVisible,
+                Considerations = 0
+            };
 
+            return Json(new
+            {
+                data = newVacancy,
+                total = 1,
+                success = true
+            },
+            JsonRequestBehavior.AllowGet);
+        }
         // GET: /Vacancy/Load
 
         [HttpGet]
@@ -47,7 +76,7 @@ namespace VacancyManager.Controllers
         {
             var VisibleVacancies = VacancyDbManager.AllVisibleVacancies();
             var Requirments = RequirementsManager.GetRequirements().ToList();
-
+            var BaseAdress = "http://" + Request.Url.Authority + "/FrontEnd/Index?id=";
             var VacanciesList = (from Vacancies in VisibleVacancies
                                  select new
                                  {
@@ -60,7 +89,9 @@ namespace VacancyManager.Controllers
                                                      where vac.IsRequire == true
                                                      select req.Name
                                                     ),
+                                     Link = BaseAdress + Vacancies.SpecialKey,
                                      IsVisible = Vacancies.IsVisible,
+                                     VacancyRequirements = Vacancies.VacancyRequirements,
                                      Considerations = Vacancies.Considerations.Count
                                  }
                              ).ToList();
@@ -82,7 +113,8 @@ namespace VacancyManager.Controllers
         {
             bool c_success = false;
             string c_message = "При создания вакансии произошла ошибка";
-            List<Vacancy> CreatedVacancy = null;
+            Vacancy CreatedVacancy = null;
+            var BaseAdress = "http://" + Request.Url.Authority + "/FrontEnd/Index?id=";
 
             JavaScriptSerializer jss = new JavaScriptSerializer();
             if (data != null)
@@ -94,27 +126,27 @@ namespace VacancyManager.Controllers
                 DateTime OpeningDate = Convert.ToDateTime(c_Vacancy["OpeningDate"]);
                 String Requirements = c_Vacancy["Requirements"].ToString();
                 Boolean IsVisible = Convert.ToBoolean(c_Vacancy["IsVisible"]);
-                CreatedVacancy = (VacancyDbManager.CreateVacancy(Title,
+                CreatedVacancy = VacancyDbManager.CreateVacancy(Title,
                                                    Description,
                                                    OpeningDate,
                                                    Requirements,
                                                    IsVisible
-                 )).ToList();
+                 );
                 c_message = "Вакансия успешно создана";
                 c_success = true;
             }
 
-            var newVacancy = (from vac in CreatedVacancy.ToList()
-                              select new
+            var newVacancy = new
                               {
-                                  VacancyID = vac.VacancyID,
-                                  Title = vac.Title,
-                                  Description = vac.Description,
-                                  OpeningDate = vac.OpeningDate.Value.Date.ToShortDateString(),
+                                  VacancyID = CreatedVacancy.VacancyID,
+                                  Title = CreatedVacancy.Title,
+                                  Description = CreatedVacancy.Description,
+                                  OpeningDate = CreatedVacancy.OpeningDate.Value.Date.ToShortDateString(),
                                   Requirements = "",
-                                  IsVisible = vac.IsVisible,
+                                  Link = BaseAdress + CreatedVacancy.SpecialKey,
+                                  IsVisible = CreatedVacancy.IsVisible,
                                   Considerations = 0
-                              }).ToList();
+                              };
 
             return Json(new
             {
@@ -127,9 +159,12 @@ namespace VacancyManager.Controllers
         [HttpPost]
         public ActionResult Update(string data)
         {
+            var Requirments = RequirementsManager.GetRequirements().ToList();
             bool u_success = false;
             string u_message = "При обновлении вакансии произошла ошибка";
             JavaScriptSerializer jss = new JavaScriptSerializer();
+            var BaseAdress = "http://" + Request.Url.Authority + "/FrontEnd/Index?id=";
+            object newVacancy = null;
 
             if (data != null)
             {
@@ -139,22 +174,40 @@ namespace VacancyManager.Controllers
                 object Title = u_vacancy["Title"];
                 object Description = u_vacancy["Description"];
                 object OpeningDate = u_vacancy["OpeningDate"];
-                object Requirments = u_vacancy["Requirements"];
                 object IsVisible = u_vacancy["IsVisible"];
-                VacancyDbManager.UpdateVacancy(Convert.ToInt32(VacancyID),
+                Vacancy UpdatedVacancy = VacancyDbManager.UpdateVacancy(Convert.ToInt32(VacancyID),
                                           Title.ToString(),
                                           Description.ToString(),
                                           Convert.ToDateTime(OpeningDate),
-                                          Requirments.ToString(),
                                           Convert.ToBoolean(IsVisible)
                  );
+
+                newVacancy = new
+                {
+                    VacancyID = UpdatedVacancy.VacancyID,
+                    Title = UpdatedVacancy.Title,
+                    Description = UpdatedVacancy.Description,
+                    OpeningDate = UpdatedVacancy.OpeningDate.Value.Date.ToShortDateString(),
+                    Requirements = (from vac in UpdatedVacancy.VacancyRequirements
+                                    join req in Requirments on vac.RequirementID equals req.RequirementID
+                                    where vac.IsRequire == true
+                                    select req.Name
+                                   ),
+                    Link = BaseAdress + UpdatedVacancy.SpecialKey,
+                    IsVisible = UpdatedVacancy.IsVisible,
+                    Considerations = UpdatedVacancy.Considerations.Count()
+                };
 
                 u_message = "Вакансия успешно обновлена";
                 u_success = true;
             }
+
+
+
             return Json(new
             {
                 success = u_success,
+                data = newVacancy,
                 message = u_message
             }, JsonRequestBehavior.DenyGet);
         }

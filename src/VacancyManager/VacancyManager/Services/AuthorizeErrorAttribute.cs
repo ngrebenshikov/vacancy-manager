@@ -16,6 +16,7 @@ namespace VacancyManager.Services
     //     Инициализирует новый экземпляр класса VacancyManager.Services.AuthorizeErrorAttribute.
     public AuthorizeErrorAttribute() : base() { }
 
+  
     /// <summary>
     /// Вызывается, когда процесс запрашивает авторизацию.
     /// </summary>

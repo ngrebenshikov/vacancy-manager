@@ -1,6 +1,9 @@
 ﻿Ext.define('VM.model.Applicant', {
     extend: 'Ext.data.Model',
     idProperty: 'ApplicantID',
+    autoLoad: false,
+    autoSync: false,
+    autoSave: false,
     fields: ['ApplicantID', 'FullName', 'FullNameEn', 'ContactPhone', 'Email', 'Employed', 'Requirements'],
     proxy:
         {
@@ -26,11 +29,13 @@
                 encode: false,
                 listful: true,
                 writeAllFields: true,
+                root: 'data',
                 getRecordData: function (record) {
-                    return { 'data': Ext.JSON.encode(record.data)
-                    };
+                    return Ext.JSON.encode(record.data);
                 }
             },
+
             headers: { 'Content-Type': 'application/json; charset=UTF-8' }
+
         }
 });

@@ -39,7 +39,7 @@ Ext.define('VM.Shared.FirstStep', {
                 flex: 1,
                 layout: {
                     type: 'hbox',
-                    align: 'stretch',
+                    align: 'stretch'
                 },
                 items: [
                 {

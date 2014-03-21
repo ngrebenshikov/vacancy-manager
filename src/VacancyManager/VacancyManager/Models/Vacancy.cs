@@ -22,10 +22,16 @@ namespace VacancyManager.Models
 
         [Display(Name = "Требования")]
         public string Requirments { get; set; }
-
+        public string SpecialKey { get; set; }
         public bool IsVisible { get; set; }
 
         public virtual ICollection<Consideration> Considerations { get; set; }
-        public virtual ICollection<VacancyRequirement> VacancyRequirements { get; set; } 
+        public virtual ICollection<VacancyRequirement> VacancyRequirements { get; set; }
+
+        public Vacancy()
+        {
+            VacancyID = -1;
+        }
+
     }
 }

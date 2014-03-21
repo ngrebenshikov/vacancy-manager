@@ -11,15 +11,13 @@ using System.IO;
 
 namespace VacancyManager.Controllers
 {
-    [AuthorizeError(Roles = "Admin")]
-
-    public class ApplicantController : BaseController
+    
+    public class ApplicantController : UserController
     {
 
         [HttpGet]
         public ActionResult LoadAppMessages(int AppId, int ConsId)
         {
-
             var list = VMMailMessageManager.GetList();
             var conslist = ConsiderationsManager.GetAppConsiderations(AppId);
 
@@ -69,6 +67,51 @@ namespace VacancyManager.Controllers
                 success = true,
                 considerations = AppConsList
             }, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        public JsonResult CreateApplicantConsideration(string data)
+        {
+            bool CreationSuccess = false;
+            string CreationMessage = "Во время добавления соискателя произошла ошибка";
+            Consideration CreatedConsideration = null;
+            object NewConsideration = null;
+            Vacancy Vac = new Vacancy();
+            JavaScriptSerializer jss = new JavaScriptSerializer();
+            if (data != null)
+            {
+                var newConsideration = jss.Deserialize<dynamic>(data);
+                Vac = VacancyDbManager.GetVacancy(newConsideration["Vacancy"].ToString());
+                int ApplicantID = Convert.ToInt32(newConsideration["ApplicantID"]),
+                    VacancyID = Vac.VacancyID;
+
+                if ((VacancyID != 0) && (ApplicantID != 0))
+                {
+                    if (!ConsiderationsManager.IsApplicantConsiderationExist(ApplicantID, VacancyID))
+                    {
+
+                        CreatedConsideration = ConsiderationsManager.CreateConsideration(VacancyID, ApplicantID);
+
+                        NewConsideration = new
+                        {
+                            ApplicantID = CreatedConsideration.ApplicantID,
+                            ConsiderationID = CreatedConsideration.ConsiderationID,
+                            Vacancy = Vac.Title
+                        };
+
+                        CreationMessage = "Соискатель успешно добавлен";
+                        CreationSuccess = true;
+                    }
+                }
+            }
+
+
+            return Json(new
+            {
+                considerations = NewConsideration,
+                success = CreationSuccess,
+                message = CreationMessage
+            });
         }
 
         [HttpGet]
@@ -153,7 +196,7 @@ namespace VacancyManager.Controllers
             bool success = false;
             string resultMessage = "Ошибка при добавлении соискателя";
             JavaScriptSerializer jss = new JavaScriptSerializer();
-            List<Applicant> created = new List<Applicant>();
+            Applicant created = new Applicant();
 
             if (data != null)
             {
@@ -179,12 +222,20 @@ namespace VacancyManager.Controllers
             bool success = false;
             string resultMessage = "Ошибка при удалении соискателя";
             JavaScriptSerializer jss = new JavaScriptSerializer();
+            bool CanChangeOrViewData = UserCanExecuteAction;
             if (data != null)
             {
                 var obj = jss.Deserialize<dynamic>(data);
-                ApplicantManager.Delete(obj["ApplicantID"]);
-                resultMessage = "Соискатель успешно удален";
-                success = true;
+                if (!CanChangeOrViewData)
+                {
+                    CanChangeOrViewData = ApplicantManager.IsValidApplicant(obj["ApplicantID"], User.Identity.Name);
+                }
+                if (CanChangeOrViewData)
+                {
+                    ApplicantManager.Delete(obj["ApplicantID"]);
+                    resultMessage = "Соискатель успешно удален";
+                    success = true;
+                }
             }
 
             return Json(new
@@ -200,18 +251,32 @@ namespace VacancyManager.Controllers
             bool success = false;
             string resultMessage = "Ошибка при изменении соискателя";
             JavaScriptSerializer jss = new JavaScriptSerializer();
+            Applicant App = new Applicant();
+            object updated = null;
 
             if (data != null)
             {
                 var obj = jss.Deserialize<dynamic>(data);
-                ApplicantManager.Update(obj["ApplicantID"], obj["FullName"], obj["FullNameEn"], obj["ContactPhone"], obj["Email"], obj["Employed"]);
+                App = ApplicantManager.Update(obj["ApplicantID"], obj["FullName"], obj["FullNameEn"], obj["ContactPhone"], obj["Email"], obj["Employed"]);
                 resultMessage = "Соискатель успешно изменен";
                 success = true;
             }
 
+            updated = new
+            {
+                ApplicantID = App.ApplicantID,
+                FullName = App.FullName,
+                FullNameEn = App.FullNameEn,
+                ContactPhone = App.ContactPhone,
+                Employed = App.Employed,
+                Email = App.Email,
+                Requirements = ""
+            };
+
             return Json(new
             {
                 success = success,
+                data = updated,
                 message = resultMessage
             });
         }

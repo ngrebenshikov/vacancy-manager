@@ -10,8 +10,8 @@ using VacancyManager.Services;
 
 namespace VacancyManager.Controllers
 {
-    [AuthorizeError(Roles = "Admin")]
-    public class ApplicantRequirementController : BaseController
+
+    public class ApplicantRequirementController : UserController
     {
         [HttpGet]
         public JsonResult Load(int id)
@@ -40,7 +40,7 @@ namespace VacancyManager.Controllers
                                       select new
                                       {
                                           Id = appReq.Id,
-                                          ApplicantId = appReq.ApplicantId,
+                                          ApplicantId = id,
                                           Comment = appReq.Comment,
                                           IsChecked = appReq.IsChecked
                                       }).ToList();
@@ -61,6 +61,7 @@ namespace VacancyManager.Controllers
                         result.Add(new
                         {
                             StackId = stack[0].Id,
+                            ApplicantId = id,
                             StackName = stack[0].Name,
                             RequirementId = req.RequirementID,
                             RequirementName = req.Name,
@@ -104,40 +105,37 @@ namespace VacancyManager.Controllers
 
 
         [HttpPost]
-        public ActionResult Create()
+        public ActionResult Create(string[] data)
         {
             bool success = false;
             string resultMessage = "Ошибка при добавлении навыка";
             JavaScriptSerializer jss = new JavaScriptSerializer();
-            StreamReader reader = new StreamReader(HttpContext.Request.InputStream);
-            string data = reader.ReadToEnd();
+            List<object> CreatedReqs = new List<object>();
+            ApplicantRequirement CreatedAppReq = new ApplicantRequirement();
 
             try
             {
-                if (data != null)
+              if (data != null)
                 {
-                    var objArray = jss.Deserialize<dynamic>(data);
+                for (int i = 0; i <= data.Length - 1; i++)
+                {
+                    var obj = jss.Deserialize<dynamic>(data[i]);
+                    CreatedAppReq = ApplicantRequirementsManager.Create(obj["ApplicantId"], obj["RequirementId"], obj["CommentText"], obj["IsChecked"]);
+                    resultMessage = "Навык успешно добавлен";
+                    success = true;
 
-                    // Проверка на тип данных нужна из-за формата приходящих данных.
-                    // Если у нас в списке "Требования" один элемент,
-                    // то после десериализации переменная objArray имеет тип Dictionary<string, object>,
-                    // когда больше одного элемента, то - object[].
-                    if (objArray is object[])
-                        foreach (var obj in objArray)
-                        {
-                            //var obj = jss.Deserialize<dynamic>(o);
-                            ApplicantRequirementsManager.Create(obj["ApplicantId"], obj["RequirementId"], obj["CommentText"], obj["IsChecked"]);
-                            resultMessage = "Навык успешно добавлен";
-                            success = true;
-                        }
-                    else if (objArray is Dictionary<string, object>)
+                    CreatedReqs.Add(new
                     {
-                        ApplicantRequirementsManager.Create(objArray["ApplicantId"], objArray["RequirementId"], objArray["CommentText"], objArray["IsChecked"]);
-                        resultMessage = "Навык успешно добавлен";
-                        success = true;
-                    }
-                    else
-                        resultMessage = "Неверный тип данных запроса";
+                        Id = CreatedAppReq.Id,
+                        ApplicantId = obj["ApplicantId"],
+                        StackId = obj["StackId"],
+                        StackName = obj["StackName"],
+                        RequirementId = obj["RequirementId"],
+                        RequirementName = obj["RequirementName"],
+                        CommentText = obj["CommentText"],
+                        IsChecked = obj["IsChecked"]
+                    });
+                   }
                 }
             }
             catch (Exception e)
@@ -148,46 +146,31 @@ namespace VacancyManager.Controllers
             return Json(new
             {
                 success = success,
+                data = CreatedReqs,
                 message = resultMessage
             });
         }
 
 
         [HttpPost]
-        public ActionResult Update()
+        public ActionResult Update(string[] data)
         {
             bool success = false;
             string resultMessage = "Ошибка при изменении навыка";
             JavaScriptSerializer jss = new JavaScriptSerializer();
-            StreamReader reader = new StreamReader(HttpContext.Request.InputStream);
-            string data = reader.ReadToEnd();
 
             try
             {
                 if (data != null)
-                {
-                    var objArray = jss.Deserialize<dynamic>(data);
-
-                    // Проверка на тип данных нужна из-за формата приходящих данных.
-                    // Если у нас в списке "Требования" один элемент,
-                    // то после десериализации переменная objArray имеет тип Dictionary<string, object>,
-                    // когда больше одного элемента, то - object[].
-                    if (objArray is object[])
-                        foreach (var obj in objArray)
-                        {
-                            //var obj = jss.Deserialize<dynamic>(o);
-                            ApplicantRequirementsManager.Update(obj["Id"], obj["CommentText"], obj["IsChecked"]);
-                            resultMessage = "Навык успешно добавлен";
-                            success = true;
-                        }
-                    else if (objArray is Dictionary<string, object>)
+                { 
+                    for (int i = 0; i <= data.Length - 1; i++)
                     {
-                        ApplicantRequirementsManager.Update(objArray["Id"], objArray["CommentText"], objArray["IsChecked"]);
-                        resultMessage = "Навык успешно изменен";
+                        var obj = jss.Deserialize<dynamic>(data[i]);
+                        ApplicantRequirementsManager.Update(obj["Id"], obj["CommentText"], obj["IsChecked"]);
+                        resultMessage = "Навык успешно добавлен";
                         success = true;
                     }
-                    else
-                        resultMessage = "Неверный тип данных запроса";
+
                 }
             }
             catch (Exception e)

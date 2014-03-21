@@ -10,7 +10,7 @@ using System.Web.Security;
 
 namespace VacancyManager.Controllers
 {
-    public class CommentsController : BaseController
+    public class CommentsController : AdminController
     {
         //
         JavaScriptSerializer jss = new JavaScriptSerializer();

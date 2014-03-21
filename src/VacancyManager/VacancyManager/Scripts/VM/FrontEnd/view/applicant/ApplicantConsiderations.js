@@ -1,15 +1,15 @@
-﻿Ext.define('VM.view.Applicant.ApplicantConsiderations', {
+﻿Ext.define('VM.view.applicant.ApplicantConsiderations', {
     extend: 'Ext.grid.Panel',
     alias: 'widget.applicantConsiderationsList',
     id: 'applicantConsiderationsGrid',
-    store: 'ApplicantConsiderations',
-    width: 150,
+    store: 'ApplicantConsideration',
+    hideHeaders: true,
     columns: [
               {
                   dataIndex: 'Vacancy',
-                  header: 'Вакансия',
+                  width: 140,
                   flex: 1,
-                  sortable: false,
+                  sortable: true,
                   menuDisabled: true
               }]
 });

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using VacancyManager.Models;
+using System.Web.Security;
 
 namespace VacancyManager.Services.Managers
 {
@@ -16,20 +17,20 @@ namespace VacancyManager.Services.Managers
       return obj;
     }
 
-    internal static List<Applicant> Create(string FullName, string FullNameEn, string contactPhone, string email, bool employed)
+    internal static Applicant Create(string FullName, string FullNameEn, string contactPhone, string email, bool employed)
     {
       VacancyContext _db = new VacancyContext();
-      var obj = new List<Applicant>();
-      obj.Add(new Applicant
+
+      Applicant obj = new Applicant
       {
         FullName = FullName,
         FullNameEn = FullNameEn,
         ContactPhone = contactPhone,
         Email = email,
         Employed = employed
-      });
+      };
 
-      _db.Applicants.Add(obj[0]);
+      _db.Applicants.Add(obj);
       _db.SaveChanges();
 
       return obj;
@@ -44,7 +45,7 @@ namespace VacancyManager.Services.Managers
       _db.SaveChanges();
     }
 
-    internal static void Update(int id, string FullName, string FullNameEn, string contactPhone, string email, bool employed)
+    internal static Applicant Update(int id, string FullName, string FullNameEn, string contactPhone, string email, bool employed)
     {
       VacancyContext _db = new VacancyContext();
       var obj = _db.Applicants.Where(app => app.ApplicantID == id).FirstOrDefault();
@@ -59,6 +60,8 @@ namespace VacancyManager.Services.Managers
       }
 
       _db.SaveChanges();
+
+      return obj;
     }
 
     internal static bool IsApplicantExists(string email)
@@ -75,5 +78,23 @@ namespace VacancyManager.Services.Managers
         return app;
     }
 
+    private static Applicant GetOnlineApplicant(string UserName)
+    {
+        VMMembershipUser vmuser = (VMMembershipUser)Membership.GetUser(UserName);
+        if (vmuser != null)
+            return ApplicantManager.GetApplicantByEMail(vmuser.Email);
+        else
+            return null;
+    }
+
+
+    internal static bool IsValidApplicant(int ValidatingApplicantId, string UserName) 
+      {
+          int CurApplicantId = GetOnlineApplicant(UserName).ApplicantID;
+          bool IsApplicantValid = false;
+          if (CurApplicantId == ValidatingApplicantId)
+              IsApplicantValid = true;
+          return IsApplicantValid;
+      }
   }
 }

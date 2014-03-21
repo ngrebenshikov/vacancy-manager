@@ -20,7 +20,7 @@ Ext.define('VM.view.Applicant.CenterPanel', {
     [{
         title: Strings.Skills,
         layout: 'fit',
-        autoHeight: true,
+        border: false,
         items: //Элементы fieldset
         [{
             /*** Грид для отображения навыков(Requirement) ***/
@@ -28,11 +28,6 @@ Ext.define('VM.view.Applicant.CenterPanel', {
             id: 'ApplicantRequirementsGrid',
             autoSizeColumns: true,
             forceFit: true,
-            margin: '0 0 12 0',
-            frame: false,
-            layout: 'fit',
-            autoHeight: true,
-            split: true,
             region: 'center',
             plugins: [cellEditing],
             features: [Ext.create('Ext.grid.feature.Grouping', {
@@ -91,41 +86,15 @@ Ext.define('VM.view.Applicant.CenterPanel', {
     },
     { title: Strings.Vacancies,
         layout: 'border',
+        border: false,
         id: 'tabAppVac',
-        autoHeight: true,
         items:
-       [
-       { xtype: 'applicantConsiderationsList',
-           region: 'west',
-           split: true
-       },
-       { xtype: 'commentsList',
-           region: 'center',
-           autoHeight: true,
-           title: 'Комментарии',
-           columns: [
-  	        {
-  	            width: 100,
-  	            flex: 1,
-  	            sortable: false,
-  	            menuDisabled: true,
-  	            textalign: 'justify',
-  	            dataIndex: 'Body',
-  	            tdCls: 'wrap-text'
-  	        },
-            {
-                width: 90,
-                xtype: 'templatecolumn',
-                tdCls: 'wrap-text',
-                tpl:
-                    new Ext.XTemplate(
-                       '<b>{[Ext.Date.format(values.CreationDate, "d.m.Y")]} <br> от {CommentatorName}</b>'
-                 )
-            },
-
-         ],
-           bbar: [
-            {
+        [{ xtype: 'commentsList',
+            region: 'center',
+            border: true,
+            margin: '0 0 0 0',
+            id: 'appConsCommentsList',
+            bbar: [{
                 text: 'Новый комментарий',
                 name: 'btnewConsComments',
                 id: 'newConsComments',
@@ -134,13 +103,17 @@ Ext.define('VM.view.Applicant.CenterPanel', {
                     if (cons != undefined)
                     { var consCreate = Ext.create('VM.view.Comments.Add').show(); }
                 }
-            }
-           ],
-           width: 300,
-           height: 375
-       }
-
-      ]
+            }, '->', {
+                text: 'Новая вакансия',
+                name: 'btnAddCons',
+                id: 'AddAppCons',
+                action: 'addAppCons'
+            }]
+        }, {
+            xtype: 'applicantConsiderationsList',
+            border: true,
+            region: 'west'
+        }]
     },
     { title: 'Комментарии',
         id: 'ApplicantCommentsTab',
