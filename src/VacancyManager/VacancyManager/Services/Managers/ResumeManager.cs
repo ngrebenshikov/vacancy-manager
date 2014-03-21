@@ -15,6 +15,18 @@ namespace VacancyManager.Services.Managers
             return obj;
         }
 
+        internal static Resume GetResumeByID(int resId)
+        {
+            VacancyContext _db = new VacancyContext();
+            return _db.Resumes.Where(v => v.ResumeId == resId).FirstOrDefault();
+        }
+
+        internal static Resume GetResumeByExperienceID(int experienceId)
+        {
+            VacancyContext _db = new VacancyContext();
+            return _db.PreviousExperiences.Where(v => v.ExperienceId == experienceId).FirstOrDefault().Resume;
+        }
+
         internal static IEnumerable<Resume> GetResumes(int appId)
         {
             VacancyContext _db = new VacancyContext();
@@ -24,7 +36,7 @@ namespace VacancyManager.Services.Managers
         internal static Resume GetResume(int? resId)
         {
             VacancyContext _db = new VacancyContext();
-            return _db.Resumes.Where(v => v.ResumeId == resId).Single();
+            return _db.Resumes.Where(v => v.ResumeId == resId).FirstOrDefault();
         }
 
         internal static void DeleteResume(int id)

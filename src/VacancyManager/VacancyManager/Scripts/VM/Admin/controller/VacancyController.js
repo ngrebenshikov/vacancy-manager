@@ -76,8 +76,6 @@ Ext.define('VM.controller.VacancyController', {
         curVacancy.save({
             success: function (record, operation) {
                 VacancyID = record.getId();
-                vacancystore.insert(0, record);
-
                 VacancyRequirementsStore.each(function (vacancyRequirements) {
                     vacancyRequirements.set('VacancyID', VacancyID);
                 });
@@ -86,7 +84,15 @@ Ext.define('VM.controller.VacancyController', {
                 VacancyRequirementsStore.sync();
 
                 var f = function (storeAR, operation) {
-                    vacancystore.load();
+                    Ext.Ajax.request({
+                        url: '../../Vacancy/LoadSingle?id=' + VacancyID,
+                        method: 'GET',
+                        success: function (result, request) {
+                            var JsonResult = Ext.JSON.decode(result.responseText).data;
+                            vacancystore.insert(0, Ext.create('VM.model.Vacancy', JsonResult));
+                        }
+                    });
+
                     VacancyRequirementsStore.un("write", f);
                 };
                 VacancyRequirementsStore.on("write", f);
@@ -127,11 +133,29 @@ Ext.define('VM.controller.VacancyController', {
         var wndvacanyEdit = button.up('window'),
            frm_vacancyform = wndvacanyEdit.down('form'),
            sel_vacancy = frm_vacancyform.getRecord(),
-           newvalues = frm_vacancyform.getValues();
-        sel_vacancy.set(newvalues);
+           newvalues = frm_vacancyform.getValues(),
+           nestedUpdate = false;
+
         VacancyRequirementsStore = Ext.StoreManager.lookup('VacancyRequirements');
+
+        var upRecs = VacancyRequirementsStore.getUpdatedRecords(),
+            newRecs = VacancyRequirementsStore.getNewRecords();
+        if ((upRecs.length !== 0) || (newRecs.length)) {
+            nestedUpdate = true;
+        }
+        if (nestedUpdate) {
+            var f = function (storeAR, operation) {
+                sel_vacancy.set(newvalues);
+                VacancyRequirementsStore.un("write", f);
+                console.log("yes");
+            };
+
+            VacancyRequirementsStore.on("write", f);
+        }
+        else {
+            sel_vacancy.set(newvalues);
+        }
         VacancyRequirementsStore.sync();
-        this.getVacancyStore().load();
         wndvacanyEdit.close();
     },
 

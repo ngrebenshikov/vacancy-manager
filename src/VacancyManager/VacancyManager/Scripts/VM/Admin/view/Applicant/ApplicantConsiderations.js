@@ -3,23 +3,13 @@
     alias: 'widget.applicantConsiderationsList',
     id: 'applicantConsiderationsGrid',
     store: 'ApplicantConsiderations',
-    width: 143,
-    title: 'Вакансии',
-    hideHeaders: true,
-    height: 350,
+    width: 150,
     columns: [
               {
                   dataIndex: 'Vacancy',
-                  width: 140,
-                  sortable: true,
+                  header: 'Вакансия',
+                  flex: 1,
+                  sortable: false,
                   menuDisabled: true
-              }],
-    bbar: [
-    {
-        text: 'Новая вакансия',
-        name: 'btnAddCons',
-        id: 'AddAppCons',
-        action: 'addAppCons'
-    }
-    ]
+              }]
 });

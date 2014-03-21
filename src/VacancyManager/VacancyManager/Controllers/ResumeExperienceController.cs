@@ -9,30 +9,39 @@ using System.Web.Script.Serialization;
 
 namespace VacancyManager.Controllers
 {
-    public class ResumeExperienceController : Controller
+    public class ResumeExperienceController : UserController
     {
-        //
         // GET: /ResumeExperience/
         JavaScriptSerializer jss = new JavaScriptSerializer();
 
         [HttpGet]
         public ActionResult GetResumeExperience(int ResId, bool isEdu)
         {
-            var Experience = ResumeManager.GetResumeExperience(ResId);
-            var ExperienceList = (from exp in Experience
-                                  where exp.IsEducation == isEdu 
-                                  select new
-                                  {
-                                      ExperienceId = exp.ExperienceId,
-                                      Job = exp.Job,
-                                      Project = exp.Project,
-                                      Position = exp.Position,
-                                      ResumeId = exp.ResumeId,
-                                      StartDate = exp.StartDate.Date.ToShortDateString(),
-                                      FinishDate = exp.FinishDate.Value.Date.ToShortDateString(),
-                                      Duties = exp.Duties,
-                                      IsEducation = exp.IsEducation
-                                  }).ToList();
+            bool CanChangeOrViewData = UserCanExecuteAction;
+            IEnumerable<object> ExperienceList = null;
+            Resume ViewResume = ResumeManager.GetResumeByID(ResId);
+            if (!CanChangeOrViewData)
+            {
+                CanChangeOrViewData = ApplicantManager.IsValidApplicant(ViewResume.ApplicantID, User.Identity.Name);
+            }
+            if (CanChangeOrViewData)
+            {
+                var Experience = ResumeManager.GetResumeExperience(ResId);
+                ExperienceList = (from exp in Experience
+                                      where exp.IsEducation == isEdu
+                                      select new
+                                      {
+                                          ExperienceId = exp.ExperienceId,
+                                          Job = exp.Job,
+                                          Project = exp.Project,
+                                          Position = exp.Position,
+                                          ResumeId = exp.ResumeId,
+                                          StartDate = exp.StartDate.Date.ToShortDateString(),
+                                          FinishDate = exp.FinishDate.HasValue ? exp.FinishDate.Value.Date.ToShortDateString() : "",
+                                          Duties = exp.Duties,
+                                          IsEducation = exp.IsEducation
+                                      }).ToList();
+            }
 
             return Json(new
             {
@@ -41,48 +50,60 @@ namespace VacancyManager.Controllers
             }, JsonRequestBehavior.AllowGet);
         }
 
-
         [HttpPost]
         public ActionResult CreateExperience(string data)
         {
+
             bool CreateSuccess = false;
             string CreateMessage = "При изменении информации произошла ошибка";
             DateTime? finishDate = null;
             Experience Exp = new Experience();
-
             object newExp = null;
 
+            bool CanChangeOrViewData = UserCanExecuteAction;
             if (data != null)
             {
 
                 var с_ResumeExp = jss.Deserialize<dynamic>(data);
-                if ((с_ResumeExp["FinishDate"] != "") && с_ResumeExp["FinishDate"] != null) finishDate = Convert.ToDateTime(с_ResumeExp["FinishDate"]);
-                Exp = ResumeManager.CreateResumeExperience(Convert.ToInt32(с_ResumeExp["ResumeId"]),
-                                                     с_ResumeExp["Duties"].ToString(),
-                                                     finishDate,
-                                                     Convert.ToBoolean(с_ResumeExp["IsEducation"]),
-                                                     с_ResumeExp["Job"].ToString(),
-                                                     с_ResumeExp["Position"].ToString(),
-                                                     с_ResumeExp["Project"].ToString(),
-                                                     Convert.ToDateTime(с_ResumeExp["StartDate"]));
 
-     
-                CreateSuccess = true;
-                CreateMessage = "Информация об опыте успешно добавлена"; ;
+                Resume editingResume = ResumeManager.GetResumeByID(Convert.ToInt32(с_ResumeExp["ResumeId"]));
+
+                if (!CanChangeOrViewData)
+                {
+                    CanChangeOrViewData = ApplicantManager.IsValidApplicant(editingResume.ApplicantID, User.Identity.Name);
+                }
+
+                if (CanChangeOrViewData)
+                {
+
+                    if ((с_ResumeExp["FinishDate"] != "") && с_ResumeExp["FinishDate"] != null) finishDate = Convert.ToDateTime(с_ResumeExp["FinishDate"]);
+                    Exp = ResumeManager.CreateResumeExperience(Convert.ToInt32(с_ResumeExp["ResumeId"]),
+                                                         с_ResumeExp["Duties"].ToString(),
+                                                         finishDate,
+                                                         Convert.ToBoolean(с_ResumeExp["IsEducation"]),
+                                                         с_ResumeExp["Job"].ToString(),
+                                                         с_ResumeExp["Position"].ToString(),
+                                                         с_ResumeExp["Project"].ToString(),
+                                                         Convert.ToDateTime(с_ResumeExp["StartDate"]));
+
+
+                    CreateSuccess = true;
+                    CreateMessage = "Информация об опыте успешно добавлена"; ;
+                }
+
+                newExp = new
+                {
+                    ExperienceId = Exp.ExperienceId,
+                    Job = Exp.Job,
+                    Project = Exp.Project,
+                    Position = Exp.Position,
+                    ResumeId = Exp.ResumeId,
+                    StartDate = Exp.StartDate.Date.ToShortDateString(),
+                    FinishDate = (finishDate != null ? Exp.FinishDate.Value.Date.ToShortDateString() : ""),
+                    Duties = Exp.Duties,
+                    IsEducation = Exp.IsEducation
+                };
             }
-
-            newExp = new
-            {
-                ExperienceId = Exp.ExperienceId,
-                Job = Exp.Job,
-                Project = Exp.Project,
-                Position = Exp.Position,
-                ResumeId = Exp.ResumeId,
-                StartDate = Exp.StartDate.Date.ToShortDateString(),
-                FinishDate = (finishDate != null ? Exp.FinishDate.Value.Date.ToShortDateString() : ""),
-                Duties = Exp.Duties,
-                IsEducation = Exp.IsEducation
-            };
 
             return Json(new
             {
@@ -93,7 +114,6 @@ namespace VacancyManager.Controllers
 
         }
 
-
         [HttpPost]
         public ActionResult UpdateExperience(string data)
         {
@@ -101,64 +121,71 @@ namespace VacancyManager.Controllers
             string UpdateMessage = "При изменении информации произошла ошибка";
             DateTime? finishDate = null;
             Experience Exp = new Experience();
-
             object newExp = null;
-
+            bool CanChangeOrViewData = UserCanExecuteAction;
             if (data != null)
             {
-
-                var с_ResumeExp = jss.Deserialize<dynamic>(data);
-                if ((с_ResumeExp["FinishDate"] != "") && с_ResumeExp["FinishDate"] != null) finishDate = Convert.ToDateTime(с_ResumeExp["FinishDate"]);
-                Exp = ResumeManager.UpdateResumeExperience(Convert.ToInt32(с_ResumeExp["ExperienceId"]),
-                                                     с_ResumeExp["Duties"].ToString(),
-                                                     finishDate,
-                                                     Convert.ToBoolean(с_ResumeExp["IsEducation"]),
-                                                     с_ResumeExp["Job"].ToString(),
-                                                     с_ResumeExp["Position"].ToString(),
-                                                     с_ResumeExp["Project"].ToString(),
-                                                     Convert.ToDateTime(с_ResumeExp["StartDate"]));
-
-
-                UpdateSuccess = true;
-                UpdateMessage = "Информация об опыте успешно изменена";
+                var с_ResumeExp = jss.Deserialize<dynamic>(data);           
+                Resume EditingResume = ResumeManager.GetResumeByID(Convert.ToInt32(с_ResumeExp["ResumeId"]));
+                if (!CanChangeOrViewData)
+                {
+                    CanChangeOrViewData = ApplicantManager.IsValidApplicant(EditingResume.ApplicantID, User.Identity.Name);
+                }
+                if (CanChangeOrViewData)
+                {
+                    if ((с_ResumeExp["FinishDate"] != "") && с_ResumeExp["FinishDate"] != null) finishDate = Convert.ToDateTime(с_ResumeExp["FinishDate"]);
+                    Exp = ResumeManager.UpdateResumeExperience(Convert.ToInt32(с_ResumeExp["ExperienceId"]),
+                                                         с_ResumeExp["Duties"].ToString(),
+                                                         finishDate,
+                                                         Convert.ToBoolean(с_ResumeExp["IsEducation"]),
+                                                         с_ResumeExp["Job"].ToString(),
+                                                         с_ResumeExp["Position"].ToString(),
+                                                         с_ResumeExp["Project"].ToString(),
+                                                         Convert.ToDateTime(с_ResumeExp["StartDate"]));
+                    UpdateSuccess = true;
+                    UpdateMessage = "Информация об опыте успешно изменена";
+                    newExp = new
+                    {
+                        ExperienceId = Exp.ExperienceId,
+                        Job = Exp.Job,
+                        Project = Exp.Project,
+                        Position = Exp.Position,
+                        ResumeId = Exp.ResumeId,
+                        StartDate = Exp.StartDate.Date.ToShortDateString(),
+                        FinishDate = (finishDate != null ? Exp.FinishDate.Value.Date.ToShortDateString() : ""),
+                        Duties = Exp.Duties,
+                        IsEducation = Exp.IsEducation
+                    };
+                }
             }
-
-            newExp = new
-            {
-                ExperienceId = Exp.ExperienceId,
-                Job = Exp.Job,
-                Project = Exp.Project,
-                Position = Exp.Position,
-                ResumeId = Exp.ResumeId,
-                StartDate = Exp.StartDate.Date.ToShortDateString(),
-                FinishDate = (finishDate != null? Exp.FinishDate.Value.Date.ToShortDateString(): ""),
-                Duties = Exp.Duties,
-                IsEducation = Exp.IsEducation
-            };
-
             return Json(new
             {
                 success = UpdateSuccess,
                 experience = newExp,
                 message = UpdateMessage
             });
-
         }
-
 
         [HttpPost]
         public ActionResult DeleteExperience(string data)
         {
             bool DeleteSuccess = false;
             string DeleteMessage = "При удалении информации произошла ошибка";
-
+            bool CanChangeOrViewData = UserCanExecuteAction;
              if (data != null)
              {
                 var d_ResumeExp = jss.Deserialize<dynamic>(data);
-                ResumeManager.DeleteResumeExperience(Convert.ToInt32(d_ResumeExp["ExperienceId"]));
-
-                DeleteSuccess = true;
-                DeleteMessage = "Информация об опыте успешно удалена";
+                Resume EditingResume = ResumeManager.GetResumeByID(Convert.ToInt32(d_ResumeExp["ResumeId"]));
+                if (!CanChangeOrViewData)
+                {
+                    CanChangeOrViewData = ApplicantManager.IsValidApplicant(EditingResume.ApplicantID, User.Identity.Name);
+                }
+                if (CanChangeOrViewData)
+                {                
+                    ResumeManager.DeleteResumeExperience(Convert.ToInt32(d_ResumeExp["ExperienceId"]));
+                    DeleteSuccess = true;
+                    DeleteMessage = "Информация об опыте успешно удалена";
+                }
             }
 
             return Json(new
@@ -174,9 +201,20 @@ namespace VacancyManager.Controllers
         {
             var RequirementsStackList = RequirementsManager.GetAllRequirementStacks().ToList();
             var RequirementsList = RequirementsManager.GetRequirements().ToList();
-            var ExperienceRequirementsList = ResumeManager.GetExperienceRequirements(id).ToList();
-
-            var Complex = from o in RequirementsStackList
+            IEnumerable<ExperienceRequirement> ExperienceRequirementsList = new List<ExperienceRequirement>();
+            bool CanChangeOrViewData = UserCanExecuteAction;
+            IEnumerable<object> Complex = new List<object>();
+            Resume EditingResume = ResumeManager.GetResumeByID(id);
+          
+            if (!CanChangeOrViewData)
+            {
+               
+                CanChangeOrViewData = ApplicantManager.IsValidApplicant(EditingResume.ApplicantID, User.Identity.Name);
+            }
+            if (CanChangeOrViewData)
+            {
+                ExperienceRequirementsList = ResumeManager.GetExperienceRequirements(id).ToList();
+                Complex = from o in RequirementsStackList
                           join v in RequirementsList on o.RequirementStackID equals v.RequirementStackID
                           join y in ExperienceRequirementsList on v.RequirementID equals y.RequirementId into a
                           from b in a.DefaultIfEmpty(new ExperienceRequirement())
@@ -191,6 +229,7 @@ namespace VacancyManager.Controllers
                               Comments = b.Comment,
                               IsRequire = b.IsChecked
                           };
+            }
 
             return Json(new
             {
@@ -201,13 +240,12 @@ namespace VacancyManager.Controllers
             );
         }
 
-
         [HttpPost]
         public ActionResult CreateExperienceRequirements(string[] data)
         {
             bool CreateSuccess = false;
             string CreateMessage = "При изменении требований произошла ошибка";
-
+            bool CanChangeOrViewData = UserCanExecuteAction;
 
             if (data != null)
             {
@@ -215,21 +253,28 @@ namespace VacancyManager.Controllers
                 {
                     String Comments = "";
                     var c_exprequirement = jss.Deserialize<dynamic>(data[i]);
-                    Int32 ExperienceId = Convert.ToInt32(c_exprequirement["ExperienceId"]);
-                    Int32 RequirementID = Convert.ToInt32(c_exprequirement["RequirementID"]);
+                    Int32 ExperienceId = Convert.ToInt32(c_exprequirement["ExperienceId"]),
+                          RequirementID = Convert.ToInt32(c_exprequirement["RequirementID"]);
                     Boolean IsRequire = Convert.ToBoolean(c_exprequirement["IsRequire"]);
-
-                    if (IsRequire)
+                    Resume EditingResume = ResumeManager.GetResumeByExperienceID(ExperienceId);
+                    if (!CanChangeOrViewData)
                     {
-                        Comments = c_exprequirement["Comments"].ToString();
+                        CanChangeOrViewData = ApplicantManager.IsValidApplicant(EditingResume.ApplicantID, User.Identity.Name);
                     }
-
-                    ResumeManager.CreateExperienceRequirement(ExperienceId, RequirementID, Comments, IsRequire);
-
+           
+                    if (CanChangeOrViewData)
+                    {
+                        if (IsRequire)
+                        {
+                            Comments = c_exprequirement["Comments"].ToString();
+                        }
+                        ResumeManager.CreateExperienceRequirement(ExperienceId, RequirementID, Comments, IsRequire);
+                        CreateSuccess = true;
+                        CreateMessage = "Требования успешно созданы";
+                    }
                 }
 
-                CreateSuccess = true;
-                CreateMessage = "Требования успешно созданы";
+ 
             }
 
             return Json(new
@@ -240,13 +285,12 @@ namespace VacancyManager.Controllers
 
         }
 
-
         [HttpPost]
         public ActionResult UpdateExperienceRequirements(string[] data)
         {
             bool CreateSuccess = false;
             string CreateMessage = "При изменении требований произошла ошибка";
-
+            bool CanChangeOrViewData = UserCanExecuteAction;
 
             if (data != null)
             {
@@ -254,21 +298,30 @@ namespace VacancyManager.Controllers
                 {
                     String Comments = "";
                     var u_exprequirement = jss.Deserialize<dynamic>(data[i]);
-                    Int32 Id = Convert.ToInt32(u_exprequirement["Id"]);
-                    Int32 RequirementID = Convert.ToInt32(u_exprequirement["RequirementID"]);
+                    Int32 Id = Convert.ToInt32(u_exprequirement["Id"]),
+                          RequirementID = Convert.ToInt32(u_exprequirement["RequirementID"]),
+                          ExperienceId = Convert.ToInt32(u_exprequirement["ExperienceId"]);
                     Boolean IsRequire = Convert.ToBoolean(u_exprequirement["IsRequire"]);
-
-                    if (IsRequire)
+                    Resume EditingResume = ResumeManager.GetResumeByExperienceID(ExperienceId);
+                    if (!CanChangeOrViewData)
                     {
-                        Comments = u_exprequirement["Comments"].ToString();
+                        CanChangeOrViewData = ApplicantManager.IsValidApplicant(EditingResume.ApplicantID, User.Identity.Name);
                     }
 
-                    ResumeManager.UpdateExperienceRequirement(Id, Comments, IsRequire);
+                    if (CanChangeOrViewData)
+                    {
+                        if (IsRequire)
+                        {
+                            Comments = u_exprequirement["Comments"].ToString();
+                        }
 
+                        ResumeManager.UpdateExperienceRequirement(Id, Comments, IsRequire);
+                        CreateSuccess = true;
+                        CreateMessage = "Требования успешно созданы";
+                    }
                 }
 
-                CreateSuccess = true;
-                CreateMessage = "Требования успешно созданы";
+
             }
 
             return Json(new
@@ -277,11 +330,6 @@ namespace VacancyManager.Controllers
                 message = CreateMessage
             });
 
-        }
-
-        public ActionResult Index()
-        {
-            return View();
         }
 
     }

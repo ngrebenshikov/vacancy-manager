@@ -6,7 +6,7 @@
     },
     alias: 'widget.FrontEndMain',
     bodyPadding: 10,
-    title: 'My Form',
+    title: 'Соискатель',
 
     initComponent: function () {
         var me = this;
@@ -15,18 +15,19 @@
             handler: function () {
 
                 Ext.Ajax.request({
-                    url: '../../User/ExtJSLogOff',
+                    url: '../../VMUser/ExtJSLogOff',
                     success: function (result, request) {
 
                         UserIsAuthenticated = false;
                         var appReqStore = Ext.StoreManager.lookup('ApplicantRequirement'),
-                            resumeStore = Ext.StoreManager.lookup('Resume');
-
+                            resumeStore = Ext.StoreManager.lookup('Resume'),
+                            appConsStore = Ext.StoreManager.lookup('ApplicantConsideration');
                         var appForm = Ext.getCmp('frmManageApplicant').getForm();
                         appForm.reset();
 
                         appReqStore.removeAll(false);
                         resumeStore.removeAll(false);
+                        appConsStore.removeAll(false);
                         CreateLoginWindow();
                     }
                 });
@@ -39,7 +40,7 @@
         ],
 
        me.buttons = [{
-           text: 'Save',
+           text: 'Сохранить',
            action: 'SaveApplicant',
            margin: '5 5 5 2'
        }],

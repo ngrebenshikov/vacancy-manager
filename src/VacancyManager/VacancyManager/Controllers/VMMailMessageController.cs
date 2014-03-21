@@ -11,7 +11,7 @@ using System.IO;
 
 namespace VacancyManager.Controllers
 {
-    public class VMMailMessageController : Controller
+    public class VMMailMessageController : AdminController
     {
         //
         // GET: /VMMailMessage/

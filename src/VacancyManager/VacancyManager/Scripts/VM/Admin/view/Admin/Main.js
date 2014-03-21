@@ -21,7 +21,7 @@
                     Ext.Ajax.request
                 (
                   {
-                      url: '../../User/ExtJSLogOff',
+                      url: '../../VMUser/ExtJSLogOff',
                       success: function (result, request) {
                           CreateLoginWindow();
                       }

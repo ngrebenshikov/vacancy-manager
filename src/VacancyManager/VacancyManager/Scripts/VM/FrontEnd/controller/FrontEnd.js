@@ -1,6 +1,6 @@
 ﻿Ext.define('VM.controller.FrontEnd', {
     extend: 'Ext.app.Controller',
-    stores: ['Resume', 'ResumeRequirement', 'ResumeExperience', 'ApplicantRequirement'],
+    stores: ['Resume', 'ResumeRequirement', 'ResumeExperience', 'ApplicantRequirement', 'ApplicantConsideration'],
     views: ['frontend.Main', 'applicant.ManageApplicant', 'applicant.ApplicantRequirments',
              'applicant.ApplicantDopInfo', 'resume.List', 'frontend.RegisterForm', 'applicant.ApplicantConsiderations'],
     refs: [],

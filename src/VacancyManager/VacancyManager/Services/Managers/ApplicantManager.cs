@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using VacancyManager.Models;
+using System.Web.Security;
 
 namespace VacancyManager.Services.Managers
 {
@@ -77,5 +78,23 @@ namespace VacancyManager.Services.Managers
         return app;
     }
 
+    private static Applicant GetOnlineApplicant(string UserName)
+    {
+        VMMembershipUser vmuser = (VMMembershipUser)Membership.GetUser(UserName);
+        if (vmuser != null)
+            return ApplicantManager.GetApplicantByEMail(vmuser.Email);
+        else
+            return null;
+    }
+
+
+    internal static bool IsValidApplicant(int ValidatingApplicantId, string UserName) 
+      {
+          int CurApplicantId = GetOnlineApplicant(UserName).ApplicantID;
+          bool IsApplicantValid = false;
+          if (CurApplicantId == ValidatingApplicantId)
+              IsApplicantValid = true;
+          return IsApplicantValid;
+      }
   }
 }

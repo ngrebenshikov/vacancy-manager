@@ -13,13 +13,13 @@
         this.items = [
             {
                 xtype: 'form',
-
                 padding: '5 5 5 5',
                 border: false,
                 style: 'background-color: #fff;',
                 items: [
                 {
-                    xtype: 'commentsList'
+                    xtype: 'commentsList',
+                    height: 360
                 },
                 {
                     xtype: 'panel',
@@ -30,17 +30,9 @@
                     style: 'background-color: #fff;',
                     items: [{
                         xtype: 'htmleditor',
-                        enableAlignments: true,
-                        enableColors: true,
-                        enableFont: true,
-                        enableFontSize: true,
-                        enableFormat: true,
-                        enableLinks: true,
-                        enableLists: true,
-                        enableSourceEdit: true,
                         fieldLabel: 'Комментарий',
                         width: 350,
-                        height: 80,
+                        height: 90,
                         id: 'txtareaConsiderationComment',
                         name: 'ConsiderationComment',
                         allowBlank: true
@@ -63,7 +55,8 @@
                           }]
                     }]
                 }]
-            }],
+              }],
+
              this.buttons = [{
                  text: 'Выход',
                  scope: this,

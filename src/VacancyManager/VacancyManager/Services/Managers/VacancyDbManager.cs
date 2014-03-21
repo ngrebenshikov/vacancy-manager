@@ -10,6 +10,12 @@ namespace VacancyManager.Services.Managers
   {
     static private MD5 crypto = MD5.Create();
 
+    internal static Vacancy GetVacancyByID(int VacId)
+    {
+        VacancyContext _db = new VacancyContext();
+        return _db.Vacancies.Where(vac => vac.VacancyID == VacId).FirstOrDefault();
+    }
+
     internal static Vacancy GetVacancy(string speckey)
     {   
         VacancyContext _db = new VacancyContext();
@@ -42,7 +48,7 @@ namespace VacancyManager.Services.Managers
 
     }
 
-    internal static void UpdateVacancy(int vacancyid, string title, string description, DateTime? openingDate, string requirments, bool isVisible)
+    internal static Vacancy UpdateVacancy(int vacancyid, string title, string description, DateTime? openingDate, bool isVisible)
     {
       VacancyContext _db = new VacancyContext();
 
@@ -54,7 +60,6 @@ namespace VacancyManager.Services.Managers
         update_rec.Title = title;
         update_rec.Description = description;
         update_rec.OpeningDate = openingDate;
-        update_rec.Requirments = requirments;
         if (update_rec.SpecialKey == null)
         {
             update_rec.SpecialKey = Guid.NewGuid().ToString().Replace("-","").ToLower();
@@ -62,6 +67,8 @@ namespace VacancyManager.Services.Managers
         update_rec.IsVisible = isVisible;
         _db.SaveChanges();
       }
+      return update_rec;
+
     }
 
     internal static void DeleteVacancy(int vacancyid)

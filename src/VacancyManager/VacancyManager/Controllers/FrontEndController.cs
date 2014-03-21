@@ -18,50 +18,26 @@ namespace VacancyManager.Controllers
         {
             object model = null;
             object appModel = null;
-            Applicant App = null;
-            int VacID = 0;
+            Applicant App = new Applicant();
+            Vacancy Vac = VacancyDbManager.GetVacancy(id);
 
             VMMembershipUser vmuser = (VMMembershipUser)Membership.GetUser(User.Identity.Name);
 
             if (vmuser != null)
             {
 
-                model = new
-                    {
-                        Email = vmuser.Email,
-                        UserName = vmuser.UserName,
-                        UserID = Convert.ToInt32(vmuser.ProviderUserKey)
-                    };
-
                 App = ApplicantManager.GetApplicantByEMail(vmuser.Email);
 
-                if (id != null)
+                if (Vac!= null)
                 {
-                    Vacancy Vac = VacancyDbManager.GetVacancy(id);
-                    if (Vac != null) { VacID = Vac.VacancyID; }
-                }
-
-                if (App == null) { App = new Applicant(); }
-                else if (VacID != 0)
-                {
-                    if (!ConsiderationsManager.IsApplicantConsiderationExist(App.ApplicantID, VacID))
-                    { 
-                        ConsiderationsManager.CreateConsideration(VacID, App.ApplicantID); 
+                    if (Vac.VacancyID != 0)
+                    {
+                        if (!ConsiderationsManager.IsApplicantConsiderationExist(App.ApplicantID, Vac.VacancyID))
+                        {
+                            ConsiderationsManager.CreateConsideration(Vac.VacancyID, App.ApplicantID);
+                        }
                     }
-                    else { VacID = 0; }
                 }
-            }
-
-            else
-            {
-                model = new
-                {
-                    Email = "",
-                    UserName = "",
-                    UserID = 0
-                };
-
-                App = new Applicant();
             }
 
             appModel = new
@@ -77,8 +53,7 @@ namespace VacancyManager.Controllers
 
             return View(new
             {
-                User = model,
-                VacId = VacID,
+                VacancyKey = id,
                 Applicant = appModel
             });
         }

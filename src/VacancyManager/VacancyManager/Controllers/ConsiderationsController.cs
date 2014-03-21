@@ -10,7 +10,7 @@ using System.Web.Script.Serialization;
 
 namespace VacancyManager.Controllers
 {
-    public class ConsiderationsController : BaseController
+    public class ConsiderationsController : AdminController
     {
         //
         // GET: /Considerations/
@@ -82,8 +82,8 @@ namespace VacancyManager.Controllers
                        JsonRequestBehavior.AllowGet);
         }
 
-        [HttpPost]
 
+        [HttpPost]
         public JsonResult Create(string[] data)
         {
             bool CreationSuccess = false;
@@ -124,8 +124,8 @@ namespace VacancyManager.Controllers
             return Json(new
             {
                 considerations = NewConsiderations,
-                success = CreationMessage,
-                message = CreationSuccess
+                success = CreationSuccess,
+                message = CreationMessage 
             });
 
 

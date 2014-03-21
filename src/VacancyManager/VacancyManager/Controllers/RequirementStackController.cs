@@ -7,8 +7,8 @@ using System.Web.Script.Serialization;
 
 namespace VacancyManager.Controllers
 {
-  [AuthorizeError(Roles = "Admin")]
-  public class RequirementStackController : BaseController
+
+  public class RequirementStackController : AdminController
   {
 
     //

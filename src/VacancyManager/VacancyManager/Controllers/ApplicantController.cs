@@ -11,9 +11,8 @@ using System.IO;
 
 namespace VacancyManager.Controllers
 {
-    [AuthorizeError(Roles = "Admin, User")]
-
-    public class ApplicantController : BaseController
+    
+    public class ApplicantController : UserController
     {
 
         [HttpGet]
@@ -68,6 +67,51 @@ namespace VacancyManager.Controllers
                 success = true,
                 considerations = AppConsList
             }, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        public JsonResult CreateApplicantConsideration(string data)
+        {
+            bool CreationSuccess = false;
+            string CreationMessage = "Во время добавления соискателя произошла ошибка";
+            Consideration CreatedConsideration = null;
+            object NewConsideration = null;
+            Vacancy Vac = new Vacancy();
+            JavaScriptSerializer jss = new JavaScriptSerializer();
+            if (data != null)
+            {
+                var newConsideration = jss.Deserialize<dynamic>(data);
+                Vac = VacancyDbManager.GetVacancy(newConsideration["Vacancy"].ToString());
+                int ApplicantID = Convert.ToInt32(newConsideration["ApplicantID"]),
+                    VacancyID = Vac.VacancyID;
+
+                if ((VacancyID != 0) && (ApplicantID != 0))
+                {
+                    if (!ConsiderationsManager.IsApplicantConsiderationExist(ApplicantID, VacancyID))
+                    {
+
+                        CreatedConsideration = ConsiderationsManager.CreateConsideration(VacancyID, ApplicantID);
+
+                        NewConsideration = new
+                        {
+                            ApplicantID = CreatedConsideration.ApplicantID,
+                            ConsiderationID = CreatedConsideration.ConsiderationID,
+                            Vacancy = Vac.Title
+                        };
+
+                        CreationMessage = "Соискатель успешно добавлен";
+                        CreationSuccess = true;
+                    }
+                }
+            }
+
+
+            return Json(new
+            {
+                considerations = NewConsideration,
+                success = CreationSuccess,
+                message = CreationMessage
+            });
         }
 
         [HttpGet]
@@ -178,12 +222,20 @@ namespace VacancyManager.Controllers
             bool success = false;
             string resultMessage = "Ошибка при удалении соискателя";
             JavaScriptSerializer jss = new JavaScriptSerializer();
+            bool CanChangeOrViewData = UserCanExecuteAction;
             if (data != null)
             {
                 var obj = jss.Deserialize<dynamic>(data);
-                ApplicantManager.Delete(obj["ApplicantID"]);
-                resultMessage = "Соискатель успешно удален";
-                success = true;
+                if (!CanChangeOrViewData)
+                {
+                    CanChangeOrViewData = ApplicantManager.IsValidApplicant(obj["ApplicantID"], User.Identity.Name);
+                }
+                if (CanChangeOrViewData)
+                {
+                    ApplicantManager.Delete(obj["ApplicantID"]);
+                    resultMessage = "Соискатель успешно удален";
+                    success = true;
+                }
             }
 
             return Json(new

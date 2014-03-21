@@ -2,16 +2,13 @@
 Ext.define('VM.view.Comments.List', {
     extend: 'Ext.grid.Panel',
     alias: 'widget.commentsList',
-    hideHeaders: true,
     store: 'Comments',
-    region: 'center',
-    layout: 'anchor',
     id: 'gridcomments',
     columns: [
   	        {
-  	            width: 100,
   	            flex: 1,
   	            sortable: false,
+                text: 'Коментарий',
   	            menuDisabled: true,
                 textalign: 'justify',
   	            dataIndex: 'Body',
@@ -20,6 +17,7 @@ Ext.define('VM.view.Comments.List', {
             {
                 sortable: false,
                 width: 90,
+                text: 'Дата',
                 menuDisabled: true,
                 xtype: 'templatecolumn',
                 tdCls: 'wrap-text',
@@ -30,8 +28,6 @@ Ext.define('VM.view.Comments.List', {
                  )
             }
     ],
-    width: 520,
-    height: 375,
     bbar: [{
         text: 'Обновить список',
         name: 'btnUpdateCommentsList',
