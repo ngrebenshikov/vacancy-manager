@@ -103,6 +103,7 @@
                       <Directory Id ="FRfrontendVM" Name="frontend" />
                     </Directory>
                   </Directory>
+                  <Directory Id ="SharedScriptsVM" Name="Shared"/>
                   <Directory Id="SharedVM" Name="Shared" />
                 </Directory>
               </Directory>
@@ -125,20 +126,20 @@
       <DirectoryRef Id="INSTALLLOCATION">
           <Component Id="Main" Guid="{E15508AA-FD6D-40CE-A061-9F28E48E601A}" KeyPath="yes" DiskId="1">
             
-            <util:XmlFile Id='XmlSettings1' File='[INSTALLLOCATION]Web.config'
-              Action='createElement' Name='add' ElementPath='//configuration/connectionStrings' Sequence='1' />
+            <!--<util:XmlFile Id='XmlSettings1' File='[INSTALLLOCATION]Web.config'
+              Action='createElement' Name='add' ElementPath='//configuration/connectionStrings' Sequence='1' />-->
             
             <util:XmlFile Id='XmlSettings2' File='[INSTALLLOCATION]Web.config'
               Action='setValue' Name="name" Value="VacancyContext"  ElementPath='//configuration/connectionStrings/add' Sequence='2' />
                           
             <util:XmlFile Id='XmlSettings3' File='[INSTALLLOCATION]Web.config'
-              Action='setValue' Name="connectionString" Value="Data Source=.\[EDITSQLSERVER]; database=[EDITDATABASE]; AttachDbFileName=|DataDirectory|Vacancy.mdf; Integrated Security=SSPI; User Instance=False; MultipleActiveResultSets=True;"  ElementPath='//configuration/connectionStrings/add' Sequence='3' />
+              Action='setValue' Name="connectionString" Value="Data Source=[EDITSQLSERVER]; database=[EDITDATABASE]; AttachDbFileName=|DataDirectory|Vacancy.mdf; Integrated Security=SSPI; User Instance=False; MultipleActiveResultSets=True;"  ElementPath='//configuration/connectionStrings/add' Sequence='3' />
             
             <util:XmlFile Id='XmlSettings4' File='[INSTALLLOCATION]Web.config'
               Action='setValue' Name="providerName" Value="System.Data.SqlClient"  ElementPath='//configuration/connectionStrings/add' Sequence='4' />
             
-            <util:XmlFile Id='XmlSettings5' File='[INSTALLLOCATION]Web.config'
-              Action='createElement' Name="parameter" ElementPath='//configuration/entityFramework/defaultConnectionFactory/parameters' Sequence='5' />
+            <!--<util:XmlFile Id='XmlSettings5' File='[INSTALLLOCATION]Web.config'
+              Action='createElement' Name="parameter" ElementPath='//configuration/entityFramework/defaultConnectionFactory/parameters' Sequence='5' />-->
             
             <util:XmlFile Id='XmlSettings6' File='[INSTALLLOCATION]Web.config'
               Action='setValue' Name="value" Value="Data Source=.\[EDITSQLSERVER]; Integrated Security=True; MultipleActiveResultSets=True"  ElementPath='//configuration/entityFramework/defaultConnectionFactory/parameters/parameter' Sequence='6' />
@@ -211,8 +212,11 @@
   
     <DirectoryRef Id="DebugVM">
       <Component Id="DebugApp" Guid="{54F53C7D-4E6C-4AB3-AC23-D8337A79E844}" KeyPath="yes" DiskId="1">
+        <!--<File Id="DesignTimeResolveAssemblyReferences" Name="DesignTimeResolveAssemblyReferences.cache" Source="$(var.SolutionDir)VacancyManager\obj\Debug\DesignTimeResolveAssemblyReferences.cache"/>-->
         <File Id="DesignTimeResolveAssemblyReferencesInput" Name="DesignTimeResolveAssemblyReferencesInput.cache" Source="$(var.SolutionDir)VacancyManager\obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache"/>
         <File Id="VacancyManager.csproj.FileListAbsolutetxt" Name="VacancyManager.csproj.FileListAbsolute.txt" Source="$(var.SolutionDir)VacancyManager\obj\Debug\VacancyManager.csproj.FileListAbsolute.txt"/>
+        <File Id="VacancyManager.csproj.GenerateResource" Name="VacancyManager.csproj.GenerateResource.cache" Source="$(var.SolutionDir)VacancyManager\obj\Debug\VacancyManager.csproj.GenerateResource.cache"/>
+        <File Id="VacancyManager.csprojResolveAssemblyReference" Name="VacancyManager.csprojResolveAssemblyReference.cache" Source="$(var.SolutionDir)VacancyManager\obj\Debug\VacancyManager.csprojResolveAssemblyReference.cache"/>
         <File Id="VacancyManager.dll" Name="VacancyManager.dll" Source="$(var.SolutionDir)VacancyManager\obj\Debug\VacancyManager.dll"/>
         <File Id="VacancyManager.pdb" Name="VacancyManager.pdb" Source="$(var.SolutionDir)VacancyManager\obj\Debug\VacancyManager.pdb"/>
         <File Id="VacancyManager.Properties.ResourceEn" Name="VacancyManager.Properties.ResourceEn.resources" Source="$(var.SolutionDir)VacancyManager\obj\Debug\VacancyManager.Properties.ResourceEn.resources"/>
@@ -223,7 +227,9 @@
   
     <DirectoryRef Id="TempPEVM">
       <Component Id="TempPEApp" Guid="{BA0E3F3E-8EC0-457C-95A1-17AE4E346790}" KeyPath="yes" DiskId="1">
-
+       <!--<File Id="Properties.ResourceEn.Designer.csdll" Name="Properties.ResourceEn.Designer.cs.dll" Source="$(var.SolutionDir)VacancyManager\obj\Debug\TempPE\Properties.ResourceEn.Designer.cs.dll"/>--> 
+        <File Id="Properties.Resources.Designer.csdll" Name="Properties.Resources.Designer.cs.dll" Source="$(var.SolutionDir)VacancyManager\obj\Debug\TempPE\Properties.Resources.Designer.cs.dll"/>
+        <File Id="Templates.Designer.csdll" Name="Templates.Designer.cs.dll" Source="$(var.SolutionDir)VacancyManager\obj\Debug\TempPE\Templates.Designer.cs.dll"/>
       </Component>
     </DirectoryRef>
   
@@ -487,6 +493,7 @@
          <File Id ="MicrosoftAjaxdebugs" Name="MicrosoftAjax.debug.js" Source="$(var.SolutionDir)VacancyManager\Scripts\MicrosoftAjax.debug.js"/>
          <File Id ="MicrosoftAjaxjs" Name="MicrosoftAjax.js" Source="$(var.SolutionDir)VacancyManager\Scripts\MicrosoftAjax.js"/>
          <File Id ="MicrosoftMvcAjax" Name="MicrosoftMvcAjax.js" Source="$(var.SolutionDir)VacancyManager\Scripts\MicrosoftMvcAjax.js"/>
+         <File Id ="MicrosoftMvcAjaxdebugjs" Name="MicrosoftMvcAjax.debug.js" Source="$(var.SolutionDir)VacancyManager\Scripts\MicrosoftMvcAjax.debug.js"/>
          <File Id ="MicrosoftMvcValidationdebugjs" Name="MicrosoftMvcValidation.debug.js" Source="$(var.SolutionDir)VacancyManager\Scripts\MicrosoftMvcValidation.debug.js"/>
          <File Id ="MicrosoftMvcValidationjs" Name="MicrosoftMvcValidation.js" Source="$(var.SolutionDir)VacancyManager\Scripts\MicrosoftMvcValidation.js"/>
          <File Id ="modernizr17js" Name="modernizr-1.7.js" Source="$(var.SolutionDir)VacancyManager\Scripts\modernizr-1.7.js"/>
@@ -513,6 +520,8 @@
          <File Id="CntrlRequirementStackjs" Name="RequirementStack.js" Source="$(var.SolutionDir)VacancyManager\Scripts\VM\Admin\controller\RequirementStack.js" />
          <File Id="CntrlResumeControllerjs" Name="ResumeController.js" Source="$(var.SolutionDir)VacancyManager\Scripts\VM\Admin\controller\ResumeController.js" />
          <File Id="CntrlRolesjs" Name="Roles.js" Source="$(var.SolutionDir)VacancyManager\Scripts\VM\Admin\controller\Roles.js" />
+         <File Id="CResumeEducationjs" Name="ResumeEducation.js" Source="$(var.SolutionDir)VacancyManager\Scripts\VM\Admin\controller\ResumeEducation.js" />
+         <File Id="ResumeExperiencejs" Name="ResumeExperience.js" Source="$(var.SolutionDir)VacancyManager\Scripts\VM\Admin\controller\ResumeExperience.js" />
          <File Id="CntrlSysConfigControllerjs" Name="SysConfigController.js" Source="$(var.SolutionDir)VacancyManager\Scripts\VM\Admin\controller\SysConfigController.js" />
          <File Id="CntrlUserControllerjs" Name="UserController.js" Source="$(var.SolutionDir)VacancyManager\Scripts\VM\Admin\controller\UserController.js" />
          <File Id="CntrlVacancyControllerjs" Name="VacancyController.js" Source="$(var.SolutionDir)VacancyManager\Scripts\VM\Admin\controller\VacancyController.js" />
@@ -535,9 +544,13 @@
          <File Id ="MDLRequirementListInStackjs" Name="RequirementListInStack.js" Source="$(var.SolutionDir)VacancyManager\Scripts\VM\Admin\model\RequirementListInStack.js" />
          <File Id ="MDLRequirementStackjs" Name="RequirementStack.js" Source="$(var.SolutionDir)VacancyManager\Scripts\VM\Admin\model\RequirementStack.js" />
          <File Id ="MDLRolesjs" Name="Roles.js" Source="$(var.SolutionDir)VacancyManager\Scripts\VM\Admin\model\Roles.js" />
+         <File Id ="MDLResumeRequirementjs" Name="ResumeRequirement.js" Source="$(var.SolutionDir)VacancyManager\Scripts\VM\Admin\model\ResumeRequirement.js" />
          <File Id ="MDLSearchApplicantsjs" Name="SearchApplicants.js" Source="$(var.SolutionDir)VacancyManager\Scripts\VM\Admin\model\SearchApplicants.js" />
          <File Id ="MDLSysConfigModeljs" Name="SysConfigModel.js" Source="$(var.SolutionDir)VacancyManager\Scripts\VM\Admin\model\SysConfigModel.js" />
          <File Id ="MDLUserjs" Name="User.js" Source="$(var.SolutionDir)VacancyManager\Scripts\VM\Admin\model\User.js" />
+         <File Id ="Resudfgmejs" Name="Resume.js" Source="$(var.SolutionDir)VacancyManager\Scripts\VM\Admin\model\Resume.js" />
+         <File Id ="ResumeExperiencesdjs" Name="ResumeExperience.js" Source="$(var.SolutionDir)VacancyManager\Scripts\VM\Admin\model\ResumeExperience.js" />
+         <File Id ="ExperienceRequirementjs" Name="ExperienceRequirement.js" Source="$(var.SolutionDir)VacancyManager\Scripts\VM\Admin\model\ExperienceRequirement.js" />
          <File Id ="MDLVacancyjs" Name="Vacancy.js" Source="$(var.SolutionDir)VacancyManager\Scripts\VM\Admin\model\Vacancy.js" />
          <File Id ="MDLVacancyAssignjs" Name="VacancyAssign.js" Source="$(var.SolutionDir)VacancyManager\Scripts\VM\Admin\model\VacancyAssign.js" />
          <File Id ="MDLVacancyRequirementsjs" Name="VacancyRequirements.js" Source="$(var.SolutionDir)VacancyManager\Scripts\VM\Admin\model\VacancyRequirements.js" />
@@ -560,9 +573,15 @@
          <File Id ="StoreRequirementListInStackjs" Name="RequirementListInStack.js" Source="$(var.SolutionDir)VacancyManager\Scripts\VM\Admin\store\RequirementListInStack.js" />
          <File Id ="StoreRequirementStackjs" Name="RequirementStack.js" Source="$(var.SolutionDir)VacancyManager\Scripts\VM\Admin\store\RequirementStack.js" />
          <File Id ="StoreRolesjs" Name="Roles.js" Source="$(var.SolutionDir)VacancyManager\Scripts\VM\Admin\store\Roles.js" />
+         <File Id ="StoreResumrequirjs" Name="ResumeRequirement.js" Source="$(var.SolutionDir)VacancyManager\Scripts\VM\Admin\store\ResumeRequirement.js" />
          <File Id ="StoreSearchApplicantsjs" Name="SearchApplicants.js" Source="$(var.SolutionDir)VacancyManager\Scripts\VM\Admin\store\SearchApplicants.js" />
          <File Id ="StoreSysConfigjs" Name="SysConfig.js" Source="$(var.SolutionDir)VacancyManager\Scripts\VM\Admin\store\SysConfig.js" />
          <File Id ="StoreUserjs" Name="User.js" Source="$(var.SolutionDir)VacancyManager\Scripts\VM\Admin\store\User.js" />
+         <File Id ="Attachmentjjs" Name="Attachment.js" Source="$(var.SolutionDir)VacancyManager\Scripts\VM\Admin\store\Attachment.js" />
+         <File Id ="ExperienceRequirementjjs" Name="ExperienceRequirement.js" Source="$(var.SolutionDir)VacancyManager\Scripts\VM\Admin\store\ExperienceRequirement.js" />
+         <File Id ="Resumehjjs" Name="Resume.js" Source="$(var.SolutionDir)VacancyManager\Scripts\VM\Admin\store\Resume.js" />
+         <File Id ="ResumeEducationkjs" Name="ResumeEducation.js" Source="$(var.SolutionDir)VacancyManager\Scripts\VM\Admin\store\ResumeEducation.js" />
+         <File Id ="ResumeExperiencesadjs" Name="ResumeExperience.js" Source="$(var.SolutionDir)VacancyManager\Scripts\VM\Admin\store\ResumeExperience.js" />
          <File Id ="StoreVacancyjs" Name="Vacancy.js" Source="$(var.SolutionDir)VacancyManager\Scripts\VM\Admin\store\Vacancy.js" />
          <File Id ="StoreVacancyAssignjs" Name="VacancyAssign.js" Source="$(var.SolutionDir)VacancyManager\Scripts\VM\Admin\store\VacancyAssign.js" />
          <File Id ="StoreVacancyRequirementsjs" Name="VacancyRequirements.js" Source="$(var.SolutionDir)VacancyManager\Scripts\VM\Admin\store\VacancyRequirements.js" />
@@ -629,8 +648,28 @@
      <DirectoryRef Id ="ResumeVM"> 
        <Component Id ="ResumeApp" Guid="{3FA372AC-2C5B-4AA8-B378-375B41542E87}" KeyPath="yes" DiskId="1" >
          <File Id ="ResumeViewCreatejs" Name="Create.js" Source="$(var.SolutionDir)VacancyManager\Scripts\VM\Admin\view\Resume\Create.js" />
+         <File Id ="ResumeViewCEditjs" Name="Edit.js" Source="$(var.SolutionDir)VacancyManager\Scripts\VM\Admin\view\Resume\Edit.js" />
+         <File Id ="ResumeViewListjss" Name="List.js" Source="$(var.SolutionDir)VacancyManager\Scripts\VM\Admin\view\Resume\List.js" />
        </Component>
      </DirectoryRef>
+
+  <DirectoryRef Id="SharedScriptsVM">
+    <Component Id ="SharedScriptsApp" Guid ="{49AAF19C-4DC7-4B86-AB92-DE932F654A46}" KeyPath="yes" DiskId="1">
+      <File Id ="EduListhjs" Name="EduList.js" Source="$(var.SolutionDir)VacancyManager\Scripts\VM\Shared\EduList.js" />
+      <File Id ="ExpLisjs" Name="ExpList.js" Source="$(var.SolutionDir)VacancyManager\Scripts\VM\Shared\ExpList.js" />
+      <File Id ="ExpReqsListjs" Name="ExpReqsList.js" Source="$(var.SolutionDir)VacancyManager\Scripts\VM\Shared\ExpReqsList.js" />
+      <File Id ="FirstStepjs" Name="FirstStep.js" Source="$(var.SolutionDir)VacancyManager\Scripts\VM\Shared\FirstStep.js" />
+      <File Id ="FouthStepjs" Name="FouthStep.js" Source="$(var.SolutionDir)VacancyManager\Scripts\VM\Shared\FouthStep.js" />
+      <File Id ="LastStepjs" Name="LastStep.js" Source="$(var.SolutionDir)VacancyManager\Scripts\VM\Shared\LastStep.js" />
+      <File Id ="ManageEducationjs" Name="ManageEducation.js" Source="$(var.SolutionDir)VacancyManager\Scripts\VM\Shared\ManageEducation.js" />
+      <File Id ="ManageExperiencejs" Name="ManageExperience.js" Source="$(var.SolutionDir)VacancyManager\Scripts\VM\Shared\ManageExperience.js" />
+      <File Id ="ReqsListjs" Name="ReqsList.js" Source="$(var.SolutionDir)VacancyManager\Scripts\VM\Shared\ReqsList.js" />
+      <File Id ="ThirdStepjs" Name="ThirdStep.js" Source="$(var.SolutionDir)VacancyManager\Scripts\VM\Shared\ThirdStep.js" />
+      <File Id ="WizardMenujs" Name="WizardMenu.js" Source="$(var.SolutionDir)VacancyManager\Scripts\VM\Shared\WizardMenu.js" />
+      <File Id ="WizardPaneljs" Name="WizardPanel.js" Source="$(var.SolutionDir)VacancyManager\Scripts\VM\Shared\WizardPanel.js" />
+      <File Id ="SecondStepjs" Name="SecondStep.js" Source="$(var.SolutionDir)VacancyManager\Scripts\VM\Shared\SecondStep.js" />
+    </Component>
+  </DirectoryRef>
   
      <DirectoryRef Id ="RequirementStackVM">
        <Component Id ="RequirementStackApp" Guid ="{FED2DFDC-642D-4112-B3E8-6589A61A0F05}" KeyPath="yes" DiskId="1">
@@ -804,13 +843,15 @@
       <ComponentRef Id ="FEmodelApp"/>
       <ComponentRef Id ="FEstoreApp"/>
       <ComponentRef Id ="FRfrontendApp"/>
-      <ComponentRef Id ="WebAppConfiguration"/>
-      <ComponentRef Id ="WebSiteVMm"/>
+   <!--<ComponentRef Id ="WebAppConfiguration"/>-->
+      <!--<ComponentRef Id ="WebSiteVMm"/>-->
       <ComponentRef Id ="ViewsBaseApp"/>
       <ComponentRef Id ="AccountViewsCSHTMLApp"/>
       <ComponentRef Id ="FrontEndViewsBCSHTMLVM"/>
       <ComponentRef Id ="HomeViewsApp"/>
       <ComponentRef Id ="SharedViewsApp" />
+      <ComponentRef Id ="WebSite" />
+      <ComponentRef Id ="SharedScriptsApp"/>
     </Feature>
   
       
@@ -835,15 +876,22 @@
             
             <Property Id="EDITSQLSERVER" Value="SqlServerName" />
             <Property Id ="EDITDATABASE" Value="DataBaseName" />
+            <Property Id ="EDITPORT" Value="NumberPort" />
+            
             <Dialog Id="DlgSqlServerAndDB" Width="370" Height="270" Title="Server And Database Name"> 
             <Control Id="Title" Type="Text" X="15" Y="6" Width="200" Height="15" Transparent="yes" NoPrefix="yes" Text="You must write: SqlServer name and DB name" />
             <Control Id ="Upline" Type="Line" X="0" Y="30" Width="450" Height="1" />
               
             <Control Id="TextSql" Type="Text" X="20" Y="40" Width="340" Height="15" Transparent="yes" NoPrefix="yes" Text="SqlServerName" />
             <Control Id ="SimpleEditSQL" Type="Edit" X="20" Y="60" Width="250" Height="16" Property="EDITSQLSERVER" Sunken="no" />
-              
+            
             <Control Id="TextDB" Type="Text" X="20" Y="100" Width="340" Height="15" Transparent="yes" NoPrefix="yes" Text="SqlDataBaseName" />
             <Control Id ="SimpleEditDB" Type="Edit" X="20" Y="120" Width="250" Height="16" Property="EDITDATABASE" Sunken="no" />
+              
+            <Control Id="TextPort" Type="Text" X="20" Y="160" Width="340" Height="15" Transparent="yes" NoPrefix="yes" Text="NumberPort" />
+            <Control Id ="SimpleEditPort" Type="Edit" X="20" Y="180" Width="250" Height="16" Property="EDITPORT" Sunken="no" />
+            
+             
                
             <Control Id="Next" Type="PushButton" X="236" Y="243" Width="56" Height="17" Default="yes" Text="!(loc.WixUINext)"> 
                   <Publish Event="NewDialog" Value="CustomizeDlg" Order="10" /> 
@@ -882,7 +930,7 @@
         
     
          
-      <Component Id="WebSiteVMm" Guid="{D9534B4B-D9F8-4D49-B3A7-457BCE856D88}" Directory="INSTALLLOCATION">
+     <!-- <Component Id="WebSiteVMm" Guid="{D9534B4B-D9F8-4D49-B3A7-457BCE856D88}" Directory="INSTALLLOCATION">
           <CreateFolder/>
           <iis:WebSite Id="Default_Web_Site" Directory="INSTALLLOCATION"  Description="Default Web Site" >
             <iis:WebAddress Id="_vm53662" Port ="80" IP ="*"/>
@@ -897,7 +945,19 @@
           <iis:WebApplication Id="WebApplication" WebAppPool="APP_POOL" AllowSessions="yes" ClientDebugging="no" Name="MyApp" ServerDebugging="no" /> 
         </iis:WebVirtualDir> 
        </Component> 
-
+    -->
 </Product>
- 
- </Wix>
+
+  <Fragment>
+    <Component Id="WebSite" Guid="{D9534B4B-D9F8-4D49-B3A7-457BCE856D88}" Directory="INSTALLLOCATION">
+      <CreateFolder/>
+      <iis:WebSite Id="WebSite" Directory="INSTALLLOCATION" Description="VacancyManager" >
+        <iis:WebAddress Id="_vm53662" Port ="[EDITPORT]" IP ="*"/>
+        <iis:WebApplication Id="WebSiteApplication" Name="VmApp" WebAppPool="MyAppPool" />
+      </iis:WebSite>
+      <iis:WebAppPool Id="MyAppPool" Name="PoolVM" ManagedRuntimeVersion="v4.0" Identity="localSystem" />
+    </Component>
+  </Fragment>
+
+
+</Wix>
