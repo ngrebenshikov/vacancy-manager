@@ -2,7 +2,7 @@
 ('VM.controller.Admin',
   {
     extend: 'Ext.app.Controller',
-    views: ['Admin.Main'],
+    views: ['Admin.Main', 'vacancy.List', 'User.List'],
     refs: [],
 
     init: function ()

@@ -3,6 +3,8 @@
     alias: 'widget.vacancyList',
     id: 'vacancyGrid',
     store: 'Vacancy',
+    frame: true,
+    border: true,
     columns: [
               {
                   dataIndex: 'Title',
@@ -35,12 +37,6 @@
                   menuDisabled: true
               }],
 
-    dockedItems: [{
-        xtype: 'pagingtoolbar',
-        store: 'Vacancy',
-        dock: 'bottom',
-        displayInfo: true
-    }],
     plugins: [{
         ptype: 'rowexpander',
         expandOnDblClick: false,
@@ -65,7 +61,17 @@
         action: 'deleteVacancy'
     }
    ],
-
+    dockedItems: [
+                  {
+                      xtype: 'pagingtoolbar',
+                      store: 'Vacancy',
+                      dock: 'bottom',
+                      displayInfo: true,
+                      displayMsg: Strings.UserToolbarDislpayMsg,
+                      emptyMsg: Strings.UserToolbarEmptyMsg,
+                      plugins: Ext.create('Ext.ux.SlidingPager', {})
+                  }
+                ],
     viewConfig: {
         // autoScroll: true,
         loadingText: 'Загрузка вакансий...'

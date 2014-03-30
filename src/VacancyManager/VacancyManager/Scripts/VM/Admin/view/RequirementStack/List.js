@@ -14,7 +14,7 @@ Ext.define('VM.view.RequirementStack.List', {
               {
                   dataIndex: 'Name',
                   text: Strings.TitleRequirementStackName,
-                  width: 180, 
+                  width: 180,
                   sortable: true,
                   menuDisabled: true
               }, {
@@ -25,21 +25,15 @@ Ext.define('VM.view.RequirementStack.List', {
                   menuDisabled: true
               }
               ],
-    dockedItems:
-          [
-            {
-              xtype: 'toolbar',
-              items:
-              [
-                {
-                  text: Strings.btnAddRequirementStack,
-                  action: 'AddRequirementStack'
-                },
-                {
-                  text: Strings.btnRemoveRequirementStak,
-                  action: 'RemoveRequirementStack'
-                }
-             ]}
+    bbar:
+          [{
+              text: Strings.btnAddRequirementStack,
+              action: 'AddRequirementStack'
+          },
+          {
+              text: Strings.btnRemoveRequirementStak,
+              action: 'RemoveRequirementStack'
+          }
         ]
-     });
+});
 

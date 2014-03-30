@@ -11,8 +11,13 @@ var
   resumeCreated = false;
 
 Ext.Loader.setPath('Ext.ux', 'ExtLib/ux');
-Ext.require('Ext.ux.CheckColumn');
-Ext.state.Manager.setProvider(Ext.create('Ext.state.CookieProvider'));
+
+Ext.require([
+    'Ext.ux.CheckColumn',
+    'Ext.toolbar.Paging',
+    'Ext.ux.SlidingPager'
+]);
+
 Ext.application({
     name: 'VM',
     appFolder: '/Scripts/VM/Admin',

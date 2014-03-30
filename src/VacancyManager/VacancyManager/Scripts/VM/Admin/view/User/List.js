@@ -10,15 +10,11 @@
 Ext.define('VM.view.User.List', {
     extend: 'Ext.grid.Panel',
     alias: 'widget.UserList',
-    //region: "center",
-    //layout:'fit',
     layoutOnTabChange: true,
     id: 'UserGrid',
-    plugins: [cellEditing],
     autoSizeColumns: true,
     forceFit: true,
     frame: false,
-    //title: Strings.Users,
     store: 'User',
     initComponent: function () {
         Ext.apply(this,
@@ -85,7 +81,7 @@ Ext.define('VM.view.User.List', {
                    menuDisabled: true,
                    renderer: Ext.util.Format.dateRenderer('d.m.Y')
                }, {
-                   text: 'Последняя блокировка',
+                   header: 'Последняя блокировка',
                    columns: [
                           {
                               dataIndex: 'LastLockedOutDate',
@@ -93,7 +89,6 @@ Ext.define('VM.view.User.List', {
                               align: 'center',
                               width: 70,
                               sortable: true,
-                              field: { xtype: 'datefield' },
                               menuDisabled: true,
                               renderer: Ext.util.Format.dateRenderer('d.m.Y')
                           },
@@ -101,9 +96,8 @@ Ext.define('VM.view.User.List', {
                               dataIndex: 'LastLockedOutReason',
                               align: 'center',
                               text: Strings.UserLastLockedOutReason,
-                              flex: 1,
+                              flex: 100,
                               sortable: false,
-                              field: { xtype: 'textfield' },
                               menuDisabled: true
                           }]
                },
@@ -138,7 +132,7 @@ Ext.define('VM.view.User.List', {
                         if (value) {
                             cls.push(cssPrefix + 'grid-checkheader-checked');
                         }
- 
+
                         return '<div class="' + cls.join(' ') + '">&#160;</div>';
                     }
                 }

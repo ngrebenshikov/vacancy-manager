@@ -12,8 +12,9 @@ Ext.define('VM.view.Applicant.CenterPanel', {
     extend: 'Ext.tab.Panel',
     alias: 'widget.centerPanel',
     region: 'center',
-    border: false,
+    border: true,
     layout: 'fit',
+    plain: true,
     padding: '5 5 5 5',
     style: 'background-color: #fff;',
     items:
@@ -27,7 +28,7 @@ Ext.define('VM.view.Applicant.CenterPanel', {
             xtype: 'grid',
             id: 'ApplicantRequirementsGrid',
             autoSizeColumns: true,
-            forceFit: true,
+            border: false,
             region: 'center',
             plugins: [cellEditing],
             features: [Ext.create('Ext.grid.feature.Grouping', {
@@ -38,7 +39,7 @@ Ext.define('VM.view.Applicant.CenterPanel', {
             [{
                 xtype: 'checkcolumn',
                 dataIndex: 'IsChecked',
-                width: 20,
+                width: 30,
                 align: 'center',
                 sortable: false,
                 menuDisabled: true,
@@ -60,6 +61,7 @@ Ext.define('VM.view.Applicant.CenterPanel', {
                 dataIndex: 'RequirementName',
                 text: Strings.Skill,
                 width: 120,
+                flex: 1,
                 sortable: false,
                 field: { xtype: 'textfield' },
                 menuDisabled: true
@@ -73,7 +75,7 @@ Ext.define('VM.view.Applicant.CenterPanel', {
                 editable: false
             }],
 
-            tbar:
+            bbar:
             [{
                 text: Strings.btnHide,
                 name: 'btnShowHideSkills',
@@ -91,7 +93,7 @@ Ext.define('VM.view.Applicant.CenterPanel', {
         items:
         [{ xtype: 'commentsList',
             region: 'center',
-            border: true,
+            border: false,
             margin: '0 0 0 0',
             id: 'appConsCommentsList',
             bbar: [{
@@ -103,23 +105,27 @@ Ext.define('VM.view.Applicant.CenterPanel', {
                     if (cons != undefined)
                     { var consCreate = Ext.create('VM.view.Comments.Add').show(); }
                 }
-            }, '->', {
+            } ]
+        }, {
+            xtype: 'applicantConsiderationsList',
+            border: false,
+            region: 'west',
+            bbar: [
+            {
                 text: 'Новая вакансия',
                 name: 'btnAddCons',
                 id: 'AddAppCons',
                 action: 'addAppCons'
             }]
-        }, {
-            xtype: 'applicantConsiderationsList',
-            border: true,
-            region: 'west'
         }]
     },
     { title: 'Комментарии',
         id: 'ApplicantCommentsTab',
+        border: false,
         layout: 'anchor',
         items: [
         { xtype: 'appCommentsList',
+            border: false,
             anchor: '100% 70%'
         }, {
             xtype: 'panel',
@@ -171,11 +177,13 @@ Ext.define('VM.view.Applicant.CenterPanel', {
 
     { title: 'Cообщения',
         layout: 'fit',
+        border: false,
         id: 'ApplicantMessagesTab',
         margin: '0 0 0 0',
         items: [
         { xtype: 'ApplicantMessagesList',
             layout: 'fit',
+            border: false,
             height: 350,
             margin: '0 0 0 0'
         }
@@ -185,9 +193,10 @@ Ext.define('VM.view.Applicant.CenterPanel', {
        {
            title: Strings.Resumes,
            layout: 'fit',
+           border: false,
            id: 'ApplicantResumeTab',
            items: [
-             { xtype: 'resumeList' }
+             { xtype: 'resumeList', border: false }
            ]
 
 

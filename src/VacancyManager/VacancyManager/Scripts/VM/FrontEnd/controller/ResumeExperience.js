@@ -220,11 +220,14 @@
           if (searchStore.getCount() != 0) {
 
               wizard.getLayout().setActiveItem('step-4');
-              var wmenu = Ext.getCmp('wizardMenuGrid').getStore();
-              if (wmenu != undefined) {
-                  wmenu.getAt(2).set('ischeck', true);
-                  wmenu.getAt(3).set('enabled', true);
-              }
+              var wmItemState = Ext.getCmp('imgItem3'),
+                wmItem1 = Ext.getCmp('Item3'),
+                wmItem2 = Ext.getCmp('Item4');
+
+              wmItem1.toggle(false);
+              wmItem2.enable(false);
+              wmItem2.toggle(true);
+              wmItemState.setSrc('/Content/icons/checked.gif');
           }
       },
 

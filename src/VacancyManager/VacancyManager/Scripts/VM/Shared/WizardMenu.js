@@ -1,79 +1,117 @@
-﻿
-var store = Ext.create('Ext.data.Store', {
-    id: 'stageindex',
-    autoLoad: false,
-    autoSync: true,
-    autoSave: true,
-    fields: [
-           { name: 'stageindex' },
-           { name: 'stage' },
-           { name: 'ischeck', type: 'boolean' },
-           { name: 'enabled', type: 'boolean' },
-        ],
-    proxy: {
-        type: 'memory',
-        reader: {
-            type: 'json',
-            root: 'items'
-        }
-    },
-    data:{'items':[
-        { 'stageindex': 'step-1', 'stage': 'Основная информация', 'ischeck': 'false', 'enabled': 'true' },
-        { 'stageindex': 'step-2', 'stage': 'Компетенция', 'ischeck': 'false', 'enabled': 'false' },
-        { 'stageindex': 'step-3', 'stage': 'Профессональный опыт', 'ischeck': 'false', 'enabled': 'false' },
-        { 'stageindex': 'step-4', 'stage': 'Образование', 'ischeck': 'false', 'enabled': 'false' },
-        { 'stageindex': 'step-5', 'stage': 'Дополнительная информация', 'ischeck': 'false', 'enabled': 'false' }
-    ]}
-});
-
-Ext.define('VM.Shared.WizardMenu', {
-    extend: 'Ext.grid.Panel',
+﻿Ext.define('VM.Shared.WizardMenu', {
+    extend: 'Ext.form.Panel',
     alias: 'widget.WizardMenu',
-    collapsible: true,
-    id: 'wizardMenuGrid',
-    split: true,
     region: 'west',
-    hideHeaders: true,
-    store: this.store,
-    width: 240,
     border: true,
-    markDirty: false,
-    title: 'Этапы',
-    minSize: 100,
-    maxSize: 100,
-    initComponent: function () {
-        var me = this;
-        var wmenu = me.getStore();
-        wmenu.load();
+    bodyPadding: 5,
+    split: true,
+    layout: {
+        type: 'vbox',
+        align: 'stretch'
+    },
+    items: [
+       { xtype: 'container',
+           layout: {
+               type: 'hbox'
+           },
+           items: [
+           { xtype: 'image',
+               width: 16,
+               margin: 1,
+               id: 'imgItem1',
+               src: '/Content/icons/unchecked.gif'
+           },
+           { xtype: 'button',
+               tabIndex: 1,
+               id: 'Item1',
+               pressed: true,
+               text: 'Основная информация', toggleGroup: '1', scale: 'small', enableToggle: true, flex: 1, margin: '0 0 1 0',
+               handler: function (button) {
+                   var wizard = Ext.getCmp('wizard');
+                   wizard.getLayout().setActiveItem('step-' + button.tabIndex);
+               }
+           }
+         ]
+       }, { xtype: 'container',
+           layout: 'hbox',
+           items: [
+           { xtype: 'image',
+               margin: 1,
+               width: 16,
+               id: 'imgItem2',
+               src: '/Content/icons/unchecked.gif'
+           },
+           { xtype: 'button',
+             tabIndex: 2,
+             id: 'Item2',
+             disabled: true,
+             text: 'Компетенция', toggleGroup: '1', scale: 'small', enableToggle: true, flex: 1, margin: '0 0 1 0',
+             handler: function (button) {
+                 var wizard = Ext.getCmp('wizard');
+                 wizard.getLayout().setActiveItem('step-' + button.tabIndex);
+             } 
+         }]
+       }, { xtype: 'container',
+           layout: 'hbox',
+           items: [
+           { xtype: 'image',
+               width: 16,
+               id: 'imgItem3',
+               margin: 1,
+               src: '/Content/icons/unchecked.gif'
+           },
+           { xtype: 'button',
+               tabIndex: 3,
+               id: 'Item3',
+               disabled: true,
+               text: 'Профессональный опыт', toggleGroup: '1', scale: 'small', enableToggle: true, flex: 1, margin: '0 0 1 0',
+               handler: function (button) {
+                   var wizard = Ext.getCmp('wizard');
+                   wizard.getLayout().setActiveItem('step-' + button.tabIndex);
+               } 
+           }
+         ]
+       }, { xtype: 'container',
+           layout: 'hbox',
+           items: [
+           { xtype: 'image',
+               width: 16,
+               margin: 1,
+               id: 'imgItem4',
+               src: '/Content/icons/unchecked.gif'
+           },
+           { xtype: 'button',
+               tabIndex: 4,
+               id: 'Item4',
+               disabled: true,
+               text: 'Образование', toggleGroup: '1', scale: 'small', enableToggle: true, flex: 1, margin: '0 0 1 0',
+               handler: function (button) {
+                   var wizard = Ext.getCmp('wizard');
+                   wizard.getLayout().setActiveItem('step-' + button.tabIndex);
+               } 
+           }
+         ]
+       }, { xtype: 'container',
+           layout: 'hbox',
+           items: [
+           { xtype: 'image',
+               margin: 1,
+               width: 16,
+               id: 'imgItem5',
+               src: '/Content/icons/unchecked.gif'
+           },
+           { xtype: 'button',
+               tabIndex: 5,
+               id: 'Item5',
+               disabled: true,
+               text: 'Дополнительно', toggleGroup: '1', scale: 'small', enableToggle: true, flex: 1, margin: '0 0 1 0',
+               handler: function (button) {
+                   var wizard = Ext.getCmp('wizard');
+                   wizard.getLayout().setActiveItem('step-' + button.tabIndex);
+               }
+           }
+         ]
+       }
 
-        Ext.applyIf(me, {
-            columns: [
-                { xtype: 'checkcolumn',
-                    dataIndex: 'ischeck',
-                    align: 'center',
-                    width: 40,
-                    sortable: false,
-                    menuDisabled: true,
-                    processEvent: function () { return false; }
-                },
-                {
-                    xtype: 'gridcolumn',
-                    dataIndex: 'stage',
-                    flex: 1
-                }
-            ],
-            viewConfig: {
-                getRowClass: function (record, index) {
-                    // disabled-row - custom css class for disabled (you must declare it)
-                    if (record.get('enabled') == false) return 'disabled-row';
-                },
-                markDirty: false
-
-            }
-
-        });
-
-        me.callParent(arguments);
-    }
-
+   ]
 });

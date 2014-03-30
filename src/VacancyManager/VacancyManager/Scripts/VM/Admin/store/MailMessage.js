@@ -11,9 +11,10 @@
 
     listeners: {
         'datachanged': function () {
-            var btn = Ext.getCmp('Messages_Incoming');
+            var btn = Ext.getCmp('MessagesTab');
             var store = this,
                 appComsTab = Ext.getCmp('messagesTab');
+            console.log(btn);
             store.nonReadCount = 0;
             if (btn != undefined) {
                 if (store.currentMessageType == 1) {
@@ -23,11 +24,11 @@
                     });
 
                     if (store.nonReadCount > 0) {
-                        appComsTab.setText(Strings.MailMessages + ' (' + store.nonReadCount + ')');
-                        btn.setText(Strings.InputMessages + ' (' + store.nonReadCount + ')');
+                        if (appComsTab != undefined) { appComsTab.setText(Strings.MailMessages + ' (' + store.nonReadCount + ')');  }
+                        btn.setText(Strings.MailMessages + ' (' + store.nonReadCount + ')');
                     } else {
-                        btn.setText(Strings.InputMessages);
-                        appComsTab.setText(Strings.MailMessages);
+                        btn.setText(Strings.MailMessages);
+                        if (appComsTab != undefined) { appComsTab.setText(Strings.MailMessages); }
                     }
                 }
             }

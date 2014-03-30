@@ -12,7 +12,7 @@
     layout: 'card',
     defaults: {
         border: false,
-        bodyPadding: 20
+        bodyPadding: 10
     },
     items: [
             {
@@ -74,4 +74,7 @@
             }
 
         ]
+
+
+
 });

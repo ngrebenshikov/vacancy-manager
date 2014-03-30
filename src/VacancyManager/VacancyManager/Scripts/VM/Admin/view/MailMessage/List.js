@@ -98,14 +98,7 @@
                   name: 'btnSendedMessage',
                   id: 'Messages_Sended',
                   action: 'getSendedMessages'
-              }, '-',
-              {
-                  text: 'Черновики',
-                  name: 'btnDirtyMessage',
-                  id: 'Messages_Dirty',
-                  action: 'getDirtyMessages'
-              },
-                '->',
+              }, '->',
               {
                   xtype: 'triggerfield',
                   emptyText: Strings.MessageFilter,

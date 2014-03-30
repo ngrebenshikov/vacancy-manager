@@ -112,6 +112,7 @@ Ext.define('VM.searchApplicantGrid', {
                                     {
                                         xtype: 'button',
                                         text: 'Изменить',
+                                        margin: '0 0 0 2',
                                         handler: function (button) {
                                             searchAppGrid.onSelectReqButtonClick();
                                         }
@@ -140,6 +141,7 @@ Ext.define('VM.searchApplicantGrid', {
                                     {
                                         xtype: 'button',
                                         text: 'Изменить',
+                                        margin: '0 0 0 2',
                                         handler: function (button) {
                                             searchAppGrid.onSelectVacancyButtonClick();
                                         }
@@ -439,8 +441,6 @@ Ext.define('VM.searchApplicantGrid', {
         var reqGrid = Ext.create('Ext.grid.Panel', {
             height: 310,
             id: 'requirementsGrid',
-            autoSizeColumns: true,
-            forceFit: true,
             frame: false,
             selModel: sm,
             store: reqStore,
@@ -451,8 +451,8 @@ Ext.define('VM.searchApplicantGrid', {
                 dataIndex: 'RequirementName',
                 text: Strings.Skill,
                 width: 120,
+                flex: 1,
                 sortable: false,
-                field: { xtype: 'textfield' },
                 menuDisabled: true
             }
          ]

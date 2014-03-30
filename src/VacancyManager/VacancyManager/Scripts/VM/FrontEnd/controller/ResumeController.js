@@ -141,11 +141,6 @@
             }
         });
 
-        var wmenu = Ext.getCmp('wizardMenuGrid');
-        if (wmenu != undefined) {
-            wmenu.getStore().getAt(4).set('ischeck', true);
-        }
-
         win.close();
 
     },
@@ -170,7 +165,6 @@
             resumeStore = this.getResumeStore();
 
         var appForm = Ext.getCmp('frmManageApplicant').getForm();
-
         applicant = appForm.getRecord();
         appId = applicant.getId();
 
@@ -200,11 +194,15 @@
                 updateResume.save();
             }
 
-            var wmenu = Ext.getCmp('wizardMenuGrid').getStore();
-            if (wmenu != undefined) {
-                wmenu.getAt(0).set('ischeck', true);
-                wmenu.getAt(1).set('enabled', true);
-            }
+            var wmItemState = Ext.getCmp('imgItem1'),
+                wmItem1 = Ext.getCmp('Item1'),
+                wmItem2 = Ext.getCmp('Item2');
+
+            wmItem1.toggle(false);
+            wmItem2.enable(false);
+            wmItem2.toggle(true);
+            wmItemState.setSrc('/Content/icons/checked.gif');
+
             wizard.getLayout().setActiveItem('step-2');
         }
 
@@ -229,11 +227,16 @@
         resumeRequirementStore.sync();
 
         if (appReqsCount != 0) {
-            var wmenu = Ext.getCmp('wizardMenuGrid').getStore();
-            if (wmenu != undefined) {
-                wmenu.getAt(1).set('ischeck', true);
-                wmenu.getAt(2).set('enabled', true);
-            }
+          
+            var wmItemState = Ext.getCmp('imgItem2'),
+                wmItem1 = Ext.getCmp('Item2'),
+                wmItem2 = Ext.getCmp('Item3');
+
+            wmItem1.toggle(false);
+            wmItem2.enable(false);
+            wmItem2.toggle(true);
+
+            wmItemState.setSrc('/Content/icons/checked.gif');
 
             wizard.getLayout().setActiveItem('step-3');
         }
