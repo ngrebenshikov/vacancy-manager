@@ -4,5 +4,6 @@
     id: 'VacancyStore',
     autoLoad: true,
     autoSync: true,
-    autoSave: false
+    autoSave: false,
+    pageSize: 10
 });

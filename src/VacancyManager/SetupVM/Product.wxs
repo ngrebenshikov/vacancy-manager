@@ -215,8 +215,6 @@
         <!--<File Id="DesignTimeResolveAssemblyReferences" Name="DesignTimeResolveAssemblyReferences.cache" Source="$(var.SolutionDir)VacancyManager\obj\Debug\DesignTimeResolveAssemblyReferences.cache"/>-->
         <File Id="DesignTimeResolveAssemblyReferencesInput" Name="DesignTimeResolveAssemblyReferencesInput.cache" Source="$(var.SolutionDir)VacancyManager\obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache"/>
         <File Id="VacancyManager.csproj.FileListAbsolutetxt" Name="VacancyManager.csproj.FileListAbsolute.txt" Source="$(var.SolutionDir)VacancyManager\obj\Debug\VacancyManager.csproj.FileListAbsolute.txt"/>
-        <File Id="VacancyManager.csproj.GenerateResource" Name="VacancyManager.csproj.GenerateResource.cache" Source="$(var.SolutionDir)VacancyManager\obj\Debug\VacancyManager.csproj.GenerateResource.cache"/>
-        <File Id="VacancyManager.csprojResolveAssemblyReference" Name="VacancyManager.csprojResolveAssemblyReference.cache" Source="$(var.SolutionDir)VacancyManager\obj\Debug\VacancyManager.csprojResolveAssemblyReference.cache"/>
         <File Id="VacancyManager.dll" Name="VacancyManager.dll" Source="$(var.SolutionDir)VacancyManager\obj\Debug\VacancyManager.dll"/>
         <File Id="VacancyManager.pdb" Name="VacancyManager.pdb" Source="$(var.SolutionDir)VacancyManager\obj\Debug\VacancyManager.pdb"/>
         <File Id="VacancyManager.Properties.ResourceEn" Name="VacancyManager.Properties.ResourceEn.resources" Source="$(var.SolutionDir)VacancyManager\obj\Debug\VacancyManager.Properties.ResourceEn.resources"/>

@@ -4,6 +4,8 @@
     id: 'applicantConsiderationsGrid',
     store: 'ApplicantConsiderations',
     width: 150,
+    bodyPadding: 2,
+    enableColumnResize: false,
     columns: [
               {
                   dataIndex: 'Vacancy',
@@ -11,5 +13,8 @@
                   flex: 1,
                   sortable: false,
                   menuDisabled: true
-              }]
+              }],
+    viewConfig: {
+        columnLines: true
+    }
 });

@@ -194,11 +194,15 @@
           var form = button.up('form');
           var searchStore = this.getResumeEducationStore();
           if (searchStore.getCount() != 0) {
-              var wmenu = Ext.getCmp('wizardMenuGrid').getStore();
-              if (wmenu != undefined) {
-                  wmenu.getAt(3).set('ischeck', true);
-                  wmenu.getAt(4).set('enabled', true);
-              }
+              var wmItemState = Ext.getCmp('imgItem4'),
+                wmItem1 = Ext.getCmp('Item4'),
+                wmItem2 = Ext.getCmp('Item5');
+
+              wmItem1.toggle(false);
+              wmItem2.enable(false);
+              wmItem2.toggle(true);
+
+              wmItemState.setSrc('/Content/icons/checked.gif');
               wizard.getLayout().setActiveItem('step-5');
           }
       }

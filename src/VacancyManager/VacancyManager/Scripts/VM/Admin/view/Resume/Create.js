@@ -17,7 +17,8 @@ Ext.define('VM.view.Resume.Create', {
     initComponent: function () {
         this.items = [
            { xtype: 'WizardMenu',
-             width: 200 },
+               width: 185
+           },
            { xtype: 'WizardPanel' }
           ],
 

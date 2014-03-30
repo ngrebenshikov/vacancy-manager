@@ -19,9 +19,7 @@ Ext.define('VM.view.vacancy.VacancyRequirementsList', {
     frame: false,
     split: true,
     plugins: [cellEditing],
-    features: [Ext.create('Ext.grid.feature.Grouping',{
-        groupHeaderTpl: '{name}: ' + Strings.Skills + ' ({rows.length})'
-    })],
+    features: [Ext.create('Ext.grid.feature.Grouping',{ groupHeaderTpl: '{name}' })],
     title: Strings.Skills,  
     store: 'VacancyRequirements',
     columns: [

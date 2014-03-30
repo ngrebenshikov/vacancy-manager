@@ -143,3 +143,11 @@ td.wrap-text div
     background-position: center;
     
 } 
+
+
+.x-customOverStyle  {
+    background-color: rgba(0, 255, 0, 0.2) !important;
+    border-width: 0;
+    background-image: none !important;
+    border-color: green !important;
+}
