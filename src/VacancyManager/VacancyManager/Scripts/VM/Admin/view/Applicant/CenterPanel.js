@@ -96,7 +96,7 @@ Ext.define('VM.view.Applicant.CenterPanel', {
             border: false,
             margin: '0 0 0 0',
             id: 'appConsCommentsList',
-            bbar: [{
+            bbar: ['->', {
                 text: 'Новый комментарий',
                 name: 'btnewConsComments',
                 id: 'newConsComments',

@@ -42,6 +42,13 @@
                     }
                 }
             }
+        }, {
+            text: 'Отмена',
+            scope: this,
+            handler: function (button) {
+                wnd = button.up('window');
+                wnd.close();
+            }
         }],
 
         this.callParent(arguments);

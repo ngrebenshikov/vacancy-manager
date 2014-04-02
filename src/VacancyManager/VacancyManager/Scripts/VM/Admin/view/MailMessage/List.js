@@ -1,5 +1,4 @@
-﻿Ext.define('VM.view.MailMessage.List',
-{
+﻿Ext.define('VM.view.MailMessage.List', {
     extend: 'Ext.panel.Panel',
     alias: 'widget.MailMessageList',
     id: 'mailMessageGrid',
@@ -22,13 +21,13 @@
             [{
                 dataIndex: 'From',
                 text: Strings.Sender,
-                width: 130,
+                flex: 1,
                 sortable: true,
                 menuDisabled: true
             }, {
                 dataIndex: 'To',
                 text: 'Получатель',
-                width: 130,
+                flex: 1,
                 sortable: true,
                 menuDisabled: true
             }, {
@@ -125,29 +124,27 @@
             text: 'Просмотр сообщения',
             name: 'btnBrowseMessage',
             id: 'messageOper3',
+            icon: '/Content/icons/edit.png',
             action: 'browseMessage'
-        }, '-', {
+        }, {
             text: Strings.SendMessage,
             name: 'btnewMailMessage',
+            icon: '/Content/icons/add.gif',
             id: 'messageOper2',
             action: 'newMailMessage'
-        }, '-', {
-            text: 'Удалить сообщение',
-            action: 'deleteMessage',
-            id: 'messageOper4'
-        }, '->', {
+        }, {
             text: 'Обновить',
+            icon: '/Content/icons/refresh.gif',
             name: 'btnUpdateinbox',
             id: 'messageOper1',
             action: 'updateMessages'
-        }
-             ],
-        dockedItems: [{
-            xtype: 'pagingtoolbar',
-            store: 'MailMessage',
-            dock: 'bottom',
-            displayInfo: true
+        }, '->', {
+            text: 'Удалить сообщение',
+            action: 'deleteMessage',
+            icon: '/Content/icons/delete.gif',
+            id: 'messageOper4'
         }],
+
         viewConfig: {
             getRowClass: function (record, index, rowParams, store) {
                 var isRead = record.get('IsRead');

@@ -34,7 +34,9 @@
                 // Скрыть/показать
                 'button[action=ShowHideSkills]':
                     { click: this.ShowHideSkills },
-
+                // Обновить список
+                'button[action=refreshApplicantList]':
+                    { click: this.RefreshApplicantList },
                 'button[action=addConsComment]':
                     { click: this.addConsComment },
 
@@ -43,6 +45,11 @@
             });
         },
 
+        RefreshApplicantList: function (button) {
+            applicantStore = this.getApplicantStore();
+            applicantStore.load();        
+        },
+         
         addAppCons: function (button) {
             var appConsStore = this.getApplicantConsiderationsStore(),
                 vacStore = this.getVacancyAssignStore();
