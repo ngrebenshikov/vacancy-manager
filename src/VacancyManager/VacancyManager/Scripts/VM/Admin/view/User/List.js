@@ -1,91 +1,67 @@
-﻿var cellEditing = Ext.create('Ext.grid.plugin.CellEditing', {
-    clicksToEdit: 2,
-    listeners: {
-        beforeedit: function (e, editor) {
-            return false;
-        }
-    }
-});
-
-Ext.define('VM.view.User.List', {
+﻿Ext.define('VM.view.User.List', {
     extend: 'Ext.grid.Panel',
     alias: 'widget.UserList',
-    layoutOnTabChange: true,
     id: 'UserGrid',
     autoSizeColumns: true,
-    forceFit: true,
     frame: false,
     store: 'User',
+    viewConfig: {
+        loadingText: 'Загрузка пользователей'
+    },
     initComponent: function () {
-        Ext.apply(this,
-      {
-          columns: [
-                {
-                    dataIndex: 'UserName',
-                    align: 'center',
-                    text: Strings.UserName,
-                    width: 120,
-                    sortable: true,
-                    menuDisabled: true
-                },
-                {
-                    dataIndex: 'Roles',
-                    align: 'center',
-                    text: Strings.UserRoles,
-                    width: 120,
-                    menuDisabled: true,
-                    renderer: function (value) {
-                        var str = "";
-                        for (var i = 0; i < value.length; i++) {
-                            str = str + value[i];
-                            if (i != value.length - 1)
-                                str = str + ", ";
-                        }
-                        return str;
+        Ext.apply(this, {
+            columns: [{
+                dataIndex: 'UserName',
+                align: 'center',
+                text: Strings.UserName,
+                flex: 1,
+                sortable: true,
+                menuDisabled: true
+            }, {
+                dataIndex: 'Roles',
+                align: 'center',
+                text: Strings.UserRoles,
+                flex: 1,
+                menuDisabled: true,
+                renderer: function (value) {
+                    var str = "";
+                    for (var i = 0; i < value.length; i++) {
+                        str = str + value[i];
+                        if (i != value.length - 1)
+                            str = str + ", ";
                     }
-                },
-                {
-                    dataIndex: 'Email',
-                    align: 'center',
-                    text: Strings.UserEmail,
-                    width: 120,
-                    sortable: true,
-                    field: { xtype: 'textfield' },
-                    menuDisabled: true
-                },
-          /*{
-          dataIndex: 'UserComment',
-          text: Strings.UserCommentary,
-          width: 120,
-          sortable: false,
-          field: { xtype: 'textfield' },
-          menuDisabled: true
-          },*/
-                {
+                    return str;
+                }
+            }, {
+                dataIndex: 'Email',
+                align: 'center',
+                text: Strings.UserEmail,
+                flex: 1,
+                sortable: true,
+                field: { xtype: 'textfield' },
+                menuDisabled: true
+            }, {
                 dataIndex: 'CreateDate',
                 text: Strings.UserCreationDate,
                 align: 'center',
-                width: 70,
+                width: 90,
                 sortable: true,
-                field: { xtype: 'datefield' },
                 menuDisabled: true,
                 renderer: Ext.util.Format.dateRenderer('d.m.Y')
-            },
-               {
-                   dataIndex: 'LastLoginDate',
-                   text: Strings.UserLastLoginDate,
-                   align: 'center',
-                   width: 70,
-                   sortable: true,
-                   field: { xtype: 'datefield' },
-                   menuDisabled: true,
-                   renderer: Ext.util.Format.dateRenderer('d.m.Y')
-               }, {
-                   header: 'Последняя блокировка',
-                   columns: [
+            }, {
+                dataIndex: 'LastLoginDate',
+                text: 'Последний \n визит',
+                align: 'center',
+                width: 95,
+                sortable: true,
+                menuDisabled: true,
+                renderer: Ext.util.Format.dateRenderer('d.m.Y')
+            }, {
+                header: 'Последняя блокировка',
+                columns: [
                           {
                               dataIndex: 'LastLockedOutDate',
-                              text: Strings.UserLastLockedOutDate,
+                              header: Strings.UserLastLockedOutDate,
                               align: 'center',
                               width: 70,
                               sortable: true,
@@ -95,84 +71,76 @@ Ext.define('VM.view.User.List', {
                           {
                               dataIndex: 'LastLockedOutReason',
                               align: 'center',
-                              text: Strings.UserLastLockedOutReason,
-                              flex: 100,
+                              header: Strings.UserLastLockedOutReason,
+                              width: 270,
                               sortable: false,
                               menuDisabled: true
                           }]
-               },
-                {
-                    dataIndex: 'IsActivated',
-                    align: 'center',
-                    text: Strings.UserList_IsActivated,
-                    width: 70,
-                    sortable: false,
-                    menuDisabled: true,
-                    renderer: function (value) {
-                        var cssPrefix = Ext.baseCSSPrefix,
+            }, {
+                dataIndex: 'IsActivated',
+                align: 'center',
+                header: Strings.UserList_IsActivated,
+                width: 80,
+                sortable: false,
+                menuDisabled: true,
+                renderer: function (value) {
+                    var cssPrefix = Ext.baseCSSPrefix,
                         cls = [cssPrefix + 'grid-checkheader'];
 
-                        if (value) {
-                            cls.push(cssPrefix + 'grid-checkheader-checked');
-                        }
-                        return '<div class="' + cls.join(' ') + '">&#160;</div>';
+                    if (value) {
+                        cls.push(cssPrefix + 'grid-checkheader-checked');
                     }
-                },
-                {
-                    dataIndex: 'IsLockedOut',
-                    align: 'center',
-                    text: Strings.UserIsLockedOut,
-                    width: 70,
-                    sortable: false,
-                    menuDisabled: true,
-                    renderer: function (value) {
-                        var cssPrefix = Ext.baseCSSPrefix,
-                        cls = [cssPrefix + 'grid-checkheader'];
-
-                        if (value) {
-                            cls.push(cssPrefix + 'grid-checkheader-checked');
-                        }
-
-                        return '<div class="' + cls.join(' ') + '">&#160;</div>';
-                    }
+                    return '<div class="' + cls.join(' ') + '">&#160;</div>';
                 }
-              ],
-          dockedItems: [
-                  {
-                      xtype: 'pagingtoolbar',
-                      store: 'User',
-                      dock: 'bottom',
-                      displayInfo: true,
-                      displayMsg: Strings.UserToolbarDislpayMsg,
-                      emptyMsg: Strings.UserToolbarEmptyMsg
-                  }
-                ],
-          bbar:
-        [
-          {
-              text: Strings.UserBNewUser,
-              name: 'btnloadBlankUser',
-              id: 'btnloadBlankUser',
-              action: 'CreateUser'
-          },
-          {
-              text: Strings.UserBLockUnlock,
-              name: 'btnBanManager',
-              id: 'BanManager',
-              action: 'banManager'
-          },
-          {
-              text: Strings.UserBEdit,
-              name: 'btnEdit',
-              id: 'UserEdit',
-              action: 'callEdit'
-          },
-          {
-              text: Strings.UserBDelete,
-              action: 'deleteUser'
-          }
-        ]
-      });
+            }, {
+                dataIndex: 'IsLockedOut',
+                align: 'center',
+                header: Strings.UserIsLockedOut,
+                width: 80,
+                sortable: false,
+                menuDisabled: true,
+                renderer: function (value) {
+                    var cssPrefix = Ext.baseCSSPrefix,
+                        cls = [cssPrefix + 'grid-checkheader'];
+
+                    if (value) {
+                        cls.push(cssPrefix + 'grid-checkheader-checked');
+                    }
+
+                    return '<div class="' + cls.join(' ') + '">&#160;</div>';
+                }
+            }],
+
+            bbar: [{
+                text: Strings.UserBNewUser,
+                name: 'btnloadBlankUser',
+                icon: '/Content/icons/add.gif',
+                id: 'btnloadBlankUser',
+                action: 'CreateUser'
+            }, {
+                text: Strings.UserBEdit,
+                name: 'btnUserEdit',
+                icon: '/Content/icons/edit.png',
+                id: 'UserEdit',
+                action: 'callEdit'
+            }, {
+                text: Strings.UserBLockUnlock,
+                name: 'btnBanManager',
+                icon: '/Content/icons/ban.gif',
+                id: 'BanManager',
+                action: 'banManager'
+            }, {
+                text: 'Обновить',
+                icon: '/Content/icons/refresh.gif',
+                name: 'btnRefreshUserList',
+                id: 'RefreshUserList',
+                action: 'refreshUserList'
+            }, '->', {
+                text: Strings.UserBDelete,
+                action: 'deleteUser',
+                icon: '/Content/icons/delete.gif'
+            }]
+        });
         this.callParent(arguments);
     }
 });

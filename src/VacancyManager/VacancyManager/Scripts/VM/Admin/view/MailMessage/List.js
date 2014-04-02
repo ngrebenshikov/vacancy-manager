@@ -13,8 +13,6 @@
     [{
         xtype: 'grid',
         id: 'MailMessageGrid',
-        autoSizeColumns: true,
-        forceFit: true,
         frame: false,
         layout: 'fit',
         region: 'center',
@@ -24,25 +22,26 @@
             [{
                 dataIndex: 'From',
                 text: Strings.Sender,
-                width: 120,
+                width: 130,
                 sortable: true,
                 menuDisabled: true
             }, {
                 dataIndex: 'To',
                 text: 'Получатель',
-                width: 120,
+                width: 130,
                 sortable: true,
                 menuDisabled: true
             }, {
                 dataIndex: 'Subject',
                 text: Strings.Subject,
-                width: 50,
+                flex: 1,
                 sortable: true,
                 menuDisabled: true
             }, {
                 dataIndex: 'Vacancy_C',
                 text: Strings.Vacancy,
-                width: 50,
+                width: 120,
+                align: 'center',
                 sortable: true,
                 menuDisabled: true
             }, {
@@ -50,15 +49,17 @@
                 format: 'd.m.Y H:i',
                 dataIndex: 'SendDate',
                 text: Strings.SendDate,
-                width: 50,
+                align: 'center',
+                width: 90,
                 sortable: true,
                 menuDisabled: true
             }, {
                 xtype: 'datecolumn',
                 format: 'd.m.Y H:i',
+                align: 'center',
                 dataIndex: 'DeliveryDate',
                 text: Strings.DeliveryDate,
-                width: 50,
+                width: 90,
                 sortable: true,
                 menuDisabled: true
             }, {
@@ -90,11 +91,16 @@
               {
                   text: Strings.InputMessages,
                   name: 'btnInputMessage',
+                  enableToggle: true,
+                  pressed: true,
+                  toggleGroup: 'MessagesGroup',
                   id: 'Messages_Incoming',
                   action: 'getIncomingMessages'
               }, '-',
               {
                   text: 'Исходящие сообщения',
+                  enableToggle: true,
+                  toggleGroup: 'MessagesGroup',
                   name: 'btnSendedMessage',
                   id: 'Messages_Sended',
                   action: 'getSendedMessages'

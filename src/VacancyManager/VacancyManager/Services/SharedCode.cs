@@ -48,32 +48,21 @@ namespace VacancyManager
     {
       MembershipCreateStatus createStatus;
       Membership.CreateUser(name, password, email, null, null, true, null, out createStatus);
-      if (createStatus == MembershipCreateStatus.Success)
+
+     if (createStatus == MembershipCreateStatus.Success)
       {
         var user = (VMMembershipUser)Membership.GetUser(name, false);
-        if (activate)          
-        {
-          ActivateUser(name);
-        }
         if (setAsAdmin)
         {
-         
-            if (!Roles.RoleExists("Admin"))
-            Roles.CreateRole("Admin");
 
-          Roles.AddUsersToRoles(new[] { user.UserName }, new[] { "Admin" });
+            if (!Roles.RoleExists("Admin"))  Roles.CreateRole("Admin");
+            if (!Roles.RoleExists("User"))   Roles.CreateRole("User");
+            ActivateUser(user.UserName);
+            Roles.AddUsersToRoles(new[] { user.UserName }, new[] { "Admin", "User" });
         }
 
-        if (!setAsAdmin)
-        {
-
-            if (!Roles.RoleExists("User"))
-                Roles.CreateRole("User");
-
-            Roles.AddUsersToRoles(new[] { user.UserName }, new[] { "User" });
-        }
-        return new Tuple<bool, string, VMMembershipUser>(true, "Пользователь создан", (VMMembershipUser)Membership.GetUser(name, false));
-      }
+         return new Tuple<bool, string, VMMembershipUser>(true, "Пользователь создан", (VMMembershipUser)Membership.GetUser(name, false));
+     }
       return new Tuple<bool, string, VMMembershipUser>(false, ErrorCodeToString(createStatus), null);
     }
 
@@ -81,12 +70,12 @@ namespace VacancyManager
     private static bool ActivateUser(string name, string activateKey = "")
     {
       VMMembershipUser user = (VMMembershipUser)Membership.GetUser(name, false);
-      if ((user == null)
+   /*   if ((user == null)
           || ((activateKey != "") && (user.EmailKey != activateKey)))
         return false;
       user.UnlockUser();
       user.EmailKey = null;
-      Membership.UpdateUser(user);
+      Membership.UpdateUser(user);*/
       return true;
     }
 

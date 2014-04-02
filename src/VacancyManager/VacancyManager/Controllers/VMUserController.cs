@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
+using System.Web;
 using System.Web.Script.Serialization;
 using System.Web.Security;
 using VacancyManager.Models;
@@ -13,6 +14,8 @@ namespace VacancyManager.Controllers
 {
   public class VMUserController : BaseController
   {
+    static JavaScriptSerializer jss = new JavaScriptSerializer();
+   
     [HttpPost]
     public ActionResult ExtJSLogOn(string login, string password)
     {
@@ -90,7 +93,6 @@ namespace VacancyManager.Controllers
     [AuthorizeError(Roles = "Admin")]
     public JsonResult ExtJSCreateUser(string data)
     {
-      JavaScriptSerializer jss = new JavaScriptSerializer();
 
       if (data != null)
       {
@@ -132,7 +134,7 @@ namespace VacancyManager.Controllers
     {
       bool success = false;
       string message = "Не удалось удалить пользователя";
-      JavaScriptSerializer jss = new JavaScriptSerializer();
+     
       if (data != null)
       {
         var json_User = jss.Deserialize<dynamic>(data);
@@ -172,8 +174,6 @@ namespace VacancyManager.Controllers
     //TODO: Рассмотреть возможность перехода к табличному подходу
     public JsonResult ExtJSUpdateUser(string data)
     {
-      JavaScriptSerializer jss = new JavaScriptSerializer();
-
       if (data != null)
       {
         dynamic record = jss.Deserialize<dynamic>(data);
@@ -196,18 +196,18 @@ namespace VacancyManager.Controllers
             comment: userInDB.Comment,
             lastLockedOutReason: userInDB.LastLockedOutReason,
             isApproved: userInDB.IsApproved,
-            isLockedOut: userInDB.IsLockedOut,
+            LockedOut: (bool)record["IsLockedOut"],
             creationDate: userInDB.CreationDate,
             lastLoginDate: userInDB.LastLoginDate,
             lastActivityDate: DateTime.Now,
             lastPasswordChangedDate: DateTime.Now,
             lastLockedOutDate: userInDB.LastLockoutDate,
             EmailKey: userInDB.EmailKey);
-          Membership.UpdateUser(userInDB);
+        Membership.UpdateUser(userInDB);
         }
-
+   
         //Проверка на возможность бана
-        if (userInDB.IsApproved != (bool)record["IsActivated"])
+        if (userInDB.IsLockedOut != (bool)record["IsLockedOut"])
         {
           result = CheckUserLockChanging(record, userInDB);
         }
@@ -227,20 +227,42 @@ namespace VacancyManager.Controllers
       return CreateJsonAnwser(false, "При обновлении данных пользователя произошёл сбой", null);
     }
 
+    [HttpPost]
+    [AuthorizeError(Roles = "Admin")]
+    public JsonResult ChangePassword(string passwordcredentials) 
+    {
+        string ChangeMessage = "Введенные пароли не совпадают!!!";    
+        var passwordCredentials = jss.Deserialize<dynamic>(passwordcredentials);
+        bool passChanged = false;
+        string OldPassword = (string)passwordCredentials["oldpassword"],
+              ConfirmPassword = (string)passwordCredentials["confirmpassword"],
+              NewPassword = (string)passwordCredentials["newpassword"];
+      
+        if (NewPassword == ConfirmPassword)
+        {
+            VMMembershipUser userInDB = (VMMembershipUser)Membership.GetUser(User.Identity.Name);
+            passChanged = userInDB.ChangePassword(OldPassword, NewPassword);
+            if (passChanged) { ChangeMessage = "Пароль изменен!!!"; passChanged = true; }
+            else { ChangeMessage = "Неверно введен старый пароль!!!"; passChanged = false; }
+        }
+
+        return Json(new
+        {
+            success = passChanged,
+            message = ChangeMessage
+        });
+
+    }
+
     private static Tuple<bool, string> CheckUserLockChanging(dynamic record, VMMembershipUser userInDB)
     {
       if (userInDB.IsApproved)//Забанить
       {
-        userInDB.IsApproved = (bool)record["IsActivated"];
-        userInDB.LastLockedOutReason = record["LastLockedOutReason"].ToString();
+         userInDB.LastLockedOutReason = record["LastLockedOutReason"].ToString();
+         userInDB.LockedOut = (bool)record["IsLockedOut"];
         //Возможно добавить сюда что либо с датами
         Membership.UpdateUser(userInDB);
         return new Tuple<bool, string>(true, "Пользователь забанен");
-      }
-      if (userInDB.EmailKey == null)
-      {
-        userInDB.UnlockUser();
-        return new Tuple<bool, string>(true, "Пользователь разбанен");
       }
       return new Tuple<bool, string>(false, "Нельзя разбанить неактивированного пользователя");
     }
@@ -289,7 +311,6 @@ namespace VacancyManager.Controllers
     {
       if (user == null)
         throw new NullReferenceException();
-      var roles = Roles.GetRolesForUser(user.UserName);
       return new
       {
         UserID = user.ProviderUserKey,
@@ -302,7 +323,7 @@ namespace VacancyManager.Controllers
         user.IsLockedOut,
         LastLockedOutDate = user.LastLockoutDate,
         user.LastLockedOutReason,
-        Roles = roles
+        Roles = Roles.GetRolesForUser(user.UserName)
       };
     }
 

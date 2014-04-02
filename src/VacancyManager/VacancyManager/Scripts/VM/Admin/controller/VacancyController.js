@@ -19,6 +19,11 @@ Ext.define('VM.controller.VacancyController', {
                     'button[action=loadBlankVacancy]': {
                         click: this.loadBlankVacancy
                     },
+
+                    'button[action=refreshVacancyList]': {
+                        click: this.refreshVacancyList
+                    },
+
                     'button[action=editVacancy]': {
                         click: this.editVacancy
                     },
@@ -35,9 +40,14 @@ Ext.define('VM.controller.VacancyController', {
 
     },
 
+    refreshVacancyList: function (button) {
+        vacancyStore = this.getVacancyStore();
+        vacancyStore.load();
+    },
+
     destroyConsiderationsGrid: function (rowNode, record, expandRow) {
         var ConsiderationsGrid = Ext.get(expandRow).down('.ux-row-expander-box').down('div');
-        ConsiderationsGrid.destroy();
+        if (ConsiderationsGrid !== undefined) { ConsiderationsGrid.destroy(); }
     },
 
     createConsiderationsGrid: function (rowNode, record, expandRow) {

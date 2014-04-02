@@ -5,8 +5,7 @@ Ext.define('VM.view.RequirementStack.List', {
     title: Strings.RequirementStackList,
     collapsible: true,
     animCollapse: true,
-    autoSizeColumns: true,
-    forceFit: true,
+    width: 400,
     store: 'RequirementStack',
     minSize: 100,
     maxSize: 500,
@@ -15,6 +14,7 @@ Ext.define('VM.view.RequirementStack.List', {
                   dataIndex: 'Name',
                   text: Strings.TitleRequirementStackName,
                   width: 180,
+                  flex: 1,
                   sortable: true,
                   menuDisabled: true
               }, {

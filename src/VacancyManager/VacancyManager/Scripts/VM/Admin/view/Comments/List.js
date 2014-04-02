@@ -3,14 +3,15 @@ Ext.define('VM.view.Comments.List', {
     extend: 'Ext.grid.Panel',
     alias: 'widget.commentsList',
     store: 'Comments',
+    disableSelection: true,
     id: 'gridcomments',
     columns: [
   	        {
   	            flex: 1,
   	            sortable: false,
-                text: 'Коментарий',
+  	            text: 'Коментарий',
   	            menuDisabled: true,
-                textalign: 'justify',
+  	            textalign: 'justify',
   	            dataIndex: 'Body',
   	            tdCls: 'wrap-text'
   	        },
@@ -21,7 +22,7 @@ Ext.define('VM.view.Comments.List', {
                 menuDisabled: true,
                 xtype: 'templatecolumn',
                 tdCls: 'wrap-text',
-                tpl: 
+                tpl:
                     new Ext.XTemplate(
                        '<b>{[Ext.Date.format(values.CreationDate, "d.m.Y")]} <br> от {CommentatorName}</b>'
 
@@ -33,7 +34,9 @@ Ext.define('VM.view.Comments.List', {
         name: 'btnUpdateCommentsList',
         align: 'right',
         id: 'updateCommentsList',
-        action: 'updateCommentsList' 
+        action: 'updateCommentsList'
+    }],
+    viewConfig: {
+      trackOver: false
     }
-   ]
 });

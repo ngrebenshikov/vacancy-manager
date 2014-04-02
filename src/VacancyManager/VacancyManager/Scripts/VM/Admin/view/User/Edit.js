@@ -1,65 +1,60 @@
-﻿Ext.define
-('VM.view.User.Edit',
-  {
-    extend: 'Ext.window.Window',
-    alias: 'widget.Edit',
-
-    requires: ['Ext.form.Panel'],
-
-    title: 'User edit',
-    layout: 'fit',
-    autoShow: true,
-    height: 300,
-    width: 280,
-
-    initComponent: function ()
-    {
-      this.items =
-      [
-        {
-          xtype: 'form',
-          padding: '5 5 0 5',
-          border: false,
-          style: 'background-color: #fff;',
-          items:
-          [
+﻿Ext.define('VM.view.User.Edit', {
+      extend: 'Ext.window.Window',
+      alias: 'widget.Edit',
+      buttonAlign: 'center',
+      requires: ['Ext.form.Panel'],
+      title: 'Редактирование пользователя',
+      layout: 'fit',
+      autoShow: true,
+      height: 300,
+      width: 380,
+      initComponent: function () {
+          this.items = [{
+              xtype: 'form',
+              padding: '5 5 0 5',
+              border: false,
+              layout: {
+                  type: 'vbox',
+                  align: 'stretch'
+              },
+              bodyPadding: 10,
+              style: 'background-color: #fff;',
+              items: [
             {
-              xtype: 'textfield',
-              name: 'UserName',
-              fieldLabel: "UserName",
-              allowBlank: false
-            },
-            {
-              xtype: 'dataview',
-              autoScroll: true, store: 'Roles',
-              tpl: '<tpl for="."><div class="DataView-list"><input type="checkbox" id="check{Name}" value="c{Name}" onclick="oncheck(id)">{Name}</div></tpl>',
-              autoHeight: false, height: 265,
-              multiSelect: true, itemSelector: 'DataView-list-item',
-              emptyText: 'No data to display',
-              loadingText: 'Please Wait...',
-              style: 'border:1px solid #99BBE8;background:#fff;'
-            }
-          ]
-        }
-      ];
+                xtype: 'textfield',
+                name: 'UserName',
+                fieldLabel: "Пользователь",
+                allowBlank: false
+            }, {
+                xtype: 'panel',
+                flex: 1,
+                bodyPadding: 5,
+                title: 'Роли',
+                items: [{
+                    xtype: 'dataview',
+                    autoScroll: true, store: 'Roles',
+                    tpl: '<tpl for="."><div class="DataView-list"><input type="checkbox" id="check{Name}" value="c{Name}" onclick="oncheck(id)">{Name}</div></tpl>',
+                    autoHeight: false,
+                    multiSelect: true, itemSelector: 'DataView-list-item',
+                    emptyText: 'No data to display',
+                    loadingText: 'Please Wait...',
+                    style: 'background:#fff;'
+                }]
+            }]
+          }];
 
-      this.buttons =
-      [
-        {
-          text: 'Change user',
-          action: 'ChangeUser'
-        },
-        {
-          text: 'Cancel',
-          scope: this,
-          handler: this.close
-        }
-      ];
+          this.buttons = [{
+              text: 'Сохранить',
+              action: 'ChangeUser'
+          }, {
+              text: 'Отмена',
+              scope: this,
+              handler: this.close
+          }];
 
-      this.callParent(arguments);
-    }
-  }
-);
+          this.callParent(arguments);
+      }
+  });
 
 VM.view.User.Edit.implement({
   CheckSelectedRoles: function ()
