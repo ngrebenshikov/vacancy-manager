@@ -14,7 +14,6 @@
             var btn = Ext.getCmp('MessagesTab');
             var store = this,
                 appComsTab = Ext.getCmp('messagesTab');
-            console.log(btn);
             store.nonReadCount = 0;
             if (btn != undefined) {
                 if (store.currentMessageType == 1) {

@@ -92,7 +92,7 @@ namespace VacancyManager.Controllers
 
                 string msgStatus = MailSender.SendTo(newUser.Email, "Активация аккаунта", body, false, null, 0);
 
-           app = ApplicantManager.Create(obj["FullName"].ToString(), obj["FullNameEn"].ToString(), obj["ContactPhone"].ToString(), obj["Email"].ToString(), false);
+                app = ApplicantManager.Create(obj["FullName"].ToString(), obj["FullNameEn"].ToString(), obj["ContactPhone"].ToString(), Info.Item3.Email, false);
 
         }
 

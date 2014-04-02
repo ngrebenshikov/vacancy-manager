@@ -22,5 +22,10 @@ namespace VacancyManager.Models
         public virtual ICollection<Resume> Resumes { get; set; }
         public virtual ICollection<Consideration> Considerations { get; set; }
         public virtual ICollection<File> Files { get; set; }
+
+        public Applicant()
+        {
+            ApplicantID = 0;
+        }
     }
 }

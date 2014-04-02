@@ -14,8 +14,7 @@ Ext.Loader.setPath('Ext.ux', 'ExtLib/ux');
 
 Ext.require([
     'Ext.ux.CheckColumn',
-    'Ext.toolbar.Paging',
-    'Ext.ux.SlidingPager'
+    'Ext.toolbar.Paging'
 ]);
 
 Ext.application({

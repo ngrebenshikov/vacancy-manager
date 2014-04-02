@@ -1791,6 +1791,7 @@
     <Content Include="Scripts\VM\Admin\view\SysConfig\List.js" />
     <Content Include="Scripts\VM\Admin\view\User\Add.js" />
     <Content Include="Scripts\VM\Admin\view\User\BanReason.js" />
+    <Content Include="Scripts\VM\Admin\view\User\ChangePassword.js" />
     <Content Include="Scripts\VM\Admin\view\User\List.js" />
     <Content Include="Scripts\VM\Admin\view\User\Edit.js" />
     <Content Include="Scripts\VM\Admin\view\vacancy\Add.js" />

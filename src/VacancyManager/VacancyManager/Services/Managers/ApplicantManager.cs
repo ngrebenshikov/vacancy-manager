@@ -72,7 +72,7 @@ namespace VacancyManager.Services.Managers
 
     internal static Applicant GetApplicantByEMail(string Email)
     {
-        Applicant app = new Applicant();
+        Applicant app; 
         VacancyContext _db = new VacancyContext();
         app = _db.Applicants.Where(applicant => applicant.Email == Email).FirstOrDefault();
         return app;

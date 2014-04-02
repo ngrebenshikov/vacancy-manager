@@ -2,10 +2,26 @@
     extend: 'Ext.grid.Panel',
     alias: 'widget.vacancyList',
     id: 'vacancyGrid',
-    store: 'Vacancy',
     frame: true,
     border: true,
-    columns: [
+    viewConfig: {
+        id: 'Vacancygv',
+        // autoScroll: true,
+        loadingText: 'Загрузка вакансий...'
+    },
+
+    plugins: [{
+        ptype: 'rowexpander',
+        expandOnDblClick: false,
+        selectRowOnExpand: true,
+        rowBodyTpl: ['<div class="ux-row-expander-box"></div>']
+    }],
+
+    initComponent: function () {
+
+        vacancyGrid = this;
+        vacancyGrid.store = 'Vacancy';
+        vacancyGrid.columns = [
               {
                   dataIndex: 'Title',
                   text: 'Вакансия',
@@ -37,44 +53,31 @@
                   menuDisabled: true
               }],
 
-    plugins: [{
-        ptype: 'rowexpander',
-        expandOnDblClick: false,
-        selectRowOnExpand: true,
-        rowBodyTpl: ['<div class="ux-row-expander-box"></div>']
-
-    }],
-
-    bbar: [{
+    vacancyGrid.bbar = [{
         text: 'Новая вакансия',
+        icon: '/Content/icons/add.gif',
         name: 'btnLoadBlankVacancy',
         id: 'loadBlankVacancy',
         action: 'loadBlankVacancy'
     }, {
         text: 'Редактировать',
         name: 'btnEditVacancy',
+        icon: '/Content/icons/edit.png',
         id: 'EditVacancy',
         action: 'editVacancy'
+    }, {
+        text: 'Обновить',
+        icon: '/Content/icons/refresh.gif',
+        name: 'btnRefreshVacancyList',
+        id: 'RefreshVacancyList',
+        action: 'refreshVacancyList'
     }, '->',
     {
         text: 'Удалить вакансию',
-        action: 'deleteVacancy'
-    }
-   ],
-    dockedItems: [
-                  {
-                      xtype: 'pagingtoolbar',
-                      store: 'Vacancy',
-                      dock: 'bottom',
-                      displayInfo: true,
-                      displayMsg: Strings.UserToolbarDislpayMsg,
-                      emptyMsg: Strings.UserToolbarEmptyMsg,
-                      plugins: Ext.create('Ext.ux.SlidingPager', {})
-                  }
-                ],
-    viewConfig: {
-        // autoScroll: true,
-        loadingText: 'Загрузка вакансий...'
+        action: 'deleteVacancy',
+        icon: '/Content/icons/delete.gif',
+    }],
+      vacancyGrid.callParent(arguments);
     }
 });
 

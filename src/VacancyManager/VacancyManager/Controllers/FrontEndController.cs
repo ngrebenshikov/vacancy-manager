@@ -17,7 +17,6 @@ namespace VacancyManager.Controllers
         public ActionResult Index(string id)
         {
             object model = null;
-            object appModel = null;
             Applicant App = new Applicant();
             Vacancy Vac = VacancyDbManager.GetVacancy(id);
 
@@ -26,7 +25,7 @@ namespace VacancyManager.Controllers
             if (vmuser != null)
             {
 
-                App = ApplicantManager.GetApplicantByEMail(vmuser.Email);
+                App = ApplicantManager.GetApplicantByEMail(vmuser.Email) ?? new Applicant();
 
                 if (Vac!= null)
                 {
@@ -40,14 +39,14 @@ namespace VacancyManager.Controllers
                 }
             }
 
-            appModel = new
+            object appModel = new
             {
                 ApplicantID = App.ApplicantID,
                 FullName = App.FullName,
                 FullNameEn = App.FullNameEn,
                 ContactPhone = App.ContactPhone,
                 Employed = App.Employed,
-                Email = App.Email,
+                Email = vmuser!= null ? vmuser.Email: App.Email,
                 Requirements = ""
             };
 

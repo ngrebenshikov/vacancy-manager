@@ -6,9 +6,8 @@ namespace VacancyManager.Models
   public class VMMembershipUser : MembershipUser
   {
     public string EmailKey { get; set; }
-
+    public bool LockedOut { get; set; }
     public string LastLockedOutReason { get; set; }
-
     public VMMembershipUser(string providername,
                             string username,
                             object providerUserKey,
@@ -17,7 +16,7 @@ namespace VacancyManager.Models
                             string comment,
                             string lastLockedOutReason,
                             bool isApproved,
-                            bool isLockedOut,
+                            bool LockedOut,
                             DateTime creationDate,
                             DateTime lastLoginDate,
                             DateTime lastActivityDate,
@@ -31,7 +30,7 @@ namespace VacancyManager.Models
              passwordQuestion,
              comment,
              isApproved,
-             isLockedOut,
+             LockedOut,
              creationDate,
              lastLoginDate,
              lastActivityDate,
@@ -39,6 +38,7 @@ namespace VacancyManager.Models
              lastLockedOutDate)
     {
       this.EmailKey = EmailKey;
+      LockedOut = IsLockedOut;
       LastLockedOutReason = lastLockedOutReason;
     }
   }

@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Specialized;
 using System.Linq;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Security.Cryptography;
 using System.Web.Security;
 using VacancyManager.Models;
@@ -132,13 +134,13 @@ namespace VacancyManager.Services
         return null;
       }
 
-      MembershipUser u = GetUser(username, false);
+      VMMembershipUser u = (VMMembershipUser)Membership.GetUser(username, false);
 
       if (u == null)
       {
         try
         {
-          TryCreateUser(username, password, email);
+          TryCreateUser(username, password, email, isApproved);
           status = MembershipCreateStatus.Success;
 
           return GetUser(username, false);
@@ -165,7 +167,7 @@ namespace VacancyManager.Services
 
     public override string GetPassword(string username, string answer)
     {
-      throw new NotImplementedException();
+        throw new NotImplementedException();
     }
 
     public override string ResetPassword(string username, string answer)
@@ -273,7 +275,7 @@ namespace VacancyManager.Services
       update_rec.EmailKey = realUser.EmailKey;
 
       update_rec.IsActivated = realUser.IsApproved;
-      update_rec.IsLockedOut = realUser.IsLockedOut;
+      update_rec.IsLockedOut = realUser.LockedOut;
 
       update_rec.LastLoginDate = realUser.LastLoginDate;
       update_rec.LastLockedOutReason = realUser.LastLockedOutReason;
@@ -285,7 +287,7 @@ namespace VacancyManager.Services
     public override bool UnlockUser(string userName)
     {
       VacancyContext _db = new VacancyContext();
-      var update_rec = _db.Users.SingleOrDefault(a => a.UserName == userName);
+      var update_rec = _db.Users.Where(a => a.UserName == userName).FirstOrDefault();
 
       if (update_rec != null)
       {
@@ -338,7 +340,7 @@ namespace VacancyManager.Services
           comment: dbuser.UserComment,
           lastLockedOutReason: dbuser.LastLockedOutReason,
           isApproved: dbuser.IsActivated,
-          isLockedOut: dbuser.IsLockedOut,
+          LockedOut: dbuser.IsLockedOut,
           creationDate: dbuser.CreateDate,
           lastLoginDate: dbuser.LastLoginDate.HasValue ? dbuser.LastLoginDate.Value : new DateTime(1, 1, 1),
           lastActivityDate: DateTime.Now,
@@ -377,24 +379,27 @@ namespace VacancyManager.Services
       return hashedPassword;
     }
 
-    public void TryCreateUser(string username, string password, string email)
+    public void TryCreateUser(string username, string password, string email, bool isApproved)
     {
-      var user = new User
-      {
-        UserName = username,
-        Email = email,
-        PasswordSalt = CreateSalt(),
-        CreateDate = DateTime.Now,
-        IsActivated = false,
-        IsLockedOut = true,
-        LastLockedOutDate = DateTime.Now,
-        LastLoginDate = DateTime.Now,
-        EmailKey = GenerateKey(),
-      };
-      user.Password = CreatePasswordHash(password, user.PasswordSalt);
       VacancyContext _db = new VacancyContext();
-      _db.Users.Add(user);
-      _db.SaveChanges();
+      User user = new User
+        {
+            UserName = username,
+            Email = email,
+            PasswordSalt = CreateSalt(),
+            CreateDate = DateTime.Now,
+            IsActivated = isApproved,
+            IsLockedOut = !isApproved,
+            LastLockedOutDate = DateTime.Now,
+            LastLoginDate = DateTime.Now,
+            EmailKey = GenerateKey(),
+            Roles = null
+        };
+          user.Password = CreatePasswordHash(password, user.PasswordSalt);
+        
+         _db.Users.Add(user);
+         _db.SaveChanges();
+
     }
 
     private static string CreateSalt()

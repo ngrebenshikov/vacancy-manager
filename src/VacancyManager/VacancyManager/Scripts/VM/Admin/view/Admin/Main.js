@@ -110,9 +110,23 @@ Ext.define('VM.view.Admin.Main', {
                     html: '<hr><br>'
                 }, {
                     xtype: 'button',
+                    width: 130,
+                    text: 'Сменить пароль',
+                    icon: '/Content/icons/ban.gif',
+                    action: 'passworChangeManager',
+                    iconAlign: 'left',
+                    textAlign: 'left',
+                    scale: 'medium',
+                    margin: '0 0 1 0'
+                }, {
+                    xtype: 'component',
+                    width: 130,
+                    html: '<hr><br>'
+                }, {
+                    xtype: 'button',
                     scale: 'medium',
                     width: 130,
-                    text: "Выход",
+                    text: 'Выход',
                     handler: function () {
                         Ext.Ajax.request({
                             url: '../../VMUser/ExtJSLogOff',
