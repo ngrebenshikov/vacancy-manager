@@ -50,6 +50,18 @@
                   <Directory Id="cssResourcesVM" Name="css" />
                   <Directory Id="iconsResourcesVM" Name="icons" />
                   <Directory Id="themesResourcesVM" Name="themes">
+                    <Directory Id ="themesImagesVM" Name="images">
+                      <Directory Id ="imagesDefaultVM" Name ="default">
+                        <Directory Id ="defaultGridVM" Name="grid" />
+                        <Directory Id ="defaultFormVM" Name="form" />
+                        <Directory Id ="defaultDdVM" Name="dd" />
+                        <Directory Id ="defaultSizerVM" Name="sizer" />
+                        <Directory Id ="defaultToolsVM" Name ="tools" />
+                        <Directory Id ="defaultEditorVM" Name="editor" />
+                        <Directory Id ="defaultToolbarVM" Name="toolbar" />
+                        <Directory Id ="defaultButtonVM" Name="button" />
+                      </Directory> 
+                    </Directory>
                     <Directory Id="LibThemesVM" Name="lib" />
                     <Directory Id ="stylesheetsVM" Name="stylesheets">
                       <Directory Id="ext4VM" Name="ext4">
@@ -133,7 +145,7 @@
               Action='setValue' Name="name" Value="VacancyContext"  ElementPath='//configuration/connectionStrings/add' Sequence='2' />
                           
             <util:XmlFile Id='XmlSettings3' File='[INSTALLLOCATION]Web.config'
-              Action='setValue' Name="connectionString" Value="Data Source=[EDITSQLSERVER]; database=[EDITDATABASE]; AttachDbFileName=|DataDirectory|Vacancy.mdf; Integrated Security=SSPI; User Instance=False; MultipleActiveResultSets=True;"  ElementPath='//configuration/connectionStrings/add' Sequence='3' />
+              Action='setValue' Name="connectionString" Value="Data Source=[EDITSQLSERVER]; database=[EDITDATABASE]; Integrated Security=SSPI; User Instance=False; MultipleActiveResultSets=True;"  ElementPath='//configuration/connectionStrings/add' Sequence='3' />
             
             <util:XmlFile Id='XmlSettings4' File='[INSTALLLOCATION]Web.config'
               Action='setValue' Name="providerName" Value="System.Data.SqlClient"  ElementPath='//configuration/connectionStrings/add' Sequence='4' />
@@ -156,6 +168,87 @@
       </DirectoryRef>
   
   
+        <DirectoryRef Id="defaultFormVM">
+          <Component Id="defaultFormApp" Guid="{A9761AEF-1BDA-4B01-B833-24D56918161E}" KeyPath="yes" DiskId="1">
+            <File Id="formcheckboxgif" Name="checkbox.gif" Source="$(var.SolutionDir)VacancyManager\ExtLib\resources\themes\images\default\form\checkbox.gif" />
+            <File Id="formccleartriggergif" Name="clear-trigger.gif" Source="$(var.SolutionDir)VacancyManager\ExtLib\resources\themes\images\default\form\clear-trigger.gif" />
+            <File Id="formdatetriggergif" Name="date-trigger.gif" Source="$(var.SolutionDir)VacancyManager\ExtLib\resources\themes\images\default\form\date-trigger.gif" />
+            <File Id="formerrortipcorners.gif" Name="error-tip-corners.gif" Source="$(var.SolutionDir)VacancyManager\ExtLib\resources\themes\images\default\form\error-tip-corners.gif" />  
+            <File Id="exclamationgifs" Name="exclamation.gif" Source="$(var.SolutionDir)VacancyManager\ExtLib\resources\themes\images\default\form\exclamation.gif" />  
+            <File Id="formcradiogif" Name="radio.gif" Source="$(var.SolutionDir)VacancyManager\ExtLib\resources\themes\images\default\form\radio.gif" />
+            <File Id="formcsearchtriggergif" Name="search-trigger.gif" Source="$(var.SolutionDir)VacancyManager\ExtLib\resources\themes\images\default\form\search-trigger.gif" />
+            <File Id="formcspinnergif" Name="spinner.gif" Source="$(var.SolutionDir)VacancyManager\ExtLib\resources\themes\images\default\form\spinner.gif" />
+            <File Id="formcspinnersmallgiff" Name="spinner-small.gif" Source="$(var.SolutionDir)VacancyManager\ExtLib\resources\themes\images\default\form\spinner-small.gif" />
+            <File Id="formctextbggif" Name="text-bg.gif" Source="$(var.SolutionDir)VacancyManager\ExtLib\resources\themes\images\default\form\text-bg.gif" />
+            <File Id="formctriggergif" Name="trigger.gif" Source="$(var.SolutionDir)VacancyManager\ExtLib\resources\themes\images\default\form\trigger.gif" />
+            <File Id="formtriggersquaregif" Name="trigger-square.gif" Source="$(var.SolutionDir)VacancyManager\ExtLib\resources\themes\images\default\form\trigger-square.gif" />
+            <File Id="formtriggertplgif" Name="trigger-tpl.gif" Source="$(var.SolutionDir)VacancyManager\ExtLib\resources\themes\images\default\form\trigger-tpl.gif" />
+          </Component>
+        </DirectoryRef>
+  
+        <DirectoryRef Id ="defaultDdVM">
+          <Component Id ="defaultDdApp" Guid="{664BE4DF-B0EC-4DDC-8CCD-6677ED95C35C}" KeyPath="yes" DiskId="1">
+            <File Id ="asddropaddgif" Name="drop-add.gif" Source="$(var.SolutionDir)VacancyManager\ExtLib\resources\themes\images\default\dd\drop-add.gif" />
+            <File Id ="asdddronogif" Name="drop-no.gif" Source="$(var.SolutionDir)VacancyManager\ExtLib\resources\themes\images\default\dd\drop-no.gif" />
+            <File Id ="asdddropyesgif" Name="drop-yes.gif" Source="$(var.SolutionDir)VacancyManager\ExtLib\resources\themes\images\default\dd\drop-yes.gif" />
+          </Component>
+        </DirectoryRef>
+      
+      <DirectoryRef Id="defaultToolsVM">
+        <Component Id ="defaultToolsApp" Guid="{C38DBDCC-C449-439A-987D-A2A9E48424F3}" KeyPath="yes" DiskId="1">
+          <File Id="toolspritesddgif" Name="tool-sprites.gif" Source="$(var.SolutionDir)VacancyManager\ExtLib\resources\themes\images\default\tools\tool-sprites.gif" />
+          <File Id="toolspritetplif" Name="tool-sprite-tpl.gif" Source="$(var.SolutionDir)VacancyManager\ExtLib\resources\themes\images\default\tools\tool-sprite-tpl.gif" />
+          <File Id="toolsspritesansgif" Name="tools-sprites-trans.gif" Source="$(var.SolutionDir)VacancyManager\ExtLib\resources\themes\images\default\tools\tools-sprites-trans.gif" />
+        </Component>
+      </DirectoryRef>
+  
+     <DirectoryRef Id="defaultEditorVM">
+       <Component Id ="defaultEditorApp" Guid="{8A30969B-8836-4F91-A61D-36A8B4BE28B0}" KeyPath="yes" DiskId="1">
+         <File Id ="edtbspritegif" Name="tb-sprite.gif" Source="$(var.SolutionDir)VacancyManager\ExtLib\resources\themes\images\default\editor\tb-sprite.gif" />
+       </Component>
+     </DirectoryRef>
+   
+     <DirectoryRef Id ="defaultToolbarVM">
+       <Component Id ="defaultToolbarApp" Guid="{1B5B7C9F-D627-400C-848B-A587934A3508}" KeyPath="yes" DiskId="1">
+         <File Id ="TBmoregif" Name="more.gif" Source="$(var.SolutionDir)VacancyManager\ExtLib\resources\themes\images\default\toolbar\more.gif" />
+         <File Id ="TBscrollleftgif" Name="scroll-left.gif" Source="$(var.SolutionDir)VacancyManager\ExtLib\resources\themes\images\default\toolbar\scroll-left.gif" />
+         <File Id ="TBscrollrightgif" Name="scroll-right.gif" Source="$(var.SolutionDir)VacancyManager\ExtLib\resources\themes\images\default\toolbar\scroll-right.gif" />
+         <File Id ="TBtoolbardefaultbggif" Name="toolbar-default-bg.gif" Source="$(var.SolutionDir)VacancyManager\ExtLib\resources\themes\images\default\toolbar\toolbar-default-bg.gif" />
+       </Component>
+     </DirectoryRef>
+    
+      <DirectoryRef Id ="defaultButtonVM">
+        <Component Id ="defaultButtonApp" Guid="{8F5510CB-775F-4A23-8C45-653756CE540A}" KeyPath="yes" DiskId="1">
+          <File Id ="btarrowgif" Name="arrow.gif" Source="$(var.SolutionDir)VacancyManager\ExtLib\resources\themes\images\default\button\arrow.gif" />
+          <File Id ="btbtngif" Name="btn.gif" Source="$(var.SolutionDir)VacancyManager\ExtLib\resources\themes\images\default\button\btn.gif" />
+          <File Id ="btgroupcsgif" Name="group-cs.gif" Source="$(var.SolutionDir)VacancyManager\ExtLib\resources\themes\images\default\button\group-cs.gif" />
+          <File Id ="btgrougif" Name="group-lr.gif" Source="$(var.SolutionDir)VacancyManager\ExtLib\resources\themes\images\default\button\group-lr.gif" />
+          <File Id ="btgrouptbgif" Name="group-tb.gif" Source="$(var.SolutionDir)VacancyManager\ExtLib\resources\themes\images\default\button\group-tb.gif" />
+          <File Id ="btsarrowgif" Name="s-arrow.gif" Source="$(var.SolutionDir)VacancyManager\ExtLib\resources\themes\images\default\button\s-arrow.gif" />
+          <File Id ="bsarrowbgif" Name="s-arrow-b.gif" Source="$(var.SolutionDir)VacancyManager\ExtLib\resources\themes\images\default\button\s-arrow-b.gif" />
+          <File Id ="btsarrowbnolinegif" Name="s-arrow-b-noline.gif" Source="$(var.SolutionDir)VacancyManager\ExtLib\resources\themes\images\default\button\s-arrow-b-noline.gif" />
+          <File Id ="bsarrowbogif" Name="s-arrow-bo.gif" Source="$(var.SolutionDir)VacancyManager\ExtLib\resources\themes\images\default\button\s-arrow-bo.gif" />
+          <File Id ="btsarrowlightgif" Name="s-arrow-light.gif" Source="$(var.SolutionDir)VacancyManager\ExtLib\resources\themes\images\default\button\s-arrow-light.gif" />
+          <File Id ="btsarrownolinegif" Name="s-arrow-noline.gif" Source="$(var.SolutionDir)VacancyManager\ExtLib\resources\themes\images\default\button\s-arrow-noline.gif" />
+          <File Id ="btsarrowoiff" Name="s-arrow-o.gif" Source="$(var.SolutionDir)VacancyManager\ExtLib\resources\themes\images\default\button\s-arrow-o.gif" />
+        </Component>
+      </DirectoryRef>
+  
+      <DirectoryRef Id ="defaultGridVM">
+        <Component Id ="defaultGridApp" Guid="{EA96E87D-27CD-47B1-8DC0-FD3603057C62}" KeyPath="yes" DiskId="1">
+          <File Id="pagefirsgif" Name="page-first.gif" Source="$(var.SolutionDir)VacancyManager\ExtLib\resources\themes\images\default\grid\page-first.gif" />
+          <File Id="pageirsdisabledgiff" Name="page-first-disabled.gif" Source="$(var.SolutionDir)VacancyManager\ExtLib\resources\themes\images\default\grid\page-first-disabled.gif" />
+          <File Id="pagelastgif" Name="page-last.gif" Source="$(var.SolutionDir)VacancyManager\ExtLib\resources\themes\images\default\grid\page-last.gif" />
+          <File Id="pagelastdisabledgif" Name="page-last-disabled.gif" Source="$(var.SolutionDir)VacancyManager\ExtLib\resources\themes\images\default\grid\page-last-disabled.gif" />
+          <File Id="pagenextgif" Name="page-next.gif" Source="$(var.SolutionDir)VacancyManager\ExtLib\resources\themes\images\default\grid\page-next.gif" />
+          <File Id="pageprevgif" Name="page-prev.gif" Source="$(var.SolutionDir)VacancyManager\ExtLib\resources\themes\images\default\grid\page-prev.gif" />
+          <File Id="pagepredisabledgif" Name="page-prev-disabled.gif" Source="$(var.SolutionDir)VacancyManager\ExtLib\resources\themes\images\default\grid\page-prev-disabled.gif" />
+          <File Id="loadinggif" Name="loadinggif" Source="$(var.SolutionDir)VacancyManager\ExtLib\resources\themes\images\default\grid\loading.gif" />
+          <File Id="grid3hdbtngif" Name="grid3-hd-btn.gif" Source="$(var.SolutionDir)VacancyManager\ExtLib\resources\themes\images\default\grid\grid3-hd-btn.gif" />
+          <File Id="groupexpandgif" Name="group-expand.gif" Source="$(var.SolutionDir)VacancyManager\ExtLib\resources\themes\images\default\grid\group-expand.gif" />
+        </Component>
+      </DirectoryRef>
+        
       <DirectoryRef Id="ContentVM">
         <Component Id ="ContentApp" Guid="{2E3EBBD1-163A-4552-8776-8AF75C3FEBA6}" KeyPath="yes" DiskId="1">
           <File Id="lanitLogoVM" Name="lanitLogo.gif" Source="$(var.SolutionDir)VacancyManager\Content\lanitLogo.gif" />
@@ -168,12 +261,18 @@
         <Component Id="ContenticonsApp" Guid="{50CCD793-80A8-47F5-B662-ADD1933FC7AE}" KeyPath="yes" DiskId="1">
           <File Id="acceptVM" Name="accept.gif" Source="$(var.SolutionDir)VacancyManager\Content\icons\accept.gif"/>
           <File Id="addVM" Name="add.gif" Source="$(var.SolutionDir)VacancyManager\Content\icons\add.gif"/>
+          <File Id="askiklgif" Name="ask.gif" Source="$(var.SolutionDir)VacancyManager\Content\icons\ask.gif"/>
+          <File Id="askasdpng" Name="ask.png" Source="$(var.SolutionDir)VacancyManager\Content\icons\ask.png"/>
           <File Id="configVM" Name="config.png" Source="$(var.SolutionDir)VacancyManager\Content\icons\config.png"/>
+          <File Id="deletegifasd" Name="delete.gif" Source="$(var.SolutionDir)VacancyManager\Content\icons\delete.gif"/>
           <File Id="CopyIcoVM" Name="CopyIco.png" Source="$(var.SolutionDir)VacancyManager\Content\icons\CopyIco.png"/>
           <File Id="emailVM" Name="email.png" Source="$(var.SolutionDir)VacancyManager\Content\icons\email.png"/>
           <File Id="group16VM" Name="group16.gif" Source="$(var.SolutionDir)VacancyManager\Content\icons\group16.gif"/>
+          <File Id="pdficopng" Name="pdfico.png" Source="$(var.SolutionDir)VacancyManager\Content\icons\pdfico.png"/>
           <File Id="prikrepitVM" Name="prikrepit.png" Source="$(var.SolutionDir)VacancyManager\Content\icons\prikrepit.png"/>
+          <File Id="testpng" Name="test.png" Source="$(var.SolutionDir)VacancyManager\Content\icons\test.png"/>
           <File Id="userVM" Name="user.gif" Source="$(var.SolutionDir)VacancyManager\Content\icons\user.gif"/>
+          <File Id="userpng" Name="user.png" Source="$(var.SolutionDir)VacancyManager\Content\icons\user.png"/>
           <File Id="user_addVM" Name="user_add.gif" Source="$(var.SolutionDir)VacancyManager\Content\icons\user_add.gif"/>
           <File Id="user_deleteVM" Name="user_delete.gif" Source="$(var.SolutionDir)VacancyManager\Content\icons\user_delete.gif"/>
           <File Id="UserMailVM" Name="UserMail.png" Source="$(var.SolutionDir)VacancyManager\Content\icons\UserMail.png"/>
@@ -225,7 +324,7 @@
   
     <DirectoryRef Id="TempPEVM">
       <Component Id="TempPEApp" Guid="{BA0E3F3E-8EC0-457C-95A1-17AE4E346790}" KeyPath="yes" DiskId="1">
-       <!--<File Id="Properties.ResourceEn.Designer.csdll" Name="Properties.ResourceEn.Designer.cs.dll" Source="$(var.SolutionDir)VacancyManager\obj\Debug\TempPE\Properties.ResourceEn.Designer.cs.dll"/>--> 
+        <!--<File Id="Properties.ResourceEn.Designer.csdll" Name="Properties.ResourceEn.Designer.cs.dll" Source="$(var.SolutionDir)VacancyManager\obj\Debug\TempPE\Properties.ResourceEn.Designer.cs.dll"/>--> 
         <File Id="Properties.Resources.Designer.csdll" Name="Properties.Resources.Designer.cs.dll" Source="$(var.SolutionDir)VacancyManager\obj\Debug\TempPE\Properties.Resources.Designer.cs.dll"/>
         <File Id="Templates.Designer.csdll" Name="Templates.Designer.cs.dll" Source="$(var.SolutionDir)VacancyManager\obj\Debug\TempPE\Templates.Designer.cs.dll"/>
       </Component>
@@ -311,9 +410,26 @@
         <Component Id="ImagesStatusApp" Guid="{B8357400-F68F-4549-93A8-73CD5CA1D42B}" KeyPath="yes" DiskId ="1">
           <File Id="acceptpng" Name="accept.png" Source="$(var.SolutionDir)VacancyManager\ExtLib\ux\statusbar\images\accept.png" />
           <File Id="exclamationgif" Name="exclamation.gif" Source="$(var.SolutionDir)VacancyManager\ExtLib\ux\statusbar\images\exclamation.gif" />
-          <File Id="loadinggif" Name="loading.gif" Source="$(var.SolutionDir)VacancyManager\ExtLib\ux\statusbar\images\loading.gif" />
+          <File Id="loadingasdgif" Name="loading.gif" Source="$(var.SolutionDir)VacancyManager\ExtLib\ux\statusbar\images\loading.gif" />
           <File Id="savedpng" Name="saved.png" Source="$(var.SolutionDir)VacancyManager\ExtLib\ux\statusbar\images\saved.png" />
           <File Id="savinggif" Name="saving.gif" Source="$(var.SolutionDir)VacancyManager\ExtLib\ux\statusbar\images\saving.gif" />
+        </Component>
+      </DirectoryRef>
+  
+      <DirectoryRef Id="defaultSizerVM">
+        <Component Id ="defaultSizerApp" Guid="{66364F64-9637-4E0E-9139-813B9372FB6B}" KeyPath="yes" DiskId="1">
+          <File Id ="sizerehandlegif" Name="e-handle.gif" Source="$(var.SolutionDir)VacancyManager\ExtLib\resources\themes\images\default\sizer\e-handle.gif" />
+          <File Id ="sizerehandledarkgif" Name="e-handle-dark.gif" Source="$(var.SolutionDir)VacancyManager\ExtLib\resources\themes\images\default\sizer\e-handle-dark.gif" />
+          <File Id ="sizernehandlegif" Name="ne-handle.gif" Source="$(var.SolutionDir)VacancyManager\ExtLib\resources\themes\images\default\sizer\ne-handle.gif" />
+          <File Id ="sizernehandledarkgif" Name="ne-handle-dark.gif" Source="$(var.SolutionDir)VacancyManager\ExtLib\resources\themes\images\default\sizer\ne-handle-dark.gif" />
+          <File Id ="sizernwhandlegif" Name="nw-handle.gif" Source="$(var.SolutionDir)VacancyManager\ExtLib\resources\themes\images\default\sizer\nw-handle.gif" />
+          <File Id ="sizernwhandledarkgif" Name="nw-handle-dark.gif" Source="$(var.SolutionDir)VacancyManager\ExtLib\resources\themes\images\default\sizer\nw-handle-dark.gif" />
+          <File Id ="sizersehandgif" Name="se-handle-dark.gif" Source="$(var.SolutionDir)VacancyManager\ExtLib\resources\themes\images\default\sizer\se-handle-dark.gif" />
+          <File Id ="sizeshandlegif" Name="s-handle.gif" Source="$(var.SolutionDir)VacancyManager\ExtLib\resources\themes\images\default\sizer\s-handle.gif" />
+          <File Id ="sizeshandledarkgif" Name="s-handle-dark.gif" Source="$(var.SolutionDir)VacancyManager\ExtLib\resources\themes\images\default\sizer\s-handle-dark.gif" />
+          <File Id ="sizesquaregif" Name="square.gif" Source="$(var.SolutionDir)VacancyManager\ExtLib\resources\themes\images\default\sizer\square.gif" />
+          <File Id ="sizerswhandlegif" Name="sw-handle.gif" Source="$(var.SolutionDir)VacancyManager\ExtLib\resources\themes\images\default\sizer\sw-handle.gif" />
+          <File Id ="swhandledarkGFif" Name="sw-handle-dark.gif" Source="$(var.SolutionDir)VacancyManager\ExtLib\resources\themes\images\default\sizer\sw-handle-dark.gif" />
         </Component>
       </DirectoryRef>
     
@@ -533,7 +649,7 @@
          <File Id ="MDLApplicantMessagejs" Name="ApplicantMessage.js" Source="$(var.SolutionDir)VacancyManager\Scripts\VM\Admin\model\ApplicantMessage.js" />
          <File Id ="MDLApplicantModeljs" Name="ApplicantModel.js" Source="$(var.SolutionDir)VacancyManager\Scripts\VM\Admin\model\ApplicantModel.js" />
          <File Id ="MDLApplicantRequirementjs" Name="ApplicantRequirements.js" Source="$(var.SolutionDir)VacancyManager\Scripts\VM\Admin\model\ApplicantRequirements.js" />
-<!--<File Id ="MDLApplicantResumeGridjs" Name="ApplicantResumeGrid.js" Source="$(var.SolutionDir)VacancyManager\Scripts\VM\Admin\model\ApplicantResumeGrid.js" />-->         
+         <!--<File Id ="MDLApplicantResumeGridjs" Name="ApplicantResumeGrid.js" Source="$(var.SolutionDir)VacancyManager\Scripts\VM\Admin\model\ApplicantResumeGrid.js" />-->         
          <File Id ="MDLAttachmentjs" Name="Attachment.js" Source="$(var.SolutionDir)VacancyManager\Scripts\VM\Admin\model\Attachment.js" />
          <File Id ="MDLCommentjs" Name="Comment.js" Source="$(var.SolutionDir)VacancyManager\Scripts\VM\Admin\model\Comment.js" />
          <File Id ="MDLConsiderationjs" Name="Consideration.js" Source="$(var.SolutionDir)VacancyManager\Scripts\VM\Admin\model\Consideration.js" />
@@ -562,7 +678,7 @@
          <File Id ="StoreApplicantConsiderationsjs" Name="ApplicantConsiderations.js" Source="$(var.SolutionDir)VacancyManager\Scripts\VM\Admin\store\ApplicantConsiderations.js" />
          <File Id ="StoreApplicantMessagesjs" Name="ApplicantMessages.js" Source="$(var.SolutionDir)VacancyManager\Scripts\VM\Admin\store\ApplicantMessages.js" />
          <File Id ="StoreApplicantRequirementsjs" Name="ApplicantRequirements.js" Source="$(var.SolutionDir)VacancyManager\Scripts\VM\Admin\store\ApplicantRequirements.js" />
-<!--<File Id ="StoreApplicantResumeGrid.js" Name="ApplicantResumeGrid.js" Source="$(var.SolutionDir)VacancyManager\Scripts\VM\Admin\store\ApplicantResumeGrid.js" />-->         
+         <!--<File Id ="StoreApplicantResumeGrid.js" Name="ApplicantResumeGrid.js" Source="$(var.SolutionDir)VacancyManager\Scripts\VM\Admin\store\ApplicantResumeGrid.js" />-->         
          <File Id ="StoreBaseStorejs" Name="BaseStore.js" Source="$(var.SolutionDir)VacancyManager\Scripts\VM\Admin\store\BaseStore.js" />
          <File Id ="StoreCommentsjs" Name="Comments.js" Source="$(var.SolutionDir)VacancyManager\Scripts\VM\Admin\store\Comments.js" />
          <File Id ="StoreConsiderationjs" Name="Consideration.js" Source="$(var.SolutionDir)VacancyManager\Scripts\VM\Admin\store\Consideration.js" />
@@ -841,7 +957,7 @@
       <ComponentRef Id ="FEmodelApp"/>
       <ComponentRef Id ="FEstoreApp"/>
       <ComponentRef Id ="FRfrontendApp"/>
-   <!--<ComponentRef Id ="WebAppConfiguration"/>-->
+      <!--<ComponentRef Id ="WebAppConfiguration"/>-->
       <!--<ComponentRef Id ="WebSiteVMm"/>-->
       <ComponentRef Id ="ViewsBaseApp"/>
       <ComponentRef Id ="AccountViewsCSHTMLApp"/>
@@ -850,6 +966,14 @@
       <ComponentRef Id ="SharedViewsApp" />
       <ComponentRef Id ="WebSite" />
       <ComponentRef Id ="SharedScriptsApp"/>
+      <ComponentRef Id ="defaultFormApp"/>
+      <ComponentRef Id="defaultDdApp" />
+      <ComponentRef Id="defaultSizerApp"/>
+      <ComponentRef Id ="defaultToolsApp"/>
+      <ComponentRef Id ="defaultEditorApp"/>
+      <ComponentRef Id ="defaultToolbarApp"/>
+      <ComponentRef Id="defaultButtonApp"/>
+      <ComponentRef Id ="defaultGridApp"/>
     </Feature>
   
       
@@ -953,7 +1077,7 @@
         <iis:WebAddress Id="_vm53662" Port ="[EDITPORT]" IP ="*"/>
         <iis:WebApplication Id="WebSiteApplication" Name="VmApp" WebAppPool="MyAppPool" />
       </iis:WebSite>
-      <iis:WebAppPool Id="MyAppPool" Name="PoolVM" ManagedRuntimeVersion="v4.0" Identity="localSystem" />
+      <iis:WebAppPool Id="MyAppPool" Name="PoolVM" ManagedRuntimeVersion="v4.0" Identity="localSystem" ManagedPipelineMode="Integrated" />
     </Component>
   </Fragment>
 
