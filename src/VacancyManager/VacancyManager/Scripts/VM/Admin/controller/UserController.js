@@ -76,7 +76,7 @@
                     msg: data.message,
                     buttons: Ext.MessageBox.OK
                 });
-                if (data.success)  { wnd.close(); }
+                if (data.success) { wnd.close(); }
             }
         });
 

@@ -242,8 +242,10 @@ namespace VacancyManager.Controllers
         {
             VMMembershipUser userInDB = (VMMembershipUser)Membership.GetUser(User.Identity.Name);
             passChanged = userInDB.ChangePassword(OldPassword, NewPassword);
-            if (passChanged) { ChangeMessage = "Пароль изменен!!!"; passChanged = true; }
-            else { ChangeMessage = "Неверно введен старый пароль!!!"; passChanged = false; }
+            if (passChanged) { ChangeMessage = "Пароль изменен!!!";
+
+            }
+            else { ChangeMessage = "Неверно введен старый пароль!!!"; }
         }
 
         return Json(new

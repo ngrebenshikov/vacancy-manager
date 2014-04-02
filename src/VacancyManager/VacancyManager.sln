@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
+# Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VacancyManager", "VacancyManager\VacancyManager.csproj", "{17A17616-B72E-4F92-9EEC-0A9676B2139F}"
 EndProject
 Project("{930C7802-8A8C-48F9-8165-68863BCCD9DD}") = "SetupVM", "SetupVM\SetupVM.wixproj", "{690CE643-AC67-44B2-A4D1-62889F9BBD04}"

@@ -204,7 +204,7 @@ namespace VacancyManager.Services
 
     public override bool ChangePassword(string username, string oldPassword, string newPassword)
     {
-      var args = new ValidatePasswordEventArgs(username, newPassword, true);
+      var args = new ValidatePasswordEventArgs(username, newPassword, false);
       OnValidatingPassword(args);
 
       bool flag;
@@ -215,7 +215,8 @@ namespace VacancyManager.Services
         flag = false;
       else
       {
-        dbuser.Password = CreatePasswordHash(oldPassword, dbuser.PasswordSalt);
+          dbuser.Password = CreatePasswordHash(newPassword, dbuser.PasswordSalt);
+        _db.SaveChanges();
         flag = true;
       }
 
