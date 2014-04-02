@@ -2,7 +2,7 @@
     extend: 'Ext.window.Window',
     alias: 'widget.ChangePassword',
     requires: ['Ext.form.Panel'],
-    title: 'Забанить/Разбанить',
+    title: 'Смена пароля',
     layout: 'fit',
     autoShow: true,
     buttonAlign: 'center',
