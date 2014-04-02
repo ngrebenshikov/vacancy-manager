@@ -29,6 +29,7 @@ Ext.define
       bbar: [{
           text: Strings.AddRequirementToStack,
           id: 'AddRequirementToStack',
+          icon: '/Content/icons/add.gif',
           hidden: false,
           action: 'AddRequirement'
       }]

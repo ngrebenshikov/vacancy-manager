@@ -1,71 +1,66 @@
-﻿Ext.define('VM.view.Applicant.List',
-{
+﻿Ext.define('VM.view.Applicant.List', {
     extend: 'Ext.grid.Panel',
     alias: 'widget.ApplicantList',
     region: 'center',
     id: 'ApplicantGrid',
     autoSizeCoulms: true,
-    forceFit: true,
     split: true,
     frame: false,
-    //title: Strings.ApplicantList,
     store: 'Applicant',
-
+    viewConfig: {
+        id: 'Applicantgv',
+        loadingText: 'Загрузка соискателей...'
+    },
     initComponent: function () {
-        Ext.apply(this,
-        {
+        Ext.apply(this, {
             columns: [{
                 dataIndex: 'FullName',
                 text: Strings.FullName,
-                width: 40,
-                sortable: true,
-                field: { xtype: 'textfield' },
+                width: 150,
+                sortable: false,
                 menuDisabled: true
             }, {
                 dataIndex: 'Requirements',
                 text: Strings.Skills,
+                flex: 1,
                 width: 120,
                 sortable: false,
-                field: { xtype: 'textfield' },
                 menuDisabled: true
             }, {
                 dataIndex: 'ContactPhone',
                 text: 'Контактный телефон',
                 width: 120,
                 sortable: false,
-                field: { xtype: 'textfield' },
                 menuDisabled: true
             }, {
                 dataIndex: 'Email',
                 text: 'E-mail',
-                width: 120,
-                sortable: true,
-                field: { xtype: 'textfield' },
+                width: 150,
+                sortable: false,
                 menuDisabled: true
             }],
 
             bbar: [{
                 text: Strings.btnAdd,
-                icon: '/Content/icons/user_add.gif',
+                icon: '/Content/icons/add.gif',
                 tooltip: 'Добавить нового соискателя',
                 name: 'btnCreateApplicant',
                 id: 'CreateApplicant',
                 action: 'CreateApplicantShowForm'
             }, {
+                text: 'Обновить',
+                icon: '/Content/icons/refresh.gif',
+                name: 'btnRefreshApplicantList',
+                id: 'RefreshApplicantList',
+                action: 'refreshApplicantList'
+            }, '->', {
                 text: Strings.btnRemove,
-                icon: '/Content/icons/user_delete.gif',
+                icon: '/Content/icons/delete.gif',
                 tooltip: 'Удалить выбранного соискателя',
                 name: 'btnRemoveApplicant',
                 id: 'RemoveApplicant',
                 action: 'RemoveApplicant',
                 disabled: true
-            }],
-
-            dockedItems: [{
-                xtype: 'pagingtoolbar',
-                store: 'Applicant',
-                dock: 'bottom',
-                displayInfo: true
             }],
 
             listeners: {

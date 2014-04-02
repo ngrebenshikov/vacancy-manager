@@ -9,31 +9,28 @@ Ext.define('VM.view.RequirementStack.List', {
     store: 'RequirementStack',
     minSize: 100,
     maxSize: 500,
-    columns: [
-              {
-                  dataIndex: 'Name',
-                  text: Strings.TitleRequirementStackName,
-                  width: 180,
-                  flex: 1,
-                  sortable: true,
-                  menuDisabled: true
-              }, {
-                  dataIndex: 'NameEn',
-                  text: Strings.TitleRequirementStackNameEn,
-                  width: 180,
-                  sortable: true,
-                  menuDisabled: true
-              }
-              ],
-    bbar:
-          [{
-              text: Strings.btnAddRequirementStack,
-              action: 'AddRequirementStack'
-          },
-          {
-              text: Strings.btnRemoveRequirementStak,
-              action: 'RemoveRequirementStack'
-          }
-        ]
+    columns: [{
+        dataIndex: 'Name',
+        text: Strings.TitleRequirementStackName,
+        width: 180,
+        flex: 1,
+        sortable: true,
+        menuDisabled: true
+    }, {
+        dataIndex: 'NameEn',
+        text: Strings.TitleRequirementStackNameEn,
+        width: 180,
+        sortable: true,
+        menuDisabled: true
+    }],
+    bbar: [{
+        text: Strings.btnAddRequirementStack,
+        icon: '/Content/icons/add.gif',
+        action: 'AddRequirementStack'
+    }, '->', {
+        text: Strings.btnRemoveRequirementStak,
+        icon: '/Content/icons/delete.gif',
+        action: 'RemoveRequirementStack'
+    }]
 });
 
