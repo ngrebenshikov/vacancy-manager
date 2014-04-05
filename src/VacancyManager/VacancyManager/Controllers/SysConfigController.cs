@@ -36,11 +36,12 @@ namespace VacancyManager.Controllers
             if (data != null)
             {
                 var sysConf = jss.Deserialize<dynamic>(data);
-                obj = SysConfigManager.Create(sysConf["Name"].ToString(), sysConf["Value"].ToString());
+                obj = SysConfigManager.Create(sysConf["Name"].ToString(), sysConf["Value"].ToString(), "Пользовательские параметры");
                 createdList[0] = new
                 {
-                    Name = sysConf["Name"].ToString(),
-                    Value = sysConf["Value"].ToString()
+                    Name = obj.Name,
+                    Value = obj.Value,
+                    ConfigGroup = "Пользовательские параметры"
                 };
                 resultMessage = "Параметр конфигурации успешно добавлен";
                 success = true;

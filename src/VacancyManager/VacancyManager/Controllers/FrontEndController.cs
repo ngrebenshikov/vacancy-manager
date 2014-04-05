@@ -29,7 +29,7 @@ namespace VacancyManager.Controllers
 
                 if (Vac!= null)
                 {
-                    if (Vac.VacancyID != 0)
+                    if ((Vac.VacancyID != 0) && (App.ApplicantID != 0))
                     {
                         if (!ConsiderationsManager.IsApplicantConsiderationExist(App.ApplicantID, Vac.VacancyID))
                         {

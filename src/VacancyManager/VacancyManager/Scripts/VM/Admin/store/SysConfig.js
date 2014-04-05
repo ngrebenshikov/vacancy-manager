@@ -1,12 +1,11 @@
-﻿Ext.define('VM.store.SysConfig',
-{
+﻿Ext.define('VM.store.SysConfig', {
     extend: 'VM.store.BaseStore',
     model: 'VM.model.SysConfigModel',
     id: 'SysConfigStore',
     autoLoad: true,
     autoSync: true,
     autoSave: true,
-    
+    groupField: 'ConfigGroup',
     proxy:
     {
         type: 'ajax',

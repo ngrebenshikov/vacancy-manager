@@ -32,7 +32,7 @@ Ext.define('VM.view.Applicant.CenterPanel', {
             region: 'center',
             plugins: [cellEditing],
             features: [Ext.create('Ext.grid.feature.Grouping', {
-                groupHeaderTpl: '{name}: ({rows.length})'
+                groupHeaderTpl: '{name})'
             })],
             store: 'ApplicantRequirements',
             columns:

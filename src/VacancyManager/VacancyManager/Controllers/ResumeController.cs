@@ -91,7 +91,7 @@ namespace VacancyManager.Controllers
         public ActionResult CreatePdfCopy(int? id)
         {
             string resumeLanq = "";
-
+            string LogoImage = Server.MapPath(SysConfigManager.GetStringParameter("Resume Image", "~/Content/lanitlogo.png"));
             var curResume = ResumeManager.GetResume(id);
             Applicant appl = curResume.Applicant;
             Document document = new Document(PageSize.A4, 50, 50, 25, 25);
@@ -121,14 +121,17 @@ namespace VacancyManager.Controllers
                                        ReqNameEn = req.NameEn,
                                        ReqId = req.RequirementID
                                    });
-
-                var curResumeReqs = curResume.ResumeRequirements;
-                iTextSharp.text.Image imgLogo = iTextSharp.text.Image.GetInstance(Server.MapPath("~/Content/lanitlogo.png"));
-                imgLogo.SetAbsolutePosition(10, 760);
-                imgLogo.ScalePercent(40f); // change it's size
-
                 document.Open();
+                var curResumeReqs = curResume.ResumeRequirements;
+                if (System.IO.File.Exists(LogoImage))
+                {
+                    iTextSharp.text.Image imgLogo = iTextSharp.text.Image.GetInstance(LogoImage);
+                    imgLogo.SetAbsolutePosition(10, 760);
+                    imgLogo.ScalePercent(40f); // change it's size
+        
+
                 document.Add(imgLogo);
+                }
                 document.Add(new Paragraph("\n\n\n"));
 
                 #region Report Options

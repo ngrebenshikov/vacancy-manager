@@ -1,57 +1,61 @@
-﻿Ext.define('VM.view.SysConfig.List',
-{
+﻿Ext.define('VM.view.SysConfig.List', {
     extend: 'Ext.grid.Panel',
     alias: 'widget.SysConfigList',
-    region: 'center',
     id: 'SysConfigGrid',
-    autoSizeCoulms: true,
-    forceFit: true,
-    split: true,
-    frame: false,
-    //title: Strings.Conf,
+    frame: true,
     store: 'SysConfig',
-
+    features: [Ext.create('Ext.grid.feature.Grouping', { groupHeaderTpl: '{name}' })],
     initComponent: function () {
-        Ext.apply(this,
-        {
+        Ext.apply(this, {
             columns: [{
                 dataIndex: 'Name',
-                text: Strings.ConfName,
-                width: 50,
+                header: Strings.ConfName,
+                flex: 1,
                 sortable: true,
-                field: { xtype: 'textfield' },
                 menuDisabled: true
             }, {
                 dataIndex: 'Value',
-                text: Strings.Value,
-                //width: 120,
+                align: 'center',
+                header: Strings.Value,
+                flex: 1,
                 sortable: false,
-                field: { xtype: 'textfield' },
-                menuDisabled: true
+                menuDisabled: true,
+                renderer: function (value) {
+                    var cssPrefix = Ext.baseCSSPrefix,
+                        cls = [cssPrefix + 'grid-checkheader'];
+
+                    if (value == "true" || value == "True") {
+                        cls.push(cssPrefix + 'grid-checkheader-checked');
+                        return '<div class="' + cls.join(' ') + '">&#160;</div>';
+                    }
+                    else if (value == "false" || value == "False") {
+                        return '<div class="' + cls.join(' ') + '">&#160;</div>';
+                    }
+                    else
+                        return value;
+                }
             }],
 
-            tbar: [{
+            bbar: [{
                 text: Strings.btnAdd,
                 icon: '/Content/icons/add.gif',
                 name: 'btnAdd',
                 id: 'Add',
                 action: 'Add'
             }, {
+                text: 'Обновить',
+                icon: '/Content/icons/refresh.gif',
+                name: 'btnRefreshSysConfigList',
+                id: 'RefreshSysConfigList',
+                action: 'refreshSysConfigList'
+            }, '->', {
                 text: Strings.btnRemove,
                 icon: '/Content/icons/delete.gif',
                 name: 'btnRemove',
-                id: 'Remove',
+                id: 'btnRemoveSysConfig',
                 action: 'Remove',
                 disabled: true
-            }],
-
-            listeners: {
-                selectionchange: function (view, selections, options) {
-                    var button = Ext.getCmp('Remove');
-                    if (selections != null)
-                        button.enable();
-                }
-            }
+            }]
         });
 
         this.callParent(arguments);

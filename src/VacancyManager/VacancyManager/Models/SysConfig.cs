@@ -13,5 +13,7 @@ namespace VacancyManager.Models
 
         //[Required(ErrorMessage = "Значение параметра обязательно")]
         public string Value { get; set; }
+
+        public string ConfigGroup { get; set; }
     }
 }
