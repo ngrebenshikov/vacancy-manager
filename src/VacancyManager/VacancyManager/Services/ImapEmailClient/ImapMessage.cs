@@ -23,7 +23,7 @@ namespace VacancyManager.Services
         public ImapMessage(string from, string subject, string text, DateTime sendDate, DateTime deliveryDate)
         {
             From = from;
-            To = "vacmana@gmail.com";
+            To = SysConfigManager.GetStringParameter("Mail Adress", "vacmana@gmail.com");
             Subject = subject;
             Text = text;
             SendDate = sendDate;
@@ -80,7 +80,7 @@ namespace VacancyManager.Services
                     MailSender.SendMessageToAdmins(CreatedComment.CommentID);
             }
 
-            int messageId = VMMailMessageManager.Create(From, "vacmana@gmail.com", Subject, Text, SendDate, DeliveryDate, 1, 0, 0).Id;
+            int messageId = VMMailMessageManager.Create(From, SysConfigManager.GetStringParameter("Mail Adress Default", "vacmana@gmail.com"), Subject, Text, SendDate, DeliveryDate, 1, 0, 0).Id;
 
             foreach (var attachment in Attachments)
             {

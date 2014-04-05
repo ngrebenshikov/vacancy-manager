@@ -314,6 +314,10 @@
     <Compile Include="Migrations\201403101434539_Vacancy_SpecialKeyAdded.Designer.cs">
       <DependentUpon>201403101434539_Vacancy_SpecialKeyAdded.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201404041615556_SysConfig_CongiGroupAdded.cs" />
+    <Compile Include="Migrations\201404041615556_SysConfig_CongiGroupAdded.Designer.cs">
+      <DependentUpon>201404041615556_SysConfig_CongiGroupAdded.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\Applicant.cs" />

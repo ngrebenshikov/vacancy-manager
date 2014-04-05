@@ -2,6 +2,6 @@
     {
         extend: 'Ext.data.Model',
         idProperty: 'Id',
-        fields: ['Id', 'Name', 'Value']
+        fields: ['Id', 'ConfigGroup','Name', 'Value']
     }
 );

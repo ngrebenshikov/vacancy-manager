@@ -10,18 +10,23 @@
     title: Strings.ConfNew,
     layout: 'fit',
     autoShow: true,
+    buttonAlign: 'center',
     modal: true,
     height: 150,
-    width: 280,
+    width: 380,
     items: //Элементы окна
     [{
         xtype: 'sysConfigForm'
     }],
 
-    buttons: //Кнопки окна
-    [{
+    buttons: [{
         text: Strings.btnAdd,
         action: 'CreateConf'
+    }, {
+        text: 'Отмена',
+        handler: function (button) {
+            button.up('window').close();
+        }
     }],
 
     initComponent: function () {

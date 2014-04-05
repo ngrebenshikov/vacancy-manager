@@ -105,6 +105,24 @@ Ext.define('VM.view.Admin.Main', {
                         wizard.getLayout().setActiveItem('MainMenuItem' + button.tabIndex);
                     }
                 }, {
+                    xtype: 'button',
+                    pressed: false,
+                    width: 130,
+                    text: 'Конфигурация',
+                    icon: '/Content/icons/config.png',
+                    tabIndex: 6,
+                    iconAlign: 'left',
+                    textAlign: 'left',
+                    id: 'ConfigTab',
+                    toggleGroup: 'MainGroup',
+                    scale: 'medium',
+                    enableToggle: true,
+                    margin: '0 0 1 0',
+                    handler: function (button) {
+                        var wizard = Ext.getCmp('Containers');
+                        wizard.getLayout().setActiveItem('MainMenuItem' + button.tabIndex);
+                    }
+                }, {
                     xtype: 'component',
                     width: 130,
                     html: '<hr><br>'
@@ -181,6 +199,11 @@ Ext.define('VM.view.Admin.Main', {
                     title: Strings.MailMessages,
                     frame: true,
                     xtype: 'MailMessageList'
+                }, {
+                    itemId: 'MainMenuItem6',
+                    title: 'Конфигурация',
+                    frame: true,
+                    xtype: 'SysConfigList'
                 }]
             }]
         });

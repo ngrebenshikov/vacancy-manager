@@ -5,6 +5,7 @@ using System.Web.Security;
 using VacancyManager.Models;
 using VacancyManager;
 using VacancyManager.Services;
+using VacancyManager.Services.Managers;
 
 namespace VacancyManager
 {
@@ -52,6 +53,7 @@ namespace VacancyManager
             AreaRegistration.RegisterAllAreas();
             RegisterGlobalFilters(GlobalFilters.Filters);
             RegisterRoutes(RouteTable.Routes);
+            SysConfigManager.CreateDefaultSysConfigParams();
             appShecluder.Start(refreshtime);
             //Проверка есть ли админ
             VMMembershipUser user = (VMMembershipUser)Membership.GetUser("admin", false);

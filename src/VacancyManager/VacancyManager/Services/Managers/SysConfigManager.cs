@@ -11,6 +11,12 @@ namespace VacancyManager.Services.Managers
         //!!! VacancyContext никогда не умрёт, если будут случайные ошибки доступа
         //!!! к базе данных, значит проблема может быть здесь
         //static VacancyContext _db = new VacancyContext();
+        private static string[,] defaultConfigsNames = new string[5, 2]
+                                                       { { "Mail Adress", "vacmana@gmail.com" },
+                                                         { "Mail Password", "nextdaynewlive" },
+                                                         { "Mail ImapHost", "imap.gmail.com" },
+                                                         { "Mail ImapPort", "933" },
+                                                         { "Resume Image", "~/Content/lanitlogo.png"}};
 
         internal static IEnumerable<SysConfig> GetList()
         {
@@ -34,6 +40,18 @@ namespace VacancyManager.Services.Managers
             return tmp != null ? Int32.Parse(tmp) : defaultValue;
         }
 
+        internal static bool GetStringParameter(string name)
+        {
+            string tmp = Get(name);
+            /*Оператор ?? возвращает левый операнд, если он не равен null
+             * и правый в противном случае
+             */
+            if (tmp != null)
+                return true;
+            else
+                return false;
+        }
+
         internal static string GetStringParameter(string name, string defaultValue)
         {
             string tmp = Get(name);
@@ -50,13 +68,14 @@ namespace VacancyManager.Services.Managers
             return tmp != null ? Boolean.Parse(tmp) : defaultValue;
         }
 
-        internal static SysConfig Create(string name, string value)
+        internal static SysConfig Create(string name, string value, string configGroup)
         {
             VacancyContext _db = new VacancyContext();
             var obj = new SysConfig
             {
                 Name = name,
-                Value = value
+                Value = value,
+                ConfigGroup = configGroup
             };
 
             _db.SysConfigs.Add(obj);
@@ -75,6 +94,33 @@ namespace VacancyManager.Services.Managers
                 obj.Name = name;
                 obj.Value = value;
             };
+
+            _db.SaveChanges();
+        }
+
+
+        internal static void CreateDefaultSysConfigParams() {
+            VacancyContext _db = new VacancyContext();
+            List<SysConfig> Configs = new List<SysConfig>();
+            for (int i = 0; i < 4; i++ )
+                {
+                    if (Get(defaultConfigsNames[i, 0]) == null) _db.SysConfigs.Add(new SysConfig
+                    {
+                        Name = defaultConfigsNames[i,0],
+                        Value = defaultConfigsNames[i, 1],
+                        ConfigGroup = "Почтовый сервер"
+                    });
+                }
+
+            for (int i = 4; i < 5; i++)
+            {
+                if (Get(defaultConfigsNames[i, 0]) == null) _db.SysConfigs.Add(new SysConfig
+                {
+                    Name = defaultConfigsNames[i, 0],
+                    Value = defaultConfigsNames[i, 1],
+                    ConfigGroup = "Резюме"
+                });
+            }
 
             _db.SaveChanges();
         }

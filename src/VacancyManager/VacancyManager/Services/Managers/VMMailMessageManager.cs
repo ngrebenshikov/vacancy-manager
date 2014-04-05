@@ -8,10 +8,10 @@ namespace VacancyManager.Services.Managers
 {
     public class VMMailMessageManager
     {
-        private const string MailAdressConfigName = "InboxEmail";
-        private const string MailAdressPassConfigName = "InboxEmailPass";
-        private const string MailImapHostConfigName = "InboxEmailImapHost";
-        private const string MailImapPortConfigName = "InboxEmailImapPort";
+        private const string MailAdressConfigName = "Mail Adress";
+        private const string MailAdressPassConfigName = "Mail Password";
+        private const string MailImapHostConfigName = "Mail ImapHost";
+        private const string MailImapPortConfigName = "Mail Imap";
 
         private const string MailAdressDefault = "vacmana@gmail.com";
         private const string MailAdressPassDefault = "nextdaynewlive";
