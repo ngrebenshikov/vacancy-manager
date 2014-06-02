@@ -3,20 +3,20 @@ Ext.define('VM.view.applicant.ManageApplicant', {
     extend: 'Ext.form.Panel',
     alias: 'widget.ManageApplicant',
     border: true,
+    frame: true,
     id: 'frmManageApplicant',
     region: 'west',
     title: 'Информация о соискателе',
     layout: {
         type: 'anchor'
     },
-    width: 200,
+    width: 220,
     bodyPadding: '5 5 5 5',
     initComponent: function () {
 
         this.items = [{
             xtype: 'fieldset',
             title: 'ФИО',
-            style: 'background-color: #fff;',
             defaultType: 'textfield',
             items: [{
                 fieldLabel: 'На русском языке',
@@ -56,7 +56,7 @@ Ext.define('VM.view.applicant.ManageApplicant', {
                 labelAlign: 'top',
                 name: 'Email',
                 vtype: 'email',
-                afterLabelTextTpl: '<span style="color:red;font-weight:bold" data-qtip="Required">*</span>',
+                afterLabelTextTpl: '<span style="color:red;font-weight:bold" data-qtip="Обязательный реквизит">*</span>',
                 allowBlank: false,
                 margins: '0 0 0 5'
             }]

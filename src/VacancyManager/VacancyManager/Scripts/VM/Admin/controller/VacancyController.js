@@ -46,33 +46,33 @@ Ext.define('VM.controller.VacancyController', {
     },
 
     destroyConsiderationsGrid: function (rowNode, record, expandRow) {
-        var ConsiderationsGrid = Ext.get(expandRow).down('.ux-row-expander-box').down('div');
-        if (ConsiderationsGrid !== undefined) { ConsiderationsGrid.destroy(); }
+        var ConsiderationsGrid = rowNode.grid;
+        if (ConsiderationsGrid !== undefined) {
+            ConsiderationsGrid.getStore().destroyStore();
+            ConsiderationsGrid.destroy();
+        }
+        console.log(Ext.getCmp('ConsiderationStore_' + record.getId()));
     },
 
     createConsiderationsGrid: function (rowNode, record, expandRow) {
-
         var vacancyId = record.get('VacancyID'),
-             gridId = 'ConsiderationsGrid' + vacancyId,
-             considerationsStoreId = 'Consideration' + vacancyId;
+            considerationsStoreId = 'ConsiderationStore_' + vacancyId,
+            targetId = 'VacancyConsiderationGridRow-' + vacancyId;
 
-        var element = Ext.get(expandRow).down('.ux-row-expander-box');
-
-        var ConsiderationsStore = Ext.create('VM.store.Consideration', {
-            extend: 'VM.store.Consideration',
-            id: considerationsStoreId
-        });
-
-        ConsiderationsStore.load({ params: { "id": vacancyId} });
-
-        grid = Ext.create('VM.view.consideration.List', {
-            id: gridId,
-            store: ConsiderationsStore,
+        var VacancyConsiderationGrid = Ext.create('VM.view.consideration.List', {
+            renderTo: targetId,
+            id: targetId + "_grid",
+            store: Ext.create('VM.store.Consideration', {
+                extend: 'VM.store.Consideration',
+                id: considerationsStoreId,
+                vacancy: record
+            }).load({ params: { "id": vacancyId} }),
             vacancy: record
         });
 
-        grid.render(element);
-        grid.getEl().swallowEvent(['mouseover', 'mousedown', 'click', 'dblclick', 'onRowFocus']);
+        rowNode.grid = VacancyConsiderationGrid;
+        VacancyConsiderationGrid.getEl().swallowEvent(['mouseover', 'mousedown', 'click', 'dblclick', 'onRowFocus']);
+        VacancyConsiderationGrid.fireEvent("bind", VacancyConsiderationGrid, { VacancyID: vacancyId });
     },
 
     addVacancy: function (button) {
@@ -143,21 +143,14 @@ Ext.define('VM.controller.VacancyController', {
         var wndvacanyEdit = button.up('window'),
            frm_vacancyform = wndvacanyEdit.down('form'),
            sel_vacancy = frm_vacancyform.getRecord(),
-           newvalues = frm_vacancyform.getValues(),
-           nestedUpdate = false;
+           newvalues = frm_vacancyform.getValues();
 
         VacancyRequirementsStore = Ext.StoreManager.lookup('VacancyRequirements');
-
-        var upRecs = VacancyRequirementsStore.getUpdatedRecords(),
-            newRecs = VacancyRequirementsStore.getNewRecords();
-        if ((upRecs.length !== 0) || (newRecs.length)) {
-            nestedUpdate = true;
-        }
-        if (nestedUpdate) {
+        var upRecs = VacancyRequirementsStore.getUpdatedRecords();
+        if (upRecs.length !== 0) {
             var f = function (storeAR, operation) {
                 sel_vacancy.set(newvalues);
                 VacancyRequirementsStore.un("write", f);
-                console.log("yes");
             };
 
             VacancyRequirementsStore.on("write", f);

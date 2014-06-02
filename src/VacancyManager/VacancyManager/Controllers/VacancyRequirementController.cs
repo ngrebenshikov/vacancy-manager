@@ -3,17 +3,16 @@ using System.Linq;
 using System.Web.Mvc;
 using VacancyManager.Models;
 using VacancyManager.Services;
-using System.Web.Script.Serialization;
+using VacancyManager.Models.JSON;
 using VacancyManager.Services.Managers;
+using System.Collections.Generic;
 
 namespace VacancyManager.Controllers
 {
 
     public class VacancyRequirementController : AdminController
     {
-        JavaScriptSerializer jss = new JavaScriptSerializer();
         // GET: /VacancyRequirement/
-
         [HttpGet]
         public JsonResult Load(int id)
         {
@@ -39,95 +38,48 @@ namespace VacancyManager.Controllers
 
             return Json(new
             {
-                VacancyRequirements = Complex.ToList(),
+                data = Complex.ToList(),
                 total = Complex.ToList().Count,
                 success = true
             }, JsonRequestBehavior.AllowGet
             );
         }
 
-
         [HttpPost]
-        public ActionResult Create(string[] data)
+        public ActionResult Create(List<JsonVacancyRequirement> vacancyRequirements)
         {
             bool CreateSuccess = false;
             string CreateMessage = "При изменении требований произошла ошибка";
-
-
-            if (data != null)
+            if (vacancyRequirements != null)
             {
-                for (int i = 0; i <= data.Length - 1; i++)
+                foreach (JsonVacancyRequirement VacReq in vacancyRequirements)
                 {
-                    String Comments = "";
-                    var u_vacancyrequirement = jss.Deserialize<dynamic>(data[i]);
-                    Int32 VacancyRequirementID = Convert.ToInt32(u_vacancyrequirement["VacancyRequirementID"]);
-                    Int32 VacancyID = Convert.ToInt32(u_vacancyrequirement["VacancyID"]);
-                    Int32 RequirementID = Convert.ToInt32(u_vacancyrequirement["RequirementID"]);
-                    Boolean IsRequire = Convert.ToBoolean(u_vacancyrequirement["IsRequire"]);
-                   
-                    if (IsRequire)
-                    {
-                        Comments = u_vacancyrequirement["Comments"].ToString();
-                    }
-
-                    VacancyRequirementsManager.CreateVacancyRequirement(VacancyID,
-                                                                        RequirementID,
-                                                                        Comments,
-                                                                        IsRequire);
-
-
-                }
-
-                CreateSuccess = true;
-                CreateMessage = "Требования успешно созданы";
+                    Tuple<string, bool> Status = VacReq.UpdateInVacancyRequirementsStore();
+                    CreateSuccess = Status.Item2;
+                    CreateMessage = Status.Item1;
+                } 
             }
-
-            return Json(new
-            {
-                success = CreateSuccess,
-                message = CreateMessage
-            });
-
+            return Json(new { success = CreateSuccess,  message = CreateMessage });
         }
 
         [HttpPost]
-        public ActionResult Update(string[] data)
+        public ActionResult Update(List<JsonVacancyRequirement> vacancyRequirements)
         {
             bool UpdateSuccess = false;
             string UpdateMessage = "При изменении требований произошла ошибка";
-
-
-            if (data != null)
-            {
-                for (int i = 0; i <= data.Length - 1; i++)
-                {
-                    String Comments = "";
-                    var u_vacancyrequirement = jss.Deserialize<dynamic>(data[i]);
-                    Int32 VacancyRequirementID = Convert.ToInt32(u_vacancyrequirement["VacancyRequirementID"]);
-                    Int32 VacancyID = Convert.ToInt32(u_vacancyrequirement["VacancyID"]);
-                    Int32 RequirementID = Convert.ToInt32(u_vacancyrequirement["RequirementID"]);
-
-                    Boolean IsRequire = Convert.ToBoolean(u_vacancyrequirement["IsRequire"]);
-                    if (IsRequire)
-                    {
-                        Comments = u_vacancyrequirement["Comments"].ToString();
-                    }
-                    VacancyRequirementsManager.UpdateVacancyRequirement(VacancyID,
-                                                       VacancyRequirementID,
-                                                       RequirementID,
-                                                       Comments,
-                                                       IsRequire);
-                    UpdateSuccess = true;
-                    UpdateMessage = "Требования успешно изменены";
-                }
-
-            }
-            return Json(new
-            {
-                success = UpdateSuccess,
-                message = UpdateMessage
-            });
+            if (vacancyRequirements != null)
+             {
+                 foreach (JsonVacancyRequirement VacReq in vacancyRequirements)
+                 {
+                    Tuple<string, bool> Status = VacReq.UpdateInVacancyRequirementsStore();
+                    UpdateSuccess = Status.Item2;
+                    UpdateMessage = Status.Item1;
+                 }
+           
+             } 
+            return Json(new  { success = UpdateSuccess,  message = UpdateMessage });
         }
     }
+
 }
 

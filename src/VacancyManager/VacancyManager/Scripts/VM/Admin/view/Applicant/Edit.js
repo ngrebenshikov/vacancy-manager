@@ -14,8 +14,8 @@
     ],
 
     title: Strings.ApplicantEdit,
-    height: 450,
-    width: 700,
+    height: 480,
+    width: 730,
     autoShow: true,
     maximizable: true,
     modal: true,

@@ -4,17 +4,12 @@
     id: 'mailMessageGrid',
     region: 'center',
     border: false,
-    layout: 'border',
-    defaults: {
-        split: true
-    },
+    layout: 'fit',
     items:
     [{
         xtype: 'grid',
         id: 'MailMessageGrid',
         frame: false,
-        layout: 'fit',
-        region: 'center',
         multiSelect: true,
         store: 'MailMessage',
         columns:
@@ -146,6 +141,7 @@
         }],
 
         viewConfig: {
+            loadingText: 'Загрузка сообщений',
             getRowClass: function (record, index, rowParams, store) {
                 var isRead = record.get('IsRead');
                 if (isRead != true) {

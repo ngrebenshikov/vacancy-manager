@@ -79,10 +79,12 @@
         var AddResume = Ext.widget('resumeCreate');
         var resumeStore = this.getResumeStore();
         resumeStore.activeRecord = undefined;
+        var resumeRequirementStore = this.getResumeRequirementStore();
+        resumeRequirementStore.load({ params: { "id": 0} });
         var resumeExpStore = this.getResumeExperienceStore();
+        resumeExpStore.load({ params: { "ResId": 0, "isEdu": false} });
         var resumeEduStore = this.getResumeEducationStore();
-        resumeExpStore.removeAll(true);
-        resumeEduStore.removeAll(true);
+        resumeEduStore.load({ params: { "ResId": 0, "isEdu": true} });
     },
 
     ResumePdfCopy: function (button) {

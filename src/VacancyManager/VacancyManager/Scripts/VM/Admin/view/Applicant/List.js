@@ -3,8 +3,6 @@
     alias: 'widget.ApplicantList',
     region: 'center',
     id: 'ApplicantGrid',
-    autoSizeCoulms: true,
-    split: true,
     frame: false,
     store: 'Applicant',
     viewConfig: {

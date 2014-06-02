@@ -4,7 +4,7 @@
     requires: ['VM.Shared.ReqsList',
                'VM.store.ResumeRequirement'],
     border: false,
-    height: 250,
+    height: 350,
     width: 350,
     layout: {
         type: 'fit'

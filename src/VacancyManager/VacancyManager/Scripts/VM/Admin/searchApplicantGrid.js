@@ -5,19 +5,13 @@ Ext.define('VM.searchApplicantGrid', {
     alias: 'widget.searchApplicantGrid',
     appSearchReqs: [],
     appSearchVacs: [],
-   // selType: 'checkboxmodel',
+    selType: 'checkboxmodel',
     appSearchEmp: 1,
+    multiSelect: true,
+    border: true,
     appSearchEmpC: 0,
     store: 'SearchApplicants',
     columns: [{
-        dataIndex: 'Selected',
-        xtype: 'checkcolumn',
-        width: 30,
-        align: 'center',
-        sortable: false,
-        menuDisabled: true
-    },
-    {
         dataIndex: 'FullName',
         text: Strings.FullName,
         width: 200,
@@ -42,18 +36,17 @@ Ext.define('VM.searchApplicantGrid', {
     {
         dataIndex: 'Employed',
         text: 'Трудоустроен',
-        width: 130,
+        width: 90,
         sortable: false,
         align: 'center',
         menuDisabled: true,
         renderer: function (value) {
             var cssPrefix = Ext.baseCSSPrefix,
-                        cls = [cssPrefix + 'grid-checkheader'];
-
+                        cls = [cssPrefix + 'grid-checkcolumn'];
             if (value) {
-                cls.push(cssPrefix + 'grid-checkheader-checked');
+                cls.push(cssPrefix + 'grid-checkcolumn-checked');
             }
-            return '<div class="' + cls.join(' ') + '">&#160;</div>';
+            return '<center><div class="' + cls.join(' ') + '">&#160;</div></center>';
         }
     }],
 
@@ -61,13 +54,14 @@ Ext.define('VM.searchApplicantGrid', {
 
         var searchAppGrid = this;
 
-        searchAppGrid.fbar = [{
+        searchAppGrid.bbar = [{
             xtype: 'panel',
             width: 550,
-            border: false,
+            bodyPadding: '0 0 0 10',
             items: [
                           { xtype: 'panel',
-                              width: 500,
+                              width: 520,
+                              margin: 3,
                               layout: 'hbox',
                               border: false,
                               items: [
@@ -91,6 +85,7 @@ Ext.define('VM.searchApplicantGrid', {
                           },
                           { xtype: 'panel',
                               width: 500,
+                              margin: 3,
                               layout: 'hbox',
                               border: false,
                               items: [
@@ -121,6 +116,7 @@ Ext.define('VM.searchApplicantGrid', {
                           { xtype: 'panel',
                               width: 500,
                               layout: 'hbox',
+                              margin: 3,
                               border: false,
                               items: [
                                     {
@@ -151,10 +147,11 @@ Ext.define('VM.searchApplicantGrid', {
                               width: 500,
                               border: false,
                               id: 'searchEmployed',
+                              margin: 3,
                               enableKeyEvents: true,
                               items: [{
                                   xtype: 'combobox',
-                                  fieldLabel: 'Трудоустройство',
+                                  fieldLabel: 'Трудоустройство ',
                                   store: ['Трудоустроен', 'Не Трудоустроен', 'Не выбран'],
                                   listeners: {
 
@@ -240,8 +237,8 @@ Ext.define('VM.searchApplicantGrid', {
         var searchVacancyGrid = Ext.create('Ext.grid.Panel', {
             height: 310,
             id: 'searchVacancyGrid',
-            autoSizeColumns: true,
             frame: false,
+            border: true,
             multiSelect: true,
             selType: 'checkboxmodel',
             store: searchVacancyStore,
@@ -263,7 +260,7 @@ Ext.define('VM.searchApplicantGrid', {
             }
          ],
 
-            fbar: ['Поиск: ',
+            bbar: ['Поиск: ',
             {
                 xtype: 'triggerfield',
                 width: 315,
@@ -439,14 +436,17 @@ Ext.define('VM.searchApplicantGrid', {
         });
 
         var reqGrid = Ext.create('Ext.grid.Panel', {
-            height: 310,
             id: 'requirementsGrid',
             frame: false,
+            border: true,
             selModel: sm,
             store: reqStore,
-            features: [Ext.create('Ext.grid.feature.Grouping', {
-                groupHeaderTpl: '{name}: ' + Strings.Skills + ' ({rows.length})'
-            })],
+            features: [{
+                ftype: 'grouping',
+                groupHeaderTpl: '{name}',
+                hideGroupedHeader: true,
+                id: 'searchReqGrouping'
+            }],
             columns: [{
                 dataIndex: 'RequirementName',
                 text: Strings.Skill,

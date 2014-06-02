@@ -37,9 +37,7 @@ td.wrap-text div
 
 .x-grid-row-selected .x-grid-table .x-grid-row-selected .x-grid-cell
 {
-    background-color: #DFE8F6 !important;
-    border-bottom: 1px dotted #A3BAE9;
-    border-top: 1px dotted #A3BAE9;
+    background-color: #c1ddf1 !important;
 }
 
 .new-message td
@@ -128,6 +126,19 @@ td.wrap-text div
 
 }
 
+.statusBtn
+{
+    width: 100px;
+    height: auto;
+    padding: 1px 0px 1px 0px;
+    text-align: center;
+    border: 1px solid #00FF00;
+    color: #0000FF;
+    cursor: pointer;
+    background: #FFFFFF;
+    vertical-align: middle;
+} 
+
 .qtip-target {
     width:22px;
     height:22px;
@@ -151,3 +162,35 @@ td.wrap-text div
     background-image: none !important;
     border-color: green !important;
 }
+
+.vertical-header-grid .x-grid3-header table,
+.vertical-header-grid .x-grid3-header-offset td {
+   height: 100px!important;
+}
+
+.vertical-header-grid .x-grid3-hd-row td.x-grid3-hd * {
+    -webkit-transform: rotate(90deg);
+    -moz-transform: rotate(90deg);
+    width: 75px;
+}
+
+.ext-ie .vertical-header-grid .x-grid3-hd-row td.x-grid3-hd * {
+    filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=1);
+    position: absolute;
+    left: 25px;
+    bottom: 20px;
+}
+
+.vertical-header-grid .x-grid3-hd-row td.x-grid3-hd {
+    text-align: right;
+    font-weight: bold;
+    border-left-color: #fff;
+}
+
+.vertical-header-grid .x-grid3-hd-row td.x-grid3-hd {
+    position: relative;
+}
+
+/*tr { display: block; float: left; }
+th, td { display: block; }*/
+

@@ -20,6 +20,8 @@ namespace VacancyManager.Models
 
         public bool IsRequire { get; set; }
 
+        public virtual Requirement Requirement { get; set; }
+
         public VacancyRequirement()
         {
             VacancyRequirementID = -1;  

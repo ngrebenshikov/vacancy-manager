@@ -1,33 +1,33 @@
 ﻿Ext.define('VM.view.frontend.Main', {
-    extend: 'Ext.form.Panel',
+    extend: 'Ext.panel.Panel',
     requires: ['VM.Shared.WizardPanel'],
     layout: {
         type: 'border'
     },
     alias: 'widget.FrontEndMain',
-    bodyPadding: 10,
+    bodyPadding: 20,
+    bodyStyle: 'background-image: Url(/Content/icons/square.gif);',
     title: 'Соискатель',
-
+    margins: '20 60 20 60',
+    frame: true,
     initComponent: function () {
         var me = this;
         me.hbuttons = [{
             text: "Выход",
             handler: function () {
-
                 Ext.Ajax.request({
                     url: '../../VMUser/ExtJSLogOff',
                     success: function (result, request) {
 
                         UserIsAuthenticated = false;
+
+                        var appgrid = Ext.getCmp('applicantConsiderationsGrid');
+
+                        var appForm = Ext.getCmp('frmManageApplicant').getForm();
+                        appForm.reset();
                         var appReqStore = Ext.StoreManager.lookup('ApplicantRequirement'),
                             resumeStore = Ext.StoreManager.lookup('Resume'),
                             appConsStore = Ext.StoreManager.lookup('ApplicantConsideration');
-                        var appForm = Ext.getCmp('frmManageApplicant').getForm();
-                        appForm.reset();
-
-                        appReqStore.removeAll(false);
-                        resumeStore.removeAll(false);
-                        appConsStore.removeAll(false);
                         CreateLoginWindow();
                     }
                 });

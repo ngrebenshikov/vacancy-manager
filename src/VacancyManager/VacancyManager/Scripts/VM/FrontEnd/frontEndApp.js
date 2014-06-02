@@ -56,7 +56,7 @@ function LogIn(login_form, login_window) {
 function CreateLoginWindow() {
     var login_form = Ext.create('Ext.form.Panel', {
         border: false,
-        title: 'Авторизация',
+        frame: false,
         style: 'background-color: #fff;',
         labelWidth: 55,
         bodyPadding: 10,
@@ -82,14 +82,12 @@ function CreateLoginWindow() {
           }],
         buttons: [{
             text: 'Регистрация',
-            margins: '5 5 5 5',
             handler: function (button) {
                 var view = Ext.widget('registerForm');
                 console.log(view);
             }
-        }, {
+        }, '->', {
             text: 'Вход',
-            margins: '5 5 5 5',
             handler: function (button) {
                 LogIn(login_form, login_window);
             }
@@ -98,13 +96,13 @@ function CreateLoginWindow() {
 
     var login_window = Ext.create('Ext.window.Window', {
         width: 300,
-        height: 130,
+        height: 160,
         modal: true,
         frame: true,
-        frameHeader: false,
         draggable: false,
         closable: false,
         layout: 'fit',
+        title: 'Авторизация',
         items: login_form
     });
 
@@ -122,7 +120,6 @@ Ext.Loader.setConfig({
 Ext.Loader.setPath('Ext.ux', '/ExtLib/ux');
 Ext.Loader.setPath('Ext.ux.StatusBar', '/ExtLib/ux/statusbar/StatusBar.js');
 
-    Ext.require('Ext.ux.CheckColumn');
     Ext.application({
         name: 'VM',
         appFolder: '/Scripts/VM/FrontEnd',

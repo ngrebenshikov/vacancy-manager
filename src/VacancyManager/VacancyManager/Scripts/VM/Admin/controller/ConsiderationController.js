@@ -1,9 +1,7 @@
-﻿
-Ext.define('VM.controller.ConsiderationController', {
-
+﻿Ext.define('VM.controller.ConsiderationController', {
     extend: 'Ext.app.Controller',
 
-    stores: ['Consideration', 'Applicant', 'SearchApplicants', 'Comments', 'ApplicantMessages'],
+    stores: ['Consideration', 'Applicant', 'SearchApplicants', 'Comments', 'ApplicantMessages', 'ConsiderationStatus'],
 
     models: ['VM.model.Consideration', 'VM.model.SearchApplicants', 'VM.model.ApplicantMessage'],
 
@@ -13,7 +11,8 @@ Ext.define('VM.controller.ConsiderationController', {
         this.control({
             'considerationList dataview': {
                 itemclick: this.itemClick,
-                itemdblclick: this.loadComments
+                itemdblclick: this.loadComments,
+                itemcontextmenu: this.showMenu
             },
 
             'button[action=deleteConsideration]': {
@@ -25,6 +24,9 @@ Ext.define('VM.controller.ConsiderationController', {
             'button[action=AddConsideration]': {
                 click: this.AddConsideration
             },
+            'button[action=changeStatus]': {
+                click: this.changeStatus
+            },
             'button[action=loadComments]': {
                 click: this.loadComments
             },
@@ -33,6 +35,53 @@ Ext.define('VM.controller.ConsiderationController', {
             }
         });
 
+    },
+
+    createMenu: function () {
+        var considerationStore = this.getConsiderationStore(),
+            contextMenu = Ext.create('Ext.menu.Menu', {
+                frame: false,
+                width: 150,
+                showSeparator: false
+            });
+
+        var statuses = this.getConsiderationStatusStore();
+        statuses.each(function (conStatus) {
+            statusID = conStatus.getId();
+            contextMenu.add({
+                text: conStatus.get('Status'),
+                statusId: statusID,
+                width: 145,
+                handler: function (item) {
+                    var rec = considerationStore.curConsideration;
+                    if (rec != undefined) {
+                        rec.set('ConsiderationStatusId', item.statusId);
+                        rec.save();
+                    }
+                }
+            });
+        });
+
+        return contextMenu;
+    },
+
+    changeStatus: function (button) {
+        var pos = button.getPosition(false);
+        contextMenu = this.createMenu();
+        pos1 = pos[1] - 110;
+        pos0 = pos[0] - 15;
+        pos[0] = pos0;
+        pos[1] = pos1;
+        contextMenu.showAt(pos);
+    },
+
+    showMenu: function (view, rec, node, index, e) {
+        e.stopEvent();
+
+        contextMenu = this.createMenu();
+        contextMenu.showAt(e.getXY());
+
+        return false;
     },
 
     loadComments: function (button) {
@@ -89,27 +138,20 @@ Ext.define('VM.controller.ConsiderationController', {
             applicantGrid = considerationForm.down('grid'),
             selectedVacancy = Ext.getCmp('vacancyGrid').getSelectionModel().getSelection()[0],
             selectedVacancyId = selectedVacancy.getId(),
-            applicantStore = this.getApplicantStore(),
-            considerationStore = Ext.StoreManager.lookup('Consideration' + selectedVacancyId),
-
-            selectedApplicant = applicantGrid.getSelectionModel().getSelection()[0];
-
-        applicantGrid.getStore().each(function (applicant) {
-            if (applicant.get('Selected') == true) {
-                newConsideration = Ext.create('VM.model.Consideration', {
-                    VacancyID: selectedVacancyId,
-                    ApplicantID: applicant.get('ApplicantID'),
-                    FullName: applicant.get('FullName')
-                });
-
-                considerationStore.insert(0, newConsideration);
-            }
-
+            considerationStore = Ext.StoreManager.lookup('ConsiderationStore_' + selectedVacancyId);
+        var selectedApplicants = applicantGrid.getSelectionModel().getSelection();
+        Ext.Array.each(selectedApplicants, function (applicant) {
+            newConsideration = Ext.create('VM.model.Consideration', {
+                VacancyID: selectedVacancyId,
+                ApplicantID: applicant.get('ApplicantID'),
+                Vacancy: selectedVacancy.get('Title'),
+                FullName: applicant.get('FullName')
+            });
+            considerationStore.insert(0, newConsideration);
         });
 
         considerationStore.sync();
         wndconsiderationAdd.close();
-        //   considerationStore.load({ params: { "id": selectedVacancyId} });
     },
 
     loadBlankConsideration: function (button) {

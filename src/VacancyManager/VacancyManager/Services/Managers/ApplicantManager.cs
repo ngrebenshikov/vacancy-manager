@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using VacancyManager.Models;
+using VacancyManager.Models.JSON;
 using System.Web.Security;
 
 namespace VacancyManager.Services.Managers
@@ -17,23 +18,38 @@ namespace VacancyManager.Services.Managers
       return obj;
     }
 
-    internal static Applicant Create(string FullName, string FullNameEn, string contactPhone, string email, bool employed)
+    internal static int Create(JsonApplicant NewApplicant)
     {
       VacancyContext _db = new VacancyContext();
-
       Applicant obj = new Applicant
       {
-        FullName = FullName,
-        FullNameEn = FullNameEn,
-        ContactPhone = contactPhone,
-        Email = email,
-        Employed = employed
+          FullName = NewApplicant.FullName,
+          FullNameEn = NewApplicant.FullNameEn,
+          ContactPhone = NewApplicant.ContactPhone,
+          Email = NewApplicant.Email,
+          Employed = NewApplicant.Employed
       };
-
       _db.Applicants.Add(obj);
       _db.SaveChanges();
 
-      return obj;
+      return obj.ApplicantID;
+    }
+
+    internal static Applicant Create(string fullName, string fullNameEn, string contactPhone, string email, bool employed)
+    {
+        VacancyContext _db = new VacancyContext();
+        Applicant obj = new Applicant
+        {
+            FullName = fullName,
+            FullNameEn = fullNameEn,
+            ContactPhone = contactPhone,
+            Email = email,
+            Employed = employed
+        };
+        _db.Applicants.Add(obj);
+        _db.SaveChanges();
+
+        return obj;
     }
 
     internal static void Delete(int id)
@@ -45,18 +61,18 @@ namespace VacancyManager.Services.Managers
       _db.SaveChanges();
     }
 
-    internal static Applicant Update(int id, string FullName, string FullNameEn, string contactPhone, string email, bool employed)
+    internal static Applicant Update(JsonApplicant UpdatingApplicant)
     {
       VacancyContext _db = new VacancyContext();
-      var obj = _db.Applicants.Where(app => app.ApplicantID == id).FirstOrDefault();
+      var obj = _db.Applicants.Where(app => app.ApplicantID == UpdatingApplicant.ApplicantID).FirstOrDefault();
 
       if (obj != null)
       {
-        obj.FullName = FullName;
-        obj.FullNameEn = FullNameEn;
-        obj.ContactPhone = contactPhone;
-        obj.Email = email;
-        obj.Employed = employed;
+        obj.FullName = UpdatingApplicant.FullName;
+        obj.FullNameEn = UpdatingApplicant.FullNameEn;
+        obj.ContactPhone = UpdatingApplicant.ContactPhone;
+        obj.Email = UpdatingApplicant.Email;
+        obj.Employed = UpdatingApplicant.Employed;
       }
 
       _db.SaveChanges();

@@ -52,6 +52,7 @@
             },
              this.buttons = [{
                  text: 'Сохранить',
+                 id: 'btnAddComment',
                  action: 'addConsComment'
              }, {
                  text: 'Отмена',

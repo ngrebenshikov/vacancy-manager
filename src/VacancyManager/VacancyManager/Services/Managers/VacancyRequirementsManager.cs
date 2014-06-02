@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using VacancyManager.Models;
+using VacancyManager.Models.JSON;
 
 namespace VacancyManager.Services.Managers
 {
@@ -13,29 +14,28 @@ namespace VacancyManager.Services.Managers
       return _db.VacancyRequirements.Where(vacancy_rec => vacancy_rec.VacancyID == id).ToList();
     }
 
-    internal static void CreateVacancyRequirement(int vacancyId, int requirementId, string comments, bool isRequire)
+    internal static void CreateVacancyRequirement(JsonVacancyRequirement VacancyReq)
     {
       VacancyContext _db = new VacancyContext();
-      var newVacancyRequirement = new VacancyRequirement
+      VacancyRequirement newVacancyRequirement = new VacancyRequirement
       {
         VacancyRequirementID = -1,
-        VacancyID = vacancyId,
-        RequirementID = requirementId,
-        Comments = comments,
-        IsRequire = isRequire
+        VacancyID = VacancyReq.VacancyID,
+        RequirementID = VacancyReq.RequirementID,
+        Comments = VacancyReq.Comments,
+        IsRequire = VacancyReq.IsRequire
       };
 
       _db.VacancyRequirements.Add(newVacancyRequirement);
       _db.SaveChanges();
     }
 
-    internal static void UpdateVacancyRequirement(int vacancyId, int vacancyRequirementId, int requirementId, string comments, bool isRequire)
+    internal static void UpdateVacancyRequirement(JsonVacancyRequirement VacancyReq)
     {
       VacancyContext _db = new VacancyContext();
-      var update_rec = _db.VacancyRequirements.Single(vacancy_rec => (vacancy_rec.VacancyRequirementID == vacancyRequirementId));
-      if (update_rec == null) return;
-      update_rec.Comments = comments;
-      update_rec.IsRequire = isRequire;
+      VacancyRequirement update_rec = _db.VacancyRequirements.FirstOrDefault(vacancy_rec => (vacancy_rec.VacancyRequirementID == VacancyReq.VacancyRequirementID));
+      update_rec.Comments = VacancyReq.Comments;
+      update_rec.IsRequire = VacancyReq.IsRequire;
       _db.SaveChanges();
     }
 

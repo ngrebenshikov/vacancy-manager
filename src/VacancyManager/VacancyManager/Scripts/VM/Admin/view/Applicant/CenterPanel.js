@@ -31,9 +31,12 @@ Ext.define('VM.view.Applicant.CenterPanel', {
             border: false,
             region: 'center',
             plugins: [cellEditing],
-            features: [Ext.create('Ext.grid.feature.Grouping', {
-                groupHeaderTpl: '{name})'
-            })],
+            features: [{
+                ftype: 'grouping',
+                groupHeaderTpl: '{name}',
+                hideGroupedHeader: true,
+                id: 'appReqGrouping'
+            }],
             store: 'ApplicantRequirements',
             columns:
             [{
@@ -63,14 +66,12 @@ Ext.define('VM.view.Applicant.CenterPanel', {
                 width: 120,
                 flex: 1,
                 sortable: false,
-                field: { xtype: 'textfield' },
                 menuDisabled: true
             }, {
                 dataIndex: 'CommentText',
                 text: Strings.UserCommentary,
                 width: 120,
                 sortable: false,
-                field: { xtype: 'textfield' },
                 menuDisabled: true,
                 editable: false
             }],

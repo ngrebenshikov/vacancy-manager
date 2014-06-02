@@ -5,5 +5,4 @@
     autoLoad: false,
     autoSync: true,
     autoSave: true
-
 });

@@ -13,7 +13,7 @@ namespace VacancyManager.Models
         public int ApplicantID { get; set; }
         public string Position { get; set; }
         public string Summary { get; set; }
-
+        public int Lanquage { get; set; }
         public virtual ICollection<ResumeRequirement> ResumeRequirements { get; set; }
         public virtual ICollection<Experience> Experiences { get; set; }
 

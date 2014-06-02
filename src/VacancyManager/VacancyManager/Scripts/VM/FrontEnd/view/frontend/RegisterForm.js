@@ -5,10 +5,10 @@ Ext.define('VM.view.frontend.RegisterForm', {
     modal: true,
     frame: true,
     border: true,
+    title: 'Регистрация соискателя',
     closable: false,
-    frameHeader: false,
     draggable: false,
-    height: 400,
+    height: 430,
     width: 430,
     style: 'background-color: #fff;',
     autoShow: true,
@@ -24,24 +24,25 @@ Ext.define('VM.view.frontend.RegisterForm', {
                     align: 'stretch'
                 },
 
-                title: 'Регистрация соискателя',
+               
                 border: false,
                 style: 'background-color: #fff;',
                 items: [{
                     xtype: 'fieldset',
                     title: 'Сведения учетной записи',
                     anchor: '100%',
-                    defaultType: 'textfield',
                     items: [{
                         fieldLabel: 'Логин',
-                        id: 'txtUserName',
+                        xtype: 'textfield',
+                        id: 'txtUserNameReg',
                         name: 'UserName',
                         anchor: '100%',
                         allowBlank: false,
                         margins: '0 0 0 5'
                     }, {
                         inputType: 'password',
-                        id: 'pwdUserPassword',
+                        id: 'pwdUserPasswordReg',
+                        xtype: 'textfield',
                         fieldLabel: 'Пароль',
                         name: 'UserPassword',
                         allowBlank: false,
@@ -49,8 +50,9 @@ Ext.define('VM.view.frontend.RegisterForm', {
                         blankText: 'Поле не может быть пустым.',
                         margins: '0 0 0 5'
                     }, {
+                        xtype: 'textfield',
                         inputType: 'password',
-                        id: 'pwdСonfirmedUserPassword',
+                        id: 'pwdСonfirmedUserPasswordReg',
                         fieldLabel: 'Повторите пароль',
                         name: 'СonfirmedUserPassword',
                         allowBlank: false,
@@ -62,18 +64,20 @@ Ext.define('VM.view.frontend.RegisterForm', {
                     xtype: 'fieldset',
                     title: 'ФИО',
                     anchor: '100%',
-                    defaultType: 'textfield',
                     items: [{
                         fieldLabel: 'На русском языке',
-                        id: 'ApplicantFullName',
+                        xtype: 'textfield',
+                        id: 'ApplicantFullNameReg',
                         name: 'FullName',
                         anchor: '100%',
                         allowBlank: false,
                         margins: '0 0 0 5'
                     }, {
                         id: 'ApplicantFullNameEn',
+                        xtype: 'textfield',
                         fieldLabel: 'На английском языке',
                         name: 'FullNameEn',
+                        id: 'ApplicantFullNameEnReg',
                         allowBlank: true,
                         anchor: '100%',
                         blankText: 'Поле не может быть пустым.',
@@ -86,7 +90,7 @@ Ext.define('VM.view.frontend.RegisterForm', {
                     defaultType: 'textfield',
                     items: [{
                         xtype: 'textfield',
-                        id: 'ApplicantContactPhone',
+                        id: 'ApplicantContactPhoneReg',
                         name: 'ContactPhone',
                         anchor: '100%',
                         fieldLabel: Strings.ContactPhone,
@@ -97,7 +101,7 @@ Ext.define('VM.view.frontend.RegisterForm', {
                     }, {
                         xtype: 'textfield',
                         fieldLabel: Strings.UserEmail,
-                        id: 'ApplicantEmail',
+                        id: 'ApplicantEmailReg',
                         name: 'Email',
                         anchor: '100%',
                         vtype: 'email',
@@ -109,7 +113,6 @@ Ext.define('VM.view.frontend.RegisterForm', {
 
                 buttons: [{
                     text: 'Регистрация',
-                    margins: '10',
                     handler: function (button) {
                         var form = this.up('form').getForm(),
                             values = Ext.JSON.encode(form.getValues());
@@ -138,7 +141,6 @@ Ext.define('VM.view.frontend.RegisterForm', {
                     }
                 }, {
                     text: 'Отмена',
-                    margins: '10',
                     scope: this,
                     handler: this.close
                 }]

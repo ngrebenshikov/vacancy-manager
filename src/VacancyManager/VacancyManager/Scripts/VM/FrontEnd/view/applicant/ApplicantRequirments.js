@@ -9,7 +9,7 @@
     })],
 
     features: [Ext.create('Ext.grid.feature.Grouping', {
-        groupHeaderTpl: '{name}: ' + Strings.Skills + ' ({rows.length})'
+        groupHeaderTpl: '{name}'
     })],
 
     store: 'ApplicantRequirement',

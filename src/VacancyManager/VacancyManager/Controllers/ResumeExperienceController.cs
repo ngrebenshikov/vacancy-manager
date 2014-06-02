@@ -28,19 +28,19 @@ namespace VacancyManager.Controllers
             {
                 var Experience = ResumeManager.GetResumeExperience(ResId);
                 ExperienceList = (from exp in Experience
-                                      where exp.IsEducation == isEdu
-                                      select new
-                                      {
-                                          ExperienceId = exp.ExperienceId,
-                                          Job = exp.Job,
-                                          Project = exp.Project,
-                                          Position = exp.Position,
-                                          ResumeId = exp.ResumeId,
-                                          StartDate = exp.StartDate.Date.ToShortDateString(),
-                                          FinishDate = exp.FinishDate.HasValue ? exp.FinishDate.Value.Date.ToShortDateString() : "",
-                                          Duties = exp.Duties,
-                                          IsEducation = exp.IsEducation
-                                      }).ToList();
+                                  where exp.IsEducation == isEdu
+                                  select new
+                                  {
+                                      ExperienceId = exp.ExperienceId,
+                                      Job = exp.Job,
+                                      Project = exp.Project,
+                                      Position = exp.Position,
+                                      ResumeId = exp.ResumeId,
+                                      StartDate = exp.StartDate.Date.ToShortDateString(),
+                                      FinishDate = exp.FinishDate.HasValue ? exp.FinishDate.Value.Date.ToShortDateString() : "",
+                                      Duties = exp.Duties,
+                                      IsEducation = exp.IsEducation
+                                  }).ToList();
             }
 
             return Json(new
@@ -125,7 +125,7 @@ namespace VacancyManager.Controllers
             bool CanChangeOrViewData = UserCanExecuteAction;
             if (data != null)
             {
-                var с_ResumeExp = jss.Deserialize<dynamic>(data);           
+                var с_ResumeExp = jss.Deserialize<dynamic>(data);
                 Resume EditingResume = ResumeManager.GetResumeByID(Convert.ToInt32(с_ResumeExp["ResumeId"]));
                 if (!CanChangeOrViewData)
                 {
@@ -172,8 +172,8 @@ namespace VacancyManager.Controllers
             bool DeleteSuccess = false;
             string DeleteMessage = "При удалении информации произошла ошибка";
             bool CanChangeOrViewData = UserCanExecuteAction;
-             if (data != null)
-             {
+            if (data != null)
+            {
                 var d_ResumeExp = jss.Deserialize<dynamic>(data);
                 Resume EditingResume = ResumeManager.GetResumeByID(Convert.ToInt32(d_ResumeExp["ResumeId"]));
                 if (!CanChangeOrViewData)
@@ -181,7 +181,7 @@ namespace VacancyManager.Controllers
                     CanChangeOrViewData = ApplicantManager.IsValidApplicant(EditingResume.ApplicantID, User.Identity.Name);
                 }
                 if (CanChangeOrViewData)
-                {                
+                {
                     ResumeManager.DeleteResumeExperience(Convert.ToInt32(d_ResumeExp["ExperienceId"]));
                     DeleteSuccess = true;
                     DeleteMessage = "Информация об опыте успешно удалена";
@@ -205,10 +205,10 @@ namespace VacancyManager.Controllers
             bool CanChangeOrViewData = UserCanExecuteAction;
             IEnumerable<object> Complex = new List<object>();
             Resume EditingResume = ResumeManager.GetResumeByID(id);
-          
+
             if (!CanChangeOrViewData)
             {
-               
+
                 CanChangeOrViewData = ApplicantManager.IsValidApplicant(EditingResume.ApplicantID, User.Identity.Name);
             }
             if (CanChangeOrViewData)
@@ -261,7 +261,7 @@ namespace VacancyManager.Controllers
                     {
                         CanChangeOrViewData = ApplicantManager.IsValidApplicant(EditingResume.ApplicantID, User.Identity.Name);
                     }
-           
+
                     if (CanChangeOrViewData)
                     {
                         if (IsRequire)
@@ -274,7 +274,7 @@ namespace VacancyManager.Controllers
                     }
                 }
 
- 
+
             }
 
             return Json(new
@@ -315,7 +315,9 @@ namespace VacancyManager.Controllers
                             Comments = u_exprequirement["Comments"].ToString();
                         }
 
-                        ResumeManager.UpdateExperienceRequirement(Id, Comments, IsRequire);
+                        if (Id != 0) { ResumeManager.UpdateExperienceRequirement(Id, Comments, IsRequire); }
+                        else { ResumeManager.CreateExperienceRequirement(ExperienceId, RequirementID, Comments, IsRequire); }
+                        
                         CreateSuccess = true;
                         CreateMessage = "Требования успешно созданы";
                     }

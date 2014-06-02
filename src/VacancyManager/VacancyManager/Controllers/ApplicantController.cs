@@ -8,10 +8,13 @@ using System.Web.Script.Serialization;
 using VacancyManager.Services;
 using System.Web.Security;
 using System.IO;
+using VacancyManager.Models.JSON;
+using System.Xml;
+
 
 namespace VacancyManager.Controllers
 {
-    
+
     public class ApplicantController : UserController
     {
 
@@ -31,9 +34,9 @@ namespace VacancyManager.Controllers
                            From = apps.From,
                            Text = apps.Text,
                            IsRead = apps.IsRead,
-                        //   Vacancy = (from cons in conslist
-                         //             where apps.ConsiderationId == cons.ConsiderationID
-                         //             select cons.Vacancy.Title).Single(),
+                           //   Vacancy = (from cons in conslist
+                           //             where apps.ConsiderationId == cons.ConsiderationID
+                           //             select cons.Vacancy.Title).Single(),
                            ConsiderationId = apps.ConsiderationId,
                            SendDate = apps.SendDate,
                            DeliveryDate = apps.DeliveryDate.Date.ToShortDateString(),
@@ -60,7 +63,8 @@ namespace VacancyManager.Controllers
                                {
                                    ApplicantID = appcons.ApplicantID,
                                    ConsiderationID = appcons.ConsiderationID,
-                                   Vacancy = appcons.Vacancy.Title
+                                   Vacancy = appcons.Vacancy.Title,
+                                   Status = appcons.ConsiderationStatus.Status
                                }).ToList();
             return Json(new
             {
@@ -96,7 +100,9 @@ namespace VacancyManager.Controllers
                         {
                             ApplicantID = CreatedConsideration.ApplicantID,
                             ConsiderationID = CreatedConsideration.ConsiderationID,
-                            Vacancy = Vac.Title
+                            Vacancy = Vac.Title,
+                            Status = CreatedConsideration.ConsiderationStatus
+
                         };
 
                         CreationMessage = "Соискатель успешно добавлен";
@@ -191,95 +197,54 @@ namespace VacancyManager.Controllers
 
 
         [HttpPost]
-        public ActionResult Create(string data)
+        public ActionResult Create(JsonApplicant applicant)
         {
             bool success = false;
             string resultMessage = "Ошибка при добавлении соискателя";
-            JavaScriptSerializer jss = new JavaScriptSerializer();
-            Applicant created = new Applicant();
-
-            if (data != null)
+            if (applicant != null)
             {
-                var obj = jss.Deserialize<dynamic>(data);
-                created = ApplicantManager.Create(obj["FullName"].ToString(), obj["FullNameEn"].ToString(), obj["ContactPhone"].ToString(), obj["Email"].ToString(), obj["Employed"]);
-                resultMessage = "Соискатель успешно добавлен";
-                success = true;
+                Tuple<string, bool> CreationStatus = applicant.AddToApplicantsStore();
+                resultMessage = CreationStatus.Item1;
+                success = CreationStatus.Item2;
             }
-            else
-                created = null;
 
-            return Json(new
-                {
-                    success = success,
-                    data = created,
-                    message = resultMessage
-                });
+            return Json(new { success = success, data = applicant, message = resultMessage });
         }
 
         [HttpPost]
-        public ActionResult Delete(string data)
+        public ActionResult Delete(JsonApplicant applicant)
         {
             bool success = false;
             string resultMessage = "Ошибка при удалении соискателя";
-            JavaScriptSerializer jss = new JavaScriptSerializer();
             bool CanChangeOrViewData = UserCanExecuteAction;
-            if (data != null)
+            if (applicant != null)
             {
-                var obj = jss.Deserialize<dynamic>(data);
-                if (!CanChangeOrViewData)
+                 if (!CanChangeOrViewData)
                 {
-                    CanChangeOrViewData = ApplicantManager.IsValidApplicant(obj["ApplicantID"], User.Identity.Name);
+                    CanChangeOrViewData = ApplicantManager.IsValidApplicant(applicant.ApplicantID, User.Identity.Name);
                 }
                 if (CanChangeOrViewData)
                 {
-                    ApplicantManager.Delete(obj["ApplicantID"]);
-                    resultMessage = "Соискатель успешно удален";
-                    success = true;
+                    Tuple<string, bool> DeleteStatus = applicant.DeleteFromApplicantsStore();
+                    resultMessage = DeleteStatus.Item1;
+                    success = DeleteStatus.Item2;
                 }
             }
-
-            return Json(new
-            {
-                success = success,
-                message = resultMessage
-            });
+            return Json(new {  success = success,  message = resultMessage });
         }
 
         [HttpPost]
-        public ActionResult Update(string data)
+        public ActionResult Update(JsonApplicant applicant)
         {
             bool success = false;
             string resultMessage = "Ошибка при изменении соискателя";
-            JavaScriptSerializer jss = new JavaScriptSerializer();
-            Applicant App = new Applicant();
-            object updated = null;
-
-            if (data != null)
+            if (applicant != null)
             {
-                var obj = jss.Deserialize<dynamic>(data);
-                App = ApplicantManager.Update(obj["ApplicantID"], obj["FullName"], obj["FullNameEn"], obj["ContactPhone"], obj["Email"], obj["Employed"]);
-                resultMessage = "Соискатель успешно изменен";
-                success = true;
+                Tuple<string, bool> UpdateStatus = applicant.UpdateInApplicantsStore();
+                resultMessage = UpdateStatus.Item1;
+                success = UpdateStatus.Item2;
             }
-
-            updated = new
-            {
-                ApplicantID = App.ApplicantID,
-                FullName = App.FullName,
-                FullNameEn = App.FullNameEn,
-                ContactPhone = App.ContactPhone,
-                Employed = App.Employed,
-                Email = App.Email,
-                Requirements = ""
-            };
-
-            return Json(new
-            {
-                success = success,
-                data = updated,
-                message = resultMessage
-            });
+            return Json(new { success = success, data = applicant, message = resultMessage });
         }
-
     }
 }

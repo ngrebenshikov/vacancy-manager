@@ -142,7 +142,7 @@
     <comment>Столбец таблицы из вкладки пользователи</comment>
   </data>
   <data name="UserCreationDate" xml:space="preserve">
-    <value>Дата создания</value>
+    <value>Дата &lt;br&gt;создания</value>
     <comment>Столбец таблицы из вкладки пользователи</comment>
   </data>
   <data name="UserEmail" xml:space="preserve">
@@ -166,11 +166,11 @@
     <comment>Столбец таблицы из вкладки пользователи</comment>
   </data>
   <data name="UserLastLoginDate" xml:space="preserve">
-    <value>Последний визит</value>
+    <value>Последний &lt;br&gt; визит</value>
     <comment>Столбец таблицы из вкладки пользователи</comment>
   </data>
   <data name="UserName" xml:space="preserve">
-    <value>Имя пользователя</value>
+    <value>Имя &lt;br&gt;пользователя</value>
     <comment>Столбец таблицы из вкладки пользователи</comment>
   </data>
   <data name="UserRoles" xml:space="preserve">

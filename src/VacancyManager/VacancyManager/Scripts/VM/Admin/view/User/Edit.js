@@ -29,6 +29,7 @@
                 xtype: 'panel',
                 flex: 1,
                 bodyPadding: 5,
+                border: true, 
                 title: 'Роли',
                 items: [{
                     xtype: 'dataview',
@@ -68,6 +69,7 @@ VM.view.User.Edit.implement({
     }
   }
 });
+
 function oncheck(str)
 {
   changed = true;

@@ -801,7 +801,7 @@ namespace VacancyManager.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Дата создания.
+        ///   Looks up a localized string similar to Дата &lt;br&gt;создания.
         /// </summary>
         public static string UserCreationDate {
             get {
@@ -846,7 +846,7 @@ namespace VacancyManager.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Последний визит.
+        ///   Looks up a localized string similar to Последний &lt;br&gt; визит.
         /// </summary>
         public static string UserLastLoginDate {
             get {
@@ -864,7 +864,7 @@ namespace VacancyManager.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Имя пользователя.
+        ///   Looks up a localized string similar to Имя &lt;br&gt;пользователя.
         /// </summary>
         public static string UserName {
             get {
