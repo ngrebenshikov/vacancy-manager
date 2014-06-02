@@ -45,10 +45,12 @@ Ext.define('VM.view.resume.Edit', {
                  }, {
                      itemId: 'step-3',
                      xtype: 'ThirdStep',
+                     frame: true,
                      margin: 10
                  }, {
                      itemId: 'step-4',
                      xtype: 'FouthStep',
+                     frame: true,
                      margin: 10
                  }, {
                      itemId: 'step-5',

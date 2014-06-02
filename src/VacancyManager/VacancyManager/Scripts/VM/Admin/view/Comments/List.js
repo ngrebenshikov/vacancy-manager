@@ -17,7 +17,7 @@ Ext.define('VM.view.Comments.List', {
   	        },
             {
                 sortable: false,
-                width: 90,
+                width: 110,
                 text: 'Дата',
                 menuDisabled: true,
                 xtype: 'templatecolumn',

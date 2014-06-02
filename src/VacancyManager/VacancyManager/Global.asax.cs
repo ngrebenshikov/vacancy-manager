@@ -54,6 +54,7 @@ namespace VacancyManager
             RegisterGlobalFilters(GlobalFilters.Filters);
             RegisterRoutes(RouteTable.Routes);
             SysConfigManager.CreateDefaultSysConfigParams();
+            ConsiderationsManager.CreateDefaultConsiderationStatuses();
             appShecluder.Start(refreshtime);
             //Проверка есть ли админ
             VMMembershipUser user = (VMMembershipUser)Membership.GetUser("admin", false);

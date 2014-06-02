@@ -3,7 +3,9 @@
     alias: 'widget.WizardMenu',
     region: 'west',
     border: true,
+    frame: true,
     bodyPadding: 5,
+    margins: '5 5 5 5',
     split: true,
     layout: {
         type: 'vbox',

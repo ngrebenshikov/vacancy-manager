@@ -1,36 +1,37 @@
-﻿
-Ext.define('VM.view.Admin.Main', {
+﻿Ext.define('VM.view.Admin.Main', {
     extend: 'Ext.panel.Panel',
     alias: 'widget.AdminMain',
     id: 'MainTabPanel',
     activeTab: 0,
+    bodyStyle: 'background-image: Url(/Content/icons/square.gif);',
     layout: {
         type: 'hbox',
         align: 'stretch'
     },
-    bodyPadding: 10,
+    bodyPadding: '20 40 20 40',
     initComponent: function () {
         Ext.applyIf(this, {
             items: [{
                 xtype: 'panel',
                 region: 'west',
-                width: 150,
+                width: 170,
                 tabIndex: 1,
                 layout: 'vbox',
+                bodyStyle: 'background-image: Url(/Content/icons/square.gif);',
                 border: false,
                 items: [{
                     xtype: 'button',
                     pressed: true,
-                    width: 130,
+                    width: 140,
                     icon: '/Content/icons/list.png',
                     text: 'Вакансии',
                     tabIndex: 1,
                     iconAlign: 'left',
                     textAlign: 'left',
+                    height: 30,
                     toggleGroup: 'MainGroup',
-                    enableToggle: true,
-                    scale: 'medium',
-                    margin: '0 0 1 0',
+                    enableToggle: true,        
+                    margin: '0 0 4 0',
                     handler: function (button) {
                         var wizard = Ext.getCmp('Containers');
                         wizard.getLayout().setActiveItem('MainMenuItem' + button.tabIndex);
@@ -40,14 +41,14 @@ Ext.define('VM.view.Admin.Main', {
                     pressed: false,
                     iconAlign: 'left',
                     textAlign: 'left',
-                    width: 130,
+                    width: 140,
                     text: Strings.Users,
                     tabIndex: 2,
                     icon: '/Content/icons/group.png',
                     toggleGroup: 'MainGroup',
-                    scale: 'medium',
                     enableToggle: true,
-                    margin: '0 0 1 0',
+                    margin: '0 0 4 0',
+                    height: 30,
                     handler: function (button) {
                         var wizard = Ext.getCmp('Containers');
                         wizard.getLayout().setActiveItem('MainMenuItem' + button.tabIndex);
@@ -55,16 +56,16 @@ Ext.define('VM.view.Admin.Main', {
                 }, {
                     xtype: 'button',
                     pressed: false,
-                    width: 130,
+                    width: 140,
                     text: Strings.RequirementsTabTitle,
                     tabIndex: 3,
                     icon: '/Content/icons/doc-m.png',
                     iconAlign: 'left',
                     textAlign: 'left',
                     toggleGroup: 'MainGroup',
-                    scale: 'medium',
                     enableToggle: true,
-                    margin: '0 0 1 0',
+                    height: 30,
+                    margin: '0 0 4 0',
                     handler: function (button) {
                         var wizard = Ext.getCmp('Containers');
                         wizard.getLayout().setActiveItem('MainMenuItem' + button.tabIndex);
@@ -72,16 +73,16 @@ Ext.define('VM.view.Admin.Main', {
                 }, {
                     xtype: 'button',
                     pressed: false,
-                    width: 130,
+                    width: 140,
                     text: Strings.Applicants,
                     icon: '/Content/icons/user.png',
                     tabIndex: 4,
                     iconAlign: 'left',
                     textAlign: 'left',
                     toggleGroup: 'MainGroup',
-                    scale: 'medium',
                     enableToggle: true,
-                    margin: '0 0 1 0',
+                    margin: '0 0 4 0',
+                    height: 30,
                     handler: function (button) {
                         var wizard = Ext.getCmp('Containers');
                         wizard.getLayout().setActiveItem('MainMenuItem' + button.tabIndex);
@@ -89,7 +90,7 @@ Ext.define('VM.view.Admin.Main', {
                 }, {
                     xtype: 'button',
                     pressed: false,
-                    width: 130,
+                    width: 140,
                     text: Strings.MailMessages,
                     icon: '/Content/icons/email.png',
                     tabIndex: 5,
@@ -97,9 +98,9 @@ Ext.define('VM.view.Admin.Main', {
                     textAlign: 'left',
                     id: 'MessagesTab',
                     toggleGroup: 'MainGroup',
-                    scale: 'medium',
                     enableToggle: true,
-                    margin: '0 0 1 0',
+                    margin: '0 0 4 0',
+                    height: 30,
                     handler: function (button) {
                         var wizard = Ext.getCmp('Containers');
                         wizard.getLayout().setActiveItem('MainMenuItem' + button.tabIndex);
@@ -107,7 +108,7 @@ Ext.define('VM.view.Admin.Main', {
                 }, {
                     xtype: 'button',
                     pressed: false,
-                    width: 130,
+                    width: 140,
                     text: 'Конфигурация',
                     icon: '/Content/icons/config.png',
                     tabIndex: 6,
@@ -115,36 +116,36 @@ Ext.define('VM.view.Admin.Main', {
                     textAlign: 'left',
                     id: 'ConfigTab',
                     toggleGroup: 'MainGroup',
-                    scale: 'medium',
                     enableToggle: true,
-                    margin: '0 0 1 0',
+                    margin: '0 0 4 0',
+                    height: 30,
                     handler: function (button) {
                         var wizard = Ext.getCmp('Containers');
                         wizard.getLayout().setActiveItem('MainMenuItem' + button.tabIndex);
                     }
                 }, {
                     xtype: 'component',
-                    width: 130,
+                    width: 140,
                     html: '<hr><br>'
                 }, {
                     xtype: 'button',
-                    width: 130,
+                    width: 140,
                     text: 'Сменить пароль',
                     icon: '/Content/icons/ban.gif',
                     action: 'passworChangeManager',
                     iconAlign: 'left',
                     textAlign: 'left',
-                    scale: 'medium',
+                    height: 30,
                     margin: '0 0 1 0'
                 }, {
                     xtype: 'component',
-                    width: 130,
+                    width: 140,
                     html: '<hr><br>'
                 }, {
                     xtype: 'button',
-                    scale: 'medium',
-                    width: 130,
+                    width: 140,
                     text: 'Выход',
+                    height: 30,
                     handler: function () {
                         Ext.Ajax.request({
                             url: '../../VMUser/ExtJSLogOff',
@@ -159,7 +160,6 @@ Ext.define('VM.view.Admin.Main', {
                 xtype: 'form',
                 id: 'Containers',
                 flex: 1,
-                split: true,
                 border: false,
                 layout: 'card',
                 items: [{
@@ -173,20 +173,17 @@ Ext.define('VM.view.Admin.Main', {
                     xtype: 'UserList'
                 }, {
                     xtype: 'panel',
-                    border: true,
-                    frame: true,
-                    title: Strings.RequirementsTabTitle,
+                    border: false,
+                    bodyStyle: 'background-color: #fff;',
                     itemId: 'MainMenuItem3',
                     layout: {
                         type: 'border'
                     },
                     items: [{
                         xtype: 'RequirementStackList',
-                        split: true,
                         region: 'west'
                     }, {
                         xtype: 'RequirementListInStackList',
-                        split: true,
                         region: 'center'
                     }]
                 }, {

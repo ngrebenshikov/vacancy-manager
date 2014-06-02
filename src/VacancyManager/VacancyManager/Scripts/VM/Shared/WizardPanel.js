@@ -10,6 +10,8 @@
     alias: 'widget.WizardPanel',
     region: 'center',
     layout: 'card',
+    margins: '5 5 5 5',
+    frame: true,
     defaults: {
         border: false,
         bodyPadding: 10

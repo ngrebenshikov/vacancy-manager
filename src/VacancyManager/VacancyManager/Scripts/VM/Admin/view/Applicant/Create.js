@@ -32,6 +32,7 @@
         this.buttons =
         [{
             text: Strings.btnAdd,
+            id: 'btnAddApplicant',
             icon: '/ExtLib/resources/icons/accept.gif',
             action: 'CreateApplicant',
             listeners: {

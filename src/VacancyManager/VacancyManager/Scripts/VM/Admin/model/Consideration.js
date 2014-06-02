@@ -14,6 +14,12 @@ Ext.define('VM.model.Consideration', {
                      name: 'ApplicantID',
                      type: 'int'
                  }, {
+                     name: 'ConsiderationStatusId',
+                     type: 'int'
+                 }, {
+                     name: 'Status',
+                     type: 'string'
+                 }, {
                      name: 'FullName',
                      type: 'string'
                  }, {
@@ -32,7 +38,26 @@ Ext.define('VM.model.Consideration', {
                  }, {
                      name: 'Vacancy',
                      type: 'string'
-                 }
-
-        ]
+                 }],
+    proxy: {
+        type: 'ajax',
+        api: {
+            read: '/Considerations/Load',
+            create: '/Considerations/Create',
+            update: '/Considerations/Update',
+            destroy: '/Considerations/Delete'
+        },
+        reader: {
+            type: 'json',
+            root: 'data',
+            totalProperty: 'total'
+        },
+        writer: {
+            type: 'json',
+            listful: true,
+            writeAllFields: true,
+            allowSingle: false,
+            root: 'considerations'
+        }
+    }
 });

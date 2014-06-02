@@ -3,6 +3,7 @@ Ext.define('VM.view.RequirementListInStack.List', {
     alias: 'widget.RequirementListInStackList',
     title: Strings.RequirementListinStack,
     store: 'RequirementListInStack',
+    frame: true,
     columns: [
       { text: Strings.TitleRequirementName, menuDisabled: true, dataIndex: 'Name', flex: 1 },
       { text: Strings.TitleRequirementNameEn, menuDisabled: true, dataIndex: 'NameEn', flex: 1 },

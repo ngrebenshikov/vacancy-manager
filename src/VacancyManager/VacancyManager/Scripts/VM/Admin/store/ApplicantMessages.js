@@ -1,5 +1,4 @@
-﻿Ext.define('VM.store.ApplicantMessages',
-{
+﻿Ext.define('VM.store.ApplicantMessages', {
     extend: 'VM.store.BaseStore',
     model: 'VM.model.ApplicantMessage',
     id: 'MailMessageStore',

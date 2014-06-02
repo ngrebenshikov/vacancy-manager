@@ -4,6 +4,7 @@
     region: 'center',
     border: false,
     layout: 'fit',
+    plain: true,
     padding: '0 0 0 5',
     items: [
     { title: Strings.Skills,
@@ -11,21 +12,23 @@
         id: 'SkillsTab',
         items: [
           {
-              xtype: 'AppReqsList'
+              xtype: 'AppReqsList',
+              border: true
           }]
     }, {
         title: 'Резюме',
         layout: 'fit',
         items: [
            {
-               xtype: 'resumeList'
+               xtype: 'resumeList',
+               border: true
            }]
        }, {
            title: 'Вакансии',
            layout: 'fit',
-           items: [
-           {
-               xtype: 'applicantConsiderationsList'
+           items: [{
+               xtype: 'applicantConsiderationsList',
+               border: true
            }]
 
     }]

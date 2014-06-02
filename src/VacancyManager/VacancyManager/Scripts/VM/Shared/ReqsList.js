@@ -12,11 +12,14 @@ Ext.define('VM.Shared.ReqsList', {
     extend: 'Ext.grid.Panel',
     alias: 'widget.ReqsList',
     id: 'resReqsGrid',
-    frame: false,
+    frame: true,
     plugins: [cellEditing],
-    features: [Ext.create('Ext.grid.feature.Grouping', {
-        groupHeaderTpl: '{name}: ' + Strings.Skills + ' ({rows.length})'
-    })],
+    features: [{
+        ftype: 'grouping',
+        groupHeaderTpl: '{name}',
+        hideGroupedHeader: true,
+        id: 'reqsGrouping'
+    }],
 
     title: Strings.Skills,
 

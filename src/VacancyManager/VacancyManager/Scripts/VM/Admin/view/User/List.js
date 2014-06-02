@@ -50,47 +50,44 @@
                 renderer: Ext.util.Format.dateRenderer('d.m.Y')
             }, {
                 dataIndex: 'LastLoginDate',
-                text: 'Последний \n визит',
+                header: Strings.UserLastLoginDate,
                 align: 'center',
                 width: 95,
-                sortable: true,
+                sortable: false,
                 menuDisabled: true,
                 renderer: Ext.util.Format.dateRenderer('d.m.Y')
             }, {
                 header: 'Последняя блокировка',
-                columns: [
-                          {
-                              dataIndex: 'LastLockedOutDate',
-                              header: Strings.UserLastLockedOutDate,
-                              align: 'center',
-                              width: 70,
-                              sortable: true,
-                              menuDisabled: true,
-                              renderer: Ext.util.Format.dateRenderer('d.m.Y')
-                          },
-                          {
-                              dataIndex: 'LastLockedOutReason',
-                              align: 'center',
-                              header: Strings.UserLastLockedOutReason,
-                              width: 270,
-                              sortable: false,
-                              menuDisabled: true
-                          }]
+                columns: [{
+                    dataIndex: 'LastLockedOutDate',
+                    header: Strings.UserLastLockedOutDate,
+                    align: 'center',
+                    width: 70,
+                    sortable: true,
+                    menuDisabled: true,
+                    renderer: Ext.util.Format.dateRenderer('d.m.Y')
+                }, {
+                    dataIndex: 'LastLockedOutReason',
+                    align: 'center',
+                    header: Strings.UserLastLockedOutReason,
+                    width: 220,
+                    sortable: false,
+                    menuDisabled: true
+                }]
             }, {
                 dataIndex: 'IsActivated',
                 align: 'center',
                 header: Strings.UserList_IsActivated,
-                width: 80,
+                width: 90,
                 sortable: false,
                 menuDisabled: true,
                 renderer: function (value) {
                     var cssPrefix = Ext.baseCSSPrefix,
-                        cls = [cssPrefix + 'grid-checkheader'];
-
+                        cls = [cssPrefix + 'grid-checkcolumn'];
                     if (value) {
-                        cls.push(cssPrefix + 'grid-checkheader-checked');
+                        cls.push(cssPrefix + 'grid-checkcolumn-checked');
                     }
-                    return '<div class="' + cls.join(' ') + '">&#160;</div>';
+                    return '<center><div class="' + cls.join(' ') + '">&#160;</div></center>';
                 }
             }, {
                 dataIndex: 'IsLockedOut',
@@ -101,13 +98,11 @@
                 menuDisabled: true,
                 renderer: function (value) {
                     var cssPrefix = Ext.baseCSSPrefix,
-                        cls = [cssPrefix + 'grid-checkheader'];
-
+                        cls = [cssPrefix + 'grid-checkcolumn'];
                     if (value) {
-                        cls.push(cssPrefix + 'grid-checkheader-checked');
+                        cls.push(cssPrefix + 'grid-checkcolumn-checked');
                     }
-
-                    return '<div class="' + cls.join(' ') + '">&#160;</div>';
+                    return '<center><div class="' + cls.join(' ') + '">&#160;</div></center>';
                 }
             }],
 

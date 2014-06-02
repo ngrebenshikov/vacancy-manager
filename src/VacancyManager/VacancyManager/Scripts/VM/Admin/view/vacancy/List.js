@@ -4,6 +4,7 @@
     id: 'vacancyGrid',
     frame: true,
     border: true,
+    layout: 'fit',
     viewConfig: {
         id: 'Vacancygv',
         // autoScroll: true,
@@ -14,7 +15,7 @@
         ptype: 'rowexpander',
         expandOnDblClick: false,
         selectRowOnExpand: true,
-        rowBodyTpl: ['<div class="ux-row-expander-box"></div>']
+        rowBodyTpl: ['<div id="VacancyConsiderationGridRow-{VacancyID}" ></div>']
     }],
 
     initComponent: function () {
@@ -75,7 +76,7 @@
     {
         text: 'Удалить вакансию',
         action: 'deleteVacancy',
-        icon: '/Content/icons/delete.gif',
+        icon: '/Content/icons/delete.gif'
     }],
       vacancyGrid.callParent(arguments);
     }

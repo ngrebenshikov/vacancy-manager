@@ -23,7 +23,6 @@
         [{
             xtype: 'textfield',
             fieldLabel: 'На русском языке',
-            id: 'ApplicantFullName',
             labelAlign: 'top',
             name: 'FullName',
             allowBlank: false,
@@ -32,7 +31,6 @@
         },
         {
             xtype: 'textfield',
-            id: 'ApplicantFullNameEn',
             labelAlign: 'top',
             fieldLabel: 'На английском языке',
             name: 'FullNameEn',
@@ -49,7 +47,6 @@
         items:
         [{
             xtype: 'textfield',
-            id: 'ApplicantContactPhone',
             name: 'ContactPhone',
             anchor: '100%',
             maxLength: 16,
@@ -66,7 +63,6 @@
         items:
         [{
             xtype: 'textfield',
-            id: 'ApplicantEmail',
             name: 'Email',
             anchor: '100%',
             vtype: 'email',
@@ -81,7 +77,6 @@
         items:
         [{ 
             xtype: 'checkbox',
-            id: 'ApplicantEmployed',
             name: 'Employed',
             boxLabel: 'Трудоустроен',
             checked: 'true'

@@ -122,7 +122,8 @@ namespace VacancyManager.Controllers
             bool UpdateSuccess = false,
                  CanChangeOrViewData = UserCanExecuteAction;
             string UpdateMessage = "При изменении требований произошла ошибка";
-
+            List<object> CreatedReqs = new List<object>();
+            ResumeRequirement CreatedResumeReq = new ResumeRequirement();
 
             if (data != null)
             {
@@ -147,7 +148,21 @@ namespace VacancyManager.Controllers
                     if (CanChangeOrViewData)
                     {
 
-                        ResumeManager.UpdateResumeRequirement(Id, Comments, IsRequire);
+                        if (Id != 0) { CreatedResumeReq =  ResumeManager.UpdateResumeRequirement(Id, Comments, IsRequire); }
+                        else {CreatedResumeReq = ResumeManager.CreateResumeRequirement(ResumeID, RequirementID, Comments, IsRequire); }
+
+                        CreatedReqs.Add(new
+                        {
+                            Id = CreatedResumeReq.Id,
+                            StackName = u_resumerequirement["StackName"],
+                            ResumeId = u_resumerequirement["ResumeId"],
+                            RequirementStackID = u_resumerequirement["RequirementStackID"],
+                            RequirementID = u_resumerequirement["RequirementID"],
+                            RequirementName = u_resumerequirement["RequirementName"],
+                            Comments = u_resumerequirement["Comments"],
+                            IsRequire = u_resumerequirement["IsRequire"],
+                        });
+
                         UpdateSuccess = true;
                         UpdateMessage = "Требования успешно изменены";
                     }
@@ -158,6 +173,7 @@ namespace VacancyManager.Controllers
             return Json(new
             {
                 success = UpdateSuccess,
+                ResumeRequirements = CreatedReqs,
                 message = UpdateMessage
             });
         }

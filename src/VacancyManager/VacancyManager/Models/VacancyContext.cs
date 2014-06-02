@@ -24,12 +24,14 @@ namespace VacancyManager.Models
     public DbSet<Attachment> Attachments { get; set; }
     public DbSet<ResumeRequirement> ResumeRequirements { get; set; }
     public DbSet<ExperienceRequirement> ExperienceRequirements { get; set; }
+    public DbSet<ConsiderationStatus> ConsiderationStatuses { get; set; }
+
     protected override void OnModelCreating(DbModelBuilder modelBuilder)
     {
       /*
        * Если не написать сл. строчку таблицы будут иметь вид Comments/Files/Users и т.д,
        * В нашем проекте таблицы будут иметь одиночное значение.
-       */
+       */   
       modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
     }
   }

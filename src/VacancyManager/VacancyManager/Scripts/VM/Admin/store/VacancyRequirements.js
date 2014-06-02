@@ -14,20 +14,15 @@
         },
         reader: {
             type: 'json',
-            root: 'VacancyRequirements',
+            root: 'data',
             totalProperty: 'total'
         },
         writer: {
             type: 'json',
-            encode: false,
             listful: true,
+            allowSingle: false,
             writeAllFields: true,
-            allowSingle: true,
-            root: 'data',
-            getRecordData: function (record) {
-                return Ext.JSON.encode(record.data);
-            }
-        },
-        headers: { 'Content-Type': 'application/json; charset=UTF-8' }
+            root: 'vacancyRequirements'
+        }
     }
 });

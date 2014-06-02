@@ -60,6 +60,7 @@ namespace VacancyManager.Controllers
                     else
                         result.Add(new
                         {
+                            Id = "",
                             StackId = stack[0].Id,
                             ApplicantId = id,
                             StackName = stack[0].Name,
@@ -84,6 +85,7 @@ namespace VacancyManager.Controllers
 
                     result.Add(new
                     {
+                        Id = "",
                         StackId = stack[0].Id,
                         StackName = stack[0].Name,
                         RequirementId = req.RequirementID,
@@ -166,7 +168,14 @@ namespace VacancyManager.Controllers
                     for (int i = 0; i <= data.Length - 1; i++)
                     {
                         var obj = jss.Deserialize<dynamic>(data[i]);
-                        ApplicantRequirementsManager.Update(obj["Id"], obj["CommentText"], obj["IsChecked"]);
+                        if (obj["Id"] != 0)
+                        {
+                            ApplicantRequirementsManager.Update(obj["Id"], obj["CommentText"], obj["IsChecked"]);
+                        }
+                        else
+                        {
+                            ApplicantRequirementsManager.Create(obj["ApplicantId"], obj["RequirementId"], obj["CommentText"], obj["IsChecked"]);
+                        }
                         resultMessage = "Навык успешно добавлен";
                         success = true;
                     }

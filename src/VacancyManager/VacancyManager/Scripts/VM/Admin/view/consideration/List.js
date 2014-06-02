@@ -1,56 +1,59 @@
-﻿Ext.define('VM.view.consideration.List', {
+﻿
+Ext.define('VM.view.consideration.List', {
     extend: 'Ext.grid.Panel',
     alias: 'widget.considerationList',
-    height: 180,
-    border: false,
+    height: 200,
+    border: true,
     vacancy: undefined,
     padding: '5 0 0 0',
-    autoSizeColumns: true,
-    autoHeight: true,
-    forceFit: true,
     frame: false,
-    split: true,
-    columns: [
-            {
-                text: Strings.FullName,
-                sortable: true,
-                width: 150,
-                dataIndex: 'FullName'
-            }, {
-                text: 'Текст комментария',
-                flex: 1,
-                width: 200,
-                sortable: false,
-                dataIndex: 'LastCommentBody'
-            }, {
-                text: 'Дата комментария',
-                width: 120,
-                xtype: 'datecolumn',
-                format: 'd.m.Y',
-                align: 'center',
-                sortable: false,
-                dataIndex: 'LastCommentDate'
-            }, {
-                text: 'Комментариев',
-                align: 'center',
-                width: 120,
-                sortable: false,
-                dataIndex: 'CommentsCount'
-            }
-        ],
-    bbar:
-     [{
-        text: Strings.btnAddConsideration,
-        action: 'loadBlankConsideration' 
-    }, {
-        text: Strings.btnCommentsView,
-        action: 'loadComments' 
-    }, {
-        text: 'Почтовые сообщения',
-        action: 'loadMessages' 
-    }, {
-        text: Strings.btnDeleteConsideration,
-        action: 'deleteConsideration'
+    initComponent: function () {
+
+        this.columns = [{
+            text: Strings.FullName,
+            sortable: true,
+            menuDisabled: true,
+            width: 150,
+            dataIndex: 'FullName'
+        }, {
+            text: 'Текст комментария',
+            flex: 1,
+            sortable: false,
+            menuDisabled: true,
+            dataIndex: 'LastCommentBody'
+        }, {
+            text: 'Комментариев',
+            align: 'center',
+            width: 120,
+            sortable: false,
+            menuDisabled: true,
+            dataIndex: 'CommentsCount'
+        }, {
+            text: 'Статус заявки',
+            width: 140,
+            align: 'center',
+            sortable: false,
+            menuDisabled: true,
+            dataIndex: 'Status'
+        }];
+
+        this.bbar = [{
+            text: Strings.btnAddConsideration,
+            action: 'loadBlankConsideration'
+        }, {
+            text: Strings.btnCommentsView,
+            action: 'loadComments'
+        }, {
+            text: 'Почтовые сообщения',
+            action: 'loadMessages'
+        }, '-', {
+            text: 'Изменить статус',
+            action: 'changeStatus'
+        }, '->', {
+            text: Strings.btnDeleteConsideration,
+            action: 'deleteConsideration'
+        }];
+
+        this.callParent(arguments);
     }
-   ],
 });

@@ -2,84 +2,76 @@
 using System.Collections.Generic;
 using System.Linq;
 using VacancyManager.Models;
-using System.Security.Cryptography;
+using VacancyManager.Models.JSON;
 
 namespace VacancyManager.Services.Managers
 {
-  internal static class VacancyDbManager
-  {
-    static private MD5 crypto = MD5.Create();
-
-    internal static Vacancy GetVacancyByID(int VacId)
+    internal static class VacancyDbManager
     {
-        VacancyContext _db = new VacancyContext();
-        return _db.Vacancies.Where(vac => vac.VacancyID == VacId).FirstOrDefault();
-    }
 
-    internal static Vacancy GetVacancy(string speckey)
-    {   
-        VacancyContext _db = new VacancyContext();
-        return _db.Vacancies.Where(vac => vac.SpecialKey == speckey).FirstOrDefault();
-    }
-
-    internal static IEnumerable<Vacancy> AllVisibleVacancies()
-    {
-      VacancyContext _db = new VacancyContext();
-      return _db.Vacancies.Where(vacancy => vacancy.IsVisible).ToList();
-    }
-
-    internal static Vacancy CreateVacancy(string title, string description, DateTime? openingDate, string requirments, bool isVisible)
-    {
-      VacancyContext _db = new VacancyContext();
-      var vacancies = new Vacancy
-                                { VacancyID = -1,
-                                  Title = title,
-                                  Description = description,
-                                  SpecialKey = Guid.NewGuid().ToString().Replace("-","").ToLower(),
-                                  OpeningDate = openingDate,
-                                  Requirments = requirments,
-                                  IsVisible = isVisible
-                             };
-
-      _db.Vacancies.Add(vacancies);
-      _db.SaveChanges();
-
-      return vacancies;
-
-    }
-
-    internal static Vacancy UpdateVacancy(int vacancyid, string title, string description, DateTime? openingDate, bool isVisible)
-    {
-      VacancyContext _db = new VacancyContext();
-
-      var update_rec = _db.Vacancies.SingleOrDefault(a => a.VacancyID == vacancyid);
-
-             
-      if (update_rec != null)
-      {
-        update_rec.Title = title;
-        update_rec.Description = description;
-        update_rec.OpeningDate = openingDate;
-        if (update_rec.SpecialKey == null)
+        internal static Vacancy GetVacancyByID(int VacId)
         {
-            update_rec.SpecialKey = Guid.NewGuid().ToString().Replace("-","").ToLower();
+            VacancyContext _db = new VacancyContext();
+            return _db.Vacancies.Where(vac => vac.VacancyID == VacId).FirstOrDefault();
         }
-        update_rec.IsVisible = isVisible;
-        _db.SaveChanges();
-      }
-      return update_rec;
 
+        internal static Vacancy GetVacancy(string speckey)
+        {
+            VacancyContext _db = new VacancyContext();
+            return _db.Vacancies.Where(vac => vac.SpecialKey == speckey).FirstOrDefault();
+        }
+
+        internal static IEnumerable<Vacancy> AllVisibleVacancies()
+        {
+            VacancyContext _db = new VacancyContext();
+            return _db.Vacancies.Where(vacancy => vacancy.IsVisible).ToList();
+        }
+
+        internal static int CreateVacancy(JsonVacancy NewVacancy)
+        {
+            VacancyContext _db = new VacancyContext();
+            Vacancy vacancy = new Vacancy
+                                      {
+                                          VacancyID = -1,
+                                          Title = NewVacancy.Title,
+                                          Description = NewVacancy.Description,
+                                          SpecialKey = Guid.NewGuid().ToString().Replace("-", "").ToLower(),
+                                          OpeningDate = Convert.ToDateTime(NewVacancy.OpeningDate),
+                                          IsVisible = NewVacancy.IsVisible
+                                      };
+
+            _db.Vacancies.Add(vacancy);
+            _db.SaveChanges();
+
+            return vacancy.VacancyID;
+
+        }
+
+        internal static Vacancy UpdateVacancy(JsonVacancy UpdateVacancy)
+        {
+            VacancyContext _db = new VacancyContext();
+            Vacancy update_rec = _db.Vacancies.SingleOrDefault(a => a.VacancyID == UpdateVacancy.VacancyID);
+            if (update_rec != null)
+            {
+                update_rec.Title = UpdateVacancy.Title;
+                update_rec.Description = UpdateVacancy.Description;
+                update_rec.OpeningDate = Convert.ToDateTime(UpdateVacancy.OpeningDate);
+                if (update_rec.SpecialKey == null) { update_rec.SpecialKey = Guid.NewGuid().ToString().Replace("-", "").ToLower(); }
+                update_rec.IsVisible = UpdateVacancy.IsVisible;
+                _db.SaveChanges();
+            }
+            return update_rec;
+        }
+
+        internal static void DeleteVacancy(int vacancyid)
+        {
+            VacancyContext _db = new VacancyContext();
+            var delete_rec = _db.Vacancies.SingleOrDefault(a => a.VacancyID == vacancyid);
+
+            if (delete_rec == null) return;
+
+            _db.Vacancies.Remove(delete_rec);
+            _db.SaveChanges();
+        }
     }
-
-    internal static void DeleteVacancy(int vacancyid)
-    {
-      VacancyContext _db = new VacancyContext();
-      var delete_rec = _db.Vacancies.SingleOrDefault(a => a.VacancyID == vacancyid);
-
-      if (delete_rec == null) return;
-
-      _db.Vacancies.Remove(delete_rec);
-      _db.SaveChanges();
-    }
-  }
 }

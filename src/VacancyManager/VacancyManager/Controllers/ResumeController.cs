@@ -380,6 +380,7 @@ namespace VacancyManager.Controllers
                                   Date = res.Date.ToShortDateString(),
                                   Training = res.Training,
                                   AdditionalInformation = res.AdditionalInformation,
+                                  Lanquage = res.Lanquage,
                                   StartDate = res.Period,
                                   Position = res.Position,
                                   Summary = res.Summary
@@ -438,7 +439,6 @@ namespace VacancyManager.Controllers
                 message = resultMessage
             });
         }
-
 
         [HttpPost]
         public ActionResult DeleteResume(string data) //(int id)
