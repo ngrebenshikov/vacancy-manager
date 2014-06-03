@@ -1,29 +1,37 @@
 ﻿Ext.define('VM.view.Resume.List', {
     extend: 'Ext.grid.Panel',
     alias: 'widget.resumeList',
-    autoSizeColumns: true,
     id: 'ApplicantRes',
     store: 'Resume',
-    columns:
-    [{
-        header: 'Дата',
+    columns: [{
+        text: 'Дата',
         dataIndex: 'Date',
+        align: 'center',
         sortable: false,
         menuDisabled: true,
-        flex: 1
-
+        width: 100
     }, {
-        header: 'Резюме',
-        dataIndex: 'ResumeId',
+        text: 'Язык заполнения',
+        dataIndex: 'LanquageID',
         sortable: false,
+        align: 'center',
         menuDisabled: true,
-        flex: 1
+        flex: 1,
+        renderer: function (value) {
+            var cssPrefix = Ext.baseCSSPrefix,
+               Lang = 'Русский';
+            if (value == 2) {
+                Lang = 'English';
+            }
+            return Lang;
+        }
     }, {
-        header: 'Интервал резюме',
+        text: 'Интервал резюме',
         dataIndex: 'StartDate',
         sortable: false,
+        align: 'center',
         menuDisabled: true,
-        flex: 1
+        flex: 2
     }, {
         xtype: 'actioncolumn',
         width: 30,
@@ -55,15 +63,15 @@
                     url: '../../Resume/CreateResumeCopy/' + record.getId(),
                     success: function (result, request) {
                         var JsonResult = Ext.JSON.decode(result.responseText);
-
                         var newResume = Ext.create('VM.model.Resume', {
                             ResumeId: JsonResult.resume.ResumeId,
                             Position: JsonResult.resume.Position,
                             Summary: JsonResult.resume.Summary,
+                            LanquageID: JsonResult.resume.LanquageID,
+                            StartDate: JsonResult.resume.StartDate,
                             Training: JsonResult.resume.Training,
                             Date: JsonResult.resume.Date
                         });
-
                         resumeStore.insert(0, newResume);
                     }
                 });
@@ -76,7 +84,7 @@
         text: Strings.btnAdd,
         icon: '/Content/icons/add.gif',
         name: 'btnAdd',
-        id: 'Add',
+        id: 'AddResumeToApplicant',
         action: 'CreateResume'
     }, {
         text: 'Редактировать',

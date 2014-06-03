@@ -1,12 +1,12 @@
-﻿Ext.define('VM.view.MailMessage.ViewMessage',
-{
+﻿Ext.define('VM.view.MailMessage.ViewMessage', {
     extend: 'Ext.window.Window',
     alias: 'widget.MailMessageView',
     requires: ['Ext.form.Panel'],
     title: 'Просмотр сообщения',
     buttonAlign: 'center',
+    modal: true,
     width: 455,
-    height: 395,
+    height: 410,
     items: //Элементы окна
     [{
         xtype: 'form',
@@ -14,9 +14,7 @@
         padding: '5 5 5 5',
         border: false,
         style: 'background-color: #fff;',
-        items: //Элементы формы
-        [
-        {
+        items: [{
             xtype: 'htmleditor',
             enableAlignments: true,
             enableColors: true,

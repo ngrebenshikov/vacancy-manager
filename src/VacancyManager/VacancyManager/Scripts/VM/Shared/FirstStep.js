@@ -11,6 +11,14 @@ Ext.define('VM.Shared.FirstStep', {
     },
     initComponent: function () {
 
+        var states = Ext.create('Ext.data.Store', {
+            fields: ['LanquageID', 'Lanquage', 'LanquageFlag'],
+            data: [
+               { LanquageID: 1, Lanquage: 'Русский' },
+               { LanquageID: 2, Lanquage: 'English' }
+           ]
+        });
+
         this.items = [{
             xtype: 'form',
             border: false,
@@ -18,16 +26,31 @@ Ext.define('VM.Shared.FirstStep', {
                 type: 'vbox',
                 align: 'stretch'
             },
-            items: [
-            {
+            items: [{
                 xtype: 'fieldcontainer',
                 layout: 'hbox',
-                items: [
-                {
+                items: [{
+                    xtype: 'combobox',
+                    name: 'LanquageID',
+                    editable: false,
+                    fieldLabel: 'Язык заполнения резюме',
+                    flex: 1,
+                    labelWidth: 170,
+                    displayField: 'Lanquage',
+                    queryMode: 'local',
+                    store: states,
+                    value: states.getAt(0),
+                    valueField: 'LanquageID'
+                }]
+            }, {
+                xtype: 'fieldcontainer',
+                layout: 'hbox',
+                items: [{
                     xtype: 'textfield',
                     fieldLabel: 'Должность',
                     allowBlank: false,
                     name: 'Position',
+                    width: 150,
                     flex: 1,
                     blankText: Strings.RequiredMessage
                 }, {
@@ -49,7 +72,7 @@ Ext.define('VM.Shared.FirstStep', {
                     flex: 1,
                     name: 'Summary',
                     blankText: Strings.RequiredMessage
-                }, { 
+                }, {
                     xtype: 'component',
                     html: '<div data-qtip="' + Strings.QT_Summary + '" class="qtip-target">?</div>'
                 }]

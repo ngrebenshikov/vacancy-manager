@@ -4,8 +4,7 @@
     height: 500,
     id: 'jobGrid',
     autoSizeColumns: true,
-    frame: false,
-    split: true,
+    border: true,
     title: 'Профессиональный опыт',
     columns:
     [{

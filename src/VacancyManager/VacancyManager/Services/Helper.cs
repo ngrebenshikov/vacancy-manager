@@ -26,9 +26,9 @@ namespace VacancyManager.Services
             public string AppFIO { get; set; }
             public string AdditionalInformation { get; set; }
             public CultureInfo ResumeCi { get; set; }
-            public PdfResumeHeaders(string lanq)
+            public PdfResumeHeaders(int lanq)
             {
-                if (lanq == "ru")
+                if (lanq == 1)
                 {
                     Position = Resources.Position_ru;
                     Summary = Resources.Summary;
@@ -44,7 +44,7 @@ namespace VacancyManager.Services
                     ResumeCi = new CultureInfo("ru-ru");
                     ToNow = "настоящее время";
                 }
-                else if (lanq == "en")
+                else if (lanq == 2)
                 {
                     Position = ResourceEn.Position;
                     Summary = ResourceEn.Summary;

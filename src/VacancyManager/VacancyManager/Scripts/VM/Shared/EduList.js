@@ -4,8 +4,7 @@
     height: 500,
     id: 'eduGrid',
     autoSizeColumns: true,
-    frame: false,
-    split: true,
+    border: true,
     title: 'Образование',
     store: 'ResumeEducation',
     columns:

@@ -13,11 +13,20 @@
         flex: 1
 
     }, {
-        header: 'Резюме',
-        dataIndex: 'ResumeId',
+        header: 'Язык заполнения',
+        dataIndex: 'LanquageID',
         sortable: false,
+        align: 'center',
         menuDisabled: true,
-        flex: 1
+        flex: 1,
+        renderer: function (value) {
+            var cssPrefix = Ext.baseCSSPrefix,
+               Lang = 'Русский';
+            if (value == 2) {
+                Lang = 'English';
+            }
+            return Lang;
+        }
     }, {
         header: 'Интервал резюме',
         dataIndex: 'StartDate',
@@ -60,6 +69,7 @@
                             ResumeId: JsonResult.resume.ResumeId,
                             Position: JsonResult.resume.Position,
                             Summary: JsonResult.resume.Summary,
+                            LanquageID: JsonResult.resume.LanquageID,
                             Training: JsonResult.resume.Training,
                             Date: JsonResult.resume.Date
                         });

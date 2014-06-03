@@ -331,6 +331,10 @@
     <Compile Include="Migrations\201406011757428_VacancyRequirement_RequirementAdded.Designer.cs">
       <DependentUpon>201406011757428_VacancyRequirement_RequirementAdded.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201406030617258_Resume_LanquageIDAdded.cs" />
+    <Compile Include="Migrations\201406030617258_Resume_LanquageIDAdded.Designer.cs">
+      <DependentUpon>201406030617258_Resume_LanquageIDAdded.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\Applicant.cs" />
@@ -339,6 +343,7 @@
     <Compile Include="Models\ExperienceRequirement.cs" />
     <Compile Include="Models\JSON\JsonApplicant.cs" />
     <Compile Include="Models\JSON\JsonConsideration.cs" />
+    <Compile Include="Models\JSON\JsonResume.cs" />
     <Compile Include="Models\JSON\JsonVacancy.cs" />
     <Compile Include="Models\JSON\JsonVacancyRequirement.cs" />
     <Compile Include="Models\ResumeRequirement.cs" />
