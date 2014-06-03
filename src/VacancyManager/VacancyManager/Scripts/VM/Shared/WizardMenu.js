@@ -2,11 +2,10 @@
     extend: 'Ext.form.Panel',
     alias: 'widget.WizardMenu',
     region: 'west',
+    bodyPadding: 15,
     border: true,
-    frame: true,
-    bodyPadding: 5,
+    title: 'Этапы заполнения',
     margins: '5 5 5 5',
-    split: true,
     layout: {
         type: 'vbox',
         align: 'stretch'
@@ -27,7 +26,8 @@
                tabIndex: 1,
                id: 'Item1',
                pressed: true,
-               text: 'Основная информация', toggleGroup: '1', scale: 'small', enableToggle: true, flex: 1, margin: '0 0 1 0',
+               textAlign: 'left',
+               text: 'Основная <br> информация', toggleGroup: '1', scale: 'small', enableToggle: true, flex: 1, margin: '0 0 1 0',
                handler: function (button) {
                    var wizard = Ext.getCmp('wizard');
                    wizard.getLayout().setActiveItem('step-' + button.tabIndex);
@@ -47,6 +47,7 @@
              tabIndex: 2,
              id: 'Item2',
              disabled: true,
+             textAlign: 'left',
              text: 'Компетенция', toggleGroup: '1', scale: 'small', enableToggle: true, flex: 1, margin: '0 0 1 0',
              handler: function (button) {
                  var wizard = Ext.getCmp('wizard');
@@ -66,7 +67,8 @@
                tabIndex: 3,
                id: 'Item3',
                disabled: true,
-               text: 'Профессональный опыт', toggleGroup: '1', scale: 'small', enableToggle: true, flex: 1, margin: '0 0 1 0',
+               textAlign: 'left',
+               text: 'Профессональный <br> опыт', toggleGroup: '1', scale: 'small', enableToggle: true, flex: 1, margin: '0 0 1 0',
                handler: function (button) {
                    var wizard = Ext.getCmp('wizard');
                    wizard.getLayout().setActiveItem('step-' + button.tabIndex);
@@ -86,6 +88,7 @@
                tabIndex: 4,
                id: 'Item4',
                disabled: true,
+               textAlign: 'left',
                text: 'Образование', toggleGroup: '1', scale: 'small', enableToggle: true, flex: 1, margin: '0 0 1 0',
                handler: function (button) {
                    var wizard = Ext.getCmp('wizard');
@@ -106,6 +109,7 @@
                tabIndex: 5,
                id: 'Item5',
                disabled: true,
+               textAlign: 'left',
                text: 'Дополнительно', toggleGroup: '1', scale: 'small', enableToggle: true, flex: 1, margin: '0 0 1 0',
                handler: function (button) {
                    var wizard = Ext.getCmp('wizard');

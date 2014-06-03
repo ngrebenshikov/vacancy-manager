@@ -1,19 +1,12 @@
-﻿var cellEditing = Ext.create('Ext.grid.plugin.CellEditing', {
-    clicksToEdit: 2,
-    listeners: {
-        beforeedit: function (e, editor) {
-            if (e.colIdx == 1)
-                return false;
-        }
-    }
-});
-
-Ext.define('VM.Shared.ReqsList', {
+﻿Ext.define('VM.Shared.ReqsList', {
     extend: 'Ext.grid.Panel',
     alias: 'widget.ReqsList',
     id: 'resReqsGrid',
-    frame: true,
-    plugins: [cellEditing],
+    frame: false,
+    border: true,
+    plugins: Ext.create('Ext.grid.plugin.CellEditing', {
+        clicksToEdit: 2
+    }),
     features: [{
         ftype: 'grouping',
         groupHeaderTpl: '{name}',
@@ -24,7 +17,7 @@ Ext.define('VM.Shared.ReqsList', {
     title: Strings.Skills,
 
     columns: [
-             {   xtype: 'checkcolumn',
+             { xtype: 'checkcolumn',
                  dataIndex: 'IsRequire',
                  width: 40,
                  align: 'center',

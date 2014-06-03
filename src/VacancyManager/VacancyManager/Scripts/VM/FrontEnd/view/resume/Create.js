@@ -1,5 +1,4 @@
-﻿
-Ext.define('VM.view.resume.Create', {
+﻿Ext.define('VM.view.resume.Create', {
     extend: 'Ext.window.Window',
     alias: 'widget.resumeCreate',
     requires: ['VM.Shared.WizardPanel',
@@ -12,14 +11,16 @@ Ext.define('VM.view.resume.Create', {
     autoShow: true,
     modal: true,
     closable: false,
+    bodyStyle: 'background-color: #fff;',
     buttonAlign: 'center',
     initComponent: function () {
-        this.items = [
-           { xtype: 'WizardMenu',
-               width: 185
-           },
-           { xtype: 'WizardPanel' }
-        ],
+        this.items = [{
+            xtype: 'WizardMenu',
+            style: 'background-color: #fff;',
+            width: 200
+        }, { xtype: 'WizardPanel',
+            bodyStyle: 'background-color: #fff;'
+        }],
 
         this.buttons = [{
             text: 'Выход',

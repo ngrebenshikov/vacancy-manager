@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using VacancyManager.Models;
-
+using VacancyManager.Models.JSON;
 namespace VacancyManager.Services.Managers
 {
     internal static class ResumeManager
@@ -48,39 +48,60 @@ namespace VacancyManager.Services.Managers
             _db.SaveChanges();
         }
 
-        internal static Resume UpdateResume(int resId, string position, string summary, string training, string addInfo)
+        internal static Resume UpdateResume(JsonResume UpdatingResume)
         {
             VacancyContext _db = new VacancyContext();
-            Resume upRes = _db.Resumes.Where(res => res.ResumeId == resId).FirstOrDefault();
-            if (upRes != null)
+            Resume UpRes = _db.Resumes.Where(res => res.ResumeId == UpdatingResume.ResumeId).FirstOrDefault();
+            if (UpRes != null)
             {
-                upRes.Position = position;
-                upRes.Summary = summary;
-                upRes.Training = training;
-                upRes.AdditionalInformation = addInfo;
+                UpRes.Position = UpdatingResume.Position;
+                UpRes.Summary = UpdatingResume.Summary;
+                UpRes.Training = UpdatingResume.Training;
+                UpRes.LanquageID = UpdatingResume.LanquageID;
+                UpRes.AdditionalInformation = UpdatingResume.AdditionalInformation;
                 _db.SaveChanges();
             }
-            return upRes;
+            return UpRes;
         }
 
-        internal static Resume CreateResume(int applicantId, string Position, string Summary, string Training, DateTime Date, string addInfo)
+        internal static Resume CreateResume(JsonResume CreatingResume)
         {
             VacancyContext _db = new VacancyContext();
-            var obj = new Resume();
-            obj = new Resume
+            Resume obj = new Resume
             {
-                ApplicantID = applicantId,
-                Position = Position,
-                Summary = Summary,
-                Training = Training,
-                AdditionalInformation = addInfo,
-                Date = Date
+                ApplicantID = CreatingResume.ApplicantID,
+                Position = CreatingResume.Position,
+                Summary = CreatingResume.Summary,
+                Training = CreatingResume.Training,
+                AdditionalInformation = CreatingResume.AdditionalInformation,
+                LanquageID = CreatingResume.LanquageID,
+                Date = Convert.ToDateTime(CreatingResume.Date)
             };
             _db.Resumes.Add(obj);
             _db.SaveChanges();
 
             return obj;
         }
+
+        internal static Resume CreateResumeCopy(Resume CreatingResume)
+        {
+            VacancyContext _db = new VacancyContext();
+            Resume obj = new Resume
+            {
+                ApplicantID = CreatingResume.ApplicantID,
+                Position = CreatingResume.Position,
+                Summary = CreatingResume.Summary,
+                Training = CreatingResume.Training,
+                AdditionalInformation = CreatingResume.AdditionalInformation,
+                LanquageID = CreatingResume.LanquageID,
+                Date = DateTime.Now
+            };
+            _db.Resumes.Add(obj);
+            _db.SaveChanges();
+
+            return obj;
+        }
+
         #endregion
 
         #region ResumeRequirement

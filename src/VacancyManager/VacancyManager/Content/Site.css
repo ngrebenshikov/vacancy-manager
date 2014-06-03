@@ -194,3 +194,20 @@ td.wrap-text div
 /*tr { display: block; float: left; }
 th, td { display: block; }*/
 
+.x-grid-langru {
+    background-image: url('/Content/icons/flag_rf.jpg');
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-color: transparent;
+}
+
+.x-grid-langen {
+    background-image: url('/Content/icons/flag_eng.jpg');
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-color: transparent;
+}
+
+.x-grid-checkheader-editor .x-form-cb-wrap {
+    text-align: center;
+}

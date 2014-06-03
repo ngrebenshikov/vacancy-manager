@@ -168,6 +168,7 @@
                 var newResume = Ext.create('VM.model.Resume', {
                     Position: values.Position,
                     Summary: values.Summary,
+                    LanquageID: values.LanquageID,
                     ApplicantID: appId
                 });
 

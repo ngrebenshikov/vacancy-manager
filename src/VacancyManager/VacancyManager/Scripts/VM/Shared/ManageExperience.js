@@ -105,7 +105,7 @@
                            format: 'd.m.Y',
                            flex: 1,
                            allowBlank: false,
-                           fieldLabel: 'Дата трудоустройства',
+                           fieldLabel: 'Трудоустроен',
                            altFormats: '|d.m.Y',
                            blankText: Strings.RequiredMessage
                        }, {
@@ -122,7 +122,7 @@
                            xtype: 'datefield',
                            name: 'FinishDate',
                            allowBlank: true,
-                           fieldLabel: 'Дата увольнения',
+                           fieldLabel: 'Уволен',
                            format: 'd.m.Y',
                            flex: 1,
                            altFormats: '|d.m.Y'

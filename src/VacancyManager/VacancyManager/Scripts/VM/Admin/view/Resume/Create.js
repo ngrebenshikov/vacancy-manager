@@ -4,23 +4,32 @@ Ext.define('VM.view.Resume.Create', {
     alias: 'widget.resumeCreate',
     requires: ['VM.Shared.WizardPanel',
                'VM.Shared.WizardMenu'],
-    title: 'Создание резюме',
     border: false,
+    title: 'Новое резюме',
     layout: 'border',
     height: 450,
     width: 700,
     autoShow: true,
     modal: true,
-    padding: '10 5 5 5',
-
-
+    closable: false,
+    bodyStyle: 'background-color: #fff;',
+    buttonAlign: 'center',
     initComponent: function () {
-        this.items = [
-           { xtype: 'WizardMenu',
-               width: 185
-           },
-           { xtype: 'WizardPanel' }
-          ],
+        this.items = [{
+            xtype: 'WizardMenu',
+            style: 'background-color: #fff;',
+            width: 200
+        }, { xtype: 'WizardPanel',
+            bodyStyle: 'background-color: #fff;'
+        }],
+
+        this.buttons = [{
+            text: 'Выход',
+            scope: this,
+            handler: function (button) {
+                this.close();
+            }
+        }],
 
         this.callParent(arguments);
     }
