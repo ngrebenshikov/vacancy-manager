@@ -13,7 +13,7 @@ namespace VacancyManager.Controllers
     [ExceptionErrorAttribute]
     public class BaseController : Controller
     {
-        public bool UserCanExecuteAction
+        public bool isAdminAccess 
         {
             get
             {

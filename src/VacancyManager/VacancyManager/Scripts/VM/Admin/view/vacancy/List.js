@@ -3,20 +3,21 @@
     alias: 'widget.vacancyList',
     id: 'vacancyGrid',
     frame: true,
-    border: true,
+    border: false,
     layout: 'fit',
     viewConfig: {
         id: 'Vacancygv',
         // autoScroll: true,
         loadingText: 'Загрузка вакансий...'
     },
-
     plugins: [{
         ptype: 'rowexpander',
         expandOnDblClick: false,
         selectRowOnExpand: true,
-        rowBodyTpl: ['<div id="VacancyConsiderationGridRow-{VacancyID}" ></div>']
+        rowBodyTpl: new Ext.XTemplate('<div id="VacancyConsiderationGridRow-{VacancyID}" ></div>')
+
     }],
+
 
     initComponent: function () {
 

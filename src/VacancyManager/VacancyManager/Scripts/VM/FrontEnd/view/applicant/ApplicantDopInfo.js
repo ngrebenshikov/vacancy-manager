@@ -23,13 +23,13 @@
                xtype: 'resumeList',
                border: true
            }]
-       }, {
-           title: 'Вакансии',
-           layout: 'fit',
-           items: [{
-               xtype: 'applicantConsiderationsList',
-               border: true
-           }]
+    }, {
+        title: 'Вакансии',
+        layout: 'fit',
+        items: [{
+            xtype: 'applicantConsiderationsList',
+            border: true
+        }]
 
     }]
 });

@@ -13,7 +13,7 @@
         flex: 1
 
     }, {
-        header: 'Язык заполнения',
+        header: 'Язык',
         dataIndex: 'LanquageID',
         sortable: false,
         align: 'center',
@@ -28,11 +28,27 @@
             return Lang;
         }
     }, {
-        header: 'Интервал резюме',
+        header: 'Интервал',
         dataIndex: 'StartDate',
         sortable: false,
+        align: 'center',
         menuDisabled: true,
         flex: 1
+    }, {
+        text: 'Статус',
+        dataIndex: 'StatusID',
+        sortable: false,
+        align: 'center',
+        menuDisabled: true,
+        flex: 1,
+        renderer: function (value) {
+            var cssPrefix = Ext.baseCSSPrefix,
+               LockStatus = 'Заполнение';
+            if (value == 2) {
+                LockStatus = 'Проверено';
+            }
+            return LockStatus;
+        }
     }, {
         xtype: 'actioncolumn',
         width: 30,
@@ -91,13 +107,13 @@
     }, {
         text: 'Редактировать',
         name: 'btnEditResume',
-        id: 'editResume',
+        id: 'btn_EditResume',
         action: 'EditResume'
     }, '->', {
         text: Strings.btnRemove,
         icon: '/Content/icons/delete.gif',
         name: 'btnRemove',
-        id: 'RemoveResume',
+        id: 'btn_RemoveResume',
         action: 'RemoveResume',
         disabled: true
     }],

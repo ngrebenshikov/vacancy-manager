@@ -187,7 +187,7 @@ namespace VacancyManager.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Удалить соискателя.
+        ///   Looks up a localized string similar to Удалить заявку соискателя.
         /// </summary>
         public static string btnDeleteConsideration {
             get {

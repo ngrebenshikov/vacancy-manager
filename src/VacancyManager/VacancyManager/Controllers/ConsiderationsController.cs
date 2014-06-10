@@ -54,9 +54,9 @@ namespace VacancyManager.Controllers
         }
 
         [HttpGet]
-        public JsonResult Load(int id)
+        public JsonResult Load(int? vacancyId, int? applicantId)
         {
-            IEnumerable<Consideration> Considerations = ConsiderationsManager.GetConsiderations(id);
+            IEnumerable<Consideration> Considerations = ConsiderationsManager.GetConsiderations(vacancyId, applicantId);
             var ConsiderationList = (from Cons in Considerations
                                      select new
                                      {

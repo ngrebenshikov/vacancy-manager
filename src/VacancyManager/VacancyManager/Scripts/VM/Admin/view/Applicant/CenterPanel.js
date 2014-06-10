@@ -1,14 +1,4 @@
-﻿var cellEditing = Ext.create('Ext.grid.plugin.CellEditing', {
-    clicksToEdit: 2,
-    listeners: {
-        beforeedit: function (e, editor) {
-            if (e.field == 'RequirementName')
-                return false;
-        }
-    }
-});
-
-Ext.define('VM.view.Applicant.CenterPanel', {
+﻿Ext.define('VM.view.Applicant.CenterPanel', {
     extend: 'Ext.tab.Panel',
     alias: 'widget.centerPanel',
     region: 'center',
@@ -30,7 +20,9 @@ Ext.define('VM.view.Applicant.CenterPanel', {
             autoSizeColumns: true,
             border: false,
             region: 'center',
-            plugins: [cellEditing],
+            plugins: [Ext.create('Ext.grid.plugin.CellEditing', {
+                clicksToEdit: 2
+            })],
             features: [{
                 ftype: 'grouping',
                 groupHeaderTpl: '{name}',
@@ -72,8 +64,8 @@ Ext.define('VM.view.Applicant.CenterPanel', {
                 text: Strings.UserCommentary,
                 width: 120,
                 sortable: false,
-                menuDisabled: true,
-                editable: false
+                field: { xtype: 'textfield' },
+                menuDisabled: true
             }],
 
             bbar:
@@ -88,36 +80,22 @@ Ext.define('VM.view.Applicant.CenterPanel', {
         }]
     },
     { title: Strings.Vacancies,
-        layout: 'border',
-        border: false,
+        layout: 'fit',
+        border: true,
         id: 'tabAppVac',
         items:
-        [{ xtype: 'commentsList',
-            region: 'center',
-            border: false,
-            margin: '0 0 0 0',
-            id: 'appConsCommentsList',
-            bbar: ['->', {
-                text: 'Новый комментарий',
-                name: 'btnewConsComments',
-                id: 'newConsComments',
-                handler: function () {
-                    var cons = Ext.getCmp('applicantConsiderationsGrid').getView().getSelectionModel().getSelection()[0];
-                    if (cons != undefined)
-                    { var consCreate = Ext.create('VM.view.Comments.Add').show(); }
-                }
-            } ]
-        }, {
+        [{
             xtype: 'applicantConsiderationsList',
             border: false,
-            region: 'west',
-            bbar: [
-            {
+            bbar: [{
                 text: 'Новая вакансия',
                 name: 'btnAddCons',
                 id: 'AddAppCons',
                 action: 'addAppCons'
-            }]
+            },
+             { text: 'Изменить статус', action: 'changeStatus' }, '->',
+             { text: Strings.btnDeleteConsideration, action: 'deleteConsideration' }
+           ]
         }]
     },
     { title: 'Комментарии',
@@ -125,7 +103,7 @@ Ext.define('VM.view.Applicant.CenterPanel', {
         border: false,
         layout: 'anchor',
         items: [
-        { xtype: 'appCommentsList',
+        { xtype: 'commentsList',
             border: false,
             anchor: '100% 70%'
         }, {

@@ -1,19 +1,17 @@
-﻿Ext.define('VM.controller.ApplicantController',
-    {
+﻿
+
+Ext.define('VM.controller.ApplicantController', {
         extend: 'Ext.app.Controller',
-        models: ['ApplicantModel', 'ApplicantRequirements', 'ApplicantConsiderations', 'Comment'],
-        stores: ['Applicant', 'ApplicantRequirements', 'VacancyAssign', 'ApplicantConsiderations', 'Comments',
-                 'ApplicantComments', 'ApplicantMessages'],
+        models: ['ApplicantModel', 'ApplicantRequirements', 'Consideration', 'Comment'],
+        stores: ['Applicant', 'ApplicantRequirements', 'VacancyAssign', 'Consideration', 'Comments', 'ApplicantMessages'],
         views: ['Applicant.List', 'Applicant.Create', 'Applicant.Edit', 'Applicant.ApplicantConsiderations', 'Resume.Create', 'Comments.List',
-                'Applicant.ApplicantComments', 'Applicant.ApplicantMessagesList', 'Comments.Add', 'vacancy.ListMin', 'Resume.List'],
+         'Applicant.ApplicantMessagesList', 'Comments.Add', 'vacancy.ListMin', 'Resume.List'],
 
         init: function () {
             this.control({
 
                 'ApplicantList':
                     { itemdblclick: this.EditApplicantShowForm },
-                'applicantConsiderationsList':
-                    { itemclick: this.GetComments },
                 'button[action=addAppComment]':
                     { click: this.addAppComment },
                 // Открыть форму "Создать"
@@ -47,11 +45,11 @@
 
         RefreshApplicantList: function (button) {
             applicantStore = this.getApplicantStore();
-            applicantStore.load();        
+            applicantStore.load();
         },
-         
+
         addAppCons: function (button) {
-            var appConsStore = this.getApplicantConsiderationsStore(),
+            var appConsStore = this.getConsiderationStore(),
                 vacStore = this.getVacancyAssignStore();
 
             var grid = Ext.getCmp('ApplicantGrid'),
@@ -80,13 +78,16 @@
                                 selectedVacancy = vacancyGrid.getSelectionModel().getSelection()[0],
                                 selectedVacancyId = selectedVacancy.getId();
 
-                            newAppConsideration = Ext.create('VM.model.ApplicantConsiderations', {
+                            newAppConsideration = Ext.create('VM.model.Consideration', {
                                 VacancyID: selectedVacancyId,
-                                ApplicantID: appId
+                                ApplicantID: appId,
+                                Vacancy: selectedVacancy.get('Vacancy')
                             });
 
                             appConsStore.insert(0, newAppConsideration);
+                            appConsStore.sync();
                             button.up('window').close();
+                           
                         }
 
                     }, { text: 'Отмена',
@@ -101,33 +102,8 @@
 
         },
 
-        addConsComment: function (button) {
-
-            var consGrid = Ext.getCmp('applicantConsiderationsGrid');
-
-            if (consGrid != undefined) {
-                var commentsStore = this.getCommentsStore(),
-                newCommentBody = Ext.getCmp('consCommentBody').getValue();
-
-                var grid = Ext.getCmp('ApplicantGrid'),
-                appId = grid.getView().getSelectionModel().getSelection()[0].getId(),
-                consId = consGrid.getView().getSelectionModel().getSelection()[0].getId();
-
-                newComment = Ext.create('VM.model.Comment', {
-                    Body: newCommentBody,
-                    CreationDate: (Ext.Date.format(new Date(), 'd.m.Y')),
-                    ConsiderationID: consId,
-                    ApplicantId: appId
-                });
-
-                button.up('window').close();
-                commentsStore.insert(0, newComment);
-
-            }
-        },
-
         addAppComment: function (button) {
-            var appCommentsStore = this.getApplicantCommentsStore(),
+            var commentsStore = this.getCommentsStore(),
                 newCommentBody = Ext.getCmp('newAppCommnent').getValue();
 
             var grid = Ext.getCmp('ApplicantGrid'),
@@ -140,12 +116,7 @@
                 ApplicantId: appId
             });
 
-            appCommentsStore.insert(0, newComment);
-        },
-
-        GetComments: function (grid, row) {
-            commentsStore = this.getCommentsStore();
-            commentsStore.load({ params: { "considerationId": row.getId()} });
+            commentsStore.insert(0, newComment);
         },
 
         /* ===== */
@@ -201,12 +172,13 @@
         EditApplicantShowForm: function (grid, record) {
             var view = Ext.widget('applicantEdit');
 
-            var obj = grid.getSelectionModel().getSelection()[0];
-            var appConsStore = this.getApplicantConsiderationsStore();
+            var obj = grid.getSelectionModel().getSelection()[0],
+                appId = obj.get("ApplicantID");
+
+            var appConsStore = this.getConsiderationStore();
             var appReqStore = Ext.StoreManager.lookup('ApplicantRequirements');
             appReqStore.load({ params: { "id": obj.get("ApplicantID")} });
             view.down('form').loadRecord(record);
-            fromCons = false;
             // Для фильтрации //            
             Ext.getCmp('ShowHideSkills').disable();
             appReqStore.each(function (appReq) {
@@ -216,18 +188,12 @@
                 }
             });
             // *** //
-
-            appReqStore.load({ params: { "id": obj.get("ApplicantID")} });
-            appConsStore.load({ params: { "AppId": obj.get("ApplicantID")} });
+            appReqStore.load({ params: { "id": appId} });
+            appConsStore.load({ params: { "applicantId": appId} });
             commentsStore = this.getCommentsStore();
-            commentsStore.load({ params: { "considerationId": -1} });
-            var appCommsStore = this.getApplicantCommentsStore();
-            appCommsStore.load({ params: { "appId": obj.get("ApplicantID")} });
-            createWCons = false;
-            var appId = obj.getId(),
-                applicantMessagesStore = this.getApplicantMessagesStore();
+            commentsStore.load({ params: { "applicantId": appId} });
+            var applicantMessagesStore = this.getApplicantMessagesStore();
             applicantMessagesStore.load({ params: { "AppId": appId, "ConsId": 0} });
-
             var appResumeStore = Ext.StoreManager.lookup('Resume');
             appResumeStore.load({ params: { "appId": obj.get("ApplicantID")} });
         },

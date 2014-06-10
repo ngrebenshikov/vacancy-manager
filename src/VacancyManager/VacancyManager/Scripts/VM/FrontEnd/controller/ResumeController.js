@@ -47,8 +47,19 @@
     },
     /* ===== */
     setActiveRecord: function (view, record) {
-        var resumeStore = this.getResumeStore();
+        var resumeStore = this.getResumeStore(),
+            resumeStatus = record.get('StatusID');
         resumeStore.activeRecord = record;
+        var btnEditResume = Ext.getCmp('btn_EditResume'),
+        btnRemoveResume = Ext.getCmp('btn_RemoveResume');
+        if (resumeStatus == 2) {
+            btnEditResume.disable();
+            btnRemoveResume.disable();
+        } else {
+            btnEditResume.enable();
+            btnRemoveResume.enable();
+        }
+
     },
 
     EditResume: function (button) {
@@ -176,6 +187,7 @@
             if (updateResume == undefined) {
                 var newResume = Ext.create('VM.model.Resume', {
                     Position: values.Position,
+                    LanquageID: values.LanquageID,
                     Summary: values.Summary,
                     ApplicantID: appId
                 });
@@ -227,7 +239,7 @@
         resumeRequirementStore.sync();
 
         if (appReqsCount != 0) {
-          
+
             var wmItemState = Ext.getCmp('imgItem2'),
                 wmItem1 = Ext.getCmp('Item2'),
                 wmItem2 = Ext.getCmp('Item3');

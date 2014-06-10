@@ -1,4 +1,5 @@
-﻿
+﻿/// <reference path="~/Scripts/VM/Admin/app.js" />
+
 Ext.define('VM.controller.VacancyController', {
     extend: 'Ext.app.Controller',
 
@@ -51,28 +52,30 @@ Ext.define('VM.controller.VacancyController', {
             ConsiderationsGrid.getStore().destroyStore();
             ConsiderationsGrid.destroy();
         }
-        console.log(Ext.getCmp('ConsiderationStore_' + record.getId()));
+
     },
 
     createConsiderationsGrid: function (rowNode, record, expandRow) {
         var vacancyId = record.get('VacancyID'),
             considerationsStoreId = 'ConsiderationStore_' + vacancyId,
-            targetId = 'VacancyConsiderationGridRow-' + vacancyId;
+            targetId = 'VacancyConsiderationGridRow-' + vacancyId,
+            targetGridId = targetId + '_grid';
 
-        var VacancyConsiderationGrid = Ext.create('VM.view.consideration.List', {
-            renderTo: targetId,
-            id: targetId + "_grid",
-            store: Ext.create('VM.store.Consideration', {
-                extend: 'VM.store.Consideration',
-                id: considerationsStoreId,
-                vacancy: record
-            }).load({ params: { "id": vacancyId} }),
-            vacancy: record
-        });
+        if (Ext.getCmp(targetGridId) == undefined) {
+            var VacancyConsiderationGrid = Ext.create('VM.view.consideration.List', {
+                id: targetGridId,
+                renderTo: targetId,
+                store: Ext.create('VM.store.Consideration', {
+                    extend: 'VM.store.Consideration',
+                    activeVacancy: record,
+                    id: considerationsStoreId
+                }).load({ params: { "vacancyId": vacancyId} })
+            });
 
-        rowNode.grid = VacancyConsiderationGrid;
-        VacancyConsiderationGrid.getEl().swallowEvent(['mouseover', 'mousedown', 'click', 'dblclick', 'onRowFocus']);
-        VacancyConsiderationGrid.fireEvent("bind", VacancyConsiderationGrid, { VacancyID: vacancyId });
+            rowNode.grid = VacancyConsiderationGrid;
+            VacancyConsiderationGrid.getEl().swallowEvent(['mouseover', 'mousedown', 'click', 'dblclick', 'onRowFocus']);
+            VacancyConsiderationGrid.fireEvent("bind", VacancyConsiderationGrid, { VacancyID: vacancyId });
+        }
     },
 
     addVacancy: function (button) {

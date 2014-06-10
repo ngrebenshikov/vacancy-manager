@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web.Mvc;
 using VacancyManager.Services.Managers;
 using VacancyManager.Models;
+using VacancyManager.Models.JSON;
 using System.Web.Script.Serialization;
 using System.IO;
 using VacancyManager.Services;
@@ -107,91 +108,38 @@ namespace VacancyManager.Controllers
 
 
         [HttpPost]
-        public ActionResult Create(string[] data)
+        public ActionResult Create(List<JsonApplicantRequirement> applicantRequirements)
         {
-            bool success = false;
-            string resultMessage = "Ошибка при добавлении навыка";
-            JavaScriptSerializer jss = new JavaScriptSerializer();
-            List<object> CreatedReqs = new List<object>();
-            ApplicantRequirement CreatedAppReq = new ApplicantRequirement();
-
-            try
+            bool Success = false;
+            string ResultMessage = "Ошибка при добавлении навыка";
+            if (applicantRequirements != null)
             {
-              if (data != null)
+              foreach (JsonApplicantRequirement applicantRequirement in applicantRequirements)
                 {
-                for (int i = 0; i <= data.Length - 1; i++)
-                {
-                    var obj = jss.Deserialize<dynamic>(data[i]);
-                    CreatedAppReq = ApplicantRequirementsManager.Create(obj["ApplicantId"], obj["RequirementId"], obj["CommentText"], obj["IsChecked"]);
-                    resultMessage = "Навык успешно добавлен";
-                    success = true;
-
-                    CreatedReqs.Add(new
-                    {
-                        Id = CreatedAppReq.Id,
-                        ApplicantId = obj["ApplicantId"],
-                        StackId = obj["StackId"],
-                        StackName = obj["StackName"],
-                        RequirementId = obj["RequirementId"],
-                        RequirementName = obj["RequirementName"],
-                        CommentText = obj["CommentText"],
-                        IsChecked = obj["IsChecked"]
-                    });
-                   }
+                    Tuple<string, bool> CreateStatus = applicantRequirement.UpdateInApplicantRequirementsStore();
+                    ResultMessage = CreateStatus.Item1;
+                    Success = CreateStatus.Item2;
                 }
             }
-            catch (Exception e)
-            {
-                resultMessage = e.Message;
-            }
-
-            return Json(new
-            {
-                success = success,
-                data = CreatedReqs,
-                message = resultMessage
-            });
+             return Json(new  { success = Success, data = applicantRequirements, message = ResultMessage });
         }
 
 
         [HttpPost]
-        public ActionResult Update(string[] data)
+        public ActionResult Update(List<JsonApplicantRequirement> applicantRequirements)
         {
-            bool success = false;
-            string resultMessage = "Ошибка при изменении навыка";
-            JavaScriptSerializer jss = new JavaScriptSerializer();
-
-            try
+            bool Success = false;
+            string ResultMessage = "Ошибка при изменении навыка";
+            if (applicantRequirements != null)
             {
-                if (data != null)
-                { 
-                    for (int i = 0; i <= data.Length - 1; i++)
-                    {
-                        var obj = jss.Deserialize<dynamic>(data[i]);
-                        if (obj["Id"] != 0)
-                        {
-                            ApplicantRequirementsManager.Update(obj["Id"], obj["CommentText"], obj["IsChecked"]);
-                        }
-                        else
-                        {
-                            ApplicantRequirementsManager.Create(obj["ApplicantId"], obj["RequirementId"], obj["CommentText"], obj["IsChecked"]);
-                        }
-                        resultMessage = "Навык успешно добавлен";
-                        success = true;
-                    }
-
+                foreach (JsonApplicantRequirement applicantRequirement in applicantRequirements)
+                {
+                    Tuple<string, bool> CreateStatus = applicantRequirement.UpdateInApplicantRequirementsStore();
+                    ResultMessage = CreateStatus.Item1;
+                    Success = CreateStatus.Item2;
                 }
             }
-            catch (Exception e)
-            {
-                resultMessage = e.Message;
-            }
-
-            return Json(new
-            {
-                success = success,
-                message = resultMessage
-            });
+            return Json(new { success = Success, data = applicantRequirements, message = ResultMessage });
         }
     }
 }

@@ -174,7 +174,7 @@
                 }, {
                     xtype: 'panel',
                     border: false,
-                    bodyStyle: 'background-color: #fff;',
+                    bodyStyle: 'background-image: Url(/Content/icons/square.gif);',
                     itemId: 'MainMenuItem3',
                     layout: {
                         type: 'border'

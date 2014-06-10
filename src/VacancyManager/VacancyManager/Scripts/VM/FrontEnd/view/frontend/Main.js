@@ -5,12 +5,12 @@
         type: 'border'
     },
     alias: 'widget.FrontEndMain',
-    bodyPadding: 20,
-    bodyStyle: 'background-image: Url(/Content/icons/square.gif);',
+    bodyPadding: '0 20 10 20',
+    bodyStyle: 'background-color: #fff;',
     title: 'Соискатель',
-    margins: '20 60 20 60',
     frame: true,
     initComponent: function () {
+
         var me = this;
         me.hbuttons = [{
             text: "Выход",
@@ -32,18 +32,30 @@
                     }
                 });
             }
-        }],
+        }];
 
         me.items = [
           { xtype: 'ManageApplicant' },
           { xtype: 'ApplicantDopInfo' }
-        ],
+        ];
 
-       me.buttons = [{
-           text: 'Сохранить',
-           action: 'SaveApplicant',
-           margin: '5 5 5 2'
-       }],
+        me.tbar = [{
+            xtype: 'image',
+            width: 130,
+            height: 100,
+            src: '../Content/topLogo.png'
+        },
+           '->', { xtype: 'image',
+               height: 100,
+               width: 588,
+               src: '../Content/topBackground.gif'
+           }];
+
+         me.bbar = ['->', {
+            text: 'Сохранить',
+            action: 'SaveApplicant',
+            margin: '5 20 10 20'
+        }];
 
         me.callParent(arguments);
         this.on("render", this.addHeaderButtons, this);

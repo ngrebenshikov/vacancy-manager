@@ -10,7 +10,7 @@
       { name: 'UserID', type: 'int' },
       { name: 'UserRoles', type: 'string' },
       { name: 'CommentatorName', type: 'string' },
-      { name: 'VacancyName', type: 'string' },
+      { name: 'Vacancy', type: 'string' },
       { name: 'ConsiderationID', type: 'int', useNull: true }
 
     ]

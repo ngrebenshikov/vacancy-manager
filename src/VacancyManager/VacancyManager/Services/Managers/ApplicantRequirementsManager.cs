@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using VacancyManager.Models;
+using VacancyManager.Models.JSON;
 
 namespace VacancyManager.Services.Managers
 {
@@ -17,32 +18,31 @@ namespace VacancyManager.Services.Managers
             return obj;
         }
 
-        internal static ApplicantRequirement Create(int appId, int reqId, string comment, bool isChecked)
+        internal static ApplicantRequirement Create(JsonApplicantRequirement applicantRequirement)
         {
             VacancyContext _db = new VacancyContext();
 
             ApplicantRequirement obj = new ApplicantRequirement{
-                ApplicantId = appId,
-                RequirementId = reqId,
-                Comment = comment,
-                IsChecked = isChecked
+                ApplicantId = applicantRequirement.ApplicantId,
+                RequirementId = applicantRequirement.RequirementID,
+                Comment = applicantRequirement.Comments,
+                IsChecked = applicantRequirement.IsChecked
             };
 
             _db.ApplicantRequirements.Add(obj);
-
             _db.SaveChanges();
             return obj;
         }
 
-        internal static void Update(int id, string comment, bool isChecked)
+        internal static void Update(JsonApplicantRequirement applicantRequirement)
         {
             VacancyContext _db = new VacancyContext();
-            var obj = _db.ApplicantRequirements.Where(app => app.Id == id).FirstOrDefault();
+            var obj = _db.ApplicantRequirements.Where(app => app.Id == applicantRequirement.Id).SingleOrDefault();
 
-            if (obj != null && (obj.Comment != comment || obj.IsChecked != isChecked))
+            if (obj != null)
             {
-                obj.Comment = comment;
-                obj.IsChecked = isChecked;
+                obj.Comment = applicantRequirement.Comments;
+                obj.IsChecked = applicantRequirement.IsChecked;
 
                 _db.SaveChanges();
             }

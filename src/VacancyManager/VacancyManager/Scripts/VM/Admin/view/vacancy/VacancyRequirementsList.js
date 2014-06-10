@@ -21,7 +21,6 @@
         width: 30,
         align: 'center',
         sortable: false,
-        field: { xtype: 'checkboxfield' },
         menuDisabled: true
     }, {
         dataIndex: 'RequirementName',

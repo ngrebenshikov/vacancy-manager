@@ -1,17 +1,19 @@
-﻿Ext.define('VM.controller.ConsiderationController', {
+﻿/// <reference path="~/Ext-4.2.1-gpl/ext-all-rtl-debug-w-comments.js" />
+
+Ext.define('VM.controller.ConsiderationController', {
     extend: 'Ext.app.Controller',
-
     stores: ['Consideration', 'Applicant', 'SearchApplicants', 'Comments', 'ApplicantMessages', 'ConsiderationStatus'],
-
     models: ['VM.model.Consideration', 'VM.model.SearchApplicants', 'VM.model.ApplicantMessage'],
-
-    views: ['consideration.List', 'VM.view.Comments.List', 'Applicant.ApplicantMessages'],
-
+    views: ['consideration.List', 'VM.view.Comments.List', 'Applicant.ApplicantMessages', 'Applicant.ApplicantConsiderations', 'consideration.Add'],
     init: function () {
         this.control({
             'considerationList dataview': {
                 itemclick: this.itemClick,
                 itemdblclick: this.loadComments,
+                itemcontextmenu: this.showMenu
+            },
+            'applicantConsiderationsList': {
+                itemclick: this.itemClick,
                 itemcontextmenu: this.showMenu
             },
 
@@ -44,7 +46,6 @@
                 width: 150,
                 showSeparator: false
             });
-
         var statuses = this.getConsiderationStatusStore();
         statuses.each(function (conStatus) {
             statusID = conStatus.getId();
@@ -61,7 +62,6 @@
                 }
             });
         });
-
         return contextMenu;
     },
 
@@ -77,7 +77,8 @@
 
     showMenu: function (view, rec, node, index, e) {
         e.stopEvent();
-
+        var considerationStore = this.getConsiderationStore();
+        considerationStore.curConsideration = rec;
         contextMenu = this.createMenu();
         contextMenu.showAt(e.getXY());
 
@@ -88,10 +89,11 @@
         var grid = button.up('grid'),
         selectedConsideration = grid.getSelectionModel().getSelection()[0];
         if (selectedConsideration != undefined) {
-            var considerationId = selectedConsideration.get('ConsiderationID')
+            var considerationId = selectedConsideration.get('ConsiderationID'),
+                applicantId = selectedConsideration.get('ApplicantID');
             commentsStore = this.getCommentsStore();
             commentsStore.consideration = selectedConsideration;
-            commentsStore.load({ params: { "considerationId": considerationId} });
+            commentsStore.load({ params: { "considerationId": considerationId, "applicantId": applicantId} });
             var wndCommentsManage = Ext.create('VM.view.Comments.Manage').show();
         }
         else
@@ -101,6 +103,7 @@
                 width: 300,
                 buttons: Ext.Msg.OK
             });
+
     },
 
     loadMessages: function (button) {
@@ -124,45 +127,41 @@
     },
 
     itemClick: function (view, record) {
-        var vacancyId = record.get('VacancyID'),
-            vacancyGrid = Ext.getCmp('vacancyGrid'),
-            index = vacancyGrid.getStore().find('VacancyID', vacancyId),
-            considerationStore = this.getConsiderationStore();
-        vacancyGrid.getSelectionModel().select(index);
-        considerationStore.curConsideration = record;
+        var considerationStore = this.getConsiderationStore();
+            considerationStore.curConsideration = record;
     },
 
     AddConsideration: function (button) {
         var wndconsiderationAdd = button.up('window'),
             considerationForm = wndconsiderationAdd.down('form'),
             applicantGrid = considerationForm.down('grid'),
-            selectedVacancy = Ext.getCmp('vacancyGrid').getSelectionModel().getSelection()[0],
-            selectedVacancyId = selectedVacancy.getId(),
-            considerationStore = Ext.StoreManager.lookup('ConsiderationStore_' + selectedVacancyId);
+            considerationStore = this.getConsiderationStore(),
+        selectedVacancy = considerationStore.activeVacancy,
+        activeConsiderationStore = Ext.StoreManager.lookup('ConsiderationStore_' + selectedVacancy.getId());
         var selectedApplicants = applicantGrid.getSelectionModel().getSelection();
+
         Ext.Array.each(selectedApplicants, function (applicant) {
             newConsideration = Ext.create('VM.model.Consideration', {
-                VacancyID: selectedVacancyId,
+                VacancyID: selectedVacancy.getId(),
                 ApplicantID: applicant.get('ApplicantID'),
                 Vacancy: selectedVacancy.get('Title'),
                 FullName: applicant.get('FullName')
             });
-            considerationStore.insert(0, newConsideration);
+            activeConsiderationStore.insert(0, newConsideration);
         });
 
-        considerationStore.sync();
+        activeConsiderationStore.sync();
         wndconsiderationAdd.close();
     },
 
     loadBlankConsideration: function (button) {
         var considerationGrid = button.up('grid'),
-            vacancyGrid = Ext.getCmp('vacancyGrid'),
             searchApplicantsStore = this.getSearchApplicantsStore(),
-            selectedVacancyId = considerationGrid.vacancy.getId();
-        index = vacancyGrid.getStore().find('VacancyID', selectedVacancyId);
-        vacancyGrid.getSelectionModel().select(index);
-        Ext.create('VM.view.consideration.Add').show();
-        searchApplicantsStore.load({ params: { "vacancyId": selectedVacancyId} });
+            considerationStore = this.getConsiderationStore();
+
+        considerationStore.activeVacancy = considerationGrid.getStore().activeVacancy;
+        var wndConsAdd = Ext.widget('considerationAdd').show();
+        searchApplicantsStore.load({ params: { "vacancyId": considerationStore.activeVacancy.getId()} });
     },
 
     deleteConsideration: function (button) {
@@ -171,8 +170,8 @@
             sel_consideration = grid.getView().getSelectionModel().getSelection()[0];
         if (sel_consideration != undefined) {
             Ext.Msg.show({
-                title: 'Удаление соискателя',
-                msg: 'Уладить соискателя "' + sel_consideration.get('FullName') + '"',
+                title: 'Удаление заявки соискателя',
+                msg: 'Уладить заявку соискателя "' + sel_consideration.get('FullName') + '"',
                 width: 300,
                 buttons: Ext.Msg.YESNO,
                 fn: function (btn) {

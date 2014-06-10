@@ -19,7 +19,14 @@
                 items: [
                 {
                     xtype: 'commentsList',
-                    height: 360
+                    height: 360,
+                    bbar: [{
+                        text: 'Обновить список',
+                        name: 'btnUpdateCommentsList',
+                        align: 'right',
+                        id: 'updateCommentsList',
+                        action: 'updateCommentsList'
+                    }]
                 },
                 {
                     xtype: 'panel',
@@ -45,7 +52,7 @@
                               xtype: 'button',
                               text: 'Добавить комментарий',
                               margin: '5',
-                              action: 'addComment' 
+                              action: 'addComment'
                           },
                           {
                               xtype: 'button',
@@ -55,7 +62,7 @@
                           }]
                     }]
                 }]
-              }],
+            }],
 
              this.buttons = [{
                  text: 'Выход',
@@ -63,7 +70,7 @@
                  handler: this.close
              }];
 
-             this.callParent(arguments);
+        this.callParent(arguments);
 
     }
 });

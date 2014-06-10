@@ -9,10 +9,15 @@ namespace VacancyManager.Services.Managers
   public class CommentsManager
   {
       
-    internal static IEnumerable<Comment> GetComments(int considerationId)
+    internal static List<Comment> GetComments(int? considerationId, int applicantId)
     {
       VacancyContext _db = new VacancyContext();
-      return _db.Commentaries.Where(v => v.Consideration.ConsiderationID == considerationId).ToList();
+      List<Comment> Comments = new List<Comment>();
+      if (considerationId.HasValue)
+      { Comments = _db.Commentaries.Where(v => (v.Consideration.ConsiderationID == considerationId.Value && v.ApplicantID == applicantId)).ToList(); }
+      else
+      { Comments = _db.Commentaries.Where(v => v.ApplicantID == applicantId).ToList(); }
+      return Comments;
     }
 
     internal static IEnumerable<Comment> GetAppComments(int AppId)

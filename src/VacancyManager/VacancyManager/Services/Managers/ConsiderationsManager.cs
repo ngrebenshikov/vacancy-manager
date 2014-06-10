@@ -41,10 +41,15 @@ namespace VacancyManager.Services.Managers
             VacancyContext _db = new VacancyContext();
             return _db.Considerations.Where(x => ConsIds.Contains(x.ConsiderationID));
         }
-        internal static IEnumerable<Consideration> GetConsiderations(int vacancyId)
+        internal static List<Consideration> GetConsiderations(int? vacancyId, int? applicantId)
         {
             VacancyContext _db = new VacancyContext();
-            return _db.Considerations.Where(v => v.VacancyID == vacancyId).ToList();
+            List<Consideration> Considerations = new List<Consideration>();
+            if (vacancyId.HasValue)
+                 Considerations = _db.Considerations.Where(v => v.VacancyID == vacancyId.Value).ToList();
+            if (applicantId.HasValue)
+                Considerations = _db.Considerations.Where(v => v.ApplicantID == applicantId.Value).ToList();
+            return Considerations;
         }
 
         internal static IEnumerable<Consideration> GetApplicantConsiderations(int ApplicantId)

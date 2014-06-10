@@ -336,7 +336,7 @@
     <value>Комментарии</value>
   </data>
   <data name="btnDeleteConsideration" xml:space="preserve">
-    <value>Удалить соискателя</value>
+    <value>Удалить заявку соискателя</value>
   </data>
   <data name="Attachment" xml:space="preserve">
     <value>Вложения</value>

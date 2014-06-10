@@ -14,6 +14,7 @@ namespace VacancyManager.Models.JSON
         public string Training { get; set; }
         public string AdditionalInformation { get; set; }
         public int LanquageID { get; set; }
+        public int StatusID { get; set; }
         public string StartDate { get; set; }
         public string Position { get; set; }
         public string Summary { get; set; }

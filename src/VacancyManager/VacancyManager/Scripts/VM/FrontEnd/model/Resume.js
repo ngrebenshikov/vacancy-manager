@@ -1,7 +1,7 @@
 ﻿Ext.define('VM.model.Resume', {
     extend: 'Ext.data.Model',
     idProperty: 'ResumeId',
-    fields: ['ResumeId', 'ApplicantID', 'StartDate', 'AdditionalInformation', 'Position', 'Summary', 'Training', 'Date', 'LanquageID'],
+    fields: ['ResumeId', 'ApplicantID', 'StartDate', 'AdditionalInformation', 'StatusID', 'Position', 'Summary', 'Training', 'Date', 'LanquageID'],
     proxy: {
         type: 'ajax',
         api: {
