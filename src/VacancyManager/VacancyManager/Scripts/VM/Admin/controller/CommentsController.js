@@ -21,24 +21,28 @@
             });
         },
 
-        
+
         clearCommentArea: function (button) {
             Ext.getCmp('txtareaConsiderationComment').setValue('');
         },
 
         addComment: function (button) {
-            var newComment = Ext.getCmp('txtareaConsiderationComment'),
+            var newCommentValue = Ext.getCmp('txtareaConsiderationComment').getValue(),
                 commentsStore = this.getCommentsStore(),
-                considerationId = commentsStore.consideration.getId(),
+                consideration = commentsStore.consideration,
+                considerationId = consideration.getId(),
             newComment = Ext.create('VM.model.Comment', {
-                Body: newComment.getValue(),
-                ApplicantId : commentsStore.consideration.get('ApplicantID'),
+                Body: newCommentValue,
+                ApplicantId: commentsStore.consideration.get('ApplicantID'),
                 CreationDate: (Ext.Date.format(new Date(), 'd.m.Y')),
                 ConsiderationID: considerationId
-               
+
             });
 
             commentsStore.insert(0, newComment);
+            consideration.changeComment(newCommentValue);
+            console.log(consideration);
+
         },
 
         updateCommentsList: function (button) {

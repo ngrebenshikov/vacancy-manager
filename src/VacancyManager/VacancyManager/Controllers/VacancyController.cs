@@ -90,7 +90,7 @@ namespace VacancyManager.Controllers
                                                     ),
                                      Link = BaseAdress + Vacancies.SpecialKey,
                                      IsVisible = Vacancies.IsVisible,
-                                     Considerations = Vacancies.Considerations.Count
+                                     Considerations = Vacancies.Considerations.Count 
                                  }
                              ).ToList();
 

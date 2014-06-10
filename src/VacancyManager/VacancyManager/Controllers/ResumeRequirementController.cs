@@ -22,7 +22,7 @@ namespace VacancyManager.Controllers
             IEnumerable<ResumeRequirement> ResumeRequirementsList = null;
             IEnumerable<object> Complex = new List<object>();
 
-            bool CanChangeOrViewData = UserCanExecuteAction;
+            bool CanChangeOrViewData = isAdminAccess;
             if (!CanChangeOrViewData)
             {
                 CanChangeOrViewData = ApplicantManager.IsValidApplicant(ViewResume.ApplicantID, User.Identity.Name);
@@ -63,7 +63,7 @@ namespace VacancyManager.Controllers
         public ActionResult Create(string[] data)
         {
             bool CreateSuccess = false,
-                 CanChangeOrViewData = UserCanExecuteAction;
+                 CanChangeOrViewData = isAdminAccess;
             string CreateMessage = "При изменении требований произошла ошибка";
             List<object> CreatedReqs = new List<object>();
             ResumeRequirement CreatedResumeReq = new ResumeRequirement();
@@ -120,7 +120,7 @@ namespace VacancyManager.Controllers
         public ActionResult Update(string[] data)
         {
             bool UpdateSuccess = false,
-                 CanChangeOrViewData = UserCanExecuteAction;
+                 CanChangeOrViewData = isAdminAccess;
             string UpdateMessage = "При изменении требований произошла ошибка";
             List<object> CreatedReqs = new List<object>();
             ResumeRequirement CreatedResumeReq = new ResumeRequirement();

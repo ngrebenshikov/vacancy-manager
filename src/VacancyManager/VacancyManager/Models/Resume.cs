@@ -14,6 +14,7 @@ namespace VacancyManager.Models
         public string Position { get; set; }
         public string Summary { get; set; }
         public int LanquageID { get; set; }
+        public int StatusID { get; set; }
         public virtual ICollection<ResumeRequirement> ResumeRequirements { get; set; }
         public virtual ICollection<Experience> Experiences { get; set; }
 

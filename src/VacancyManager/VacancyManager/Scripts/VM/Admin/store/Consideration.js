@@ -3,8 +3,11 @@
     model: 'VM.model.Consideration',
     id: 'ConsiderationStore',
     curConsideration: null,
-    vacancy: undefined,
+    activeVacancy: undefined,
     autoLoad: false,
     autoSync: false,
-    autoSave: true
+    autoSave: true,
+    getVacancy: function () {
+        return this.vacancy;
+    }
 });

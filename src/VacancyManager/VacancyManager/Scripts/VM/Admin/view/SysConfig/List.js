@@ -22,14 +22,14 @@
                 menuDisabled: true,
                 renderer: function (value) {
                     var cssPrefix = Ext.baseCSSPrefix,
-                        cls = [cssPrefix + 'grid-checkheader'];
+                        cls = [cssPrefix + 'grid-checkcolumn'];
 
                     if (value == "true" || value == "True") {
-                        cls.push(cssPrefix + 'grid-checkheader-checked');
-                        return '<div class="' + cls.join(' ') + '">&#160;</div>';
+                        cls.push(cssPrefix + 'grid-checkcolumn-checked');
+                        return '<center><div class="' + cls.join(' ') + '">&#160;</div></center>';
                     }
                     else if (value == "false" || value == "False") {
-                        return '<div class="' + cls.join(' ') + '">&#160;</div>';
+                        return '<center><div class="' + cls.join(' ') + '">&#160;</div></center>';
                     }
                     else
                         return value;

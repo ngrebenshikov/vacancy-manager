@@ -8,7 +8,7 @@ Ext.define('VM.view.resume.Edit', {
                'VM.Shared.FouthStep',
                'VM.Shared.LastStep'],
     title: 'Редактирование резюме',
-    height: 450,
+    height: 550,
     width: 700,
     autoShow: true,
     modal: true,

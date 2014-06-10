@@ -165,7 +165,7 @@ namespace VacancyManager.Controllers
         public JsonResult GetSearchApplicants(int vacancyId)
         {
             var applicantList = ApplicantManager.GetList();
-            var considerations = ConsiderationsManager.GetConsiderations(vacancyId);
+            var considerations = ConsiderationsManager.GetConsiderations(vacancyId, null);
             var Requirments = RequirementsManager.GetRequirements().ToList();
             var ids = (from cons in considerations
                        select cons.ApplicantID).ToArray();
@@ -216,7 +216,7 @@ namespace VacancyManager.Controllers
         {
             bool success = false;
             string resultMessage = "Ошибка при удалении соискателя";
-            bool CanChangeOrViewData = UserCanExecuteAction;
+            bool CanChangeOrViewData = isAdminAccess;
             if (applicant != null)
             {
                  if (!CanChangeOrViewData)

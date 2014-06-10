@@ -57,6 +57,7 @@ namespace VacancyManager.Services.Managers
                 UpRes.Position = UpdatingResume.Position;
                 UpRes.Summary = UpdatingResume.Summary;
                 UpRes.Training = UpdatingResume.Training;
+                UpRes.StatusID = UpdatingResume.StatusID;
                 UpRes.LanquageID = UpdatingResume.LanquageID;
                 UpRes.AdditionalInformation = UpdatingResume.AdditionalInformation;
                 _db.SaveChanges();
@@ -102,6 +103,19 @@ namespace VacancyManager.Services.Managers
             return obj;
         }
 
+        internal static bool CheckResumePermissions(JsonResume EditingResume, string ActiveUser) 
+        {
+            bool Successfully = ApplicantManager.IsValidApplicant(EditingResume.ApplicantID, ActiveUser);        
+            Resume ApplicantResume = new Resume();
+            if (Successfully)
+            {
+                Successfully = false;
+                ApplicantResume = GetResumeByID(EditingResume.ResumeId);
+                if (ApplicantResume.StatusID != 2) { Successfully = true; }
+            }
+            return Successfully;
+        }
+
         #endregion
 
         #region ResumeRequirement
@@ -126,11 +140,18 @@ namespace VacancyManager.Services.Managers
         {
             VacancyContext _db = new VacancyContext();
 
-            ResumeRequirement updateRec = _db.ResumeRequirements.Where(v => v.Id == Id).Single();
+            ResumeRequirement updateRec = _db.ResumeRequirements.Where(v => v.Id == Id).SingleOrDefault();
 
-            updateRec.Comment = comment;
-            updateRec.IsChecked = isChecked;
-            _db.SaveChanges();
+            if (updateRec != null)
+            {
+                if (updateRec.Resume.StatusID != 2)
+                {
+                    updateRec.Comment = comment;
+                    updateRec.IsChecked = isChecked;
+                    _db.SaveChanges();
+                }
+            }
+
             return updateRec;
         }
 

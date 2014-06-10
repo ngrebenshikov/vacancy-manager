@@ -14,6 +14,7 @@ namespace VacancyManager.Models
         public string Comment { get; set; }
         public bool IsChecked { get; set; }
 
+        public virtual Resume Resume { get; set; }
         public ResumeRequirement()
         {
             Id = -1;  

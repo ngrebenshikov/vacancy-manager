@@ -95,9 +95,9 @@ namespace VacancyManager.Services
     {
       string body;
       string subject;
-
+      
       Comment createdComment = CommentsManager.GetComment(createdCommentId);
-
+      int? ConsID = createdComment.ConsiderationID;
       TemplateProp p = new TemplateProp();
       p.Id = createdComment.CommentID.ToString();
       p.Message = createdComment.Body;
@@ -108,7 +108,7 @@ namespace VacancyManager.Services
 
       body = Helper.Format(Templates.NewMessage, p);
 
-      List<Comment> lastComments = CommentsManager.GetComments(createdComment.ConsiderationID.Value).OrderByDescending(c => c.CreationDate).Where(x => x.User != null).ToList();
+      List<Comment> lastComments = CommentsManager.GetComments(ConsID, createdComment.ApplicantID.Value).OrderByDescending(c => c.CreationDate).Where(x => x.User != null).ToList();
       lastComments.RemoveAt(0);
 
       int prevMessageCountParameter = SysConfigManager.GetIntParameter("PrevMessageCount", 2);
@@ -152,7 +152,7 @@ namespace VacancyManager.Services
       string subject;
 
       Comment createdComment = CommentsManager.GetComment(createdCommentId);
-
+      int? ConsID = createdComment.ConsiderationID;
       TemplateProp p = new TemplateProp();
       p.Id = createdComment.CommentID.ToString();
       p.Message = createdComment.Body;
@@ -163,7 +163,7 @@ namespace VacancyManager.Services
 
       body = Helper.Format(Templates.NewMessageAdmin, p);
 
-      List<Comment> lastComments = CommentsManager.GetComments(createdComment.ConsiderationID.Value).OrderByDescending(c => c.CreationDate).ToList();
+      List<Comment> lastComments = CommentsManager.GetComments(ConsID, createdComment.ApplicantID.Value).OrderByDescending(c => c.CreationDate).ToList();
       lastComments.RemoveAt(0);
 
       int prevMessageCountParameter = SysConfigManager.GetIntParameter("PrevMessageCount", 2);

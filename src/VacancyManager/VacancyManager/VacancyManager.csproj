@@ -335,6 +335,10 @@
     <Compile Include="Migrations\201406030617258_Resume_LanquageIDAdded.Designer.cs">
       <DependentUpon>201406030617258_Resume_LanquageIDAdded.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201406081449353_Resume_StatusIDAdded.cs" />
+    <Compile Include="Migrations\201406081449353_Resume_StatusIDAdded.Designer.cs">
+      <DependentUpon>201406081449353_Resume_StatusIDAdded.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\Applicant.cs" />
@@ -342,6 +346,7 @@
     <Compile Include="Models\ConsiderationStatus.cs" />
     <Compile Include="Models\ExperienceRequirement.cs" />
     <Compile Include="Models\JSON\JsonApplicant.cs" />
+    <Compile Include="Models\JSON\JsonApplicantRequirement.cs" />
     <Compile Include="Models\JSON\JsonConsideration.cs" />
     <Compile Include="Models\JSON\JsonResume.cs" />
     <Compile Include="Models\JSON\JsonVacancy.cs" />
@@ -2212,7 +2217,6 @@
     <Content Include="Scripts\VM\Admin\store\Applicant.js" />
     <Content Include="Scripts\VM\Admin\store\Attachment.js" />
     <Content Include="Scripts\VM\Admin\view\Admin\Main.js" />
-    <Content Include="Scripts\VM\Admin\view\Applicant\ApplicantComments.js" />
     <Content Include="Scripts\VM\Admin\view\Applicant\ApplicantConsiderations.js" />
     <Content Include="Scripts\VM\Admin\view\Applicant\ApplicantMessages.js" />
     <Content Include="Scripts\VM\Admin\view\Applicant\ApplicantMessagesList.js" />

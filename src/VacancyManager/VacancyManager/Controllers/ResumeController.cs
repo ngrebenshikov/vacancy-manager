@@ -31,7 +31,7 @@ namespace VacancyManager.Controllers
             object created = null;
             var origResume = ResumeManager.GetResume(id);
 
-            bool CanExecuteAction = UserCanExecuteAction;
+            bool CanExecuteAction = isAdminAccess;
             if (!CanExecuteAction)
             {
                 CanExecuteAction = ApplicantManager.IsValidApplicant(origResume.ApplicantID, User.Identity.Name);
@@ -103,7 +103,7 @@ namespace VacancyManager.Controllers
             var ReqStacks = RequirementsManager.GetAllRequirementStacks();
             var Reqs = RequirementsManager.GetRequirements();
 
-            bool CanExecuteAction = UserCanExecuteAction;
+            bool CanExecuteAction = isAdminAccess;
             if (!CanExecuteAction)
             {
                 CanExecuteAction = ApplicantManager.IsValidApplicant(CurResume.ApplicantID, User.Identity.Name);
@@ -358,7 +358,7 @@ namespace VacancyManager.Controllers
         {
             IEnumerable<Resume> Resume = null;
             IEnumerable<object> ResumeList = null;
-            bool CanChangeOrViewData = UserCanExecuteAction;
+            bool CanChangeOrViewData = isAdminAccess;
 
             if (!CanChangeOrViewData)
             {
@@ -377,10 +377,11 @@ namespace VacancyManager.Controllers
                                   Training = res.Training,
                                   AdditionalInformation = res.AdditionalInformation,
                                   LanquageID = res.LanquageID,
+                                  StatusID = res.StatusID,
                                   StartDate = res.Period,
                                   Position = res.Position,
                                   Summary = res.Summary
-                              }).ToList();
+                              });
             }
 
             return Json(new
@@ -394,12 +395,12 @@ namespace VacancyManager.Controllers
         public ActionResult UpdateResume(JsonResume resume)
         {
             bool Success = false;
+            string ActiveUser = User.Identity.Name;
             string ResultMessage = "Ошибка при обновлении резюме";
-            bool CanExecuteAction = UserCanExecuteAction;
+            bool CanEditResume = isAdminAccess == false ? ResumeManager.CheckResumePermissions(resume, ActiveUser): true;
             if (resume != null)
             {
-                if (!CanExecuteAction) { CanExecuteAction = ApplicantManager.IsValidApplicant(resume.ApplicantID, User.Identity.Name); }
-                if (CanExecuteAction)
+                if (CanEditResume)
                 {
                     Tuple<string, bool> UpdateStatus = resume.UpdateInResumeStore();
                     Success = UpdateStatus.Item2;
@@ -414,7 +415,7 @@ namespace VacancyManager.Controllers
         {
             bool Success = false;
             string ResultMessage = "Ошибка при удалении резюме";
-            bool CanExecuteAction = UserCanExecuteAction;
+            bool CanExecuteAction = isAdminAccess;
             if (resume != null)    //(id != null)
             {
                 if (!CanExecuteAction) { CanExecuteAction = ApplicantManager.IsValidApplicant(resume.ApplicantID, User.Identity.Name); }
@@ -433,7 +434,7 @@ namespace VacancyManager.Controllers
         {
             bool Success = false;
             string ResultMessage = "Ошибка при добавлении резюме";
-            bool CanExecuteAction = UserCanExecuteAction;
+            bool CanExecuteAction = isAdminAccess;
             if (resume != null)
             {
                 int AppId = resume.ApplicantID;           

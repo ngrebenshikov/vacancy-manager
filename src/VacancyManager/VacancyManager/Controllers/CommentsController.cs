@@ -16,11 +16,11 @@ namespace VacancyManager.Controllers
         JavaScriptSerializer jss = new JavaScriptSerializer();
         // GET: /Comments/
         [HttpGet]
-        public JsonResult Load(int considerationId)
+        public JsonResult Load(int? considerationId, int applicantId)
         {
             bool LoadSuccess = true;
             string LoadMessage = "Комментариии успешно загружены";
-            var Comments = CommentsManager.GetComments(considerationId);
+            var Comments = CommentsManager.GetComments(considerationId, applicantId);
             var CommentsList = (from comms in Comments
                                 orderby comms.CommentID descending
                                 select new
@@ -32,7 +32,8 @@ namespace VacancyManager.Controllers
                                      UserRoles = (from userRoles in comms.User.Roles.Where(r => r.Name == "Admin").DefaultIfEmpty(new Role())
                                                   select userRoles.Name).Single().ToString(),
                                      CommentatorName = comms.CommenterName,
-                                     ConsiderationID = comms.Consideration.ConsiderationID,
+                                     Vacancy = comms.Consideration != null ? comms.Consideration.Vacancy.Title : "",
+                                     ConsiderationID = comms.ConsiderationID ?? null,
                                      ApplicantId = comms.ApplicantID
                                  }
 

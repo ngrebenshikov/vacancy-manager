@@ -17,7 +17,7 @@ namespace VacancyManager.Controllers
         [HttpGet]
         public ActionResult GetResumeExperience(int ResId, bool isEdu)
         {
-            bool CanChangeOrViewData = UserCanExecuteAction;
+            bool CanChangeOrViewData = isAdminAccess;
             IEnumerable<object> ExperienceList = null;
             Resume ViewResume = ResumeManager.GetResumeByID(ResId);
             if (!CanChangeOrViewData)
@@ -60,7 +60,7 @@ namespace VacancyManager.Controllers
             Experience Exp = new Experience();
             object newExp = null;
 
-            bool CanChangeOrViewData = UserCanExecuteAction;
+            bool CanChangeOrViewData = isAdminAccess;
             if (data != null)
             {
 
@@ -122,7 +122,7 @@ namespace VacancyManager.Controllers
             DateTime? finishDate = null;
             Experience Exp = new Experience();
             object newExp = null;
-            bool CanChangeOrViewData = UserCanExecuteAction;
+            bool CanChangeOrViewData = isAdminAccess;
             if (data != null)
             {
                 var с_ResumeExp = jss.Deserialize<dynamic>(data);
@@ -171,7 +171,7 @@ namespace VacancyManager.Controllers
         {
             bool DeleteSuccess = false;
             string DeleteMessage = "При удалении информации произошла ошибка";
-            bool CanChangeOrViewData = UserCanExecuteAction;
+            bool CanChangeOrViewData = isAdminAccess;
             if (data != null)
             {
                 var d_ResumeExp = jss.Deserialize<dynamic>(data);
@@ -202,15 +202,9 @@ namespace VacancyManager.Controllers
             var RequirementsStackList = RequirementsManager.GetAllRequirementStacks().ToList();
             var RequirementsList = RequirementsManager.GetRequirements().ToList();
             IEnumerable<ExperienceRequirement> ExperienceRequirementsList = new List<ExperienceRequirement>();
-            bool CanChangeOrViewData = UserCanExecuteAction;
+            bool CanChangeOrViewData = isAdminAccess;
             IEnumerable<object> Complex = new List<object>();
-            Resume EditingResume = ResumeManager.GetResumeByID(id);
 
-            if (!CanChangeOrViewData)
-            {
-
-                CanChangeOrViewData = ApplicantManager.IsValidApplicant(EditingResume.ApplicantID, User.Identity.Name);
-            }
             if (CanChangeOrViewData)
             {
                 ExperienceRequirementsList = ResumeManager.GetExperienceRequirements(id).ToList();
@@ -245,7 +239,7 @@ namespace VacancyManager.Controllers
         {
             bool CreateSuccess = false;
             string CreateMessage = "При изменении требований произошла ошибка";
-            bool CanChangeOrViewData = UserCanExecuteAction;
+            bool CanChangeOrViewData = isAdminAccess;
 
             if (data != null)
             {
@@ -290,7 +284,7 @@ namespace VacancyManager.Controllers
         {
             bool CreateSuccess = false;
             string CreateMessage = "При изменении требований произошла ошибка";
-            bool CanChangeOrViewData = UserCanExecuteAction;
+            bool CanChangeOrViewData = isAdminAccess;
 
             if (data != null)
             {

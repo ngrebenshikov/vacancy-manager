@@ -45,8 +45,10 @@ namespace VacancyManager.Models.JSON
         public Tuple<string, bool>UpdateInConsiderationsStore()
         {
             Tuple<string, bool> UpdateStatus = new Tuple<string, bool>("Заявка соискателя успешно обновлена", true);
-            Consideration NewConsideration = ConsiderationsManager.UpdateConsideration(ConsiderationID, ConsiderationStatusId);
-            Status = NewConsideration.ConsiderationStatus.Status;
+            Consideration UpdatedConsideration = ConsiderationsManager.UpdateConsideration(ConsiderationID, ConsiderationStatusId);
+            Status = UpdatedConsideration.ConsiderationStatus.Status;
+            CommentsCount = UpdatedConsideration.Comments.Count;
+            LastCommentBody = UpdatedConsideration.Comments.DefaultIfEmpty(new Comment()).Last().Body;
             return UpdateStatus;
         }
 

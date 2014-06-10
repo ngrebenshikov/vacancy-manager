@@ -11,8 +11,7 @@ Ext.define('VM.model.Vacancy', {
                  { name: 'IsVisible' },
                  { name: 'Link' },
                  { name: 'Considerations', type: 'int' }
-        ]
-        ,
+        ],
     proxy: {
         type: 'ajax',
         api: {

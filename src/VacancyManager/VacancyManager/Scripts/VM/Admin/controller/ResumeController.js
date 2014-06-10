@@ -13,8 +13,11 @@
             'WizardMenu dataview':
               { itemclick: this.SelectStep },
 
-            'button[action=FinishFirstStep]':
-              { click: this.FinishFirstStep },
+            'button[action=AcceptOrRejectResume]':
+              { click: this.AcceptOrRejectResume },
+
+            'button[action=FinishSecondStep]':
+              { click: this.FinishSecondStep },
 
             //Создать Резюме
             'button[action=CreateResume]':
@@ -47,8 +50,30 @@
     },
     /* ===== */
     setActiveRecord: function (view, record) {
-        var resumeStore = this.getResumeStore();
+        var resumeStore = this.getResumeStore(),
+            resumeStatus = record.get('StatusID');
         resumeStore.activeRecord = record;
+        var btnAcceptOrRejectResume = Ext.getCmp('btn_AcceptOrRejectResume');
+        btnAcceptOrRejectResume.enable();
+        btnAcceptOrRejectResume.updateTextStatus(resumeStatus);
+    },
+
+    AcceptOrRejectResume: function (button) {
+        var resumeStore = this.getResumeStore(),
+            btnAcceptOrRejectResume = button;
+        var resume = resumeStore.activeRecord;
+        resumeStatus = resume.get('StatusID');
+
+        if (resumeStatus != 2) { newStatus = 2; }
+        else { newStatus = 1; }  
+        resume.set('StatusID', newStatus);
+        resume.save({
+            success: function (record, operation) {
+                var resumeStatus = record.get('StatusID');
+                resumeStore.activeRecord = record;
+                btnAcceptOrRejectResume.updateTextStatus(newStatus);
+            }
+        });
     },
 
     EditResume: function (button) {
@@ -219,7 +244,7 @@
         resumeRequirementStore.sync();
 
         if (appReqsCount != 0) {
-          
+
             var wmItemState = Ext.getCmp('imgItem2'),
                 wmItem1 = Ext.getCmp('Item2'),
                 wmItem2 = Ext.getCmp('Item3');

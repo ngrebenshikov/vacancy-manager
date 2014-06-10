@@ -20,14 +20,10 @@
         },
         writer: {
             type: 'json',
-            encode: false,
+            allowSingle: false,
             listful: true,
             writeAllFields: true,
-            root: 'data',
-            getRecordData: function (record) {
-                return Ext.JSON.encode(record.data);
-            }
-        },
-        headers: { 'Content-Type': 'application/json; charset=UTF-8' }
+            root: 'applicantRequirements'
+        }
     }
 });

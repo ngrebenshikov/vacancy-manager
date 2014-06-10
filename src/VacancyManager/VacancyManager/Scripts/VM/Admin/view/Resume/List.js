@@ -11,7 +11,7 @@
         menuDisabled: true,
         width: 100
     }, {
-        text: 'Язык заполнения',
+        text: 'Язык резюме',
         dataIndex: 'LanquageID',
         sortable: false,
         align: 'center',
@@ -26,12 +26,27 @@
             return Lang;
         }
     }, {
-        text: 'Интервал резюме',
+        text: 'Интервал',
         dataIndex: 'StartDate',
         sortable: false,
         align: 'center',
         menuDisabled: true,
-        flex: 2
+        flex: 1
+    }, {
+        text: 'Статус',
+        dataIndex: 'StatusID',
+        sortable: false,
+        align: 'center',
+        menuDisabled: true,
+        flex: 1,
+        renderer: function (value) {
+            var cssPrefix = Ext.baseCSSPrefix,
+               LockStatus = 'Заполнение';
+            if (value == 2) {
+                LockStatus = 'Проверено';
+            }
+            return LockStatus;
+        }
     }, {
         xtype: 'actioncolumn',
         width: 30,
@@ -91,6 +106,20 @@
         name: 'btnEditResume',
         id: 'editResume',
         action: 'EditResume'
+    }, {
+        text: 'Принять резюме',
+        name: 'btnAcceptOrRejectResume',
+        resumeStatus: 1,
+        id: 'btn_AcceptOrRejectResume',
+        disabled: true,
+        action: 'AcceptOrRejectResume',
+        updateTextStatus: function (status) {
+            me = this;
+            var text = ' Принять резюме ';
+            if (status == 2) { text = ' Отклонить резюме '; }
+            me.resumeStatus = status;
+            me.setText(text);
+        }
     }, '->', {
         text: Strings.btnRemove,
         icon: '/Content/icons/delete.gif',
@@ -103,8 +132,10 @@
     listeners: {
         selectionchange: function (view, selections, options) {
             var button = Ext.getCmp('RemoveResume');
-            if (selections != null)
+            if (selections != null) {
                 button.enable();
+            }
+
         }
     },
 

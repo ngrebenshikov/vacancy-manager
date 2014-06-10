@@ -120,52 +120,59 @@ Ext.Loader.setConfig({
 Ext.Loader.setPath('Ext.ux', '/ExtLib/ux');
 Ext.Loader.setPath('Ext.ux.StatusBar', '/ExtLib/ux/statusbar/StatusBar.js');
 
-    Ext.application({
-        name: 'VM',
-        appFolder: '/Scripts/VM/FrontEnd',
+Ext.application({
+    name: 'VM',
+    appFolder: '/Scripts/VM/FrontEnd',
 
-        stores: [
+    stores: [
      'Resume',
      'ResumeRequirement',
      'ResumeEducation',
      'ApplicantRequirement',
      'ApplicantConsideration'],
 
-        controllers: [
+    controllers: [
      'FrontEnd',
      'ResumeExperience',
      'ResumeEducation',
      'ResumeController'],
 
-        launch: function () {
-            Ext.create('Ext.container.Viewport', {
-                layout: 'fit',
-                items: [
-                { xtype: 'FrontEndMain' }
+    launch: function () {
+        var sideMargins = Math.round(window.innerHeight * 0.15),
+             allMargins = '20 ' + sideMargins + ' 20 ' + sideMargins;
+        var viewport = Ext.create('Ext.container.Viewport', {
+            padding: '30px 0',
+            layout: 'ux.center',
+            items: [
+                { xtype: 'FrontEndMain',
+                    height: 650,
+                    maxWidth: 800,
+                    maxHeight: 900
+                }
             ]
-            });
+        });
 
-            if (UserIsAuthenticated === false) {
-                CreateLoginWindow();
-            }
+        if (UserIsAuthenticated === false) {
+            CreateLoginWindow();
+        }
 
-            else {
+        else {
 
-                var appReqStore = this.getApplicantRequirementStore(),
+            var appReqStore = this.getApplicantRequirementStore(),
                     applicant = Ext.create('VM.model.Applicant', model.Applicant),
                     resumeStore = this.getResumeStore(),
                     AppID = model.Applicant.ApplicantID;
-               
-                var appConsStore = this.getApplicantConsiderationStore();
-                var appForm = Ext.getCmp('frmManageApplicant').getForm();
 
-                appForm.loadRecord(applicant);
-                appReqStore.load({ params: { "id": AppID} });
-                resumeStore.load({ params: { "appId": AppID} });
-                appConsStore.load({ params: { "AppId": AppID} });
-            }
+            var appConsStore = this.getApplicantConsiderationStore();
+            var appForm = Ext.getCmp('frmManageApplicant').getForm();
 
-            Ext.QuickTips.init();
+            appForm.loadRecord(applicant);
+            appReqStore.load({ params: { "id": AppID} });
+            resumeStore.load({ params: { "appId": AppID} });
+            appConsStore.load({ params: { "AppId": AppID} });
         }
-    });
+        viewport.center();
+        Ext.QuickTips.init();
+    }
+});
 
