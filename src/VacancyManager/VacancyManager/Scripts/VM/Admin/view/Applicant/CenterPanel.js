@@ -60,7 +60,7 @@
                 sortable: false,
                 menuDisabled: true
             }, {
-                dataIndex: 'CommentText',
+                dataIndex: 'Comments',
                 text: Strings.UserCommentary,
                 width: 120,
                 sortable: false,

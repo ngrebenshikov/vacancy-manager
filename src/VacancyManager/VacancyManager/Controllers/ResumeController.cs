@@ -34,7 +34,7 @@ namespace VacancyManager.Controllers
             bool CanExecuteAction = isAdminAccess;
             if (!CanExecuteAction)
             {
-                CanExecuteAction = ApplicantManager.IsValidApplicant(origResume.ApplicantID, User.Identity.Name);
+                CanExecuteAction = ApplicantManager.ValidateApplicant(origResume.ApplicantID, User.Identity.Name);
             }
 
             if (CanExecuteAction)
@@ -58,7 +58,8 @@ namespace VacancyManager.Controllers
                         DateTime? finishdate = null;
                         if (origResumeExp.FinishDate.HasValue)
                             finishdate = origResumeExp.FinishDate;
-                        ResumeExperienceId = ResumeManager.CreateResumeExperience(createdResumeId, origResumeExp.Duties, finishdate, origResumeExp.IsEducation, origResumeExp.Job, origResumeExp.Position, origResumeExp.Project, origResumeExp.StartDate).ExperienceId;
+                        origResumeExp.ResumeId = createdResumeId;
+                        ResumeExperienceId = ResumeManager.CreateResumeExperience(origResumeExp).ExperienceId;
                         foreach (var origResumeExpReq in origResumeExpReqs)
                         {
                             ResumeManager.CreateExperienceRequirement(ResumeExperienceId, origResumeExpReq.RequirementId, origResumeExpReq.Comment, origResumeExpReq.IsChecked);
@@ -106,7 +107,7 @@ namespace VacancyManager.Controllers
             bool CanExecuteAction = isAdminAccess;
             if (!CanExecuteAction)
             {
-                CanExecuteAction = ApplicantManager.IsValidApplicant(CurResume.ApplicantID, User.Identity.Name);
+                CanExecuteAction = ApplicantManager.ValidateApplicant(CurResume.ApplicantID, User.Identity.Name);
             }
             if (CanExecuteAction)
             {
@@ -362,7 +363,7 @@ namespace VacancyManager.Controllers
 
             if (!CanChangeOrViewData)
             {
-                CanChangeOrViewData = ApplicantManager.IsValidApplicant(appId, User.Identity.Name);
+                CanChangeOrViewData = ApplicantManager.ValidateApplicant(appId, User.Identity.Name);
             }
 
             if (CanChangeOrViewData)
@@ -397,7 +398,7 @@ namespace VacancyManager.Controllers
             bool Success = false;
             string ActiveUser = User.Identity.Name;
             string ResultMessage = "Ошибка при обновлении резюме";
-            bool CanEditResume = isAdminAccess == false ? ResumeManager.CheckResumePermissions(resume, ActiveUser): true;
+            bool CanEditResume = isAdminAccess == false ? ResumeManager.ValidateResumePermissions(resume, ActiveUser): true;
             if (resume != null)
             {
                 if (CanEditResume)
@@ -418,7 +419,7 @@ namespace VacancyManager.Controllers
             bool CanExecuteAction = isAdminAccess;
             if (resume != null)    //(id != null)
             {
-                if (!CanExecuteAction) { CanExecuteAction = ApplicantManager.IsValidApplicant(resume.ApplicantID, User.Identity.Name); }
+                if (!CanExecuteAction) { CanExecuteAction = ApplicantManager.ValidateApplicant(resume.ApplicantID, User.Identity.Name); }
                 if (CanExecuteAction)
                 {
                     Tuple<string, bool> DeleteStatus = resume.DeleteFromResumeStore();
@@ -439,7 +440,7 @@ namespace VacancyManager.Controllers
             {
                 int AppId = resume.ApplicantID;           
                 if (!CanExecuteAction)
-                { CanExecuteAction = ApplicantManager.IsValidApplicant(AppId, User.Identity.Name); }         
+                { CanExecuteAction = ApplicantManager.ValidateApplicant(AppId, User.Identity.Name); }         
                 if (CanExecuteAction)
                 {
                     Tuple<string, bool> CreationStatus = resume.AddToResumeStore();

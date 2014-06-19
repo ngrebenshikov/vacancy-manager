@@ -221,7 +221,7 @@ namespace VacancyManager.Controllers
             {
                  if (!CanChangeOrViewData)
                 {
-                    CanChangeOrViewData = ApplicantManager.IsValidApplicant(applicant.ApplicantID, User.Identity.Name);
+                    CanChangeOrViewData = ApplicantManager.ValidateApplicant(applicant.ApplicantID, User.Identity.Name);
                 }
                 if (CanChangeOrViewData)
                 {

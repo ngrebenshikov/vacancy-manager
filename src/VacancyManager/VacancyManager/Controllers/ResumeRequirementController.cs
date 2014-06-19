@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Web.Mvc;
 using VacancyManager.Models;
+using VacancyManager.Models.JSON;
 using VacancyManager.Services;
 using System.Web.Script.Serialization;
 using VacancyManager.Services.Managers;
@@ -25,7 +26,7 @@ namespace VacancyManager.Controllers
             bool CanChangeOrViewData = isAdminAccess;
             if (!CanChangeOrViewData)
             {
-                CanChangeOrViewData = ApplicantManager.IsValidApplicant(ViewResume.ApplicantID, User.Identity.Name);
+                CanChangeOrViewData = ApplicantManager.ValidateApplicant(ViewResume.ApplicantID, User.Identity.Name);
             }
 
             if (CanChangeOrViewData)
@@ -51,7 +52,7 @@ namespace VacancyManager.Controllers
 
             return Json(new
             {
-                ResumeRequirements = Complex.ToList(),
+                data = Complex.ToList(),
                 total = Complex.ToList().Count,
                 success = true
             }, JsonRequestBehavior.AllowGet
@@ -60,123 +61,43 @@ namespace VacancyManager.Controllers
 
 
         [HttpPost]
-        public ActionResult Create(string[] data)
+        public ActionResult Create(List<JsonResumeRequirement> resumeRequirements)
         {
-            bool CreateSuccess = false,
-                 CanChangeOrViewData = isAdminAccess;
-            string CreateMessage = "При изменении требований произошла ошибка";
-            List<object> CreatedReqs = new List<object>();
-            ResumeRequirement CreatedResumeReq = new ResumeRequirement();
-            if (data != null)
+            bool Success = false;
+            string Message = "При изменении требований произошла ошибка";
+            string ActiveUser = User.Identity.Name;
+            foreach (JsonResumeRequirement resumeRequirement in resumeRequirements)
             {
-                for (int i = 0; i <= data.Length - 1; i++)
+                Resume EditingResume = ResumeManager.GetResumeByID(resumeRequirement.ResumeId);
+                bool CanChangeOrViewData = isAdminAccess == false ? ApplicantManager.ValidateApplicant(EditingResume.ApplicantID, ActiveUser): isAdminAccess;          
+                if (CanChangeOrViewData)
                 {
-                    String Comments = "";
-                    var u_resumerequirement = jss.Deserialize<dynamic>(data[i]);
-                    Int32 Id = Convert.ToInt32(u_resumerequirement["Id"]);
-                    Int32 ResumeID = Convert.ToInt32(u_resumerequirement["ResumeId"]);
-                    Int32 RequirementID = Convert.ToInt32(u_resumerequirement["RequirementID"]);
-                    Boolean IsRequire = Convert.ToBoolean(u_resumerequirement["IsRequire"]);
-                    Resume editingResume = ResumeManager.GetResumeByID(ResumeID);
-
-                    if (IsRequire) { Comments = u_resumerequirement["Comments"].ToString(); }
-                    if (!CanChangeOrViewData)
-                    {
-                        CanChangeOrViewData = ApplicantManager.IsValidApplicant(editingResume.ApplicantID, User.Identity.Name);
-                    }
-
-                    if (CanChangeOrViewData)
-                    {
-                        CreatedResumeReq = ResumeManager.CreateResumeRequirement(ResumeID, RequirementID, Comments, IsRequire);
-
-                        CreatedReqs.Add(new
-                        {
-                            Id = CreatedResumeReq.Id,
-                            StackName = u_resumerequirement["StackName"],
-                            ResumeId = u_resumerequirement["ResumeId"],
-                            RequirementStackID = u_resumerequirement["RequirementStackID"],
-                            RequirementID = u_resumerequirement["RequirementID"],
-                            RequirementName = u_resumerequirement["RequirementName"],
-                            Comments = u_resumerequirement["Comments"],
-                            IsRequire = u_resumerequirement["IsRequire"],
-                        });
-
-                        CreateSuccess = true;
-                        CreateMessage = "Требования успешно созданы";
-                    }
+                    Tuple<string, bool> Status = resumeRequirement.UpdateInResumeRequirementsStore();
+                    Success = Status.Item2;
+                    Message = Status.Item1;
                 }
             }
-
-            return Json(new
-            {
-                success = CreateSuccess,
-                ResumeRequirements = CreatedReqs,
-                message = CreateMessage
-            });
-
+            return Json(new { success = Success,  data = resumeRequirements,  message = Message });
         }
 
         [HttpPost]
-        public ActionResult Update(string[] data)
+        public ActionResult Update(List<JsonResumeRequirement> resumeRequirements)
         {
-            bool UpdateSuccess = false,
-                 CanChangeOrViewData = isAdminAccess;
-            string UpdateMessage = "При изменении требований произошла ошибка";
-            List<object> CreatedReqs = new List<object>();
-            ResumeRequirement CreatedResumeReq = new ResumeRequirement();
-
-            if (data != null)
+            bool Success = false;
+            string Message = "При изменении требований произошла ошибка";
+            string ActiveUser = User.Identity.Name;
+            foreach (JsonResumeRequirement resumeRequirement in resumeRequirements)
             {
-                for (int i = 0; i <= data.Length - 1; i++)
+                Resume EditingResume = ResumeManager.GetResumeByID(resumeRequirement.ResumeId);
+                bool CanChangeOrViewData = isAdminAccess == false ? ApplicantManager.ValidateApplicant(EditingResume.ApplicantID, ActiveUser) : isAdminAccess;
+                if (CanChangeOrViewData)
                 {
-                    String Comments = "";
-                    var u_resumerequirement = jss.Deserialize<dynamic>(data[i]);
-                    Int32 Id = Convert.ToInt32(u_resumerequirement["Id"]),
-                          ResumeID = Convert.ToInt32(u_resumerequirement["ResumeId"]),
-                          RequirementID = Convert.ToInt32(u_resumerequirement["RequirementID"]);
-                    Boolean IsRequire = Convert.ToBoolean(u_resumerequirement["IsRequire"]);
-                    Resume editingResume = ResumeManager.GetResumeByID(ResumeID);
-                    if (IsRequire)
-                    {
-                        Comments = u_resumerequirement["Comments"].ToString();
-                    }
-                    if (!CanChangeOrViewData)
-                    {
-                        CanChangeOrViewData = ApplicantManager.IsValidApplicant(editingResume.ApplicantID, User.Identity.Name);
-                    }
-
-                    if (CanChangeOrViewData)
-                    {
-
-                        if (Id != 0) { CreatedResumeReq =  ResumeManager.UpdateResumeRequirement(Id, Comments, IsRequire); }
-                        else {CreatedResumeReq = ResumeManager.CreateResumeRequirement(ResumeID, RequirementID, Comments, IsRequire); }
-
-                        CreatedReqs.Add(new
-                        {
-                            Id = CreatedResumeReq.Id,
-                            StackName = u_resumerequirement["StackName"],
-                            ResumeId = u_resumerequirement["ResumeId"],
-                            RequirementStackID = u_resumerequirement["RequirementStackID"],
-                            RequirementID = u_resumerequirement["RequirementID"],
-                            RequirementName = u_resumerequirement["RequirementName"],
-                            Comments = u_resumerequirement["Comments"],
-                            IsRequire = u_resumerequirement["IsRequire"],
-                        });
-
-                        UpdateSuccess = true;
-                        UpdateMessage = "Требования успешно изменены";
-                    }
-
+                    Tuple<string, bool> Status = resumeRequirement.UpdateInResumeRequirementsStore();
+                    Success = Status.Item2;
+                    Message = Status.Item1;
                 }
-
             }
-            return Json(new
-            {
-                success = UpdateSuccess,
-                ResumeRequirements = CreatedReqs,
-                message = UpdateMessage
-            });
+            return Json(new { success = Success, data = resumeRequirements, message = Message });
         }
-
     }
 }
