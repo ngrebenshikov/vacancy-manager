@@ -104,7 +104,7 @@ namespace VacancyManager.Services.Managers
     }
 
 
-    internal static bool IsValidApplicant(int ValidatingApplicantId, string UserName) 
+    internal static bool ValidateApplicant(int ValidatingApplicantId, string UserName) 
       {
           int CurApplicantId = GetOnlineApplicant(UserName).ApplicantID;
           bool IsApplicantValid = false;

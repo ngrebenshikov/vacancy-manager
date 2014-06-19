@@ -145,7 +145,16 @@
             resumeStore = this.getResumeStore();
 
         updateResume = resumeStore.activeRecord;
-        updateResume.set(values);
+       
+        updateResume.set({
+            LanquageID: values.LanquageID,
+            AdditionalInformation: values.AdditionalInformation,
+            Position: values.Position,
+            Summary: values.Summary,
+            Training: values.Training
+        });
+
+        console.log(updateResume);
         updateResume.save({
             success: function (record, operation) {
                 resumeRequirementStore.sync();

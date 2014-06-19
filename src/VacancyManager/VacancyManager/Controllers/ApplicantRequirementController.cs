@@ -55,7 +55,7 @@ namespace VacancyManager.Controllers
                             StackName = stack[0].Name,
                             RequirementId = req.RequirementID,
                             RequirementName = req.Name,
-                            CommentText = appReqList[0].Comment,
+                            Comments = appReqList[0].Comment,
                             IsChecked = appReqList[0].IsChecked
                         });
                     else
@@ -67,7 +67,7 @@ namespace VacancyManager.Controllers
                             StackName = stack[0].Name,
                             RequirementId = req.RequirementID,
                             RequirementName = req.Name,
-                            CommentText = "",
+                            Comments = "",
                             IsChecked = false
                         });
                 }
@@ -91,7 +91,7 @@ namespace VacancyManager.Controllers
                         StackName = stack[0].Name,
                         RequirementId = req.RequirementID,
                         RequirementName = req.Name,
-                        CommentText = "",
+                        Comments = "",
                         IsChecked = false
                     });
                 }

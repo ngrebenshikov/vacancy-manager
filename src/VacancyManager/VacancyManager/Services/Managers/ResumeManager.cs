@@ -103,9 +103,9 @@ namespace VacancyManager.Services.Managers
             return obj;
         }
 
-        internal static bool CheckResumePermissions(JsonResume EditingResume, string ActiveUser) 
+        internal static bool ValidateResumePermissions(JsonResume EditingResume, string ActiveUser) 
         {
-            bool Successfully = ApplicantManager.IsValidApplicant(EditingResume.ApplicantID, ActiveUser);        
+            bool Successfully = ApplicantManager.ValidateApplicant(EditingResume.ApplicantID, ActiveUser);        
             Resume ApplicantResume = new Resume();
             if (Successfully)
             {
@@ -116,6 +116,17 @@ namespace VacancyManager.Services.Managers
             return Successfully;
         }
 
+        internal static bool ValidateResumePermissions(int resumeId, string ActiveUser)
+        {
+            Resume ApplicantResume = GetResumeByID(resumeId);
+            bool Successfully = ApplicantManager.ValidateApplicant(ApplicantResume.ApplicantID, ActiveUser);
+            if (Successfully)
+            {
+                Successfully = false;            
+                if (ApplicantResume.StatusID != 2) { Successfully = true; }
+            }
+            return Successfully;
+        }
         #endregion
 
         #region ResumeRequirement
@@ -171,43 +182,66 @@ namespace VacancyManager.Services.Managers
             return _db.PreviousExperiences.Where(v => v.ResumeId == resumeId).ToList();
         }
 
-        internal static Experience CreateResumeExperience(int resumeId, string duties, DateTime? finishDate, bool isEdu, string job, string position, string project, DateTime startDate)
+        internal static Experience CreateResumeExperience(JsonResumeExperience NewResumeExperience)
         {
             VacancyContext _db = new VacancyContext();
-            var ResumeExperience =
-                      new Experience
+            DateTime? finishDate = null;
+            if ((NewResumeExperience.FinishDate != "") && (NewResumeExperience.FinishDate != null)) finishDate = Convert.ToDateTime(NewResumeExperience.FinishDate);
+            Experience Experience = new Experience
                       {
-                          ResumeId = resumeId,
-                          Duties = duties,
+                          ResumeId = NewResumeExperience.ResumeId,
+                          Duties = NewResumeExperience.Duties,
                           FinishDate = finishDate,
-                          IsEducation = isEdu,
-                          Job = job,
-                          Position = position,
-                          Project = project,
-                          StartDate = startDate
+                          IsEducation = NewResumeExperience.IsEducation,
+                          Job = NewResumeExperience.Job,
+                          Position = NewResumeExperience.Position,
+                          Project = NewResumeExperience.Project,
+                          StartDate = Convert.ToDateTime(NewResumeExperience.StartDate)
                       };
 
-            _db.PreviousExperiences.Add(ResumeExperience);
+            _db.PreviousExperiences.Add(Experience);
             _db.SaveChanges();
-            return ResumeExperience;
+            return Experience;
         }
 
-        internal static Experience UpdateResumeExperience(int experienceId, string duties, DateTime? finishDate, bool isEdu, string job, string position, string project, DateTime startDate)
+        internal static Experience CreateResumeExperience(Experience NewResumeExperience)
         {
             VacancyContext _db = new VacancyContext();
-            Experience updateRec = _db.PreviousExperiences.Where(x => x.ExperienceId == experienceId).Single();
-          
+            DateTime? finishDate = null;
+            if (NewResumeExperience.FinishDate != null) finishDate = Convert.ToDateTime(NewResumeExperience.FinishDate);
+            Experience Experience = new Experience
+            {
+                ResumeId = NewResumeExperience.ResumeId,
+                Duties = NewResumeExperience.Duties,
+                FinishDate = finishDate,
+                IsEducation = NewResumeExperience.IsEducation,
+                Job = NewResumeExperience.Job,
+                Position = NewResumeExperience.Position,
+                Project = NewResumeExperience.Project,
+                StartDate = Convert.ToDateTime(NewResumeExperience.StartDate)
+            };
+
+            _db.PreviousExperiences.Add(Experience);
+            _db.SaveChanges();
+            return Experience;
+        }
+
+        internal static Experience UpdateResumeExperience(JsonResumeExperience UpdatingResumeExperience)
+        {
+            VacancyContext _db = new VacancyContext();
+            Experience updateRec = _db.PreviousExperiences.Where(x => x.ExperienceId == UpdatingResumeExperience.ExperienceId).SingleOrDefault();
+            DateTime? finishDate = null;
+            if ((UpdatingResumeExperience.FinishDate != "") && (UpdatingResumeExperience.FinishDate != null)) finishDate = Convert.ToDateTime(UpdatingResumeExperience.FinishDate);
+  
             if (updateRec != null)
             {
-                updateRec.Duties = duties;
+                updateRec.Duties = UpdatingResumeExperience.Duties;
                 updateRec.FinishDate = finishDate;
-                updateRec.IsEducation = isEdu;
-                updateRec.Job = job;
-                updateRec.Position = position;
-                updateRec.Project = project;
-                updateRec.StartDate = startDate;
-
-
+                updateRec.IsEducation = UpdatingResumeExperience.IsEducation;
+                updateRec.Job = UpdatingResumeExperience.Job;
+                updateRec.Position = UpdatingResumeExperience.Position;
+                updateRec.Project = UpdatingResumeExperience.Project;
+                updateRec.StartDate = Convert.ToDateTime(UpdatingResumeExperience.StartDate);
                 _db.SaveChanges();
             }
 

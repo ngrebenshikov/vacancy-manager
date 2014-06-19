@@ -349,6 +349,8 @@
     <Compile Include="Models\JSON\JsonApplicantRequirement.cs" />
     <Compile Include="Models\JSON\JsonConsideration.cs" />
     <Compile Include="Models\JSON\JsonResume.cs" />
+    <Compile Include="Models\JSON\JsonResumeExperience.cs" />
+    <Compile Include="Models\JSON\JsonResumeRequirement.cs" />
     <Compile Include="Models\JSON\JsonVacancy.cs" />
     <Compile Include="Models\JSON\JsonVacancyRequirement.cs" />
     <Compile Include="Models\ResumeRequirement.cs" />
@@ -2202,7 +2204,6 @@
     <Content Include="Scripts\VM\Admin\store\Comments.js" />
     <Content Include="Scripts\VM\Admin\store\Consideration.js" />
     <Content Include="Scripts\VM\Admin\store\ApplicantConsiderations.js" />
-    <Content Include="Scripts\VM\Admin\store\ApplicantComments.js" />
     <Content Include="Scripts\VM\Admin\store\ApplicantMessages.js" />
     <Content Include="Scripts\VM\Admin\store\ConsiderationAssign.js" />
     <Content Include="Scripts\VM\Admin\store\MailMessage.js" />

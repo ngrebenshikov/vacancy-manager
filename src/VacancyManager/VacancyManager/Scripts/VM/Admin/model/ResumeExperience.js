@@ -23,22 +23,16 @@
 
         reader: {
             type: 'json',
-            root: 'experience',
+            root: 'data',
             successProperty: 'success'
         },
 
-        writer:
-                {
-                    type: 'json',
-                    root: 'data',
-                    encode: false,
-                    listful: true,
-                    writeAllFields: true,
-                    getRecordData: function (record) {
-                        return Ext.JSON.encode(record.data);
-                    }
-                },
-        headers: { 'Content-Type': 'application/json; charset=UTF-8' }
-
+        writer: {
+            type: 'json',
+            root: 'resumeExperience',
+            allowSingle: true,
+            listful: true,
+            writeAllFields: true
+        }
     }
 });

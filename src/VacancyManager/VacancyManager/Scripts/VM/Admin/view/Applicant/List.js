@@ -26,13 +26,15 @@
                 menuDisabled: true
             }, {
                 dataIndex: 'ContactPhone',
-                text: 'Контактный телефон',
+                text: 'Контактный <br> телефон',
                 width: 120,
+                align: 'center',
                 sortable: false,
                 menuDisabled: true
             }, {
                 dataIndex: 'Email',
                 text: 'E-mail',
+                align: 'center',
                 width: 150,
                 sortable: false,
                 menuDisabled: true

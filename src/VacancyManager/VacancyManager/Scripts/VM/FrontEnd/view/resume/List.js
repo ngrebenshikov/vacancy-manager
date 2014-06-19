@@ -120,7 +120,7 @@
 
     listeners: {
         selectionchange: function (view, selections, options) {
-            var button = Ext.getCmp('RemoveResume');
+            var button = Ext.getCmp('btn_RemoveResume');
             if (selections != null)
                 button.enable();
         }
