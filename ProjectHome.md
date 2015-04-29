@@ -1,0 +1,1 @@
+A web application with ASP.NET MVC server side and ExtJS client side to manage recruiting process
